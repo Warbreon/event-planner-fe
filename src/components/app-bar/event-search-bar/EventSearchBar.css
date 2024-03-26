@@ -1,0 +1,17 @@
+fieldset.MuiOutlinedInput-notchedOutline {
+	border: 0;
+}
+
+.icon-button {
+	padding: 0 !important;
+}
+
+#app-bar {
+	background-color: white;
+}
+
+#search-bar-box {
+	display: 'flex';
+	align-items: 'flex-end';
+	flex-grow: 1;
+}

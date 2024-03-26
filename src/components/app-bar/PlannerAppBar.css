@@ -2,6 +2,14 @@
 	color: black;
 }
 
-fieldset.MuiOutlinedInput-notchedOutline {
-	border: 0;
+.icon-button {
+	padding: 0 !important;
+}
+
+#notif-box {
+	margin-inline: 2rem;
+}
+
+#profile-menu-appbar > .MuiPaper-root {
+	margin-top: 45px;
 }

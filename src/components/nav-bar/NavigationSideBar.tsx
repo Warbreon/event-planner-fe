@@ -9,7 +9,7 @@ import EventRoundedIcon from '@mui/icons-material/EventRounded';
 import SettingsRoundedIcon from '@mui/icons-material/SettingsRounded';
 
 import './NavigationSideBar.css';
-import { IconButton } from '@mui/material';
+import NavBarButton from './nav-bar-button/NavBarButton.tsx';
 
 type NavigationSideBarProps = {
 	drawerWidth: number;
@@ -17,21 +17,18 @@ type NavigationSideBarProps = {
 	children: ReactNode;
 };
 
-const possiblePages = ['HOME', 'MY_EVENTS', 'SETTINGS'];
+const possiblePages = ['Home', 'My events', 'Settings'];
 
 const NavigationSideBar: React.FC<NavigationSideBarProps> = (props) => {
-	const handleClickOnNavButton = (event: React.MouseEvent<HTMLElement>) => {
-		console.log('Trying to redirect to selected path');
-	};
-
 	//Indicates on which page the user is on to highlight the button on the nav bar. To be removed when actual routing is added.
 	let tempCurrentPage = possiblePages[Math.floor(Math.random() * possiblePages.length)];
 
 	return (
 		<>
-			<Box sx={{ display: 'flex' }}>
+			<Box id='sidebar-box'>
 				<CssBaseline />
 				<Drawer
+					id='sidebar-drawer'
 					sx={{
 						width: props.drawerWidth,
 						flexShrink: 0,
@@ -46,50 +43,18 @@ const NavigationSideBar: React.FC<NavigationSideBarProps> = (props) => {
 				>
 					<List className='nav-list'>
 						<ListItem className='nav-list-item' key='Cognizant' disablePadding>
-							<img
-								className='cognizant-logo'
-								src='Cognizant_logo.jpg'
-								alt='Cognizant company logo'
-								height={50}
-								width={50}
-								style={{ marginBottom: '25px' }}
-							/>
+							<img className='cognizant-logo' src='Cognizant_logo.jpg' alt='Cognizant company logo' />
 						</ListItem>
 						{props.loggedIn && (
 							<>
-								<ListItem className='nav-list-item' key='Home' disablePadding sx={{ width: '70px' }}>
-									<IconButton
-										onClick={handleClickOnNavButton}
-										className={`nav-button ${tempCurrentPage === 'HOME' ? 'active-button' : 'inactive-button'}`}
-										sx={{ borderRadius: '10px' }}
-									>
-										<HomeRoundedIcon className={tempCurrentPage === 'HOME' ? 'active-icon' : 'inactive-icon'} />
-									</IconButton>
-									<p className={`nav-text ${tempCurrentPage === 'HOME' ? 'active-text' : 'inactive-text'}`}>Home</p>
+								<ListItem className='nav-list-item' key='Home' disablePadding>
+									<NavBarButton buttonPage='Home' currentPage={tempCurrentPage} icon={<HomeRoundedIcon />} />
 								</ListItem>
-								<ListItem className='nav-list-item' key='My events' disablePadding sx={{ width: '70px' }}>
-									<IconButton
-										onClick={handleClickOnNavButton}
-										className={`nav-button ${tempCurrentPage === 'MY_EVENTS' ? 'active-button' : 'inactive-button'}`}
-										sx={{ borderRadius: '10px' }}
-									>
-										<EventRoundedIcon className={tempCurrentPage === 'MY_EVENTS' ? 'active-icon' : 'inactive-icon'} />
-									</IconButton>
-									<p className={`nav-text ${tempCurrentPage === 'MY_EVENTS' ? 'active-text' : 'inactive-text'}`}>
-										My events
-									</p>
+								<ListItem className='nav-list-item' key='My events' disablePadding>
+									<NavBarButton buttonPage='My events' currentPage={tempCurrentPage} icon={<EventRoundedIcon />} />
 								</ListItem>
-								<ListItem className='nav-list-item' key='Settings' disablePadding sx={{ width: '70px' }}>
-									<IconButton
-										onClick={handleClickOnNavButton}
-										className={`nav-button ${tempCurrentPage === 'SETTINGS' ? 'active-button' : 'inactive-button'}`}
-										sx={{ borderRadius: '10px' }}
-									>
-										<SettingsRoundedIcon className={tempCurrentPage === 'SETTINGS' ? 'active-icon' : 'inactive-icon'} />
-									</IconButton>
-									<p className={`nav-text ${tempCurrentPage === 'SETTINGS' ? 'active-text' : 'inactive-text'}`}>
-										Settings
-									</p>
+								<ListItem className='nav-list-item' key='Settings' disablePadding>
+									<NavBarButton buttonPage='Settings' currentPage={tempCurrentPage} icon={<SettingsRoundedIcon />} />
 								</ListItem>
 							</>
 						)}

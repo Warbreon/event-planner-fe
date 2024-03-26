@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -9,20 +9,19 @@ import Container from '@mui/material/Container';
 import Avatar from '@mui/material/Avatar';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
-import { Badge, InputAdornment, OutlinedInput, FormControl } from '@mui/material';
-import SearchRoundedIcon from '@mui/icons-material/SearchRounded';
+import { Badge } from '@mui/material';
 import NotificationsRoundedIcon from '@mui/icons-material/NotificationsRounded';
 
 import './PlannerAppBar.css';
+import EventSearchBar from './event-search-bar/EventSearchBar.tsx';
 
-const settings = ['Profile', 'Logout'];
+const profileSettings = ['Profile', 'Logout'];
 
 //Temporary number of notifs until we get it from backend.
 const fakeNumberOfNotifications = 12;
 
 const PlannerAppBar = () => {
 	const [anchorUser, setAnchorUser] = React.useState<null | HTMLElement>(null);
-	const [value, setValue] = useState<string>('');
 
 	const handleClickOnNotifications = (event: React.MouseEvent<HTMLElement>) => {
 		console.log("Trying to redirect to notification's window.");
@@ -36,42 +35,17 @@ const PlannerAppBar = () => {
 		setAnchorUser(null);
 	};
 
-	const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-		setValue(event.target.value);
-	};
-
 	return (
-		<AppBar position='static' sx={{ backgroundColor: 'white' }}>
+		<AppBar id='app-bar' position='static'>
 			<Container maxWidth='xl'>
 				<Toolbar disableGutters>
-					<Box sx={{ display: 'flex', alignItems: 'flex-end', flexGrow: 1 }}>
-						<FormControl fullWidth>
-							<OutlinedInput
-								id='event-search'
-								className='event-search-input'
-								type='text'
-								placeholder='Search for event...'
-								value={value}
-								onChange={handleChange}
-								startAdornment={
-									<InputAdornment position='start'>
-										<IconButton>
-											<SearchRoundedIcon />
-										</IconButton>
-									</InputAdornment>
-								}
-							/>
-						</FormControl>
+					<Box id='search-bar-box'>
+						<EventSearchBar />
 					</Box>
-					<Box sx={{ m: 3 }}>
-						<IconButton onClick={handleClickOnNotifications} sx={{ p: 0 }}>
+					<Box id='notif-box'>
+						<IconButton className='icon-button' onClick={handleClickOnNotifications}>
 							{fakeNumberOfNotifications > 0 ? (
-								<Badge
-									badgeContent={fakeNumberOfNotifications}
-									color='error'
-									overlap='rectangular'
-									style={{ borderRadius: '8px' }}
-								>
+								<Badge badgeContent={fakeNumberOfNotifications} color='error'>
 									<NotificationsRoundedIcon className='notif-icon' />
 								</Badge>
 							) : (
@@ -79,15 +53,14 @@ const PlannerAppBar = () => {
 							)}
 						</IconButton>
 					</Box>
-					<Box sx={{ flexGrow: 0 }}>
+					<Box>
 						<Tooltip title='Open settings'>
-							<IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+							<IconButton className='icon-button' onClick={handleOpenUserMenu}>
 								<Avatar alt='Remy Sharp' src='https://thispersondoesnotexist.com/' />
 							</IconButton>
 						</Tooltip>
 						<Menu
-							sx={{ mt: '45px' }}
-							id='menu-appbar'
+							id='profile-menu-appbar'
 							anchorEl={anchorUser}
 							anchorOrigin={{
 								vertical: 'top',
@@ -101,7 +74,7 @@ const PlannerAppBar = () => {
 							open={Boolean(anchorUser)}
 							onClose={handleCloseUserMenu}
 						>
-							{settings.map((setting) => (
+							{profileSettings.map((setting) => (
 								<MenuItem key={setting} onClick={handleCloseUserMenu}>
 									<Typography textAlign='center'>{setting}</Typography>
 								</MenuItem>

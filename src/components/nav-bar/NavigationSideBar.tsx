@@ -61,7 +61,10 @@ const NavigationSideBar: React.FC<NavigationSideBarProps> = (props) => {
 					</List>
 				</Drawer>
 			</Box>
-			<Box className='wrapped-elements' sx={{ width: `calc(100% - ${72}px)`, ml: `${72}px`, backgroundColor: 'white' }}>
+			<Box
+				className='wrapped-elements'
+				sx={{ width: `calc(100% - ${props.drawerWidth}px)`, ml: `${props.drawerWidth}px`, backgroundColor: 'white' }}
+			>
 				{props.children}
 			</Box>
 		</>

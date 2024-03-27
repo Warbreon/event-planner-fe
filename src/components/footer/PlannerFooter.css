@@ -1,0 +1,16 @@
+.footer {
+	justify-content: end;
+	align-self: flex-end;
+}
+
+.transparent-footer {
+	background-color: transparent;
+	justify-content: center;
+	align-items: center;
+}
+
+.divider {
+	border-right: 1px solid gray; /* Adjust color and style as needed */
+	background-color: gray;
+	height: 1rem; /* Adjust the height to match the BottomNavigation height */
+}

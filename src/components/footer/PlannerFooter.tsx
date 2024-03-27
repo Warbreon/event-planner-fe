@@ -1,29 +1,29 @@
 import React from 'react';
-import { BottomNavigation, BottomNavigationAction } from '@mui/material';
 
 import './PlannerFooter.css';
+import LoggedOutFooter from './logged-out-footer/LoggedOutFooter.tsx';
+import LoggedInFooter from './logged-in-footer/LoggedInFooter.tsx';
+import PlannerFooterViewModel from './PlannerFooterViewModel.ts';
 
 type PlannerFooterProps = {
 	loggedIn: boolean;
 };
 
 const PlannerFooter: React.FC<PlannerFooterProps> = ({ loggedIn }) => {
+	const viewModel = PlannerFooterViewModel();
 	return (
 		<div className='footer'>
-			{!loggedIn ? (
-				<BottomNavigation showLabels>
-					<BottomNavigationAction label='Terms of service' />
-					<BottomNavigationAction label='Support' />
-					<BottomNavigationAction label={`© ${new Date().getFullYear()} Cognizant`} />
-				</BottomNavigation>
+			{loggedIn ? (
+				<LoggedInFooter
+					handleClickCognizant={viewModel.handleClickCognizant}
+					handleClickPrivacy={viewModel.handleClickPrivacy}
+				/>
 			) : (
-				<BottomNavigation className='footer transparent-footer' showLabels>
-					<BottomNavigationAction label='Terms of service' />
-					<div className='divider' />
-					<BottomNavigationAction label='Support' />
-					<div className='divider' />
-					<BottomNavigationAction label={`© ${new Date().getFullYear()} Cognizant`} />
-				</BottomNavigation>
+				<LoggedOutFooter
+					handleClickCognizant={viewModel.handleClickCognizant}
+					handleClickTerms={viewModel.handleClickTerms}
+					handleClickSupport={viewModel.handleClickSupport}
+				/>
 			)}
 		</div>
 	);

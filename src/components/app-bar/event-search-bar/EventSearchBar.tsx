@@ -4,13 +4,19 @@ import SearchRoundedIcon from '@mui/icons-material/SearchRounded';
 
 import './EventSearchBar.css';
 
-const EventSearchBar = () => {
-	const [value, setValue] = useState<string>('');
+type SearchBarProps = {
+	searchValue: string;
+	handleSearchBarChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+	handleSearchKeyDown: (event: React.KeyboardEvent<HTMLInputElement>) => void;
+	handleSearch: () => void;
+};
 
-	const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-		setValue(event.target.value);
-	};
-
+const EventSearchBar: React.FC<SearchBarProps> = ({
+	searchValue,
+	handleSearchBarChange,
+	handleSearchKeyDown,
+	handleSearch,
+}) => {
 	return (
 		<div>
 			<FormControl fullWidth>
@@ -19,11 +25,12 @@ const EventSearchBar = () => {
 					className='event-search-input'
 					type='text'
 					placeholder='Search for event...'
-					value={value}
-					onChange={handleChange}
+					value={searchValue}
+					onChange={handleSearchBarChange}
+					onKeyDown={handleSearchKeyDown}
 					startAdornment={
 						<InputAdornment position='start'>
-							<IconButton className='icon-button'>
+							<IconButton className='icon-button' onClick={handleSearch}>
 								<SearchRoundedIcon />
 							</IconButton>
 						</InputAdornment>

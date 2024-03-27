@@ -29,7 +29,12 @@ const PlannerAppBar = () => {
 			<Container maxWidth='xl'>
 				<Toolbar disableGutters>
 					<Box id='search-bar-box'>
-						<EventSearchBar />
+						<EventSearchBar
+							searchValue={viewModel.searchValue}
+							handleSearchBarChange={viewModel.handleSearchBarChange}
+							handleSearchKeyDown={viewModel.handleSearchKeyDown}
+							handleSearch={viewModel.handleSearch}
+						/>
 					</Box>
 					<Box id='notif-box'>
 						<IconButton className='icon-button' onClick={viewModel.handleClickOnNotifications}>

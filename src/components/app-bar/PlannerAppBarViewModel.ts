@@ -15,11 +15,31 @@ const PlannerAppBarViewModel = () => {
 		setAnchorUser(null);
 	};
 
+	const [searchValue, setSearchValue] = useState<string>('');
+
+	const handleSearchBarChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+		setSearchValue(event.target.value);
+	};
+
+	const handleSearch = () => {
+		console.log(`Searching for ${searchValue} and redirecting to search results`);
+	};
+
+	const handleSearchKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
+		if (event.key === 'Enter') {
+			handleSearch();
+		}
+	};
+
 	return {
 		anchorUser,
 		handleClickOnNotifications,
 		handleOpenUserMenu,
 		handleCloseUserMenu,
+		searchValue,
+		handleSearchBarChange,
+		handleSearchKeyDown,
+		handleSearch,
 	};
 };
 

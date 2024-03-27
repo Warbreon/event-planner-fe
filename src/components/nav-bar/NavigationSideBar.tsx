@@ -10,6 +10,7 @@ import SettingsRoundedIcon from '@mui/icons-material/SettingsRounded';
 
 import './NavigationSideBar.css';
 import NavBarButton from './nav-bar-button/NavBarButton.tsx';
+import NavigationSideBarViewModel from './NavigationSideBarViewModel.ts';
 
 type NavigationSideBarProps = {
 	drawerWidth: number;
@@ -17,11 +18,8 @@ type NavigationSideBarProps = {
 	children: ReactNode;
 };
 
-const possiblePages = ['Home', 'My events', 'Settings'];
-
 const NavigationSideBar: React.FC<NavigationSideBarProps> = (props) => {
-	//Indicates on which page the user is on to highlight the button on the nav bar. To be removed when actual routing is added.
-	let tempCurrentPage = possiblePages[Math.floor(Math.random() * possiblePages.length)];
+	const viewModel = NavigationSideBarViewModel();
 
 	return (
 		<>
@@ -48,13 +46,28 @@ const NavigationSideBar: React.FC<NavigationSideBarProps> = (props) => {
 						{props.loggedIn && (
 							<>
 								<ListItem className='nav-list-item' key='Home' disablePadding>
-									<NavBarButton buttonPage='Home' currentPage={tempCurrentPage} icon={<HomeRoundedIcon />} />
+									<NavBarButton
+										buttonPage='Home'
+										currentPage={viewModel.currentPage}
+										icon={<HomeRoundedIcon />}
+										handleClickOnNavButton={viewModel.handleClickOnNavButton}
+									/>
 								</ListItem>
 								<ListItem className='nav-list-item' key='My events' disablePadding>
-									<NavBarButton buttonPage='My events' currentPage={tempCurrentPage} icon={<EventRoundedIcon />} />
+									<NavBarButton
+										buttonPage='My events'
+										currentPage={viewModel.currentPage}
+										icon={<EventRoundedIcon />}
+										handleClickOnNavButton={viewModel.handleClickOnNavButton}
+									/>
 								</ListItem>
 								<ListItem className='nav-list-item' key='Settings' disablePadding>
-									<NavBarButton buttonPage='Settings' currentPage={tempCurrentPage} icon={<SettingsRoundedIcon />} />
+									<NavBarButton
+										buttonPage='Settings'
+										currentPage={viewModel.currentPage}
+										icon={<SettingsRoundedIcon />}
+										handleClickOnNavButton={viewModel.handleClickOnNavButton}
+									/>
 								</ListItem>
 							</>
 						)}

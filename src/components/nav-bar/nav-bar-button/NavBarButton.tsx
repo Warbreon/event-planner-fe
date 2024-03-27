@@ -6,17 +6,14 @@ type NavBarButtonProps = {
 	buttonPage: string;
 	currentPage: string;
 	icon: ReactNode;
+	handleClickOnNavButton: (redirectionName: string) => void;
 };
 
-const NavBarButton: React.FC<NavBarButtonProps> = ({ buttonPage, currentPage, icon }) => {
-	const handleClickOnNavButton = (event: React.MouseEvent<HTMLElement>) => {
-		console.log('Trying to redirect to selected path');
-	};
-
+const NavBarButton: React.FC<NavBarButtonProps> = ({ buttonPage, currentPage, icon, handleClickOnNavButton }) => {
 	return (
 		<div id={buttonPage + '-button-div'}>
 			<IconButton
-				onClick={handleClickOnNavButton}
+				onClick={() => handleClickOnNavButton(buttonPage)}
 				className={`nav-button ${buttonPage === currentPage ? 'active-button' : 'inactive-button'}`}
 				sx={{ borderRadius: '10px' }}
 			>

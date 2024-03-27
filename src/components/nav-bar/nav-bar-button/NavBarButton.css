@@ -1,0 +1,22 @@
+.nav-list-item > * {
+	justify-content: center;
+	align-items: center;
+}
+
+.inactive-icon,
+.inactive-text {
+	color: black;
+}
+
+.active-icon,
+.active-text {
+	color: #003fe1;
+}
+
+.nav-button.active-button {
+	background-color: #e7ecfd;
+}
+
+.nav-button.active-button:hover {
+	background-color: #acc4f4;
+}

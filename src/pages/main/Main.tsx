@@ -1,11 +1,17 @@
 import React from 'react';
 import { Outlet } from 'react-router-dom';
+import NavigationSideBar from '../../components/nav-bar/NavigationSideBar.tsx';
+import PlannerAppBar from '../../components/app-bar/PlannerAppBar.tsx';
+
+const loggedIn = true;
+
 const Main = () => {
 	return (
 		<>
-			<h1>EVENT PLANNER </h1>
-			{/* ADD APPBAR HERE */}
-			<Outlet />
+			<NavigationSideBar drawerWidth={72} loggedIn={loggedIn}>
+				{loggedIn && <PlannerAppBar />}
+				<Outlet />
+			</NavigationSideBar>
 			{/* ADD FOOTER HERE */}
 		</>
 	);

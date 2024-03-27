@@ -1,0 +1,27 @@
+.nav-list-item {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+	width: 70px;
+	margin-bottom: 20px;
+}
+
+.nav-list-item > * {
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+}
+
+.nav-text {
+	font-size: 0.75rem;
+	padding: 0;
+	margin: 0;
+}
+
+.cognizant-logo {
+	height: 50px;
+	width: 50px;
+	margin-bottom: '1.5rem';
+}

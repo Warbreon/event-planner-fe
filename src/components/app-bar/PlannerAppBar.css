@@ -1,0 +1,20 @@
+.notif-icon {
+	color: black;
+}
+
+.icon-button {
+	padding: 0 !important;
+}
+
+#app-bar {
+	background-color: white;
+	border-bottom: 1px solid #e0e0e0;
+}
+
+#notif-box {
+	margin-inline: 2rem;
+}
+
+#profile-menu-appbar > .MuiPaper-root {
+	margin-top: 45px;
+}

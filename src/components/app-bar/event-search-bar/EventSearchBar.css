@@ -6,10 +6,6 @@ fieldset.MuiOutlinedInput-notchedOutline {
 	padding: 0 !important;
 }
 
-#app-bar {
-	background-color: white;
-}
-
 #search-bar-box {
 	display: 'flex';
 	align-items: 'flex-end';

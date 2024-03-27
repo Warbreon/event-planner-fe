@@ -14,6 +14,7 @@ import NotificationsRoundedIcon from '@mui/icons-material/NotificationsRounded';
 
 import './PlannerAppBar.css';
 import EventSearchBar from './event-search-bar/EventSearchBar.tsx';
+import PlannerAppBarViewModel from './PlannerAppBarViewModel.ts';
 
 const profileSettings = ['Profile', 'Logout'];
 
@@ -21,19 +22,7 @@ const profileSettings = ['Profile', 'Logout'];
 const fakeNumberOfNotifications = 12;
 
 const PlannerAppBar = () => {
-	const [anchorUser, setAnchorUser] = React.useState<null | HTMLElement>(null);
-
-	const handleClickOnNotifications = (event: React.MouseEvent<HTMLElement>) => {
-		console.log("Trying to redirect to notification's window.");
-	};
-
-	const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
-		setAnchorUser(event.currentTarget);
-	};
-
-	const handleCloseUserMenu = () => {
-		setAnchorUser(null);
-	};
+	const viewModel = PlannerAppBarViewModel();
 
 	return (
 		<AppBar id='app-bar' position='static'>
@@ -43,7 +32,7 @@ const PlannerAppBar = () => {
 						<EventSearchBar />
 					</Box>
 					<Box id='notif-box'>
-						<IconButton className='icon-button' onClick={handleClickOnNotifications}>
+						<IconButton className='icon-button' onClick={viewModel.handleClickOnNotifications}>
 							{fakeNumberOfNotifications > 0 ? (
 								<Badge badgeContent={fakeNumberOfNotifications} color='error'>
 									<NotificationsRoundedIcon className='notif-icon' />
@@ -55,13 +44,13 @@ const PlannerAppBar = () => {
 					</Box>
 					<Box>
 						<Tooltip title='Open settings'>
-							<IconButton className='icon-button' onClick={handleOpenUserMenu}>
+							<IconButton className='icon-button' onClick={viewModel.handleOpenUserMenu}>
 								<Avatar alt='Remy Sharp' src='https://thispersondoesnotexist.com/' />
 							</IconButton>
 						</Tooltip>
 						<Menu
 							id='profile-menu-appbar'
-							anchorEl={anchorUser}
+							anchorEl={viewModel.anchorUser}
 							anchorOrigin={{
 								vertical: 'top',
 								horizontal: 'right',
@@ -71,11 +60,11 @@ const PlannerAppBar = () => {
 								vertical: 'top',
 								horizontal: 'right',
 							}}
-							open={Boolean(anchorUser)}
-							onClose={handleCloseUserMenu}
+							open={Boolean(viewModel.anchorUser)}
+							onClose={viewModel.handleCloseUserMenu}
 						>
 							{profileSettings.map((setting) => (
-								<MenuItem key={setting} onClick={handleCloseUserMenu}>
+								<MenuItem key={setting} onClick={viewModel.handleCloseUserMenu}>
 									<Typography textAlign='center'>{setting}</Typography>
 								</MenuItem>
 							))}

@@ -12,7 +12,7 @@ type PlannerFooterProps = {
 const PlannerFooter: React.FC<PlannerFooterProps> = ({ loggedIn }) => {
 	const viewModel = PlannerFooterViewModel();
 	return (
-		<div className='footer'>
+		<>
 			{loggedIn ? (
 				<LoggedInFooter
 					handleClickCognizant={viewModel.handleClickCognizant}
@@ -25,7 +25,7 @@ const PlannerFooter: React.FC<PlannerFooterProps> = ({ loggedIn }) => {
 					handleClickSupport={viewModel.handleClickSupport}
 				/>
 			)}
-		</div>
+		</>
 	);
 };
 

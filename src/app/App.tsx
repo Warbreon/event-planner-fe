@@ -17,15 +17,14 @@ import TermOfService from '../pages/terms-of-service/TermOfService.tsx';
 import Support from '../pages/support/Support.tsx';
 import Main from '../pages/main/Main.tsx';
 
-
 function App() {
 	return (
 		<Routes>
+			<Route path={ROUTES.SIGN_IN} element={<SignIn />} />
 			<Route path={ROUTES.INDEX} element={<Main />}>
-				<Route index element={<ExploreEvents />} />
-				<Route path={ROUTES.SIGN_IN} element={<SignIn />} />
 				<Route path={ROUTES.FORGOT_PASSWORD} element={<ForgotPassword />} />
 				<Route path={ROUTES.RESET_PASSWORD} element={<PasswordReset />} />
+				<Route index element={<ExploreEvents />} />
 				<Route path={ROUTES.EVENT} element={<Event />} />
 				<Route path={ROUTES.MY_EVENTS} element={<MyEvents />} />
 				<Route path={ROUTES.ADD_EVENT} element={<CreateEvent />} />

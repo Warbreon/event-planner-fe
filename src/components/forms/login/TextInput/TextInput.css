@@ -1,0 +1,24 @@
+.input-field input {
+	width: 14.75em;
+	height: 0.1rem;
+	font-size: 1em;
+	outline: none;
+}
+
+.MuiOutlinedInput-root {
+	border-radius: 8px;
+	border: 1px solid #dddddd;
+}
+
+.MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline {
+	border-color: #ffffff;
+}
+
+.MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
+	border-color: #dddddd;
+}
+
+input::placeholder {
+	font-family: 'Inter';
+	font-size: 0.58em;
+}

@@ -1,0 +1,28 @@
+.loginMain {
+	position: absolute;
+	width: 25em;
+	height: 392px;
+	top: 214px;
+	left: 556px;
+	gap: 0px;
+	border-radius: 100px 0px 0px 0px;
+	border: 1px 0px 0px 0px;
+	opacity: 0px;
+}
+
+.inputField {
+	width: 100%;
+}
+
+.grey-underlined {
+	font-size: 0.58em;
+	color: #999999;
+	text-decoration: underline;
+	text-align: left;
+	margin-top: '10px';
+}
+
+.signInContainer {
+	/* background-image: url('../login/Layout.svg'); */
+  background-color: red;
+}

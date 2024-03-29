@@ -18,26 +18,24 @@ const EventSearchBar: React.FC<SearchBarProps> = ({
 	handleSearch,
 }) => {
 	return (
-		<div>
-			<FormControl fullWidth>
-				<OutlinedInput
-					id='event-search'
-					className='event-search-input'
-					type='text'
-					placeholder='Search for event...'
-					value={searchValue}
-					onChange={handleSearchBarChange}
-					onKeyDown={handleSearchKeyDown}
-					startAdornment={
-						<InputAdornment position='start'>
-							<IconButton className='icon-button' onClick={handleSearch}>
-								<SearchRoundedIcon />
-							</IconButton>
-						</InputAdornment>
-					}
-				/>
-			</FormControl>
-		</div>
+		<FormControl fullWidth>
+			<OutlinedInput
+				id='event-search'
+				className='event-search-input'
+				type='text'
+				placeholder='Search for event...'
+				value={searchValue}
+				onChange={handleSearchBarChange}
+				onKeyDown={handleSearchKeyDown}
+				startAdornment={
+					<InputAdornment position='start'>
+						<IconButton className='icon-button' onClick={handleSearch}>
+							<SearchRoundedIcon />
+						</IconButton>
+					</InputAdornment>
+				}
+			/>
+		</FormControl>
 	);
 };
 

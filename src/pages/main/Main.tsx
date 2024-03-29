@@ -10,19 +10,17 @@ const loggedIn = true;
 
 const Main = () => {
 	return (
-		<>
-			<NavigationSideBar drawerWidth={72} loggedIn={loggedIn}>
-				<div className='flex-wrap'>
-					<div className='content'>
-						{loggedIn && <PlannerAppBar />}
-						<Outlet />
-					</div>
-					<div className='footer'>
-						<PlannerFooter loggedIn={loggedIn} />
-					</div>
+		<NavigationSideBar drawerWidth={72} loggedIn={loggedIn}>
+			<div className='flex-wrap'>
+				<div className='content'>
+					{loggedIn && <PlannerAppBar />}
+					<Outlet />
 				</div>
-			</NavigationSideBar>
-		</>
+				<div className='footer'>
+					<PlannerFooter loggedIn={loggedIn} />
+				</div>
+			</div>
+		</NavigationSideBar>
 	);
 };
 

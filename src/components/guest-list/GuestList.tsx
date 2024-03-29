@@ -1,15 +1,19 @@
 import { Avatar, AvatarGroup, List, ListItem, Typography } from '@mui/material'
-import React from 'react'
+import React, { useEffect } from 'react'
 import './GuestList.css'
+import { useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../redux/reducers/rootReducer';
+import { Attendee } from '../../types/attendees';
+import { setAttendees } from '../../redux/actions/attendeeActions.ts';
 
 const MAX_DISPLAYED_AVATARS = 5;
 
 const GuestList: React.FC = () => {
+    const dispatch = useDispatch();
+    const attendees = useSelector((state: RootState) => state.attendees.list);
 
-    /**
-     * TODO: Redux Implementation to get guests list
-     */
-    const guests = [
+    const attendeesMock: Attendee[] = [
         { name: 'Guest 1', src: 'https://i.pravatar.cc/150?img=1', email: 'guest1@example.com' },
         { name: 'Guest 2', src: 'https://i.pravatar.cc/150?img=2', email: 'guest2@example.com' },
         { name: 'Guest 3', src: 'https://i.pravatar.cc/150?img=3', email: 'guest3@example.com' },
@@ -22,13 +26,21 @@ const GuestList: React.FC = () => {
         { name: 'Guest 10', src: 'https://i.pravatar.cc/150?img=10', email: 'guest10@example.com' },
     ];
 
-    const extraGuestCount = guests.length - MAX_DISPLAYED_AVATARS;
+    useEffect(() => {
+        if (attendees.length === 0) {
+            
+            // TODO: make an API call
+            dispatch(setAttendees(attendeesMock));
+        }
+      }, [attendees, attendeesMock ,dispatch]);
+
+    const extraGuestCount = attendees.length - MAX_DISPLAYED_AVATARS;
 
     return (
         <List>
             <ListItem>
                 <AvatarGroup className='avatarGroup'>
-                    {guests.slice(0, MAX_DISPLAYED_AVATARS).map((guest, index) => (
+                    {attendees.slice(0, MAX_DISPLAYED_AVATARS).map((guest, index) => (
                         <Avatar alt={guest.name} src={guest.src} key={guest.email} sx={{ zIndex: index }} />
                     ))}
                 </AvatarGroup>

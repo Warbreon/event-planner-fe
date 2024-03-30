@@ -1,7 +1,7 @@
 import React from 'react';
 import { Outlet } from 'react-router-dom';
-import NavigationSideBar from '../../components/nav-bar/NavigationSideBar.tsx';
-import PlannerAppBar from '../../components/app-bar/PlannerAppBar.tsx';
+import NavigationSideBar from '../../components/nav-bar/NavigationSideBar';
+import PlannerAppBar from '../../components/app-bar/PlannerAppBar';
 
 const loggedIn = true;
 

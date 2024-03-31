@@ -4,7 +4,6 @@ import ICON_TYPE from './iconType';
 enum ICON_COLOR {
 	CORRECT = '#4CAF50',
 	NEUTRAL = '#DDDDDD',
-	ERROR = '#EF5350',
 }
 
 type Props = {

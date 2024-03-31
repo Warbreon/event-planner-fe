@@ -1,8 +1,8 @@
 import { useFormik } from 'formik';
 import { useState, useEffect } from 'react';
-import { passwordResetSchema } from '../../../utils/schemas/password-reset';
-import ICON_TYPE from '../../../components/password-rules/check-mark-icon/icon-states';
-import { PasswordEntries, PasswordValidationIconState } from './reset-password-interfaces';
+import { passwordResetSchema } from '../../../utils/schemas/passwordReset';
+import ICON_TYPE from '../../../components/password-rules/check-mark-icon/iconType';
+import { PasswordEntries, PasswordValidationIconState } from './resetPasswordInterfaces';
 
 const PasswordResetVM = () => {
 	//UPDATE WHEN BACK-END IS IMPLEMENTED

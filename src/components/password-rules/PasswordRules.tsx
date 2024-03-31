@@ -1,4 +1,4 @@
-import { PasswordValidationIconState } from '../../pages/password-reset/create-new-password/reset-password-interfaces';
+import { PasswordValidationIconState } from '../../pages/password-reset/create-new-password/resetPasswordInterfaces';
 import CheckMarkIcon from './check-mark-icon/CheckMarkIcon';
 import './PasswordRules.css';
 

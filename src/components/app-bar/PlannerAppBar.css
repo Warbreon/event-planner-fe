@@ -6,6 +6,11 @@
 	padding: 0 !important;
 }
 
+#appBar {
+	background-color: white;
+	border-bottom: 1px solid #e0e0e0;
+}
+
 #notifBox {
 	margin-inline: 2rem;
 }

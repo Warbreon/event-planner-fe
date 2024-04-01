@@ -25,7 +25,7 @@ const PlannerAppBar = () => {
 	const viewModel = PlannerAppBarViewModel();
 
 	return (
-		<AppBar id='appBar' position='static'>
+		<AppBar id='appBar' position='static' elevation={0}>
 			<Container maxWidth='xl'>
 				<Toolbar disableGutters>
 					<Box id='searchBarBox'>

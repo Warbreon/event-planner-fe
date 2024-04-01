@@ -6,10 +6,10 @@
 	padding: 0 !important;
 }
 
-#notif-box {
+#notifBox {
 	margin-inline: 2rem;
 }
 
-#profile-menu-appbar > .MuiPaper-root {
+#profileMenuAppbar > .MuiPaper-root {
 	margin-top: 45px;
 }

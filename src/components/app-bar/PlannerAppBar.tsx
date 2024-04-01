@@ -25,10 +25,10 @@ const PlannerAppBar = () => {
 	const viewModel = PlannerAppBarViewModel();
 
 	return (
-		<AppBar id='app-bar' position='static'>
+		<AppBar id='appBar' position='static'>
 			<Container maxWidth='xl'>
 				<Toolbar disableGutters>
-					<Box id='search-bar-box'>
+					<Box id='searchBarBox'>
 						<EventSearchBar
 							searchValue={viewModel.searchValue}
 							handleSearchBarChange={viewModel.handleSearchBarChange}
@@ -36,7 +36,7 @@ const PlannerAppBar = () => {
 							handleSearch={viewModel.handleSearch}
 						/>
 					</Box>
-					<Box id='notif-box'>
+					<Box id='notifBox'>
 						<IconButton className='icon-button' onClick={viewModel.handleClickOnNotifications}>
 							{fakeNumberOfNotifications > 0 ? (
 								<Badge badgeContent={fakeNumberOfNotifications} color='error'>
@@ -54,7 +54,7 @@ const PlannerAppBar = () => {
 							</IconButton>
 						</Tooltip>
 						<Menu
-							id='profile-menu-appbar'
+							id='profileMenuAppBar'
 							anchorEl={viewModel.anchorUser}
 							anchorOrigin={{
 								vertical: 'top',

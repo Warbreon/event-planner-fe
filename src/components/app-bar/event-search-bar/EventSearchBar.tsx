@@ -20,10 +20,10 @@ const EventSearchBar: React.FC<SearchBarProps> = ({
 	return (
 		<FormControl fullWidth>
 			<OutlinedInput
-				id='event-search'
+				id='eventSearch'
 				className='event-search-input'
 				type='text'
-				placeholder='Search for event...'
+				placeholder='Search for events....'
 				value={searchValue}
 				onChange={handleSearchBarChange}
 				onKeyDown={handleSearchKeyDown}

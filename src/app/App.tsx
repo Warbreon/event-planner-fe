@@ -20,8 +20,8 @@ import Main from '../pages/main/Main.tsx';
 function App() {
 	return (
 		<Routes>
-			<Route path={ROUTES.SIGN_IN} element={<SignIn />} />
 			<Route path={ROUTES.INDEX} element={<Main />}>
+				<Route path={ROUTES.SIGN_IN} element={<SignIn />} />
 				<Route path={ROUTES.FORGOT_PASSWORD} element={<ForgotPassword />} />
 				<Route path={ROUTES.RESET_PASSWORD} element={<PasswordReset />} />
 				<Route index element={<ExploreEvents />} />

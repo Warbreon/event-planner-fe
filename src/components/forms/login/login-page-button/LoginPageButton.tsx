@@ -7,7 +7,7 @@ type Props = {
 };
 const LoginPageButton: React.FC<Props> = ({ title, onClick }) => {
 	return (
-		<button className='loginButton' onClick={onClick}>
+		<button className='login-button' onClick={onClick}>
 			{title}
 		</button>
 	);

@@ -1,4 +1,4 @@
-.loginMain {
+.login-main {
 	position: absolute;
 	width: 25em;
 	height: 392px;
@@ -10,19 +10,32 @@
 	opacity: 0px;
 }
 
-.inputField {
-	width: 100%;
-}
-
 .grey-underlined {
 	font-size: 0.58em;
 	color: #999999;
 	text-decoration: underline;
 	text-align: left;
-	margin-top: '10px';
+	margin-top: 10px;
 }
 
-.signInContainer {
-	/* background-image: url('../login/Layout.svg'); */
-  background-color: red;
+.welcome-message {
+	font-size: 1.4rem;
+}
+
+#directions {
+	position: relative;
+	font-size: 0.516rem;
+	font-weight: 400;
+	margin-top: 0.3rem;
+	margin-top: 0.4rem;
+}
+
+.login-form {
+	position: fixed;
+	max-width: 400px;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	padding: 16px;
+	text-align: center;
 }

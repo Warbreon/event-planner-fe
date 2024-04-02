@@ -13,8 +13,8 @@ import { Badge } from '@mui/material';
 import NotificationsRoundedIcon from '@mui/icons-material/NotificationsRounded';
 
 import './PlannerAppBar.css';
-import EventSearchBar from './event-search-bar/EventSearchBar.tsx';
-import PlannerAppBarViewModel from './PlannerAppBarViewModel.ts';
+import EventSearchBar from './event-search-bar/EventSearchBar';
+import PlannerAppBarViewModel from './PlannerAppBarViewModel';
 
 const profileSettings = ['Profile', 'Logout'];
 

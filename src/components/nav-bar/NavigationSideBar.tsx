@@ -9,9 +9,9 @@ import EventRoundedIcon from '@mui/icons-material/EventRounded';
 import SettingsRoundedIcon from '@mui/icons-material/SettingsRounded';
 
 import './NavigationSideBar.css';
-import NavBarButton from './nav-bar-button/NavBarButton.tsx';
-import NavigationSideBarViewModel from './NavigationSideBarViewModel.ts';
-import routes from '../../routes/routes.ts';
+import NavBarButton from './nav-bar-button/NavBarButton';
+import NavigationSideBarViewModel from './NavigationSideBarViewModel';
+import routes from '../../routes/routes';
 
 type NavigationSideBarProps = {
 	drawerWidth: number;

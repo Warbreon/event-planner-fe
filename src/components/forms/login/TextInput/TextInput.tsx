@@ -14,32 +14,16 @@ type Props = {
 };
 
 const TextInput: React.FC<Props> = ({ label, type, placeholder, required, onChange, fieldName, value }) => {
-	const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
-		if (onChange) {
-			onChange(event);
-		}
-	};
-
 	return (
 		<div>
-			<InputLabel
-				sx={{
-					textAlign: 'left',
-					color: 'black',
-					marginBottom: '10px',
-					fontSize: '0.52rem',
-					weight: 400,
-				}}
-			>
-				{label}
-			</InputLabel>
+			<InputLabel id='input-label'>{label}</InputLabel>
 			<TextField
 				className='input-field'
 				value={value}
 				required={required}
 				type={type}
 				placeholder={placeholder}
-				onChange={handleInputChange}
+				onChange={onChange}
 				name={fieldName}
 			></TextField>
 		</div>

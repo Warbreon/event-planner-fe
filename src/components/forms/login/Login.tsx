@@ -20,20 +20,20 @@ const Login = ({ setEmail }) => {
 			<Typography id='directions' variant='body2'>
 				Sign in with your work email address
 			</Typography>
-			<div className='spacing'>
+			<div className='top-margin'>
 				<TextInput
 					label='Email address'
 					required
 					placeholder='e.g., name@cognizant.com'
-					fieldName='email'
+					fieldName='name'
 					onChange={(e) => {
 						viewModel.handleInputChange(e.target.value);
 					}}
 				/>
 				<br />
-				<TextInput label='Password' required fieldName='password' />
-				<a href='/signin/forgotpassword' onClick={viewModel.handleForgotPasswordClick}>
-					<p className='grey-underlined'>Forgot password?</p>
+				<TextInput label='Password' required fieldName='password'  />
+				<a href='/signin/forgotpassword' className='forgot-password' onClick={viewModel.handleForgotPasswordClick}>
+					Forgot password?
 				</a>
 				<LoginPageButton title='Sign in' onClick={() => viewModel.handleClick(setEmail)} />
 			</div>

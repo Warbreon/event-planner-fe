@@ -10,12 +10,14 @@
 	opacity: 0px;
 }
 
-.grey-underlined {
+.forgot-password {
 	font-size: 0.58em;
 	color: #999999;
 	text-decoration: underline;
+	display: flex;
+	flex-direction: column;
+	align-items: left;
 	text-align: left;
-	margin-top: 10px;
 }
 
 .welcome-message {
@@ -38,4 +40,8 @@
 	transform: translate(-50%, -50%);
 	padding: 16px;
 	text-align: center;
+}
+
+.top-margin {
+	margin-top: 1.5rem;
 }

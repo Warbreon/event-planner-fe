@@ -1,18 +1,23 @@
+import { useNavigate } from 'react-router';
+import routes from '../../routes/routes.ts';
+
 const PlannerFooterViewModel = () => {
+	const navigate = useNavigate();
+
 	const handleClickCognizant = () => {
-		console.log('Redirecting to Cognizant website');
+		navigate(routes.INDEX);
 	};
 
 	const handleClickPrivacy = () => {
-		console.log('Redirecting to Privacy policy');
+		navigate(routes.PRIVACY_POLICY);
 	};
 
 	const handleClickTerms = () => {
-		console.log('Redirecting to Terms of service');
+		navigate(routes.TERMS_OF_SERVICE);
 	};
 
 	const handleClickSupport = () => {
-		console.log('Redirecting to support');
+		navigate(routes.SUPPORT);
 	};
 
 	return {

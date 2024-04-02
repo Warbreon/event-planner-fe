@@ -11,6 +11,7 @@ import SettingsRoundedIcon from '@mui/icons-material/SettingsRounded';
 import './NavigationSideBar.css';
 import NavBarButton from './nav-bar-button/NavBarButton.tsx';
 import NavigationSideBarViewModel from './NavigationSideBarViewModel.ts';
+import routes from '../../routes/routes.ts';
 
 type NavigationSideBarProps = {
 	drawerWidth: number;
@@ -48,7 +49,8 @@ const NavigationSideBar: React.FC<NavigationSideBarProps> = (props) => {
 								<ListItem className='nav-list-item' key='Home' disablePadding>
 									<NavBarButton
 										buttonPage='Home'
-										currentPage={viewModel.currentPage}
+										buttonPageRoute={routes.INDEX}
+										currentRoute={viewModel.currentRoute}
 										icon={<HomeRoundedIcon />}
 										handleClickOnNavButton={viewModel.handleClickOnNavButton}
 									/>
@@ -56,7 +58,8 @@ const NavigationSideBar: React.FC<NavigationSideBarProps> = (props) => {
 								<ListItem className='nav-list-item' key='My events' disablePadding>
 									<NavBarButton
 										buttonPage='My events'
-										currentPage={viewModel.currentPage}
+										buttonPageRoute={routes.MY_EVENTS}
+										currentRoute={viewModel.currentRoute}
 										icon={<EventRoundedIcon />}
 										handleClickOnNavButton={viewModel.handleClickOnNavButton}
 									/>
@@ -64,7 +67,8 @@ const NavigationSideBar: React.FC<NavigationSideBarProps> = (props) => {
 								<ListItem className='nav-list-item' key='Settings' disablePadding>
 									<NavBarButton
 										buttonPage='Settings'
-										currentPage={viewModel.currentPage}
+										buttonPageRoute={routes.SETTINGS}
+										currentRoute={viewModel.currentRoute}
 										icon={<SettingsRoundedIcon />}
 										handleClickOnNavButton={viewModel.handleClickOnNavButton}
 									/>

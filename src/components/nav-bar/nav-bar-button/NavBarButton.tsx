@@ -4,24 +4,31 @@ import './NavBarButton.css';
 
 type NavBarButtonProps = {
 	buttonPage: string;
-	currentPage: string;
+	buttonPageRoute: string;
+	currentRoute: string;
 	icon: ReactNode;
 	handleClickOnNavButton: (redirectionName: string) => void;
 };
 
-const NavBarButton: React.FC<NavBarButtonProps> = ({ buttonPage, currentPage, icon, handleClickOnNavButton }) => {
+const NavBarButton: React.FC<NavBarButtonProps> = ({
+	buttonPage,
+	buttonPageRoute,
+	currentRoute,
+	icon,
+	handleClickOnNavButton,
+}) => {
 	return (
 		<div id={buttonPage + '-button-div'}>
 			<IconButton
-				onClick={() => handleClickOnNavButton(buttonPage)}
-				className={`nav-button ${buttonPage === currentPage ? 'active-button' : 'inactive-button'}`}
+				onClick={() => handleClickOnNavButton(buttonPageRoute)}
+				className={`nav-button ${buttonPageRoute === currentRoute ? 'active-button' : 'inactive-button'}`}
 				sx={{ borderRadius: '10px' }}
 			>
 				{React.cloneElement(icon as ReactElement<any>, {
-					className: buttonPage === currentPage ? 'active-icon' : 'inactive-icon',
+					className: buttonPageRoute === currentRoute ? 'active-icon' : 'inactive-icon',
 				})}
 			</IconButton>
-			<p className={`nav-text ${buttonPage === currentPage ? 'active-text' : 'inactive-text'}`}>{buttonPage}</p>
+			<p className={`nav-text ${buttonPageRoute === currentRoute ? 'active-text' : 'inactive-text'}`}>{buttonPage}</p>
 		</div>
 	);
 };

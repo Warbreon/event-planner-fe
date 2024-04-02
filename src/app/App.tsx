@@ -1,21 +1,21 @@
 import React from 'react';
 import './App.css';
 import { Routes, Route } from 'react-router-dom';
-import ROUTES from '../routes/routes.ts';
-import PageNotFound from '../pages/not-found/NotFound.tsx';
-import Event from '../pages/event/Event.tsx';
-import ExploreEvents from '../pages/explore-events/ExploreEvents.tsx';
-import SignIn from '../pages/sign-in/SignIn.tsx';
-import ForgotPassword from '../pages/password-reset/forgot-pasword/ForgotPassword.tsx';
-import PasswordReset from '../pages/password-reset/create-new-password/PasswordReset.tsx';
-import MyEvents from '../pages/my-events/MyEvents.tsx';
-import CreateEvent from '../pages/create-event/CreateEvent.tsx';
-import EditEvent from '../pages/edit-event/EditEvent.tsx';
-import Settings from '../pages/settings/Settings.tsx';
-import PrivacyPolicy from '../pages/privacy-policy/PrivacyPolicy.tsx';
-import TermOfService from '../pages/terms-of-service/TermOfService.tsx';
-import Support from '../pages/support/Support.tsx';
-import Main from '../pages/main/Main.tsx';
+import ROUTES from '../routes/routes';
+import PageNotFound from '../pages/not-found/NotFound';
+import Event from '../pages/event/Event';
+import ExploreEvents from '../pages/explore-events/ExploreEvents';
+import SignIn from '../pages/sign-in/SignIn';
+import ForgotPassword from '../pages/password-reset/forgot-pasword/ForgotPassword';
+import PasswordReset from '../pages/password-reset/create-new-password/PasswordReset';
+import MyEvents from '../pages/my-events/MyEvents';
+import CreateEvent from '../pages/create-event/CreateEvent';
+import EditEvent from '../pages/edit-event/EditEvent';
+import Settings from '../pages/settings/Settings';
+import PrivacyPolicy from '../pages/privacy-policy/PrivacyPolicy';
+import TermOfService from '../pages/terms-of-service/TermOfService';
+import Support from '../pages/support/Support';
+import Main from '../pages/main/Main';
 
 
 function App() {

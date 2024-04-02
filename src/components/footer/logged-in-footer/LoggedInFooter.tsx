@@ -8,7 +8,7 @@ type LoggedInFooterProps = {
 
 const LoggedInFooter: React.FC<LoggedInFooterProps> = ({ handleClickCognizant, handleClickPrivacy }) => {
 	return (
-		<BottomNavigation className='default-footer' showLabels>
+		<BottomNavigation className='user-footer' showLabels>
 			<BottomNavigationAction onClick={handleClickCognizant} label={`© ${new Date().getFullYear()} Cognizant`} />
 			<BottomNavigationAction onClick={handleClickPrivacy} label='Privacy policy' />
 		</BottomNavigation>

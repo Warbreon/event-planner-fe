@@ -1,9 +1,9 @@
-.transparent-footer {
+.guest-footer {
 	background-color: transparent;
 	align-items: center;
 }
 
-.default-footer {
+.user-footer {
 	display: flex;
 	justify-content: space-between !important;
 	background-color: white;

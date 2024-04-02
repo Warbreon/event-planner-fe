@@ -13,7 +13,7 @@ const LoggedOutFooter: React.FC<LoggedOutFooterProps> = ({
 	handleClickSupport,
 }) => {
 	return (
-		<BottomNavigation className='transparent-footer' showLabels>
+		<BottomNavigation className='guest-footer' showLabels>
 			<BottomNavigationAction onClick={handleClickTerms} label='Terms of service' />
 			<div className='divider' />
 			<BottomNavigationAction onClick={handleClickSupport} label='Support' />

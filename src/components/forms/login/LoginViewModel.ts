@@ -1,14 +1,16 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Routes from '../../../routes/routes.ts';
+import { useDispatch } from 'react-redux';
 
 const LoginViewModel = () => {
-	const [emailValue, setEmailValue] = useState('');
+	const [email, setEmailValue] = useState('');
 	const navigate = useNavigate();
+	const dispatch = useDispatch();
 
-	const handleClick = (setEmail: Function) => {
-		setEmail(emailValue);
-		console.log(emailValue);
+	const handleClick = (email: string) => {
+		console.log(email);
+		dispatch({ type: 'SET_EMAIL', payload: email });
 	};
 
 	const handleInputChange = (email: string) => {

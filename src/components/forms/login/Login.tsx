@@ -1,25 +1,15 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import { setEmail } from '../../../redux/actions/action.ts';
 import LoginPageButton from '../login/login-page-button/LoginPageButton.tsx';
 import './Login.css';
 import { Box, Typography } from '@mui/material';
 import TextInput from '../login/TextInput/TextInput.tsx';
-import Routes from '../../../routes/routes.ts';
-import { useNavigate } from 'react-router-dom';
+
+import LoginViewModel from './LoginViewModel.ts';
 
 const Login = ({ setEmail }) => {
-	const [emailValue, setEmailValue] = useState('');
-	const history = useNavigate();
-
-	const handleClick = () => {
-		setEmail(emailValue);
-		console.log(emailValue);
-	};
-
-	const handleForgotPasswordClick = () => {
-		history.apply(Routes.FORGOT_PASSWORD);
-	};
+	const viewModel = LoginViewModel();
 
 	return (
 		<Box className='login-form'>
@@ -36,15 +26,16 @@ const Login = ({ setEmail }) => {
 					required
 					placeholder='e.g., name@cognizant.com'
 					fieldName='email'
-					value={emailValue}
-					onChange={(e) => setEmailValue(e.target.value)}
+					onChange={(e) => {
+						viewModel.handleInputChange(e.target.value);
+					}}
 				/>
 				<br />
 				<TextInput label='Password' required fieldName='password' />
-				<a href='/signin/forgotpassword' onClick={handleForgotPasswordClick}>
+				<a href='/signin/forgotpassword' onClick={viewModel.handleForgotPasswordClick}>
 					<p className='grey-underlined'>Forgot password?</p>
 				</a>
-				<LoginPageButton title='Sign in' onClick={handleClick} />
+				<LoginPageButton title='Sign in' onClick={() => viewModel.handleClick(setEmail)} />
 			</div>
 		</Box>
 	);

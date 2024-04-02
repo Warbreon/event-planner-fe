@@ -6,7 +6,11 @@ type Props = {
 };
 
 const ButtonComponent: React.FC<Props> = ({ title, onClick }) => {
-	return <button type='submit' onClick={onClick}>{title}</button>;
+	return (
+		<button className='shared-button' type='submit' onClick={onClick}>
+			{title}
+		</button>
+	);
 };
 
 export default ButtonComponent;

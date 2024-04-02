@@ -1,9 +1,9 @@
 import React from 'react';
 
 import './PlannerFooter.css';
-import LoggedOutFooter from './logged-out-footer/LoggedOutFooter.tsx';
-import LoggedInFooter from './logged-in-footer/LoggedInFooter.tsx';
-import PlannerFooterViewModel from './PlannerFooterViewModel.ts';
+import LoggedOutFooter from './logged-out-footer/LoggedOutFooter';
+import LoggedInFooter from './logged-in-footer/LoggedInFooter';
+import PlannerFooterViewModel from './PlannerFooterViewModel';
 
 type PlannerFooterProps = {
 	loggedIn: boolean;

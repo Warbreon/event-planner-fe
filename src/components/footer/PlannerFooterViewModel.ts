@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router';
-import routes from '../../routes/routes.ts';
+import routes from '../../routes/routes';
 
 const PlannerFooterViewModel = () => {
 	const navigate = useNavigate();

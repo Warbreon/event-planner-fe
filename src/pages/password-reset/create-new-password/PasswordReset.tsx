@@ -9,7 +9,7 @@ const PasswordReset = () => {
 	return (
 		<section className='reset-password-section'>
 			<header className='reset-password-header'>
-				<p className='header-title'>Reset your password</p>
+				<p className='reset-password-paragraph header-title'>Reset your password</p>
 			</header>
 			<form onSubmit={handleSubmit}>
 				<Input
@@ -24,7 +24,9 @@ const PasswordReset = () => {
 					className={errors.newPassword && touched.newPassword ? 'text-input-error' : 'text-input'}
 				/>
 
-				{errors.newPassword && touched.newPassword && <p className='error-message'>{errors.newPassword}</p>}
+				{errors.newPassword && touched.newPassword && (
+					<p className='reset-password-paragraph error-message'>{errors.newPassword}</p>
+				)}
 
 				<Input
 					id='confirmNewPassword'
@@ -39,7 +41,7 @@ const PasswordReset = () => {
 				/>
 
 				{errors.confirmNewPassword && touched.confirmNewPassword && (
-					<p className='error-message'>{errors.confirmNewPassword}</p>
+					<p className='reset-password-paragraph error-message'>{errors.confirmNewPassword}</p>
 				)}
 
 				<ButtonComponent title='Reset my password' onClick={() => {}} />

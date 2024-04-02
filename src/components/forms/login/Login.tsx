@@ -5,7 +5,6 @@ import LoginPageButton from '../login/login-page-button/LoginPageButton.tsx';
 import './Login.css';
 import { Box, Typography } from '@mui/material';
 import TextInput from '../login/TextInput/TextInput.tsx';
-
 import LoginViewModel from './LoginViewModel.ts';
 
 const Login = ({ setEmail }) => {
@@ -31,7 +30,7 @@ const Login = ({ setEmail }) => {
 					}}
 				/>
 				<br />
-				<TextInput label='Password' required fieldName='password'  />
+				<TextInput label='Password' required fieldName='password' />
 				<a href='/signin/forgotpassword' className='forgot-password' onClick={viewModel.handleForgotPasswordClick}>
 					Forgot password?
 				</a>

@@ -1,0 +1,47 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 9rem;
+    left: 11.3125rem;
+}
+
+.header {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 2.75rem;
+}
+ 
+p.headerTitle {
+    position: relative;
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    font-size: 2rem;
+    line-height: 2rem;
+    height: 2rem;
+    width: 100%;
+    margin-bottom: 0.5rem;
+}
+
+p.headerSubtitle {
+    position: relative;
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    font-size: 0.875rem;
+    height: 1.25rem;
+    line-height: 1.25rem;
+    width: 100%;
+}
+
+.tagFilter {
+    gap: 0.5rem;
+    height: 2rem;
+    border-radius: 6.25rem;
+    border: 1px solid black;
+}
+
+.filters {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}

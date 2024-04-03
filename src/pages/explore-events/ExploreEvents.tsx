@@ -1,7 +1,12 @@
-import React from 'react';
+import EventHeader from '../../components/event-header/EventHeader';
 
 const ExploreEvents = () => {
-	return <h2>Explore Events page (HOME PAGE)</h2>;
+	return (
+		<>
+			<EventHeader />
+			<h2>Explore Events page (HOME PAGE)</h2>
+		</>
+	);
 };
 
 export default ExploreEvents;

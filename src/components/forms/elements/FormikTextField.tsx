@@ -1,8 +1,9 @@
 import { TextField, TextFieldProps, Typography } from '@mui/material';
 import { useField } from 'formik';
-import React from 'react'
+import React, { InputHTMLAttributes } from 'react'
+import './Input.css'
 
-type FormikTextFieldProps = TextFieldProps & {
+type FormikTextFieldProps = InputHTMLAttributes<HTMLInputElement> & {
     name: string;
     title?: string;
     titleClassName?: string;
@@ -17,19 +18,18 @@ const FormikTextField: React.FC<FormikTextFieldProps> = ({
     ...props
 }) => {
     const [field, meta] = useField(name);
-
+    
     return (
         <div>
             {title && <Typography variant="subtitle1" className={titleClassName}>{title}</Typography>}
-            <TextField
+            <input
                 {...field}
                 {...props}
                 className={textFieldClassName}
-                error={meta.touched && Boolean(meta.error)}
-                helperText={meta.touched && meta.error ? meta.error : ''}
             />
+            {(meta.touched && meta.error) && <p className='error-message'>{meta.error}</p>}
         </div>
     )
 }
 
-export default FormikTextField
+export default FormikTextField;

@@ -1,7 +1,7 @@
 enum ROUTES {
 	INDEX = '/',
 	SIGN_IN = '/signin',
-	FORGOT_PASSWORD = SIGN_IN + '/forgotpassword',
+	FORGOT_PASSWORD = '/signin/forgotpassword',
 	RESET_PASSWORD = '/resetpassword/:uuid',
 	EVENT = '/events/event/:eventId',
 	MY_EVENTS = '/events/my',

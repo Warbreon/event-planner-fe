@@ -1,0 +1,28 @@
+.black-submit-button {
+	border-radius: 100px;
+	width: 400px;
+	height: 50px;
+	background: #000000;
+	border: 1px solid #000000;
+	color: aliceblue;
+	font-family: inherit;
+	font-size: 1rem;
+	font-weight:600;
+	margin-top: 1rem;
+  margin-bottom: 3rem;
+}
+
+
+.transparent-submit-button {
+	border-radius: 100px;
+	width: 400px;
+	height: 50px;
+	background: #ffffff;
+	border: 1px solid #ffffff;
+	color: rgb(0, 0, 0);
+	font-family: inherit;
+	font-size: 1rem;
+	font-weight:600;
+	margin-top: 1rem;
+  margin-bottom: 3rem;
+}

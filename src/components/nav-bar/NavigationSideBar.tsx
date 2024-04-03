@@ -15,7 +15,6 @@ import routes from '../../routes/routes';
 
 type NavigationSideBarProps = {
 	drawerWidth: number;
-	loggedIn: boolean;
 	children: ReactNode;
 };
 
@@ -44,7 +43,7 @@ const NavigationSideBar: React.FC<NavigationSideBarProps> = (props) => {
 						<ListItem className='nav-list-item' key='Cognizant' disablePadding>
 							<img className='cognizant-logo' src='Cognizant_logo.jpg' alt='Cognizant company logo' />
 						</ListItem>
-						{props.loggedIn && (
+						{viewModel.loggedInStatus && (
 							<>
 								<ListItem className='nav-list-item' key='Home' disablePadding>
 									<NavBarButton

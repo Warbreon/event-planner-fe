@@ -1,7 +1,11 @@
 import { useNavigate } from 'react-router';
 import routes from '../../routes/routes';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../redux/store/store';
 
 const PlannerFooterViewModel = () => {
+	const loggedInStatus = useSelector((state: RootState) => state.user.loggedIn);
+
 	const navigate = useNavigate();
 
 	const handleClickCognizant = () => {
@@ -25,6 +29,7 @@ const PlannerFooterViewModel = () => {
 		handleClickPrivacy,
 		handleClickTerms,
 		handleClickSupport,
+		loggedInStatus,
 	};
 };
 

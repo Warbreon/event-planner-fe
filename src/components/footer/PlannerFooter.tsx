@@ -5,15 +5,11 @@ import LoggedOutFooter from './logged-out-footer/LoggedOutFooter';
 import LoggedInFooter from './logged-in-footer/LoggedInFooter';
 import PlannerFooterViewModel from './PlannerFooterViewModel';
 
-type PlannerFooterProps = {
-	loggedIn: boolean;
-};
-
-const PlannerFooter: React.FC<PlannerFooterProps> = ({ loggedIn }) => {
+const PlannerFooter = () => {
 	const viewModel = PlannerFooterViewModel();
 	return (
 		<>
-			{loggedIn ? (
+			{viewModel.loggedInStatus ? (
 				<LoggedInFooter
 					handleClickCognizant={viewModel.handleClickCognizant}
 					handleClickPrivacy={viewModel.handleClickPrivacy}

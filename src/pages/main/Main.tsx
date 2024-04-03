@@ -3,21 +3,23 @@ import { Outlet } from 'react-router-dom';
 import NavigationSideBar from '../../components/nav-bar/NavigationSideBar';
 import PlannerAppBar from '../../components/app-bar/PlannerAppBar';
 import PlannerFooter from '../../components/footer/PlannerFooter';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../redux/store/store';
 
 import './Main.css';
 
-const loggedIn = true;
-
 const Main = () => {
+	const loggedIn = useSelector((state: RootState) => state.user.loggedIn);
+
 	return (
-		<NavigationSideBar drawerWidth={72} loggedIn={loggedIn}>
+		<NavigationSideBar drawerWidth={72}>
 			<div className='flex-wrap'>
 				<div className='content'>
 					{loggedIn && <PlannerAppBar />}
 					<Outlet />
 				</div>
 				<div className='footer'>
-					<PlannerFooter loggedIn={loggedIn} />
+					<PlannerFooter />
 				</div>
 			</div>
 		</NavigationSideBar>

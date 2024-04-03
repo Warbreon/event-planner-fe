@@ -1,5 +1,4 @@
 import './ButtonComponent.css';
-import classNames from 'classnames';
 import { ButtonClassName } from './buttonClassName';
 
 type Props = {

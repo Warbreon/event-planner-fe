@@ -1,9 +1,17 @@
 import CheckMarkIcon from './check-mark-icon/CheckMarkIcon';
-import './PasswordRules.css';
 import PasswordRulesViewModel from './PasswordRulesViewModel';
+import {useFormikContext} from 'formik'
+import './PasswordRules.css';
+
+interface MyFormValues {
+	newPassword: string;
+}
 
 const PasswordRules = () => {
-	const {checkMarkIconState} = PasswordRulesViewModel();
+	const { values } = useFormikContext();
+	const { newPassword } = values as MyFormValues;
+	const {checkMarkIconState} = PasswordRulesViewModel(newPassword);
+
 	return (
 		<section className='password-rules-group'>
 			<p className='password-rules-p'>New password:</p>

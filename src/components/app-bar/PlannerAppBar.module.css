@@ -1,0 +1,30 @@
+.notifIcon {
+	color: black;
+}
+
+#appBar {
+	background-color: white;
+	border-bottom: 1px solid #e0e0e0;
+}
+
+#notifBox {
+	margin-inline: 2rem;
+}
+
+#profileMenuAppbar > .MuiPaper-root {
+	margin-top: 45px;
+}
+
+fieldset.MuiOutlinedInput-notchedOutline {
+	border: 0;
+}
+
+.iconButton {
+	padding: 0 !important;
+}
+
+#searchBarBox {
+	display: 'flex';
+	align-items: 'flex-end';
+	flex-grow: 1;
+}

@@ -11,9 +11,9 @@ import './PasswordReset.css';
 const PasswordReset = () => {
 	const { onSubmit } = PasswordResetVM();
 	return (
-		<section className='reset-password-section'>
-			<header className='reset-password-header'>
-				<p className='header-title'>Reset your password</p>
+		<section className={styles.resetPasswordSection}>
+			<header className={styles.resetPasswordHeader}>
+				<p className={styles.headerTitle}>Reset your password</p>
 			</header>
 			<Form
 				initialValues={{ newPassword: '', confirmNewPassword: '' }}

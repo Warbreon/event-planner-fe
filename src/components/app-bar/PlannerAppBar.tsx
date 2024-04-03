@@ -1,4 +1,3 @@
-import React from 'react';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -11,10 +10,9 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import { Badge } from '@mui/material';
 import NotificationsRoundedIcon from '@mui/icons-material/NotificationsRounded';
-
-import './PlannerAppBar.css';
-import EventSearchBar from './event-search-bar/EventSearchBar';
 import PlannerAppBarViewModel from './PlannerAppBarViewModel';
+import EventSearchBar from './event-search-bar/EventSearchBar';
+import styles from './PlannerAppBar.module.css';
 
 const profileSettings = ['Profile', 'Logout'];
 
@@ -25,10 +23,10 @@ const PlannerAppBar = () => {
 	const viewModel = PlannerAppBarViewModel();
 
 	return (
-		<AppBar id='app-bar' elevation={0} position='static'>
+		<AppBar id='appBar' elevation={0} position='static'>
 			<Container id='app-bar-container' maxWidth='xl'>
 				<Toolbar disableGutters>
-					<Box id='search-bar-box'>
+					<Box id='searchBarBox'>
 						<EventSearchBar
 							searchValue={viewModel.searchValue}
 							handleSearchBarChange={viewModel.handleSearchBarChange}
@@ -36,25 +34,25 @@ const PlannerAppBar = () => {
 							handleSearch={viewModel.handleSearch}
 						/>
 					</Box>
-					<Box id='notif-box'>
-						<IconButton className='icon-button' onClick={viewModel.handleClickOnNotifications}>
+					<Box id='notifBox'>
+						<IconButton className={styles.iconButton} onClick={viewModel.handleClickOnNotifications}>
 							{fakeNumberOfNotifications > 0 ? (
 								<Badge badgeContent={fakeNumberOfNotifications} color='error'>
-									<NotificationsRoundedIcon className='notif-icon' />
+									<NotificationsRoundedIcon className={styles.notifIcon} />
 								</Badge>
 							) : (
-								<NotificationsRoundedIcon className='notif-icon' />
+								<NotificationsRoundedIcon className={styles.notifIcon} />
 							)}
 						</IconButton>
 					</Box>
 					<Box>
 						<Tooltip title='Open settings'>
-							<IconButton className='icon-button' onClick={viewModel.handleOpenUserMenu}>
+							<IconButton className={styles.iconButton} onClick={viewModel.handleOpenUserMenu}>
 								<Avatar alt='Remy Sharp' src='https://thispersondoesnotexist.com/' />
 							</IconButton>
 						</Tooltip>
 						<Menu
-							id='profile-menu-appbar'
+							id='profileMenuAppbar'
 							anchorEl={viewModel.anchorUser}
 							anchorOrigin={{
 								vertical: 'top',

@@ -3,20 +3,20 @@
 	align-items: center;
 }
 
-.inactive-icon,
-.inactive-text {
+.inactiveIcon,
+.inactiveText {
 	color: black;
 }
 
-.active-icon,
-.active-text {
+.activeIcon,
+.activeText {
 	color: #003fe1;
 }
 
-.nav-button.active-button {
+.navButton.activeButton {
 	background-color: #e7ecfd;
 }
 
-.nav-button.active-button:hover {
+.navButton.activeButton:hover {
 	background-color: #acc4f4;
 }

@@ -23,6 +23,7 @@ const NavBarButton: React.FC<NavBarButtonProps> = ({
 				onClick={() => handleClickOnNavButton(buttonPageRoute)}
 				className={`nav-button ${buttonPageRoute === currentRoute ? 'active-button' : 'inactive-button'}`}
 				sx={{ borderRadius: '10px' }}
+				disableRipple
 			>
 				{React.cloneElement(icon as ReactElement<any>, {
 					className: buttonPageRoute === currentRoute ? 'active-icon' : 'inactive-icon',

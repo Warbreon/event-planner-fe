@@ -9,8 +9,12 @@ type LoggedInFooterProps = {
 const LoggedInFooter: React.FC<LoggedInFooterProps> = ({ handleClickCognizant, handleClickPrivacy }) => {
 	return (
 		<BottomNavigation className='user-footer' showLabels>
-			<BottomNavigationAction onClick={handleClickCognizant} label={`© ${new Date().getFullYear()} Cognizant`} />
-			<BottomNavigationAction onClick={handleClickPrivacy} label='Privacy policy' />
+			<BottomNavigationAction
+				onClick={handleClickCognizant}
+				label={`© ${new Date().getFullYear()} Cognizant`}
+				disableRipple
+			/>
+			<BottomNavigationAction onClick={handleClickPrivacy} label='Privacy policy' disableRipple />
 		</BottomNavigation>
 	);
 };

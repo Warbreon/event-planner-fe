@@ -14,12 +14,13 @@ const LoggedOutFooter: React.FC<LoggedOutFooterProps> = ({
 }) => {
 	return (
 		<BottomNavigation className='guest-footer' showLabels>
-			<BottomNavigationAction onClick={handleClickTerms} label='Terms of service' />
-			<BottomNavigationAction onClick={handleClickSupport} label='Support' />
+			<BottomNavigationAction onClick={handleClickTerms} label='Terms of service' disableRipple />
+			<BottomNavigationAction onClick={handleClickSupport} label='Support' disableRipple />
 			<BottomNavigationAction
 				className='last-button'
 				onClick={handleClickCognizant}
 				label={`© ${new Date().getFullYear()} Cognizant`}
+				disableRipple
 			/>
 		</BottomNavigation>
 	);

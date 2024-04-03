@@ -9,7 +9,7 @@ const PlannerFooterViewModel = () => {
 	const navigate = useNavigate();
 
 	const handleClickCognizant = () => {
-		navigate(routes.INDEX);
+		window.location.href = 'https://www.cognizant.com/lt/en';
 	};
 
 	const handleClickPrivacy = () => {

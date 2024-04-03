@@ -1,68 +1,67 @@
 .login-main {
-	position: absolute;
-	width: 25em;
-	height: 392px;
-	top: 214px;
-	left: 556px;
-	gap: 0px;
-	border-radius: 100px 0px 0px 0px;
-	border: 1px 0px 0px 0px;
-	opacity: 0px;
+    position: absolute;
+    width: 25em;
+    height: 392px;
+    top: 214px;
+    left: 556px;
+    gap: 0dd;
+    border-radius: 100px;
+    border: 1px;
+
 }
 
 .forgot-password {
-	font-size: 0.7em;
-	color: #999999;
-	text-decoration: underline;
-	display: flex;
-	flex-direction: column;
-	align-items: left;
-	text-align: left;
+    font-size: 0.7em;
+    color: #999999;
+    text-decoration: underline;
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    text-align: left;
 }
 
 #welcome-message {
-	font-size: 1.4rem;
-	margin-left: -35px;
+    font-size: 1.4rem;
+    margin-left: -35px;
 }
 
 #directions {
-	position: relative;
-	font-size: 0.65rem;
-	font-weight: 400;
-	margin-top: 0.3rem;
-	margin-top: 0.4rem;
-	margin-left: -35px;
+    position: relative;
+    font-size: 0.65rem;
+    font-weight: 400;
+    margin-top: 0.4rem;
+    margin-left: -35px;
 }
 
-#login-form {
-	position: fixed;
-	max-width: 400px;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
-	padding: 16px;
-	text-align: center;
+#loginForm {
+    position: fixed;
+    max-width: 400px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 16px;
+    text-align: center;
 }
 
 .top-margin {
-	margin-top: 1.5rem;
+    margin-top: 1.5rem;
 }
 
 .input-label {
-	display: block;
-	color: rgba(0, 0, 0, 1);
-	font-size: 0.7rem;
-	margin-left: -310px;
-	margin-bottom: 10px;
-	font-family: 'Inter';
+    display: block;
+    color: rgba(0, 0, 0, 1);
+    font-size: 0.7rem;
+    margin-left: -310px;
+    margin-bottom: 10px;
+    font-family: 'Inter';
 }
 
 #email,
 #password {
-	width: 98%;
-	height: 3rem;
-	background: #ffffff;
-	border: 1px solid #dddddd;
-	border-radius: 8px;
-	font-family: 'Inter';
+    width: 98%;
+    height: 3rem;
+    background: #ffffff;
+    border: 1px solid #dddddd;
+    border-radius: 8px;
+    font-family: 'Inter';
 }

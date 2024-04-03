@@ -1,26 +1,11 @@
-import {useState} from 'react';
 import {useNavigate} from 'react-router-dom';
 import Routes from '../../../routes/routes';
-import {useFormik} from 'formik';
-import * as Yup from 'yup';
 
 const LoginViewModel = () => {
-    const [email, setEmailValue] = useState('');
     const navigate = useNavigate();
 
-
-    const formik = useFormik({
-        initialValues: {
-            email: '',
-        },
-        onSubmit: (values) => {
-            console.log('Form submitted with values:', values);
-        },
-    });
-
     const handleInputChange = (email: string) => {
-        setEmailValue(email);
-        formik.handleChange('email')(email);
+        console.log("handling input change")
     };
 
     const handleClick = (email: string, password: string) => {
@@ -35,7 +20,6 @@ const LoginViewModel = () => {
         handleClick,
         handleInputChange,
         handleForgotPasswordClick,
-        ...formik,
     };
 };
 

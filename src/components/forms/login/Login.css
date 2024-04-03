@@ -11,7 +11,7 @@
 }
 
 .forgot-password {
-	font-size: 0.58em;
+	font-size: 0.7em;
 	color: #999999;
 	text-decoration: underline;
 	display: flex;
@@ -20,19 +20,21 @@
 	text-align: left;
 }
 
-.welcome-message {
+#welcome-message {
 	font-size: 1.4rem;
+	margin-left: -35px;
 }
 
 #directions {
 	position: relative;
-	font-size: 0.516rem;
+	font-size: 0.65rem;
 	font-weight: 400;
 	margin-top: 0.3rem;
 	margin-top: 0.4rem;
+	margin-left: -35px;
 }
 
-.login-form {
+#login-form {
 	position: fixed;
 	max-width: 400px;
 	top: 50%;
@@ -44,4 +46,23 @@
 
 .top-margin {
 	margin-top: 1.5rem;
+}
+
+.input-label {
+	display: block;
+	color: rgba(0, 0, 0, 1);
+	font-size: 0.7rem;
+	margin-left: -310px;
+	margin-bottom: 10px;
+	font-family: 'Inter';
+}
+
+#email,
+#password {
+	width: 98%;
+	height: 3rem;
+	background: #ffffff;
+	border: 1px solid #dddddd;
+	border-radius: 8px;
+	font-family: 'Inter';
 }

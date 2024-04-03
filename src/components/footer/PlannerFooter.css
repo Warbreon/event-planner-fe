@@ -3,13 +3,11 @@
 	align-items: center;
 }
 
-/* Add dividers between buttons */
 .guest-footer .MuiBottomNavigationAction-root {
 	margin-inline: 5px;
 	border-right: 1px solid #e0e0e0;
 }
 
-/* Remove the divider from the last button since there is nothing to divide it from */
 .guest-footer .last-button {
 	border-right: none;
 }

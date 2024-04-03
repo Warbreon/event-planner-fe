@@ -48,3 +48,7 @@
 .text-input-error:focus {
 	border-width: 2px;
 }
+
+p.error-message {
+	color: #ff5252;
+}

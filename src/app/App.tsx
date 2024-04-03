@@ -17,7 +17,6 @@ import TermOfService from '../pages/terms-of-service/TermOfService';
 import Support from '../pages/support/Support';
 import Main from '../pages/main/Main';
 
-
 function App() {
 	return (
 		<Routes>

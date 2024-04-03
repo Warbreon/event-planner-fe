@@ -13,8 +13,8 @@ const Main = () => {
 
 	return (
 		<NavigationSideBar drawerWidth={72}>
-			<div className='flex-wrap'>
-				<div className='content'>
+			<div className='content-container'>
+				<div className='main-content'>
 					{loggedIn && <PlannerAppBar />}
 					<Outlet />
 				</div>

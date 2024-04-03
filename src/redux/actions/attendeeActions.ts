@@ -1,4 +1,4 @@
-import { Attendee } from "../../types/attendees";
+import { Attendee } from "../../interfaces/attendee";
 
 export const SET_ATTENDEES = 'SET_ATTENDEES';
 

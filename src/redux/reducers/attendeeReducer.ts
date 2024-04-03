@@ -1,5 +1,5 @@
-import { Attendee } from '../../types/attendees';
-import { AttendeeActions, SET_ATTENDEES } from '../actions/attendeeActions.ts';
+import { Attendee } from '../../interfaces/attendee';
+import { AttendeeActions, SET_ATTENDEES } from '../actions/attendeeActions';
 
 type AttendeeState = {
     list: Attendee[];

@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import { attendeeReducer } from './attendeeReducer.ts';
+import { attendeeReducer } from './attendeeReducer';
 
 export const rootReducer = combineReducers({
   attendees: attendeeReducer,

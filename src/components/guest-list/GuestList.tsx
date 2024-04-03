@@ -4,8 +4,8 @@ import './GuestList.css'
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../redux/reducers/rootReducer';
-import { Attendee } from '../../types/attendees';
-import { setAttendees } from '../../redux/actions/attendeeActions.ts';
+import { Attendee } from '../../interfaces/attendee';
+import { setAttendees } from '../../redux/actions/attendeeActions';
 
 const MAX_DISPLAYED_AVATARS = 5;
 

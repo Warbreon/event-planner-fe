@@ -23,19 +23,19 @@ const PlannerAppBar = () => {
 	const viewModel = PlannerAppBarViewModel();
 
 	return (
-		<AppBar id='appBar' elevation={0} position='static'>
-			<Container id='app-bar-container' maxWidth='xl'>
-				<Toolbar disableGutters>
-					<Box id='searchBarBox'>
+		<AppBar className={styles.appBar}>
+			<Toolbar disableGutters>
+				<div className={styles.appBarContainer}>
+					<div className={styles.searchBarContainer}>
 						<EventSearchBar
 							searchValue={viewModel.searchValue}
 							handleSearchBarChange={viewModel.handleSearchBarChange}
 							handleSearchKeyDown={viewModel.handleSearchKeyDown}
 							handleSearch={viewModel.handleSearch}
 						/>
-					</Box>
-					<Box id='notifBox'>
-						<IconButton className={styles.iconButton} onClick={viewModel.handleClickOnNotifications}>
+					</div>
+					<div className={styles.userActionsContainer}>
+						<IconButton className={styles.bellIconButton} onClick={viewModel.handleClickOnNotifications}>
 							{fakeNumberOfNotifications > 0 ? (
 								<Badge badgeContent={fakeNumberOfNotifications} color='error'>
 									<NotificationsRoundedIcon className={styles.notifIcon} />
@@ -44,37 +44,38 @@ const PlannerAppBar = () => {
 								<NotificationsRoundedIcon className={styles.notifIcon} />
 							)}
 						</IconButton>
-					</Box>
-					<Box>
-						<Tooltip title='Open settings'>
-							<IconButton className={styles.iconButton} onClick={viewModel.handleOpenUserMenu}>
-								<Avatar alt='Remy Sharp' src='https://thispersondoesnotexist.com/' />
-							</IconButton>
-						</Tooltip>
-						<Menu
-							id='profileMenuAppbar'
-							anchorEl={viewModel.anchorUser}
-							anchorOrigin={{
-								vertical: 'top',
-								horizontal: 'right',
-							}}
-							keepMounted
-							transformOrigin={{
-								vertical: 'top',
-								horizontal: 'right',
-							}}
-							open={Boolean(viewModel.anchorUser)}
-							onClose={viewModel.handleCloseUserMenu}
-						>
-							{profileSettings.map((setting) => (
-								<MenuItem key={setting} onClick={viewModel.handleCloseUserMenu}>
-									<Typography textAlign='center'>{setting}</Typography>
-								</MenuItem>
-							))}
-						</Menu>
-					</Box>
-				</Toolbar>
-			</Container>
+						<div>
+							<Tooltip title='Open settings'>
+								<IconButton className={styles.iconButton} onClick={viewModel.handleOpenUserMenu}>
+									<Avatar alt='Remy Sharp' src='https://thispersondoesnotexist.com/' />
+								</IconButton>
+							</Tooltip>
+							<Menu
+								id='profileMenuAppbar'
+								anchorEl={viewModel.anchorUser}
+								anchorOrigin={{
+									vertical: 'top',
+									horizontal: 'right',
+								}}
+								keepMounted
+								transformOrigin={{
+									vertical: 'top',
+									horizontal: 'right',
+								}}
+								open={Boolean(viewModel.anchorUser)}
+								onClose={viewModel.handleCloseUserMenu}
+								className={styles.profileMenu}
+							>
+								{profileSettings.map((setting) => (
+									<MenuItem key={setting} onClick={viewModel.handleCloseUserMenu} className={styles.menuItem}>
+										<Typography className={styles.menuTypography}>{setting}</Typography>
+									</MenuItem>
+								))}
+							</Menu>
+						</div>
+					</div>
+				</div>
+			</Toolbar>
 		</AppBar>
 	);
 };

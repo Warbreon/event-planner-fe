@@ -1,7 +1,7 @@
 import CheckMarkIcon from './check-mark-icon/CheckMarkIcon';
 import PasswordRulesViewModel from './PasswordRulesViewModel';
 import {useFormikContext} from 'formik'
-import './PasswordRules.css';
+import styles from './PasswordRules.module.css';
 
 interface MyFormValues {
 	newPassword: string;

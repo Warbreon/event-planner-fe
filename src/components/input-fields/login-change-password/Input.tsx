@@ -3,7 +3,7 @@ import { ChangeEvent } from 'react';
 import styles from './Input.module.css';
 
 type Props = {
-  id:string
+	id: string
 	label: string;
 	name: string;
 	placeholder: string;
@@ -11,7 +11,7 @@ type Props = {
 	value: string;
 	className: string
 	onChange: (event: ChangeEvent<HTMLInputElement>) => void;
-  onBlur: (event: ChangeEvent<HTMLInputElement>) => void;
+	onBlur: (event: ChangeEvent<HTMLInputElement>) => void;
 };
 
 const Input: React.FC<Props> = ({ id, name, label, placeholder, type, className, onChange, onBlur }) => {
@@ -20,15 +20,15 @@ const Input: React.FC<Props> = ({ id, name, label, placeholder, type, className,
 			<label className={styles.textFieldLabel} htmlFor={id}>
 				{label}
 			</label>
-			<input 
-        id={id}
-        name={name}
-        className={className} 
-        type={type} 
-        placeholder={placeholder} 
-        onChange={onChange}
-        onBlur={onBlur}
-      />
+			<input
+				id={id}
+				name={name}
+				className={styles[className]}
+				type={type}
+				placeholder={placeholder}
+				onChange={onChange}
+				onBlur={onBlur}
+			/>
 		</section>
 	);
 };

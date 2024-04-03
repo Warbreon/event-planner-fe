@@ -5,7 +5,7 @@ import { ButtonClassName } from '../../../components/buttons/login-password-chan
 import Form from '../../../components/forms/Form';
 import FormikTextField from '../../../components/forms/elements/FormikTextField';
 import { passwordResetSchema } from '../../../utils/schemas/passwordReset';
-import './PasswordReset.css';
+import styles from './PasswordReset.module.css';
 
 
 const PasswordReset = () => {
@@ -23,13 +23,13 @@ const PasswordReset = () => {
 					name='newPassword'
 					type='password'
 					title='New password'
-					textFieldClassName='text-input'
+					textFieldClassName={styles.textInput}
 				/>
 				<FormikTextField
 					name='confirmNewPassword'
 					type='password'
 					title='Confirm new password'
-					textFieldClassName='text-input'
+					textFieldClassName={styles.textInput}
 				/>
 				<ButtonComponent styleClassName={ButtonClassName.BLACK} title='Reset my password' />
 				<PasswordRules />

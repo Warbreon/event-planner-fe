@@ -1,12 +1,14 @@
 import './ButtonComponent.css';
+import classNames from 'classnames';
+import { ButtonClassName } from './buttonClassName';
 
 type Props = {
 	title: string;
-	onClick: () => void;
+	styleClassName: ButtonClassName
 };
 
-const ButtonComponent: React.FC<Props> = ({ title, onClick }) => {
-	return <button type='submit' onClick={onClick}>{title}</button>;
+const ButtonComponent: React.FC<Props> = ({ title, styleClassName }) => {
+	return <button className={styleClassName} type='submit'>{title}</button>;
 };
 
 export default ButtonComponent;

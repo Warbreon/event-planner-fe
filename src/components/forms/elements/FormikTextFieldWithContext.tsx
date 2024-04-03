@@ -1,7 +1,8 @@
-import { TextField, TextFieldProps, Typography } from '@mui/material';
-import { useField } from 'formik';
-import React, { InputHTMLAttributes } from 'react'
+import {Typography } from '@mui/material';
+import { useField, useFormikContext } from 'formik';
+import React, { InputHTMLAttributes} from 'react'
 import './Input.css'
+import { useUserInput } from '../../../pages/password-reset/create-new-password/context/passwordInputContext';
 
 type FormikTextFieldProps = InputHTMLAttributes<HTMLInputElement> & {
     name: string;
@@ -10,7 +11,7 @@ type FormikTextFieldProps = InputHTMLAttributes<HTMLInputElement> & {
     textFieldClassName?: string;
 }
 
-const FormikTextField: React.FC<FormikTextFieldProps> = ({
+const FormikTextFieldWithContext: React.FC<FormikTextFieldProps> = ({
     name,
     title,
     titleClassName,
@@ -19,17 +20,30 @@ const FormikTextField: React.FC<FormikTextFieldProps> = ({
 }) => {
     const [field, meta] = useField(name);
     
+
+    const { setUserInput } = useUserInput();
+    const { setFieldValue } = useFormikContext();
+
+    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const { value } = event.target;
+        setUserInput(value);
+        setFieldValue(name, value);
+    };
+
     return (
         <div>
             {title && <Typography variant="subtitle1" className={titleClassName}>{title}</Typography>}
             <input
                 {...field}
                 {...props}
+                onChange={handleChange}
                 className={textFieldClassName}
             />
             {(meta.touched && meta.error) && <p className='error-message'>{meta.error}</p>}
         </div>
     )
+
+   
 }
 
-export default FormikTextField;
+export default FormikTextFieldWithContext;

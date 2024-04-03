@@ -16,6 +16,7 @@ import PrivacyPolicy from '../pages/privacy-policy/PrivacyPolicy';
 import TermOfService from '../pages/terms-of-service/TermOfService';
 import Support from '../pages/support/Support';
 import Main from '../pages/main/Main';
+import { UserInputProvider } from '../pages/password-reset/create-new-password/context/passwordInputContext';
 
 
 function App() {
@@ -25,7 +26,7 @@ function App() {
 				<Route index element={<ExploreEvents />} />
 				<Route path={ROUTES.SIGN_IN} element={<SignIn />} />
 				<Route path={ROUTES.FORGOT_PASSWORD} element={<ForgotPassword />} />
-				<Route path={ROUTES.RESET_PASSWORD} element={<PasswordReset />} />
+				<Route path={ROUTES.RESET_PASSWORD} element={<UserInputProvider><PasswordReset /></UserInputProvider>} />
 				<Route path={ROUTES.EVENT} element={<Event />} />
 				<Route path={ROUTES.MY_EVENTS} element={<MyEvents />} />
 				<Route path={ROUTES.ADD_EVENT} element={<CreateEvent />} />

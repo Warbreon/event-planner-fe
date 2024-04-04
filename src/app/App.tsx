@@ -6,7 +6,7 @@ import PageNotFound from '../pages/not-found/NotFound';
 import Event from '../pages/event/Event';
 import ExploreEvents from '../pages/explore-events/ExploreEvents';
 import SignIn from '../pages/sign-in/SignIn';
-import ForgotPassword from '../pages/password-reset/forgot-pasword/ForgotPassword';
+import ForgotPassword from '../pages/password-reset/forgot-password/ForgotPassword';
 import PasswordReset from '../pages/password-reset/create-new-password/PasswordReset';
 import MyEvents from '../pages/my-events/MyEvents';
 import CreateEvent from '../pages/create-event/CreateEvent';
@@ -16,7 +16,6 @@ import PrivacyPolicy from '../pages/privacy-policy/PrivacyPolicy';
 import TermOfService from '../pages/terms-of-service/TermOfService';
 import Support from '../pages/support/Support';
 import Main from '../pages/main/Main';
-
 
 function App() {
 	return (

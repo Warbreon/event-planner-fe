@@ -1,6 +1,7 @@
 import React, { ReactNode, ReactElement } from 'react';
 import { IconButton } from '@mui/material';
-import './NavBarButton.css';
+import classNames from 'classnames';
+import styles from './NavBarButton.module.css';
 
 type NavBarButtonProps = {
 	buttonPage: string;
@@ -11,17 +12,26 @@ type NavBarButtonProps = {
 
 const NavBarButton: React.FC<NavBarButtonProps> = ({ buttonPage, currentPage, icon, handleClickOnNavButton }) => {
 	return (
-		<div id={buttonPage + '-button-div'}>
+		<div id={`${buttonPage}-button-div`}>
 			<IconButton
 				onClick={() => handleClickOnNavButton(buttonPage)}
-				className={`nav-button ${buttonPage === currentPage ? 'active-button' : 'inactive-button'}`}
+				className={classNames(styles.navButton, {
+					[styles.activeButton]: buttonPage === currentPage,
+					[styles.inactiveButton]: buttonPage !== currentPage,
+				})}
 				sx={{ borderRadius: '10px' }}
 			>
 				{React.cloneElement(icon as ReactElement<any>, {
-					className: buttonPage === currentPage ? 'active-icon' : 'inactive-icon',
+					className: classNames({
+						[styles.activeIcon]: buttonPage === currentPage,
+						[styles.inactiveIcon]: buttonPage !== currentPage,
+					}),
 				})}
 			</IconButton>
-			<p className={`nav-text ${buttonPage === currentPage ? 'active-text' : 'inactive-text'}`}>{buttonPage}</p>
+			<p className={classNames(styles.navText, {
+				[styles.activeText]: buttonPage === currentPage,
+				[styles.inactiveText]: buttonPage !== currentPage,
+			})}>{buttonPage}</p>
 		</div>
 	);
 };

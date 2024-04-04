@@ -1,50 +1,39 @@
-import Input from '../../../components/input-fields/login-change-password/Input';
 import ButtonComponent from '../../../components/buttons/login-password-change/ButtonComponent';
 import PasswordRules from '../../../components/password-rules/PasswordRules';
 import PasswordResetVM from './PasswordResetViewModel';
-import './PasswordReset.css';
+import { ButtonClassName } from '../../../components/buttons/login-password-change/buttonClassName';
+import Form from '../../../components/forms/Form';
+import FormikTextField from '../../../components/forms/elements/FormikTextField';
+import { passwordResetSchema } from '../../../utils/schemas/passwordReset';
+import styles from './PasswordReset.module.css';
+
 
 const PasswordReset = () => {
-	const { values, errors, touched, handleChange, handleSubmit, handleBlur, checkMarkIconState } = PasswordResetVM();
+	const { onSubmit } = PasswordResetVM();
 	return (
-		<section className='reset-password-section'>
-			<header className='reset-password-header'>
-				<p className='header-title'>Reset your password</p>
+		<section className={styles.resetPasswordSection}>
+			<header className={styles.resetPasswordHeader}>
+				<p className={styles.headerTitle}>Reset your password</p>
 			</header>
-			<form onSubmit={handleSubmit}>
-				<Input
-					id='newPassword'
-					label='New password'
-					placeholder='Enter a new password'
+			<Form
+				initialValues={{ newPassword: '', confirmNewPassword: '' }}
+				onSubmit={onSubmit}
+				validationSchema={passwordResetSchema}>
+				<FormikTextField
 					name='newPassword'
 					type='password'
-					value={values.newPassword}
-					onChange={handleChange}
-					onBlur={handleBlur}
-					className={errors.newPassword && touched.newPassword ? 'text-input-error' : 'text-input'}
+					title='New password'
+					textFieldClassName={styles.textInput}
 				/>
-
-				{errors.newPassword && touched.newPassword && <p className='error-message'>{errors.newPassword}</p>}
-
-				<Input
-					id='confirmNewPassword'
-					label='Confirm new password'
-					placeholder='Confirm your new password'
+				<FormikTextField
 					name='confirmNewPassword'
 					type='password'
-					value={values.confirmNewPassword}
-					onChange={handleChange}
-					onBlur={handleBlur}
-					className={errors.confirmNewPassword && touched.confirmNewPassword ? 'text-input-error' : 'text-input'}
+					title='Confirm new password'
+					textFieldClassName={styles.textInput}
 				/>
-
-				{errors.confirmNewPassword && touched.confirmNewPassword && (
-					<p className='error-message'>{errors.confirmNewPassword}</p>
-				)}
-
-				<ButtonComponent title='Reset my password' onClick={() => {}} />
-			</form>
-			<PasswordRules iconState={checkMarkIconState} />
+				<ButtonComponent styleClassName={ButtonClassName.BLACK} title='Reset my password' />
+				<PasswordRules />
+			</Form>
 		</section>
 	);
 };

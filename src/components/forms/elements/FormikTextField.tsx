@@ -25,7 +25,7 @@ const FormikTextField: React.FC<FormikTextFieldProps> = ({
             <input
                 {...field}
                 {...props}
-                className={meta.touched && meta.error ? 'text-input-error' : textFieldClassName}
+                className={meta.touched && meta.error ? styles.textInputError : textFieldClassName}
             />
             {(meta.touched && meta.error) && <p className={styles.errorMessage}>{meta.error}</p>}
         </div>

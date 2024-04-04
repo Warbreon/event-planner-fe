@@ -1,11 +1,11 @@
 import { Avatar, AvatarGroup, List, ListItem, Typography } from '@mui/material'
 import React, { useEffect } from 'react'
-import './GuestList.css'
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import { Attendee } from '../../interfaces/attendee';
 import { setAttendees } from '../../features/attendees/attendeesSlice';
 import { RootState } from '../../redux/store';
+import styles from './GuestList.module.css';
 
 const MAX_DISPLAYED_AVATARS = 5;
 
@@ -28,29 +28,27 @@ const GuestList: React.FC = () => {
 
     useEffect(() => {
         if (attendees.length === 0) {
-            
+
             // TODO: make an API call
             dispatch(setAttendees(attendeesMock));
         }
-      }, [attendees, attendeesMock ,dispatch]);
+    }, [attendees, attendeesMock, dispatch]);
 
     const extraGuestCount = attendees.length - MAX_DISPLAYED_AVATARS;
 
     return (
-        <List>
-            <ListItem>
-                <AvatarGroup className='avatarGroup'>
-                    {attendees.slice(0, MAX_DISPLAYED_AVATARS).map((guest: Attendee, index: number) => (
-                        <Avatar alt={guest.name} src={guest.src} key={guest.email} sx={{ zIndex: index }} />
-                    ))}
-                </AvatarGroup>
-                {extraGuestCount > 0 && (
-                    <Typography className='extraGuestCount'>
-                        +{extraGuestCount} guests
-                    </Typography>
-                )}
-            </ListItem>
-        </List>
+        <div className={styles.guestListContainer}>
+            <AvatarGroup>
+                {attendees.slice(0, MAX_DISPLAYED_AVATARS).map((guest: Attendee, index: number) => (
+                    <Avatar alt={guest.name} src={guest.src} key={guest.email} sx={{ zIndex: index }} className={styles.avatar} />
+                ))}
+            </AvatarGroup>
+            {extraGuestCount > 0 && (
+                <Typography className={styles.extraGuestCount}>
+                    +{extraGuestCount} guests
+                </Typography>
+            )}
+        </div>
     )
 }
 

@@ -1,14 +1,19 @@
-.avatarGroup .MuiAvatar-root {
+div.avatar {
     border: 0.125rem solid white;
     width: 2rem;
     height: 2rem;
 }
 
-.MuiList-root .MuiListItem-root .extraGuestCount {
+.extraGuestCount {
     color: #666666;
     font-weight: 400;
     font-size: 0.875rem;
     line-height: 1.5rem;
     margin-left: 0.5rem;
     font-family: 'Inter', sans-serif;
+}
+
+.guestListContainer {
+    display: flex;
+    align-items: center;
 }

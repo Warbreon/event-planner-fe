@@ -4,11 +4,8 @@ import Routes from '../../../routes/routes';
 const LoginViewModel = () => {
     const navigate = useNavigate();
 
-    const handleInputChange = (email: string) => {
-        console.log("handling input change")
-    };
 
-    const handleClick = (email: string, password: string) => {
+    const onSubmit = (email: string, password: string) => {
         console.log('Email:', email);
         console.log('Password:', password);
     };
@@ -17,8 +14,7 @@ const LoginViewModel = () => {
     };
 
     return {
-        handleClick,
-        handleInputChange,
+        onSubmit,
         handleForgotPasswordClick,
     };
 };

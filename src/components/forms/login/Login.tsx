@@ -12,10 +12,9 @@ const Login = () => {
     const viewModel = LoginViewModel();
 
     return (
-        <Box id='loginForm' className='login-main'>
-            <Typography variant='body1' id='welcome-message'>
-                Welcome to <br/>
-                Cognizant events
+        <Box id='loginForm'>
+            <Typography variant='body1' id='welcomeMessage'>
+                Welcome to <span className="welcome-message-bottom">Cognizant events</span>
             </Typography>
             <Typography id='directions' variant='body2'>
                 Sign in with your work email address
@@ -24,34 +23,31 @@ const Login = () => {
                 initialValues={{email: '', password: ''}}
                 validationSchema={emailPasswordSchema}
                 onSubmit={(values) => {
-                    viewModel.handleClick(values.email, values.password);
+                    viewModel.onSubmit(values.email, values.password);
                 }}
             >
-                <label htmlFor='email' className='input-label'>
-                    Email
-                </label>
-                <FormikTextField
-                    id='email'
-                    name='email'
-                    placeholder='e.g., name@cognizant.com'
-                    type='text'
-                    className='input-field wide-input-field'
-                />
-                <br/>
-                <label htmlFor='password' className='input-label'>
-                    Password
-                </label>
-                <FormikTextField
-                    id='password'
-                    name='password'
-                    type='password'
-                    className='input-field'
-                />
+                <section className='input-label'>
+                    <FormikTextField
+                        id='email'
+                        title='Email address'
+                        name='email'
+                        placeholder='e.g., name@cognizant.com'
+                        type='text'
+                    />
+
+                    <FormikTextField
+                        id='password'
+                        title='Password'
+                        name='password'
+                        type='password'
+                    />
+                </section>
                 <a href='/signin/forgotpassword' className='forgot-password'
                    onClick={viewModel.handleForgotPasswordClick}>
                     Forgot password?
                 </a>
                 <ButtonComponent title='Sign in' styleClassName={ButtonClassName.BLACK}/>
+
             </Form>
         </Box>
     );

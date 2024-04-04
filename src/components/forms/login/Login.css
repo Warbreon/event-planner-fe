@@ -1,13 +1,33 @@
-.login-main {
-    position: absolute;
-    width: 25em;
-    height: 392px;
-    top: 214px;
-    left: 556px;
-    gap: 0dd;
-    border-radius: 100px;
-    border: 1px;
 
+.welcome-message-bottom {
+    display: block;
+}
+
+#directions {
+    position: relative;
+    font-size: 0.65rem;
+    font-weight: 400;
+    margin-top: 0.5rem;
+    margin-bottom: 1.5rem;
+    margin-left: -35px;
+}
+
+.input-label {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    font-weight: 400;
+}
+
+#email,
+#password {
+    width: 106%;
+    height: 3rem;
+    background: #ffffff;
+    border: 1px solid #dddddd;
+    border-radius: 8px;
+    font-family: 'Inter';
+    margin-top: 10px;
 }
 
 .forgot-password {
@@ -16,20 +36,11 @@
     text-decoration: underline;
     display: flex;
     flex-direction: column;
-    align-items: left;
     text-align: left;
 }
 
-#welcome-message {
+#welcomeMessage {
     font-size: 1.4rem;
-    margin-left: -35px;
-}
-
-#directions {
-    position: relative;
-    font-size: 0.65rem;
-    font-weight: 400;
-    margin-top: 0.4rem;
     margin-left: -35px;
 }
 
@@ -41,27 +52,4 @@
     transform: translate(-50%, -50%);
     padding: 16px;
     text-align: center;
-}
-
-.top-margin {
-    margin-top: 1.5rem;
-}
-
-.input-label {
-    display: block;
-    color: rgba(0, 0, 0, 1);
-    font-size: 0.7rem;
-    margin-left: -310px;
-    margin-bottom: 10px;
-    font-family: 'Inter';
-}
-
-#email,
-#password {
-    width: 98%;
-    height: 3rem;
-    background: #ffffff;
-    border: 1px solid #dddddd;
-    border-radius: 8px;
-    font-family: 'Inter';
 }

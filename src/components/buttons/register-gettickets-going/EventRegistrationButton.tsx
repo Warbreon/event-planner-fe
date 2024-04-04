@@ -1,39 +1,19 @@
 import { FC } from 'react';
 import { Button, ThemeProvider } from '@mui/material';
-import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
-import CheckCircleIcon from '@mui/icons-material/CheckCircle';
-import ConfirmationNumberIcon from '@mui/icons-material/ConfirmationNumber';
-import { eventRegistrationButtonTheme as registerTheme, 
-  eventGoingButtonTheme as goingTheme }  from './eventRegistrationButtonThemes';
 import { ButtonTitles } from './eventRegistrationButtonTitles';
+import EventButtonIcon from './EventButtonIcon';
+import EventRegistrationButtonVM from './EventRegistrationButtonVM';
 
 interface EventRegistrationButtonProps {
 	onClick: () => void;
-  className: ButtonTitles
+	className: ButtonTitles;
 }
 
 const EventRegistrationButton: FC<EventRegistrationButtonProps> = ({ onClick, className }) => {
-
-  const title = (name: string): string => {
-    switch(name) {
-      case ButtonTitles.REGISTER:
-        return 'Register'
-      case  ButtonTitles.GOING:
-        return 'Going'
-      case  ButtonTitles.GET_TICKETS:
-        return 'Get tickets'
-      default:
-         return ''
-    }
-  };
-
-  const theme = (className === ButtonTitles.GOING) ? goingTheme : registerTheme;
-  const icon = (className === ButtonTitles.GOING) ? <CheckCircleIcon/> : 
-          (className === ButtonTitles.REGISTER) ? <CheckCircleOutlineIcon/> : <ConfirmationNumberIcon/>
-
+	const { title, theme } = EventRegistrationButtonVM(className);
 	return (
 		<ThemeProvider theme={theme}>
-			<Button startIcon={icon} onClick={onClick}>
+			<Button startIcon={<EventButtonIcon className={className} />} onClick={onClick}>
 				{title(className)}
 			</Button>
 		</ThemeProvider>

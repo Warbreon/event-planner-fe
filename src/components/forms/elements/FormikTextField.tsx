@@ -18,14 +18,14 @@ const FormikTextField: React.FC<FormikTextFieldProps> = ({
     ...props
 }) => {
     const [field, meta] = useField(name);
-    
+
     return (
         <div>
             {title && <Typography variant="subtitle1" className={titleClassName}>{title}</Typography>}
             <input
                 {...field}
                 {...props}
-                className={textFieldClassName}
+                className={meta.touched && meta.error ? 'text-input-error' : textFieldClassName}
             />
             {(meta.touched && meta.error) && <p className={styles.errorMessage}>{meta.error}</p>}
         </div>

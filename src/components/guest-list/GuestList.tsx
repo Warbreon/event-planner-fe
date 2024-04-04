@@ -3,9 +3,9 @@ import React, { useEffect } from 'react'
 import './GuestList.css'
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
-import { RootState } from '../../redux/reducers/rootReducer';
 import { Attendee } from '../../interfaces/attendee';
-import { setAttendees } from '../../redux/actions/attendeeActions';
+import { setAttendees } from '../../features/attendees/attendeesSlice';
+import { RootState } from '../../redux/store';
 
 const MAX_DISPLAYED_AVATARS = 5;
 
@@ -40,7 +40,7 @@ const GuestList: React.FC = () => {
         <List>
             <ListItem>
                 <AvatarGroup className='avatarGroup'>
-                    {attendees.slice(0, MAX_DISPLAYED_AVATARS).map((guest, index) => (
+                    {attendees.slice(0, MAX_DISPLAYED_AVATARS).map((guest: Attendee, index: number) => (
                         <Avatar alt={guest.name} src={guest.src} key={guest.email} sx={{ zIndex: index }} />
                     ))}
                 </AvatarGroup>

@@ -41,7 +41,11 @@ const NavigationSideBar: React.FC<NavigationSideBarProps> = (props) => {
 				>
 					<List className='nav-list'>
 						<ListItem className='nav-list-item' key='Cognizant' disablePadding>
-							<img className='cognizant-logo' src='Cognizant_logo.jpg' alt='Cognizant company logo' />
+							<img
+								className='cognizant-logo'
+								src={window.location.origin + '/Cognizant_logo.jpg'}
+								alt='Cognizant company logo'
+							/>
 						</ListItem>
 						{viewModel.loggedInStatus && (
 							<>

@@ -26,22 +26,22 @@ const Login = () => {
                     viewModel.onSubmit(values.email, values.password);
                 }}
             >
-                <section className='input-label'>
-                    <FormikTextField
-                        id='email'
-                        title='Email address'
-                        name='email'
-                        placeholder='e.g., name@cognizant.com'
-                        type='text'
-                    />
+                <FormikTextField
+                    id='email'
+                    title='Email address'
+                    name='email'
+                    placeholder='e.g., name@cognizant.com'
+                    type='text'
+                    titleClassName={'label-left'}
+                />
 
-                    <FormikTextField
-                        id='password'
-                        title='Password'
-                        name='password'
-                        type='password'
-                    />
-                </section>
+                <FormikTextField
+                    id='password'
+                    title='Password'
+                    name='password'
+                    type='password'
+                    titleClassName={'label-left'}
+                />
                 <a href='/signin/forgotpassword' className='forgot-password'
                    onClick={viewModel.handleForgotPasswordClick}>
                     Forgot password?

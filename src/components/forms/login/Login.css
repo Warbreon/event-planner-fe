@@ -12,9 +12,7 @@
     margin-left: -35px;
 }
 
-.input-label {
-    display: flex;
-    flex-direction: column;
+.label-left {
     text-align: left;
     font-weight: 400;
 }

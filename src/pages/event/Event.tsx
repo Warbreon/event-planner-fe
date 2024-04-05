@@ -1,5 +1,7 @@
 import { Container, Grid, Box } from '@mui/material';
 import styles from './Event.module.css';
+import EventDetails from '../../components/event-details/EventDetails';
+import Agenda from '../../components/event-details/agenda/Agenda';
 
 const Event = () => {
 	return (
@@ -12,6 +14,7 @@ const Event = () => {
 						<p>Event Header</p>
 						<p>Event cover photo</p>
 						<p>Tabs with guest and descriptions</p>
+						<EventDetails></EventDetails>
 						<p>Who's attending section</p>
 					</Box>
 				</Grid>

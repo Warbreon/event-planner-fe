@@ -1,0 +1,38 @@
+.content .details {
+  display: flex;
+  color: #757575;
+  white-space: nowrap;
+  align-items: center;
+  margin-bottom: 8px;
+  font-size: 14px;
+  line-height: 24px;
+  font-family: 'Inter';
+}
+
+.content .name {
+  color: #424242;
+  font-size: 16px;
+  line-height: 24px;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-family: 'Inter';
+}
+
+.container .card .media {
+  width: 100%;
+  height: 320px;
+  object-fit: cover;
+  border-radius: 12px 12px 12px 12px;
+}
+
+.container .card {
+  width: 270px;
+  height: 444px;
+  margin-top: 8px;
+  overflow: hidden;
+  border: none;
+  box-shadow: none;
+}

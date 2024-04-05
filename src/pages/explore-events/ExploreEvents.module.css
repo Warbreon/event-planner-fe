@@ -1,0 +1,37 @@
+.eventsContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 22px;
+}
+
+.loadMoreButtonContainer {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 100px;
+}
+
+.loadMoreButtonContainer .loadMoreButton {
+  background-color: black;
+  color: white;
+  border-radius: 30px;
+  text-transform: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  transition: background-color 0.3s;
+}
+
+.loadMoreButtonContainer .loadMoreButton:hover {
+  background-color: grey;
+}
+
+@media (max-width: 600px) {
+  .card {
+    max-width: 100%;
+  }
+
+  .media,
+  .content {
+    border-radius: 12px;
+  }
+}

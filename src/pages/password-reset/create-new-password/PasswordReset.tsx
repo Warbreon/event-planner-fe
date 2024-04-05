@@ -1,12 +1,10 @@
-import ButtonComponent from '../../../components/buttons/login-password-change/ButtonComponent';
+import GenericButton from '../../../components/buttons/login-password-change/ButtonComponent';
 import PasswordRules from '../../../components/password-rules/PasswordRules';
 import PasswordResetVM from './PasswordResetViewModel';
-import { ButtonClassName } from '../../../components/buttons/login-password-change/buttonClassName';
 import Form from '../../../components/forms/Form';
 import FormikTextField from '../../../components/forms/elements/FormikTextField';
 import { passwordResetSchema } from '../../../utils/schemas/passwordReset';
 import styles from './PasswordReset.module.css';
-
 
 const PasswordReset = () => {
 	const { onSubmit } = PasswordResetVM();
@@ -18,7 +16,8 @@ const PasswordReset = () => {
 			<Form
 				initialValues={{ newPassword: '', confirmNewPassword: '' }}
 				onSubmit={onSubmit}
-				validationSchema={passwordResetSchema}>
+				validationSchema={passwordResetSchema}
+			>
 				<FormikTextField
 					name='newPassword'
 					type='password'
@@ -31,7 +30,7 @@ const PasswordReset = () => {
 					title='Confirm new password'
 					textFieldClassName={styles.textInput}
 				/>
-				<ButtonComponent styleClassName={ButtonClassName.BLACK} title='Reset my password' />
+				<GenericButton title='Reset my password' />
 				<PasswordRules />
 			</Form>
 		</section>

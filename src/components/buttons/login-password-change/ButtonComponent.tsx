@@ -1,13 +1,16 @@
-import { ButtonClassName } from './buttonClassName';
+import { Button } from '@mui/material';
 import styles from './ButtonComponent.module.css';
 
 type Props = {
 	title: string;
-	styleClassName: ButtonClassName
 };
 
-const ButtonComponent: React.FC<Props> = ({ title, styleClassName }) => {
-	return <button className={styles[styleClassName]} type='submit'>{title}</button>;
+const GenericButton: React.FC<Props> = ({ title }) => {
+	return (
+		<Button variant='contained' color='primary' type='submit' className={styles.genericButton}>
+			{title}
+		</Button>
+	);
 };
 
-export default ButtonComponent;
+export default GenericButton;

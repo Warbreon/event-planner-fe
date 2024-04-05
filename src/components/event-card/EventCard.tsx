@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { IEvent } from "./EventCardInterfaces";
 import styles from "./EventCard.module.css";
-import { Card, CardContent, CardMedia, Typography } from "@mui/material";
+import { Box, Card, CardContent, CardMedia, Typography } from "@mui/material";
 import { formatDateAndTime } from "./formatDateAndTime";
 
 export const EventCard: FC<IEvent> = ({ name, imageUrl, address, price, eventStart }) => {
@@ -13,7 +13,7 @@ export const EventCard: FC<IEvent> = ({ name, imageUrl, address, price, eventSta
   const details = `${eventDate} • ${eventCity}${displayPrice ? ` • ${displayPrice}` : ''}`;
 
   return (
-    <div className={styles.container}>
+    <Box className={styles.container}>
       <Card className={styles.card}>
         <CardMedia
           className={styles.media}
@@ -29,6 +29,6 @@ export const EventCard: FC<IEvent> = ({ name, imageUrl, address, price, eventSta
           </Typography>
         </CardContent>
       </Card>
-    </div>
+    </Box>
   );
 };

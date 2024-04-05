@@ -1,17 +1,24 @@
-const NavigationSideBarViewModel = () => {
-	//Temporary way to indicate on which page the user is on to highlight the correct button.
-	const possiblePages = ['Home', 'My events', 'Settings'];
-	const currentPage = possiblePages[Math.floor(Math.random() * possiblePages.length)];
+import { useLocation, useNavigate } from 'react-router';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../redux/store/store';
 
-	const handleClickOnNavButton = (redirectionName: string) => {
-		if (currentPage !== redirectionName) {
-			console.log(`Redirecting to ${redirectionName} page.`);
+const NavigationSideBarViewModel = () => {
+	const loggedInStatus = useSelector((state: RootState) => state.user.loggedIn);
+
+	const currentRoute = useLocation().pathname;
+
+	const navigate = useNavigate();
+
+	const handleClickOnNavButton = (navigationRoute: string) => {
+		if (currentRoute !== navigationRoute) {
+			navigate(navigationRoute);
 		}
 	};
 
 	return {
-		currentPage,
+		currentRoute,
 		handleClickOnNavButton,
+		loggedInStatus,
 	};
 };
 

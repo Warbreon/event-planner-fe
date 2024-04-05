@@ -7,7 +7,6 @@ import FormikTextField from '../../../components/forms/elements/FormikTextField'
 import { passwordResetSchema } from '../../../utils/schemas/passwordReset';
 import styles from './PasswordReset.module.css';
 
-
 const PasswordReset = () => {
 	const { onSubmit } = PasswordResetVM();
 	return (
@@ -18,7 +17,8 @@ const PasswordReset = () => {
 			<Form
 				initialValues={{ newPassword: '', confirmNewPassword: '' }}
 				onSubmit={onSubmit}
-				validationSchema={passwordResetSchema}>
+				validationSchema={passwordResetSchema}
+			>
 				<FormikTextField
 					name='newPassword'
 					type='password'

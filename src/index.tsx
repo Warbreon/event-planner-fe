@@ -12,4 +12,9 @@ root.render(
 			<App />
 		</BrowserRouter>
 	</Provider>
+	<Provider store={store}>
+		<BrowserRouter>
+			<App />
+		</BrowserRouter>
+	</Provider>
 );

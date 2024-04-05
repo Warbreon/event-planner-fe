@@ -1,0 +1,9 @@
+.guestFooter {
+	background-color: transparent;
+	align-items: center;
+}
+
+.guestFooter .rightDivider {
+	margin-inline: 5px;
+	border-right: 1px solid #e0e0e0;
+}

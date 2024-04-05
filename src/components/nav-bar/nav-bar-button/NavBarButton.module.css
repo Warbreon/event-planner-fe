@@ -8,6 +8,11 @@
 	color: #003fe1;
 }
 
+.navButton {
+	align-self: center;
+	width: 2.5rem;
+}
+
 .navButton.activeButton {
 	background-color: #e7ecfd;
 }

@@ -1,0 +1,17 @@
+.eventContainer {
+	min-height: 100vh;
+	margin-top: 2%;
+}
+
+.gridContainer .gridItem {
+	min-height: 10vh;
+	margin-bottom: 3%;
+}
+
+.moreEventsLikeThis {
+	min-height: 10vh;
+}
+
+.breadcrumb {
+	margin-bottom: 3%;
+}

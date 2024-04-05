@@ -1,0 +1,54 @@
+
+.welcome-message-bottom {
+    display: block;
+}
+
+#directions {
+    position: relative;
+    font-size: 0.65rem;
+    font-weight: 400;
+    margin-top: 0.5rem;
+    margin-bottom: 1.5rem;
+    margin-left: -35px;
+}
+
+.label-left {
+    text-align: left;
+    font-weight: 400;
+}
+
+#email,
+#password {
+    width: 106%;
+    height: 3rem;
+    background: #ffffff;
+    border: 1px solid #dddddd;
+    border-radius: 8px;
+    font-family: 'Inter';
+    margin-top: 10px;
+    padding-left: 1rem;
+}
+
+.forgot-password {
+    font-size: 0.7em;
+    color: #999999;
+    text-decoration: underline;
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+
+#welcomeMessage {
+    font-size: 1.4rem;
+    margin-left: -35px;
+}
+
+#loginForm {
+    position: fixed;
+    max-width: 400px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 16px;
+    text-align: center;
+}

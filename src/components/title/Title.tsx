@@ -18,7 +18,7 @@ const Title: React.FC<Props> = ({
     titleClassName,
     subtitleClassName,
 }) => (
-    <>
+    <div>
         <Typography {...typographyTitleProps} className={titleClassName}>
             {text}
         </Typography>
@@ -30,7 +30,7 @@ const Title: React.FC<Props> = ({
                 {subtext}
             </Typography>
         )}
-    </>
+    </div>
 );
 
 export default Title;

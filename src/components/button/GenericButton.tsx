@@ -1,16 +1,17 @@
-import { Button } from '@mui/material';
+import { Button, ButtonProps } from '@mui/material';
 import React from 'react'
 
-type Props = {
+interface Props {
     text: string;
     onClick: () => void;
     className?: string;
+    buttonProps?: ButtonProps; 
 };
 
-const GenericButton: React.FC<Props> = ({ text, onClick, className, ...props }) => {
+const GenericButton: React.FC<Props> = ({ text, onClick, className, buttonProps }) => {
     return (
         <Button
-            {...props}
+            {...buttonProps}
             className={className}
             onClick={onClick}
         >

@@ -1,7 +1,7 @@
 import React from 'react'
 import { FormControl, FormControlProps, InputLabel, InputLabelProps, MenuItem, Select, SelectChangeEvent, SelectProps } from '@mui/material';
 
-type Props = {
+interface Props {
     label?: string;
     value: string;
     options: Array<{ value: string, label: string }>;
@@ -12,6 +12,7 @@ type Props = {
     formControlClassName?: string;
     inputLabelClassName?: string;
     selectClassName?: string;
+    menuItemClassName?: string;
 };
 
 const Dropdown: React.FC<Props> = ({
@@ -25,6 +26,7 @@ const Dropdown: React.FC<Props> = ({
     formControlClassName,
     inputLabelClassName,
     selectClassName,
+    menuItemClassName,
 }) => {
     return (
         <FormControl {...formControlProps} className={formControlClassName}>
@@ -40,7 +42,7 @@ const Dropdown: React.FC<Props> = ({
                 className={selectClassName}
             >
                 {options.map((option) => (
-                    <MenuItem key={option.value} value={option.value}>
+                    <MenuItem key={option.value} value={option.value} className={menuItemClassName}>
                         {option.label}
                     </MenuItem>
                 ))}

@@ -1,4 +1,4 @@
-import { Chip, Stack } from '@mui/material';
+import { Chip, ChipProps, Stack } from '@mui/material';
 import React from 'react'
 
 type Props = {
@@ -9,18 +9,20 @@ type Props = {
     }>;
     selectedKey: string | null;
     onSelect: (key: string) => void;
-    chipClassName?: string;
+    getChipClassName?: (isSelected: boolean) => string;
+    chipProps?: ChipProps;
 };
 
-const ChipSelector: React.FC<Props> = ({ options, selectedKey, onSelect, chipClassName }) => {
+const ChipSelector: React.FC<Props> = ({ options, selectedKey, onSelect, getChipClassName, chipProps }) => {
     return (
         <Stack direction="row" spacing={1}>
             {options.map((option) => (
                 <Chip
+                    {...chipProps}
                     key={option.key}
                     label={option.count ? `${option.label} (${option.count})` : option.label}
                     onClick={() => onSelect(option.key)}
-                    className={chipClassName}
+                    className={getChipClassName && getChipClassName(option.key === selectedKey)}
                 />
             ))}
         </Stack>

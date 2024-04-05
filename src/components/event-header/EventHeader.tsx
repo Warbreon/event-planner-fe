@@ -1,25 +1,26 @@
-import React from 'react'
-import { useSelector } from 'react-redux';
-import { useDispatch } from 'react-redux'
 import Title from '../title/Title';
-import { RootState } from '../../redux/reducers/rootReducer';
 import { useNavigate } from 'react-router';
 import Dropdown from '../dropdown/Dropdown';
-import { setDateFilter, setLocationFilter, setTagFilter } from '../../redux/actions/eventFiltersActions';
 import GenericButton from '../button/GenericButton';
 import ROUTES from '../../routes/routes';
 import ChipSelector from '../chip-selector/ChipSelector';
-import './EventHeader.css';
+import styles from './EventHeader.module.css';
+import classNames from 'classnames';
+import { Add, KeyboardArrowDown } from '@mui/icons-material';
+import { EventFiltersState } from '../../pages/explore-events/eventFiltersInterface';
 import { SelectChangeEvent } from '@mui/material';
+import { DATE_FILTER_OPTIONS } from '../../constants/dateConstants';
 
+interface Props {
+    filters: EventFiltersState;
+    handleFiltersChange: (filters: Partial<EventFiltersState>) => void;
+};
 
-
-const EventHeader = () => {
+const EventHeader: React.FC<Props> = ({ filters, handleFiltersChange }) => {
     const navigate = useNavigate();
-    const dispatch = useDispatch();
-    const { date, location, eventTag } = useSelector((state: RootState) => state.eventFilters);
-    //const addresses = useSelector((state: RootState) => state.address.list);
-    const userName = 'Lovely';//useSelector((state: RootState) => state.user.name);
+
+    // TODO: get name from redux later
+    const userName = 'John';
 
     const eventTagsOptions = [
         { key: 'all', label: 'All events' },
@@ -30,58 +31,74 @@ const EventHeader = () => {
         { key: 'party', label: 'Party' },
     ];
 
-    const dates = [
-        { value: 'year', label: 'This year' },
-        { value: 'month', label: 'This month' },
-        { value: 'week', label: 'This week' },
-        { value: 'today', label: 'Today' },
+    const locations = [
+        { value: 'all', label: 'All Locations' },
+        { value: 'online', label: 'Online' },
+        { value: 'kaunas', label: 'Kaunas' },
+        { value: 'vilnius', label: 'Vilnius' },
+        { value: 'chicago', label: 'Chicago' },
     ];
 
-    const handleDateChange = (event: SelectChangeEvent<string>) => {
-        dispatch(setDateFilter(event.target.value));
-    };
-
-    const handleLocationChange = (event: SelectChangeEvent<string>) => {
-        dispatch(setLocationFilter(event.target.value));
+    const getChipClassName = (isSelected: boolean) => {
+        return classNames(styles.tagFilter, { [styles.tagFilterSelected]: isSelected })
     };
 
     const handleTagChange = (key: string) => {
-        dispatch(setTagFilter(key));
-    };
+        handleFiltersChange({ eventTag: key });
+    }
+
+    const handleDateChange = (event: SelectChangeEvent<string>) => {
+        handleFiltersChange({ date: event.target.value });
+    }
+
+    const handleLocationChange = (event: SelectChangeEvent<string>) => {
+        handleFiltersChange({ location: event.target.value });
+    }
 
     return (
-        <div className='container'>
-            <div className='header'>
-                <div>
-                    <Title
-                        text={`Hey, ${userName}`}
-                        subtext='Discover what’s happening in Cognizant in the upcoming months'
-                        titleClassName='headerTitle'
-                        subtitleClassName='headerSubtitle'
-                    />
-                </div>
+        <div className={styles.container}>
+            <div className={styles.header}>
+                <Title
+                    text={`Hey, ${userName}`}
+                    subtext='Discover what’s happening in Cognizant in the upcoming months'
+                    titleClassName={styles.headerTitle}
+                    subtitleClassName={styles.headerSubtitle}
+                />
                 <GenericButton
                     text='Add event'
                     onClick={() => navigate(ROUTES.ADD_EVENT)}
+                    className={styles.addEventButton}
+                    buttonProps={{
+                        startIcon: <Add />,
+                    }}
                 />
             </div>
-            <div className='filters'>
+            <div className={styles.filters}>
                 <ChipSelector
                     options={eventTagsOptions}
-                    selectedKey={eventTag}
+                    selectedKey={filters.eventTag}
                     onSelect={handleTagChange}
-                    chipClassName='tagFilter'
+                    getChipClassName={getChipClassName}
                 />
-                <div className='dropdownFilters'>
+                <div className={styles.dropdownFiltersContainer}>
                     <Dropdown
-                        value={date}
+                        value={filters.date}
                         onChange={handleDateChange}
-                        options={dates}
+                        options={DATE_FILTER_OPTIONS}
+                        selectClassName={styles.dropdown}
+                        menuItemClassName={styles.dropdownMenuItem}
+                        selectProps={{
+                            IconComponent: KeyboardArrowDown,
+                        }}
                     />
                     <Dropdown
-                        value={location}
+                        value={filters.location}
                         onChange={handleLocationChange}
-                        options={dates}
+                        options={locations}
+                        selectClassName={styles.dropdown}
+                        selectProps={{
+                            IconComponent: KeyboardArrowDown,
+                        }}
                     />
                 </div>
             </div>

@@ -1,10 +1,10 @@
-import { Avatar, AvatarGroup, List, ListItem, Typography } from '@mui/material'
+import { Avatar, AvatarGroup, Typography } from '@mui/material'
 import React, { useEffect } from 'react'
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import { Attendee } from '../../interfaces/attendee';
-import { setAttendees } from '../../features/attendees/attendeesSlice';
-import { RootState } from '../../redux/store';
+import { setAttendees } from '../../redux/slices/attendeesSlice';
+import { RootState } from '../../redux/store/store';
 import styles from './GuestList.module.css';
 
 const MAX_DISPLAYED_AVATARS = 5;

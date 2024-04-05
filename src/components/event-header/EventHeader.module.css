@@ -1,10 +1,9 @@
 .container {
     display: flex;
     flex-direction: column;
-    position: absolute;
-    top: 9rem;
-    left: 11.3125rem;
-    right: 5.75rem;
+    margin-top: 5rem;
+    margin-left: 6.8125rem;
+    margin-right: 5.75rem;
 }
 
 .header {
@@ -15,7 +14,6 @@
 }
 
 p.headerTitle {
-    position: relative;
     font-family: 'Inter', sans-serif;
     font-weight: 400;
     font-size: 2rem;
@@ -26,7 +24,6 @@ p.headerTitle {
 }
 
 p.headerSubtitle {
-    position: relative;
     font-family: 'Inter', sans-serif;
     font-weight: 400;
     font-size: 0.875rem;
@@ -36,7 +33,6 @@ p.headerSubtitle {
 }
 
 .filters .tagFilter {
-    gap: 0.5rem;
     height: 2rem;
     border-radius: 6.25rem;
     border: 1px solid #DDDDDD;

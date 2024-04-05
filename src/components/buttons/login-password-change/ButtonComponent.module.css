@@ -7,11 +7,10 @@
 	color: aliceblue;
 	font-family: inherit;
 	font-size: 1rem;
-	font-weight:600;
+	font-weight: 600;
 	margin-top: 2rem;
-  margin-bottom: 3rem;
+	margin-bottom: 3rem;
 }
-
 
 .transparentSubmitButton {
 	border-radius: 100px;
@@ -22,7 +21,7 @@
 	color: rgb(0, 0, 0);
 	font-family: inherit;
 	font-size: 1rem;
-	font-weight:600;
+	font-weight: 600;
 	margin-top: 1rem;
-  margin-bottom: 3rem;
+	margin-bottom: 3rem;
 }

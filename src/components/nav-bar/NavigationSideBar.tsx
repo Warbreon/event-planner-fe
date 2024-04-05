@@ -10,10 +10,10 @@ import SettingsRoundedIcon from '@mui/icons-material/SettingsRounded';
 import NavBarButton from './nav-bar-button/NavBarButton';
 import NavigationSideBarViewModel from './NavigationSideBarViewModel';
 import styles from './NavigationSideBar.module.css';
+import routes from '../../routes/routes';
 
 type NavigationSideBarProps = {
 	drawerWidth: number;
-	loggedIn: boolean;
 	children: ReactNode;
 };
 
@@ -40,14 +40,15 @@ const NavigationSideBar: React.FC<NavigationSideBarProps> = (props) => {
 				>
 					<List className='nav-list'>
 						<ListItem className={styles.navListItem} key='Cognizant' disablePadding>
-							<img className={styles.cognizantLogo} src='Cognizant_logo.jpg' alt='Cognizant company logo' />
+							<img className={styles.cognizantLogo} src='/Cognizant_logo.jpg' alt='Cognizant company logo' />
 						</ListItem>
-						{props.loggedIn && (
+						{viewModel.loggedInStatus && (
 							<>
 								<ListItem className={styles.navListItem} key='Home' disablePadding>
 									<NavBarButton
 										buttonPage='Home'
-										currentPage={viewModel.currentPage}
+										buttonPageRoute={routes.INDEX}
+										currentRoute={viewModel.currentRoute}
 										icon={<HomeRoundedIcon />}
 										handleClickOnNavButton={viewModel.handleClickOnNavButton}
 									/>
@@ -55,7 +56,8 @@ const NavigationSideBar: React.FC<NavigationSideBarProps> = (props) => {
 								<ListItem className={styles.navListItem} key='My events' disablePadding>
 									<NavBarButton
 										buttonPage='My events'
-										currentPage={viewModel.currentPage}
+										buttonPageRoute={routes.MY_EVENTS}
+										currentRoute={viewModel.currentRoute}
 										icon={<EventRoundedIcon />}
 										handleClickOnNavButton={viewModel.handleClickOnNavButton}
 									/>
@@ -63,7 +65,8 @@ const NavigationSideBar: React.FC<NavigationSideBarProps> = (props) => {
 								<ListItem className={styles.navListItem} key='Settings' disablePadding>
 									<NavBarButton
 										buttonPage='Settings'
-										currentPage={viewModel.currentPage}
+										buttonPageRoute={routes.SETTINGS}
+										currentRoute={viewModel.currentRoute}
 										icon={<SettingsRoundedIcon />}
 										handleClickOnNavButton={viewModel.handleClickOnNavButton}
 									/>

@@ -1,6 +1,8 @@
 import React from 'react';
 import { BottomNavigation, BottomNavigationAction } from '@mui/material';
 
+import styles from './LoggedInFooter.module.css';
+
 type LoggedInFooterProps = {
 	handleClickCognizant: () => void;
 	handleClickPrivacy: () => void;
@@ -8,7 +10,7 @@ type LoggedInFooterProps = {
 
 const LoggedInFooter: React.FC<LoggedInFooterProps> = ({ handleClickCognizant, handleClickPrivacy }) => {
 	return (
-		<BottomNavigation className='user-footer' showLabels>
+		<BottomNavigation className={styles.userFooter} showLabels>
 			<BottomNavigationAction
 				onClick={handleClickCognizant}
 				label={`© ${new Date().getFullYear()} Cognizant`}

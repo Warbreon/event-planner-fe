@@ -1,6 +1,7 @@
 import React, { ReactNode, ReactElement } from 'react';
 import { IconButton } from '@mui/material';
-import './NavBarButton.css';
+import classNames from 'classnames';
+import styles from './NavBarButton.module.css';
 
 type NavBarButtonProps = {
 	buttonPage: string;
@@ -18,18 +19,31 @@ const NavBarButton: React.FC<NavBarButtonProps> = ({
 	handleClickOnNavButton,
 }) => {
 	return (
-		<div id={buttonPage + '-button-div'}>
+		<div id={`${buttonPage}-button-div`}>
 			<IconButton
 				onClick={() => handleClickOnNavButton(buttonPageRoute)}
-				className={`nav-button ${buttonPageRoute === currentRoute ? 'active-button' : 'inactive-button'}`}
+				className={classNames(styles.navButton, {
+					[styles.activeButton]: buttonPageRoute === currentRoute,
+					[styles.inactiveButton]: buttonPageRoute !== currentRoute,
+				})}
 				sx={{ borderRadius: '10px' }}
 				disableRipple
 			>
 				{React.cloneElement(icon as ReactElement<any>, {
-					className: buttonPageRoute === currentRoute ? 'active-icon' : 'inactive-icon',
+					className: classNames({
+						[styles.activeIcon]: buttonPageRoute === currentRoute,
+						[styles.inactiveIcon]: buttonPageRoute !== currentRoute,
+					}),
 				})}
 			</IconButton>
-			<p className={`nav-text ${buttonPageRoute === currentRoute ? 'active-text' : 'inactive-text'}`}>{buttonPage}</p>
+			<p
+				className={classNames(styles.navText, {
+					[styles.activeText]: buttonPageRoute === currentRoute,
+					[styles.inactiveText]: buttonPageRoute !== currentRoute,
+				})}
+			>
+				{buttonPage}
+			</p>
 		</div>
 	);
 };

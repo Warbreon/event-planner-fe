@@ -1,6 +1,8 @@
 import React from 'react';
 import { BottomNavigation, BottomNavigationAction } from '@mui/material';
 
+import styles from './LoggedOutFooter.module.css';
+
 type LoggedOutFooterProps = {
 	handleClickCognizant: () => void;
 	handleClickTerms: () => void;
@@ -13,11 +15,20 @@ const LoggedOutFooter: React.FC<LoggedOutFooterProps> = ({
 	handleClickSupport,
 }) => {
 	return (
-		<BottomNavigation className='guest-footer' showLabels>
-			<BottomNavigationAction onClick={handleClickTerms} label='Terms of service' disableRipple />
-			<BottomNavigationAction onClick={handleClickSupport} label='Support' disableRipple />
+		<BottomNavigation className={styles.guestFooter} showLabels>
 			<BottomNavigationAction
-				className='last-button'
+				className={styles.rightDivider}
+				onClick={handleClickTerms}
+				label='Terms of service'
+				disableRipple
+			/>
+			<BottomNavigationAction
+				className={styles.rightDivider}
+				onClick={handleClickSupport}
+				label='Support'
+				disableRipple
+			/>
+			<BottomNavigationAction
 				onClick={handleClickCognizant}
 				label={`© ${new Date().getFullYear()} Cognizant`}
 				disableRipple

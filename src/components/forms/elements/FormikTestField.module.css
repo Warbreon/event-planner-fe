@@ -1,0 +1,21 @@
+p.errorMessage {
+	color: #ff5252;
+}
+
+.textInputError {
+	border-radius: 8px;
+	border: 1px solid #ff5252;
+	width: 400px;
+	height: 3rem;
+	gap: 10px;
+	box-sizing: border-box;
+	outline: none;
+	font-family: 'Inter';
+	font-size: 1em;
+	padding-left: 1rem;
+	padding-right: 1rem;
+}
+
+.textInputError:focus {
+	border-width: 2px;
+}

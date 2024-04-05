@@ -1,0 +1,32 @@
+.inactiveIcon,
+.inactiveText {
+	color: black;
+}
+
+.activeIcon,
+.activeText {
+	color: #003fe1;
+}
+
+.navButton {
+	align-self: center;
+	width: 2.5rem;
+}
+
+.navButton.activeButton {
+	background-color: #e7ecfd;
+}
+
+.navButton.activeButton:hover {
+	background-color: #acc4f4;
+}
+
+.navText {
+	text-align: center;
+	width: 100%;
+	font-family: 'Inter', sans-serif;
+	font-size: 0.625rem;
+	font-weight: 500;
+	line-height: 0.75rem;
+	text-align: center;
+}

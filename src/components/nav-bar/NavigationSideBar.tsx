@@ -7,10 +7,9 @@ import ListItem from '@mui/material/ListItem';
 import HomeRoundedIcon from '@mui/icons-material/HomeRounded';
 import EventRoundedIcon from '@mui/icons-material/EventRounded';
 import SettingsRoundedIcon from '@mui/icons-material/SettingsRounded';
-
-import './NavigationSideBar.css';
 import NavBarButton from './nav-bar-button/NavBarButton';
 import NavigationSideBarViewModel from './NavigationSideBarViewModel';
+import styles from './NavigationSideBar.module.css';
 import routes from '../../routes/routes';
 
 type NavigationSideBarProps = {
@@ -40,12 +39,12 @@ const NavigationSideBar: React.FC<NavigationSideBarProps> = (props) => {
 					anchor='left'
 				>
 					<List className='nav-list'>
-						<ListItem className='nav-list-item' key='Cognizant' disablePadding>
-							<img className='cognizant-logo' src={'/Cognizant_logo.jpg'} alt='Cognizant company logo' />
+						<ListItem className={styles.navListItem} key='Cognizant' disablePadding>
+							<img className={styles.cognizantLogo} src='Cognizant_logo.jpg' alt='Cognizant company logo' />
 						</ListItem>
 						{viewModel.loggedInStatus && (
 							<>
-								<ListItem className='nav-list-item' key='Home' disablePadding>
+								<ListItem className={styles.navListItem} key='Home' disablePadding>
 									<NavBarButton
 										buttonPage='Home'
 										buttonPageRoute={routes.INDEX}
@@ -54,7 +53,7 @@ const NavigationSideBar: React.FC<NavigationSideBarProps> = (props) => {
 										handleClickOnNavButton={viewModel.handleClickOnNavButton}
 									/>
 								</ListItem>
-								<ListItem className='nav-list-item' key='My events' disablePadding>
+								<ListItem className={styles.navListItem} key='My events' disablePadding>
 									<NavBarButton
 										buttonPage='My events'
 										buttonPageRoute={routes.MY_EVENTS}
@@ -63,7 +62,7 @@ const NavigationSideBar: React.FC<NavigationSideBarProps> = (props) => {
 										handleClickOnNavButton={viewModel.handleClickOnNavButton}
 									/>
 								</ListItem>
-								<ListItem className='nav-list-item' key='Settings' disablePadding>
+								<ListItem className={styles.navListItem} key='Settings' disablePadding>
 									<NavBarButton
 										buttonPage='Settings'
 										buttonPageRoute={routes.SETTINGS}

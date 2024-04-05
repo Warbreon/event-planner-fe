@@ -1,4 +1,4 @@
-.black-submit-button {
+.blackSubmitButton {
 	border-radius: 100px;
 	width: 400px;
 	height: 50px;
@@ -8,25 +8,11 @@
 	font-family: inherit;
 	font-size: 1rem;
 	font-weight: 600;
-	margin-top: 1rem;
+	margin-top: 2rem;
 	margin-bottom: 3rem;
 }
 
-.transparent-submit-button {
-	border-radius: 100px;
-	width: 400px;
-	height: 50px;
-	background: #ffffff;
-	border: 1px solid #ffffff;
-	color: rgb(0, 0, 0);
-	font-family: inherit;
-	font-size: 1rem;
-	font-weight: 600;
-	margin-top: 1rem;
-	margin-bottom: 3rem;
-}
-
-.transparent-submit-button {
+.transparentSubmitButton {
 	border-radius: 100px;
 	width: 400px;
 	height: 50px;

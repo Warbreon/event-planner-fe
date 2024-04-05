@@ -1,9 +1,13 @@
-import React from 'react'
+import React from 'react';
+import Login from '../../components/forms/login/Login';
+import './SignIn.css';
 
 const SignIn = () => {
-  return (
-    <h2>Sign In</h2>
-  )
-}
+    return (
+        <div className='background'>
+            <Login/>
+        </div>
+    );
+};
 
-export default SignIn
+export default SignIn;

@@ -1,5 +1,5 @@
-import './ButtonComponent.css';
 import { ButtonClassName } from './buttonClassName';
+import styles from './ButtonComponent.module.css';
 
 type Props = {
 	title: string;
@@ -8,7 +8,7 @@ type Props = {
 
 const ButtonComponent: React.FC<Props> = ({ title, styleClassName }) => {
 	return (
-		<button className={styleClassName} type='submit'>
+		<button className={styles[styleClassName]} type='submit'>
 			{title}
 		</button>
 	);

@@ -1,8 +1,7 @@
 import React from 'react';
-import { FormControl, OutlinedInput, InputAdornment, IconButton } from '@mui/material';
+import { FormControl, OutlinedInput, InputAdornment, IconButton, Container } from '@mui/material';
 import SearchRoundedIcon from '@mui/icons-material/SearchRounded';
-
-import './EventSearchBar.css';
+import styles from './EventSearchBar.module.css';
 
 type SearchBarProps = {
 	searchValue: string;
@@ -18,24 +17,25 @@ const EventSearchBar: React.FC<SearchBarProps> = ({
 	handleSearch,
 }) => {
 	return (
-		<FormControl fullWidth>
-			<OutlinedInput
-				id='eventSearch'
-				className='event-search-input'
-				type='text'
-				placeholder='Search for events....'
-				value={searchValue}
-				onChange={handleSearchBarChange}
-				onKeyDown={handleSearchKeyDown}
-				startAdornment={
-					<InputAdornment position='start'>
-						<IconButton className='icon-button' onClick={handleSearch}>
-							<SearchRoundedIcon />
-						</IconButton>
-					</InputAdornment>
-				}
-			/>
-		</FormControl>
+		<Container className={styles.searchContainer}>
+			<FormControl fullWidth>
+				<OutlinedInput
+					className={styles.searchEventInput}
+					type='text'
+					placeholder='Search for events....'
+					value={searchValue}
+					onChange={handleSearchBarChange}
+					onKeyDown={handleSearchKeyDown}
+					startAdornment={
+						<InputAdornment position='start'>
+							<IconButton className={styles.iconButton} onClick={handleSearch}>
+								<SearchRoundedIcon />
+							</IconButton>
+						</InputAdornment>
+					}
+				/>
+			</FormControl>
+		</Container>
 	);
 };
 

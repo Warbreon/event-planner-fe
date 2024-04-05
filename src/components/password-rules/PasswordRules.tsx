@@ -1,7 +1,7 @@
 import CheckMarkIcon from './check-mark-icon/CheckMarkIcon';
 import PasswordRulesViewModel from './PasswordRulesViewModel';
 import {useFormikContext} from 'formik'
-import './PasswordRules.css';
+import styles from './PasswordRules.module.css';
 
 interface MyFormValues {
 	newPassword: string;
@@ -13,8 +13,8 @@ const PasswordRules = () => {
 	const {checkMarkIconState} = PasswordRulesViewModel(newPassword);
 
 	return (
-		<section className='password-rules-group'>
-			<p className='password-rules-p'>New password:</p>
+		<section className={styles.passwordRulesGroup}>
+			<p className={styles.passwordRulesParagraph}>New password:</p>
 			<ul className='password-rules'>
 				<li className='password-length-validation'>
 					<CheckMarkIcon state={checkMarkIconState.lengthValidation} /> Is at least 8 characters long

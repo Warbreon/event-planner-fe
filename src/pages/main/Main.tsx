@@ -6,19 +6,19 @@ import PlannerFooter from '../../components/footer/PlannerFooter';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../redux/store/store';
 
-import './Main.css';
+import styles from './Main.module.css';
 
 const Main = () => {
 	const loggedIn = useSelector((state: RootState) => state.user.loggedIn);
 
 	return (
 		<NavigationSideBar drawerWidth={72}>
-			<div className='content-container'>
+			<div className={styles.contentContainer}>
 				<div className='main-content'>
 					{loggedIn && <PlannerAppBar />}
 					<Outlet />
 				</div>
-				<div className='footer'>
+				<div className={styles.footer}>
 					<PlannerFooter />
 				</div>
 			</div>

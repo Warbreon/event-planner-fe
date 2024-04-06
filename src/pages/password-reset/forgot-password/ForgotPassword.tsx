@@ -3,7 +3,7 @@ import {Link} from "react-router-dom";
 import {forgotPasswordSchema} from "../../../utils/schemas/forgotPassword";
 import {ButtonClassName} from "../../../components/buttons/login-password-change/buttonClassName";
 import Form from "../../../components/forms/Form";
-import FormikTextField from "../../../components/forms/elements/FormikTextField";
+import FormikTextField from "../../../components/forms/elements/TextField/FormikTextField";
 import styles from './ForgotPassword.module.css';
 
 const ForgotPassword = () => {

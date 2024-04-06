@@ -1,10 +1,9 @@
-import React from 'react';
 import Login from '../../components/forms/login/Login';
-import './SignIn.css';
+import styles from './SignIn.module.css';
 
 const SignIn = () => {
     return (
-        <div className='background'>
+        <div className={styles.background}>
             <Login/>
         </div>
     );

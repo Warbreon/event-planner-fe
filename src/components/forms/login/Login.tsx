@@ -1,24 +1,20 @@
-import React from 'react';
 import { Box, Typography } from '@mui/material';
 import LoginViewModel from './LoginViewModel';
 import FormikTextField from '../elements/FormikTextField';
-import './Login.css';
+import styles from './Login.module.css';
 import GenericButton from '../../buttons/login-password-change/ButtonComponent';
 
 import { emailPasswordSchema } from '../../../utils/schemas/emailPasswordSchema';
 import Form from '../Form';
+import PageHeader from '../../headers/page-headers/PageHeader';
 
 const Login = () => {
 	const viewModel = LoginViewModel();
 
 	return (
-		<Box id='loginForm'>
-			<Typography variant='body1' id='welcomeMessage'>
-				Welcome to <span className='welcome-message-bottom'>Cognizant events</span>
-			</Typography>
-			<Typography id='directions' variant='body2'>
-				Sign in with your work email address
-			</Typography>
+		<Box className={styles.loginForm}>
+			<PageHeader variant = 'center' text='Welcome to'/>
+			<PageHeader variant = 'center' text='Cognizant events' subheader='Sign in with your work email address'/>
 			<Form
 				initialValues={{ email: '', password: '' }}
 				validationSchema={emailPasswordSchema}
@@ -31,15 +27,27 @@ const Login = () => {
 					title='Email address'
 					name='email'
 					placeholder='e.g., name@cognizant.com'
-					type='text'
-					titleClassName={'label-left'}
+					type='email'
+					textFieldClassName={styles.textInput}
 				/>
 
-				<FormikTextField id='password' title='Password' name='password' type='password' titleClassName={'label-left'} />
+				<FormikTextField 
+					id='password' 
+					title='Password' 
+					name='password' 
+					type='password' 
+					textFieldClassName={styles.textInput}
+				/>
+
+
 				<a href='/signin/forgotpassword' className='forgot-password' onClick={viewModel.handleForgotPasswordClick}>
 					Forgot password?
 				</a>
-				<GenericButton title='Sign in'/>
+
+				<div>
+					<GenericButton title='Sign in'/>
+				</div>
+				
 			</Form>
 		</Box>
 	);

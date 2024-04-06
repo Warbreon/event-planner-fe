@@ -1,0 +1,20 @@
+.headerWrapper {
+	width: 400px;
+}
+
+.headerTitleCentered,
+.subHeaderCentered {
+	white-space: nowrap;
+	text-align: center;
+}
+
+.headerTitleLeft,
+.subHeaderLeft {
+	white-space: nowrap;
+	text-align: left;
+}
+
+.subHeaderCentered,
+.subHeaderLeft {
+	padding-top: 1rem;
+}

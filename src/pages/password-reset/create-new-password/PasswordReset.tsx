@@ -5,15 +5,15 @@ import Form from '../../../components/forms/Form';
 import FormikTextField from '../../../components/forms/elements/FormikTextField';
 import { passwordResetSchema } from '../../../utils/schemas/passwordReset';
 import styles from './PasswordReset.module.css';
+import { Typography } from '@mui/material';
+import PageHeader from '../../../components/headers/page-headers/PageHeader';
 
 const PasswordReset = () => {
 	const { onSubmit } = PasswordResetVM();
 
 	return (
 		<section className={styles.resetPasswordSection}>
-			<header className={styles.resetPasswordHeader}>
-				<p className={styles.headerTitle}>Reset your password</p>
-			</header>
+			<PageHeader variant = 'center' text='Reset your password'/>
 			<Form
 				initialValues={{ newPassword: '', confirmNewPassword: '' }}
 				onSubmit={onSubmit}

@@ -4,6 +4,7 @@ import { forgotPasswordSchema } from '../../../utils/schemas/forgotPassword';
 import Form from '../../../components/forms/Form';
 import FormikTextField from '../../../components/forms/elements/FormikTextField';
 import styles from './ForgotPassword.module.css';
+import PageHeader from '../../../components/headers/page-headers/PageHeader';
 
 const ForgotPassword = () => {
 	const onSubmit = () => {
@@ -11,10 +12,7 @@ const ForgotPassword = () => {
 	};
 	return (
 		<section className={styles.forgotPasswordSection}>
-			<header>
-				<p className={styles.forgotPasswordHeaderTitle}>Forgot password?</p>
-				<p className={styles.forgotPasswordHeaderText}>Enter your work email address</p>
-			</header>
+			<PageHeader variant = 'center' text='Reset your password' subheader='Enter your work email address'/>
 			<Form initialValues={{ email: '' }} onSubmit={onSubmit} validationSchema={forgotPasswordSchema}>
 				<FormikTextField
 					name='email'

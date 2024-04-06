@@ -1,35 +1,38 @@
-import { Typography } from '@mui/material';
+import { TextField, TextFieldProps, Typography } from '@mui/material';
 import { useField } from 'formik';
-import React, { InputHTMLAttributes } from 'react'
+import { FC } from 'react';
 import styles from './FormikTestField.module.css';
 
-type FormikTextFieldProps = InputHTMLAttributes<HTMLInputElement> & {
-    name: string;
-    title?: string;
-    titleClassName?: string;
-    textFieldClassName?: string;
-}
+type FormikTextFieldProps = TextFieldProps & {
+	name: string;
+	title?: string;
+	titleClassName?: string;
+	textFieldClassName?: string;
+    placeholder?: string;
+};
 
-const FormikTextField: React.FC<FormikTextFieldProps> = ({
-    name,
-    title,
-    titleClassName,
-    textFieldClassName,
-    ...props
-}) => {
-    const [field, meta] = useField(name);
-
-    return (
-        <div>
-            {title && <Typography variant="subtitle1" className={titleClassName}>{title}</Typography>}
-            <input
-                {...field}
-                {...props}
-                className={meta.touched && meta.error ? styles.textInputError : textFieldClassName}
-            />
-            {(meta.touched && meta.error) && <p className={styles.errorMessage}>{meta.error}</p>}
-        </div>
-    )
-}
+const FormikTextField: FC<FormikTextFieldProps> = ({ name, title, titleClassName, textFieldClassName, placeholder, ...props }) => {
+	const [field, meta] = useField(name);
+	return (
+		<div className={styles.inputWrapper}>
+			{title && (
+				<Typography variant='subtitle1' className={styles.titleClassName}>
+					{title}
+				</Typography>
+			)}
+			<TextField
+				{...field}
+				{...props}
+				//when re-using component in different forms, adjust
+				//class names accordingly and add additional
+				//width, padding, margin properties in css module
+				className={styles.textInput}
+				error={meta.touched && Boolean(meta.error)}
+				label={meta.touched && meta.error ? meta.error : null}
+                placeholder={!!placeholder ? placeholder : ''}
+			/>
+		</div>
+	);
+};
 
 export default FormikTextField;

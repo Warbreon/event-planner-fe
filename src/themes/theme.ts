@@ -1,114 +1,121 @@
 import { createTheme } from '@mui/material';
+import { BUTTON_COLORS, INPUT_COLORS } from './colors';
+
+const fontFamily = 'Inter'
 
 const projectTheme = createTheme({
-	palette: {
-		text: {
-			primary: '#000000',
-			secondary: '#FFFFFF',
-		},
-	},
-
 	typography: {
-		fontFamily: 'Inter',
+		fontFamily: fontFamily,
+		h1: {
+			fontSize: '2rem',
+			fontWeight: 400,
+		},
+		body1: {
+			fontSize: '1rem',
+			fontWeight: 400,
+		},
 	},
 
 	components: {
 		MuiButton: {
-			defaultProps: {
-				disableFocusRipple: true,
-			},
 			styleOverrides: {
 				root: {
-					color: 'black',
-					background: 'white',
-					fontFamily: 'Inter',
+					color: BUTTON_COLORS.BLACK,
+					background: BUTTON_COLORS.WHITE,
+					fontFamily: fontFamily,
 					textTransform: 'none',
 					fontSize: '1rem',
 					fontWeight: '600',
 					borderRadius: '100px',
 					boxShadow: 'none',
+					width: '100%',
 					'&:hover': {
 						boxShadow: 'none',
 					},
-				},
-
-				//black button used in sign in, password reset,
-				//home page - add event and load more
-				containedPrimary: {
-					height: '44px',
-					color: 'white',
-					background: 'black',
-					'&:hover': {
-						background: '#404040',
+					'&:active': {
+						'& .MuiTouchRipple-root': {
+							display: 'none',
+						},
 					},
-				},
 
-				//register, get tickets, add guests,
-				containedSecondary: {
-					background: '#F4F4F4',
-					'&:hover': {
-						background: 'dark',
+					//black button used in sign in, password reset,
+					//home page - add event and load more
+					'&.black': {
+						height: '44px',
+						color: BUTTON_COLORS.WHITE,
+						background: BUTTON_COLORS.BLACK,
+						padding: '14px 32px',
+						'&:hover': {
+							background: BUTTON_COLORS.HOVER_BLACK,
+						},
 					},
-				},
 
-				//blue 'going' button
-				containedInfo: {
-					color: '#003FE1',
-					background: '#003FE126',
-					'&:hover': {
-						background: '#003FE135',
+					//register, get tickets, add guests,
+					'&.gray': {
+						background: BUTTON_COLORS.GRAY,
+						'&:hover': {
+							background: BUTTON_COLORS.HOVER_GRAY,
+						},
 					},
-				},
 
-				// + button in event guests section
-				// + button in my event created by me
-				contained: {
-					background: '#F7F7F7',
-					'&:hover': {
-						background: '#E3E3E3',
+					//blue 'going' button
+					'&.blue': {
+						color: BUTTON_COLORS.TEXT_BLUE,
+						background: BUTTON_COLORS.BLUE,
+						'&:hover': {
+							background: BUTTON_COLORS.HOVER_BLUE,
+						},
 					},
-				},
 
-				//home page header active category
-				//create event selected pricing, private/public registration
-				outlinedPrimary: {
-					height: '32px',
-					borderColor: 'black',
-					borderWidth: '1px',
-					'&:hover': {
-						background: '#c9c9c9',
+					//home page header active category
+					//create event selected pricing, private/public registration
+					'&.outlined-black-border': {
+						height: '32px',
+						border: '2px solid ' + BUTTON_COLORS.BLACK,
+						'&:hover': {
+							background: BUTTON_COLORS.HOVER_OUTLINED_BLACK,
+						},
 					},
-				},
 
-				//edit button in my events
-				//add guests in event page header
-				//cancel button
-				outlinedSecondary: {
-					height: '36px',
-					borderColor: '#DDDDDD',
-					borderWidth: '1px',
-					'&:hover': {
-						background: '#f2f0f0',
+					//home page header remaining categories
+					'&.outlined-gray-regular-text': {
+						fontWeight: '400',
+						height: '32px',
+						border: '1px solid ' + BUTTON_COLORS.OUTLINED_GRAY_BORDER,
+						'&:hover': {
+							background: BUTTON_COLORS.HOVER_OUTLINED_GRAY_BORDER,
+						},
 					},
-				},
 
-				//home page header remaining categories
-				outlined: {
-					height: '32px',
-					fontWeight: '400',
-					borderColor: '#DDDDDD',
-					borderWidth: '1px',
-					'&:hover': {
-						background: '#f2f0f0',
+					//edit button in my events
+					//add guests in event page header
+					//cancel button
+					'&.outlined-gray-border': {
+						height: '36px',
+						border: '1px solid ' + BUTTON_COLORS.OUTLINED_GRAY_BORDER,
+						'&:hover': {
+							background: BUTTON_COLORS.HOVER_OUTLINED_GRAY_BORDER,
+						},
+					},
+
+					// [+] button in event guests section
+					// [+] button in my event created by me
+					'&.light-gray': {
+						borderRadius: '12px',
+						background: BUTTON_COLORS.LIGHT_GRAY,
+						'&:hover': {
+							background: BUTTON_COLORS.HOVER_LIGHT_GRAY,
+						},
 					},
 				},
 			},
 		},
+
 		MuiTab: {
 			styleOverrides: {
 				root: {
 					color: 'black',
-					fontFamily: 'Inter',
+					fontFamily: fontFamily,
 					textTransform: 'none',
 					fontSize: '1rem',
 					fontWeight: '400',
@@ -122,6 +129,7 @@ const projectTheme = createTheme({
 				},
 			},
 		},
+
 		MuiTabs: {
 			styleOverrides: {
 				indicator: {
@@ -134,21 +142,21 @@ const projectTheme = createTheme({
 		MuiOutlinedInput: {
 			styleOverrides: {
 				root: {
-					fontFamily: 'Inter',
+					fontFamily: fontFamily,
 					fontSize: '1rem',
 					color: 'black',
 					borderRadius: '8px',
 					borderWidth: '1px',
 					height: '40px',
 					'&:hover .MuiOutlinedInput-notchedOutline, &.Mui-focused .MuiOutlinedInput-notchedOutline': {
-						borderColor: '#DDDDDD',
+						borderColor: INPUT_COLORS.GRAY_BORDER,
 						borderWidth: '2px',
 					},
 					'&.Mui-error .MuiOutlinedInput-notchedOutline': {
-						borderColor: '#FF5252',
+						borderColor: INPUT_COLORS.ERROR,
 					},
 					'& input::placeholder': {
-						color: '#999999',
+						color: INPUT_COLORS.PLACEHOLDER,
 						fontWeight: 400,
 					},
 				},
@@ -156,13 +164,17 @@ const projectTheme = createTheme({
 		},
 
 		MuiTextField: {
+			defaultProps: {
+				InputLabelProps: {
+					shrink: true,
+				},
+			},
+		},
+
+		MuiInputLabel: {
 			styleOverrides: {
 				root: {
-					'& .MuiFormHelperText-root': {
-						fontSize: '1rem',
-						fontFamily: 'Inter',
-						color: '#FF5252',
-					},
+					fontFamily: fontFamily,
 				},
 			},
 		},

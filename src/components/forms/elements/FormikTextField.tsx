@@ -14,7 +14,7 @@ type FormikTextFieldProps = TextFieldProps & {
 const FormikTextField: FC<FormikTextFieldProps> = ({ name, title, titleClassName, textFieldClassName, placeholder, ...props }) => {
 	const [field, meta] = useField(name);
 	return (
-		<div className={styles.inputWrapper}>
+		<div className={styles.inputGroupWrapper}>
 			{title && (
 				<Typography variant='subtitle1' className={styles.titleClassName}>
 					{title}
@@ -23,10 +23,6 @@ const FormikTextField: FC<FormikTextFieldProps> = ({ name, title, titleClassName
 			<TextField
 				{...field}
 				{...props}
-				//when re-using component in different forms, adjust
-				//class names accordingly and add additional
-				//width, padding, margin properties in css module
-				className={styles.textInput}
 				error={meta.touched && Boolean(meta.error)}
 				label={meta.touched && meta.error ? meta.error : null}
                 placeholder={!!placeholder ? placeholder : ''}

@@ -143,6 +143,7 @@ const projectTheme = createTheme({
 			styleOverrides: {
 				root: {
 					fontFamily: fontFamily,
+				
 					fontSize: '1rem',
 					color: 'black',
 					borderRadius: '8px',
@@ -169,6 +170,11 @@ const projectTheme = createTheme({
 					shrink: true,
 				},
 			},
+			styleOverrides: {
+				root: {
+					width: '100%',
+				}
+			}
 		},
 
 		MuiInputLabel: {

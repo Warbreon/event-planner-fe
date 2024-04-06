@@ -1,4 +1,5 @@
 import { Box, Typography } from '@mui/material';
+import { Link } from 'react-router-dom';
 import LoginViewModel from './LoginViewModel';
 import FormikTextField from '../elements/FormikTextField';
 import styles from './Login.module.css';
@@ -13,8 +14,8 @@ const Login = () => {
 
 	return (
 		<Box className={styles.loginForm}>
-			<PageHeader variant = 'center' text='Welcome to'/>
-			<PageHeader variant = 'center' text='Cognizant events' subheader='Sign in with your work email address'/>
+			<PageHeader variant='center' text='Welcome to' />
+			<PageHeader variant='center' text='Cognizant events' subheader='Sign in with your work email address' />
 			<Form
 				initialValues={{ email: '', password: '' }}
 				validationSchema={emailPasswordSchema}
@@ -31,23 +32,23 @@ const Login = () => {
 					textFieldClassName={styles.textInput}
 				/>
 
-				<FormikTextField 
-					id='password' 
-					title='Password' 
-					name='password' 
-					type='password' 
+				<FormikTextField
+					id='password'
+					title='Password'
+					name='password'
+					type='password'
 					textFieldClassName={styles.textInput}
 				/>
 
+				<Typography variant='body1' className={styles.forgotPasswordLinkWrapper}>
+					<Link to='/signin/forgotpassword' className={styles.forgotPasswordLink}>
+						Forgot password?
+					</Link>
+				</Typography>
 
-				<a href='/signin/forgotpassword' className='forgot-password' onClick={viewModel.handleForgotPasswordClick}>
-					Forgot password?
-				</a>
-
-				<div>
-					<GenericButton title='Sign in'/>
+				<div className={styles.buttonWrapper}>
+					<GenericButton title='Sign in' />
 				</div>
-				
 			</Form>
 		</Box>
 	);

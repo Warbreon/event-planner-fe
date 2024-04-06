@@ -8,6 +8,7 @@ import styles from './PasswordReset.module.css';
 
 const PasswordReset = () => {
 	const { onSubmit } = PasswordResetVM();
+
 	return (
 		<section className={styles.resetPasswordSection}>
 			<header className={styles.resetPasswordHeader}>
@@ -22,15 +23,19 @@ const PasswordReset = () => {
 					name='newPassword'
 					type='password'
 					title='New password'
+					placeholder = 'Enter a new password'
 					textFieldClassName={styles.textInput}
 				/>
 				<FormikTextField
 					name='confirmNewPassword'
 					type='password'
 					title='Confirm new password'
+					placeholder = 'Confirm your new password'
 					textFieldClassName={styles.textInput}
 				/>
-				<GenericButton title='Reset my password' />
+				<div className={styles.buttonWrapper}>
+					<GenericButton title='Reset my password' className={styles.genericButton}/>
+				</div>
 				<PasswordRules />
 			</Form>
 		</section>

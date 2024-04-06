@@ -18,12 +18,14 @@ const ForgotPassword = () => {
 			<Form initialValues={{ email: '' }} onSubmit={onSubmit} validationSchema={forgotPasswordSchema}>
 				<FormikTextField
 					name='email'
-					type='text'
+					type='email'
 					title='Email address'
 					textFieldClassName={styles.textInput}
 					placeholder='e.g., name@cognizant.com'
 				/>
-				<GenericButton title='Reset Password' />
+				<div className={styles.buttonWrapper}>
+					<GenericButton title='Reset Password' />
+				</div>
 			</Form>
 			<p className={styles.forgotPasswordLinkWrapper}>
 				<Link to='/signin' className={styles.forgotPasswordLink}>

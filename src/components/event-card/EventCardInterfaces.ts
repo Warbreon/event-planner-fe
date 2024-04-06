@@ -1,12 +1,12 @@
-export interface IEvent {
+export interface CardEvent {
     id: number,
     name: string,
     imageUrl: string,
-    address: IAddress[] | null,
+    address: CardAddress[] | null,
     price: number | null,
     eventStart: string
 }
 
-export interface IAddress {
+export interface CardAddress {
     city: string
 }

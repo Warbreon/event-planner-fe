@@ -1,10 +1,10 @@
 import { FC } from "react";
-import { IEvent } from "./EventCardInterfaces";
+import { CardEvent } from "./EventCardInterfaces";
 import styles from "./EventCard.module.css";
 import { Box, Card, CardContent, CardMedia, Typography } from "@mui/material";
 import { formatDateAndTime } from "./formatDateAndTime";
 
-export const EventCard: FC<IEvent> = ({ name, imageUrl, address, price, eventStart }) => {
+export const EventCard: FC<CardEvent> = ({ name, imageUrl, address, price, eventStart }) => {
 
   const eventDate = formatDateAndTime(eventStart);
   const eventCity = address ? address[0].city : 'Online';

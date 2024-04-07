@@ -1,5 +1,4 @@
 import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
@@ -24,58 +23,60 @@ const PlannerAppBar = () => {
 
 	return (
 		<AppBar className={styles.appBar}>
-			<Toolbar disableGutters>
-				<div className={styles.appBarContainer}>
-					<div className={styles.searchBarContainer}>
-						<EventSearchBar
-							searchValue={viewModel.searchValue}
-							handleSearchBarChange={viewModel.handleSearchBarChange}
-							handleSearchKeyDown={viewModel.handleSearchKeyDown}
-							handleSearch={viewModel.handleSearch}
-						/>
-					</div>
-					<div className={styles.userActionsContainer}>
-						<IconButton className={styles.bellIconButton} onClick={viewModel.handleClickOnNotifications}>
-							{fakeNumberOfNotifications > 0 ? (
-								<Badge badgeContent={fakeNumberOfNotifications} color='error'>
+			<Container maxWidth='xl'>
+				<Toolbar disableGutters>
+					<div className={styles.appBarContainer}>
+						<div className={styles.searchBarContainer}>
+							<EventSearchBar
+								searchValue={viewModel.searchValue}
+								handleSearchBarChange={viewModel.handleSearchBarChange}
+								handleSearchKeyDown={viewModel.handleSearchKeyDown}
+								handleSearch={viewModel.handleSearch}
+							/>
+						</div>
+						<div className={styles.userActionsContainer}>
+							<IconButton className={styles.bellIconButton} onClick={viewModel.handleClickOnNotifications}>
+								{fakeNumberOfNotifications > 0 ? (
+									<Badge badgeContent={fakeNumberOfNotifications} color='error'>
+										<NotificationsRoundedIcon className={styles.notifIcon} />
+									</Badge>
+								) : (
 									<NotificationsRoundedIcon className={styles.notifIcon} />
-								</Badge>
-							) : (
-								<NotificationsRoundedIcon className={styles.notifIcon} />
-							)}
-						</IconButton>
-						<div>
-							<Tooltip title='Open settings'>
-								<IconButton className={styles.iconButton} onClick={viewModel.handleOpenUserMenu}>
-									<Avatar alt='Remy Sharp' src='https://thispersondoesnotexist.com/' />
-								</IconButton>
-							</Tooltip>
-							<Menu
-								id='profileMenuAppbar'
-								anchorEl={viewModel.anchorUser}
-								anchorOrigin={{
-									vertical: 'top',
-									horizontal: 'right',
-								}}
-								keepMounted
-								transformOrigin={{
-									vertical: 'top',
-									horizontal: 'right',
-								}}
-								open={Boolean(viewModel.anchorUser)}
-								onClose={viewModel.handleCloseUserMenu}
-								className={styles.profileMenu}
-							>
-								{profileSettings.map((setting) => (
-									<MenuItem key={setting} onClick={viewModel.handleCloseUserMenu} className={styles.menuItem}>
-										<Typography className={styles.menuTypography}>{setting}</Typography>
-									</MenuItem>
-								))}
-							</Menu>
+								)}
+							</IconButton>
+							<div>
+								<Tooltip title='Open settings'>
+									<IconButton className={styles.iconButton} onClick={viewModel.handleOpenUserMenu}>
+										<Avatar alt='Remy Sharp' src='https://thispersondoesnotexist.com/' />
+									</IconButton>
+								</Tooltip>
+								<Menu
+									id='profileMenuAppbar'
+									anchorEl={viewModel.anchorUser}
+									anchorOrigin={{
+										vertical: 'top',
+										horizontal: 'right',
+									}}
+									keepMounted
+									transformOrigin={{
+										vertical: 'top',
+										horizontal: 'right',
+									}}
+									open={Boolean(viewModel.anchorUser)}
+									onClose={viewModel.handleCloseUserMenu}
+									className={styles.profileMenu}
+								>
+									{profileSettings.map((setting) => (
+										<MenuItem key={setting} onClick={viewModel.handleCloseUserMenu} className={styles.menuItem}>
+											<Typography className={styles.menuTypography}>{setting}</Typography>
+										</MenuItem>
+									))}
+								</Menu>
+							</div>
 						</div>
 					</div>
-				</div>
-			</Toolbar>
+				</Toolbar>
+			</Container>
 		</AppBar>
 	);
 };

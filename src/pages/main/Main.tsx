@@ -10,8 +10,8 @@ const Main = () => {
 		<>
 			<NavigationSideBar drawerWidth={72} loggedIn={loggedIn}>
 				{loggedIn && <PlannerAppBar />}
+				<Outlet />
 			</NavigationSideBar>
-			<Outlet />
 			{/* ADD FOOTER HERE */}
 		</>
 	);

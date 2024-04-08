@@ -24,7 +24,7 @@ const PasswordRulesViewModel = (password: string) => {
 			numberValidation: /[0-9]/.test(password) ? ICON_TYPE.CORRECT : ICON_TYPE.NEUTRAL,
 			symbolValidation: /[!@#$%^&*(),.?":{}|<>]/.test(password) ? ICON_TYPE.CORRECT : ICON_TYPE.NEUTRAL,
 		});
-	}, [password, checkMarkIconState]);
+	}, [password]);
 
 	return { checkMarkIconState };
 };

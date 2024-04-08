@@ -7,9 +7,9 @@ export const passwordResetSchema = yup.object().shape({
 		.matches(/^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[!@#$%^&*(),.?":{}|<>]).{8,}$/, {
 			message: 'Password does not meet the requirements',
 		})
-		.required(' '),
+		.required('This field is required'),
 	confirmNewPassword: yup
 		.string()
-		.oneOf([yup.ref('newPassword'), ''], 'Passwords do not match. Please enter the same password in both fields')
-		.required('Both fields are required!'),
+		.oneOf([yup.ref('newPassword'), ''], 'Please enter the same password in both fields')
+		.required('This field is required'),
 });

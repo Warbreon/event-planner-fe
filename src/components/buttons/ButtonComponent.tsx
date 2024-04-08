@@ -37,7 +37,7 @@ const GenericButton: FC<ButtonProps> = ({ title, style, type, icon, onCLick }) =
 	const { iconButtonTitle } = ButtonComponentVM(icon);
 	return (
 		<Button type={type} className={style} onClick={onCLick} startIcon={!!icon && <Icon icon={icon} />}>
-			{ (!!icon && iconButtonTitle) || (!!title && title) }
+			{ (!!icon && iconButtonTitle) || title }
 		</Button>
 	);
 };

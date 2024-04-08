@@ -1,4 +1,4 @@
-import GenericButton from '../../../components/buttons/ButtonComponent';
+import GenericButton, { ButtonTypes } from '../../../components/buttons/ButtonComponent';
 import { Link } from 'react-router-dom';
 import { forgotPasswordSchema } from '../../../utils/schemas/forgotPassword';
 import Form from '../../../components/forms/Form';
@@ -25,7 +25,7 @@ const ForgotPassword = () => {
 						placeholder='e.g., name@cognizant.com'
 					/>
 					<div className={sharedStyles.buttonWrapper}>
-						<GenericButton title='Reset Password' style={BUTTON_STYLES.BLACK} />
+						<GenericButton type={ButtonTypes.submit} title='Reset Password' style={BUTTON_STYLES.BLACK} />
 					</div>
 				</Form>
 				<p className={styles.forgotPasswordLinkWrapper}>

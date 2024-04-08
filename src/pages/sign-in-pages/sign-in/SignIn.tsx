@@ -2,7 +2,7 @@ import { Box, Typography } from '@mui/material';
 import { Link } from 'react-router-dom';
 import SignInViewModel from './SignInViewModel';
 import PageHeader from '../../../components/headers/page-headers/PageHeader';
-import GenericButton from '../../../components/buttons/ButtonComponent';
+import GenericButton, { ButtonTypes } from '../../../components/buttons/ButtonComponent';
 import FormikTextField from '../../../components/forms/elements/FormikTextField';
 import Form from '../../../components/forms/Form';
 import { emailPasswordSchema } from '../../../utils/schemas/emailPasswordSchema';
@@ -11,7 +11,7 @@ import styles from './SignIn.module.css';
 import { BUTTON_STYLES } from '../../../themes/styles/button';
 
 const SignIn = () => {
-	const viewModel = SignInViewModel();
+	const { onSubmit } = SignInViewModel();
 	return (
 		<div className={sharedStyles.background}>
 			<Box className={sharedStyles.formSection}>
@@ -21,7 +21,7 @@ const SignIn = () => {
 					initialValues={{ email: '', password: '' }}
 					validationSchema={emailPasswordSchema}
 					onSubmit={(values) => {
-						viewModel.onSubmit(values.email, values.password);
+						onSubmit(values.email, values.password);
 					}}
 				>
 					<FormikTextField id='email' title='Email address' name='email' placeholder='e.g., name@cognizant.com' />
@@ -31,9 +31,8 @@ const SignIn = () => {
 							Forgot password?
 						</Link>
 					</Typography>
-
 					<div className={sharedStyles.buttonWrapper}>
-						<GenericButton title='Sign in' style={BUTTON_STYLES.BLACK} />
+						<GenericButton type={ButtonTypes.submit} title='Sign in' style={BUTTON_STYLES.BLACK} />
 					</div>
 				</Form>
 			</Box>

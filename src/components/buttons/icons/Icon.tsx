@@ -4,25 +4,25 @@ import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import ConfirmationNumberIcon from '@mui/icons-material/ConfirmationNumber';
 import EmailIcon from '@mui/icons-material/Email';
 import AddIcon from '@mui/icons-material/Add';
-import { Icons } from '../ButtonComponent';
-
-
+import { IconButton } from '../ButtonComponent';
 
 interface IconProps {
-	icon: Icons;
+	icon: IconButton;
 }
 
 const Icon: FC<IconProps> = ({ icon }) => {
 	switch (icon) {
-		case Icons.REGISTER:
+		case IconButton.REGISTER:
 			return <CheckCircleOutlineIcon />;
-		case Icons.GET_TICKETS:
+		case IconButton.GET_TICKETS:
 			return <ConfirmationNumberIcon />;
-		case Icons.GOING:
+		case IconButton.GOING:
 			return <CheckCircleIcon />;
-		case Icons.RSVP:
+		case IconButton.RSVP:
 			return <EmailIcon />;
-		case Icons.ADD:
+		case IconButton.ADD_EVENT:
+			return <AddIcon />;
+		case IconButton.ADD:
 			return <AddIcon />;
 	}
 };

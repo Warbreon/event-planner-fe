@@ -1,6 +1,5 @@
 import { Button } from '@mui/material';
 import { FC } from 'react';
-import ButtonComponentVM from './ButtonComponentVM';
 import Icon from './icons/Icon';
 
 export enum ButtonTypes {
@@ -9,35 +8,28 @@ export enum ButtonTypes {
 	reset = 'reset',
 }
 
-export enum Icons {
-	REGISTER = 'register',
-	GOING = 'going',
-	GET_TICKETS = 'tickets',
-	RSVP = 'rsvp',
-  ADD = 'add'
-}
-
-export enum IconButtonTitles {
+export enum IconButton {
 	REGISTER = 'Register',
 	GET_TICKETS = 'Get tickets',
 	GOING = 'Going',
 	RSVP = 'RSVP',
-	ADD_EVENT = 'Add event'
+	ADD_EVENT = 'Add event',
+	ADD = ' ',
 }
 
 interface ButtonProps {
 	title?: string;
 	style: string;
 	type: ButtonTypes;
-	icon? : Icons;
+	icon?: IconButton;
 	onCLick?: () => void;
 }
 
 const GenericButton: FC<ButtonProps> = ({ title, style, type, icon, onCLick }) => {
-	const { iconButtonTitle } = ButtonComponentVM(icon);
+	const iconButtonTitle: IconButton | undefined = icon;
 	return (
 		<Button type={type} className={style} onClick={onCLick} startIcon={!!icon && <Icon icon={icon} />}>
-			{ (!!icon && iconButtonTitle) || title }
+			{(!!icon && iconButtonTitle) || title}
 		</Button>
 	);
 };

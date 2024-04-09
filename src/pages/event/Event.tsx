@@ -8,7 +8,7 @@ import DateLocationPrice from '../../components/reusable-labels/DateLocationPric
 import Image from '../../components/image/Image';
 import TabComponent from '../../components/tabs/tabs-component/TabComponent';
 import EventDetailsPanel from '../../components/event-details-panel/EventDetailsPanel';
-import EventPageHeader from '../../components/headers/event-page/EventPageHeader';
+import EventPageGuests from '../../components/guest-list/event-page/EventPageGuests';
 import GenericButton, { ButtonTypes, IconButton } from '../../components/buttons/ButtonComponent';
 import { BUTTON_STYLES } from '../../themes/styles/button';
 import EventPageVM from './EventPageVM';
@@ -39,7 +39,7 @@ const Event = () => {
 						<DateLocationPrice date={eventDate} location={location} />
 						<PageHeader text={name} variant={HeaderVariant.EVENT_PAGE} />
 						<Divider />
-						<EventPageHeader onAddGuests={onAddGuestsClick} />
+						<EventPageGuests onAddGuests={onAddGuestsClick} />
 						<Image styles='event-page' imageUrl={imageUrl} />
 						<TabComponent aboutEvent='' attendees={attendees} />
 					</Box>

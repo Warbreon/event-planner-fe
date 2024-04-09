@@ -1,14 +1,14 @@
-import { Box,  Grid } from '@mui/material';
+import { Box, Grid } from '@mui/material';
 import GenericButton, { ButtonTypes } from '../../buttons/ButtonComponent';
-import GuestList from '../../guest-list/GuestList';
-import styles from './EventPageHeader.module.css';
+import GuestList from '../GuestList';
+import styles from './EventPageGuests.module.css';
 import { BUTTON_STYLES } from '../../../themes/styles/button';
 import { FC } from 'react';
 interface Props {
 	onAddGuests: () => void;
 }
 
-const EventPageHeader: FC<Props> = ({  onAddGuests }) => {
+const EventPageGuests: FC<Props> = ({ onAddGuests }) => {
 	return (
 		<Box className={styles.gridWrapper}>
 			<Grid container spacing={2}>
@@ -28,4 +28,4 @@ const EventPageHeader: FC<Props> = ({  onAddGuests }) => {
 	);
 };
 
-export default EventPageHeader;
+export default EventPageGuests;

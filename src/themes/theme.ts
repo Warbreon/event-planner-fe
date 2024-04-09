@@ -183,11 +183,6 @@ const projectTheme = createTheme({
 			styleOverrides: {
 				root: {
 					width: '100%',
-					'&.hello-world': {
-						fontSize: '14px',
-						fontHeigth: '16px',
-						fontColor: '#666666'
-					}
 				}
 			}
 		},
@@ -214,13 +209,6 @@ const projectTheme = createTheme({
 				".MuiSelect-icon": {
 				  color: "black",
 				  marginRight: "1rem",
-				},
-				"&.hello-world": {
-				  fontWeight: 600,
-				  minWidth: '100px',
-				  '.MuiOutlinedInput-notchedOutline': {
-					  borderColor: 'white',
-				  },
 				},
 			  },
 			},

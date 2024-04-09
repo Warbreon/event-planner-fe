@@ -1,7 +1,7 @@
 import FormikTextField from "../../elements/FormikTextField";
 import FormikDropdown from "../../../dropdown/FormikDropdown";
 import Form from "../../Form";
-import "./Details.css";
+import styles from "./Details.module.css";
 import { Container, Typography } from "@mui/material";
 
 const eventTagsOptions = [
@@ -14,19 +14,19 @@ const eventTagsOptions = [
 
 const Details = () => {
   return (
-    <Container className="container">
-      <Typography variant='h2'>Details</Typography>
+    <Container className={styles.container}>
+      <Typography variant="h2">Details</Typography>
       <Form
         initialValues={{ eventName: "", eventType: "" }}
         onSubmit={() => {}}
-        // validationSchema={eventTagsOptions}
+        //validationSchema={eventTagsOptions}
       >
         <FormikTextField
           name="eventName"
           type="text"
           title="Event Name"
           placeholder="Enter short descriptive event title"
-          titleClassName={'gray-font'}
+          titleClassName={"gray-font"}
         />
         <FormikDropdown
           name="eventType"

@@ -1,0 +1,121 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    margin-top: 5rem;
+    margin-left: 6.8125rem;
+    margin-right: 5.75rem;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2.75rem;
+}
+
+p.headerTitle {
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    font-size: 2rem;
+    line-height: 2rem;
+    height: 2rem;
+    width: 100%;
+    margin-bottom: 0.5rem;
+}
+
+p.headerSubtitle {
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    font-size: 0.875rem;
+    height: 1.25rem;
+    line-height: 1.25rem;
+    width: 100%;
+}
+
+.filters .tagFilter {
+    height: 2rem;
+    border-radius: 6.25rem;
+    border: 1px solid #DDDDDD;
+    padding: 0.375rem 0.1875rem 0.375rem 0.1875rem;
+    background-color: #FFFFFF;
+}
+
+.tagFilter span {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.875rem;
+    font-weight: 400;
+    line-height: 1.25rem;
+    text-align: left;
+}
+
+.tagFilterSelected span {
+    font-weight: 600;
+}
+
+.filters {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.filters .tagFilterSelected {
+    border-color: #000000;
+}
+
+.filters div:hover {
+    background-color: #FFFFFF;
+}
+
+.dropdown {
+    margin-left: 1rem;
+    height: 1rem;
+}
+
+.dropdown svg {
+    color: #000000;
+}
+
+.dropdownFiltersContainer fieldset {
+    border: none;
+}
+
+.dropdownFiltersContainer div {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.875rem;
+    font-weight: 600;
+    line-height: 1.25rem;
+    text-align: right;
+}
+
+.dropdownMenuItem {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.875rem;
+    font-weight: 600;
+    line-height: 1.25rem;
+    text-align: right;
+}
+
+.header .addEventButton {
+    height: 2.75rem;
+    border: 1px solid #000000;
+    padding: 0.857rem 2rem 0.875rem 1.5rem;
+    background-color: #000000;
+    border-radius: 100px;
+    color: #FFFFFF;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.875rem;
+    font-weight: 600;
+    line-height: 1rem;
+    text-align: center;
+    text-transform: capitalize;
+}
+
+.header .addEventButton:hover {
+    background-color: #000000;
+}
+
+.addEventButton svg {
+    width: 1.5rem;
+    height: 1.5rem;
+}

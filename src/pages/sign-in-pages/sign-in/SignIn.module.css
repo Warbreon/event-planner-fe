@@ -1,0 +1,8 @@
+.forgotPasswordLinkWrapper {
+	padding-top: 0.5rem;
+}
+
+.forgotPasswordLinkWrapper .forgotPasswordLink {
+	color: #999999;
+	text-decoration: underline;
+}

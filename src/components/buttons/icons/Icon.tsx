@@ -22,7 +22,7 @@ const Icon: FC<IconProps> = ({ icon }) => {
 			return <EmailIcon />;
 		case IconButton.ADD_EVENT:
 			return <AddIcon />;
-		case IconButton.ADD:
+		case IconButton.ADD_GUESTS:
 			return <AddIcon />;
 	}
 };

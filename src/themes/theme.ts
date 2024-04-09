@@ -1,5 +1,6 @@
 import { createTheme } from '@mui/material';
 import { BUTTON_COLORS, INPUT_COLORS } from './colors';
+import { KeyboardArrowDown } from '@mui/icons-material';
 
 const fontFamily = 'Inter'
 
@@ -10,9 +11,18 @@ const projectTheme = createTheme({
 			fontSize: '2rem',
 			fontWeight: 400,
 		},
+		h2: {
+			fontSize: '1.25rem',
+			fontWeight: 400,
+		},
 		body1: {
 			fontSize: '1rem',
 			fontWeight: 400,
+			'&.gray-font': {
+				color: '#666666',
+			},
+			paddingTop: '0.5rem',
+			paddingBottom: '0.5rem',
 		},
 	},
 
@@ -173,6 +183,11 @@ const projectTheme = createTheme({
 			styleOverrides: {
 				root: {
 					width: '100%',
+					'&.hello-world': {
+						fontSize: '14px',
+						fontHeigth: '16px',
+						fontColor: '#666666'
+					}
 				}
 			}
 		},
@@ -184,6 +199,61 @@ const projectTheme = createTheme({
 				},
 			},
 		},
+
+		MuiSelect: {
+			styleOverrides: {
+			  root: {
+				width: "100%",
+				color: "black",
+				borderRadius: "8px",
+				fontFamily: "Inter",
+				borderColor: "#DDDDDD",
+				"&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+				  borderColor: "#DDDDDD",
+				},
+				".MuiSelect-icon": {
+				  color: "black",
+				  marginRight: "1rem",
+				},
+				"&.hello-world": {
+				  fontWeight: 600,
+				  minWidth: '100px',
+				  '.MuiOutlinedInput-notchedOutline': {
+					  borderColor: 'white',
+				  },
+				},
+			  },
+			},
+			defaultProps: {
+			  IconComponent: KeyboardArrowDown,
+			},
+		  },
+		  MuiMenuItem: {
+			styleOverrides: {
+			  root: {
+				width: "100%",
+				"&:hover": {
+				  backgroundColor: "#eeeeee",
+				},
+				"&.Mui-focusVisible": {
+				  backgroundColor: "#DDDDDD",
+				},
+				"&.Mui-selected": {
+				  backgroundColor: "#DDDDDD",
+				},
+				fontFamily: "Inter",
+				borderRadius: "10px",
+			  },
+			},
+		  },
+		  MuiMenu: {
+			styleOverrides: {
+			  paper: {
+				borderRadius: "8px",
+				boxShadow: "0.5px 0.5px 10px 0.5px #DDDDDD",
+			  },
+			},
+		  },
 	},
 });
 

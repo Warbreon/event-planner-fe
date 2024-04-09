@@ -16,7 +16,7 @@ const FormikTextField: FC<FormikTextFieldProps> = ({ name, title, titleClassName
 	return (
 		<div className={styles.inputGroupWrapper}>
 			{title && (
-				<Typography variant='subtitle1' className={styles.titleClassName}>
+				<Typography variant='body1' className={titleClassName}>
 					{title}
 				</Typography>
 			)}

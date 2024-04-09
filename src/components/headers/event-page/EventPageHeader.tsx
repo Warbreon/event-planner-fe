@@ -1,12 +1,9 @@
-import { Box, Divider, Grid } from '@mui/material';
+import { Box,  Grid } from '@mui/material';
 import GenericButton, { ButtonTypes } from '../../buttons/ButtonComponent';
 import GuestList from '../../guest-list/GuestList';
 import styles from './EventPageHeader.module.css';
 import { BUTTON_STYLES } from '../../../themes/styles/button';
 import { FC } from 'react';
-import DateLocationPrice from '../../reusable-labels/DateLocationPrice';
-import PageHeader, { HeaderVariant } from '../page-headers/PageHeader';
-
 interface Props {
 	onAddGuests: () => void;
 }
@@ -14,7 +11,6 @@ interface Props {
 const EventPageHeader: FC<Props> = ({  onAddGuests }) => {
 	return (
 		<Box className={styles.gridWrapper}>
-
 			<Grid container spacing={2}>
 				<Grid item xs={10}>
 					<GuestList />

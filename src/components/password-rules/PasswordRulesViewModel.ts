@@ -1,6 +1,12 @@
 import { useEffect, useState } from 'react';
-import { PasswordValidationIconState } from '../../pages/password-reset/create-new-password/resetPasswordInterfaces';
 import ICON_TYPE from './check-mark-icon/iconType';
+
+interface PasswordValidationIconState {
+	lengthValidation: string;
+	uppcaseValidation: string;
+	numberValidation: string;
+	symbolValidation: string;
+}
 
 const PasswordRulesViewModel = (password: string) => {
 	const [checkMarkIconState, setCheckMarkIconState] = useState<PasswordValidationIconState>({

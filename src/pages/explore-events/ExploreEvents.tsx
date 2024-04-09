@@ -1,12 +1,18 @@
-import { loadEvents } from './EventDataLoader';
-import { EventCard } from '../../components/event-card/EventCard';
-import styles from './ExploreEvents.module.css';
 import { Box, Button, Container } from '@mui/material';
+import EventHeader from '../../components/event-header/EventHeader';
+import ExploreEventsVM from './ExploreEventsViewModel';
+import { EventCard } from '../../components/event-card/EventCard';
+import { loadEvents } from './EventDataLoader';
+import styles from './ExploreEvents.module.css';
 
 const ExploreEvents = () => {
+	const { filters, handleFiltersChange } = ExploreEventsVM();
 	const events = loadEvents();
+
 	return (
 		<Container>
+			<EventHeader filters={filters} handleFiltersChange={handleFiltersChange} />
+			
 			<Box className={styles.eventsContainer}>
 				{events.map((event) => (
 					<EventCard key={event.id} {...event} />
@@ -17,6 +23,7 @@ const ExploreEvents = () => {
 					Load more events
 				</Button>
 			</Box>
+
 		</Container>
 	);
 };

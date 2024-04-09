@@ -1,7 +1,7 @@
 import { Typography } from '@mui/material';
 import { useField } from 'formik';
 import React, { InputHTMLAttributes } from 'react'
-import styles from './FormikTestField.module.css';
+import styles from './FormikTextField.module.css';
 
 type FormikTextFieldProps = InputHTMLAttributes<HTMLInputElement> & {
     name: string;

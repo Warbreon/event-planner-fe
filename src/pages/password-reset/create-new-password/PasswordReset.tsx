@@ -3,7 +3,7 @@ import PasswordRules from '../../../components/password-rules/PasswordRules';
 import PasswordResetVM from './PasswordResetViewModel';
 import { ButtonClassName } from '../../../components/buttons/login-password-change/buttonClassName';
 import Form from '../../../components/forms/Form';
-import FormikTextField from '../../../components/forms/elements/FormikTextField';
+import FormikTextField from '../../../components/forms/elements/TextField/FormikTextField';
 import { passwordResetSchema } from '../../../utils/schemas/passwordReset';
 import styles from './PasswordReset.module.css';
 

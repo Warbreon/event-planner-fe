@@ -1,7 +1,7 @@
 import React from 'react';
 import {Box, Typography} from '@mui/material';
 import LoginViewModel from './LoginViewModel';
-import FormikTextField from '../elements/FormikTextField';
+import FormikTextField from '../elements/TextField/FormikTextField';
 import './Login.css';
 import ButtonComponent from '../../buttons/login-password-change/ButtonComponent';
 import {ButtonClassName} from '../../buttons/login-password-change/buttonClassName';

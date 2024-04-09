@@ -1,0 +1,11 @@
+.container {
+    display: flex;
+    height: 4rem;
+    gap: 1.5rem;
+    width: 45.5rem;
+}
+
+.dateTimeContainer {
+    display: flex;
+    gap: 0.5rem;
+}

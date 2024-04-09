@@ -23,7 +23,7 @@ const FormikDropdown: FC<FormikDropdownProps> = ({
 
   useEffect(() => {
     helpers.setValue(options[0].value);
-  }, [options]);
+  }, []);
 
   const handleChange = (event: SelectChangeEvent<string>) => {
     helpers.setValue(event.target.value);
@@ -31,7 +31,9 @@ const FormikDropdown: FC<FormikDropdownProps> = ({
 
   return (
     <Box>
-      <Typography variant="body1" className="gray-font">{label}</Typography>
+      <Typography variant="body1" className="gray-font">
+        {label}
+      </Typography>
       <Dropdown
         value={field.value}
         onChange={handleChange}

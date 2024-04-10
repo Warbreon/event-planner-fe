@@ -1,8 +1,6 @@
 import { Container, Grid, Box, Divider } from '@mui/material';
 import styles from './Event.module.css';
 import BreadCrumbComponent from '../../components/breadcrumb/BreadCrumbComponent';
-import { event1 as event } from '../../mocks/EventMocks';
-import { calculateDuration, formatDate, formatTime } from '../../utils/DateConverter';
 import PageHeader, { HeaderVariant } from '../../components/headers/page-headers/PageHeader';
 import DateLocationPrice from '../../components/reusable-labels/DateLocationPrice';
 import Image from '../../components/image/Image';
@@ -14,22 +12,8 @@ import { BUTTON_STYLES } from '../../themes/styles/Button';
 import EventPageVM from './EventPageVM';
 
 const Event = () => {
-	const { onAddGuestsClick, onEventRegistrationClick } = EventPageVM();
-	const { name, eventStart, eventEnd, inviteUrl, address, imageUrl, attendees, price } = event;
-
-	const eventDate = formatDate(eventStart).toString();
-	const startTime = formatTime(eventStart);
-	const endTime = formatTime(eventEnd);
-	const duration = calculateDuration(eventStart, eventEnd);
-	let location;
-	if (inviteUrl && !address) {
-		location = 'Online';
-	} else if (!inviteUrl && address) {
-		location = address.city;
-	} else {
-		location = 'TBD';
-	}
-
+	const { onAddGuestsClick, onEventRegistrationClick, event, location, eventDate,  startTime ,endTime, duration } = EventPageVM();
+	const { name, inviteUrl, address, imageUrl, attendees, price } = event;
 	return (
 		<Container className={styles.eventContainer}>
 			<BreadCrumbComponent eventName={name} />

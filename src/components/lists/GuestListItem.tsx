@@ -18,9 +18,8 @@ const GuestListItem: React.FC<Props> = ({
     fullName,
     jobTitle,
     registrationStatus,
-    isEventOpen,
-    ...props}) => {
-    const onSubmits = () =>{console.log("button clicked")}
+    isEventOpen
+}) => {
     return (
         <div>
             <ListItem disablePadding>

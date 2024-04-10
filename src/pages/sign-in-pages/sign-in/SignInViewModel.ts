@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import Routes from '../../../routes/Routes1';
+import Routes from '../../../routes/Routes';
 
 const SignInViewModel = () => {
 	const onSubmit = (email: string, password: string) => {

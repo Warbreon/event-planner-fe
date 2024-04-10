@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 import { Routes, Route } from 'react-router-dom';
-import ROUTES from '../routes/Routes1';
+import ROUTES from '../routes/Routes';
 import PageNotFound from '../pages/not-found/NotFound';
 import Event from '../pages/event/Event';
 import ExploreEvents from '../pages/explore-events/ExploreEvents';

@@ -1,5 +1,5 @@
 import { createTheme } from '@mui/material';
-import { BUTTON_COLORS, INPUT_COLORS } from './Colors1';
+import { BUTTON_COLORS, INPUT_COLORS } from './Colors';
 
 const fontFamily = 'Inter'
 

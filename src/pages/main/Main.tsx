@@ -4,7 +4,7 @@ import NavigationSideBar from '../../components/nav-bar/NavigationSideBar';
 import PlannerAppBar from '../../components/app-bar/PlannerAppBar';
 import PlannerFooter from '../../components/footer/PlannerFooter';
 import { useSelector } from 'react-redux';
-import { RootState } from '../../redux/store/Store1';
+import { RootState } from '../../redux/store/Store';
 
 import styles from './Main.module.css';
 

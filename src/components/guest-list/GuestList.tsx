@@ -3,8 +3,8 @@ import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import { Attendee } from '../../interfaces/attendee';
-import { setAttendees } from '../../redux/slices/AttendeesSlice1';
-import { RootState } from '../../redux/store/Store1';
+import { setAttendees } from '../../redux/slices/AttendeesSlice';
+import { RootState } from '../../redux/store/Store';
 import styles from './GuestList.module.css';
 
 const MAX_DISPLAYED_AVATARS = 5;

@@ -2,7 +2,7 @@ import { Box, Grid } from '@mui/material';
 import GenericButton, { ButtonTypes } from '../../buttons/ButtonComponent';
 import GuestList from '../GuestList';
 import styles from './EventPageGuests.module.css';
-import { BUTTON_STYLES } from '../../../themes/styles/Button1';
+import { BUTTON_STYLES } from '../../../themes/styles/Button';
 import { FC } from 'react';
 interface Props {
 	onAddGuests: () => void;

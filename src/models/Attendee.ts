@@ -1,4 +1,4 @@
-import { User } from "./User1";
+import { User } from "./User";
 
 export interface Attendee {
   id: number;

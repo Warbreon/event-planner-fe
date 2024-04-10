@@ -1,4 +1,4 @@
-import { Event } from "../models/Event1";
+import { Event } from "../models/Event";
 
 export const event1: Event = {
   id: 1,

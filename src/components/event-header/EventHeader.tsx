@@ -2,14 +2,14 @@ import Title from '../title/Title';
 import { useNavigate } from 'react-router';
 import Dropdown from '../dropdown/Dropdown';
 import GenericButton from '../button/GenericButton';
-import ROUTES from '../../routes/Routes1';
+import ROUTES from '../../routes/Routes';
 import ChipSelector from '../chip-selector/ChipSelector';
 import styles from './EventHeader.module.css';
 import classNames from 'classnames';
 import { Add, KeyboardArrowDown } from '@mui/icons-material';
 import { EventFiltersState } from '../../pages/explore-events/eventFiltersInterface';
 import { SelectChangeEvent } from '@mui/material';
-import { DATE_FILTER_OPTIONS } from '../../constants/DateConstants1';
+import { DATE_FILTER_OPTIONS } from '../../constants/DateConstants';
 
 interface Props {
 	filters: EventFiltersState;

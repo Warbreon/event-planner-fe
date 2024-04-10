@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { Address } from '../../../models/Address1';
+import { Address } from '../../../models/Address';
 import { Typography } from '@mui/material';
 import { constructGoogleMapsURL } from '../../../utils/MapsUrlByAddress';
 import styles from '../EventDetailsPanel.module.css';

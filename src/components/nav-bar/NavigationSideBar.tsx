@@ -10,7 +10,7 @@ import SettingsRoundedIcon from '@mui/icons-material/SettingsRounded';
 import NavBarButton from './nav-bar-button/NavBarButton';
 import NavigationSideBarViewModel from './NavigationSideBarViewModel';
 import styles from './NavigationSideBar.module.css';
-import routes from '../../routes/Routes1';
+import routes from '../../routes/Routes';
 
 type NavigationSideBarProps = {
 	drawerWidth: number;

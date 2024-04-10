@@ -1,12 +1,12 @@
 import GenericButton, { ButtonTypes } from '../../../components/buttons/ButtonComponent';
 import { Link } from 'react-router-dom';
-import { forgotPasswordSchema } from '../../../utils/schemas/ForgotPassword1';
+import { forgotPasswordSchema } from '../../../utils/schemas/ForgotPassword';
 import Form from '../../../components/forms/Form';
 import FormikTextField from '../../../components/forms/elements/FormikTextField';
 import styles from './ForgotPassword.module.css';
 import PageHeader, { HeaderVariant } from '../../../components/headers/page-headers/PageHeader';
 import sharedStyles from '../SharedStyles.module.css';
-import { BUTTON_STYLES } from '../../../themes/styles/Button1';
+import { BUTTON_STYLES } from '../../../themes/styles/Button';
 
 const ForgotPassword = () => {
 	const onSubmit = () => {

@@ -20,7 +20,7 @@ const EventPageGuests: FC<Props> = ({ onAddGuests }) => {
 						title='Add guests'
 						type={ButtonTypes.button}
 						styles={BUTTON_STYLES.GRAY}
-						onCLick={onAddGuests}
+						onClick={onAddGuests}
 					/>
 				</Grid>
 			</Grid>

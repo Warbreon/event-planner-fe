@@ -12,7 +12,8 @@ import { BUTTON_STYLES } from '../../themes/styles/Button';
 import EventPageVM from './EventPageVM';
 
 const Event = () => {
-	const { onAddGuestsClick, onEventRegistrationClick, event, location, eventDate,  startTime ,endTime, duration } = EventPageVM();
+	const { onAddGuestsClick, onEventRegistrationClick, event, location, eventDate, startTime, endTime, duration } =
+		EventPageVM();
 	const { name, inviteUrl, address, imageUrl, attendees, price } = event;
 	return (
 		<Container className={styles.eventContainer}>
@@ -43,7 +44,7 @@ const Event = () => {
 							type={ButtonTypes.button}
 							styles={BUTTON_STYLES.GRAY}
 							icon={IconButton.REGISTER}
-							onCLick={onEventRegistrationClick}
+							onClick={onEventRegistrationClick}
 						/>
 					</Box>
 				</Grid>

@@ -4,9 +4,9 @@ import GenericButton, { ButtonTypes } from '../../../components/buttons/ButtonCo
 import PasswordRules from '../../../components/password-rules/PasswordRules';
 import PasswordResetVM from './PasswordResetViewModel';
 import PageHeader, { HeaderVariant } from '../../../components/headers/page-headers/PageHeader';
-import { passwordResetSchema } from '../../../utils/schemas/passwordReset';
+import { passwordResetSchema } from '../../../utils/schemas/PasswordReset';
 import sharedStyles from '../SharedStyles.module.css';
-import { BUTTON_STYLES } from '../../../themes/styles/button';
+import { BUTTON_STYLES } from '../../../themes/styles/Button';
 
 const PasswordReset = () => {
 	const { onSubmit } = PasswordResetVM();

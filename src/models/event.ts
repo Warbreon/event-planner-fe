@@ -1,5 +1,5 @@
-import { Attendee } from './attendee';
-import { Address } from './address';
+import { Attendee } from './Attendee';
+import { Address } from './Address';
 
 export interface Event {
 	id: number;

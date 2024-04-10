@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import ICON_TYPE from './check-mark-icon/iconType';
+import ICON_TYPE from './check-mark-icon/IconType';
 
 interface PasswordValidationIconState {
 	lengthValidation: string;

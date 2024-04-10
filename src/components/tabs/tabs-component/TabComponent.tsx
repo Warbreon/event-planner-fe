@@ -1,5 +1,5 @@
 import { FC, useState, SyntheticEvent } from 'react';
-import { Attendee } from '../../../models/attendee';
+import { Attendee } from '../../../models/Attendee';
 import { Box, Tab, Tabs } from '@mui/material';
 import TabPanel from '../tab-panel/TabPanel';
 import styles from './TabComponent.module.css';

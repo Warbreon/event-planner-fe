@@ -29,7 +29,7 @@ const FormikDropzone: React.FC<Props> = ({
     buttonStyles,
 }) => {
     const { setFieldValue } = useFormikContext();
-    const [field, , helpers] = useField(name);
+    const [field, meta] = useField(name);
     const [preview, setPreview] = useState<string | null>(null);
 
     useEffect(() => {
@@ -46,7 +46,6 @@ const FormikDropzone: React.FC<Props> = ({
 
             setFieldValue(name, file);
             setPreview(previewUrl);
-            helpers.setTouched(true);
 
             if (onFileAccepted) {
                 onFileAccepted(file);
@@ -56,6 +55,7 @@ const FormikDropzone: React.FC<Props> = ({
 
     const combinedContainerStyles = classNames(
         styles.dropzoneContainer,
+        { [styles.errorBorder]: meta.touched && meta.error },
         containerStyles
     );
 
@@ -64,7 +64,7 @@ const FormikDropzone: React.FC<Props> = ({
             <input {...getInputProps()} />
             {(!field.value && (
                 <IconButton className={styles.centerIconButton} disabled>
-                    <CameraAlt className={styles.centerIcon}/>
+                    <CameraAlt className={styles.centerIcon} />
                 </IconButton>
             ))}
 
@@ -78,10 +78,14 @@ const FormikDropzone: React.FC<Props> = ({
                 </IconButton>
             )}
 
+            {meta.touched && meta.error && (
+                <div className={styles.errorMessage}>{meta.error}</div>
+            )}
             {field.value && preview && (
                 <img src={preview} alt="Preview" className={styles.imagePreview} />
             )}
         </div>
+
     );
 };
 

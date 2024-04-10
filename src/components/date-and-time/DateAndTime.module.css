@@ -1,8 +1,8 @@
 .container {
     display: flex;
+    flex-direction: column;
     height: 4rem;
-    gap: 1.5rem;
-    width: 45.5rem;
+    width: 22rem;
 }
 
 .dateTimeContainer {

@@ -28,22 +28,23 @@ const FormikTimePicker: React.FC<Props> = ({ name, ...props }) => {
                 value={field.value || null}
                 format="hh:mm"
                 onChange={(date) => setFieldValue(name, date)}
+                className={styles.timePicker}
                 slotProps={{
                     textField: ({ ...params }) => ({
                         helperText: meta.touched && meta.error ? meta.error : params.helperText,
                         error: Boolean(meta.touched && meta.error),
-                        onBlur: () => helpers.setTouched(true),
-                        //inputAs
-                        // InputProps: {
-                        //     startAdornment: <AccessTime />
-                        // }
+                        className: 'time-picker-smaller',
+                        inputProps: {
+                            className: 'time-picker-smaller',
+                        }
                     }),
-                    // inputAdornment: {
-                    //     position: 'start',
-                    //     children: <AccessTime />
-                    // }
+                    inputAdornment: {
+                        position: 'start',
+                    },
+                    openPickerButton: {
+                        color: 'primary',
+                    }
                 }}
-                className={styles.timePicker}
             />
     );
 };

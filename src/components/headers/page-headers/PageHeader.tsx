@@ -6,9 +6,10 @@ interface HeaderProps {
 	text: string;
 	variant?: string;
 	subheader?: string;
+	className?: string;
 }
 
-const PageHeader: FC<HeaderProps> = ({ text, variant, subheader }) => {
+const PageHeader: FC<HeaderProps> = ({ text, variant, subheader, className }) => {
 	let headerClassName = '';
 	let subHeaderClassName = '';
 
@@ -25,7 +26,7 @@ const PageHeader: FC<HeaderProps> = ({ text, variant, subheader }) => {
 
 	return (
 		<header className={styles.headerWrapper}>
-			<Typography variant='h1' className={headerClassName}>
+			<Typography variant='h1' className={`${headerClassName} ${className ?? ''} `}>
 				{text}
 			</Typography>
 			{!!subheader && (

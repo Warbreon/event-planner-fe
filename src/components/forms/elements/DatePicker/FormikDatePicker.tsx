@@ -18,21 +18,26 @@ const FormikDatePicker: React.FC<Props> = ({ name, ...props }) => {
             value={field.value || null}
             format="YYYY/MM/DD"
             onChange={(date) => setFieldValue(name, date)}
+            className={styles.datePicker}
+            slots={{
+                openPickerIcon: CalendarToday,
+            }}
             slotProps={{
                 textField: {
                     helperText: meta.touched && meta.error ? meta.error : '',
                     error: Boolean(meta.touched && meta.error),
-                    onBlur: () => helpers.setTouched(true),
-                    // InputProps: {
-                    //     startAdornment: <CalendarToday />
-                    // }
+                    className: 'date-picker',
+                    InputProps: {
+                        className: 'date-picker',
+                    }
                 },
                 inputAdornment: {
                     position: 'start',
-                    children: <CalendarToday />
+                },
+                openPickerButton: {
+                    color: 'primary',
                 }
             }}
-            className={styles.datePicker}
             disablePast
         />
     );

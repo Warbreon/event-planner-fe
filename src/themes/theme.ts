@@ -1,18 +1,48 @@
-import { createTheme } from '@mui/material';
+import { createTheme } from "@mui/material/styles";
 import { BUTTON_COLORS, INPUT_COLORS } from './colors';
+import type { } from '@mui/x-date-pickers/themeAugmentation';
 
 const fontFamily = 'Inter'
 
 const projectTheme = createTheme({
+	palette: {
+		primary: {
+			main: '#000000',
+		},
+	},
+
 	typography: {
 		fontFamily: fontFamily,
 		h1: {
 			fontSize: '2rem',
 			fontWeight: 400,
+
+			'&.small': {
+				lineHeight: '32px',
+			},
+
+			'&.big': {
+				lineHeight: '40px',
+			},
+
+			'&.event-form-section': {
+				lineHeight: '32px',
+				fontSize: '20px',
+			},
 		},
 		body1: {
 			fontSize: '1rem',
 			fontWeight: 400,
+			lineHeight: '20px',
+		},
+		subtitle1: {
+			'&.event-form-element': {
+				fontWeight: 400,
+				fontSize: '14px',
+				lineHeight: '16px',
+				color: '#666666',
+				marginBottom: '8px',
+			}
 		},
 	},
 
@@ -143,7 +173,6 @@ const projectTheme = createTheme({
 			styleOverrides: {
 				root: {
 					fontFamily: fontFamily,
-				
 					fontSize: '1rem',
 					color: 'black',
 					borderRadius: '8px',
@@ -160,6 +189,33 @@ const projectTheme = createTheme({
 						color: INPUT_COLORS.PLACEHOLDER,
 						fontWeight: 400,
 					},
+				},
+			},
+		},
+
+		MuiFormControl: {
+			styleOverrides: {
+				root: {
+					'&.date-picker': {
+						width: '244px',
+					},
+					'&.time-picker-smaller': {
+						width: '100px',
+					},
+					'&.time-picker-bigger': {
+						width: '120px',
+					},
+				}
+			}
+		},
+
+		MuiInputBase: {
+			styleOverrides: {
+				input: {
+					fontFamily: fontFamily,
+					fontWeight: 400,
+					fontSize: '14px',
+					lineHeight: '16px',
 				},
 			},
 		},

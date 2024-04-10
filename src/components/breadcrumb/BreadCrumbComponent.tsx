@@ -9,7 +9,7 @@ interface BreadCrumbComponentProps {
 
 const BreadCrumbComponent: FC<BreadCrumbComponentProps> = ({ eventName }) => {
 	return (
-		<Breadcrumbs className=''>
+		<Breadcrumbs>
 			<Typography variant='body2'>
 				<Link to={'/'} className={styles.breadCrumbUrl}>Home</Link>
 			</Typography>

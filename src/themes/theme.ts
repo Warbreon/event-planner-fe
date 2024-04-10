@@ -198,17 +198,17 @@ const projectTheme = createTheme({
 		MuiSelect: {
 			styleOverrides: {
 			  root: {
-				width: "100%",
-				color: "black",
-				borderRadius: "8px",
-				fontFamily: "Inter",
-				borderColor: "#DDDDDD",
-				"&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+				width: '100%',
+				color: 'black',
+				borderRadius: '8px',
+				fontFamily: fontFamily,
+				borderColor: INPUT_COLORS.GRAY_BORDER,
+				'&.Mui-focused .MuiOutlinedInput-notchedOutline': {
 				  borderColor: "#DDDDDD",
 				},
-				".MuiSelect-icon": {
-				  color: "black",
-				  marginRight: "1rem",
+				'.MuiSelect-icon': {
+				  color: 'black',
+				  marginRight: '1rem',
 				},
 			  },
 			},
@@ -219,26 +219,26 @@ const projectTheme = createTheme({
 		  MuiMenuItem: {
 			styleOverrides: {
 			  root: {
-				width: "100%",
-				"&:hover": {
-				  backgroundColor: "#eeeeee",
+				width: '100%',
+				'&:hover': {
+				  backgroundColor: '#eeeeee',
 				},
-				"&.Mui-focusVisible": {
-				  backgroundColor: "#DDDDDD",
+				'&.Mui-focusVisible': {
+				  backgroundColor: INPUT_COLORS.GRAY_BORDER,
 				},
-				"&.Mui-selected": {
-				  backgroundColor: "#DDDDDD",
+				'&.Mui-selected': {
+				  backgroundColor: INPUT_COLORS.GRAY_BORDER,
 				},
-				fontFamily: "Inter",
-				borderRadius: "10px",
+				fontFamily: fontFamily,
+				borderRadius: '10px',
 			  },
 			},
 		  },
 		  MuiMenu: {
 			styleOverrides: {
 			  paper: {
-				borderRadius: "8px",
-				boxShadow: "0.5px 0.5px 10px 0.5px #DDDDDD",
+				borderRadius: '8px',
+				boxShadow: '0.5px 0.5px 10px 0.5px #DDDDDD',
 			  },
 			},
 		  },

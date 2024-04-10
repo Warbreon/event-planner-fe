@@ -16,10 +16,6 @@ const Details = () => {
   return (
     <Container className={styles.container}>
       <Typography variant="h2">Details</Typography>
-      <Form
-        initialValues={{ eventName: "", eventType: "" }}
-        onSubmit={() => {}}
-      >
         <FormikTextField
           name="eventName"
           type="text"
@@ -35,7 +31,6 @@ const Details = () => {
             label: option.label,
           }))}
         />
-      </Form>
     </Container>
   );
 };

@@ -8,7 +8,6 @@ interface FormikDropdownProps {
   name: string;
   label?: string;
   options: Array<{ value: string; label: string }>;
-  inputLabelClassName?: string;
   menuItemClassName?: string;
 }
 
@@ -16,7 +15,6 @@ const FormikDropdown: FC<FormikDropdownProps> = ({
   name,
   label,
   options,
-  inputLabelClassName,
   menuItemClassName,
 }) => {
   const [field, , helpers] = useField(name);
@@ -39,7 +37,6 @@ const FormikDropdown: FC<FormikDropdownProps> = ({
         onChange={handleChange}
         options={options}
         formControlClassName={styles.formControlClassName}
-        inputLabelClassName={inputLabelClassName}
         selectClassName={styles.formControlClassName}
         menuItemClassName={menuItemClassName}
       />

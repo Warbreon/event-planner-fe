@@ -99,6 +99,14 @@ const projectTheme = createTheme({
 					},
 
 					// [+] button in event guests section
+					'&.light-gray-box': {
+						borderRadius: '12px',
+						height: '80px',
+						background: '#F7F7F7',
+						'&:hover': {
+							background: BUTTON_COLORS.HOVER_LIGHT_GRAY,
+						},
+					},
 					// [+] button in my event created by me
 					'&.light-gray': {
 						borderRadius: '12px',
@@ -106,6 +114,24 @@ const projectTheme = createTheme({
 						'&:hover': {
 							background: BUTTON_COLORS.HOVER_LIGHT_GRAY,
 						},
+					},
+					// confirm button in event guests section
+					'&.light-gray-round-small': {
+						height: '2rem',
+						width: '103px',
+						gap:'10px',
+						padding: '8px 24px 8px 24px',
+						borderRadius: '6.25rem',
+						border: '1px solid ' + BUTTON_COLORS.OUTLINED_GRAY_BORDER,
+						'&:hover': {
+							background: BUTTON_COLORS.HOVER_LIGHT_GRAY,
+						},
+					},
+					// decline button in event guests section (modification)
+					'&.light-gray-round-small-borderless': {
+						width: '99px',
+						margin: '10px',
+						border: 'none',
 					},
 				},
 			},
@@ -143,7 +169,6 @@ const projectTheme = createTheme({
 			styleOverrides: {
 				root: {
 					fontFamily: fontFamily,
-				
 					fontSize: '1rem',
 					color: 'black',
 					borderRadius: '8px',
@@ -173,7 +198,37 @@ const projectTheme = createTheme({
 			styleOverrides: {
 				root: {
 					width: '100%',
-				}
+					'&.guest-search-bar': {
+						paddingRight: '0.25rem',
+						borderRadius: '6.25rem',
+						height: '2.5rem',
+						border: '1px solid #DDDDDD',
+						fontFamily: 'Inter',
+						'& fieldset ': {
+							border: 'none',
+						},
+						'& input': {
+							paddingLeft: '1.5rem',
+							'&::placeHolder ': {
+								color: '#999999',
+								weight: 400,
+								opacity: 0.75,
+							},
+						},
+					},
+					'&.guest-registration-status': {
+						width: '6rem',
+						height: '1.5rem',
+						fontFamily: 'Inter',
+						'& fieldset ': {
+							border: 'none',
+						},
+						'& input ': {
+							textTransform: 'capitalize',
+							padding: '0px',
+						},
+					},
+				},
 			}
 		},
 
@@ -181,6 +236,17 @@ const projectTheme = createTheme({
 			styleOverrides: {
 				root: {
 					fontFamily: fontFamily,
+				},
+			},
+		},
+		MuiSvgIcon: {
+			styleOverrides: {
+				root: {
+					'&.guest-bar-search-icon ': {
+						position: 'absolute',
+						pointerEvents: 'none',
+						color: '#999999',
+					},
 				},
 			},
 		},

@@ -19,7 +19,6 @@ const Details = () => {
       <Form
         initialValues={{ eventName: "", eventType: "" }}
         onSubmit={() => {}}
-        //validationSchema={eventTagsOptions}
       >
         <FormikTextField
           name="eventName"

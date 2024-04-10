@@ -79,7 +79,7 @@ const FormikDropzone: React.FC<Props> = ({
             )}
 
             {meta.touched && meta.error && (
-                <div className={styles.errorMessage}>{meta.error}</div>
+                <p className={styles.errorMessage}>{meta.error}</p>
             )}
             {field.value && preview && (
                 <img src={preview} alt="Preview" className={styles.imagePreview} />

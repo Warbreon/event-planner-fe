@@ -2,7 +2,7 @@ import { Container, Grid, Box, Divider } from '@mui/material';
 import styles from './Event.module.css';
 import BreadCrumbComponent from '../../components/breadcrumb/BreadCrumbComponent';
 import { event1 as event } from '../../mocks/EventMocks';
-import { calculateDuration, formatDate, formatTime } from '../../utils/DateConverter';
+import { calculateDuration, formatDate, formatTime } from '../../utils/DateConverter1';
 import PageHeader, { HeaderVariant } from '../../components/headers/page-headers/PageHeader';
 import DateLocationPrice from '../../components/reusable-labels/DateLocationPrice';
 import Image from '../../components/image/Image';
@@ -10,7 +10,7 @@ import TabComponent from '../../components/tabs/tabs-component/TabComponent';
 import EventDetailsPanel from '../../components/event-details-panel/EventDetailsPanel';
 import EventPageGuests from '../../components/guest-list/event-page/EventPageGuests';
 import GenericButton, { ButtonTypes, IconButton } from '../../components/buttons/ButtonComponent';
-import { BUTTON_STYLES } from '../../themes/styles/Button';
+import { BUTTON_STYLES } from '../../themes/styles/Button1';
 import EventPageVM from './EventPageVM';
 
 const Event = () => {

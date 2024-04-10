@@ -5,10 +5,10 @@ import PageHeader, { HeaderVariant } from '../../../components/headers/page-head
 import GenericButton, { ButtonTypes } from '../../../components/buttons/ButtonComponent';
 import FormikTextField from '../../../components/forms/elements/FormikTextField';
 import Form from '../../../components/forms/Form';
-import { emailPasswordSchema } from '../../../utils/schemas/EmailPasswordSchema';
+import { emailPasswordSchema } from '../../../utils/schemas/EmailPasswordSchema1';
 import sharedStyles from '../SharedStyles.module.css';
 import styles from './SignIn.module.css';
-import { BUTTON_STYLES } from '../../../themes/styles/Button';
+import { BUTTON_STYLES } from '../../../themes/styles/Button1';
 
 const SignIn = () => {
 	const { onSubmit } = SignInViewModel();

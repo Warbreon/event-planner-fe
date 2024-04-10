@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import { Box, Typography } from '@mui/material';
-import { Address } from '../../models/Address';
+import { Address } from '../../models/Address1';
 import styles from './EventDetailsPanel.module.css';
 import OnSiteEventDetails from './on-site/OnSiteEventDetails';
 import OnlineEventDetails from './online/OnlineEventDetails';

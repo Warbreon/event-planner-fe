@@ -3,9 +3,9 @@ import './index.css';
 import App from './app/App';
 import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
-import { store } from './redux/store/store';
+import { store } from './redux/store/Store1';
 import { ThemeProvider } from '@emotion/react';
-import projectTheme from './themes/Theme';
+import projectTheme from './themes/Theme1';
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 root.render(

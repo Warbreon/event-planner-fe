@@ -1,7 +1,15 @@
-import React from 'react';
+import EventHeader from '../../components/event-header/EventHeader';
+import ExploreEventsVM from './ExploreEventsViewModel';
 
 const ExploreEvents = () => {
-	return <h2>Explore Events page (HOME PAGE)</h2>;
+	const { filters, handleFiltersChange } = ExploreEventsVM();
+
+	return (
+		<>
+			<EventHeader filters={filters} handleFiltersChange={handleFiltersChange} />
+			<h2>Explore Events page (HOME PAGE)</h2>
+		</>
+	);
 };
 
 export default ExploreEvents;

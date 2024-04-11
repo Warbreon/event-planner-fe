@@ -1,5 +1,6 @@
 import { Button } from '@mui/material';
 import { FC } from 'react';
+import Icon from './icons/Icon';
 
 export enum ButtonTypes {
 	submit = 'submit',
@@ -7,17 +8,28 @@ export enum ButtonTypes {
 	reset = 'reset',
 }
 
-interface ButtonProps {
-	title: string;
-	style: string;
-	type: ButtonTypes;
-	onCLick?: () => void;
+export enum IconButton {
+	REGISTER = 'Register',
+	GET_TICKETS = 'Get tickets',
+	GOING = 'Going',
+	RSVP = 'RSVP',
+	ADD_EVENT = 'Add event',
+	ADD_GUESTS = ' ',
 }
 
-const GenericButton: FC<ButtonProps> = ({ title, style, type, onCLick }) => {
+interface ButtonProps {
+	title?: string;
+	styles: string;
+	type: ButtonTypes;
+	icon?: IconButton;
+	onClick?: () => void;
+}
+
+const GenericButton: FC<ButtonProps> = ({ title, styles, type, icon, onClick }) => {
+	const iconButtonTitle: IconButton | undefined = icon;
 	return (
-		<Button type={type} className={style} onClick={onCLick}>
-			{title}
+		<Button type={type} className={styles} onClick={onClick} startIcon={!!icon && <Icon icon={icon} />}>
+			{(!!icon && iconButtonTitle) || title}
 		</Button>
 	);
 };

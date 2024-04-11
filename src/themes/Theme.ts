@@ -1,6 +1,5 @@
 import { createTheme } from '@mui/material';
-import { BUTTON_COLORS, INPUT_COLORS } from './colors';
-import { Padding } from '@mui/icons-material';
+import { BUTTON_COLORS, INPUT_COLORS } from './Colors';
 
 const fontFamily = 'Inter';
 
@@ -10,10 +9,34 @@ const projectTheme = createTheme({
 		h1: {
 			fontSize: '2rem',
 			fontWeight: 400,
+			color: 'black',
+
+			'&.event-header': {
+				marginBottom: '1rem',
+				width: '70%',
+			},
+
+			'&.centered': {
+				whiteSpace: 'nowrap',
+				textAlign: 'center',
+			},
 		},
+
 		body1: {
 			fontSize: '1rem',
 			fontWeight: 400,
+			color: 'black',
+
+			'&.centered': {
+				marginTop: '1rem',
+				textAlign: 'center',
+			},
+		},
+
+		body2: {
+			fontSize: '1rem',
+			fontWeight: 400,
+			color: '#666666',
 		},
 	},
 
@@ -130,9 +153,15 @@ const projectTheme = createTheme({
 					borderRadius: '100px',
 					'&.Mui-selected': {
 						fontWeight: '600',
+						color: 'black',
 					},
 					'&:hover': {
 						background: '#ebebeb',
+					},
+					'&:active': {
+						'& .MuiTouchRipple-root': {
+							display: 'none',
+						},
 					},
 				},
 			},
@@ -189,6 +218,37 @@ const projectTheme = createTheme({
 			styleOverrides: {
 				root: {
 					fontFamily: fontFamily,
+				},
+			},
+		},
+		MuiCardMedia: {
+			styleOverrides: {
+				img: {
+					borderRadius: '12px',
+					height: '320px',
+					border: '1px solid #DDDDDD',
+
+					'&.my-events': {
+						width: '200px',
+						height: '156px',
+					},
+					'&.event-card': {
+						width: '276px',
+					},
+
+					'&.event-page': {
+						width: '100%',
+						marginTop: '1rem',
+						marginBottom: '2rem',
+					},
+				},
+			},
+		},
+
+		MuiBreadcrumbs: {
+			styleOverrides: {
+				root: {
+					marginBottom: '5rem',
 				},
 			},
 		},

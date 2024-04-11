@@ -3,10 +3,10 @@ import FormikTextField from '../../../components/forms/elements/FormikTextField'
 import GenericButton, { ButtonTypes } from '../../../components/buttons/ButtonComponent';
 import PasswordRules from '../../../components/password-rules/PasswordRules';
 import PasswordResetVM from './PasswordResetViewModel';
-import PageHeader from '../../../components/headers/page-headers/PageHeader';
-import { passwordResetSchema } from '../../../utils/schemas/passwordReset';
+import PageHeader, { HeaderVariant } from '../../../components/headers/page-headers/PageHeader';
+import { passwordResetSchema } from '../../../utils/schemas/PasswordReset';
 import sharedStyles from '../SharedStyles.module.css';
-import { BUTTON_STYLES } from '../../../themes/styles/button';
+import { BUTTON_STYLES } from '../../../themes/styles/Button';
 
 const PasswordReset = () => {
 	const { onSubmit } = PasswordResetVM();
@@ -14,7 +14,7 @@ const PasswordReset = () => {
 	return (
 		<div className={sharedStyles.background}>
 			<main className={sharedStyles.formSection}>
-				<PageHeader variant='center' text='Reset your password' />
+				<PageHeader variant={HeaderVariant.CENTERED} text='Reset your password' />
 				<Form
 					initialValues={{ newPassword: '', confirmNewPassword: '' }}
 					onSubmit={onSubmit}
@@ -36,7 +36,7 @@ const PasswordReset = () => {
 					/>
 
 					<div className={sharedStyles.buttonWrapper}>
-						<GenericButton type={ButtonTypes.submit} title='Reset my password' style={BUTTON_STYLES.BLACK} />
+						<GenericButton type={ButtonTypes.submit} title='Reset my password' styles={BUTTON_STYLES.BLACK} />
 					</div>
 					<PasswordRules />
 				</Form>

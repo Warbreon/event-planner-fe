@@ -1,0 +1,17 @@
+.rightDetailsPanel {
+  text-wrap: nowrap;
+}
+
+.infoSection  {
+  margin-bottom: 2rem;
+}
+
+.infoSection > *:not(:last-child) {
+  margin-bottom: 0.4rem;
+}
+
+.link, .link:visited, .link:hover {
+  text-decoration: none;
+  color:#003FE1;
+  font-weight: 500;
+}

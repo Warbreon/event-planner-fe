@@ -1,22 +1,26 @@
 import { Box, Typography } from '@mui/material';
 import { Link } from 'react-router-dom';
 import SignInViewModel from './SignInViewModel';
-import PageHeader from '../../../components/headers/page-headers/PageHeader';
+import PageHeader, { HeaderVariant } from '../../../components/headers/page-headers/PageHeader';
 import GenericButton, { ButtonTypes } from '../../../components/buttons/ButtonComponent';
 import FormikTextField from '../../../components/forms/elements/FormikTextField';
 import Form from '../../../components/forms/Form';
-import { emailPasswordSchema } from '../../../utils/schemas/emailPasswordSchema';
+import { emailPasswordSchema } from '../../../utils/schemas/EmailPasswordSchema';
 import sharedStyles from '../SharedStyles.module.css';
 import styles from './SignIn.module.css';
-import { BUTTON_STYLES } from '../../../themes/styles/button';
+import { BUTTON_STYLES } from '../../../themes/styles/Button';
 
 const SignIn = () => {
 	const { onSubmit } = SignInViewModel();
 	return (
 		<div className={sharedStyles.background}>
 			<Box className={sharedStyles.formSection}>
-				<PageHeader variant='center' text='Welcome to' />
-				<PageHeader variant='center' text='Cognizant events' subheader='Sign in with your work email address' />
+				<PageHeader variant={HeaderVariant.CENTERED} text='Welcome to' />
+				<PageHeader
+					variant={HeaderVariant.CENTERED}
+					text='Cognizant events'
+					subheader='Sign in with your work email address'
+				/>
 				<Form
 					initialValues={{ email: '', password: '' }}
 					validationSchema={emailPasswordSchema}
@@ -32,7 +36,7 @@ const SignIn = () => {
 						</Link>
 					</Typography>
 					<div className={sharedStyles.buttonWrapper}>
-						<GenericButton type={ButtonTypes.submit} title='Sign in' style={BUTTON_STYLES.BLACK} />
+						<GenericButton type={ButtonTypes.submit} title='Sign in' styles={BUTTON_STYLES.BLACK} />
 					</div>
 				</Form>
 			</Box>

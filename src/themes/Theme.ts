@@ -123,7 +123,6 @@ const projectTheme = createTheme({
 					//add guests in event page header
 					//cancel button
 					'&.outlined-gray-border': {
-						height: '36px',
 						border: '1px solid ' + BUTTON_COLORS.OUTLINED_GRAY_BORDER,
 						'&:hover': {
 							background: BUTTON_COLORS.HOVER_OUTLINED_GRAY_BORDER,
@@ -256,51 +255,51 @@ const projectTheme = createTheme({
 		},
 		MuiSelect: {
 			styleOverrides: {
-			  root: {
-				width: '100%',
-				color: 'black',
-				borderRadius: '8px',
-				fontFamily: fontFamily,
-				borderColor: INPUT_COLORS.GRAY_BORDER,
-				'&.Mui-focused .MuiOutlinedInput-notchedOutline': {
-				  borderColor: "#DDDDDD",
-				},
-				'.MuiSelect-icon': {
-				  color: 'black',
-				  marginRight: '1rem',
-				},
-			  },
+			  	root: {
+					width: '100%',
+					color: 'black',
+					borderRadius: '8px',
+					fontFamily: fontFamily,
+					borderColor: INPUT_COLORS.GRAY_BORDER,
+					'&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+				  		borderColor: "#DDDDDD",
+					},
+					'.MuiSelect-icon': {
+				  		color: 'black',
+				  		marginRight: '1rem',
+					},
+			  	},
 			},
 			defaultProps: {
 			  IconComponent: KeyboardArrowDown,
 			},
-		  },
-		  MuiMenuItem: {
+		},
+		MuiMenuItem: {
 			styleOverrides: {
-			  root: {
-				width: '100%',
-				'&:hover': {
-				  backgroundColor: '#eeeeee',
-				},
-				'&.Mui-focusVisible': {
-				  backgroundColor: INPUT_COLORS.GRAY_BORDER,
-				},
-				'&.Mui-selected': {
-				  backgroundColor: INPUT_COLORS.GRAY_BORDER,
-				},
-				fontFamily: fontFamily,
-				borderRadius: '10px',
-			  },
+			  	root: {
+					width: '100%',
+					'&:hover': {
+				  		backgroundColor: '#eeeeee',
+					},
+					'&.Mui-focusVisible': {
+				  		backgroundColor: INPUT_COLORS.GRAY_BORDER,
+					},
+					'&.Mui-selected': {
+				  		backgroundColor: INPUT_COLORS.GRAY_BORDER,
+					},
+					fontFamily: fontFamily,
+					borderRadius: '10px',
+			  	},
 			},
-		  },
-		  MuiMenu: {
+		},
+		MuiMenu: {
 			styleOverrides: {
-			  paper: {
-				borderRadius: '8px',
-				boxShadow: '0.5px 0.5px 10px 0.5px #DDDDDD',
-			  },
+			  	paper: {
+					borderRadius: '8px',
+					boxShadow: '0.5px 0.5px 10px 0.5px #DDDDDD',
+			  	},
 			},
-		  },
+		},
 	},
 });
 

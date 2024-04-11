@@ -6,17 +6,11 @@ interface Props {
 	onClick: () => void;
 	className?: string;
 	buttonProps?: ButtonProps;
-	icon?: ReactNode;
 }
 
-const GenericButton: React.FC<Props> = ({ text, onClick, className, buttonProps, icon }) => {
+const GenericButton: React.FC<Props> = ({ text, onClick, className, buttonProps }) => {
 	return (
-		<Button
-			{...buttonProps}
-			className={className}
-			onClick={onClick}
-			endIcon={icon ? <IconButton>{icon}</IconButton> : undefined}
-		>
+		<Button {...buttonProps} className={className} onClick={onClick}>
 			{text}
 		</Button>
 	);

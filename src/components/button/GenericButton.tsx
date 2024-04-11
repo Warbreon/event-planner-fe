@@ -1,5 +1,5 @@
-import { Button, ButtonProps, IconButton } from '@mui/material';
-import React, { ReactNode } from 'react';
+import { Button, ButtonProps } from '@mui/material';
+import React from 'react';
 
 interface Props {
 	text: string;

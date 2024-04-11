@@ -4,7 +4,7 @@ import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import { Box } from '@mui/material';
 import KeyboardArrowRightRoundedIcon from '@mui/icons-material/KeyboardArrowRightRounded';
-import { BUTTON_STYLES } from '../../../themes/styles/button';
+import { BUTTON_STYLES } from '../../../themes/styles/Button';
 
 import style from './Agenda.module.css';
 

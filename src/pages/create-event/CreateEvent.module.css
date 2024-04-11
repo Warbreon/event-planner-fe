@@ -1,4 +1,6 @@
-.divider {
+div .divider {
     margin-top: 4rem;
     margin-bottom: 2.5rem;
+    color: #DDDDDD;
+    height: 1px;
 }

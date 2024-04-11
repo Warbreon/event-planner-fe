@@ -1,6 +1,5 @@
 import DateAndTime from '../../../date-and-time/DateAndTime';
 import PageHeader from '../../../headers/page-headers/PageHeader';
-import Title from '../../../title/Title';
 import styles from './DateAndTimeSection.module.css';
 
 const DateAndTimeSection = () => {
@@ -13,9 +12,11 @@ const DateAndTimeSection = () => {
       <div className={styles.dateAndTimeContainer}>
         <DateAndTime
           title='Start time'
+          name='start'
         />
         <DateAndTime
           title='End time'
+          name='end'
         />
       </div>
 

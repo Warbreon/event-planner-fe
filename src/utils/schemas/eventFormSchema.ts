@@ -5,8 +5,13 @@ const todayDateOnly = new Date(today.getFullYear(), today.getMonth(), today.getD
 
 export const eventFormSchema = Yup.object().shape({
     startDate: Yup.date()
-        .required('startDate is required')
+        .required('Start date is required')
         .min(todayDateOnly, 'Start date cannot be in the past'),
     startTime: Yup.date()
-        .required('startTime is required')
+        .required('Start time is required'),
+    endDate: Yup.date()
+        .required('End date is required')
+        .min(todayDateOnly, 'End date cannot be in the past'),
+    endTime: Yup.date()
+        .required('End time is required')
 });

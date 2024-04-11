@@ -17,14 +17,6 @@ const projectTheme = createTheme({
 			fontSize: '2rem',
 			fontWeight: 400,
 
-			'&.small': {
-				lineHeight: '32px',
-			},
-
-			'&.big': {
-				lineHeight: '40px',
-			},
-
 			'&.event-form-section': {
 				lineHeight: '32px',
 				fontSize: '20px',
@@ -199,10 +191,10 @@ const projectTheme = createTheme({
 					'&.date-picker': {
 						width: '244px',
 					},
-					'&.time-picker-smaller': {
+					'&.time-picker-small': {
 						width: '100px',
 					},
-					'&.time-picker-bigger': {
+					'&.time-picker-big': {
 						width: '120px',
 					},
 				}
@@ -212,10 +204,12 @@ const projectTheme = createTheme({
 		MuiInputBase: {
 			styleOverrides: {
 				input: {
-					fontFamily: fontFamily,
-					fontWeight: 400,
-					fontSize: '14px',
-					lineHeight: '16px',
+					'&.date-picker, &.time-picker-small , &.time-picker-big': {
+						fontFamily: fontFamily,
+						fontWeight: 400,
+						fontSize: '14px',
+						lineHeight: '16px',
+					},
 				},
 			},
 		},

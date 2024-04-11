@@ -5,9 +5,10 @@ import Title from '../title/Title';
 
 interface DateAndTimeProps {
     title: string;
+    name: string;
 }
-/* <PageHeader text='Date and time' className='event-form-section' /> */
-const DateAndTime: React.FC<DateAndTimeProps> = ({ title }) => {
+
+const DateAndTime: React.FC<DateAndTimeProps> = ({ title, name }) => {
     return (
         <div className={styles.container}>
             {title && (
@@ -18,8 +19,8 @@ const DateAndTime: React.FC<DateAndTimeProps> = ({ title }) => {
                 />
             )}
             <div className={styles.dateTimeContainer}>
-                <FormikDatePicker name='startDate' />
-                <FormikTimePicker name='startTime' />
+                <FormikDatePicker name={`${name}Date`} />
+                <FormikTimePicker name={`${name}Time`} />
             </div>
         </div>
     )

@@ -5,11 +5,12 @@ import styles from './FormikDatePicker.module.css';
 
 interface Props {
     name: string;
+    datePickerClassName?: string;
 }
 
-const FormikDatePicker: React.FC<Props> = ({ name, ...props }) => {
+const FormikDatePicker: React.FC<Props> = ({ name, datePickerClassName, ...props }) => {
     const { setFieldValue } = useFormikContext();
-    const [field, meta, helpers] = useField(name);
+    const [field, meta] = useField(name);
 
     return (
         <DatePicker
@@ -26,9 +27,9 @@ const FormikDatePicker: React.FC<Props> = ({ name, ...props }) => {
                 textField: {
                     helperText: meta.touched && meta.error ? meta.error : '',
                     error: Boolean(meta.touched && meta.error),
-                    className: 'date-picker',
-                    InputProps: {
-                        className: 'date-picker',
+                    className: datePickerClassName ?? 'date-picker',
+                    inputProps: {
+                        className: datePickerClassName ?? 'date-picker',
                     }
                 },
                 inputAdornment: {

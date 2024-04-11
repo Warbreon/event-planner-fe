@@ -40,9 +40,9 @@ const EventPageGuestListItem: React.FC<Props> = ({
                 {!!registrationStatus ?
                     (registrationStatus === "PENDING" ?
                             <>
-                                <GenericButton type={ButtonTypes.submit} title='Decline' onClick={onConfirmClick}
+                                <GenericButton type={ButtonTypes.button} title='Decline' onClick={onConfirmClick}
                                                styles={BUTTON_STYLES.LIGHT_GRAY_ROUND_SMALL_BORDERLESS}/>
-                                <GenericButton type={ButtonTypes.submit} title='Confirm' onClick={onDeclineClick}
+                                <GenericButton type={ButtonTypes.button} title='Confirm' onClick={onDeclineClick}
                                                styles={BUTTON_STYLES.LIGHT_GRAY_ROUND_SMALL}/>
                             </>
                             : <TextField disabled={true} className={TEXTFIELD_STYLES.GUEST_REGISTRATION_STATUS}

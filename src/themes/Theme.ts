@@ -22,6 +22,16 @@ const projectTheme = createTheme({
 			},
 		},
 
+		h2: {
+			fontSize: '1.25rem',
+			fontWeight: 400,
+		},
+
+		h3: {
+			fontSize: '1rem',
+			fontWeight: 400,
+		},
+
 		body1: {
 			fontSize: '1rem',
 			fontWeight: 400,

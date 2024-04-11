@@ -3,6 +3,7 @@ import { Attendee } from '../../../models/Attendee';
 import { Box, Tab, Tabs } from '@mui/material';
 import TabPanel from '../tab-panel/TabPanel';
 import styles from './TabComponent.module.css';
+import EventDetails from '../../event-details/EventDetails';
 
 interface TabsProps {
 	aboutEvent: string;
@@ -26,7 +27,7 @@ const TabComponent: FC<TabsProps> = ({ aboutEvent, attendees }) => {
 				</Tabs>
 			</Box>
 			<TabPanel index={0} value={value}>
-				Detais (Justinas add about here)
+				<EventDetails />
 			</TabPanel>
 			<TabPanel index={1} value={value}>
 				Guests (Edvinas add guests here)

@@ -1,12 +1,6 @@
 import React from 'react';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
-import Button from '@mui/material/Button';
-import { Box } from '@mui/material';
-import KeyboardArrowRightRoundedIcon from '@mui/icons-material/KeyboardArrowRightRounded';
-import { BUTTON_STYLES } from '../../../themes/styles/Button';
-
-import style from './Agenda.module.css';
 
 interface AgendaProps {
 	agendaItems: string[];
@@ -15,13 +9,7 @@ interface AgendaProps {
 const Agenda: React.FC<AgendaProps> = ({ agendaItems }) => {
 	return (
 		<>
-			<Box className={style.agendaHeader}>
-				<h2>Agenda</h2>
-				<Button className={BUTTON_STYLES.TEXT_ONLY} onClick={() => null} variant='text' disableRipple>
-					<Typography fontWeight='bold'>View all guests</Typography>
-					<KeyboardArrowRightRoundedIcon />
-				</Button>
-			</Box>
+			<Typography variant='h2'>Agenda</Typography>
 			<Grid marginTop='20px' container spacing={1}>
 				{agendaItems.map((agendaItem, index) => {
 					const [date, agendaItemText] = agendaItem.split('-');

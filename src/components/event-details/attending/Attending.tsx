@@ -1,6 +1,8 @@
 import React from 'react';
-import { Box, Card, CardContent, Avatar, Typography } from '@mui/material';
+import { Box, Card, CardContent, Avatar, Typography, Button } from '@mui/material';
 import { EventAttendee } from '../EventDetailsInterface';
+import { BUTTON_STYLES } from '../../../themes/styles/Button';
+import KeyboardArrowRightRoundedIcon from '@mui/icons-material/KeyboardArrowRightRounded';
 
 import style from './Attending.module.css';
 
@@ -11,7 +13,13 @@ interface AttendingProps {
 const Attending: React.FC<AttendingProps> = ({ attendees }) => {
 	return (
 		<>
-			<h2>Who's attending {`(${attendees ? attendees.length : 0})`}</h2>
+			<Box className={style.attendeeHeader}>
+				<Typography variant='h2'>Who's attending {`(${attendees ? attendees.length : 0})`}</Typography>
+				<Button className={BUTTON_STYLES.TEXT_ONLY} onClick={() => null} variant='text' disableRipple>
+					<Typography fontWeight='bold'>View all guests</Typography>
+					<KeyboardArrowRightRoundedIcon />
+				</Button>
+			</Box>
 			{attendees && (
 				<Box marginY='25px' className={style.cardContainer}>
 					{attendees.map((attendee) => (

@@ -1,5 +1,5 @@
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
-import ICON_TYPE from './IconType';
+import ICON_TYPE from './IconTypes';
 
 enum ICON_COLOR {
 	CORRECT = '#4CAF50',

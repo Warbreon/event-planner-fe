@@ -10,12 +10,21 @@ import EventPageGuests from '../../components/guest-list/event-page/EventPageGue
 import GenericButton, { ButtonTypes, IconButton } from '../../components/buttons/ButtonComponent';
 import { BUTTON_STYLES } from '../../themes/styles/Button';
 import EventPageVM from './EventPageVM';
+import { useParams } from 'react-router';
+import { useFetchEventById } from '../../api/EventApi';
 
 const Event = () => {
-	const { onAddGuestsClick, onEventRegistrationClick, event, location, eventDate, startTime, endTime, duration } =
-		EventPageVM();
-	const { name, inviteUrl, address, imageUrl, attendees, price } = event;
-	return (
+	const { eventId } = useParams();
+	const { event, error } = useFetchEventById(Number(eventId));
+	if (error) {
+		return <Container className={styles.eventContainer}>There's no event with id {eventId}</Container>
+	}
+
+	const eventViewModel = EventPageVM(event);
+	const { onAddGuestsClick, onEventRegistrationClick, location, eventDate, startTime, endTime, duration } =
+		eventViewModel;
+	const { name = '', inviteUrl = '', address = null, imageUrl = '', attendees = [], price = 0 } = event;
+	return ( 
 		<Container className={styles.eventContainer}>
 			<BreadCrumbComponent eventName={name} />
 			<Grid container spacing={2} className={styles.gridContainer}>

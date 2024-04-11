@@ -23,7 +23,7 @@ export const useFetchAllEvents = () => {
 };
 
 export const useFetchEventById = (eventId: number | string) => {
-  const [event, setEvent] = useState<Event | undefined>(undefined);
+  const [event, setEvent] = useState<Event>({} as Event);
   const [error, setError] = useState<string | null>(null);
   useEffect(() => {
     const fetchEventById = async () => {
@@ -34,7 +34,7 @@ export const useFetchEventById = (eventId: number | string) => {
         setEvent(response.data);
       } catch (error: any) {
         console.error(`Error fetching event by id: ${error.message}`);
-        setError(`Error fetching all events: ${error.response?.data?.message || error.message || 'Unknown error'}`);
+        setError(`Error fetching event by id: ${error.response?.data?.message || error.message || 'Unknown error'}`);
       }
     };
     fetchEventById();

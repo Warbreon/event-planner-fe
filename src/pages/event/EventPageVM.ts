@@ -1,9 +1,9 @@
-import { event1 as event } from '../../mocks/EventMocks';
+
+import { Event } from '../../models/Event';
 import { calculateDuration, formatDate, formatTime } from '../../utils/DateConverter';
 
-
-const EventPageVM = () => {
-	const {  eventStart, eventEnd, inviteUrl, address} = event;
+const EventPageVM = (event: Event) => {
+	const { eventStart = '', eventEnd = '', inviteUrl = '', address = '' } = event;
 	const eventDate = formatDate(eventStart).toString();
 	const startTime = formatTime(eventStart);
 	const endTime = formatTime(eventEnd);

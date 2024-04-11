@@ -11,7 +11,7 @@ export interface Event {
 	registrationStart?: string;
 	registrationEnd?: string;
 	agenda?: string[] | null;
-	price?: number | null;
+	price?: number | 0;
 	inviteUrl?: string | null;
 	address?: Address | null;
 	creatorId?: number;

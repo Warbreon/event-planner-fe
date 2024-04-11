@@ -1,7 +1,7 @@
 import GenericButton, { ButtonTypes } from '../../buttons/ButtonComponent';
 import Form from '../../../shared/forms/formik/Form'
 import FormikDropzone from '../../../shared/forms/elements/formikElements/FileUpload/FormikDropzone'
-import { BUTTON_STYLES } from '../../../themes/styles/button';
+import { BUTTON_STYLES } from '../../../themes/styles/Button';
 import { eventFormSchema } from '../../../utils/schemas/eventFormSchema';
 import styles from './EventForm.module.css';
 import EventFormVM from './EventFormVM';
@@ -33,13 +33,13 @@ const EventForm = () => {
           <div className={styles.buttonsContainer}>
             <GenericButton
               title='Cancel'
-              style={`${BUTTON_STYLES.OUTLINED_GREY_BORDER} ${styles.cancelButton}`}
+              styles={`${BUTTON_STYLES.OUTLINED_GREY_BORDER} ${styles.cancelButton}`}
               type={ButtonTypes.button}
               onClick={eventVM.handleCancelOnClick}
             />
             <GenericButton
               title='Create event'
-              style={styles.submitButton}
+              styles={styles.submitButton}
               type={ButtonTypes.submit}
             />
           </div>

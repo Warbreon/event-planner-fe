@@ -1,5 +1,5 @@
-import Form from '../../../components/forms/Form';
-import FormikTextField from '../../../components/forms/elements/FormikTextField';
+import Form from '../../../shared/forms/formik/Form';
+import FormikTextField from '../../../shared/forms/elements/formikElements/TextField/FormikTextField';
 import GenericButton, { ButtonTypes } from '../../../components/buttons/ButtonComponent';
 import PasswordRules from '../../../components/password-rules/PasswordRules';
 import PasswordResetVM from './PasswordResetViewModel';

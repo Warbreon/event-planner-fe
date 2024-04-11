@@ -22,13 +22,13 @@ interface ButtonProps {
 	style: string;
 	type: ButtonTypes;
 	icon?: IconButton;
-	onCLick?: () => void;
+	onClick?: () => void;
 }
 
-const GenericButton: FC<ButtonProps> = ({ title, style, type, icon, onCLick }) => {
+const GenericButton: FC<ButtonProps> = ({ title, style, type, icon, onClick }) => {
 	const iconButtonTitle: IconButton | undefined = icon;
 	return (
-		<Button type={type} className={style} onClick={onCLick} startIcon={!!icon && <Icon icon={icon} />}>
+		<Button type={type} className={style} onClick={onClick} startIcon={!!icon && <Icon icon={icon} />}>
 			{(!!icon && iconButtonTitle) || title}
 		</Button>
 	);

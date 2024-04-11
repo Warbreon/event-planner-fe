@@ -11,7 +11,7 @@ interface EventDetailsProps {
 	eventTags: string[] | null;
 }
 
-const EventDetails: React.FC<EventDetailsProps> = ({ agenda, attendees, eventTags, description }) => {
+const AboutEvent: React.FC<EventDetailsProps> = ({ agenda, attendees, eventTags, description }) => {
 	return (
 		<Box id='allDetailsBox' marginTop='25px'>
 			<Typography variant='h2'>Details</Typography>
@@ -48,4 +48,4 @@ const EventDetails: React.FC<EventDetailsProps> = ({ agenda, attendees, eventTag
 	);
 };
 
-export default EventDetails;
+export default AboutEvent;

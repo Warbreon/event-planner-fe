@@ -2,7 +2,7 @@ import { FC, useState, SyntheticEvent } from 'react';
 import { Box, Tab, Tabs } from '@mui/material';
 import TabPanel from '../tab-panel/TabPanel';
 import styles from './TabComponent.module.css';
-import EventDetails from '../../event-details/EventDetails';
+import AboutEvent from '../../about-event/AboutEvent';
 import { Event } from '../../../models/Event';
 
 interface TabsProps {
@@ -28,7 +28,7 @@ const TabComponent: FC<TabsProps> = ({ event }) => {
 				</Tabs>
 			</Box>
 			<TabPanel index={0} value={value}>
-				<EventDetails description={description} eventTags={tags} agenda={agenda} attendees={attendees} />
+				<AboutEvent description={description} eventTags={tags} agenda={agenda} attendees={attendees} />
 			</TabPanel>
 			<TabPanel index={1} value={value}>
 				Guests (Edvinas add guests here)

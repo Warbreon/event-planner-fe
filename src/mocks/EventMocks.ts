@@ -10,18 +10,17 @@ export const event1: Event = {
 	eventEnd: new Date('2024-05-01T21:00:00'),
 	registrationStart: new Date('2024-04-15T00:00:00'),
 	registrationEnd: new Date('2024-04-01T23:59:00'),
-	agenda: null,
+	agenda: ['7:00 pm-Introduction', '7:30 pm-Presentations', '8:00 pm-Conclusion'],
 	price: 10,
 	//inviteUrl: 'https://zoom.com' ,
 	inviteUrl: null,
-	address: null,
-	// address: {
-	//   venue: 'Greenhouse Loft',
-	//   buildingNo: '2545',
-	//   city: 'Chicago, IL',
-	//   street: 'W Diversey Ave',
-	//   zip: '60647'
-	// },
+	address: {
+		venue: 'Greenhouse Loft',
+		buildingNo: '2545',
+		city: 'Chicago, IL',
+		street: 'W Diversey Ave',
+		zip: '60647',
+	},
 	creatorId: 1,
 	attendees: [
 		{

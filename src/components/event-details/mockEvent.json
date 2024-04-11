@@ -1,0 +1,83 @@
+{
+	"name": "Full stack friday virtual meetup: Product-centric funding",
+	"description": "This talk is meant for IT, product, and business executives who are dissatisfied with lackluster output delivered by classic enterprise funding techniques. A detailed business case, paralysis through analysis, and a “one try to get this right” attitude often derail product initiatives before they even start. Learn how successful product teams influence finance, business, and IT to work within the enterprise budgetary limitations while consistently shipping products that customers need. The talk covers: Step 1. Identifying opportunity, risk, and estimating investment; Step 2. Monitoring metrics and agile KPIs to report health of product; Step 3. Developing roadmap and continued investment. Full Stack Friday is a monthly, meet up hosted by Devbridge at our Chicago headquarters. We get together to indulge in a delicious pancake breakfast and talk shop. We bring in guest speakers to present talks focused on issues relevant to product people and full stack teams. For more information about the next event, contact us directly.",
+	"imageUrl": "https://i.imgur.com/sXwXZPB.jpeg",
+	"eventStart": "2024-05-01T19:00:00",
+	"eventEnd": "2024-05-01T21:00:00",
+	"eventTags": ["Meetup", "Conference"],
+	"registrationStart": "2024-04-01T00:00:00",
+	"registrationEnd": "2024-04-20T23:59:00",
+	"agenda": [
+		"7:00 pm-Introduction",
+		"7:30 pm-Main event where we discuss the topic of html, css styling, React.js compatability with other frameworks, some of the better backend language options and of course a deep dive into the best database technologies (SQL and NoSQL)",
+		"9:00 pm-Snacks",
+		"10:00 pm-Afterparty"
+	],
+	"price": null,
+	"inviteUrl": "https://zoom.us/",
+	"addressId": null,
+	"address": null,
+	"id": 1,
+	"createdDate": "2024-03-26T18:13:25.2536",
+	"creatorId": 1,
+	"attendees": [
+		{
+			"id": 2,
+			"registrationStatus": null,
+			"paymentStatus": null,
+			"registrationTime": "2024-04-01T11:00:00",
+			"isNewNotification": null,
+			"user": {
+				"id": 2,
+				"firstName": "Jane",
+				"lastName": "Smith",
+				"jobTitle": "Full Stack Developer",
+				"imageUrl": "https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+			}
+		},
+		{
+			"id": 1,
+			"registrationStatus": null,
+			"paymentStatus": null,
+			"registrationTime": "2024-04-01T01:00:00",
+			"isNewNotification": null,
+			"user": {
+				"id": 1,
+				"firstName": "Guy",
+				"lastName": "Hawkins",
+				"jobTitle": "Event Organizer",
+				"imageUrl": "https://i0.wp.com/post.medicalnewstoday.com/wp-content/uploads/sites/3/2020/03/GettyImages-1092658864_hero-1024x575.jpg?w=1155&h=1528"
+			}
+		},
+		{
+			"id": 4,
+			"registrationStatus": null,
+			"paymentStatus": null,
+			"registrationTime": "2024-04-01T11:00:00",
+			"isNewNotification": null,
+			"user": {
+				"id": 4,
+				"firstName": "Jane",
+				"lastName": "Smith",
+				"jobTitle": "Full Stack Developer",
+				"imageUrl": "https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+			}
+		},
+		{
+			"id": 5,
+			"registrationStatus": null,
+			"paymentStatus": null,
+			"registrationTime": "2024-04-01T01:00:00",
+			"isNewNotification": null,
+			"user": {
+				"id": 5,
+				"firstName": "Guy",
+				"lastName": "Hawkins",
+				"jobTitle": "Event Organizer",
+				"imageUrl": "https://i0.wp.com/post.medicalnewstoday.com/wp-content/uploads/sites/3/2020/03/GettyImages-1092658864_hero-1024x575.jpg?w=1155&h=1528"
+			}
+		}
+	],
+	"currentUserRegisteredToEvent": true,
+	"open": true
+}

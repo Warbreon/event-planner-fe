@@ -1,7 +1,8 @@
 import { createTheme } from '@mui/material';
 import { BUTTON_COLORS, INPUT_COLORS } from './colors';
+import { Padding } from '@mui/icons-material';
 
-const fontFamily = 'Inter'
+const fontFamily = 'Inter';
 
 const projectTheme = createTheme({
 	typography: {
@@ -107,6 +108,13 @@ const projectTheme = createTheme({
 							background: BUTTON_COLORS.HOVER_LIGHT_GRAY,
 						},
 					},
+
+					'&.text-only': {
+						width: 'auto',
+						'&:hover': {
+							background: BUTTON_COLORS.WHITE,
+						},
+					},
 				},
 			},
 		},
@@ -143,7 +151,7 @@ const projectTheme = createTheme({
 			styleOverrides: {
 				root: {
 					fontFamily: fontFamily,
-				
+
 					fontSize: '1rem',
 					color: 'black',
 					borderRadius: '8px',
@@ -173,14 +181,56 @@ const projectTheme = createTheme({
 			styleOverrides: {
 				root: {
 					width: '100%',
-				}
-			}
+				},
+			},
 		},
 
 		MuiInputLabel: {
 			styleOverrides: {
 				root: {
 					fontFamily: fontFamily,
+				},
+			},
+		},
+
+		MuiCard: {
+			styleOverrides: {
+				root: {
+					'&.userCard': {
+						border: '1px solid hsl(0, 0%, 87%)',
+						borderRadius: '12px',
+						width: '176px',
+						height: '232px',
+					},
+					'&.userCard > .MuiCardContent-root': {
+						display: 'flex',
+						flexDirection: 'column',
+						alignItems: 'center',
+						justifyContent: 'space-around',
+						textAlign: 'center',
+						width: '100%',
+						height: '100%',
+					},
+				},
+			},
+		},
+
+		MuiAvatar: {
+			styleOverrides: {
+				root: {
+					'&.attendeeAvatar': {
+						height: '64px',
+						width: '64px',
+					},
+				},
+			},
+		},
+
+		MuiChip: {
+			styleOverrides: {
+				root: {
+					backgroundColor: '#F4F4F4',
+					marginRight: '10px',
 				},
 			},
 		},

@@ -6,6 +6,7 @@ import { eventFormSchema } from '../../../utils/schemas/eventFormSchema';
 import styles from './EventForm.module.css';
 import EventFormVM from './EventFormVM';
 import PageHeader from '../../headers/page-headers/PageHeader';
+import Details from '../create-edit-event/details/Details';
 
 const EventForm = () => {
   const eventVM = EventFormVM();
@@ -29,6 +30,7 @@ const EventForm = () => {
             buttonStyles={styles.uploadButton}
           />
           <div className={styles.mainFormContainer}>
+            <Details />
           </div>
           <div className={styles.buttonsContainer}>
             <GenericButton

@@ -1,6 +1,6 @@
 import { FC, useEffect } from "react";
 import { useField } from "formik";
-import Dropdown from "./Dropdown";
+import Dropdown from "../../../../../components/dropdown/Dropdown";
 import { Box, SelectChangeEvent, Typography } from "@mui/material";
 import styles from "./FormikDropdown.module.css";
 
@@ -18,10 +18,6 @@ const FormikDropdown: FC<FormikDropdownProps> = ({
   menuItemClassName,
 }) => {
   const [field, , helpers] = useField(name);
-
-  useEffect(() => {
-    helpers.setValue(options[0].value);
-  }, []);
 
   const handleChange = (event: SelectChangeEvent<string>) => {
     helpers.setValue(event.target.value);

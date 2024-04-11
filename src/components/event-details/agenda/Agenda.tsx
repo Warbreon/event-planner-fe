@@ -12,12 +12,12 @@ const Agenda: React.FC<AgendaProps> = ({ agendaItems }) => {
 			<Typography variant='h2'>Agenda</Typography>
 			<Grid marginTop='20px' container spacing={1}>
 				{agendaItems.map((agendaItem, index) => {
-					const [date, agendaItemText] = agendaItem.split('-');
+					const [time, agendaItemText] = agendaItem.split('-');
 					return (
 						<Grid marginBottom='12px' item xs={12} key={index}>
 							<Grid className='agendaGrid' container spacing={2}>
 								<Grid item xs={2}>
-									<Typography variant='body1'>{date}</Typography>
+									<Typography variant='body1'>{time}</Typography>
 								</Grid>
 								<Grid item xs={10}>
 									<Typography variant='body1'>{agendaItemText}</Typography>

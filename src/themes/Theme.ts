@@ -268,9 +268,9 @@ const projectTheme = createTheme({
 				root: {
 					'&.userCard': {
 						border: '1px solid hsl(0, 0%, 87%)',
-						borderRadius: '12px',
-						width: '176px',
-						height: '232px',
+						borderRadius: '0.75rem',
+						width: '11rem',
+						height: '14.5rem',
 					},
 					'&.userCard > .MuiCardContent-root': {
 						display: 'flex',

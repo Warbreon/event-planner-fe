@@ -18,4 +18,5 @@ export interface Event {
 	attendees: Attendee[];
 	currentUserRegisteredToEvent: boolean;
 	open: boolean;
+	tags: string[];
 }

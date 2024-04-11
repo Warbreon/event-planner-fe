@@ -4,7 +4,17 @@ const today = new Date();
 const todayDateOnly = new Date(today.getFullYear(), today.getMonth(), today.getDate());
 
 export const eventFormSchema = Yup.object().shape({
-    startDate: Yup.date()
+    imageUrl: Yup.mixed()
+        .required('Please upload an image.')
+        .test(
+            'fileFormat',
+            'Unsupported format.',
+            (value) => {
+                const file = value as File;
+                return file ? ['image/jpeg', 'image/jpg', 'image/png'].includes(file.type) : true;
+            }
+        ),
+        startDate: Yup.date()
         .required('Start date is required')
         .min(todayDateOnly, 'Start date cannot be in the past'),
     startTime: Yup.date()

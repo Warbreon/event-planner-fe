@@ -1,0 +1,33 @@
+.dropzoneContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.dropzoneContainer .centerIconButton {
+    position: absolute;
+}
+
+.dropzoneContainer .centerIcon {
+    width: 3rem;
+    height: 3rem;
+    color: #AAAAAA;
+}
+
+.imagePreview {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: inherit;
+}
+
+.errorBorder {
+    border: 2px solid red;
+}
+
+.errorMessage {
+    color: red;
+    position: absolute;
+    margin-top: 3.5rem;
+}

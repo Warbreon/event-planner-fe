@@ -1,8 +1,8 @@
 import GenericButton, { ButtonTypes } from '../../../components/buttons/ButtonComponent';
 import { Link } from 'react-router-dom';
 import { forgotPasswordSchema } from '../../../utils/schemas/forgotPassword';
-import Form from '../../../components/forms/Form';
-import FormikTextField from '../../../components/forms/elements/TextField/FormikTextField';
+import Form from '../../../shared/forms/formik/Form';
+import FormikTextField from '../../../shared/forms/elements/formikElements/TextField/TextField/FormikTextField';
 import styles from './ForgotPassword.module.css';
 import PageHeader from '../../../components/headers/page-headers/PageHeader';
 import sharedStyles from '../SharedStyles.module.css';

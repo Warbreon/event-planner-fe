@@ -113,7 +113,6 @@ const projectTheme = createTheme({
 					//add guests in event page header
 					//cancel button
 					'&.outlined-gray-border': {
-						height: '36px',
 						border: '1px solid ' + BUTTON_COLORS.OUTLINED_GRAY_BORDER,
 						'&:hover': {
 							background: BUTTON_COLORS.HOVER_OUTLINED_GRAY_BORDER,

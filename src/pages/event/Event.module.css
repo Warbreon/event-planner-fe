@@ -8,10 +8,18 @@
 	margin-bottom: 3%;
 }
 
+.gridContainer .gridItem .details{
+	margin-left: 20%;
+	margin-top: 35%;
+}
+
 .moreEventsLikeThis {
 	min-height: 10vh;
 }
 
-.breadcrumb {
-	margin-bottom: 3%;
+.details {
+	width: 100%;
+	position: sticky;
+  top: 10%;
+  right: 0;
 }

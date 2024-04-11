@@ -6,28 +6,14 @@ const BreadCrumbComponentVM = () => {
 	const currentPage = useLocation();
 	const pathname = currentPage.pathname;
 
-	const determineCurrentPage = (pageName: string) => {
-		if (pageName.match('/events/event/')) {
-			return 'EVENT_PAGE';
-		} else if (pageName.match('/events/event/new')) {
-			return 'CREATE_EVENT_PAGE';
-		} else if (pageName.match('/events/event/edit/')) {
-			return 'EDIT_EVENT_PAGE';
-		}
-	};
-
-	switch (determineCurrentPage(pathname)) {
-		case 'EVENT_PAGE':
-			url = '/';
-			previousPage = 'Home';
-			break;
-		case 'CREATE_EVENT_PAGE':
-		case 'EDIT_EVENT_PAGE':
-			url = '/events/my';
-			previousPage = 'My events';
-			break;
-	}
-
+	if (pathname.match('/events/event/')) {
+		url = '/';
+		previousPage = 'Home';
+	} else if (pathname.match('/events/event/new') || (pathname.match('/events/event/edit/'))) {
+		url = '/events/my';
+		previousPage = 'My events';
+	} 
+	
 	return { url, previousPage };
 };
 

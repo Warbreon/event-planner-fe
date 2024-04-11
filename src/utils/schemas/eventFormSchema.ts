@@ -1,14 +1,14 @@
 import * as Yup from 'yup';
 
 export const eventFormSchema = Yup.object().shape({
-    image: Yup.mixed()
+    imageUrl: Yup.mixed()
         .required('Please upload an image.')
         .test(
             'fileFormat',
-            'Unsupported format',
+            'Unsupported format.',
             (value) => {
                 const file = value as File;
-                return file ? ['image/jpeg', 'image/png', 'image/gif'].includes(file.type) : true;
+                return file ? ['image/jpeg', 'image/jpg', 'image/png'].includes(file.type) : true;
             }
         )
 });

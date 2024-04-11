@@ -17,7 +17,7 @@ interface Props {
 }
 
 const defaultAccept: Accept = {
-    'image/*': ['.jpeg', '.jpg', '.png']
+    'image/jpeg': ['.jpeg', '.png']
 };
 const FormikDropzone: React.FC<Props> = ({
     name,

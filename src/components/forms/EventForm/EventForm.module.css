@@ -1,10 +1,9 @@
 .eventMainImage {
-    top: 10.5rem;
     background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.4) 100%);
     width: 61rem;
     height: 17rem;
     border-radius: 0.75rem;
-    margin-bottom: 6.5rem;
+    top: 4rem;
 }
 
 .formContainer {
@@ -15,7 +14,8 @@
 
 .container {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
 }
 
 .formContainer .uploadButton {
@@ -37,14 +37,16 @@
     min-height: 25rem;
     border-radius: 0.75rem;
     z-index: 1;
+    padding: 2.5rem 3rem 0rem 3rem;
 }
 
 .buttonsContainer {
     display: flex;
-    height: 40px;
+    height: 2.5rem;
     gap: 10px;
-    margin-bottom: 280px;
+    margin-bottom: 17.5rem;
     align-self: flex-end;
+    padding-right: 7.75rem;
 }
 
 .buttonsContainer .submitButton {
@@ -66,4 +68,10 @@
 .buttonsContainer .submitButton:hover {
     background-color: #000000;
     box-shadow: none;
+}
+
+.pageHeader {
+    margin-top: 4rem;
+    margin-bottom: -2rem;
+    width: 50rem;
 }

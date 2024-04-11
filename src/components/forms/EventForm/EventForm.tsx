@@ -4,40 +4,49 @@ import FormikDropzone from '../../../shared/forms/elements/formikElements/FileUp
 import { BUTTON_STYLES } from '../../../themes/styles/button';
 import { eventFormSchema } from '../../../utils/schemas/eventFormSchema';
 import styles from './EventForm.module.css';
+import EventFormVM from './EventFormVM';
+import PageHeader from '../../headers/page-headers/PageHeader';
 
 const EventForm = () => {
-    return (
-        <div className={styles.container}>
-          <Form
-            initialValues={{ image: null }}
-            validationSchema={eventFormSchema}
-            onSubmit={() => { console.log('Submitted'); }}
-          >
-            <div className={styles.formContainer}>
-              <FormikDropzone
-                name='image'
-                containerStyles={styles.eventMainImage}
-                buttonStyles={styles.uploadButton}
-              />
-              <div className={styles.mainFormContainer}>
-              </div>
-              <div className={styles.buttonsContainer}>
-                <GenericButton
-                  title='Cancel'
-                  style={`${BUTTON_STYLES.OUTLINED_GREY_BORDER} ${styles.cancelButton}`}
-                  type={ButtonTypes.button}
-                  onClick={() => { console.log('Canceled'); }}
-                />
-                <GenericButton
-                  title='Create event'
-                  style={styles.submitButton}
-                  type={ButtonTypes.submit}
-                />
-              </div>
-            </div>
-          </Form>
+  const eventVM = EventFormVM();
+
+  return (
+    <div className={styles.container}>
+      <div className={styles.pageHeader}>
+        <PageHeader
+          text={eventVM.headerText}
+        />
+      </div>
+      <Form
+        initialValues={eventVM.initialValues}
+        validationSchema={eventFormSchema}
+        onSubmit={eventVM.onSubmit}
+      >
+        <div className={styles.formContainer}>
+          <FormikDropzone
+            name='imageUrl'
+            containerStyles={styles.eventMainImage}
+            buttonStyles={styles.uploadButton}
+          />
+          <div className={styles.mainFormContainer}>
+          </div>
+          <div className={styles.buttonsContainer}>
+            <GenericButton
+              title='Cancel'
+              style={`${BUTTON_STYLES.OUTLINED_GREY_BORDER} ${styles.cancelButton}`}
+              type={ButtonTypes.button}
+              onClick={eventVM.handleCancelOnClick}
+            />
+            <GenericButton
+              title='Create event'
+              style={styles.submitButton}
+              type={ButtonTypes.submit}
+            />
+          </div>
         </div>
-      )
+      </Form>
+    </div>
+  )
 }
 
 export default EventForm

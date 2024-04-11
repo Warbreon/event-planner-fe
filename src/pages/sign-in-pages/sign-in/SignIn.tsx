@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import SignInViewModel from './SignInViewModel';
 import PageHeader from '../../../components/headers/page-headers/PageHeader';
 import GenericButton, { ButtonTypes } from '../../../components/buttons/ButtonComponent';
-import FormikTextField from '../../../shared/forms/elements/formikElements/TextField/TextField/FormikTextField';
+import FormikTextField from '../../../shared/forms/elements/formik-elements/text-field/FormikTextField';
 import Form from '../../../shared/forms/formik/Form';
 import { emailPasswordSchema } from '../../../utils/schemas/emailPasswordSchema';
 import sharedStyles from '../SharedStyles.module.css';

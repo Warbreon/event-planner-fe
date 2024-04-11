@@ -1,5 +1,5 @@
 import { createTheme } from "@mui/material/styles";
-import { BUTTON_COLORS, INPUT_COLORS } from './colors';
+import { BUTTON_COLORS, COLORS, INPUT_COLORS } from './colors';
 import type { } from '@mui/x-date-pickers/themeAugmentation';
 
 const fontFamily = 'Inter'
@@ -174,10 +174,10 @@ const projectTheme = createTheme({
 						borderWidth: '2px',
 					},
 					'&.Mui-error .MuiOutlinedInput-notchedOutline': {
-						borderColor: INPUT_COLORS.ERROR,
+						borderColor: COLORS.ERROR,
 					},
 					'& input::placeholder': {
-						color: INPUT_COLORS.PLACEHOLDER,
+						color: COLORS.PLACEHOLDER,
 						fontWeight: 400,
 					},
 				},

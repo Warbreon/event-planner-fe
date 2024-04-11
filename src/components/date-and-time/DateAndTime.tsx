@@ -1,5 +1,5 @@
-import FormikDatePicker from '../forms/elements/DatePicker/FormikDatePicker'
-import FormikTimePicker from '../forms/elements/TimePicker/FormikTimePicker'
+import FormikDatePicker from '../../shared/forms/elements/formik-elements/date-picker/FormikDatePicker'
+import FormikTimePicker from '../../shared/forms/elements/formik-elements/time-picker/FormikTimePicker'
 import styles from './DateAndTime.module.css';
 import Title from '../title/Title';
 

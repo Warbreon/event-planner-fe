@@ -14,7 +14,7 @@ export const eventFormSchema = Yup.object().shape({
                 return file ? ['image/jpeg', 'image/jpg', 'image/png'].includes(file.type) : true;
             }
         ),
-        startDate: Yup.date()
+    startDate: Yup.date()
         .required('Start date is required')
         .min(todayDateOnly, 'Start date cannot be in the past'),
     startTime: Yup.date()

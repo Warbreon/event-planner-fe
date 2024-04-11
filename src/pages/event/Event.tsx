@@ -10,12 +10,7 @@ import EventPageGuests from '../../components/guest-list/event-page/EventPageGue
 import GenericButton, { ButtonTypes, IconButton } from '../../components/buttons/ButtonComponent';
 import { BUTTON_STYLES } from '../../themes/styles/Button';
 import EventPageVM from './EventPageVM';
-import SearchBar from "../../components/app-bar/guest-search-bar/SearchBar";
-import List from "@mui/material/List";
-import GuestListItem from "../../components/lists/GuestListItem";
 import React from 'react';
-import {TEXTFIELD_STYLES} from "../../themes/styles/textField";
-
 
 const Event = () => {
 	const { onAddGuestsClick, onEventRegistrationClick, event, location, eventDate, startTime, endTime, duration } =

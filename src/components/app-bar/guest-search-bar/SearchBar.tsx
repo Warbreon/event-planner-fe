@@ -1,7 +1,7 @@
 import React from 'react'
 import SearchIcon from '@mui/icons-material/Search';
 import {InputAdornment, TextField, TextFieldProps} from "@mui/material";
-import {ICON_STYLES} from "../../../themes/styles/icon";
+import {ICON_STYLES} from "../../../themes/styles/Icon";
 
 type Props = TextFieldProps & {
     style: string;

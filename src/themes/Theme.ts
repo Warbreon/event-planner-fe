@@ -255,6 +255,7 @@ const projectTheme = createTheme({
 						},
 						'& input ': {
 							textTransform: 'capitalize',
+							textAlign: 'right',
 							padding: '0px',
 						},
 					},

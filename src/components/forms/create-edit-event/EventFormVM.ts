@@ -11,8 +11,17 @@ const EventFormVM = () => {
 
     const headerText = 'Add new event';
 
-    const onSubmit = () => {
-        console.log('Submitted');
+    const onSubmit = (values) => {
+        const startDateTime = new Date(`${values.startDate}T${values.startTime}`);
+        const endDateTime = new Date(`${values.endDate}T${values.endTime}`);
+
+        const submitValues = {
+            imageUrl: values.imageUrl,
+            startDateTime,
+            endDateTime
+        };
+
+        console.log(submitValues);
     }
 
     const handleCancelOnClick = () => {

@@ -1,32 +1,50 @@
 import { FC } from "react";
 import { CardEvent } from "./EventCardInterfaces";
 import styles from "./EventCard.module.css";
-import { Box, Card, CardContent, CardMedia, Typography } from "@mui/material";
+import { Box, Card, CardContent, Typography } from "@mui/material";
+import Image from "../image/Image";
+import GuestList from "../guest-list/GuestList";
+import GenericButton, { ButtonTypes, IconButton } from "../buttons/ButtonComponent";
+import { BUTTON_STYLES } from "../../themes/styles/Button";
 import { formatDateAndTime } from "./formatDateAndTime";
+import DateLocationPrice from "../reusable-labels/DateLocationPrice";
 
-export const EventCard: FC<CardEvent> = ({ name, imageUrl, address, price, eventStart }) => {
-
+export const EventCard: FC<CardEvent> = ({
+  name,
+  imageUrl,
+  address,
+  price,
+  eventStart,
+}) => {
+  //date and time will be received as a string, not as a Date, i have already fixed it in fetch api branch
   const eventDate = formatDateAndTime(eventStart);
-  const eventCity = address ? address[0].city : 'Online';
-  const displayPrice = price ? `$${price.toFixed(2)}` : null;
-
-  const details = `${eventDate} • ${eventCity}${displayPrice ? ` • ${displayPrice}` : ''}`;
+  const eventCity = address ? address[0].city : "Online";
 
   return (
     <Box className={styles.container}>
       <Card className={styles.card}>
-        <CardMedia
-          className={styles.media}
-          image={imageUrl}
-          title={name}
-        />
+        <Image styles="event-card" imageUrl={imageUrl} />
         <CardContent className={styles.content}>
-          <Typography component="span" className={styles.details}>
-            {details}
-          </Typography>
-          <Typography className={styles.name} variant="h6">
+          <Box className={styles.dateLocationPrice}>
+            <DateLocationPrice
+              date={eventDate}
+              location={eventCity}
+              price={price}
+            />
+          </Box>
+          <Typography
+            variant="body1"
+            className={styles.name}
+            // className="event-card"
+          >
             {name}
           </Typography>
+          <GuestList />
+          <GenericButton
+            type={ButtonTypes.button}
+            styles={BUTTON_STYLES.GRAY}
+            icon={IconButton.REGISTER}
+          />
         </CardContent>
       </Card>
     </Box>

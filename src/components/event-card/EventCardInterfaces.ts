@@ -3,7 +3,7 @@ export interface CardEvent {
     name: string,
     imageUrl: string,
     address: CardAddress[] | null,
-    price: number | null,
+    price: number,
     eventStart: string
 }
 

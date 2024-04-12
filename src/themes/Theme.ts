@@ -1,40 +1,42 @@
-import { createTheme } from "@mui/material/styles";
-import { BUTTON_COLORS, COLORS, INPUT_COLORS } from './colors';
-import type { } from '@mui/x-date-pickers/themeAugmentation';
+import { createTheme } from '@mui/material';
+import { BUTTON_COLORS, INPUT_COLORS } from './Colors';
 
 const fontFamily = 'Inter'
 
 const projectTheme = createTheme({
-	palette: {
-		primary: {
-			main: '#000000',
-		},
-	},
-
 	typography: {
 		fontFamily: fontFamily,
 		h1: {
 			fontSize: '2rem',
 			fontWeight: 400,
+			color: 'black',
 
-			'&.event-form-section': {
-				lineHeight: '32px',
-				fontSize: '20px',
+			'&.event-header' : {
+				marginBottom: '1rem',
+				width: '70%',
 			},
+
+			'&.centered' : {
+				whiteSpace: 'nowrap',
+				textAlign: 'center'
+			}
 		},
+
 		body1: {
 			fontSize: '1rem',
 			fontWeight: 400,
-			lineHeight: '20px',
+			color: 'black',
+
+			'&.centered' : {
+				marginTop: '1rem',
+				textAlign: 'center'
+			},
 		},
-		subtitle1: {
-			'&.event-form-element': {
-				fontWeight: 400,
-				fontSize: '14px',
-				lineHeight: '16px',
-				color: '#666666',
-				marginBottom: '8px',
-			}
+
+		body2: {
+			fontSize: '1rem',
+			fontWeight: 400,
+			color: '#666666'
 		},
 	},
 
@@ -143,9 +145,15 @@ const projectTheme = createTheme({
 					borderRadius: '100px',
 					'&.Mui-selected': {
 						fontWeight: '600',
+						color: 'black',
 					},
 					'&:hover': {
 						background: '#ebebeb',
+					},
+					'&:active': {
+						'& .MuiTouchRipple-root': {
+							display: 'none',
+						},
 					},
 				},
 			},
@@ -157,6 +165,7 @@ const projectTheme = createTheme({
 					backgroundColor: 'black',
 					height: '3px',
 				},
+				
 			},
 		},
 
@@ -164,6 +173,7 @@ const projectTheme = createTheme({
 			styleOverrides: {
 				root: {
 					fontFamily: fontFamily,
+				
 					fontSize: '1rem',
 					color: 'black',
 					borderRadius: '8px',
@@ -174,40 +184,11 @@ const projectTheme = createTheme({
 						borderWidth: '2px',
 					},
 					'&.Mui-error .MuiOutlinedInput-notchedOutline': {
-						borderColor: COLORS.ERROR,
+						borderColor: INPUT_COLORS.ERROR,
 					},
 					'& input::placeholder': {
-						color: COLORS.PLACEHOLDER,
+						color: INPUT_COLORS.PLACEHOLDER,
 						fontWeight: 400,
-					},
-				},
-			},
-		},
-
-		MuiFormControl: {
-			styleOverrides: {
-				root: {
-					'&.date-picker': {
-						width: '244px',
-					},
-					'&.time-picker-small': {
-						width: '100px',
-					},
-					'&.time-picker-big': {
-						width: '120px',
-					},
-				}
-			}
-		},
-
-		MuiInputBase: {
-			styleOverrides: {
-				input: {
-					'&.date-picker, &.time-picker-small , &.time-picker-big': {
-						fontFamily: fontFamily,
-						fontWeight: 400,
-						fontSize: '14px',
-						lineHeight: '16px',
 					},
 				},
 			},
@@ -233,7 +214,40 @@ const projectTheme = createTheme({
 				},
 			},
 		},
+		MuiCardMedia: {
+			styleOverrides: {
+				img: {
+					borderRadius: '12px',
+					height: '320px',
+					border: '1px solid #DDDDDD',
+
+					'&.my-events': {
+						width: '200px',
+						height: '156px',
+					},
+					'&.event-card': {
+						width: '276px',
+					},
+
+					'&.event-page': {
+						width: '100%',
+						marginTop: '1rem',
+						marginBottom: '2rem',
+					},
+				},
+			},
+		},
+
+
+		MuiBreadcrumbs: {
+			styleOverrides: {
+				root: {
+					marginBottom: '5rem'
+				}
+			}
+		}
 	},
+
 });
 
 export default projectTheme;

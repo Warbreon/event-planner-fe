@@ -1,32 +1,25 @@
 import { FC } from 'react';
 import { Typography } from '@mui/material';
-import styles from './PageHeader.module.css';
+
+export enum HeaderVariant {
+	CENTERED = 'centered',
+	EVENT_PAGE = 'event-header',
+}
 
 interface HeaderProps {
 	text: string;
-	variant?: string;
+	variant?: HeaderVariant;
 	subheader?: string;
 	className?: string;
 }
 
-const PageHeader: FC<HeaderProps> = ({ text, variant, subheader, className }) => {
-	let headerClassName = '';
-	let subHeaderClassName = '';
-
-	switch (variant) {
-		case 'center':
-			headerClassName = styles.headerTitleCentered;
-			subHeaderClassName = styles.subHeaderCentered;
-			break;
-		default:
-			headerClassName = styles.headerTitleLeft;
-			subHeaderClassName = styles.subHeaderLeft;
-			break;
-	}
+const PageHeader: FC<HeaderProps> = ({ text, variant, subheader }) => {
+	const headerClassName: string | undefined = variant;
+	const subHeaderClassName: string | undefined = variant;
 
 	return (
-		<header className={styles.headerWrapper}>
-			<Typography variant='h1' className={`${headerClassName} ${className ?? ''} `}>
+		<header>
+			<Typography variant='h1' className={headerClassName}>
 				{text}
 			</Typography>
 			{!!subheader && (

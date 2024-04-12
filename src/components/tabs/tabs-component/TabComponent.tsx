@@ -4,18 +4,20 @@ import TabPanel from '../tab-panel/TabPanel';
 import styles from './TabComponent.module.css';
 import AboutEvent from '../../about-event/AboutEvent';
 import { Event } from '../../../models/Event';
+import { Attendee } from '../../../models/Attendee';
 
 interface TabsProps {
-	event: Event;
+	description: string;
+	tags: string[];
+	agenda: string[] | null;
+	attendees: Attendee[];
 }
 
-const TabComponent: FC<TabsProps> = ({ event }) => {
+const TabComponent: FC<TabsProps> = ({ description, tags, agenda, attendees }) => {
 	const [value, setValue] = useState(0);
 	const handleTabChange = (event: SyntheticEvent, newValue: number) => {
 		setValue(newValue);
 	};
-
-	const { description, tags, agenda, attendees } = event;
 
 	const guestsTabLabel = `Guests (${attendees.length})`;
 

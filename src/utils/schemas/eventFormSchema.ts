@@ -1,9 +1,6 @@
 import moment from 'moment';
 import * as Yup from 'yup';
 
-const today = new Date();
-const formatTwoDigits = (num: number) => num.toString().padStart(2, '0');
-
 export const eventFormSchema = Yup.object().shape({
     imageUrl: Yup.mixed()
         .required('Please upload an image.')
@@ -21,15 +18,14 @@ export const eventFormSchema = Yup.object().shape({
         .required('Start time is required')
         .test('is-time-in-the-future', 'Start time cannot be in the past', function (value) {
             const { eventStartDate } = this.parent;
+            const eventStartTime = moment(value);
+            const eventStartDateTime = moment(eventStartDate)
+            .set({
+                hour: eventStartTime.hours(),
+                minute: eventStartTime.minutes()
+            });
 
-            if (new Date(eventStartDate).toDateString() === today.toDateString()) {
-                const startTime = new Date(`1970-01-01T${formatTwoDigits(value.getHours())}:${formatTwoDigits(value.getMinutes())}`);
-                const currentTime = new Date(`1970-01-01T${formatTwoDigits(today.getHours())}:${formatTwoDigits(today.getMinutes())}`);
-
-                return startTime > currentTime;
-            }
-
-            return true;
+            return eventStartDateTime.isAfter(moment());
         }),
     eventEndDate: Yup.date()
         .required('End date is required')

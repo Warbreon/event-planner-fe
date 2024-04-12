@@ -1,7 +1,7 @@
 import FormikTextField from "../../../../shared/forms/elements/formikElements/TextField/FormikTextField";
 import FormikDropdown from "../../../../shared/forms/elements/formikElements/Dropdown/FormikDropdown";
 import styles from "./Details.module.css";
-import { Container, Typography } from "@mui/material";
+import { Container, Divider, Typography } from "@mui/material";
 
 const eventTagsOptions = [
   { key: "news", label: "News & Updates" },
@@ -30,6 +30,7 @@ const Details = () => {
             label: option.label,
           }))}
         />
+        <Divider />
     </Container>
   );
 };

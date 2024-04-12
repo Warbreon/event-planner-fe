@@ -1,6 +1,7 @@
 import React from 'react';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
+import AgendaItem from './AgendaItem';
 
 interface AgendaProps {
 	agendaItems: string[];
@@ -13,18 +14,7 @@ const Agenda: React.FC<AgendaProps> = ({ agendaItems }) => {
 			<Grid marginTop='20px' container spacing={1}>
 				{agendaItems.map((agendaItem, index) => {
 					const [time, agendaItemText] = agendaItem.split('-');
-					return (
-						<Grid marginBottom='12px' item xs={12} key={index}>
-							<Grid className='agendaGrid' container spacing={2}>
-								<Grid item xs={2}>
-									<Typography variant='body1'>{time}</Typography>
-								</Grid>
-								<Grid item xs={10}>
-									<Typography variant='body1'>{agendaItemText}</Typography>
-								</Grid>
-							</Grid>
-						</Grid>
-					);
+					return <AgendaItem time={time} text={agendaItemText} />;
 				})}
 			</Grid>
 		</>

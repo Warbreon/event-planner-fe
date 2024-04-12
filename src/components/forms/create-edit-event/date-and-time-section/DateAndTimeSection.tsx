@@ -12,14 +12,13 @@ const DateAndTimeSection = () => {
       <div className={styles.dateAndTimeContainer}>
         <DateAndTime
           title='Start time'
-          name='start'
+          name='eventStart'
         />
         <DateAndTime
           title='End time'
-          name='end'
+          name='eventEnd'
         />
       </div>
-
     </div>
   )
 }

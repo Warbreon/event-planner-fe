@@ -13,13 +13,13 @@ interface HeaderProps {
 	className?: string;
 }
 
-const PageHeader: FC<HeaderProps> = ({ text, variant, subheader }) => {
+const PageHeader: FC<HeaderProps> = ({ text, variant, subheader, className }) => {
 	const headerClassName: string | undefined = variant;
 	const subHeaderClassName: string | undefined = variant;
 
 	return (
 		<header>
-			<Typography variant='h1' className={headerClassName}>
+			<Typography variant='h1' className={`${headerClassName} ${className ?? ''} `}>
 				{text}
 			</Typography>
 			{!!subheader && (

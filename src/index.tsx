@@ -5,7 +5,6 @@ import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { store } from './redux/store/Store';
 import { ThemeProvider } from '@emotion/react';
-import projectTheme from './themes/theme';
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterMoment } from '@mui/x-date-pickers/AdapterMoment';
 import projectTheme from './themes/Theme';

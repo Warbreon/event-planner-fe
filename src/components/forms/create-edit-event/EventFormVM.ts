@@ -1,24 +1,26 @@
+import { combineDateTime } from "../../../utils/DateConverter";
+
 const EventFormVM = () => {
 
     // TODO: Fetch from API and get from redux.
     const initialValues = {
         imageUrl: null,
-        startDate: null,
-        startTime: null,
-        endDate: null,
-        endTime: null,
+        eventStartDate: null,
+        eventStartTime: null,
+        eventEndDate: null,
+        eventEndTime: null,
     };
 
     const headerText = 'Add new event';
 
-    const onSubmit = (values) => {
-        const startDateTime = new Date(`${values.startDate}T${values.startTime}`);
-        const endDateTime = new Date(`${values.endDate}T${values.endTime}`);
+    const onSubmit = (values: any) => {
+        const eventStart = combineDateTime(values.eventStartDate, values.eventStartTime);
+        const eventEnd = combineDateTime(values.eventEndDate, values.eventEndTime);
 
         const submitValues = {
             imageUrl: values.imageUrl,
-            startDateTime,
-            endDateTime
+            eventStart,
+            eventEnd
         };
 
         console.log(submitValues);

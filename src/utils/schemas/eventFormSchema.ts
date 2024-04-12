@@ -1,7 +1,8 @@
+import moment from 'moment';
 import * as Yup from 'yup';
 
 const today = new Date();
-const todayDateOnly = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+const formatTwoDigits = (num: number) => num.toString().padStart(2, '0');
 
 export const eventFormSchema = Yup.object().shape({
     imageUrl: Yup.mixed()
@@ -14,14 +15,41 @@ export const eventFormSchema = Yup.object().shape({
                 return file ? ['image/jpeg', 'image/jpg', 'image/png'].includes(file.type) : true;
             }
         ),
-    startDate: Yup.date()
-        .required('Start date is required')
-        .min(todayDateOnly, 'Start date cannot be in the past'),
-    startTime: Yup.date()
-        .required('Start time is required'),
-    endDate: Yup.date()
+    eventStartDate: Yup.date()
+        .required('Start date is required'),
+    eventStartTime: Yup.date()
+        .required('Start time is required')
+        .test('is-time-in-the-future', 'Start time cannot be in the past', function (value) {
+            const { eventStartDate } = this.parent;
+
+            if (new Date(eventStartDate).toDateString() === today.toDateString()) {
+                const startTime = new Date(`1970-01-01T${formatTwoDigits(value.getHours())}:${formatTwoDigits(value.getMinutes())}`);
+                const currentTime = new Date(`1970-01-01T${formatTwoDigits(today.getHours())}:${formatTwoDigits(today.getMinutes())}`);
+
+                return startTime > currentTime;
+            }
+
+            return true;
+        }),
+    eventEndDate: Yup.date()
         .required('End date is required')
-        .min(todayDateOnly, 'End date cannot be in the past'),
-    endTime: Yup.date()
+        .min(
+            Yup.ref('eventStartDate'),
+            'End date cannot be earlier than start date'
+        ),
+    eventEndTime: Yup.date()
         .required('End time is required')
+        .test('is-after-start-time', 'End time cannot be earlier than start time', function (value) {
+            const { eventStartDate, eventStartTime, eventEndDate } = this.parent;
+            const startDate = moment(eventStartDate);
+            const startTime = moment(eventStartTime);
+            const endDate = moment(eventEndDate);
+            const endTime = moment(value);
+
+            if (!endDate.isSame(startDate, 'day')) {
+                return endDate.isAfter(startDate, 'day');
+            } else {
+                return endTime.isAfter(startTime);
+            }
+        }),
 });

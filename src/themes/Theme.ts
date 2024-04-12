@@ -1,9 +1,15 @@
 import { createTheme } from '@mui/material';
-import { BUTTON_COLORS, INPUT_COLORS } from './Colors';
+import { COLORS } from './Colors';
 
 const fontFamily = 'Inter'
 
 const projectTheme = createTheme({
+	palette: {
+		primary: {
+			main: COLORS.BLACK,
+		},
+	},
+
 	typography: {
 		fontFamily: fontFamily,
 		h1: {
@@ -19,7 +25,12 @@ const projectTheme = createTheme({
 			'&.centered' : {
 				whiteSpace: 'nowrap',
 				textAlign: 'center'
-			}
+			},
+
+			'&.event-form-section': {
+				lineHeight: '2rem',
+				fontSize: '1.25rem',
+			},
 		},
 
 		body1: {
@@ -36,7 +47,17 @@ const projectTheme = createTheme({
 		body2: {
 			fontSize: '1rem',
 			fontWeight: 400,
-			color: '#666666'
+			color: COLORS.MEDIUM_DARK_GRAY
+		},
+
+		subtitle1: {
+			'&.event-form-element': {
+				fontWeight: 400,
+				fontSize: '0.875rem',
+				lineHeight: '1rem',
+				color: COLORS.MEDIUM_DARK_GRAY,
+				marginBottom: '0.5rem',
+			}
 		},
 	},
 
@@ -44,8 +65,8 @@ const projectTheme = createTheme({
 		MuiButton: {
 			styleOverrides: {
 				root: {
-					color: BUTTON_COLORS.BLACK,
-					background: BUTTON_COLORS.WHITE,
+					color: COLORS.BLACK,
+					background: COLORS.WHITE,
 					fontFamily: fontFamily,
 					textTransform: 'none',
 					fontSize: '1rem',
@@ -66,28 +87,28 @@ const projectTheme = createTheme({
 					//home page - add event and load more
 					'&.black': {
 						height: '44px',
-						color: BUTTON_COLORS.WHITE,
-						background: BUTTON_COLORS.BLACK,
+						color: COLORS.WHITE,
+						background: COLORS.BLACK,
 						padding: '14px 32px',
 						'&:hover': {
-							background: BUTTON_COLORS.HOVER_BLACK,
+							background: COLORS.HOVER_BLACK,
 						},
 					},
 
 					//register, get tickets, add guests,
 					'&.gray': {
-						background: BUTTON_COLORS.GRAY,
+						background: COLORS.GRAY,
 						'&:hover': {
-							background: BUTTON_COLORS.HOVER_GRAY,
+							background: COLORS.HOVER_GRAY,
 						},
 					},
 
 					//blue 'going' button
 					'&.blue': {
-						color: BUTTON_COLORS.TEXT_BLUE,
-						background: BUTTON_COLORS.BLUE,
+						color: COLORS.TEXT_BLUE,
+						background: COLORS.BLUE,
 						'&:hover': {
-							background: BUTTON_COLORS.HOVER_BLUE,
+							background: COLORS.HOVER_BLUE,
 						},
 					},
 
@@ -95,9 +116,9 @@ const projectTheme = createTheme({
 					//create event selected pricing, private/public registration
 					'&.outlined-black-border': {
 						height: '32px',
-						border: '2px solid ' + BUTTON_COLORS.BLACK,
+						border: '2px solid ' + COLORS.BLACK,
 						'&:hover': {
-							background: BUTTON_COLORS.HOVER_OUTLINED_BLACK,
+							background: COLORS.HOVER_OUTLINED_BLACK,
 						},
 					},
 
@@ -105,9 +126,9 @@ const projectTheme = createTheme({
 					'&.outlined-gray-regular-text': {
 						fontWeight: '400',
 						height: '32px',
-						border: '1px solid ' + BUTTON_COLORS.OUTLINED_GRAY_BORDER,
+						border: '1px solid ' + COLORS.GRAY_BORDER,
 						'&:hover': {
-							background: BUTTON_COLORS.HOVER_OUTLINED_GRAY_BORDER,
+							background: COLORS.HOVER_OUTLINED_GRAY_BORDER,
 						},
 					},
 
@@ -115,9 +136,9 @@ const projectTheme = createTheme({
 					//add guests in event page header
 					//cancel button
 					'&.outlined-gray-border': {
-						border: '1px solid ' + BUTTON_COLORS.OUTLINED_GRAY_BORDER,
+						border: '1px solid ' + COLORS.GRAY_BORDER,
 						'&:hover': {
-							background: BUTTON_COLORS.HOVER_OUTLINED_GRAY_BORDER,
+							background: COLORS.HOVER_OUTLINED_GRAY_BORDER,
 						},
 					},
 
@@ -125,9 +146,9 @@ const projectTheme = createTheme({
 					// [+] button in my event created by me
 					'&.light-gray': {
 						borderRadius: '12px',
-						background: BUTTON_COLORS.LIGHT_GRAY,
+						background: COLORS.LIGHT_GRAY,
 						'&:hover': {
-							background: BUTTON_COLORS.HOVER_LIGHT_GRAY,
+							background: COLORS.HOVER_LIGHT_GRAY,
 						},
 					},
 				},
@@ -148,7 +169,7 @@ const projectTheme = createTheme({
 						color: 'black',
 					},
 					'&:hover': {
-						background: '#ebebeb',
+						background: COLORS.VERY_LIGHT_GRAY,
 					},
 					'&:active': {
 						'& .MuiTouchRipple-root': {
@@ -180,14 +201,14 @@ const projectTheme = createTheme({
 					borderWidth: '1px',
 					height: '40px',
 					'&:hover .MuiOutlinedInput-notchedOutline, &.Mui-focused .MuiOutlinedInput-notchedOutline': {
-						borderColor: INPUT_COLORS.GRAY_BORDER,
+						borderColor: COLORS.GRAY_BORDER,
 						borderWidth: '2px',
 					},
 					'&.Mui-error .MuiOutlinedInput-notchedOutline': {
-						borderColor: INPUT_COLORS.ERROR,
+						borderColor: COLORS.ERROR,
 					},
 					'& input::placeholder': {
-						color: INPUT_COLORS.PLACEHOLDER,
+						color: COLORS.PLACEHOLDER,
 						fontWeight: 400,
 					},
 				},
@@ -207,6 +228,35 @@ const projectTheme = createTheme({
 			}
 		},
 
+		MuiFormControl: {
+			styleOverrides: {
+				root: {
+					'&.date-picker': {
+						width: '15.25rem',
+					},
+					'&.time-picker-small': {
+						width: '6.25rem',
+					},
+					'&.time-picker-big': {
+						width: '7.5rem',
+					},
+				}
+			}
+		},
+
+		MuiInputBase: {
+			styleOverrides: {
+				input: {
+					'&.date-picker, &.time-picker-small , &.time-picker-big': {
+						fontFamily: fontFamily,
+						fontWeight: 400,
+						fontSize: '0.875rem',
+						lineHeight: '1rem',
+					},
+				},
+			},
+		},
+
 		MuiInputLabel: {
 			styleOverrides: {
 				root: {
@@ -219,7 +269,7 @@ const projectTheme = createTheme({
 				img: {
 					borderRadius: '12px',
 					height: '320px',
-					border: '1px solid #DDDDDD',
+					border: `1px solid ${COLORS.BLACK}`,
 
 					'&.my-events': {
 						width: '200px',

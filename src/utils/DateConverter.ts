@@ -1,3 +1,5 @@
+import { Moment } from "moment";
+
 export const formatDate = (date: Date): string => {
 	const options: Intl.DateTimeFormatOptions = { year: 'numeric', month: 'long', day: 'numeric' };
 	return date.toLocaleDateString('en-US', options);
@@ -32,4 +34,10 @@ export const calculateDuration = (startDateTime: Date, endDateTime: Date): strin
 	}
 
 	return `${hours} hours ${minutes} minutes`;
+};
+
+export const combineDateTime = (date: Moment, time: Moment) => {
+    const formattedDate = date.format('YYYY-MM-DD');
+    const formattedTime = time.format('HH:mm:ss');
+    return `${formattedDate}T${formattedTime}`;
 };

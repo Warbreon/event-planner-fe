@@ -4,7 +4,8 @@ import ExploreEventsVM from './ExploreEventsViewModel';
 import { EventCard } from '../../components/event-card/EventCard';
 import { loadEvents } from './EventDataLoader';
 import styles from './ExploreEvents.module.css';
-import GenericButton from '../../components/button/GenericButton';
+import GenericButton, { ButtonTypes } from '../../components/buttons/ButtonComponent';
+import { BUTTON_STYLES } from '../../themes/styles/Button';
 
 const ExploreEvents = () => {
 	const { filters, handleFiltersChange } = ExploreEventsVM();
@@ -13,20 +14,20 @@ const ExploreEvents = () => {
 	return (
 
 		<Container className={styles.container}>
-			<Grid container spacing={2} className={styles.gridContainer}>
 			<EventHeader filters={filters} handleFiltersChange={handleFiltersChange} />
-			
 			<Box className={styles.eventsContainer}>
 				{events.map((event) => (
 					<EventCard key={event.id} {...event} />
 				))}
 			</Box>
+			<Box className={styles.loadMore}>
 			<GenericButton
-					text="Load more events"
-					onClick={() => {}}
-					className="black"
-				/>
-			</Grid>
+					title="Load more events"
+					onClick={() => { } }
+					styles={BUTTON_STYLES.BLACK} 
+					type={ButtonTypes.button}
+			/>
+			</Box>
 		</Container>
 
 	);

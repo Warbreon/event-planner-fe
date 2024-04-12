@@ -23,7 +23,7 @@ export const EventCard: FC<CardEvent> = ({
   return (
     <Box className={styles.container}>
       <Card className={styles.card}>
-        <Image styles="event-card" imageUrl={imageUrl} />
+        <Image imageUrl={imageUrl} />
         <CardContent className={styles.content}>
           <Box className={styles.dateLocationPrice}>
             <DateLocationPrice
@@ -35,11 +35,12 @@ export const EventCard: FC<CardEvent> = ({
           <Typography
             variant="body1"
             className={styles.name}
-            // className="event-card"
           >
             {name}
           </Typography>
-          <GuestList />
+          <Box className={styles.guests}>
+            <GuestList />
+          </Box>
           <GenericButton
             type={ButtonTypes.button}
             styles={BUTTON_STYLES.GRAY}

@@ -1,14 +1,3 @@
-/* .content .details {
-  display: flex;
-  color: #757575;
-  white-space: nowrap;
-  align-items: center;
-  margin-bottom: 8px;
-  font-size: 14px;
-  line-height: 24px;
-  font-family: 'Inter';
-}
-*/
 .content .name {
   height: 78px;
   display: -webkit-box;
@@ -17,10 +6,6 @@
   overflow: hidden;
   text-overflow: ellipsis;
 }
-
-/* .container .card .media {
-  border-radius: 12px;
-}  */
 
 .container .card {
   width: 270px;
@@ -32,6 +17,10 @@
 }
 
 .dateLocationPrice {
-  font-size: 14px;
+  margin-top: 12px;
   margin-bottom: 8px;
+}
+
+.guests {
+  margin-bottom: 16px;
 }

@@ -3,6 +3,17 @@
   flex-wrap: wrap;
   justify-content: center;
   gap: 22px;
+  width: 100%;
+}
+
+.container {
+  justify-content: center;
+}
+
+.container .loadMore {
+  margin-top: 3rem;
+	width: 20%;
+  margin-left: 28.75rem;
 }
 
 @media (max-width: 600px) {

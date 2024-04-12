@@ -36,7 +36,11 @@ export const calculateDuration = (startDateTime: Date, endDateTime: Date): strin
 	return `${hours} hours ${minutes} minutes`;
 };
 
-export const combineDateTime = (date: Moment, time: Moment) => {
+export const combineDateTime = (date: Moment | null, time: Moment | null) => {
+	if (!date || !time) {
+		return null;
+	}
+
     const formattedDate = date.format('YYYY-MM-DD');
     const formattedTime = time.format('HH:mm:ss');
     return `${formattedDate}T${formattedTime}`;

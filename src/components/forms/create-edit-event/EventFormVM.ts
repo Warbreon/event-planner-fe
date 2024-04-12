@@ -1,9 +1,18 @@
+import { Moment } from "moment";
 import { combineDateTime } from "../../../utils/DateConverter";
+
+interface FormValues {
+    imageUrl: File | null;
+    eventStartDate: Moment | null;
+    eventStartTime: Moment | null;
+    eventEndDate: Moment | null;
+    eventEndTime: Moment | null;
+  }
 
 const EventFormVM = () => {
 
     // TODO: Fetch from API and get from redux.
-    const initialValues = {
+    const initialValues: FormValues = {
         imageUrl: null,
         eventStartDate: null,
         eventStartTime: null,
@@ -13,7 +22,7 @@ const EventFormVM = () => {
 
     const headerText = 'Add new event';
 
-    const onSubmit = (values: any) => {
+    const onSubmit = (values: FormValues) => {
         const eventStart = combineDateTime(values.eventStartDate, values.eventStartTime);
         const eventEnd = combineDateTime(values.eventEndDate, values.eventEndTime);
 

@@ -3,7 +3,6 @@ import { Box, Tab, Tabs } from '@mui/material';
 import TabPanel from '../tab-panel/TabPanel';
 import styles from './TabComponent.module.css';
 import AboutEvent from '../../about-event/AboutEvent';
-import { Event } from '../../../models/Event';
 import { Attendee } from '../../../models/Attendee';
 
 interface TabsProps {

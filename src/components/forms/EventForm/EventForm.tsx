@@ -7,6 +7,7 @@ import styles from './EventForm.module.css';
 import EventFormVM from './EventFormVM';
 import PageHeader from '../../headers/page-headers/PageHeader';
 import Details from '../create-edit-event/details/Details';
+import { Divider } from '@mui/material';
 
 const EventForm = () => {
   const eventVM = EventFormVM();
@@ -31,6 +32,7 @@ const EventForm = () => {
           />
           <div className={styles.mainFormContainer}>
             <Details />
+            <Divider className={styles.divider} />
           </div>
           <div className={styles.buttonsContainer}>
             <GenericButton

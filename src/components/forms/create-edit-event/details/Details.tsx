@@ -23,14 +23,13 @@ const Details = () => {
           titleClassName={"gray-font"}
         />
         <FormikDropdown
-          name="eventType"
+          name="eventTag"
           label="Event Type"
           options={eventTagsOptions.map((option) => ({
             value: option.key,
             label: option.label,
           }))}
         />
-        <Divider />
     </Container>
   );
 };

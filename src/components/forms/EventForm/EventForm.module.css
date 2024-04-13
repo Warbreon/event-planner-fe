@@ -75,3 +75,8 @@
     margin-bottom: -2rem;
     width: 50rem;
 }
+
+.mainFormContainer .divider {
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+}

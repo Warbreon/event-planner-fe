@@ -14,7 +14,7 @@ const Agenda: React.FC<AgendaProps> = ({ agendaItems }) => {
 			<Grid marginTop='20px' container spacing={1}>
 				{agendaItems.map((agendaItem, index) => {
 					const [time, agendaItemText] = agendaItem.split('-');
-					return <AgendaItem time={time} text={agendaItemText} />;
+					return <AgendaItem key={index} time={time} text={agendaItemText} />;
 				})}
 			</Grid>
 		</>

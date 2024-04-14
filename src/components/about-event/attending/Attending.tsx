@@ -1,9 +1,9 @@
 import React from 'react';
 import { Box, Card, CardContent, Avatar, Typography } from '@mui/material';
-import { BUTTON_STYLES } from '../../../themes/styles/Button';
 import { Attendee } from '../../../models/Attendee';
 import style from './Attending.module.css';
-import GenericButton, { ButtonTypes, IconButton } from '../../buttons/ButtonComponent';
+import { IconButton } from '../../buttons/ButtonComponent';
+import SectionHeader from '../../shared/section-header/SectionHeader';
 
 interface AttendingProps {
 	attendees: Attendee[];
@@ -14,17 +14,13 @@ const Attending: React.FC<AttendingProps> = ({ attendees }) => {
 
 	return (
 		<>
-			<Box className={style.attendeeHeader}>
-				<Typography variant='h2'>Who's attending ({attendees?.length})</Typography>
-				<GenericButton
-					type={ButtonTypes.button}
-					styles={BUTTON_STYLES.TEXT_ONLY}
-					onClick={() => null}
-					icon={IconButton.VIEW_ALL_GUESTS}
-					iconAtEnd
-				/>
-			</Box>
-			<Box marginY='25px' className={style.cardContainer}>
+			<SectionHeader
+				name="Who's attending"
+				variableCount={attendees?.length}
+				buttonType={IconButton.VIEW_ALL_GUESTS}
+				onButtonClick={() => null}
+			/>
+			<Box className={style.cardContainer}>
 				{displayedAttendees.map((attendee) => (
 					<Card key={attendee.id} className='userCard' elevation={0}>
 						<CardContent>

@@ -3,6 +3,7 @@ import { Typography, Box, Divider, Chip } from '@mui/material';
 import { Attendee } from '../../models/Attendee';
 import Agenda from './agenda/Agenda';
 import Attending from './attending/Attending';
+import SectionHeader from '../shared/section-header/SectionHeader';
 
 interface EventDetailsProps {
 	description: string;
@@ -14,7 +15,7 @@ interface EventDetailsProps {
 const AboutEvent: React.FC<EventDetailsProps> = ({ agenda, attendees, eventTags, description }) => {
 	return (
 		<Box id='allDetailsBox' marginTop='25px'>
-			<Typography variant='h2'>Details</Typography>
+			<SectionHeader name='Details' />
 			<Typography marginTop='25px' variant='body1'>
 				{description}
 			</Typography>

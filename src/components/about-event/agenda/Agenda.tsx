@@ -2,6 +2,7 @@ import React from 'react';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import AgendaItem from './AgendaItem';
+import SectionHeader from '../../shared/section-header/SectionHeader';
 
 interface AgendaProps {
 	agendaItems: string[];
@@ -10,7 +11,7 @@ interface AgendaProps {
 const Agenda: React.FC<AgendaProps> = ({ agendaItems }) => {
 	return (
 		<>
-			<Typography variant='h2'>Agenda</Typography>
+			<SectionHeader name='Agenda' />
 			<Grid marginTop='20px' container spacing={1}>
 				{agendaItems.map((agendaItem, index) => {
 					const [time, agendaItemText] = agendaItem.split('-');

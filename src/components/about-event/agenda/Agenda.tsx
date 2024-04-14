@@ -1,6 +1,5 @@
 import React from 'react';
 import Grid from '@mui/material/Grid';
-import Typography from '@mui/material/Typography';
 import AgendaItem from './AgendaItem';
 import SectionHeader from '../../shared/section-header/SectionHeader';
 

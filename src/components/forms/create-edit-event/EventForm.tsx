@@ -8,21 +8,22 @@ import EventFormVM from './EventFormVM';
 import PageHeader from '../../headers/page-headers/PageHeader';
 import DateAndTimeSection from './date-and-time-section/DateAndTimeSection';
 import { Divider } from '@mui/material';
+import AgendaSection from './formik-elements/agenda-section/AgendaSection';
 
 const EventForm = () => {
-  const eventVM = EventFormVM();
+  const {headerText, initialValues, onSubmit, handleCancelOnClick} = EventFormVM();
 
   return (
     <div className={styles.container}>
       <div className={styles.pageHeader}>
         <PageHeader
-          text={eventVM.headerText}
+          text={headerText}
         />
       </div>
       <Form
-        initialValues={eventVM.initialValues}
+        initialValues={initialValues}
         validationSchema={eventFormSchema}
-        onSubmit={eventVM.onSubmit}
+        onSubmit={onSubmit}
       >
         <div className={styles.formContainer}>
           <FormikDropzone
@@ -34,13 +35,15 @@ const EventForm = () => {
             <Divider className={styles.divider} />
             <DateAndTimeSection />
             <Divider className={styles.divider} />
+            <AgendaSection agenda={initialValues.agenda} />
+            <Divider className={styles.divider} />
           </div>
           <div className={styles.buttonsContainer}>
             <GenericButton
               title='Cancel'
               styles={`${BUTTON_STYLES.OUTLINED_GREY_BORDER} ${styles.cancelButton}`}
               type={ButtonTypes.button}
-              onClick={eventVM.handleCancelOnClick}
+              onClick={handleCancelOnClick}
             />
             <GenericButton
               title='Create event'

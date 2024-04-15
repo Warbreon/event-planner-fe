@@ -1,3 +1,8 @@
 .timePicker button {
     padding-right: 0;
 }
+
+.titleClassName {
+	padding-top: 0.5rem;
+	padding-bottom: 0.5rem;
+}

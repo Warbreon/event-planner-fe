@@ -7,6 +7,7 @@ interface FormValues {
     eventStartTime: Moment | null;
     eventEndDate: Moment | null;
     eventEndTime: Moment | null;
+    cardUrl: File | null;
 }
 
 const EventFormVM = () => {
@@ -18,6 +19,7 @@ const EventFormVM = () => {
         eventStartTime: null,
         eventEndDate: null,
         eventEndTime: null,
+        cardUrl: null,
     };
 
     const headerText = 'Add new event';
@@ -28,6 +30,7 @@ const EventFormVM = () => {
 
         const submitValues = {
             imageUrl: values.imageUrl,
+            cardUrl: values.cardUrl,
             eventStart,
             eventEnd
         };

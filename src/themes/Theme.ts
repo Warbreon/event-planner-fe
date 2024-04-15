@@ -155,12 +155,12 @@ const projectTheme = createTheme({
 					// [+] event form media uplaod
 					'&.upload-button': {
 						height: '2rem',
-						background: BUTTON_COLORS.GRAY,
+						background: COLORS.GRAY,
 						width: 'auto',
-						border: `1px solid ${BUTTON_COLORS.OUTLINED_GRAY_BORDER}`,
+						border: `1px solid ${COLORS.GRAY_BORDER}`,
 						fontSize: '0.875rem',
 						'&:hover': {
-							background: BUTTON_COLORS.HOVER_LIGHT_GRAY,
+							background: COLORS.HOVER_LIGHT_GRAY,
 						}
 					}
 				},

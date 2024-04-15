@@ -1,5 +1,5 @@
 import { FileUpload } from "@mui/icons-material"
-import FormikDropzone from "../../../../shared/forms/elements/formikElements/FileUpload/FormikDropzone"
+import FormikDropzone from "../../../../shared/forms/elements/formik-elements/file-upload/FormikDropzone";
 import styles from './Media.module.css';
 import PageHeader from "../../../headers/page-headers/PageHeader";
 import { BUTTON_STYLES } from "../../../../themes/styles/Button";

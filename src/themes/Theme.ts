@@ -154,6 +154,7 @@ const projectTheme = createTheme({
 						marginTop: '8px',
 						borderRadius: '12px',
 						height: '80px',
+						padding: '0px',
 						background: COLORS.LIGHT_GRAY,
 						'&:hover': {
 							background: COLORS.HOVER_LIGHT_GRAY,
@@ -251,7 +252,7 @@ const projectTheme = createTheme({
 					width: '100%',
 					'&.guest-search-bar': {
 						paddingRight: '0.25rem',
-						marginTop: '0.5rem',
+						marginTop: '1rem',
 						marginBottom: '1.5rem',
 						borderRadius: '6.25rem',
 						height: '2.5rem',
@@ -387,7 +388,17 @@ const projectTheme = createTheme({
 					marginBottom: '5rem'
 				}
 			}
-		}
+		},
+
+		MuiListItem: {
+			styleOverrides: {
+				root: {
+					'&.guest-list-item': {
+						height: '80px',
+					},
+				}
+			},
+		},
 	},
 
 });

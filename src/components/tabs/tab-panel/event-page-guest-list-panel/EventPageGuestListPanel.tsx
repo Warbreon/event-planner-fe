@@ -10,6 +10,7 @@ import GenericButton, {ButtonTypes, IconButton} from "../../../buttons/ButtonCom
 import {BUTTON_STYLES} from "../../../../themes/styles/Button";
 import {Attendee} from "../../../../models/Attendee";
 import EventPageGuestListPanelVM from "./EventPageGuestListPanelVM";
+import {LISTITEM_STYLES} from "../../../../themes/styles/ListItem";
 
 type Props = TextFieldProps & {
     attendees: Attendee[];
@@ -30,7 +31,8 @@ const EventPageGuestListPanel: React.FC<Props> = ({attendees}) => {
                         key={attendee.user.id}
                         fullName={`${attendee.user.firstName}  ${attendee.user.lastName}`}
                         details={attendee.user.jobTitle}
-                        image={attendee.user.imageUrl}>
+                        image={attendee.user.imageUrl}
+                        styles={LISTITEM_STYLES.GUEST_LIST_ITEM}>
                         <>
                             {!!attendee.registrationStatus ?
                                 (attendee.registrationStatus === "PENDING" ?

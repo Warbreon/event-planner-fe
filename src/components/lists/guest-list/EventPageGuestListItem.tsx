@@ -7,6 +7,7 @@ type Props = {
     image?: string;
     fullName?: string;
     details?: string;
+    styles?: string;
     children?: ReactNode;
 };
 
@@ -14,10 +15,11 @@ const EventPageGuestListItem: React.FC<Props> = ({
     image,
     fullName,
     details,
+    styles,
     children
 }) => {
     return (
-        <ListItem disablePadding>
+        <ListItem disablePadding className={styles}>
             <ListItemAvatar>
                 <Avatar alt={fullName} src={image}/>
             </ListItemAvatar>

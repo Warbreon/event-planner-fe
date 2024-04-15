@@ -7,7 +7,7 @@ interface FormValues {
     eventStartTime: Moment | null;
     eventEndDate: Moment | null;
     eventEndTime: Moment | null;
-  }
+}
 
 const EventFormVM = () => {
 

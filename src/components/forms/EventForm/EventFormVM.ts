@@ -1,7 +1,7 @@
 const EventFormVM = () => {
 
     // TODO: Fetch from API and get from redux.
-    const initialValues = { imageUrl: null };
+    const initialValues = { imageUrl: null, cardUrl: null };
 
     const headerText = 'Add new event';
 

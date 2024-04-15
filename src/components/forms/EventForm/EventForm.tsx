@@ -6,6 +6,8 @@ import { eventFormSchema } from '../../../utils/schemas/eventFormSchema';
 import styles from './EventForm.module.css';
 import EventFormVM from './EventFormVM';
 import PageHeader from '../../headers/page-headers/PageHeader';
+import Media from './media/Media';
+import { Divider } from '@mui/material';
 
 const EventForm = () => {
   const eventVM = EventFormVM();
@@ -29,6 +31,9 @@ const EventForm = () => {
             buttonStyles={styles.uploadButton}
           />
           <div className={styles.mainFormContainer}>
+            <Divider className={styles.divider} />
+            <Media />
+            <Divider className={styles.divider} />
           </div>
           <div className={styles.buttonsContainer}>
             <GenericButton

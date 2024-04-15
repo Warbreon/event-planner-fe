@@ -19,7 +19,12 @@ const projectTheme = createTheme({
 			'&.centered' : {
 				whiteSpace: 'nowrap',
 				textAlign: 'center'
-			}
+			},
+
+			'&.event-form-section': {
+				lineHeight: '2rem',
+				fontSize: '1.25rem',
+			},
 		},
 
 		body1: {
@@ -130,6 +135,18 @@ const projectTheme = createTheme({
 							background: BUTTON_COLORS.HOVER_LIGHT_GRAY,
 						},
 					},
+
+					// [+] event form media uplaod
+					'&.upload-button': {
+						height: '2rem',
+						background: BUTTON_COLORS.GRAY,
+						width: 'auto',
+						border: `1px solid ${BUTTON_COLORS.OUTLINED_GRAY_BORDER}`,
+						fontSize: '0.875rem',
+						'&:hover': {
+							background: BUTTON_COLORS.HOVER_LIGHT_GRAY,
+						}
+					}
 				},
 			},
 		},

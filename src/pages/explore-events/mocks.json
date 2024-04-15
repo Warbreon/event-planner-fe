@@ -1,0 +1,254 @@
+[
+    {
+        "name": "Full stack friday virtual meetup: Product-centric funding",
+        "description": "This talk is meant for IT, product, and business executives who are dissatisfied with lackluster output delivered by classic enterprise funding techniques. A detailed business case, paralysis through analysis, and a “one try to get this right” attitude often derail product initiatives before they even start. Learn how successful product teams influence finance, business, and IT to work within the enterprise budgetary limitations while consistently shipping products that customers need.",
+        "imageUrl": "https://i.imgur.com/sXwXZPB.jpeg",
+        "eventStart": "2024-05-01T19:00:00",
+        "eventEnd": "2024-05-01T21:00:00",
+        "registrationStart": "2024-04-01T00:00:00",
+        "registrationEnd": "2024-04-20T23:59:00",
+        "agenda": null,
+        "price": null,
+        "inviteUrl": "https://zoom.us/",
+        "addressId": null,
+        "address": null,
+        "id": 1,
+        "createdDate": "2024-03-26T18:13:25.2536",
+        "creatorId": 1,
+        "attendees": [
+            {
+                "id": 2,
+                "registrationStatus": null,
+                "paymentStatus": null,
+                "registrationTime": "2024-04-01T11:00:00",
+                "isNewNotification": null,
+                "user": {
+                    "id": 2,
+                    "firstName": "Jane",
+                    "lastName": "Smith",
+                    "jobTitle": "Full Stack Developer",
+                    "imageUrl": "https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                }
+            },
+            {
+                "id": 1,
+                "registrationStatus": null,
+                "paymentStatus": null,
+                "registrationTime": "2024-04-01T01:00:00",
+                "isNewNotification": null,
+                "user": {
+                    "id": 1,
+                    "firstName": "Guy",
+                    "lastName": "Hawkins",
+                    "jobTitle": "Event Organizer",
+                    "imageUrl": "https://i0.wp.com/post.medicalnewstoday.com/wp-content/uploads/sites/3/2020/03/GettyImages-1092658864_hero-1024x575.jpg?w=1155&h=1528"
+                }
+            }
+        ],
+        "currentUserRegisteredToEvent": true,
+        "open": true
+    },
+    {
+        "name": "ProductCon 2021. Data Democratization: Making data available & understandable across the organization",
+        "description": "Organized by Product School and structured around the hottest topics in Product Management, ProductCon takes place online four times per year and gathers over 15,000 product professionals from all over the world. You’ll learn from inspirational Heads of Product, VPs, and CPOs from tech giants such as Amazon, Netflix, Spotify, and more.",
+        "imageUrl": "https://i.imgur.com/00IE9Va.png",
+        "eventStart": "2024-06-15T09:00:00",
+        "eventEnd": "2024-06-15T18:00:00",
+        "registrationStart": "2024-05-15T00:00:00",
+        "registrationEnd": "2024-06-01T23:59:00",
+        "agenda": [
+            "8:45 - DJ Set",
+            "8:55 - Welcome",
+            "9:00 - Networking"
+        ],
+        "price": 10.0,
+        "inviteUrl": null,
+        "addressId": 1,
+        "address": [
+            {
+                "city": "Kaunas",
+                "street": "Juozapaviciaus pr.",
+                "building": "11D",
+                "zip": "45252",
+                "venueName": "Cognizant office"
+            }
+        ],
+        "id": 2,
+        "createdDate": "2024-03-26T18:13:25.2536",
+        "creatorId": 1,
+        "attendees": [
+            {
+                "id": 3,
+                "registrationStatus": null,
+                "paymentStatus": "PAID",
+                "registrationTime": "2024-04-01T02:00:00",
+                "isNewNotification": null,
+                "user": {
+                    "id": 2,
+                    "firstName": "Jane",
+                    "lastName": "Smith",
+                    "jobTitle": "Full Stack Developer",
+                    "imageUrl": "https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                }
+            },
+            {
+                "id": 4,
+                "registrationStatus": null,
+                "paymentStatus": "PENDING",
+                "registrationTime": "2024-04-01T02:00:00",
+                "isNewNotification": null,
+                "user": {
+                    "id": 3,
+                    "firstName": "Simon",
+                    "lastName": "Robben",
+                    "jobTitle": "Art Director",
+                    "imageUrl": "https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                }
+            }
+        ],
+        "currentUserRegisteredToEvent": false,
+        "open": true
+    },
+    {
+        "name": "Front-end tuesday virtual meetup: Product-centric funding",
+        "description": "Organized by Product School and structured around the hottest topics in Product Management, ProductCon takes place online four times per year and gathers over 15,000 product professionals from all over the world. You’ll learn from inspirational Heads of Product, VPs, and CPOs from tech giants such as Amazon, Netflix, Spotify, and more.",
+        "imageUrl": "https://angularexperts.imgix.net/workshops/frontend.webp?auto=format",
+        "eventStart": "2024-06-15T09:00:00",
+        "eventEnd": "2024-06-15T18:00:00",
+        "registrationStart": "2024-05-15T00:00:00",
+        "registrationEnd": "2024-06-01T23:59:00",
+        "agenda": [
+            "9:45 - Introduction",
+            "10:55 - Break",
+            "11:00 - Q&A Session"
+        ],
+        "price": null,
+        "inviteUrl": null,
+        "addressId": 2,
+        "address": [
+            {
+                "city": "Vilnius",
+                "street": "Žalgirio g.",
+                "building": "112",
+                "zip": "09300",
+                "venueName": "Cognizant office"
+            }
+        ],
+        "id": 3,
+        "createdDate": "2024-03-26T18:13:25.2536",
+        "creatorId": 1,
+        "attendees": [
+            {
+                "id": 5,
+                "registrationStatus": "ACCEPTED",
+                "paymentStatus": null,
+                "registrationTime": "2024-04-01T03:00:00",
+                "isNewNotification": true,
+                "user": {
+                    "id": 1,
+                    "firstName": "Guy",
+                    "lastName": "Hawkins",
+                    "jobTitle": "Event Organizer",
+                    "imageUrl": "https://i0.wp.com/post.medicalnewstoday.com/wp-content/uploads/sites/3/2020/03/GettyImages-1092658864_hero-1024x575.jpg?w=1155&h=1528"
+                }
+            },
+            {
+                "id": 6,
+                "registrationStatus": "PENDING",
+                "paymentStatus": null,
+                "registrationTime": "2024-04-01T03:00:00",
+                "isNewNotification": true,
+                "user": {
+                    "id": 3,
+                    "firstName": "Simon",
+                    "lastName": "Robben",
+                    "jobTitle": "Art Director",
+                    "imageUrl": "https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                }
+            }
+        ],
+        "currentUserRegisteredToEvent": true,
+        "open": false
+    },
+    {
+        "name": "DevOps saturday",
+        "description": "Organized by Product School and structured around the hottest topics in Product Management, ProductCon takes place online four times per year and gathers over 15,000 product professionals from all over the world. You’ll learn from inspirational Heads of Product, VPs, and CPOs from tech giants such as Amazon, Netflix, Spotify, and more.",
+        "imageUrl": "https://monzo.com/static/images/blog/2016-09-19-building-a-modern-bank-backend/workshop.jpg",
+        "eventStart": "2024-06-15T09:00:00",
+        "eventEnd": "2024-06-15T18:00:00",
+        "registrationStart": "2024-05-15T00:00:00",
+        "registrationEnd": "2024-06-01T23:59:00",
+        "agenda": [
+            "8:45 - DJ Set",
+            "8:55 - Welcome",
+            "9:00 - Networking"
+        ],
+        "price": 5.99,
+        "inviteUrl": "https://zoom.us/",
+        "addressId": null,
+        "address": null,
+        "id": 4,
+        "createdDate": "2024-03-26T18:13:25.2536",
+        "creatorId": 1,
+        "attendees": [
+            {
+                "id": 7,
+                "registrationStatus": "PENDING",
+                "paymentStatus": "PENDING",
+                "registrationTime": "2024-04-01T04:00:00",
+                "isNewNotification": true,
+                "user": {
+                    "id": 3,
+                    "firstName": "Simon",
+                    "lastName": "Robben",
+                    "jobTitle": "Art Director",
+                    "imageUrl": "https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                }
+            },
+            {
+                "id": 8,
+                "registrationStatus": "ACCEPTED",
+                "paymentStatus": "PAID",
+                "registrationTime": "2024-04-01T04:00:00",
+                "isNewNotification": false,
+                "user": {
+                    "id": 4,
+                    "firstName": "Stephan",
+                    "lastName": "Graham",
+                    "jobTitle": "Quality Analyst",
+                    "imageUrl": "https://images.pexels.com/photos/2379005/pexels-photo-2379005.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                }
+            }
+        ],
+        "currentUserRegisteredToEvent": false,
+        "open": false
+    },
+    {
+        "name": "Java 22 Presentaton",
+        "description": "Organized by Product School and structured around the hottest topics in Product Management, ProductCon takes place online four times per year and gathers over 15,000 product professionals from all over the world. You’ll learn from inspirational Heads of Product, VPs, and CPOs from tech giants such as Amazon, Netflix, Spotify, and more.",
+        "imageUrl": "https://i.imgur.com/00IE9Va.png",
+        "eventStart": "2024-12-31T18:00:00",
+        "eventEnd": "2024-12-31T20:00:00",
+        "registrationStart": "2024-12-01T00:00:00",
+        "registrationEnd": "2024-12-30T23:59:59",
+        "agenda": null,
+        "price": null,
+        "inviteUrl": null,
+        "addressId": 3,
+        "address": [
+            {
+                "city": "Warsaw",
+                "street": "ul. NOWOGRODZKA",
+                "building": "50/515",
+                "zip": "00-695",
+                "venueName": "CTS"
+            }
+        ],
+        "id": 5,
+        "createdDate": "2024-04-03T04:31:34.284597",
+        "creatorId": 1,
+        "attendees": [],
+        "currentUserRegisteredToEvent": false,
+        "open": true
+    }
+]

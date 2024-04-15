@@ -45,7 +45,7 @@ const projectTheme = createTheme({
 		},
 
 		body2: {
-			fontSize: '1rem',
+			fontSize: '0.875rem',
 			fontWeight: 400,
 			color: COLORS.MEDIUM_DARK_GRAY
 		},
@@ -269,14 +269,12 @@ const projectTheme = createTheme({
 				img: {
 					borderRadius: '12px',
 					height: '320px',
+					width: '100%',
 					border: `1px solid ${COLORS.BLACK}`,
 
 					'&.my-events': {
 						width: '200px',
 						height: '156px',
-					},
-					'&.event-card': {
-						width: '276px',
 					},
 
 					'&.event-page': {
@@ -288,6 +286,14 @@ const projectTheme = createTheme({
 			},
 		},
 
+		MuiCardContent: {
+			styleOverrides: {
+				root: {
+					margin: '0',
+					padding: '0',
+				}
+			}
+		},
 
 		MuiBreadcrumbs: {
 			styleOverrides: {

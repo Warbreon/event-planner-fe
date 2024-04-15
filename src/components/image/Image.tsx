@@ -2,7 +2,7 @@ import { CardMedia } from '@mui/material';
 import { FC } from 'react';
 
 interface ImageProps {
-	styles: string;
+	styles?: string;
 	imageUrl: string;
 }
 

@@ -1,6 +1,7 @@
 import { TimePicker } from "@mui/x-date-pickers";
 import { useField, useFormikContext } from "formik";
 import styles from './FormikTimePicker.module.css';
+import { TIME_PICKER_STYLES } from "../../../../../themes/styles/TimePicker";
 
 interface Props {
     name: string;
@@ -25,9 +26,9 @@ const FormikTimePicker: React.FC<Props> = ({ name, timePickerClassName, ...props
                 textField: ({ ...params }) => ({
                     helperText: meta.touched && meta.error ? meta.error : params.helperText,
                     error: Boolean(meta.touched && meta.error),
-                    className: timePickerClassName ?? 'time-picker-small',
+                    className: timePickerClassName ?? TIME_PICKER_STYLES.SMALL,
                     inputProps: {
-                        className: timePickerClassName ?? 'time-picker-small',
+                        className: timePickerClassName ?? TIME_PICKER_STYLES.SMALL,
                     }
                 }),
                 inputAdornment: {

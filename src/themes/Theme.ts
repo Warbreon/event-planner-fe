@@ -15,7 +15,7 @@ const projectTheme = createTheme({
 		h1: {
 			fontSize: '2rem',
 			fontWeight: 400,
-			color: 'black',
+			color: COLORS.BLACK,
 
 			'&.event-header' : {
 				marginBottom: '1rem',
@@ -36,7 +36,7 @@ const projectTheme = createTheme({
 		body1: {
 			fontSize: '1rem',
 			fontWeight: 400,
-			color: 'black',
+			color: COLORS.BLACK,
 
 			'&.centered' : {
 				marginTop: '1rem',
@@ -158,7 +158,7 @@ const projectTheme = createTheme({
 		MuiTab: {
 			styleOverrides: {
 				root: {
-					color: 'black',
+					color: COLORS.BLACK,
 					fontFamily: fontFamily,
 					textTransform: 'none',
 					fontSize: '1rem',
@@ -166,7 +166,7 @@ const projectTheme = createTheme({
 					borderRadius: '100px',
 					'&.Mui-selected': {
 						fontWeight: '600',
-						color: 'black',
+						color: COLORS.BLACK,
 					},
 					'&:hover': {
 						background: COLORS.VERY_LIGHT_GRAY,
@@ -183,7 +183,7 @@ const projectTheme = createTheme({
 		MuiTabs: {
 			styleOverrides: {
 				indicator: {
-					backgroundColor: 'black',
+					backgroundColor: COLORS.BLACK,
 					height: '3px',
 				},
 				

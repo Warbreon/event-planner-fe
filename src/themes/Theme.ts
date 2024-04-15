@@ -1,256 +1,307 @@
-import {createTheme} from '@mui/material';
-import {BUTTON_COLORS, INPUT_COLORS} from './Colors';
+import { createTheme } from '@mui/material';
+import { COLORS } from './Colors';
 
 const fontFamily = 'Inter'
 
 const projectTheme = createTheme({
-    typography: {
-        fontFamily: fontFamily,
-        h1: {
-            fontSize: '2rem',
-            fontWeight: 400,
-            color: 'black',
+	palette: {
+		primary: {
+			main: COLORS.BLACK,
+		},
+	},
 
-            '&.event-header': {
-                marginBottom: '1rem',
-                width: '70%',
-            },
+	typography: {
+		fontFamily: fontFamily,
+		h1: {
+			fontSize: '2rem',
+			fontWeight: 400,
+			color: COLORS.BLACK,
 
-            '&.centered': {
-                whiteSpace: 'nowrap',
-                textAlign: 'center'
-            }
-        },
+			'&.event-header' : {
+				marginBottom: '1rem',
+				width: '70%',
+			},
 
-        body1: {
-            fontSize: '1rem',
-            fontWeight: 400,
-            color: 'black',
+			'&.centered' : {
+				whiteSpace: 'nowrap',
+				textAlign: 'center'
+			},
 
-            '&.centered' : {
-                marginTop: '1rem',
-                textAlign: 'center'
-            },
-            '&.gray-font': {
-                color: '#666666',
-            },
-             paddingTop: '0.5rem',
-            paddingBottom: '0.5rem',
-        },
-        body2: {
-            fontSize: '1rem',
-            fontWeight: 400,
-            color: '#666666'
-        },
-    },
+			'&.event-form-section': {
+				lineHeight: '2rem',
+				fontSize: '1.25rem',
+			},
+		},
 
-    components: {
-        MuiButton: {
-            styleOverrides: {
-                root: {
-                    color: BUTTON_COLORS.BLACK,
-                    background: BUTTON_COLORS.WHITE,
-                    fontFamily: fontFamily,
-                    textTransform: 'none',
-                    fontSize: '1rem',
-                    fontWeight: '600',
-                    borderRadius: '100px',
-                    boxShadow: 'none',
-                    width: '100%',
-                    '&:hover': {
-                        boxShadow: 'none',
-                    },
-                    '&:active': {
-                        '& .MuiTouchRipple-root': {
-                            display: 'none',
-                        },
-                    },
+		body1: {
+			fontSize: '1rem',
+			fontWeight: 400,
+			color: COLORS.BLACK,
 
-                    //black button used in sign in, password reset,
-                    //home page - add event and load more
-                    '&.black': {
-                        height: '44px',
-                        color: BUTTON_COLORS.WHITE,
-                        background: BUTTON_COLORS.BLACK,
-                        padding: '14px 32px',
-                        '&:hover': {
-                            background: BUTTON_COLORS.HOVER_BLACK,
-                        },
-                    },
+			'&.centered' : {
+				marginTop: '1rem',
+				textAlign: 'center'
+			},
 
-                    //register, get tickets, add guests,
-                    '&.gray': {
-                        background: BUTTON_COLORS.GRAY,
-                        '&:hover': {
-                            background: BUTTON_COLORS.HOVER_GRAY,
-                        },
-                    },
+			'&.gray-font': {
+				color: '#666666',
+			},
+		},
 
-                    //blue 'going' button
-                    '&.blue': {
-                        color: BUTTON_COLORS.TEXT_BLUE,
-                        background: BUTTON_COLORS.BLUE,
-                        '&:hover': {
-                            background: BUTTON_COLORS.HOVER_BLUE,
-                        },
-                    },
+		body2: {
+			fontSize: '0.875rem',
+			fontWeight: 400,
+			color: COLORS.MEDIUM_DARK_GRAY
+		},
 
-                    //home page header active category
-                    //create event selected pricing, private/public registration
-                    '&.outlined-black-border': {
-                        height: '32px',
-                        border: '2px solid ' + BUTTON_COLORS.BLACK,
-                        '&:hover': {
-                            background: BUTTON_COLORS.HOVER_OUTLINED_BLACK,
-                        },
-                    },
+		subtitle1: {
+			'&.event-form-element': {
+				fontWeight: 400,
+				fontSize: '0.875rem',
+				lineHeight: '1rem',
+				color: COLORS.MEDIUM_DARK_GRAY,
+				marginBottom: '0.5rem',
+			}
+		},
+	},
 
-                    //home page header remaining categories
-                    '&.outlined-gray-regular-text': {
-                        fontWeight: '400',
-                        height: '32px',
-                        border: '1px solid ' + BUTTON_COLORS.OUTLINED_GRAY_BORDER,
-                        '&:hover': {
-                            background: BUTTON_COLORS.HOVER_OUTLINED_GRAY_BORDER,
-                        },
-                    },
+	components: {
+		MuiButton: {
+			styleOverrides: {
+				root: {
+					color: COLORS.BLACK,
+					background: COLORS.WHITE,
+					fontFamily: fontFamily,
+					textTransform: 'none',
+					fontSize: '1rem',
+					fontWeight: '600',
+					borderRadius: '100px',
+					boxShadow: 'none',
+					width: '100%',
+					'&:hover': {
+						boxShadow: 'none',
+					},
+					'&:active': {
+						'& .MuiTouchRipple-root': {
+							display: 'none',
+						},
+					},
 
-                    //edit button in my events
-                    //add guests in event page header
-                    //cancel button
-                    '&.outlined-gray-border': {
-                        border: '1px solid ' + BUTTON_COLORS.OUTLINED_GRAY_BORDER,
-                        '&:hover': {
-                            background: BUTTON_COLORS.HOVER_OUTLINED_GRAY_BORDER,
-                        },
-                    },
+					//black button used in sign in, password reset,
+					//home page - add event and load more
+					'&.black': {
+						height: '44px',
+						color: COLORS.WHITE,
+						background: COLORS.BLACK,
+						padding: '14px 32px',
+						'&:hover': {
+							background: COLORS.HOVER_BLACK,
+						},
+					},
 
-                    // [+] button in event guests section
-                    // [+] button in my event created by me
-                    '&.light-gray': {
-                        borderRadius: '12px',
-                        background: BUTTON_COLORS.LIGHT_GRAY,
-                        '&:hover': {
-                            background: BUTTON_COLORS.HOVER_LIGHT_GRAY,
-                        },
-                    },
-                },
-            },
-        },
+					//register, get tickets, add guests,
+					'&.gray': {
+						background: COLORS.GRAY,
+						'&:hover': {
+							background: COLORS.HOVER_GRAY,
+						},
+					},
 
-        MuiTab: {
-            styleOverrides: {
-                root: {
-                    color: 'black',
-                    fontFamily: fontFamily,
-                    textTransform: 'none',
-                    fontSize: '1rem',
-                    fontWeight: '400',
-                    borderRadius: '100px',
-                    '&.Mui-selected': {
-                        fontWeight: '600',
-                        color: 'black',
-                    },
-                    '&:hover': {
-                        background: '#ebebeb',
-                    },
-                    '&:active': {
-                        '& .MuiTouchRipple-root': {
-                            display: 'none',
-                        },
-                    },
-                },
-            },
-        },
+					//blue 'going' button
+					'&.blue': {
+						color: COLORS.TEXT_BLUE,
+						background: COLORS.BLUE,
+						'&:hover': {
+							background: COLORS.HOVER_BLUE,
+						},
+					},
 
-        MuiTabs: {
-            styleOverrides: {
-                indicator: {
-                    backgroundColor: 'black',
-                    height: '3px',
-                },
+					//home page header active category
+					//create event selected pricing, private/public registration
+					'&.outlined-black-border': {
+						height: '32px',
+						border: '2px solid ' + COLORS.BLACK,
+						'&:hover': {
+							background: COLORS.HOVER_OUTLINED_BLACK,
+						},
+					},
 
-            },
-        },
+					//home page header remaining categories
+					'&.outlined-gray-regular-text': {
+						fontWeight: '400',
+						height: '32px',
+						border: '1px solid ' + COLORS.GRAY_BORDER,
+						'&:hover': {
+							background: COLORS.HOVER_OUTLINED_GRAY_BORDER,
+						},
+					},
 
-        MuiOutlinedInput: {
-            styleOverrides: {
-                root: {
-                    fontFamily: fontFamily,
+					//edit button in my events
+					//add guests in event page header
+					//cancel button
+					'&.outlined-gray-border': {
+						border: '1px solid ' + COLORS.GRAY_BORDER,
+						'&:hover': {
+							background: COLORS.HOVER_OUTLINED_GRAY_BORDER,
+						},
+					},
 
-                    fontSize: '1rem',
-                    color: 'black',
-                    borderRadius: '8px',
-                    borderWidth: '1px',
-                    height: '40px',
-                    '&:hover .MuiOutlinedInput-notchedOutline, &.Mui-focused .MuiOutlinedInput-notchedOutline': {
-                        borderColor: INPUT_COLORS.GRAY_BORDER,
-                        borderWidth: '2px',
-                    },
-                    '&.Mui-error .MuiOutlinedInput-notchedOutline': {
-                        borderColor: INPUT_COLORS.ERROR,
-                    },
-                    '& input::placeholder': {
-                        color: INPUT_COLORS.PLACEHOLDER,
-                        fontWeight: 400,
-                    },
-                },
-            },
-        },
+					// [+] button in event guests section
+					// [+] button in my event created by me
+					'&.light-gray': {
+						borderRadius: '12px',
+						background: COLORS.LIGHT_GRAY,
+						'&:hover': {
+							background: COLORS.HOVER_LIGHT_GRAY,
+						},
+					},
+				},
+			},
+		},
 
-        MuiTextField: {
-            defaultProps: {
-                InputLabelProps: {
-                    shrink: true,
-                },
-            },
-            styleOverrides: {
-                root: {
-                    width: '100%',
-                }
-            }
-        },
+		MuiTab: {
+			styleOverrides: {
+				root: {
+					color: COLORS.BLACK,
+					fontFamily: fontFamily,
+					textTransform: 'none',
+					fontSize: '1rem',
+					fontWeight: '400',
+					borderRadius: '100px',
+					'&.Mui-selected': {
+						fontWeight: '600',
+						color: COLORS.BLACK,
+					},
+					'&:hover': {
+						background: COLORS.VERY_LIGHT_GRAY,
+					},
+					'&:active': {
+						'& .MuiTouchRipple-root': {
+							display: 'none',
+						},
+					},
+				},
+			},
+		},
 
-        MuiInputLabel: {
-            styleOverrides: {
-                root: {
-                    fontFamily: fontFamily,
-                },
-            },
-        },
-        MuiCardMedia: {
-            styleOverrides: {
-                img: {
-                    borderRadius: '12px',
-                    height: '320px',
-                    border: '1px solid #DDDDDD',
+		MuiTabs: {
+			styleOverrides: {
+				indicator: {
+					backgroundColor: COLORS.BLACK,
+					height: '3px',
+				},
+				
+			},
+		},
 
-                    '&.my-events': {
-                        width: '200px',
-                        height: '156px',
-                    },
-                    '&.event-card': {
-                        width: '276px',
-                    },
+		MuiOutlinedInput: {
+			styleOverrides: {
+				root: {
+					fontFamily: fontFamily,
+				
+					fontSize: '1rem',
+					color: 'black',
+					borderRadius: '8px',
+					borderWidth: '1px',
+					height: '40px',
+					'&:hover .MuiOutlinedInput-notchedOutline, &.Mui-focused .MuiOutlinedInput-notchedOutline': {
+						borderColor: COLORS.GRAY_BORDER,
+						borderWidth: '2px',
+					},
+					'&.Mui-error .MuiOutlinedInput-notchedOutline': {
+						borderColor: COLORS.ERROR,
+					},
+					'& input::placeholder': {
+						color: COLORS.PLACEHOLDER,
+						fontWeight: 400,
+					},
+				},
+			},
+		},
 
-                    '&.event-page': {
-                        width: '100%',
-                        marginTop: '1rem',
-                        marginBottom: '2rem',
-                    },
-                },
-            },
-        },
+		MuiTextField: {
+			defaultProps: {
+				InputLabelProps: {
+					shrink: true,
+				},
+			},
+			styleOverrides: {
+				root: {
+					width: '100%',
+				}
+			}
+		},
+
+		MuiFormControl: {
+			styleOverrides: {
+				root: {
+					'&.date-picker': {
+						width: '15.25rem',
+					},
+					'&.time-picker-small': {
+						width: '6.25rem',
+					},
+					'&.time-picker-big': {
+						width: '7.5rem',
+					},
+				}
+			}
+		},
+
+		MuiInputBase: {
+			styleOverrides: {
+				input: {
+					'&.date-picker, &.time-picker-small , &.time-picker-big': {
+						fontFamily: fontFamily,
+						fontWeight: 400,
+						fontSize: '0.875rem',
+						lineHeight: '1rem',
+					},
+				},
+			},
+		},
+
+		MuiInputLabel: {
+			styleOverrides: {
+				root: {
+					fontFamily: fontFamily,
+				},
+			},
+		},
+		MuiCardMedia: {
+			styleOverrides: {
+				img: {
+					borderRadius: '12px',
+					height: '320px',
+					width: '100%',
+					border: `1px solid ${COLORS.BLACK}`,
+
+					'&.my-events': {
+						width: '200px',
+						height: '156px',
+					},
+					'&.event-card': {
+						width: '276px',
+					},
+
+					'&.event-page': {
+						width: '100%',
+						marginTop: '1rem',
+						marginBottom: '2rem',
+					},
+				},
+			},
+		},
 
 
-        MuiBreadcrumbs: {
-            styleOverrides: {
-                root: {
-                    marginBottom: '5rem'
-                }
-            }
-        }
-    },
+		MuiBreadcrumbs: {
+			styleOverrides: {
+				root: {
+					marginBottom: '5rem'
+				}
+			}
+		}
+	},
 
 });
 

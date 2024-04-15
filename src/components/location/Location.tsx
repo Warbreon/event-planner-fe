@@ -5,10 +5,11 @@ import classNames from "classnames";
 import styles from '../event-header/EventHeader.module.css';
 import {EventFiltersState} from "../../pages/explore-events/eventFiltersInterface";
 import {LocationTypeInterface} from "./locationTypeInterface";
-import FormikTextField from "../../shared/forms/elements/formikElements/TextField/FormikTextField";
+import FormikTextField from "../../shared/forms/elements/formik-elements/text-field/FormikTextField";
 import Autocomplete from '@mui/material/Autocomplete';
 import {Box} from "@mui/material";
 import useLocationVM from './LocationsVm';
+import {useField} from "formik";
 
 interface Props {
     handleFiltersChange: (filters: Partial<EventFiltersState>) => void;
@@ -35,6 +36,7 @@ const mockResponse = [
 const locations = mockResponse.map(location => location.venueName + ', ' + location.street + ' ' + location.building + ', ' + location.city);
 
 const Location: React.FC<Props> = ({handleFiltersChange, filters}) => {
+
     const {handleSearchInputChange} = useLocationVM();
     const [placeholder, setPlaceholder] = useState("Search for a venue...");
     const [searchText, setSearchText] = useState('');
@@ -50,7 +52,9 @@ const Location: React.FC<Props> = ({handleFiltersChange, filters}) => {
                 setPlaceholder("Search for a physical location...");
                 break;
             case 'online':
+
                 setPlaceholder("Enter link to Zoom, Hangouts or other platform...");
+                setSearchText('')
                 break;
             case 'tbd':
                 setPlaceholder("Enter TBD details...");
@@ -63,7 +67,11 @@ const Location: React.FC<Props> = ({handleFiltersChange, filters}) => {
     const getChipClassName = (isSelected: boolean) => {
         return classNames(styles.tagFilter, {[styles.tagFilterSelected]: isSelected});
     };
-
+    const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const { value } = event.target;
+        setSearchText(value);
+        handleSearchInputChange(event);
+    };
     return (
         <div>
             <Typography variant={'h6'} mb={2}>Locations</Typography>
@@ -79,11 +87,10 @@ const Location: React.FC<Props> = ({handleFiltersChange, filters}) => {
                     getChipClassName={getChipClassName}
                 />
             </div>
-            <Box mt={2}>
+            <Box mt={2} >
                 {key === 'physical' && (
                     <Autocomplete
                         options={locations}
-                        freeSolo
                         renderInput={(params) => (
                             <FormikTextField
                                 {...params}
@@ -103,15 +110,15 @@ const Location: React.FC<Props> = ({handleFiltersChange, filters}) => {
                         onChange={(event, value) => setSearchText(value || '')}
                     />
                 )}
-                {(key !== 'physical') && (
+                {(key === 'online') && (
                     <FormikTextField
                         name="physical"
                         type="text"
-                        title="Venue"
+                        title="Link to a virtual event"
                         placeholder={placeholder}
                         value={searchText}
                         titleClassName={"gray-font"}
-                        onChange={handleSearchInputChange}
+                        onChange={handleInputChange}
                     />
                 )}
             </Box>

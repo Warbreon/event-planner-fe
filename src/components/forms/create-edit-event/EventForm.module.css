@@ -35,7 +35,6 @@
 .mainFormContainer {
     background-color: #FFFFFF;
     width: 51.5rem;
-    min-height: 25rem;
     border-radius: 0.75rem;
     z-index: 1;
     padding: 2.5rem 3rem 0rem 3rem;
@@ -74,4 +73,11 @@
     margin-top: 4rem;
     margin-bottom: -2rem;
     width: 50rem;
+}
+
+.mainFormContainer .divider {
+    margin-top: 3rem;
+    margin-bottom: 1.5rem;
+    color: #DDDDDD;
+    height: 1px;
 }

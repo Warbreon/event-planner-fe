@@ -31,6 +31,7 @@ const EventForm = () => {
             buttonStyles={styles.uploadButton}
           />
           <div className={styles.mainFormContainer}>
+            <Divider className={styles.divider} />
             <DateAndTimeSection />
             <Divider className={styles.divider} />
           </div>

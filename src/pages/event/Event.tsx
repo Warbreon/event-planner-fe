@@ -10,7 +10,6 @@ import EventPageGuests from '../../components/guest-list/event-page/EventPageGue
 import GenericButton, { ButtonTypes, IconButton } from '../../components/buttons/ButtonComponent';
 import { BUTTON_STYLES } from '../../themes/styles/Button';
 import EventPageVM from './EventPageVM';
-import React from 'react';
 
 const Event = () => {
 	const { onAddGuestsClick, onEventRegistrationClick, event, location, eventDate, startTime, endTime, duration } =

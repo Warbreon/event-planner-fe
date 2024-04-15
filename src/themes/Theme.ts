@@ -120,16 +120,6 @@ const projectTheme = createTheme({
 							background: BUTTON_COLORS.HOVER_OUTLINED_GRAY_BORDER,
 						},
 					},
-
-					// [+] button in event guests section
-					'&.light-gray-box': {
-						borderRadius: '12px',
-						height: '80px',
-						background: '#F7F7F7',
-						'&:hover': {
-							background: BUTTON_COLORS.HOVER_LIGHT_GRAY,
-						},
-					},
 					// [+] button in my event created by me
 					'&.light-gray': {
 						borderRadius: '12px',
@@ -138,13 +128,22 @@ const projectTheme = createTheme({
 							background: BUTTON_COLORS.HOVER_LIGHT_GRAY,
 						},
 					},
+					// [+] button in event guests section
+					'&.light-gray-box': {
+						borderRadius: '12px',
+						height: '80px',
+						background: BUTTON_COLORS.LIGHT_GRAY,
+						'&:hover': {
+							background: BUTTON_COLORS.HOVER_LIGHT_GRAY,
+						},
+					},
 					// confirm button in event guests section
 					'&.light-gray-round-small': {
-						height: '2rem',
+						height: '32px',
 						width: '103px',
 						gap:'10px',
 						padding: '8px 24px 8px 24px',
-						borderRadius: '6.25rem',
+						borderRadius: '100px',
 						border: '1px solid ' + BUTTON_COLORS.OUTLINED_GRAY_BORDER,
 						'&:hover': {
 							background: BUTTON_COLORS.HOVER_LIGHT_GRAY,
@@ -246,6 +245,20 @@ const projectTheme = createTheme({
 							},
 						},
 					},
+					'&.event-search-bar': {
+						fontFamily: 'Inter',
+						'& fieldset ': {
+							border: 'none',
+						},
+						'& input': {
+							fontSize: '0.875rem',
+							fontWeight: 400,
+							lineHeight: '1.5rem',
+							'&::placeHolder ': {
+								color: '#999999',
+							},
+						},
+					},
 					'&.guest-registration-status': {
 						width: '6rem',
 						height: '1.5rem',
@@ -276,6 +289,9 @@ const projectTheme = createTheme({
 					'&.guest-bar-search-icon ': {
 						position: 'absolute',
 						pointerEvents: 'none',
+						color: '#999999',
+					},
+					'&.event-bar-search-icon ': {
 						color: '#999999',
 					},
 				},

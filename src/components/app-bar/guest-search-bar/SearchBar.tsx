@@ -1,15 +1,13 @@
-import React from 'react'
-import SearchIcon from '@mui/icons-material/Search';
+import React, {ReactNode} from 'react'
 import {InputAdornment, TextField, TextFieldProps} from "@mui/material";
-import {ICON_STYLES} from "../../../themes/styles/Icon";
 
 type Props = TextFieldProps & {
-    style: string;
-    onChange?: () => void;
+    styles: string;
+    children?: ReactNode;
 }
 const SearchBar: React.FC<Props> = ({
-    style,
-    onChange,
+    styles,
+    children,
     ...props
  }) => {
     return (
@@ -17,12 +15,11 @@ const SearchBar: React.FC<Props> = ({
             InputProps={{
                 startAdornment: (
                     <InputAdornment position="start">
-                        <SearchIcon className={ICON_STYLES.GUEST_SEARCH_BAR}/>
+                        {children}
                     </InputAdornment>
                 ),
             }}
-            className={style}
-            onChange={onChange}
+            className={styles}
             {...props}
         />
     )

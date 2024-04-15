@@ -151,6 +151,7 @@ const projectTheme = createTheme({
 					},
 					// [+] button in event guests section
 					'&.light-gray-box': {
+						marginTop: '8px',
 						borderRadius: '12px',
 						height: '80px',
 						background: COLORS.LIGHT_GRAY,
@@ -250,6 +251,8 @@ const projectTheme = createTheme({
 					width: '100%',
 					'&.guest-search-bar': {
 						paddingRight: '0.25rem',
+						marginTop: '0.5rem',
+						marginBottom: '1.5rem',
 						borderRadius: '6.25rem',
 						height: '2.5rem',
 						border: '1px solid #DDDDDD',

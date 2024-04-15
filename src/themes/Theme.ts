@@ -153,9 +153,9 @@ const projectTheme = createTheme({
 					'&.light-gray-box': {
 						borderRadius: '12px',
 						height: '80px',
-						background: BUTTON_COLORS.LIGHT_GRAY,
+						background: COLORS.LIGHT_GRAY,
 						'&:hover': {
-							background: BUTTON_COLORS.HOVER_LIGHT_GRAY,
+							background: COLORS.HOVER_LIGHT_GRAY,
 						},
 					},
 					// confirm button in event guests section
@@ -165,9 +165,9 @@ const projectTheme = createTheme({
 						gap:'10px',
 						padding: '8px 24px 8px 24px',
 						borderRadius: '100px',
-						border: '1px solid ' + BUTTON_COLORS.OUTLINED_GRAY_BORDER,
+						border: '1px solid ' + COLORS.GRAY_BORDER,
 						'&:hover': {
-							background: BUTTON_COLORS.HOVER_LIGHT_GRAY,
+							background: COLORS.HOVER_LIGHT_GRAY,
 						},
 					},
 					// decline button in event guests section (modification)

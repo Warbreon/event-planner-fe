@@ -22,7 +22,7 @@ const EventForm = () => {
       </div>
       <Form
         initialValues={initialValues}
-        validationSchema={eventFormSchema}
+        //validationSchema={eventFormSchema}
         onSubmit={onSubmit}
       >
         <div className={styles.formContainer}>

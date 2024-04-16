@@ -1,21 +1,25 @@
 import { FC, useState, SyntheticEvent } from 'react';
+import { Box, Tab, Tabs } from '@mui/material';
 import { Attendee } from '../../../models/Attendee';
-import {Box, Tab, Tabs} from '@mui/material';
 import TabPanel from '../tab-panel/TabPanel';
 import styles from './TabComponent.module.css';
+import AboutEvent from '../../about-event/AboutEvent';
 import EventPageGuestListPanel from "../tab-panel/event-page-guest-list-panel/EventPageGuestListPanel";
 
 interface TabsProps {
-	aboutEvent: string;
+	description: string;
+	tags: string[];
+	agenda: string[] | null;
 	attendees: Attendee[];
 }
 
-const TabComponent: FC<TabsProps> = ({ aboutEvent, attendees }) => {
+const TabComponent: FC<TabsProps> = ({ description, tags, agenda, attendees }) => {
 	const [value, setValue] = useState(0);
 	const handleTabChange = (event: SyntheticEvent, newValue: number) => {
 		setValue(newValue);
 	};
 	const guestsTabLabel = `Guests (${attendees.length})`;
+
 	return (
 		<Box>
 			<Box className={styles.tabsBox}>
@@ -25,7 +29,7 @@ const TabComponent: FC<TabsProps> = ({ aboutEvent, attendees }) => {
 				</Tabs>
 			</Box>
 			<TabPanel index={0} value={value}>
-				Detais (Justinas add about here)
+				<AboutEvent description={description} eventTags={tags} agenda={agenda} attendees={attendees} />
 			</TabPanel>
 			<TabPanel index={1} value={value}>
 				<EventPageGuestListPanel attendees={attendees}/>

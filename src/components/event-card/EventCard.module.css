@@ -1,0 +1,26 @@
+.content .name {
+  height: 78px;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.container .card {
+  width: 276px;
+  height: 544px;
+  margin-top: 8px;
+  overflow: hidden;
+  border: none;
+  box-shadow: none;
+}
+
+.dateLocationPrice {
+  margin-top: 12px;
+  margin-bottom: 8px;
+}
+
+.guests {
+  margin-bottom: 16px;
+}

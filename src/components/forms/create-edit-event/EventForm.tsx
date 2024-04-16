@@ -1,12 +1,13 @@
 import GenericButton, { ButtonTypes } from '../../buttons/ButtonComponent';
 import Form from '../../../shared/forms/formik/Form'
-import FormikDropzone from '../../../shared/forms/elements/formikElements/FileUpload/FormikDropzone'
+import FormikDropzone from '../../../shared/forms/elements/formik-elements/file-upload/FormikDropzone';
 import { BUTTON_STYLES } from '../../../themes/styles/Button';
-import { eventFormSchema } from '../../../utils/schemas/eventFormSchema';
+import { eventFormSchema } from '../../../utils/schemas/EventFormSchema';
 import styles from './EventForm.module.css';
 import EventFormVM from './EventFormVM';
 import PageHeader from '../../headers/page-headers/PageHeader';
 import Details from '../create-edit-event/details/Details';
+import DateAndTimeSection from './date-and-time-section/DateAndTimeSection';
 import { Divider } from '@mui/material';
 
 const EventForm = () => {
@@ -32,6 +33,8 @@ const EventForm = () => {
           />
           <div className={styles.mainFormContainer}>
             <Details />
+            <Divider className={styles.divider} />
+            <DateAndTimeSection />
             <Divider className={styles.divider} />
           </div>
           <div className={styles.buttonsContainer}>

@@ -1,0 +1,83 @@
+.eventMainImage {
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.4) 100%);
+    width: 61rem;
+    height: 17rem;
+    border-radius: 0.75rem;
+    top: 4rem;
+}
+
+.formContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 17.5rem;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.formContainer .uploadButton {
+    bottom: 1.25rem;
+    right: 1rem;
+    position: absolute;
+    height: 2.75rem;
+    width: 2.75rem;
+    background-color: #FFFFFF3D;
+}
+
+.uploadButton svg {
+    color: #FFFFFF;
+}
+
+.mainFormContainer {
+    background-color: #FFFFFF;
+    width: 51.5rem;
+    border-radius: 0.75rem;
+    z-index: 1;
+    padding: 2.5rem 3rem 0rem 3rem;
+}
+
+.buttonsContainer {
+    display: flex;
+    height: 2.5rem;
+    gap: 10px;
+    align-self: flex-end;
+    padding-right: 7.75rem;
+}
+
+.buttonsContainer .submitButton {
+    color: #FFFFFF;
+    background-color: #000000;
+    height: 2.5rem;
+    font-size: 0.875rem;
+    line-height: 1rem;
+    padding: 0.75rem 2rem 0.75rem 2rem;
+    width: auto;
+}
+
+.buttonsContainer .cancelButton {
+    height: 2.5rem;
+    padding: 0.75rem 2rem 0.75rem 2rem;
+    width: auto;
+}
+
+.buttonsContainer .submitButton:hover {
+    background-color: #000000;
+    box-shadow: none;
+}
+
+.pageHeader {
+    margin-top: 4rem;
+    margin-bottom: -2rem;
+    width: 50rem;
+}
+
+.mainFormContainer .divider {
+    margin-top: 3rem;
+    margin-bottom: 1.5rem;
+    color: #DDDDDD;
+    height: 1px;
+}

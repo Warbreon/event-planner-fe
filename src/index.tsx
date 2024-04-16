@@ -5,15 +5,19 @@ import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { store } from './redux/store/Store';
 import { ThemeProvider } from '@emotion/react';
+import { LocalizationProvider } from '@mui/x-date-pickers';
+import { AdapterMoment } from '@mui/x-date-pickers/AdapterMoment';
 import projectTheme from './themes/Theme';
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 root.render(
-	<Provider store={store}>
-		<BrowserRouter>
-			<ThemeProvider theme={projectTheme}>
-				<App />
-			</ThemeProvider>
-		</BrowserRouter>
-	</Provider>
+	<LocalizationProvider dateAdapter={AdapterMoment}>
+		<Provider store={store}>
+			<BrowserRouter>
+				<ThemeProvider theme={projectTheme}>
+					<App />
+				</ThemeProvider>
+			</BrowserRouter>
+		</Provider>
+	</LocalizationProvider>
 );

@@ -2,20 +2,18 @@
 import { Event } from '../../models/Event';
 import { calculateDuration, formatDate, formatTime } from '../../utils/DateConverter';
 
-const EventPageVM = (event: Event) => {
-	const { eventStart = '', eventEnd = '', inviteUrl = '', address = '' } = event;
+const EventPageVM = (event: Partial<Event>) => {
+	const { eventStart = '', eventEnd = '', inviteUrl, address } = event;
 	const eventDate = formatDate(eventStart).toString();
 	const startTime = formatTime(eventStart);
 	const endTime = formatTime(eventEnd);
 	const duration = calculateDuration(eventStart, eventEnd);
 	
-	let location;
+	let location = 'TBD';
 	if (inviteUrl && !address) {
 		location = 'Online';
 	} else if (!inviteUrl && address) {
 		location = address.city;
-	} else {
-		location = 'TBD';
 	}
 
 

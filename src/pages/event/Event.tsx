@@ -23,8 +23,8 @@ const Event = () => {
 	const eventViewModel = EventPageVM(event);
 	const { onAddGuestsClick, onEventRegistrationClick, location, eventDate, startTime, endTime, duration } =
 		eventViewModel;
-	const { name = '', inviteUrl = '', address = null, imageUrl = '', attendees = [], price = 0 } = event;
-	return ( 
+	const { name, inviteUrl, address, imageUrl, attendees = [], price = 0 } = event;
+	return (
 		<Container className={styles.eventContainer}>
 			<BreadCrumbComponent eventName={name} />
 			<Grid container spacing={2} className={styles.gridContainer}>

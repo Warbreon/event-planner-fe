@@ -1,6 +1,6 @@
 import { Moment } from "moment";
 
-export const formatDate = (date: Date): string => {
+export const formatDate = (date: string): string => {
 	const options: Intl.DateTimeFormatOptions = { year: 'numeric', month: 'long', day: 'numeric' };
 	return new Date(date).toLocaleDateString('en-US', options)
 };

@@ -2,6 +2,7 @@ import { Avatar, AvatarGroup, Typography } from "@mui/material";
 import { FC } from "react";
 import { Attendee } from "../../models/Attendee";
 import styles from "./GuestList.module.css";
+import { filterAttendees } from "./GuestListVM";
 
 interface GuestListProps {
   attendees: Attendee[];
@@ -10,12 +11,13 @@ interface GuestListProps {
 const MAX_DISPLAYED_AVATARS = 5;
 
 const GuestList: FC<GuestListProps> = ({ attendees }) => {
-  const extraGuestCount = attendees.length - MAX_DISPLAYED_AVATARS;
+  const filteredAttendees = filterAttendees(attendees);
+  const extraGuestCount = filteredAttendees.length - MAX_DISPLAYED_AVATARS;
 
   return (
     <div className={styles.guestListContainer}>
       <AvatarGroup>
-        {attendees
+        {filteredAttendees
           .slice(0, MAX_DISPLAYED_AVATARS)
           .map((guest: Attendee, index: number) => (
             <Avatar

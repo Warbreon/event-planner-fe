@@ -42,7 +42,6 @@ const projectTheme = createTheme({
 		h3: {
 			fontSize: '1rem',
 			fontWeight: 400,
-			textAlign: 'center',
 		},
 
 		body1: {

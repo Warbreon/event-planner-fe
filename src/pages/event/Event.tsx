@@ -19,7 +19,7 @@ const Event = () => {
 		<Container className={styles.eventContainer}>
 			<BreadCrumbComponent eventName={name} />
 			<Grid container spacing={2} className={styles.gridContainer}>
-				<Grid item xs={9} className={styles.gridItem}>
+				<Grid item xs={8} className={styles.gridItem}>
 					<Box component='section' className={styles.desciption}>
 						<DateLocationPrice date={eventDate} location={location} />
 						<PageHeader text={name} variant={HeaderVariant.EVENT_PAGE} />

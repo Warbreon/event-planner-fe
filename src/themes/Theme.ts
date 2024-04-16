@@ -55,9 +55,10 @@ const projectTheme = createTheme({
 			},
 			'&.gray-font': {
 				color: COLORS.MEDIUM_DARK_GRAY,
+				fontSize: '0.875rem',
+				lineHeight: '1rem',
+				marginBottom: '0.5rem',
 			},
-			paddingTop: '0.5rem',
-			paddingBottom: '0.5rem',
 		},
 		body2: {
 			fontSize: '0.875rem',
@@ -368,7 +369,7 @@ const projectTheme = createTheme({
 			styleOverrides: {
 			  	root: {
 					width: '100%',
-					color: 'black',
+					color: COLORS.BLACK,
 					borderRadius: '8px',
 					fontFamily: fontFamily,
 					borderColor: COLORS.GRAY_BORDER,

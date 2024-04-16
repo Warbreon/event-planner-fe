@@ -1,7 +1,8 @@
 import FormikTextField from "../../../../shared/forms/elements/formik-elements/text-field/FormikTextField";
 import FormikDropdown from "../../../../shared/forms/elements/formikElements/Dropdown/FormikDropdown";
+import PageHeader from "../../../headers/page-headers/PageHeader";
 import styles from "./Details.module.css";
-import { Container, Typography } from "@mui/material";
+import { Typography } from "@mui/material";
 
 const eventTagsOptions = [
   { key: "news", label: "News & Updates" },
@@ -13,8 +14,12 @@ const eventTagsOptions = [
 
 const Details = () => {
   return (
-    <Container className={styles.container}>
-      <Typography variant="h2">Details</Typography>
+    <div className={styles.container}>
+      <PageHeader
+        text='Details'
+        className='event-form-section'
+      />
+        <div className={styles.textField}>
         <FormikTextField
           name="eventName"
           type="text"
@@ -22,6 +27,8 @@ const Details = () => {
           placeholder="Enter short descriptive event title"
           titleClassName={"gray-font"}
         />
+        </div>
+        <div className={styles.dropdown}>
         <FormikDropdown
           name="eventTag"
           label="Event Type"
@@ -30,7 +37,8 @@ const Details = () => {
             label: option.label,
           }))}
         />
-    </Container>
+        </div>
+    </div>
   );
 };
 

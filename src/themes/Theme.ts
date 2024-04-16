@@ -47,7 +47,7 @@ const projectTheme = createTheme({
 				textAlign: 'center'
 			},
 			'&.gray-font': {
-				color: '#666666',
+				color: COLORS.MEDIUM_DARK_GRAY,
 			},
 			paddingTop: '0.5rem',
 			paddingBottom: '0.5rem',
@@ -203,7 +203,7 @@ const projectTheme = createTheme({
 					fontFamily: fontFamily,
 				
 					fontSize: '1rem',
-					color: 'black',
+					color: COLORS.BLACK,
 					borderRadius: '8px',
 					borderWidth: '1px',
 					height: '40px',
@@ -318,10 +318,10 @@ const projectTheme = createTheme({
 					fontFamily: fontFamily,
 					borderColor: COLORS.GRAY_BORDER,
 					'&.Mui-focused .MuiOutlinedInput-notchedOutline': {
-				  		borderColor: "#DDDDDD",
+				  		borderColor: COLORS.GRAY_BORDER,
 					},
 					'.MuiSelect-icon': {
-				  		color: 'black',
+				  		color: COLORS.BLACK,
 				  		marginRight: '1rem',
 					},
 			  	},
@@ -335,7 +335,7 @@ const projectTheme = createTheme({
 			  	root: {
 					width: '100%',
 					'&:hover': {
-				  		backgroundColor: '#eeeeee',
+				  		backgroundColor: COLORS.HOVER_VERY_LIGHT_GRAY,
 					},
 					'&.Mui-focusVisible': {
 				  		backgroundColor: COLORS.GRAY_BORDER,
@@ -352,7 +352,7 @@ const projectTheme = createTheme({
 			styleOverrides: {
 			  	paper: {
 					borderRadius: '8px',
-					boxShadow: '0.5px 0.5px 10px 0.5px #DDDDDD',
+					boxShadow: `0.5px 0.5px 10px 0.5px ${COLORS.GRAY_BORDER}`,
 			  	},
 			},
 		},

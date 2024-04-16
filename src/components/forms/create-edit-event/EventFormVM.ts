@@ -7,6 +7,8 @@ interface FormValues {
     eventStartTime: Moment | null;
     eventEndDate: Moment | null;
     eventEndTime: Moment | null;
+    eventName: string;
+    eventTag: string;
 }
 
 const EventFormVM = () => {
@@ -18,6 +20,8 @@ const EventFormVM = () => {
         eventStartTime: null,
         eventEndDate: null,
         eventEndTime: null,
+        eventName: '',
+        eventTag: 'news'
     };
 
     const headerText = 'Add new event';

@@ -11,19 +11,19 @@ import DateAndTimeSection from './date-and-time-section/DateAndTimeSection';
 import { Divider } from '@mui/material';
 
 const EventForm = () => {
-  const eventVM = EventFormVM();
+  const { headerText, initialValues, onSubmit, handleCancelOnClick} = EventFormVM();
 
   return (
     <div className={styles.container}>
       <div className={styles.pageHeader}>
         <PageHeader
-          text={eventVM.headerText}
+          text={headerText}
         />
       </div>
       <Form
-        initialValues={eventVM.initialValues}
+        initialValues={initialValues}
         validationSchema={eventFormSchema}
-        onSubmit={eventVM.onSubmit}
+        onSubmit={onSubmit}
       >
         <div className={styles.formContainer}>
           <FormikDropzone
@@ -42,7 +42,7 @@ const EventForm = () => {
               title='Cancel'
               styles={`${BUTTON_STYLES.OUTLINED_GREY_BORDER} ${styles.cancelButton}`}
               type={ButtonTypes.button}
-              onClick={eventVM.handleCancelOnClick}
+              onClick={handleCancelOnClick}
             />
             <GenericButton
               title='Create event'

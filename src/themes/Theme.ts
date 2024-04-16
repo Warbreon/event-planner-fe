@@ -1,7 +1,8 @@
 import { createTheme } from '@mui/material';
 import { COLORS } from './Colors';
+import { BUTTON_STYLES } from './styles/Button';
 
-const fontFamily = 'Inter'
+const fontFamily = 'Inter';
 
 const projectTheme = createTheme({
 	palette: {
@@ -17,14 +18,14 @@ const projectTheme = createTheme({
 			fontWeight: 400,
 			color: COLORS.BLACK,
 
-			'&.event-header' : {
+			'&.event-header': {
 				marginBottom: '1rem',
 				width: '70%',
 			},
 
-			'&.centered' : {
+			'&.centered': {
 				whiteSpace: 'nowrap',
-				textAlign: 'center'
+				textAlign: 'center',
 			},
 
 			'&.event-form-section': {
@@ -33,21 +34,32 @@ const projectTheme = createTheme({
 			},
 		},
 
+		h2: {
+			fontSize: '1.25rem',
+			fontWeight: 400,
+		},
+
+		h3: {
+			fontSize: '1rem',
+			fontWeight: 400,
+			textAlign: 'center',
+		},
+
 		body1: {
 			fontSize: '1rem',
 			fontWeight: 400,
 			color: COLORS.BLACK,
 
-			'&.centered' : {
+			'&.centered': {
 				marginTop: '1rem',
-				textAlign: 'center'
+				textAlign: 'center',
 			},
 		},
 
 		body2: {
 			fontSize: '0.875rem',
 			fontWeight: 400,
-			color: COLORS.MEDIUM_DARK_GRAY
+			color: COLORS.MEDIUM_DARK_GRAY,
 		},
 
 		subtitle1: {
@@ -57,7 +69,7 @@ const projectTheme = createTheme({
 				lineHeight: '1rem',
 				color: COLORS.MEDIUM_DARK_GRAY,
 				marginBottom: '0.5rem',
-			}
+			},
 		},
 	},
 
@@ -151,6 +163,13 @@ const projectTheme = createTheme({
 							background: COLORS.HOVER_LIGHT_GRAY,
 						},
 					},
+
+					'&.text-only': {
+						width: 'auto',
+						'&:hover': {
+							background: BUTTON_STYLES.WHITE,
+						},
+					},
 				},
 			},
 		},
@@ -186,7 +205,6 @@ const projectTheme = createTheme({
 					backgroundColor: COLORS.BLACK,
 					height: '3px',
 				},
-				
 			},
 		},
 
@@ -194,7 +212,7 @@ const projectTheme = createTheme({
 			styleOverrides: {
 				root: {
 					fontFamily: fontFamily,
-				
+
 					fontSize: '1rem',
 					color: 'black',
 					borderRadius: '8px',
@@ -224,8 +242,8 @@ const projectTheme = createTheme({
 			styleOverrides: {
 				root: {
 					width: '100%',
-				}
-			}
+				},
+			},
 		},
 
 		MuiFormControl: {
@@ -240,8 +258,8 @@ const projectTheme = createTheme({
 					'&.time-picker-big': {
 						width: '7.5rem',
 					},
-				}
-			}
+				},
+			},
 		},
 
 		MuiInputBase: {
@@ -291,19 +309,60 @@ const projectTheme = createTheme({
 				root: {
 					margin: '0',
 					padding: '0',
-				}
-			}
+				},
+			},
 		},
 
 		MuiBreadcrumbs: {
 			styleOverrides: {
 				root: {
-					marginBottom: '5rem'
-				}
-			}
-		}
-	},
+					marginBottom: '5rem',
+				},
+			},
+		},
 
+		MuiCard: {
+			styleOverrides: {
+				root: {
+					'&.userCard': {
+						border: '1px solid hsl(0, 0%, 87%)',
+						borderRadius: '0.75rem',
+						width: '11rem',
+						height: '14.5rem',
+					},
+					'&.userCard > .MuiCardContent-root': {
+						display: 'flex',
+						flexDirection: 'column',
+						alignItems: 'center',
+						justifyContent: 'space-around',
+						textAlign: 'center',
+						width: '100%',
+						height: '100%',
+					},
+				},
+			},
+		},
+
+		MuiAvatar: {
+			styleOverrides: {
+				root: {
+					'&.attendeeAvatar': {
+						height: '64px',
+						width: '64px',
+					},
+				},
+			},
+		},
+
+		MuiChip: {
+			styleOverrides: {
+				root: {
+					backgroundColor: '#F4F4F4',
+					marginRight: '10px',
+				},
+			},
+		},
+	},
 });
 
 export default projectTheme;

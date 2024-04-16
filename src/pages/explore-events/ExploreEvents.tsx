@@ -1,4 +1,4 @@
-import { Box, Container, Grid } from '@mui/material';
+import { Box, Container } from '@mui/material';
 import EventHeader from '../../components/event-header/EventHeader';
 import ExploreEventsVM from './ExploreEventsViewModel';
 import { EventCard } from '../../components/event-card/EventCard';
@@ -12,7 +12,6 @@ const ExploreEvents = () => {
 	const events = loadEvents();
 
 	return (
-
 		<Container className={styles.container}>
 			<EventHeader filters={filters} handleFiltersChange={handleFiltersChange} />
 			<Box className={styles.eventsContainer}>
@@ -21,15 +20,14 @@ const ExploreEvents = () => {
 				))}
 			</Box>
 			<Box className={styles.loadMore}>
-			<GenericButton
-					title="Load more events"
-					onClick={() => { } }
-					styles={BUTTON_STYLES.BLACK} 
+				<GenericButton
+					title='Load more events'
+					onClick={() => {}}
+					styles={BUTTON_STYLES.BLACK}
 					type={ButtonTypes.button}
-			/>
+				/>
 			</Box>
 		</Container>
-
 	);
 };
 

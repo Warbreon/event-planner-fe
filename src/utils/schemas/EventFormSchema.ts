@@ -11,6 +11,8 @@ export const eventFormSchema = Yup.object().shape({
                 return file ? ['image/jpeg', 'image/jpg', 'image/png'].includes(file.type) : true;
             }
         ),
+    eventName: Yup.string()
+        .required('Event name is required'),
     eventStartDate: Yup.date()
         .required('Start date is required'),
     eventStartTime: Yup.date()

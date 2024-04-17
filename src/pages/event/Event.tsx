@@ -14,19 +14,19 @@ import EventPageVM from './EventPageVM';
 const Event = () => {
 	const { onAddGuestsClick, onEventRegistrationClick, event, location, eventDate, startTime, endTime, duration } =
 		EventPageVM();
-	const { name, inviteUrl, address, imageUrl, attendees, price } = event;
+	const { name, inviteUrl, address, imageUrl, price, description, tags, agenda, attendees } = event;
 	return (
 		<Container className={styles.eventContainer}>
 			<BreadCrumbComponent eventName={name} />
 			<Grid container spacing={2} className={styles.gridContainer}>
-				<Grid item xs={9} className={styles.gridItem}>
+				<Grid item xs={8} className={styles.gridItem}>
 					<Box component='section' className={styles.desciption}>
 						<DateLocationPrice date={eventDate} location={location} />
 						<PageHeader text={name} variant={HeaderVariant.EVENT_PAGE} />
 						<Divider />
 						<EventPageGuests onAddGuests={onAddGuestsClick} />
 						<Image styles='event-page' imageUrl={imageUrl} />
-						<TabComponent aboutEvent='' attendees={attendees} />
+						<TabComponent description={description} tags={tags} agenda={agenda} attendees={attendees} />
 					</Box>
 				</Grid>
 				<Grid item xs={3} className={styles.gridItem}>

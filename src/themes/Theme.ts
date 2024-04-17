@@ -1,7 +1,6 @@
-import { createTheme } from '@mui/material';
-import { COLORS } from './Colors';
-import { BUTTON_STYLES } from './styles/Button';
-import { KeyboardArrowDown } from '@mui/icons-material';
+import {createTheme} from '@mui/material';
+import {COLORS} from './Colors';
+import {BUTTON_STYLES} from './styles/Button';
 
 const fontFamily = 'Inter';
 
@@ -44,22 +43,18 @@ const projectTheme = createTheme({
             fontSize: '1rem',
             fontWeight: 400,
         },
+
         body1: {
             fontSize: '1rem',
             fontWeight: 400,
             color: COLORS.BLACK,
 
-            '&.centered' : {
+            '&.centered': {
                 marginTop: '1rem',
                 textAlign: 'center',
             },
-            '&.gray-font': {
-                color: COLORS.MEDIUM_DARK_GRAY,
-                fontSize: '0.875rem',
-                lineHeight: '1rem',
-                marginBottom: '0.5rem',
-            },
         },
+
         body2: {
             fontSize: '0.875rem',
             fontWeight: 400,
@@ -218,7 +213,7 @@ const projectTheme = createTheme({
                     fontFamily: fontFamily,
 
                     fontSize: '1rem',
-                    color: COLORS.BLACK,
+                    color: 'black',
                     borderRadius: '8px',
                     borderWidth: '1px',
                     height: '40px',
@@ -320,10 +315,11 @@ const projectTheme = createTheme({
         MuiBreadcrumbs: {
             styleOverrides: {
                 root: {
-                    marginBottom: '5rem'
-                }
-            }
+                    marginBottom: '5rem',
+                },
+            },
         },
+
         MuiCard: {
             styleOverrides: {
                 root: {
@@ -365,60 +361,12 @@ const projectTheme = createTheme({
                 },
             },
         },
-        MuiSelect: {
-            styleOverrides: {
-                root: {
-                    width: '100%',
-                    color: COLORS.BLACK,
-                    borderRadius: '8px',
-                    fontFamily: fontFamily,
-                    borderColor: COLORS.GRAY_BORDER,
-                    '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
-                        borderColor: COLORS.GRAY_BORDER,
-                    },
-                    '.MuiSelect-icon': {
-                        color: COLORS.BLACK,
-                        marginRight: '1rem',
-                    },
-                },
-            },
-            defaultProps: {
-                IconComponent: KeyboardArrowDown,
-            },
-        },
-        MuiMenuItem: {
-            styleOverrides: {
-                root: {
-                    width: '100%',
-                    '&:hover': {
-                        backgroundColor: COLORS.HOVER_VERY_LIGHT_GRAY,
-                    },
-                    '&.Mui-focusVisible': {
-                        backgroundColor: COLORS.GRAY_BORDER,
-                    },
-                    '&.Mui-selected': {
-                        backgroundColor: COLORS.GRAY_BORDER,
-                    },
-                    fontFamily: fontFamily,
-                    borderRadius: '10px',
-                },
-            },
-        },
-        MuiMenu: {
-            styleOverrides: {
-                paper: {
-                    borderRadius: '8px',
-                    boxShadow: `0.5px 0.5px 10px 0.5px ${COLORS.GRAY_BORDER}`,
-                },
-            },
-        },
         MuiAutocomplete: {
             styleOverrides: {
                 inputRoot: {
                     '&.MuiOutlinedInput-root': {
                         '& .MuiAutocomplete-input': {
                             padding: '0.5px 4px 7.5px 5px',
-
                         },
                     },
                 },

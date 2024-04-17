@@ -4,6 +4,7 @@ import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import ConfirmationNumberIcon from '@mui/icons-material/ConfirmationNumber';
 import EmailIcon from '@mui/icons-material/Email';
 import AddIcon from '@mui/icons-material/Add';
+import KeyboardArrowRightRoundedIcon from '@mui/icons-material/KeyboardArrowRightRounded';
 import { IconButton } from '../ButtonComponent';
 
 interface IconProps {
@@ -24,6 +25,8 @@ const Icon: FC<IconProps> = ({ icon }) => {
 			return <AddIcon />;
 		case IconButton.ADD_GUESTS:
 			return <AddIcon />;
+		case IconButton.VIEW_ALL_GUESTS:
+			return <KeyboardArrowRightRoundedIcon />;
 	}
 };
 

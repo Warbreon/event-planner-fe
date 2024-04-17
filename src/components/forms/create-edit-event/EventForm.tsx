@@ -11,13 +11,13 @@ import { Divider } from '@mui/material';
 import Media from '../EventForm/media/Media';
 
 const EventForm = () => {
-  const { headerText, initialValues, onSubmit, handleCancelOnClick } = EventFormVM();
+  const { initialValues, onSubmit, handleCancelOnClick } = EventFormVM();
 
   return (
     <div className={styles.container}>
       <div className={styles.pageHeader}>
         <PageHeader
-          text={headerText}
+          text='Add new event'
         />
       </div>
       <Form

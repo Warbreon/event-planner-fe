@@ -22,8 +22,6 @@ const EventFormVM = () => {
         cardUrl: null,
     };
 
-    const headerText = 'Add new event';
-
     const onSubmit = (values: FormValues) => {
         const eventStart = combineDateTime(values.eventStartDate, values.eventStartTime);
         const eventEnd = combineDateTime(values.eventEndDate, values.eventEndTime);
@@ -42,7 +40,7 @@ const EventFormVM = () => {
         console.log('Canceled');
     }
 
-    return { initialValues, headerText, onSubmit, handleCancelOnClick }
+    return { initialValues, onSubmit, handleCancelOnClick }
 }
 
 export default EventFormVM

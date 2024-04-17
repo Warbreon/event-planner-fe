@@ -16,8 +16,8 @@ const Details = () => {
   return (
     <div className={styles.container}>
       <PageHeader
-        text='Details'
-        className='event-form-section'
+        text="Details"
+        className="event-form-section"
       />
         <div className={styles.textField}>
         <FormikTextField

@@ -20,22 +20,24 @@ const Event = () => {
 		return <Container className={styles.eventContainer}>There's no event with id {eventId}</Container>
 	}
 
+	const tags = ['Online', 'Meetup']
+
 	const eventViewModel = EventPageVM(event);
 	const { onAddGuestsClick, onEventRegistrationClick, location, eventDate, startTime, endTime, duration } =
 		eventViewModel;
-	const { name, inviteUrl, address, imageUrl, attendees = [], price = 0 } = event;
+	const { name, inviteUrl, address, imageUrl, attendees = [], price = 0, description, agenda = [] } = event;
 	return (
 		<Container className={styles.eventContainer}>
 			<BreadCrumbComponent eventName={name} />
 			<Grid container spacing={2} className={styles.gridContainer}>
-				<Grid item xs={9} className={styles.gridItem}>
+				<Grid item xs={8} className={styles.gridItem}>
 					<Box component='section' className={styles.desciption}>
 						<DateLocationPrice date={eventDate} location={location} />
 						<PageHeader text={name} variant={HeaderVariant.EVENT_PAGE} />
 						<Divider />
 						<EventPageGuests onAddGuests={onAddGuestsClick} attendees={attendees} />
 						<Image styles='event-page' imageUrl={imageUrl} />
-						<TabComponent aboutEvent='' attendees={attendees} />
+						<TabComponent description={description} tags={tags} agenda={agenda} attendees={attendees} />
 					</Box>
 				</Grid>
 				<Grid item xs={3} className={styles.gridItem}>

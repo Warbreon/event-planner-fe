@@ -25,7 +25,7 @@ const Details = () => {
           type="text"
           title="Event Name"
           placeholder="Enter short descriptive event title"
-          titleClassName={"gray-font"}
+          titleClassName="gray-font"
         />
         </div>
         <div className={styles.dropdown}>

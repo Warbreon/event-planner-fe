@@ -2,7 +2,7 @@ import { Avatar, AvatarGroup, Typography } from "@mui/material";
 import { FC } from "react";
 import { Attendee } from "../../models/Attendee";
 import styles from "./GuestList.module.css";
-import { filterAttendees } from "./GuestListVM";
+import { filterAttendees } from "../../utils/AttendeeFilter";
 
 interface GuestListProps {
   attendees: Attendee[];

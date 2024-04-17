@@ -6,7 +6,6 @@ const EventCardVM = (event: Partial<Event>) => {
   const eventDate = formatDate(eventStart);
 
   let location = "TBD";
-  console.log(`inviteUrl: ${inviteUrl}, address:`, address);
   if (inviteUrl && !address) {
     location = "Online";
   } else if (!inviteUrl && address) {

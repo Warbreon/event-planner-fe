@@ -1,8 +1,13 @@
 
+import { useParams } from 'react-router';
 import { Event } from '../../models/Event';
 import { calculateDuration, formatDate, formatTime } from '../../utils/DateConverter';
+import { useFetchEventById } from '../../api/EventApi';
 
-const EventPageVM = (event: Partial<Event>) => {
+const EventPageVM = () => {
+	const { eventId } = useParams();
+	const { event, error } = useFetchEventById(Number(eventId));
+
 	const { eventStart = '', eventEnd = '', inviteUrl, address } = event;
 	const eventDate = formatDate(eventStart).toString();
 	const startTime = formatTime(eventStart);
@@ -16,11 +21,6 @@ const EventPageVM = (event: Partial<Event>) => {
 		location = address.city;
 	}
 
-
-
-
-	//get event from useNavigate props
-
 	const onAddGuestsClick = () => {
 		console.log('Add guest');
 	};
@@ -29,7 +29,7 @@ const EventPageVM = (event: Partial<Event>) => {
 		console.log('Registed/Get tickets/ Cancel registration');
 	};
 
-	return { onAddGuestsClick, onEventRegistrationClick, event, location, eventDate,  startTime ,endTime, duration};
+	return { onAddGuestsClick, onEventRegistrationClick, event, error, eventId, location, eventDate,  startTime ,endTime, duration};
 };
 
 export default EventPageVM;

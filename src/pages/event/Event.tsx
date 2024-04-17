@@ -10,21 +10,18 @@ import EventPageGuests from '../../components/guest-list/event-page/EventPageGue
 import GenericButton, { ButtonTypes, IconButton } from '../../components/buttons/ButtonComponent';
 import { BUTTON_STYLES } from '../../themes/styles/Button';
 import EventPageVM from './EventPageVM';
-import { useParams } from 'react-router';
-import { useFetchEventById } from '../../api/EventApi';
 
 const Event = () => {
-	const { eventId } = useParams();
-	const { event, error } = useFetchEventById(Number(eventId));
-	if (error) {
-		return <Container className={styles.eventContainer}>There's no event with id {eventId}</Container>
-	}
 
 	const tags = ['Online', 'Meetup']
 
-	const eventViewModel = EventPageVM(event);
-	const { onAddGuestsClick, onEventRegistrationClick, location, eventDate, startTime, endTime, duration } =
-		eventViewModel;
+	const { onAddGuestsClick, onEventRegistrationClick, event, error, eventId, location, eventDate, startTime, endTime, duration } =
+		EventPageVM();
+
+	if (error) {
+		return <Container className={styles.eventContainer}>There's no event with id {eventId}</Container>
+	}
+	
 	const { name, inviteUrl, address, imageUrl, attendees = [], price = 0, description, agenda = [] } = event;
 	return (
 		<Container className={styles.eventContainer}>

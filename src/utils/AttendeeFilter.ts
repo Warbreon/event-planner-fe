@@ -1,4 +1,4 @@
-import { Attendee } from "../../models/Attendee";
+import { Attendee } from "../models/Attendee";
 
 export const filterAttendees = (attendees: Attendee[]): Attendee[] => {
   return attendees.filter(

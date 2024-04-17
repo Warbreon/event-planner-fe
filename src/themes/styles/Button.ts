@@ -6,6 +6,6 @@ export enum BUTTON_STYLES {
 	OUTLINED_GRAY_REGULAR_TEXT = 'outlined-gray-regular-text',
 	OUTLINED_GREY_BORDER = 'outlined-gray-border',
 	LIGHT_GRAY = 'light-gray',
+	UPLOAD_BUTTON = 'upload-button',
 	TEXT_ONLY = 'text-only',
-	WHITE = 'white',
 }

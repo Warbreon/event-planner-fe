@@ -7,6 +7,7 @@ interface FormValues {
     eventStartTime: Moment | null;
     eventEndDate: Moment | null;
     eventEndTime: Moment | null;
+    cardUrl: File | null;
 }
 
 const EventFormVM = () => {
@@ -18,9 +19,8 @@ const EventFormVM = () => {
         eventStartTime: null,
         eventEndDate: null,
         eventEndTime: null,
+        cardUrl: null,
     };
-
-    const headerText = 'Add new event';
 
     const onSubmit = (values: FormValues) => {
         const eventStart = combineDateTime(values.eventStartDate, values.eventStartTime);
@@ -28,6 +28,7 @@ const EventFormVM = () => {
 
         const submitValues = {
             imageUrl: values.imageUrl,
+            cardUrl: values.cardUrl,
             eventStart,
             eventEnd
         };
@@ -39,7 +40,7 @@ const EventFormVM = () => {
         console.log('Canceled');
     }
 
-    return { initialValues, headerText, onSubmit, handleCancelOnClick }
+    return { initialValues, onSubmit, handleCancelOnClick }
 }
 
 export default EventFormVM

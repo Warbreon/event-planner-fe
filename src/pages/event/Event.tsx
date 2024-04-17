@@ -15,12 +15,8 @@ const Event = () => {
 
 	const tags = ['Online', 'Meetup']
 
-	const { onAddGuestsClick, onEventRegistrationClick, event, error, eventId, location, eventDate, startTime, endTime, duration } =
+	const { onAddGuestsClick, onEventRegistrationClick, event, eventId, location, eventDate, startTime, endTime, duration } =
 		EventPageVM();
-
-	if (error) {
-		return <Container className={styles.eventContainer}>There's no event with id {eventId}</Container>
-	}
 	
 	const { name, inviteUrl, address, imageUrl, attendees = [], price = 0, description, agenda = [] } = event;
 	return (

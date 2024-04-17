@@ -1,11 +1,12 @@
 
-import { useParams } from 'react-router';
-import { Event } from '../../models/Event';
+import { useNavigate, useParams } from 'react-router';
 import { calculateDuration, formatDate, formatTime } from '../../utils/DateConverter';
 import { useFetchEventById } from '../../api/EventApi';
+import { useEffect } from 'react';
 
 const EventPageVM = () => {
 	const { eventId } = useParams();
+	const navigate = useNavigate();
 	const { event, error } = useFetchEventById(Number(eventId));
 
 	const { eventStart = '', eventEnd = '', inviteUrl, address } = event;
@@ -21,6 +22,12 @@ const EventPageVM = () => {
 		location = address.city;
 	}
 
+	useEffect(() => {
+		if(error) {
+			navigate('/');
+		}
+	}, [error, navigate]);
+
 	const onAddGuestsClick = () => {
 		console.log('Add guest');
 	};
@@ -29,7 +36,7 @@ const EventPageVM = () => {
 		console.log('Registed/Get tickets/ Cancel registration');
 	};
 
-	return { onAddGuestsClick, onEventRegistrationClick, event, error, eventId, location, eventDate,  startTime ,endTime, duration};
+	return { onAddGuestsClick, onEventRegistrationClick, event, eventId, location, eventDate,  startTime ,endTime, duration};
 };
 
 export default EventPageVM;

@@ -17,12 +17,12 @@ const projectTheme = createTheme({
 			fontWeight: 400,
 			color: COLORS.BLACK,
 
-			'&.event-header' : {
+			'&.event-header': {
 				marginBottom: '1rem',
 				width: '70%',
 			},
 
-			'&.centered' : {
+			'&.centered': {
 				whiteSpace: 'nowrap',
 				textAlign: 'center'
 			},
@@ -38,7 +38,7 @@ const projectTheme = createTheme({
 			fontWeight: 400,
 			color: COLORS.BLACK,
 
-			'&.centered' : {
+			'&.centered': {
 				marginTop: '1rem',
 				textAlign: 'center'
 			},
@@ -151,6 +151,20 @@ const projectTheme = createTheme({
 							background: COLORS.HOVER_LIGHT_GRAY,
 						},
 					},
+
+					// [+] event form - agenda
+					'&.white': {
+						width: 'auto',
+						lineHeight: '1.25rem',
+						fontSize: '0.875rem',
+						'&:hover': {
+							background: COLORS.WHITE,
+						},
+						'& .MuiSvgIcon-root': {
+							width: '1.5rem',
+							height: '1.5rem',
+						},
+					}
 				},
 			},
 		},
@@ -186,7 +200,7 @@ const projectTheme = createTheme({
 					backgroundColor: COLORS.BLACK,
 					height: '3px',
 				},
-				
+
 			},
 		},
 
@@ -194,9 +208,8 @@ const projectTheme = createTheme({
 			styleOverrides: {
 				root: {
 					fontFamily: fontFamily,
-				
 					fontSize: '1rem',
-					color: 'black',
+					color: COLORS.BLACK,
 					borderRadius: '8px',
 					borderWidth: '1px',
 					height: '40px',
@@ -264,6 +277,7 @@ const projectTheme = createTheme({
 				},
 			},
 		},
+		
 		MuiCardMedia: {
 			styleOverrides: {
 				img: {
@@ -301,9 +315,50 @@ const projectTheme = createTheme({
 					marginBottom: '5rem'
 				}
 			}
-		}
-	},
+		},
 
+		MuiSwitch: {
+			styleOverrides: {
+				root: {
+					width: 'auto',
+					height: 'auto',
+				},
+				switchBase: {
+					padding: '13px',
+					'&.Mui-checked': {
+						transform: 'translateX(24px)',
+						"& + .MuiSwitch-track": {
+							opacity: 1,
+							backgroundColor: COLORS.DARK_BLUE,
+						},
+						'& .MuiTouchRipple-root': {
+							display: 'none',
+						},
+						'&:hover': {
+							background: 'none',
+						},
+					},
+					'&:hover': {
+						background: 'none',
+					},
+				},
+				thumb: {
+					width: '1.375rem',
+					height: '1.375rem',
+					borderRadius: '0.6875rem',
+					color: COLORS.WHITE,
+					boxShadow: `0px 2px 1px 0px ${COLORS.DARK_BLUE_TRANSPARENT}, 0px 0px 3px 0px ${COLORS.DARK_BLUE_GLOW}`,
+				},
+				track: {
+					width: '3rem',
+					height: '1.5rem',
+					borderRadius: '0.75rem',
+					backgroundColor: COLORS.GRAY_BORDER,
+					opacity: 1,
+				}
+			},
+		},
+	}
 });
 
 export default projectTheme;

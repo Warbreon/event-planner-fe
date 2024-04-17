@@ -1,7 +1,7 @@
 import { Moment } from "moment";
-import { combineDateTime, fromDisplayTimeFormat } from "../../../utils/DateConverter";
+import { combineDateTime } from "../../../utils/DateConverter";
 import { Agenda } from "../../../interfaces/Agenda";
-import { parseAgendaItems } from "../../../utils/AgendaUtils";
+import { formatAgendaItems, parseAgendaItems } from "../../../utils/AgendaUtils";
 
 interface FormValues {
     imageUrl: File | null;
@@ -13,10 +13,8 @@ interface FormValues {
 }
 
 const EventFormVM = () => {
-    const agenda = ['7:00 pm-Introduction', '7:30 pm-Presentations', '8:00 pm-Conclusion'];
-    const parsedAgendaItems = parseAgendaItems(agenda).map((item: Agenda): Agenda => (
-        { time: fromDisplayTimeFormat(item.time as string), description: item.description }
-    ));
+    const agenda = ['7:00 am-Introduction', '12:30 pm-Presentations', '8:00 pm-Conclusion'];
+    const parsedAgendaItems = parseAgendaItems(agenda);
 
     // TODO: Fetch from API and get from redux.
     const initialValues: FormValues = {
@@ -28,16 +26,17 @@ const EventFormVM = () => {
         agenda: parsedAgendaItems,
     };
 
-    const headerText = 'Add new event';
-
     const onSubmit = (values: FormValues) => {
+        console.log(values);
         const eventStart = combineDateTime(values.eventStartDate, values.eventStartTime);
         const eventEnd = combineDateTime(values.eventEndDate, values.eventEndTime);
+        const formattedAgenda = formatAgendaItems(values.agenda ?? []);
 
         const submitValues = {
             imageUrl: values.imageUrl,
             eventStart,
-            eventEnd
+            eventEnd,
+            formattedAgenda,
         };
 
         console.log(submitValues);
@@ -47,7 +46,7 @@ const EventFormVM = () => {
         console.log('Canceled');
     }
 
-    return { initialValues, headerText, onSubmit, handleCancelOnClick }
+    return { initialValues, onSubmit, handleCancelOnClick }
 }
 
 export default EventFormVM

@@ -29,7 +29,7 @@ const GenericButton: FC<ButtonProps> = ({ title, styles, type, icon, onClick }) 
 	const iconButtonTitle: IconButton | undefined = icon;
 	return (
 		<Button type={type} className={styles} onClick={onClick} startIcon={!!icon && <Icon icon={icon} />}>
-			{(!!icon && iconButtonTitle) || title}
+			{title || (!!icon && iconButtonTitle)}
 		</Button>
 	);
 };

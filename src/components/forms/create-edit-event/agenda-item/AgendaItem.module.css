@@ -1,6 +1,5 @@
 .container {
     display: flex;
-    align-items: center;
     gap: 0.5rem;
     margin-bottom: 1rem;
 }
@@ -9,12 +8,9 @@
     margin-top: 0;
 }
 
-.container svg {
-    color: #999999;
-}
-
 .container .deleteButton {
-    padding: 0;
+    padding-left: 0;
+    color: #999999;
 }
 
 .buttonContainer {
@@ -26,4 +22,8 @@
     visibility: hidden;
     display: inline-block;
     height: 1rem;
+}
+
+.description {
+    flex: 1 1 auto;
 }

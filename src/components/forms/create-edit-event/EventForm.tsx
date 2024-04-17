@@ -11,18 +11,18 @@ import { Divider } from '@mui/material';
 import AgendaSection from './formik-elements/agenda-section/AgendaSection';
 
 const EventForm = () => {
-  const {headerText, initialValues, onSubmit, handleCancelOnClick} = EventFormVM();
+  const { initialValues, onSubmit, handleCancelOnClick} = EventFormVM();
 
   return (
     <div className={styles.container}>
       <div className={styles.pageHeader}>
         <PageHeader
-          text={headerText}
+          text='Add new event'
         />
       </div>
       <Form
         initialValues={initialValues}
-        //validationSchema={eventFormSchema}
+        validationSchema={eventFormSchema}
         onSubmit={onSubmit}
       >
         <div className={styles.formContainer}>

@@ -20,11 +20,13 @@ const AgendaItem: React.FC<Props> = ({ showLabels, onDelete, namePrefix }) => {
                 name={`${namePrefix}.time`}
                 timePickerClassName={TIME_PICKER_STYLES.BIG}
             />
-            <FormikTextField
-                title={showLabels ? 'Description' : ''}
-                name={`${namePrefix}.description`}
-                titleClassName='event-form-element'
-            />
+            <div className={styles.description}>
+                <FormikTextField
+                    title={showLabels ? 'Description' : ''}
+                    name={`${namePrefix}.description`}
+                    titleClassName='event-form-element'
+                />
+            </div>
             <div className={styles.buttonContainer}>
                 {showLabels && (
                     <Title

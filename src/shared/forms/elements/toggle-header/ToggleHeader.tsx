@@ -18,6 +18,7 @@ const ToggleHeader: React.FC<Props> = ({ title, isChecked, onToggle }) => {
             <Switch 
                 checked={isChecked}
                 onChange={onToggle}
+                className={styles.switch}
             />
         </div>
     )

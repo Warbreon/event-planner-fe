@@ -30,7 +30,7 @@ const FormikTimePicker: React.FC<Props> = ({ title, name, timePickerClassName, .
                 onChange={(date) => setFieldValue(name, date)}
                 className={styles.timePicker}
                 ampm={false}
-                minutesStep={30}
+                minutesStep={5}
                 skipDisabled
                 slotProps={{
                     textField: ({ ...params }) => ({

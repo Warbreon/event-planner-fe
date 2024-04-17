@@ -32,7 +32,7 @@ const FormikTextField: FC<FormikTextFieldProps> = ({
 				{...field}
 				{...props}
 				error={meta.touched && Boolean(meta.error)}
-				label={meta.touched && meta.error ? meta.error : null}
+				helperText={meta.touched && meta.error ? meta.error : null}
                 placeholder={!!placeholder ? placeholder : ''}
 				className={textFieldClassName}
 			/>

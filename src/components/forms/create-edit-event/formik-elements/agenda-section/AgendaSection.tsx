@@ -5,22 +5,25 @@ import { FieldArray, useFormikContext } from "formik";
 import GenericButton, { ButtonTypes, IconButton } from "../../../../buttons/ButtonComponent";
 import { BUTTON_STYLES } from "../../../../../themes/styles/Button";
 import { Agenda } from "../../../../../interfaces/Agenda";
+import styles from './AgendaSection.module.css';
 
 interface Props {
   agenda: Agenda[] | null;
 }
 
 const AgendaSection: React.FC<Props> = () => {
-  const { values } = useFormikContext<{ agenda: Agenda[] }>();
-  const { showForm, onToggle } = AgendaSectionVM();
+  const { values, errors, touched } = useFormikContext<{ agenda: Agenda[] }>();
+  const { showForm, onToggle } = AgendaSectionVM({ errors, touched });
 
   return (
-    <div>
-      <ToggleHeader
-        title='Add agenda'
-        isChecked={showForm}
-        onToggle={onToggle}
-      />
+    <div className={styles.container}>
+      <div className={styles.header}>
+        <ToggleHeader
+          title='Add agenda'
+          isChecked={showForm}
+          onToggle={onToggle}
+        />
+      </div>
       {showForm && (
         <FieldArray name='agenda'>
           {({ remove, push }) => (
@@ -33,9 +36,10 @@ const AgendaSection: React.FC<Props> = () => {
                   namePrefix={`agenda[${index}]`}
                 />
               })}
-              <GenericButton 
+              <GenericButton
+                title='Add new item'
                 type={ButtonTypes.button}
-                styles={BUTTON_STYLES.LIGHT_GRAY}
+                styles={BUTTON_STYLES.WHITE}
                 icon={IconButton.ADD_EVENT}
                 onClick={() => push({ time: '', description: '' })}
               />

@@ -47,9 +47,9 @@ export const combineDateTime = (date: Moment | null, time: Moment | null) => {
 };
 
 export const toDisplayTimeFormat = (time: Moment): string => {
-	return time.format('hh:mm A');
+	return time.format('h:mm a');
 };
 
 export const fromDisplayTimeFormat = (timeString: string): Moment => {
-	return moment(timeString, 'hh:mm A');
+	return moment(timeString, 'h:mm a');
 };

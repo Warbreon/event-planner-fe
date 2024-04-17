@@ -20,10 +20,10 @@ export const eventFormSchema = Yup.object().shape({
             const { eventStartDate } = this.parent;
             const eventStartTime = moment(value);
             const eventStartDateTime = moment(eventStartDate)
-            .set({
-                hour: eventStartTime.hours(),
-                minute: eventStartTime.minutes()
-            });
+                .set({
+                    hour: eventStartTime.hours(),
+                    minute: eventStartTime.minutes()
+                });
 
             return eventStartDateTime.isAfter(moment());
         }),
@@ -47,5 +47,34 @@ export const eventFormSchema = Yup.object().shape({
             } else {
                 return endTime.isAfter(startTime);
             }
+        }),
+    agenda: Yup.array()
+        .of(
+            Yup.object().shape({
+                time: Yup.date().required('Agenda time is required'),
+                description: Yup.string().required('Agenda description is required'),
+            }),
+        )
+        .test('times-ascending', 'Each agenda time must be later than the previous one', function (agendaArray) {
+            if (!agendaArray || agendaArray.length <= 1) {
+                return true;
+            }
+            
+            let lastTime = moment(agendaArray[0].time);
+
+            for (let i = 1; i < agendaArray.length; i++) {
+                const currentTime = moment(agendaArray[i].time);
+
+                if (!currentTime.isAfter(lastTime)) {
+                    return this.createError({
+                        path: `agenda[${i}].time`,
+                        message: 'Each agenda time must be later than the previous one',
+                    });
+                }
+
+                lastTime = currentTime;
+            }
+
+            return true;
         }),
 });

@@ -8,5 +8,4 @@ export enum BUTTON_STYLES {
 	LIGHT_GRAY = 'light-gray',
 	UPLOAD_BUTTON = 'upload-button',
 	TEXT_ONLY = 'text-only',
-	WHITE = 'white',
 }

@@ -48,4 +48,6 @@ export const eventFormSchema = Yup.object().shape({
                 return endTime.isAfter(startTime);
             }
         }),
+
+    location: Yup.string().trim().required("need to be filled"),
 });

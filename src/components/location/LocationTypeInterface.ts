@@ -1,3 +1,3 @@
 export interface LocationTypeInterface {
-    type: string;
+    eventType: string;
 }

@@ -171,9 +171,21 @@ const projectTheme = createTheme({
 					'&.text-only': {
 						width: 'auto',
 						'&:hover': {
-							background: BUTTON_STYLES.WHITE,
+							background: COLORS.WHITE,
 						},
 					},
+
+					// [+] event form media uplaod
+					'&.upload-button': {
+						height: '2rem',
+						background: COLORS.GRAY,
+						width: 'auto',
+						border: `1px solid ${COLORS.GRAY_BORDER}`,
+						fontSize: '0.875rem',
+						'&:hover': {
+							background: COLORS.HOVER_LIGHT_GRAY,
+						}
+					}
 				},
 			},
 		},

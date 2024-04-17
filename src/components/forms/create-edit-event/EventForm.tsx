@@ -9,15 +9,16 @@ import PageHeader from '../../headers/page-headers/PageHeader';
 import Details from '../create-edit-event/details/Details';
 import DateAndTimeSection from './date-and-time-section/DateAndTimeSection';
 import { Divider } from '@mui/material';
+import Media from '../EventForm/media/Media';
 
 const EventForm = () => {
-  const { headerText, initialValues, onSubmit, handleCancelOnClick} = EventFormVM();
+  const { initialValues, onSubmit, handleCancelOnClick } = EventFormVM();
 
   return (
     <div className={styles.container}>
       <div className={styles.pageHeader}>
         <PageHeader
-          text={headerText}
+          text='Add new event'
         />
       </div>
       <Form
@@ -35,6 +36,8 @@ const EventForm = () => {
             <Details />
             <Divider className={styles.divider} />
             <DateAndTimeSection />
+            <Divider className={styles.divider} />
+            <Media />
             <Divider className={styles.divider} />
           </div>
           <div className={styles.buttonsContainer}>

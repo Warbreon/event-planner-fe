@@ -1,6 +1,6 @@
-import {TextField, TextFieldProps, Typography} from '@mui/material';
-import {useField} from 'formik';
-import React, {FC} from 'react';
+import { TextField, TextFieldProps, Typography } from '@mui/material';
+import { useField } from 'formik';
+import React, { FC } from 'react';
 import styles from './FormikTextField.module.css';
 
 type FormikTextFieldProps = TextFieldProps & {
@@ -12,13 +12,13 @@ type FormikTextFieldProps = TextFieldProps & {
 };
 
 const FormikTextField: FC<FormikTextFieldProps> = ({
-                                                       name,
-                                                       title,
-                                                       titleClassName,
-                                                       textFieldClassName,
-                                                       placeholder,
-                                                       ...props
-                                                   }) => {
+    name,
+    title,
+    titleClassName,
+    textFieldClassName,
+    placeholder,
+    ...props
+}) => {
     const [field, meta] = useField(name);
     return (
         <div className={styles.inputGroupWrapper}>

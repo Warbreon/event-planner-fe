@@ -1,21 +1,12 @@
-import React, {useState} from 'react';
 import Typography from '@mui/material/Typography';
 import ChipSelector from '../chip-selector/ChipSelector';
-import classNames from 'classnames';
 import styles from '../event-header/EventHeader.module.css';
-import {EventFiltersState} from '../../pages/explore-events/eventFiltersInterface';
-import {LocationTypeInterface} from './LocationTypeInterface';
 import FormikTextField from '../../shared/forms/elements/formik-elements/text-field/FormikTextField';
 import Autocomplete from '@mui/material/Autocomplete';
-import {Box} from '@mui/material';
-// import useLocationVM from './LocationsVm';
-import {useField} from 'formik';
-
-interface Props {
-    name?: string;
-    handleFiltersChange: (filters: Partial<EventFiltersState>) => void;
-    filters: LocationTypeInterface;
-}
+import { Box } from '@mui/material';
+import { useFormikContext } from 'formik';
+import { FormValues } from '../forms/create-edit-event/EventFormVM';
+import LocationVM from './LocationVM';
 
 const mockResponse = [
     {
@@ -34,58 +25,25 @@ const mockResponse = [
     },
 ];
 
-const locations = mockResponse.map(location => location.venueName + ', ' + location.street + ' ' + location.building + ', ' + location.city);
+const locations = mockResponse.map((location) => location.venueName + ', ' + location.street + ' ' + location.building + ', ' + location.city);
 
-const Location: React.FC<Props> = ({handleFiltersChange, filters}) => {
+const Location = () => {
+    const { values, setFieldValue } = useFormikContext<FormValues>();
+    const { address } = values;
+    const { placeholder, key, getChipClassName, handleTagChange } = LocationVM({ setFieldValue });
 
-    const [placeholder, setPlaceholder] = useState('Search for a venue...');
-    const [searchText, setSearchText] = useState('');
-    const [key, setKey] = useState('physical');
-    const handleSearchInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        console.log(event.target.value)
-        setSearchText(event.target.value || '');
-    };
-    const handleTagChange = (newKey: string) => {
-        setKey(newKey);
-        handleFiltersChange({eventType: newKey});
-
-        switch (newKey) {
-            case 'physical':
-                setPlaceholder('Search for a physical location...');
-                break;
-            case 'online':
-
-                setPlaceholder('Enter link to Zoom, Hangouts or other platform...');
-                setSearchText('')
-                break;
-            case 'tbd':
-                setPlaceholder('Enter TBD details...');
-                break;
-            default:
-                setPlaceholder('Search for a venue...');
-        }
-    };
-
-    const getChipClassName = (isSelected: boolean) => {
-        return classNames(styles.tagFilter, {[styles.tagFilterSelected]: isSelected});
-    };
-    const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        const {value} = event.target;
-        setSearchText(value);
-        handleSearchInputChange(event);
-    };
     return (
         <div>
-            <Typography variant={'h6'} mb={2}>Locations</Typography>
+            <Typography variant='h6' mb={2}>Locations</Typography>
             <div className={styles.filters}>
                 <ChipSelector
                     options={[
-                        {key: 'physical', label: 'Physical location'},
-                        {key: 'online', label: 'Online event'},
-                        {key: 'tbd', label: 'TBD'}
+                        { key: 'physical', label: 'Physical location' },
+                        { key: 'online', label: 'Online event' },
+                        { key: 'tbd', label: 'TBD' }
                     ]}
                     onSelect={(key) => handleTagChange(key)}
-                    selectedKey={filters.eventType}
+                    selectedKey={key}
                     getChipClassName={getChipClassName}
                 />
             </div>
@@ -94,35 +52,30 @@ const Location: React.FC<Props> = ({handleFiltersChange, filters}) => {
                     <Autocomplete
                         options={locations}
                         freeSolo
-
                         renderInput={(params) => (
                             <FormikTextField
                                 {...params}
-                                name='location'
+                                name='address'
                                 type='text'
                                 title='Venue'
                                 placeholder={placeholder}
-                                value={searchText}
-                                titleClassName={'gray-font'}
-
+                                titleClassName='gray-font'
                                 inputProps={{
                                     ...params.inputProps,
                                 }}
                             />
                         )}
-                        value={searchText}
-                        onChange={(event, value) => setSearchText(value || '')}
+                        value={address}
+                        onChange={(_, value) => setFieldValue('address', value)}
                     />
                 )}
                 {(key === 'online') && (
                     <FormikTextField
-                        name='location'
+                        name='inviteUrl'
                         type='text'
                         title='Link to a virtual event'
                         placeholder={placeholder}
-                        value={searchText}
-                        titleClassName={'gray-font'}
-                        onChange={handleInputChange}
+                        titleClassName='gray-font'
                     />
                 )}
             </Box>

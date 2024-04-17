@@ -1,7 +1,5 @@
-import {Moment} from 'moment';
-import {combineDateTime} from '../../../utils/DateConverter';
-import {LocationTypeInterface} from '../../location/LocationTypeInterface';
-import {useCallback, useState} from 'react';
+import { Moment } from 'moment';
+import { combineDateTime } from '../../../utils/DateConverter';
 
 export interface FormValues {
     imageUrl: File | null;
@@ -9,7 +7,8 @@ export interface FormValues {
     eventStartTime: Moment | null;
     eventEndDate: Moment | null;
     eventEndTime: Moment | null;
-    location: string | null;
+    address: string;
+    inviteUrl: string;
 }
 
 const EventFormVM = () => {
@@ -19,7 +18,8 @@ const EventFormVM = () => {
         eventStartTime: null,
         eventEndDate: null,
         eventEndTime: null,
-        location: null,
+        address: '',
+        inviteUrl: '',
     };
 
     const headerText = 'Add new event';
@@ -29,9 +29,9 @@ const EventFormVM = () => {
         const eventEnd = combineDateTime(values.eventEndDate, values.eventEndTime);
 
         const submitValues = {
-            imageUrl: values.imageUrl,
             eventStart,
-            eventEnd
+            eventEnd,
+            ...values
         };
 
         console.log(submitValues);
@@ -41,23 +41,7 @@ const EventFormVM = () => {
         console.log('Canceled');
     }
 
-    const [locationFilters, setLocationFilters] = useState<LocationTypeInterface>(
-        {
-            eventType: 'physical',
-        },
-    );
-
-    const handleLocationFiltersChange = useCallback(
-        (newLocationFilters: Partial<LocationTypeInterface>) => {
-            setLocationFilters((prevLocationFilters) => ({
-                ...prevLocationFilters,
-                ...newLocationFilters,
-            }));
-        },
-        [],
-    );
-
-    return {initialValues, headerText, onSubmit, handleCancelOnClick, locationFilters, handleLocationFiltersChange};
+    return { initialValues, headerText, onSubmit, handleCancelOnClick };
 }
 
 export default EventFormVM;

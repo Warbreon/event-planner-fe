@@ -34,8 +34,7 @@ const EventForm = () => {
                         <Divider className={styles.divider}/>
                         <DateAndTimeSection/>
                         <Divider className={styles.divider}/>
-                        <Location name='location' filters={eventVM.locationFilters}
-                                  handleFiltersChange={eventVM.handleLocationFiltersChange}/>
+                        <Location />
                         <Divider className={styles.divider}/>
                     </div>
                     <div className={styles.buttonsContainer}>

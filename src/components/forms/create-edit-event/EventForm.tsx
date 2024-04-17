@@ -8,12 +8,10 @@ import EventFormVM from './EventFormVM';
 import PageHeader from '../../headers/page-headers/PageHeader';
 import DateAndTimeSection from './date-and-time-section/DateAndTimeSection';
 import {Divider} from '@mui/material';
-import Location from "../../location/Location";
-import LocationsVM from '../../location/LocationsVm'
+import Location from '../../location/Location';
 
 const EventForm = () => {
     const eventVM = EventFormVM();
-    const locationVM = LocationsVM();
     return (
         <div className={styles.container}>
             <div className={styles.pageHeader}>
@@ -36,8 +34,8 @@ const EventForm = () => {
                         <Divider className={styles.divider}/>
                         <DateAndTimeSection/>
                         <Divider className={styles.divider}/>
-                        <Location filters={locationVM.locationFilters}
-                                  handleFiltersChange={locationVM.handleLocationFiltersChange}></Location>
+                        <Location name='location' filters={eventVM.locationFilters}
+                                  handleFiltersChange={eventVM.handleLocationFiltersChange}/>
                         <Divider className={styles.divider}/>
                     </div>
                     <div className={styles.buttonsContainer}>

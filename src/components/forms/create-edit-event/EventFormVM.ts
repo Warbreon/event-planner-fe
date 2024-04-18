@@ -7,6 +7,8 @@ interface FormValues {
     eventStartTime: Moment | null;
     eventEndDate: Moment | null;
     eventEndTime: Moment | null;
+    eventName: string;
+    eventTag: string;
     cardUrl: File | null;
 }
 
@@ -19,7 +21,9 @@ const EventFormVM = () => {
         eventStartTime: null,
         eventEndDate: null,
         eventEndTime: null,
-        cardUrl: null,
+        eventName: '',
+        eventTag: 'news',
+        cardUrl: null
     };
 
     const onSubmit = (values: FormValues) => {

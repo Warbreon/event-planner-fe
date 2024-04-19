@@ -27,7 +27,6 @@ const EventFormVM = () => {
     };
 
     const onSubmit = (values: FormValues) => {
-        console.log(values);
         const eventStart = combineDateTime(values.eventStartDate, values.eventStartTime);
         const eventEnd = combineDateTime(values.eventEndDate, values.eventEndTime);
         const formattedAgenda = formatAgendaItems(values.agenda ?? []);

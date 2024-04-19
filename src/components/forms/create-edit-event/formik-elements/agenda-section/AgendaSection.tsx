@@ -28,18 +28,18 @@ const AgendaSection: React.FC<Props> = () => {
         <FieldArray name='agenda'>
           {({ remove, push }) => (
             <div>
-              {values.agenda?.map((item, index) => {
-                return <AgendaItem
+              {values.agenda?.map((item, index) => (
+                <AgendaItem
                   key={`${item.time} ${index}`}
                   showLabels={index === 0}
                   onDelete={() => remove(index)}
                   namePrefix={`agenda[${index}]`}
                 />
-              })}
+              ))}
               <GenericButton
                 title='Add new item'
                 type={ButtonTypes.button}
-                styles={BUTTON_STYLES.WHITE}
+                styles={BUTTON_STYLES.TEXT_BUTTON}
                 icon={IconButton.ADD_EVENT}
                 onClick={() => push({ time: '', description: '' })}
               />

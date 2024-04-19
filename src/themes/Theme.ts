@@ -153,10 +153,12 @@ const projectTheme = createTheme({
 					},
 
 					// [+] event form - agenda
-					'&.white': {
+					'&.text-button': {
 						width: 'auto',
 						lineHeight: '1.25rem',
 						fontSize: '0.875rem',
+						border: 'none',
+						backgroundColor: 'transparent',
 						'&:hover': {
 							background: COLORS.WHITE,
 						},

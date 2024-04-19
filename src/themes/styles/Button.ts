@@ -11,4 +11,5 @@ export enum BUTTON_STYLES {
 	LIGHT_GRAY_ROUND_SMALL_BORDERLESS = 'light-gray-round-small light-gray-round-small-borderless',
     TEXT_ONLY = 'text-only',
     WHITE = 'white',
+	UPLOAD_BUTTON = 'upload-button',
 }

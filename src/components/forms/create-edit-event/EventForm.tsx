@@ -6,23 +6,25 @@ import { eventFormSchema } from '../../../utils/schemas/EventFormSchema';
 import styles from './EventForm.module.css';
 import EventFormVM from './EventFormVM';
 import PageHeader from '../../headers/page-headers/PageHeader';
+import Details from '../create-edit-event/details/Details';
 import DateAndTimeSection from './date-and-time-section/DateAndTimeSection';
 import { Divider } from '@mui/material';
+import Media from '../EventForm/media/Media';
 
 const EventForm = () => {
-  const eventVM = EventFormVM();
+  const { initialValues, onSubmit, handleCancelOnClick } = EventFormVM();
 
   return (
     <div className={styles.container}>
       <div className={styles.pageHeader}>
         <PageHeader
-          text={eventVM.headerText}
+          text='Add new event'
         />
       </div>
       <Form
-        initialValues={eventVM.initialValues}
+        initialValues={initialValues}
         validationSchema={eventFormSchema}
-        onSubmit={eventVM.onSubmit}
+        onSubmit={onSubmit}
       >
         <div className={styles.formContainer}>
           <FormikDropzone
@@ -31,8 +33,11 @@ const EventForm = () => {
             buttonStyles={styles.uploadButton}
           />
           <div className={styles.mainFormContainer}>
+            <Details />
             <Divider className={styles.divider} />
             <DateAndTimeSection />
+            <Divider className={styles.divider} />
+            <Media />
             <Divider className={styles.divider} />
           </div>
           <div className={styles.buttonsContainer}>
@@ -40,7 +45,7 @@ const EventForm = () => {
               title='Cancel'
               styles={`${BUTTON_STYLES.OUTLINED_GREY_BORDER} ${styles.cancelButton}`}
               type={ButtonTypes.button}
-              onClick={eventVM.handleCancelOnClick}
+              onClick={handleCancelOnClick}
             />
             <GenericButton
               title='Create event'

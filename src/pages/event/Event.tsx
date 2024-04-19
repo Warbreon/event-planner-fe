@@ -15,8 +15,12 @@ const Event = () => {
 
 	const tags = ['Online', 'Meetup']
 
-	const { onAddGuestsClick, onEventRegistrationClick, event, eventId, location, eventDate, startTime, endTime, duration } =
+	const { onAddGuestsClick, onEventRegistrationClick, event, isLoading, location, eventDate, startTime, endTime, duration } =
 		EventPageVM();
+
+	if (isLoading) {
+		return <Container className={styles.eventContainer}>Loading...</Container>;
+	}
 	
 	const { name, inviteUrl, address, imageUrl, attendees = [], price = 0, description, agenda = [] } = event;
 	return (

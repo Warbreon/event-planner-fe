@@ -7,7 +7,7 @@ import { useEffect } from 'react';
 const EventPageVM = () => {
 	const { eventId } = useParams();
 	const navigate = useNavigate();
-	const { event, error } = useFetchEventById(Number(eventId));
+	const { event, isLoading, error } = useFetchEventById(Number(eventId));
 
 	const { eventStart = '', eventEnd = '', inviteUrl, address } = event;
 	const eventDate = formatDate(eventStart).toString();
@@ -36,7 +36,7 @@ const EventPageVM = () => {
 		console.log('Registed/Get tickets/ Cancel registration');
 	};
 
-	return { onAddGuestsClick, onEventRegistrationClick, event, eventId, location, eventDate,  startTime ,endTime, duration};
+	return { onAddGuestsClick, onEventRegistrationClick, event, isLoading, location, eventDate, startTime, endTime, duration};
 };
 
 export default EventPageVM;

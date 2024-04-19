@@ -4,6 +4,7 @@ import { Event } from "../models/Event";
 
 export const useFetchAllEvents = () => {
   const [events, setEvents] = useState<Event[]>([]);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
   useEffect(() => {
     const fetchAllEvents = async () => {
@@ -15,15 +16,18 @@ export const useFetchAllEvents = () => {
       } catch (error: any) {
         console.error(`Error fetching all events: ${error}`);
         setError(`Error fetching all events: ${error.response?.data?.message || error.message || 'Unknown error'}`);
+      } finally {
+        setIsLoading(false);
       }
     };
     fetchAllEvents();
   }, []);
-  return { events, error };
+  return { events, isLoading, error };
 };
 
 export const useFetchEventById = (eventId: number | string) => {
   const [event, setEvent] = useState<Event>({} as Event);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
   useEffect(() => {
     const fetchEventById = async () => {
@@ -35,9 +39,11 @@ export const useFetchEventById = (eventId: number | string) => {
       } catch (error: any) {
         console.error(`Error fetching event by id: ${error.message}`);
         setError(`Error fetching event by id: ${error.response?.data?.message || error.message || 'Unknown error'}`);
+      } finally {
+        setIsLoading(false);
       }
     };
     fetchEventById();
   }, []);
-  return { event, error };
+  return { event, isLoading, error };
 };

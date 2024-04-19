@@ -17,7 +17,9 @@ const BreadCrumbComponent: FC<BreadCrumbComponentProps> = ({ eventName }) => {
 					{previousPage}
 				</Link>
 			</Typography>
-			<Typography variant='body1'>{eventName ? eventName.substring(0, 30) : 'Loading...'}...</Typography>
+			<Typography variant='body1'>
+				{eventName ? (eventName.length > 30 ? eventName.substring(0, 30) + '...' : eventName) : 'Loading...'}
+			</Typography>
 		</Breadcrumbs>
 	);
 };

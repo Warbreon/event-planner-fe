@@ -59,21 +59,17 @@ const projectTheme = createTheme({
 				lineHeight: '1rem',
 				marginBottom: '0.5rem',
 			},
-		},
-		body2: {
-			fontSize: '0.875rem',
-			fontWeight: 400,
-			color: COLORS.MEDIUM_DARK_GRAY,
-		},
-
-		subtitle1: {
 			'&.event-form-element': {
-				fontWeight: 400,
 				fontSize: '0.875rem',
 				lineHeight: '1rem',
 				color: COLORS.MEDIUM_DARK_GRAY,
 				marginBottom: '0.5rem',
 			},
+		},
+		body2: {
+			fontSize: '0.875rem',
+			fontWeight: 400,
+			color: COLORS.MEDIUM_DARK_GRAY,
 		},
 	},
 

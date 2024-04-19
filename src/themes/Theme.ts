@@ -346,8 +346,12 @@ const projectTheme = createTheme({
 			styleOverrides: {
 				root: {
 					'&.attendeeAvatar': {
-						height: '64px',
-						width: '64px',
+						height: '4rem',
+						width: '4rem',
+					},
+					'&.adminAvatar': {
+						height: '3rem',
+						width: '3rem',
 					},
 				},
 			},

@@ -1,0 +1,26 @@
+.settingsContainer {
+	padding: 7%;
+}
+
+.adminTableHeader {
+	background-color: #f4f4f4;
+	padding: 0;
+	height: 2.5rem;
+	border-radius: 0;
+}
+
+.userColumn {
+	width: 60%;
+}
+
+.permissionColumn {
+	width: 40%;
+}
+
+.adminTableRow {
+	border-bottom: #dddddd;
+}
+
+.adminTableRow .MuiTableCell-root {
+	display: flex;
+}

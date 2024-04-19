@@ -6,6 +6,6 @@ export const ENDPOINTS = {
     registerToEvent: `${server}/api/events/register`,
     createNewEvent: `${server}/api/events/create/new`,
 
-    authenticate: `${server}/authenticate`,
-    refreshAccessToken: `${server}/refresh`,
+    authenticate: `${server}/api/auth/authenticate`,
+    refreshAccessToken: `${server}/api/auth/refresh`,
 }

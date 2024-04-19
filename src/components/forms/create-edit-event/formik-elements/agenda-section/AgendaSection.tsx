@@ -27,7 +27,7 @@ const AgendaSection: React.FC<Props> = () => {
       {showForm && (
         <FieldArray name='agenda'>
           {({ remove, push }) => (
-            <div>
+            <div className={styles.agendaContainer}>
               {values.agenda?.map((item, index) => (
                 <AgendaItem
                   key={`${item.time} ${index}`}

@@ -28,7 +28,7 @@ const EventFormVM = () => {
         eventEndTime: null,
         eventName: '',
         eventTag: 'news',
-        cardUrl: null
+        cardUrl: null,
         agenda: parsedAgendaItems,
     };
 

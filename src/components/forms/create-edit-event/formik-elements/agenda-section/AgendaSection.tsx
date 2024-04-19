@@ -39,7 +39,7 @@ const AgendaSection: React.FC<Props> = () => {
               <GenericButton
                 title='Add new item'
                 type={ButtonTypes.button}
-                styles={BUTTON_STYLES.TEXT_BUTTON}
+                styles={BUTTON_STYLES.TEXT_ONLY}
                 icon={IconButton.ADD_EVENT}
                 onClick={() => push({ time: '', description: '' })}
               />

@@ -168,10 +168,19 @@ const projectTheme = createTheme({
 						},
 					},
 
+					// [+] event form - agenda
 					'&.text-only': {
 						width: 'auto',
+						lineHeight: '1.25rem',
+						fontSize: '0.875rem',
+						border: 'none',
+						backgroundColor: 'transparent',
 						'&:hover': {
 							background: COLORS.WHITE,
+						},
+						'& .MuiSvgIcon-root': {
+							width: '1.5rem',
+							height: '1.5rem',
 						},
 					},
 
@@ -185,23 +194,7 @@ const projectTheme = createTheme({
 						'&:hover': {
 							background: COLORS.HOVER_LIGHT_GRAY,
 						}
-					}
-
-					// [+] event form - agenda
-					'&.text-button': {
-						width: 'auto',
-						lineHeight: '1.25rem',
-						fontSize: '0.875rem',
-						border: 'none',
-						backgroundColor: 'transparent',
-						'&:hover': {
-							background: COLORS.WHITE,
-						},
-						'& .MuiSvgIcon-root': {
-							width: '1.5rem',
-							height: '1.5rem',
-						},
-					}
+					},
 				},
 			},
 		},

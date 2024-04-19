@@ -58,7 +58,7 @@ export const eventFormSchema = Yup.object().shape({
                 const file = value as File;
                 return file ? ['image/jpeg', 'image/jpg', 'image/png'].includes(file.type) : true;
             }
-        )
+        ),
     agenda: Yup.array()
         .of(
             Yup.object().shape({
@@ -70,7 +70,7 @@ export const eventFormSchema = Yup.object().shape({
             if (!agendaArray || agendaArray.length <= 1) {
                 return true;
             }
-            
+
             let lastTime = moment(agendaArray[0].time);
 
             for (let i = 1; i < agendaArray.length; i++) {

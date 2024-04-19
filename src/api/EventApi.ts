@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Event } from "../models/Event";
+import { ENDPOINTS } from "./endpoints/Endpoints";
 
 export const useFetchAllEvents = () => {
   const [events, setEvents] = useState<Event[]>([]);
@@ -10,11 +11,10 @@ export const useFetchAllEvents = () => {
     const fetchAllEvents = async () => {
       try {
         const response = await axios.get<Event[]>(
-          "https://raisav-api.devbstaging.com/api/events?userId=1"
+          `${ENDPOINTS.getAllEvents}?userId=1`
         );
         setEvents(response.data);
       } catch (error: any) {
-        console.error(`Error fetching all events: ${error}`);
         setError(`Error fetching all events: ${error.response?.data?.message || error.message || 'Unknown error'}`);
       } finally {
         setIsLoading(false);
@@ -33,11 +33,10 @@ export const useFetchEventById = (eventId: number | string) => {
     const fetchEventById = async () => {
       try {
         const response = await axios.get<Event>(
-          `https://raisav-api.devbstaging.com/api/events/${eventId}?userId=1`
+          `${ENDPOINTS.getEventById(eventId)}?userId=1`
         );
         setEvent(response.data);
       } catch (error: any) {
-        console.error(`Error fetching event by id: ${error.message}`);
         setError(`Error fetching event by id: ${error.response?.data?.message || error.message || 'Unknown error'}`);
       } finally {
         setIsLoading(false);

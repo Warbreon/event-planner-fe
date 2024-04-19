@@ -1,7 +1,9 @@
 import { createTheme } from '@mui/material';
 import { COLORS } from './Colors';
+import { BUTTON_STYLES } from './styles/Button';
+import { KeyboardArrowDown } from '@mui/icons-material';
 
-const fontFamily = 'Inter'
+const fontFamily = 'Inter';
 
 const projectTheme = createTheme({
 	palette: {
@@ -24,7 +26,7 @@ const projectTheme = createTheme({
 
 			'&.centered': {
 				whiteSpace: 'nowrap',
-				textAlign: 'center'
+				textAlign: 'center',
 			},
 
 			'&.event-form-section': {
@@ -33,6 +35,15 @@ const projectTheme = createTheme({
 			},
 		},
 
+		h2: {
+			fontSize: '1.25rem',
+			fontWeight: 400,
+		},
+
+		h3: {
+			fontSize: '1rem',
+			fontWeight: 400,
+		},
 		body1: {
 			fontSize: '1rem',
 			fontWeight: 400,
@@ -40,14 +51,19 @@ const projectTheme = createTheme({
 
 			'&.centered': {
 				marginTop: '1rem',
-				textAlign: 'center'
+				textAlign: 'center',
+			},
+			'&.gray-font': {
+				color: COLORS.MEDIUM_DARK_GRAY,
+				fontSize: '0.875rem',
+				lineHeight: '1rem',
+				marginBottom: '0.5rem',
 			},
 		},
-
 		body2: {
 			fontSize: '0.875rem',
 			fontWeight: 400,
-			color: COLORS.MEDIUM_DARK_GRAY
+			color: COLORS.MEDIUM_DARK_GRAY,
 		},
 
 		subtitle1: {
@@ -57,7 +73,7 @@ const projectTheme = createTheme({
 				lineHeight: '1rem',
 				color: COLORS.MEDIUM_DARK_GRAY,
 				marginBottom: '0.5rem',
-			}
+			},
 		},
 	},
 
@@ -152,6 +168,25 @@ const projectTheme = createTheme({
 						},
 					},
 
+					'&.text-only': {
+						width: 'auto',
+						'&:hover': {
+							background: COLORS.WHITE,
+						},
+					},
+
+					// [+] event form media uplaod
+					'&.upload-button': {
+						height: '2rem',
+						background: COLORS.GRAY,
+						width: 'auto',
+						border: `1px solid ${COLORS.GRAY_BORDER}`,
+						fontSize: '0.875rem',
+						'&:hover': {
+							background: COLORS.HOVER_LIGHT_GRAY,
+						}
+					}
+
 					// [+] event form - agenda
 					'&.text-button': {
 						width: 'auto',
@@ -202,7 +237,6 @@ const projectTheme = createTheme({
 					backgroundColor: COLORS.BLACK,
 					height: '3px',
 				},
-
 			},
 		},
 
@@ -239,8 +273,8 @@ const projectTheme = createTheme({
 			styleOverrides: {
 				root: {
 					width: '100%',
-				}
-			}
+				},
+			},
 		},
 
 		MuiFormControl: {
@@ -255,8 +289,8 @@ const projectTheme = createTheme({
 					'&.time-picker-big': {
 						width: '7.5rem',
 					},
-				}
-			}
+				},
+			},
 		},
 
 		MuiInputBase: {
@@ -307,8 +341,8 @@ const projectTheme = createTheme({
 				root: {
 					margin: '0',
 					padding: '0',
-				}
-			}
+				},
+			},
 		},
 
 		MuiBreadcrumbs: {
@@ -318,7 +352,94 @@ const projectTheme = createTheme({
 				}
 			}
 		},
+		MuiCard: {
+			styleOverrides: {
+				root: {
+					'&.userCard': {
+						border: '1px solid hsl(0, 0%, 87%)',
+						borderRadius: '0.75rem',
+						width: '11rem',
+						height: '14.5rem',
+					},
+					'&.userCard > .MuiCardContent-root': {
+						display: 'flex',
+						flexDirection: 'column',
+						alignItems: 'center',
+						justifyContent: 'space-around',
+						textAlign: 'center',
+						width: '100%',
+						height: '100%',
+					},
+				},
+			},
+		},
 
+		MuiAvatar: {
+			styleOverrides: {
+				root: {
+					'&.attendeeAvatar': {
+						height: '64px',
+						width: '64px',
+					},
+				},
+			},
+		},
+
+		MuiChip: {
+			styleOverrides: {
+				root: {
+					backgroundColor: '#F4F4F4',
+					marginRight: '10px',
+				},
+			},
+		},
+		MuiSelect: {
+			styleOverrides: {
+			  	root: {
+					width: '100%',
+					color: COLORS.BLACK,
+					borderRadius: '8px',
+					fontFamily: fontFamily,
+					borderColor: COLORS.GRAY_BORDER,
+					'&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+				  		borderColor: COLORS.GRAY_BORDER,
+					},
+					'.MuiSelect-icon': {
+				  		color: COLORS.BLACK,
+				  		marginRight: '1rem',
+					},
+			  	},
+			},
+			defaultProps: {
+			  IconComponent: KeyboardArrowDown,
+			},
+		},
+		MuiMenuItem: {
+			styleOverrides: {
+			  	root: {
+					width: '100%',
+					'&:hover': {
+				  		backgroundColor: COLORS.HOVER_VERY_LIGHT_GRAY,
+					},
+					'&.Mui-focusVisible': {
+				  		backgroundColor: COLORS.GRAY_BORDER,
+					},
+					'&.Mui-selected': {
+				  		backgroundColor: COLORS.GRAY_BORDER,
+					},
+					fontFamily: fontFamily,
+					borderRadius: '10px',
+			  	},
+			},
+		},
+		MuiMenu: {
+			styleOverrides: {
+			  	paper: {
+					borderRadius: '8px',
+					boxShadow: `0.5px 0.5px 10px 0.5px ${COLORS.GRAY_BORDER}`,
+			  	},
+			},
+		},
 		MuiSwitch: {
 			styleOverrides: {
 				root: {

@@ -19,4 +19,5 @@ export enum COLORS {
   HOVER_LIGHT_GRAY = '#E3E3E3',
   ERROR = '#FF5252',
   PLACEHOLDER = '#999999',
+  HOVER_VERY_LIGHT_GRAY = '#eeeeee'
 }

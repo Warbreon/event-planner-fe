@@ -6,12 +6,13 @@ import { eventFormSchema } from '../../../utils/schemas/EventFormSchema';
 import styles from './EventForm.module.css';
 import EventFormVM from './EventFormVM';
 import PageHeader from '../../headers/page-headers/PageHeader';
+import Details from '../create-edit-event/details/Details';
 import DateAndTimeSection from './date-and-time-section/DateAndTimeSection';
 import { Divider } from '@mui/material';
-import AgendaSection from './formik-elements/agenda-section/AgendaSection';
+import Media from '../EventForm/media/Media';
 
 const EventForm = () => {
-  const { initialValues, onSubmit, handleCancelOnClick} = EventFormVM();
+  const { initialValues, onSubmit, handleCancelOnClick } = EventFormVM();
 
   return (
     <div className={styles.container}>
@@ -32,8 +33,11 @@ const EventForm = () => {
             buttonStyles={styles.uploadButton}
           />
           <div className={styles.mainFormContainer}>
+            <Details />
             <Divider className={styles.divider} />
             <DateAndTimeSection />
+            <Divider className={styles.divider} />
+            <Media />
             <Divider className={styles.divider} />
             <AgendaSection agenda={initialValues.agenda} />
             <Divider className={styles.divider} />

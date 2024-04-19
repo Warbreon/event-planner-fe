@@ -1,6 +1,5 @@
 import moment from 'moment';
 import * as Yup from 'yup';
-
 export const eventFormSchema = Yup.object().shape({
     imageUrl: Yup.mixed()
         .required('Please upload an image.')
@@ -12,6 +11,8 @@ export const eventFormSchema = Yup.object().shape({
                 return file ? ['image/jpeg', 'image/jpg', 'image/png'].includes(file.type) : true;
             }
         ),
+    eventName: Yup.string()
+        .required('Event name is required'),
     eventStartDate: Yup.date()
         .required('Start date is required'),
     eventStartTime: Yup.date()
@@ -48,6 +49,16 @@ export const eventFormSchema = Yup.object().shape({
                 return endTime.isAfter(startTime);
             }
         }),
+    cardUrl: Yup.mixed()
+        .required('Please upload an image.')
+        .test(
+            'fileFormat',
+            'Unsupported format.',
+            (value) => {
+                const file = value as File;
+                return file ? ['image/jpeg', 'image/jpg', 'image/png'].includes(file.type) : true;
+            }
+        )
     agenda: Yup.array()
         .of(
             Yup.object().shape({

@@ -15,6 +15,7 @@ export enum IconButton {
 	RSVP = 'RSVP',
 	ADD_EVENT = 'Add event',
 	ADD_GUESTS = ' ',
+	VIEW_ALL_GUESTS = 'View all guests',
 }
 
 interface ButtonProps {
@@ -22,13 +23,20 @@ interface ButtonProps {
 	styles: string;
 	type: ButtonTypes;
 	icon?: IconButton;
+	iconAtEnd?: boolean;
 	onClick?: () => void;
 }
 
-const GenericButton: FC<ButtonProps> = ({ title, styles, type, icon, onClick }) => {
+const GenericButton: FC<ButtonProps> = ({ title, styles, type, icon, iconAtEnd, onClick }) => {
 	const iconButtonTitle: IconButton | undefined = icon;
 	return (
-		<Button type={type} className={styles} onClick={onClick} startIcon={!!icon && <Icon icon={icon} />}>
+		<Button
+			type={type}
+			className={styles}
+			onClick={onClick}
+			startIcon={!iconAtEnd && !!icon && <Icon icon={icon} />}
+			endIcon={iconAtEnd && !!icon && <Icon icon={icon} />}
+		>
 			{title || (!!icon && iconButtonTitle)}
 		</Button>
 	);

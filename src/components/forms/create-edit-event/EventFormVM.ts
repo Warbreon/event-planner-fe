@@ -9,6 +9,9 @@ interface FormValues {
     eventStartTime: Moment | null;
     eventEndDate: Moment | null;
     eventEndTime: Moment | null;
+    eventName: string;
+    eventTag: string;
+    cardUrl: File | null;
     agenda: Agenda[] | null;
 }
 
@@ -23,6 +26,9 @@ const EventFormVM = () => {
         eventStartTime: null,
         eventEndDate: null,
         eventEndTime: null,
+        eventName: '',
+        eventTag: 'news',
+        cardUrl: null
         agenda: parsedAgendaItems,
     };
 
@@ -33,6 +39,7 @@ const EventFormVM = () => {
 
         const submitValues = {
             imageUrl: values.imageUrl,
+            cardUrl: values.cardUrl,
             eventStart,
             eventEnd,
             formattedAgenda,

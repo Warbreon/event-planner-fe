@@ -49,6 +49,7 @@ const EventFormVM = () => {
             eventEnd,
             registrationStart,
             registrationtEnd,
+            isOpen: values.isOpen,
         };
 
         console.log(submitValues);

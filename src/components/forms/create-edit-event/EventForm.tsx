@@ -10,6 +10,7 @@ import Details from '../create-edit-event/details/Details';
 import DateAndTimeSection from './date-and-time-section/DateAndTimeSection';
 import { Divider } from '@mui/material';
 import Media from '../EventForm/media/Media';
+import Registration from './registration/Registration';
 
 const EventForm = () => {
   const { initialValues, onSubmit, handleCancelOnClick } = EventFormVM();
@@ -38,6 +39,8 @@ const EventForm = () => {
             <DateAndTimeSection />
             <Divider className={styles.divider} />
             <Media />
+            <Divider className={styles.divider} />
+            <Registration />
             <Divider className={styles.divider} />
           </div>
           <div className={styles.buttonsContainer}>

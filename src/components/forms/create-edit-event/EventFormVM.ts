@@ -1,7 +1,7 @@
 import { Moment } from "moment";
 import { combineDateTime } from "../../../utils/DateConverter";
 
-interface FormValues {
+export interface FormValues {
     imageUrl: File | null;
     eventStartDate: Moment | null;
     eventStartTime: Moment | null;
@@ -10,6 +10,11 @@ interface FormValues {
     eventName: string;
     eventTag: string;
     cardUrl: File | null;
+    isOpen: Boolean;
+    registrationStartDate: Moment | null;
+    registrationStartTime: Moment | null;
+    registrationEndDate: Moment | null;
+    registrationEndTime: Moment | null;
 }
 
 const EventFormVM = () => {
@@ -23,18 +28,27 @@ const EventFormVM = () => {
         eventEndTime: null,
         eventName: '',
         eventTag: 'news',
-        cardUrl: null
+        cardUrl: null,
+        isOpen: true,
+        registrationStartDate: null,
+        registrationStartTime: null,
+        registrationEndDate: null,
+        registrationEndTime: null,
     };
 
     const onSubmit = (values: FormValues) => {
         const eventStart = combineDateTime(values.eventStartDate, values.eventStartTime);
         const eventEnd = combineDateTime(values.eventEndDate, values.eventEndTime);
+        const registrationStart = combineDateTime(values.registrationStartDate, values.registrationStartTime);
+        const registrationtEnd = combineDateTime(values.registrationEndDate, values.registrationEndTime);
 
         const submitValues = {
             imageUrl: values.imageUrl,
             cardUrl: values.cardUrl,
             eventStart,
-            eventEnd
+            eventEnd,
+            registrationStart,
+            registrationtEnd,
         };
 
         console.log(submitValues);

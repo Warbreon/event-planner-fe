@@ -12,7 +12,7 @@ export const useFetch = <T>(fetchFunction: () => Promise<AxiosResponse<T>>) => {
                 const response = await fetchFunction();
                 setData(response.data);
             } catch (error: any) {
-                setError(`Error fetching data: ${error.response?.data?.message || error.message || 'Unknown error'}`);
+                setError(`Error fetching data: ${error.response?.data?.message || error.message || "Unknown error"}`);
             } finally {
                 setIsLoading(false);
             }

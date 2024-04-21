@@ -1,11 +1,9 @@
-const server = "https://raisav-api.devbstaging.com";
-
 export const ENDPOINTS = {
-    getAllEvents: `${server}/api/events`,
-    getEventById: (id: number | string) => `${server}/api/events/${id}`,
-    registerToEvent: `${server}/api/events/register`,
-    createNewEvent: `${server}/api/events/create/new`,
+    getAllEvents: `/events?userId=1`,
+    getEventById: (id: number | string) => `/events/${id}?userId=1`,
+    registerToEvent: `/events/register`,
+    createNewEvent: `/events/create/new`,
 
-    authenticate: `${server}/api/auth/authenticate`,
-    refreshAccessToken: `${server}/api/auth/refresh`,
+    authenticate: `/auth/authenticate`,
+    refreshAccessToken: `/auth/refresh`,
 }

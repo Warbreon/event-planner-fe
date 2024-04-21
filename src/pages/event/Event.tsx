@@ -23,7 +23,7 @@ const Event = () => {
 		return <LoadingIndicator />;
 	}
 	
-	const { name, inviteUrl, address, imageUrl, attendees = [], price = 0, description, agenda = [] } = event;
+	const { name = '', inviteUrl, address, imageUrl = '', attendees = [], price = 0, description = '', agenda = [] } = event || {};
 	return (
 		<Container className={styles.eventContainer}>
 			<BreadCrumbComponent eventName={name} />

@@ -1,15 +1,15 @@
-
 import { useNavigate, useParams } from 'react-router';
 import { calculateDuration, formatDate, formatTime } from '../../utils/DateConverter';
-import { useFetchEventById } from '../../api/EventApi';
+import { fetchEventById } from '../../api/EventApi';
 import { useEffect } from 'react';
+import { useFetch } from '../../api/hooks/ApiHooks';
 
 const EventPageVM = () => {
 	const { eventId } = useParams();
 	const navigate = useNavigate();
-	const { event, isLoading, error } = useFetchEventById(Number(eventId));
+	const { data: event, isLoading, error } = useFetch(() => fetchEventById(Number(eventId)));
 
-	const { eventStart = '', eventEnd = '', inviteUrl, address } = event;
+	const { eventStart = '', eventEnd = '', inviteUrl, address } = event || {};
 	const eventDate = formatDate(eventStart).toString();
 	const startTime = formatTime(eventStart);
 	const endTime = formatTime(eventEnd);

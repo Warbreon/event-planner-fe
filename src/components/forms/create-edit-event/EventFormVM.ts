@@ -27,7 +27,6 @@ const EventFormVM = () => {
 	const onSubmit = (values: FormValues) => {
 		const eventStart = combineDateTime(values.eventStartDate, values.eventStartTime);
 		const eventEnd = combineDateTime(values.eventEndDate, values.eventEndTime);
-		console.log('testas');
 		const submitValues = {
 			eventStart,
 			eventEnd,

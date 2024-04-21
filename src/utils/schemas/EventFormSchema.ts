@@ -1,5 +1,6 @@
 import moment from 'moment';
 import * as Yup from 'yup';
+
 export const eventFormSchema = Yup.object().shape({
     imageUrl: Yup.mixed()
         .required('Please upload an image.')

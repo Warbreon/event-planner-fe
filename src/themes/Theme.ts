@@ -45,7 +45,7 @@ const projectTheme = createTheme({
 			fontWeight: 400,
 		},
 		body1: {
-			fontSize: '1rem',
+			fontSize: '0.875rem',
 			fontWeight: 400,
 			color: COLORS.BLACK,
 
@@ -59,7 +59,12 @@ const projectTheme = createTheme({
 				lineHeight: '1rem',
 				marginBottom: '0.5rem',
 			},
+
+			'&.error-mesage': {
+				color: COLORS.ERROR
+			},
 		},
+		
 		body2: {
 			fontSize: '0.875rem',
 			fontWeight: 400,

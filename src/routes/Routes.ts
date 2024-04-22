@@ -1,5 +1,6 @@
 enum ROUTES {
 	INDEX = '/',
+	AUTH = 'auth',
 	SIGN_IN = '/signin',
 	FORGOT_PASSWORD = '/signin/forgotpassword',
 	RESET_PASSWORD = '/resetpassword/:uuid',

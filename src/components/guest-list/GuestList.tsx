@@ -10,8 +10,8 @@ import styles from './GuestList.module.css';
 const MAX_DISPLAYED_AVATARS = 5;
 
 const GuestList: React.FC = () => {
-	const dispatch = useDispatch();
-	const attendees = useSelector((state: RootState) => state.attendees.list);
+	//const dispatch = useDispatch();
+	//const attendees = useSelector((state: RootState) => state.attendees.list);
 
 	const attendeesMock: Attendee[] = [
 		{ name: 'Guest 1', src: 'https://i.pravatar.cc/150?img=1', email: 'guest1@example.com' },
@@ -26,23 +26,23 @@ const GuestList: React.FC = () => {
 		{ name: 'Guest 10', src: 'https://i.pravatar.cc/150?img=10', email: 'guest10@example.com' },
 	];
 
-	useEffect(() => {
-		if (attendees.length === 0) {
-			// TODO: make an API call
-			dispatch(setAttendees(attendeesMock));
-		}
-	}, [attendees, attendeesMock, dispatch]);
+	// useEffect(() => {
+	// 	if (attendees.length === 0) {
+	// 		// TODO: make an API call
+	// 		dispatch(setAttendees(attendeesMock));
+	// 	}
+	// }, [attendees, attendeesMock, dispatch]);
 
-	const extraGuestCount = attendees.length - MAX_DISPLAYED_AVATARS;
+	//const extraGuestCount = attendees.length - MAX_DISPLAYED_AVATARS;
 
 	return (
 		<div className={styles.guestListContainer}>
-			<AvatarGroup>
+			{/* <AvatarGroup>
 				{attendees.slice(0, MAX_DISPLAYED_AVATARS).map((guest: Attendee, index: number) => (
 					<Avatar alt={guest.name} src={guest.src} key={guest.email} sx={{ zIndex: index }} className={styles.avatar} />
 				))}
 			</AvatarGroup>
-			{extraGuestCount > 0 && <Typography className={styles.extraGuestCount}>+{extraGuestCount} guests</Typography>}
+			{extraGuestCount > 0 && <Typography className={styles.extraGuestCount}>+{extraGuestCount} guests</Typography>} */}
 		</div>
 	);
 };

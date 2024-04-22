@@ -1,32 +1,47 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 
-interface UserState {
-	loggedIn: boolean;
+interface AuthenticationState {
+	signedIn: boolean;
+	accessToken: string;
+	refreshToken: string;
 	email: string;
+	role: string;
 }
 
-interface LogInPayload {
-	email: string;
-}
-
-const initialState: UserState = {
-	loggedIn: false,
+const initialState: AuthenticationState = {
+	signedIn: false,
+	accessToken: '',
+	refreshToken: '',
 	email: '',
+	role: '',
 };
 
 const userSlice = createSlice({
 	name: 'user',
 	initialState,
 	reducers: {
-		logIn: (state, action: PayloadAction<LogInPayload>) => {
-			state.loggedIn = true;
-			state.email = action.payload.email;
+		singIn(state, action: PayloadAction<AuthenticationState>) {
+			const { signedIn, accessToken, refreshToken, email, role } = action.payload;
+			state.signedIn = signedIn;
+			state.accessToken = accessToken;
+			state.refreshToken = refreshToken;
+			state.email = email;
+			state.role = role;
 		},
-		logOut: (state) => {
-			state = initialState;
+		signOut(state) {
+			const { signedIn, accessToken, refreshToken, email, role } = initialState;
+			state.signedIn = signedIn;
+			state.accessToken = accessToken;
+			state.refreshToken = refreshToken;
+			state.email = email;
+			state.role = role;
+		},
+		refreshAccessToken(state, action: PayloadAction<string>) {
+			const newAccessToken = action.payload;
+			state.accessToken = newAccessToken;
 		},
 	},
 });
 
-export const { logIn, logOut } = userSlice.actions;
+export const { singIn, signOut, refreshAccessToken } = userSlice.actions;
 export default userSlice.reducer;

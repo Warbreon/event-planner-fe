@@ -67,7 +67,7 @@ const PlannerAppBar = () => {
 									className={styles.profileMenu}
 								>
 									{profileSettings.map((setting) => (
-										<MenuItem key={setting} onClick={viewModel.handleCloseUserMenu} className={styles.menuItem}>
+										<MenuItem key={setting} onClick={() => viewModel.handleMenuOptions(setting)} className={styles.menuItem}>
 											<Typography className={styles.menuTypography}>{setting}</Typography>
 										</MenuItem>
 									))}

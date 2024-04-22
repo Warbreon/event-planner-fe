@@ -1,4 +1,4 @@
-import { FC, useEffect } from "react";
+import { FC } from "react";
 import { useField } from "formik";
 import Dropdown from "../../../../../components/dropdown/Dropdown";
 import { Box, SelectChangeEvent, Typography } from "@mui/material";

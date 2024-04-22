@@ -1,27 +1,37 @@
-import { event1 as event } from '../../mocks/EventMocks';
+import { useNavigate, useParams } from 'react-router';
 import { calculateDuration, formatDate, formatTime } from '../../utils/DateConverter';
-
+import { fetchEventById } from '../../api/EventApi';
+import { useCallback, useEffect } from 'react';
+import { useFetch } from '../../api/hooks/ApiHooks';
 
 const EventPageVM = () => {
-	const {  eventStart, eventEnd, inviteUrl, address} = event;
+	const { eventId } = useParams();
+	const navigate = useNavigate();
+
+	const fetchFunction = useCallback(() => {
+		return fetchEventById(Number(eventId));
+	}, [eventId])
+
+	const { data: event, isLoading, error } = useFetch(fetchFunction);
+
+	const { eventStart = '', eventEnd = '', inviteUrl, address } = event || {};
 	const eventDate = formatDate(eventStart).toString();
 	const startTime = formatTime(eventStart);
 	const endTime = formatTime(eventEnd);
 	const duration = calculateDuration(eventStart, eventEnd);
 	
-	let location;
+	let location = 'TBD';
 	if (inviteUrl && !address) {
 		location = 'Online';
 	} else if (!inviteUrl && address) {
 		location = address.city;
-	} else {
-		location = 'TBD';
 	}
 
-
-
-
-	//get event from useNavigate props
+	useEffect(() => {
+		if(error) {
+			navigate('/');
+		}
+	}, [error, navigate]);
 
 	const onAddGuestsClick = () => {
 		console.log('Add guest');
@@ -31,7 +41,7 @@ const EventPageVM = () => {
 		console.log('Registed/Get tickets/ Cancel registration');
 	};
 
-	return { onAddGuestsClick, onEventRegistrationClick, event, location, eventDate,  startTime ,endTime, duration};
+	return { onAddGuestsClick, onEventRegistrationClick, event, isLoading, location, eventDate, startTime, endTime, duration};
 };
 
 export default EventPageVM;

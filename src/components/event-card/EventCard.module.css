@@ -22,5 +22,10 @@
 }
 
 .guests {
-  margin-bottom: 16px;
+  height: 36px;
+}
+
+.linkToEvent {
+  text-decoration: none;
+  color: inherit;
 }

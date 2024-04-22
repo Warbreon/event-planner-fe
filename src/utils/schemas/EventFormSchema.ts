@@ -1,5 +1,6 @@
 import * as Yup from 'yup';
 import { isTimeInFuture, isEndTimeAfterStartTime, validateFileFormat } from '../validation/ValidationHelpers';
+import moment from 'moment';
 
 export const eventFormSchema = Yup.object().shape({
     imageUrl: Yup.mixed()
@@ -54,14 +55,6 @@ export const eventFormSchema = Yup.object().shape({
                 endDate: this.parent.registrationEndDate
             });
         }),
-        .test(
-            'fileFormat',
-            'Unsupported format.',
-            (value) => {
-                const file = value as File;
-                return file ? ['image/jpeg', 'image/jpg', 'image/png'].includes(file.type) : true;
-            }
-        ),
     agenda: Yup.array()
         .of(
             Yup.object().shape({

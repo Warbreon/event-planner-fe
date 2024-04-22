@@ -1,19 +1,6 @@
 import { EventFormValues } from "../../../interfaces/EventFormValuesInterface";
 import { combineDateTime } from "../../../utils/DateConverter";
-import { Agenda } from "../../../interfaces/Agenda";
 import { formatAgendaItems, parseAgendaItems } from "../../../utils/AgendaUtils";
-
-interface FormValues {
-    imageUrl: File | null;
-    eventStartDate: Moment | null;
-    eventStartTime: Moment | null;
-    eventEndDate: Moment | null;
-    eventEndTime: Moment | null;
-    eventName: string;
-    eventTag: string;
-    cardUrl: File | null;
-    agenda: Agenda[] | null;
-}
 
 const EventFormVM = () => {
     const agenda = ['7:00 am-Introduction', '12:30 pm-Presentations', '8:00 pm-Conclusion'];

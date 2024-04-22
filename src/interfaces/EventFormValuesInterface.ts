@@ -1,4 +1,5 @@
 import { Moment } from "moment";
+import { Agenda } from "./Agenda";
 
 export interface EventFormValues {
     imageUrl: File | null;
@@ -14,4 +15,5 @@ export interface EventFormValues {
     registrationStartTime: Moment | null;
     registrationEndDate: Moment | null;
     registrationEndTime: Moment | null;
+    agenda: Agenda[] | null;
 }

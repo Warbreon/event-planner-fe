@@ -1,6 +1,5 @@
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import App from './app/App';
 import { RouterProvider } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { userStore, persistor } from './redux/store/PersistentStore';
@@ -18,24 +17,8 @@ root.render(
 			<PersistGate loading={null} persistor={persistor}>
 				<ThemeProvider theme={projectTheme}>
 					<RouterProvider router={router} />
-					{/* <App /> */}
 				</ThemeProvider>
 			</PersistGate>
 		</Provider>
 	</LocalizationProvider>
 );
-
-//nesugadintas router
-// root.render(
-// 	<LocalizationProvider dateAdapter={AdapterMoment}>
-// 			<Provider store={userStore}>
-// 				<PersistGate loading={null} persistor={persistor}>
-// 					<BrowserRouter>
-// 						<ThemeProvider theme={projectTheme}>
-// 							<App />
-// 						</ThemeProvider>
-// 					</BrowserRouter>
-// 				</PersistGate>
-// 			</Provider>
-// 	</LocalizationProvider>
-// );

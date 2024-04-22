@@ -9,8 +9,9 @@ const SignInViewModel = () => {
 	const navigate = useNavigate();
 	const [error, setError] = useState<string>('');
 	const dispatch = useDispatch();
-	const { authenticate } = AuthenticationRequest();
 
+	
+	const { authenticate } = AuthenticationRequest();
 	const onSubmit = async (userEmail: string, userPassword: string) => {
 		const  { accessToken, refreshToken, email, role, error } = await authenticate(userEmail, userPassword);
 		if (accessToken && refreshToken && email && role && !error) {

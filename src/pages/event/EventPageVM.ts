@@ -1,6 +1,6 @@
 import { useNavigate, useParams } from 'react-router';
 import { calculateDuration, formatDate, formatTime } from '../../utils/DateConverter';
-import { fetchEventById } from '../../api/EventApi';
+import { fetchEventById } from '../../api/EventAPI';
 import { useCallback, useEffect } from 'react';
 import { useFetch } from '../../api/hooks/ApiHooks';
 

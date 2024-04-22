@@ -23,6 +23,23 @@ export const useFetch = <T>(fetchFunction: () => Promise<AxiosResponse<T>>) => {
     return { data, isLoading, error };
 }
 
-export const usePost = () => {
-    
+export const usePost = <T>(postFunction: (payload: {}) => Promise<AxiosResponse<T>>, payload: {}) => {
+    const [responseData, setResponseData] = useState<T | null>(null);
+    const [isLoading, setIsLoading] = useState<boolean>(true);
+    const [error, setError] = useState<string | null>(null);
+    useEffect(() => {
+        const postData = async () => {
+            try {
+                const response = await postFunction(payload);
+                setResponseData(response.data);
+            } catch (error: any) {
+                setError(`Error posting data: ${error.response?.data?.message || error.message || "Unknown error"}`);
+            } finally {
+                setIsLoading(false);
+            }
+        };
+        postData();
+    }, [payload, postFunction]);
+
+    return { responseData, isLoading, error };
 }

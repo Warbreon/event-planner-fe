@@ -22,7 +22,6 @@ export const RefreshTokenRequest = (refreshToken: string) => {
 			const response = await axios.post(refreshAccessToken, { refreshToken });
 			if (response.status === 200) {
 				const { accessToken } = response.data;
-				console.log(`NEW TOKEN ${accessToken}`);
 				return { accessToken };
 			}
 		} catch (error: any) {

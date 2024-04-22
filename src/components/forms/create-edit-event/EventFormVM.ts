@@ -1,5 +1,7 @@
-import { Moment } from 'moment';
-import { combineDateTime } from '../../../utils/DateConverter';
+import { Moment } from "moment";
+import { combineDateTime } from "../../../utils/DateConverter";
+import { Agenda } from "../../../interfaces/Agenda";
+import { formatAgendaItems, parseAgendaItems } from "../../../utils/AgendaUtils";
 
 export interface FormValues {
     imageUrl: File | null;
@@ -12,9 +14,12 @@ export interface FormValues {
     cardUrl: File | null;
     addressId: number |string | null;
     inviteUrl: string | null;
+    agenda: Agenda[] | null;
 }
 
 const EventFormVM = () => {
+    const agenda = ['7:00 am-Introduction', '12:30 pm-Presentations', '8:00 pm-Conclusion'];
+    const parsedAgendaItems = parseAgendaItems(agenda);
 
     // TODO: Fetch from API and get from redux.
     const initialValues: FormValues = {
@@ -28,16 +33,23 @@ const EventFormVM = () => {
         cardUrl: null,
         addressId: '',
         inviteUrl: '',
+        agenda: parsedAgendaItems,
     };
 	const headerText = 'Add new event';
 
     const onSubmit = (values: FormValues) => {
         const eventStart = combineDateTime(values.eventStartDate, values.eventStartTime);
         const eventEnd = combineDateTime(values.eventEndDate, values.eventEndTime);
+        const formattedAgenda = formatAgendaItems(values.agenda ?? []);
+
         const submitValues = {
+            imageUrl: values.imageUrl,
+            cardUrl: values.cardUrl,
             eventStart,
             eventEnd,
-            ...values,
+            formattedAgenda,
+            addressId: '',
+            inviteUrl: '',
         };
 
 		console.log(submitValues);

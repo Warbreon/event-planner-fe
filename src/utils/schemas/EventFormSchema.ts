@@ -1,6 +1,5 @@
 import moment from 'moment';
 import * as Yup from 'yup';
-
 export const eventFormSchema = Yup.object().shape({
     imageUrl: Yup.mixed()
         .required('Please upload an image.')
@@ -68,4 +67,34 @@ export const eventFormSchema = Yup.object().shape({
 		const { addressId } = this.parent;
 		return value || addressId;
 	}),
+
+    agenda: Yup.array()
+        .of(
+            Yup.object().shape({
+                time: Yup.date().required('Agenda time is required'),
+                description: Yup.string().required('Agenda description is required'),
+            }),
+        )
+        .test('times-ascending', 'Each agenda time must be later than the previous one', function (agendaArray) {
+            if (!agendaArray || agendaArray.length <= 1) {
+                return true;
+            }
+
+            let lastTime = moment(agendaArray[0].time);
+
+            for (let i = 1; i < agendaArray.length; i++) {
+                const currentTime = moment(agendaArray[i].time);
+
+                if (!currentTime.isAfter(lastTime)) {
+                    return this.createError({
+                        path: `agenda[${i}].time`,
+                        message: 'Each agenda time must be later than the previous one',
+                    });
+                }
+
+                lastTime = currentTime;
+            }
+
+            return true;
+        }),
 });

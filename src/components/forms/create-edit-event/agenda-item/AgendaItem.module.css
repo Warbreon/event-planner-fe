@@ -1,0 +1,33 @@
+.container {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.container div {
+    margin-top: 0;
+}
+
+.container .deleteButton {
+    padding-left: 0;
+    color: #999999;
+}
+
+.container .deleteButton:hover {
+    background-color: transparent;
+}
+
+.buttonContainer {
+    display: flex;
+    flex-direction: column;
+}
+
+.hiddenTitle {
+    visibility: hidden;
+    display: inline-block;
+    height: 1rem;
+}
+
+.description {
+    flex: 1 1 auto;
+}

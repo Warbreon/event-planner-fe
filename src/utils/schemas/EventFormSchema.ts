@@ -37,7 +37,7 @@ export const eventFormSchema = Yup.object().shape({
     eventEndTime: Yup.date()
         .required('End time is required')
         .test('is-after-start-time', 'End time cannot be earlier than start time', function (value) {
-            const { eventStartDate, eventStartTime, eventEndDate } = this.parent;
+            const {eventStartDate, eventStartTime, eventEndDate} = this.parent;
             const startDate = moment(eventStartDate);
             const startTime = moment(eventStartTime);
             const endDate = moment(eventEndDate);
@@ -59,14 +59,14 @@ export const eventFormSchema = Yup.object().shape({
                 return file ? ['image/jpeg', 'image/jpg', 'image/png'].includes(file.type) : true;
             }
         ),
-	addressId: Yup.string().test('at-least-one', 'Either an address or an invite URL is required', function (value) {
-		const { inviteUrl } = this.parent;
-		return value || inviteUrl;
-	}),
-	inviteUrl: Yup.string().test('at-least-one', 'Either an address or an invite URL is required', function (value) {
-		const { addressId } = this.parent;
-		return value || addressId;
-	}),
+    addressId: Yup.string().test('at-least-one', 'Either an address or an invite URL is required', function (value) {
+        const {inviteUrl} = this.parent;
+        return value || inviteUrl;
+    }),
+    inviteUrl: Yup.string().test('at-least-one', 'Either an address or an invite URL is required', function (value) {
+        const {addressId} = this.parent;
+        return value || addressId;
+    }),
 
     agenda: Yup.array()
         .of(

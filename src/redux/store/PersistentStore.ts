@@ -5,7 +5,7 @@ import { persistReducer, persistStore } from 'redux-persist';
 import { FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER } from 'redux-persist';
 
 const persistConfig = {
-	key: 'root',
+	key: 'session',
 	storage: storageSession,
 };
 

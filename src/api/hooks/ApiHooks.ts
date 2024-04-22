@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { AxiosResponse } from "axios";
 
 export const useFetch = <T>(fetchFunction: () => Promise<AxiosResponse<T>>) => {
@@ -18,7 +18,7 @@ export const useFetch = <T>(fetchFunction: () => Promise<AxiosResponse<T>>) => {
             }
         };
         fetchData();
-    }, []);
+    }, [fetchFunction]);
 
     return { data, isLoading, error };
 }

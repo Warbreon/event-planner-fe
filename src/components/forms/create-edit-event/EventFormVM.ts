@@ -1,21 +1,5 @@
-import { Moment } from "moment";
+import { FormValues } from "../../../interfaces/FormValuesInterface";
 import { combineDateTime } from "../../../utils/DateConverter";
-
-export interface FormValues {
-    imageUrl: File | null;
-    eventStartDate: Moment | null;
-    eventStartTime: Moment | null;
-    eventEndDate: Moment | null;
-    eventEndTime: Moment | null;
-    eventName: string;
-    eventTag: string;
-    cardUrl: File | null;
-    isOpen: Boolean;
-    registrationStartDate: Moment | null;
-    registrationStartTime: Moment | null;
-    registrationEndDate: Moment | null;
-    registrationEndTime: Moment | null;
-}
 
 const EventFormVM = () => {
 

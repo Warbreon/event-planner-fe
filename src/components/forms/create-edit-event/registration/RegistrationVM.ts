@@ -4,10 +4,12 @@ import { TAGS } from "../../../../themes/styles/Tag";
 
 interface Props {
     setFieldValue: (field: string, value: any, shouldValidate?: boolean) => void;
+    isOpen: boolean;
 }
 
-const RegistrationVM = ({ setFieldValue }: Props) => {
-    const [selectedTag, setSelectedTag] = useState<string>('public');
+const RegistrationVM = ({ setFieldValue, isOpen }: Props) => {
+    const defaultTag = isOpen ? 'public' : 'private';
+    const [selectedTag, setSelectedTag] = useState<string>(defaultTag);
 
     const registrationTagOptions = [
         { key: 'public', label: 'Public' },

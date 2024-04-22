@@ -3,13 +3,19 @@ import ChipSelector from "../../../chip-selector/ChipSelector"
 import DateAndTime from "../../../date-and-time/DateAndTime"
 import PageHeader from "../../../headers/page-headers/PageHeader"
 import RegistrationVM from "./RegistrationVM";
-import { FormValues } from "../EventFormVM";
 import { Typography } from "@mui/material";
 import styles from './Registration.module.css';
+import { FormValues } from "../../../../interfaces/FormValuesInterface";
 
 const Registration = () => {
-    const { setFieldValue } = useFormikContext<FormValues>();
-    const { registrationMessage, selectedTag, registrationTagOptions, handleTagChange, getChipClassName } = RegistrationVM({ setFieldValue });
+    const { setFieldValue, values } = useFormikContext<FormValues>();
+    const {
+        registrationMessage,
+        selectedTag,
+        registrationTagOptions,
+        handleTagChange,
+        getChipClassName
+    } = RegistrationVM({ setFieldValue, isOpen: values.isOpen });
 
     return (
         <div className={styles.container}>
@@ -22,7 +28,7 @@ const Registration = () => {
                     getChipClassName={getChipClassName}
                 />
             </div>
-            <Typography>{registrationMessage}</Typography>
+            <Typography className={styles.registrationMessage}>{registrationMessage}</Typography>
             <div className={styles.dateAndTimeContainer}>
                 <DateAndTime title='Registration starts' name='registrationStart' />
                 <DateAndTime title='Registration ends' name='registrationEnd' />

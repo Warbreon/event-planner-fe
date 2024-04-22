@@ -1,6 +1,5 @@
 import { createTheme } from '@mui/material';
 import { COLORS } from './Colors';
-import { BUTTON_STYLES } from './styles/Button';
 import { KeyboardArrowDown } from '@mui/icons-material';
 
 const fontFamily = 'Inter';

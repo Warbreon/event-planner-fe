@@ -308,7 +308,7 @@ const projectTheme = createTheme({
 					borderRadius: '12px',
 					height: '320px',
 					width: '100%',
-					border: `1px solid ${COLORS.BLACK}`,
+					border: `1px solid ${COLORS.GRAY_BORDER}`,
 
 					'&.my-events': {
 						width: '200px',

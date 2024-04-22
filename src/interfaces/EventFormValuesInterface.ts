@@ -1,6 +1,6 @@
 import { Moment } from "moment";
 
-export interface FormValues {
+export interface EventFormValues {
     imageUrl: File | null;
     eventStartDate: Moment | null;
     eventStartTime: Moment | null;

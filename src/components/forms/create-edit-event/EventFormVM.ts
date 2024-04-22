@@ -1,10 +1,10 @@
-import { FormValues } from "../../../interfaces/FormValuesInterface";
+import { EventFormValues } from "../../../interfaces/EventFormValuesInterface";
 import { combineDateTime } from "../../../utils/DateConverter";
 
 const EventFormVM = () => {
 
     // TODO: Fetch from API and get from redux.
-    const initialValues: FormValues = {
+    const initialValues: EventFormValues = {
         imageUrl: null,
         eventStartDate: null,
         eventStartTime: null,
@@ -20,7 +20,7 @@ const EventFormVM = () => {
         registrationEndTime: null,
     };
 
-    const onSubmit = (values: FormValues) => {
+    const onSubmit = (values: EventFormValues) => {
         const eventStart = combineDateTime(values.eventStartDate, values.eventStartTime);
         const eventEnd = combineDateTime(values.eventEndDate, values.eventEndTime);
         const registrationStart = combineDateTime(values.registrationStartDate, values.registrationStartTime);

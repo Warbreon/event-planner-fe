@@ -5,10 +5,10 @@ import PageHeader from "../../../headers/page-headers/PageHeader"
 import RegistrationVM from "./RegistrationVM";
 import { Typography } from "@mui/material";
 import styles from './Registration.module.css';
-import { FormValues } from "../../../../interfaces/FormValuesInterface";
+import { EventFormValues } from "../../../../interfaces/EventFormValuesInterface";
 
 const Registration = () => {
-    const { setFieldValue, values } = useFormikContext<FormValues>();
+    const { setFieldValue, values } = useFormikContext<EventFormValues>();
     const {
         registrationMessage,
         selectedTag,

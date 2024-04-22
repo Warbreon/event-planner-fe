@@ -435,6 +435,17 @@ const projectTheme = createTheme({
 			  	},
 			},
 		},
+		MuiAutocomplete: {
+			styleOverrides: {
+				inputRoot: {
+					'&.MuiOutlinedInput-root': {
+						'& .MuiAutocomplete-input': {
+							padding: '0.5px 4px 7.5px 5px',
+						},
+					},
+				},
+			},
+		},
 	},
 });
 

@@ -1,6 +1,5 @@
 import { createTheme } from '@mui/material';
 import { COLORS } from './Colors';
-import { BUTTON_STYLES } from './styles/Button';
 import { KeyboardArrowDown } from '@mui/icons-material';
 
 const fontFamily = 'Inter';
@@ -49,7 +48,7 @@ const projectTheme = createTheme({
 			fontWeight: 400,
 			color: COLORS.BLACK,
 
-			'&.centered' : {
+			'&.centered': {
 				marginTop: '1rem',
 				textAlign: 'center',
 			},
@@ -59,21 +58,17 @@ const projectTheme = createTheme({
 				lineHeight: '1rem',
 				marginBottom: '0.5rem',
 			},
-		},
-		body2: {
-			fontSize: '0.875rem',
-			fontWeight: 400,
-			color: COLORS.MEDIUM_DARK_GRAY,
-		},
-
-		subtitle1: {
 			'&.event-form-element': {
-				fontWeight: 400,
 				fontSize: '0.875rem',
 				lineHeight: '1rem',
 				color: COLORS.MEDIUM_DARK_GRAY,
 				marginBottom: '0.5rem',
 			},
+		},
+		body2: {
+			fontSize: '0.875rem',
+			fontWeight: 400,
+			color: COLORS.MEDIUM_DARK_GRAY,
 		},
 	},
 
@@ -168,10 +163,19 @@ const projectTheme = createTheme({
 						},
 					},
 
+					// [+] event form - agenda
 					'&.text-only': {
 						width: 'auto',
+						lineHeight: '1.25rem',
+						fontSize: '0.875rem',
+						border: 'none',
+						backgroundColor: 'transparent',
 						'&:hover': {
 							background: COLORS.WHITE,
+						},
+						'& .MuiSvgIcon-root': {
+							width: '1.5rem',
+							height: '1.5rem',
 						},
 					},
 
@@ -185,7 +189,7 @@ const projectTheme = createTheme({
 						'&:hover': {
 							background: COLORS.HOVER_LIGHT_GRAY,
 						}
-					}
+					},
 				},
 			},
 		},
@@ -228,7 +232,6 @@ const projectTheme = createTheme({
 			styleOverrides: {
 				root: {
 					fontFamily: fontFamily,
-
 					fontSize: '1rem',
 					color: COLORS.BLACK,
 					borderRadius: '8px',
@@ -298,6 +301,7 @@ const projectTheme = createTheme({
 				},
 			},
 		},
+		
 		MuiCardMedia: {
 			styleOverrides: {
 				img: {
@@ -424,7 +428,48 @@ const projectTheme = createTheme({
 			  	},
 			},
 		},
-	},
+		MuiSwitch: {
+			styleOverrides: {
+				root: {
+					width: 'auto',
+					height: 'auto',
+				},
+				switchBase: {
+					padding: '13px',
+					'&.Mui-checked': {
+						transform: 'translateX(24px)',
+						"& + .MuiSwitch-track": {
+							opacity: 1,
+							backgroundColor: COLORS.DARK_BLUE,
+						},
+						'& .MuiTouchRipple-root': {
+							display: 'none',
+						},
+						'&:hover': {
+							background: 'none',
+						},
+					},
+					'&:hover': {
+						background: 'none',
+					},
+				},
+				thumb: {
+					width: '1.375rem',
+					height: '1.375rem',
+					borderRadius: '0.6875rem',
+					color: COLORS.WHITE,
+					boxShadow: `0px 2px 1px 0px ${COLORS.DARK_BLUE_TRANSPARENT}, 0px 0px 3px 0px ${COLORS.DARK_BLUE_GLOW}`,
+				},
+				track: {
+					width: '3rem',
+					height: '1.5rem',
+					borderRadius: '0.75rem',
+					backgroundColor: COLORS.GRAY_BORDER,
+					opacity: 1,
+				}
+			},
+		},
+	}
 });
 
 export default projectTheme;

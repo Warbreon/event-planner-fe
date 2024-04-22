@@ -1,4 +1,4 @@
-import { Moment } from "moment";
+import moment, { Moment } from "moment";
 
 export const formatDate = (date: string): string => {
 	const options: Intl.DateTimeFormatOptions = { year: 'numeric', month: 'long', day: 'numeric' };
@@ -44,7 +44,15 @@ export const combineDateTime = (date: Moment | null, time: Moment | null) => {
 		return null;
 	}
 
-    const formattedDate = date.format('YYYY-MM-DD');
-    const formattedTime = time.format('HH:mm:ss');
-    return `${formattedDate}T${formattedTime}`;
+	const formattedDate = date.format('YYYY-MM-DD');
+	const formattedTime = time.format('HH:mm:ss');
+	return `${formattedDate}T${formattedTime}`;
+};
+
+export const toDisplayTimeFormat = (time: Moment): string => {
+	return time.format('h:mm a');
+};
+
+export const fromDisplayTimeFormat = (timeString: string): Moment => {
+	return moment(timeString, 'h:mm a');
 };

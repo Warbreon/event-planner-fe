@@ -11,8 +11,16 @@ type FormikTextFieldProps = TextFieldProps & {
     placeholder?: string;
 };
 
-const FormikTextField: FC<FormikTextFieldProps> = ({ name, title, titleClassName, textFieldClassName, placeholder, ...props }) => {
+const FormikTextField: FC<FormikTextFieldProps> = ({ 
+	name, 
+	title, 
+	titleClassName, 
+	textFieldClassName, 
+	placeholder, 
+	...props
+ }) => {
 	const [field, meta] = useField(name);
+
 	return (
 		<div className={styles.inputGroupWrapper}>
 			{title && (
@@ -24,8 +32,9 @@ const FormikTextField: FC<FormikTextFieldProps> = ({ name, title, titleClassName
 				{...field}
 				{...props}
 				error={meta.touched && Boolean(meta.error)}
-				label={meta.touched && meta.error ? meta.error : null}
+				helperText={meta.touched && meta.error ? meta.error : null}
                 placeholder={!!placeholder ? placeholder : ''}
+				className={textFieldClassName}
 			/>
 		</div>
 	);

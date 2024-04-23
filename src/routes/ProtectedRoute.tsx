@@ -1,37 +1,33 @@
+import ROUTES from './Routes';
 import { FC, ReactNode, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { PersistentStoreRootState } from '../redux/store/PersistentStore';
 import { Navigate, useNavigate } from 'react-router-dom';
 import { isExpired } from 'react-jwt';
-import { RefreshTokenRequest } from '../api/Authentication';
 import { refreshAccessToken, signOut } from '../redux/slices/UserSlice';
-import ROUTES from './Routes';
+import { usePost } from '../api/hooks/ApiHooks';
+import { refresh } from '../api/AuthenticationAPI';
 
 interface ProtectedRouteProps {
 	children: ReactNode;
 }
 
 const ProtectedRoute: FC<ProtectedRouteProps> = ({ children }) => {
-	const user = useSelector((state: PersistentStoreRootState) => state.signedIn);
-	const navigate = useNavigate();
+	const isUserAuthenticated = useSelector((state: PersistentStoreRootState) => state.signedIn);
 	const currectAccessToken = useSelector((state: PersistentStoreRootState) => state.accessToken);
 	const refreshToken = useSelector((state: PersistentStoreRootState) => state.refreshToken);
-	const dispatch = useDispatch();
 	const isAccessTokenExpired = isExpired(currectAccessToken);
 	const isRefreshTokenExpired = isExpired(refreshToken);
+	const dispatch = useDispatch();
+	const navigate = useNavigate();
 
-	const { refresh } = RefreshTokenRequest(refreshToken);
+	const { postData } = usePost();
 	useEffect(() => {
 		const fetchNewAccessToken = async () => {
-			console.log(
-				`requested new token. is access token expired: ${isAccessTokenExpired}. is refresh token expired: ${isRefreshTokenExpired}`
-			);
 			if (isAccessTokenExpired && !isRefreshTokenExpired) {
-				console.log(`requesting refresh, token expired ${currectAccessToken}`);
-				const { accessToken, error } = await refresh();
-				if (!error && accessToken) {
+				const { accessToken, error } = await postData(() => refresh(refreshToken));
+				if (!error && accessToken !== null) {
 					dispatch(refreshAccessToken(accessToken));
-					console.log(`dispaching new token: ${accessToken}`);
 				}
 			}
 		};
@@ -39,7 +35,7 @@ const ProtectedRoute: FC<ProtectedRouteProps> = ({ children }) => {
 		if (isAccessTokenExpired && !isRefreshTokenExpired) {
 			fetchNewAccessToken();
 		}
-	}, [currectAccessToken, dispatch, isAccessTokenExpired, isRefreshTokenExpired, refresh]);
+	}, [currectAccessToken, dispatch, isAccessTokenExpired, isRefreshTokenExpired, postData, refreshToken]);
 
 	useEffect(() => {
 		if (isRefreshTokenExpired) {
@@ -48,7 +44,7 @@ const ProtectedRoute: FC<ProtectedRouteProps> = ({ children }) => {
 		}
 	}, [navigate, isRefreshTokenExpired, dispatch]);
 
-	if (!user) {
+	if (!isUserAuthenticated) {
 		return <Navigate to={ROUTES.SIGN_IN} />;
 	}
 

@@ -1,6 +1,5 @@
 import { createTheme } from '@mui/material';
 import { COLORS } from './Colors';
-import { BUTTON_STYLES } from './styles/Button';
 import { KeyboardArrowDown } from '@mui/icons-material';
 
 const fontFamily = 'Inter';
@@ -73,6 +72,18 @@ const projectTheme = createTheme({
 				lineHeight: '1rem',
 				color: COLORS.MEDIUM_DARK_GRAY,
 				marginBottom: '0.5rem',
+			},
+		},
+
+		caption: {
+			'&.guest-registration-status': {
+				fontWeight: 400,
+				width: '6rem',
+				height: '1.5rem',
+				fontFamily: fontFamily,
+				textTransform: 'capitalize',
+				textAlign: 'right',
+				color: COLORS.MEDIUM_DARK_GRAY,
 			},
 		},
 	},
@@ -292,21 +303,21 @@ const projectTheme = createTheme({
 						borderRadius: '6.25rem',
 						height: '2.5rem',
 						border: '1px solid #DDDDDD',
-						fontFamily: 'Inter',
+						fontFamily: fontFamily,
 						'& fieldset ': {
 							border: 'none',
 						},
 						'& input': {
 							paddingLeft: '1.5rem',
 							'&::placeHolder ': {
-								color: '#999999',
+								color: COLORS.PLACEHOLDER,
 								weight: 400,
 								opacity: 0.75,
 							},
 						},
 					},
 					'&.event-search-bar': {
-						fontFamily: 'Inter',
+						fontFamily: fontFamily,
 						'& fieldset ': {
 							border: 'none',
 						},
@@ -315,21 +326,8 @@ const projectTheme = createTheme({
 							fontWeight: 400,
 							lineHeight: '1.5rem',
 							'&::placeHolder ': {
-								color: '#999999',
+								color: COLORS.PLACEHOLDER,
 							},
-						},
-					},
-					'&.guest-registration-status': {
-						width: '6rem',
-						height: '1.5rem',
-						fontFamily: 'Inter',
-						'& fieldset ': {
-							border: 'none',
-						},
-						'& input ': {
-							textTransform: 'capitalize',
-							textAlign: 'right',
-							padding: '0px',
 						},
 					},
 				},
@@ -378,10 +376,10 @@ const projectTheme = createTheme({
 					'&.guest-bar-search-icon ': {
 						position: 'absolute',
 						pointerEvents: 'none',
-						color: '#999999',
+						color: COLORS.PLACEHOLDER,
 					},
 					'&.event-bar-search-icon ': {
-						color: '#999999',
+						color: COLORS.PLACEHOLDER,
 					},
 				},
 			},
@@ -470,7 +468,7 @@ const projectTheme = createTheme({
 		MuiChip: {
 			styleOverrides: {
 				root: {
-					backgroundColor: '#F4F4F4',
+					backgroundColor: COLORS.GRAY,
 					marginRight: '10px',
 				},
 			},

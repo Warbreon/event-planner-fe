@@ -2,7 +2,7 @@ const EventPageGuestListPanelVM = () => {
     const onPlusButtonClick = () => {
         (console.log("Button clicked"));
     };
-    const onSearchChange = () => {
+    const onInputChange = () => {
         (console.log("New input"));
     };
     const onConfirmClick = () => {
@@ -12,7 +12,7 @@ const EventPageGuestListPanelVM = () => {
         (console.log("Declined"));
     };
 
-    return { onPlusButtonClick, onSearchChange, onConfirmClick, onDeclineClick};
+    return { onPlusButtonClick, onInputChange, onConfirmClick, onDeclineClick};
 };
 
 export default EventPageGuestListPanelVM;

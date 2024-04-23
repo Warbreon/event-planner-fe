@@ -11,7 +11,7 @@ import { Badge } from '@mui/material';
 import NotificationsRoundedIcon from '@mui/icons-material/NotificationsRounded';
 import PlannerAppBarViewModel from './PlannerAppBarViewModel';
 import styles from './PlannerAppBar.module.css';
-import SearchBar from "./guest-search-bar/SearchBar";
+import SearchBar from "./search-bar/SearchBar";
 import SearchRoundedIcon from "@mui/icons-material/SearchRounded";
 import React from "react";
 import {ICON_STYLES} from "../../themes/styles/Icon";

@@ -11,17 +11,14 @@ interface Props {
 
 const LocationVM = ({setFieldValue}: Props) => {
     const [placeholder, setPlaceholder] = useState('Search for a venue...');
-    const [key, setKey] = useState('physical');
+    // const [key, setKey] = useState('physical');
+
+
     const {values} = useFormikContext<FormValues>(); // Get form values using useFormikContext
     const {setFieldTouched} = useFormikContext<FormValues>();
-    useEffect(() => {
-        if (values.inviteUrl) {
-            setKey('online');
-        } else if (values.addressId) {
-            setKey('physical');
-        }
-    }, [values]);
 
+    const defaultKey = values.inviteUrl ? 'online' : 'physical';
+    const  [key, setKey] = useState(defaultKey);
     const handleTagChange = (newKey: string) => {
         setKey(newKey);
 

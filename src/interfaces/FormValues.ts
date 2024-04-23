@@ -10,7 +10,7 @@ export interface FormValues {
     eventName: string;
     eventTag: string;
     cardUrl: File | null;
-    addressId: number | string | null;
+    addressId: number | null;
     inviteUrl: string | null;
     agenda: Agenda[] | null;
 }

@@ -16,8 +16,8 @@ const EventFormVM = () => {
         eventName: '',
         eventTag: 'news',
         cardUrl: null,
-        addressId: '',
-        inviteUrl: '',
+        addressId: null,
+        inviteUrl: null,
         agenda: parsedAgendaItems,
     };
 

@@ -1,5 +1,6 @@
 import moment from 'moment';
 import * as Yup from 'yup';
+
 export const eventFormSchema = Yup.object().shape({
     imageUrl: Yup.mixed()
         .required('Please upload an image.')
@@ -18,7 +19,7 @@ export const eventFormSchema = Yup.object().shape({
     eventStartTime: Yup.date()
         .required('Start time is required')
         .test('is-time-in-the-future', 'Start time cannot be in the past', function (value) {
-            const { eventStartDate } = this.parent;
+            const {eventStartDate} = this.parent;
             const eventStartTime = moment(value);
             const eventStartDateTime = moment(eventStartDate)
                 .set({
@@ -59,11 +60,11 @@ export const eventFormSchema = Yup.object().shape({
                 return file ? ['image/jpeg', 'image/jpg', 'image/png'].includes(file.type) : true;
             }
         ),
-    addressId: Yup.string().test('at-least-one', 'Either an address or an invite URL is required', function (value) {
+    addressId: Yup.string().nullable().test('at-least-one', 'Either an address or an invite URL is required', function (value) {
         const {inviteUrl} = this.parent;
         return value || inviteUrl;
     }),
-    inviteUrl: Yup.string().test('at-least-one', 'Either an address or an invite URL is required', function (value) {
+    inviteUrl: Yup.string().nullable().test('at-least-one', 'Either an address or an invite URL is required', function (value) {
         const {addressId} = this.parent;
         return value || addressId;
     }),
@@ -75,7 +76,7 @@ export const eventFormSchema = Yup.object().shape({
                 description: Yup.string().required('Agenda description is required'),
             }),
         )
-        .test('times-ascending', 'Each agenda time must be later than the previous one', function (agendaArray) {
+        .test('times-ascending', 'Each agenda time must be later thanc the previous one', function (agendaArray) {
             if (!agendaArray || agendaArray.length <= 1) {
                 return true;
             }

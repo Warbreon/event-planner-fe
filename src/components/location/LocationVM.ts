@@ -27,11 +27,11 @@ const LocationVM = ({setFieldValue}: Props) => {
 
         switch (newKey) {
             case 'physical':
-                setPlaceholder('Search for a physical location...');
+                setPlaceholder('Search for a venue...');
                 setFieldValue('inviteUrl', '');
                 break;
             case 'online':
-                setPlaceholder('Enter link to Zoom, Hangouts or other platform...');
+                setPlaceholder('Enter link to Zoom, Hangouts or other platform');
                 setFieldValue('address', '');
                 break;
             case 'tbd':

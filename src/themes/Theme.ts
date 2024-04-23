@@ -29,7 +29,7 @@ const projectTheme = createTheme({
             },
 
             '&.event-form-section': {
-                lineHeight: '2rem',
+                lineHeight: '1.5rem',
                 fontSize: '1.25rem',
             },
         },
@@ -474,6 +474,10 @@ const projectTheme = createTheme({
                 inputRoot: {
                     '&.MuiOutlinedInput-root': {
                         '& .MuiAutocomplete-input': {
+                            '&::placeholder': {
+                                color: COLORS.PLACEHOLDER,
+                                fontSize: '1rem',
+                            },
                             padding: '0.5px 4px 7.5px 5px',
                         },
                     },
@@ -483,4 +487,4 @@ const projectTheme = createTheme({
     }
 });
 
-export default projectTheme;
+export default projectTheme

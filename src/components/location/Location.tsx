@@ -21,7 +21,7 @@ const Location = () => {
         <div className={styles2.container}>
             <div className={styles2.title}>
                 <PageHeader
-                    text='Locations'
+                    text='Location'
                     className='event-form-section'
                 />
             </div>
@@ -41,7 +41,7 @@ const Location = () => {
                 {key === 'physical' && (
                     <FormikAutocomplete
                         name='addressId'
-                        title='Physical event'
+                        title='Venue'
                         titleClassName='event-form-element'
                         textFieldProps={{placeholder}}
                         options={locations}

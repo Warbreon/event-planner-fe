@@ -11,14 +11,10 @@ interface Props {
 
 const LocationVM = ({setFieldValue}: Props) => {
     const [placeholder, setPlaceholder] = useState('Search for a venue...');
-    // const [key, setKey] = useState('physical');
-
-
     const {values} = useFormikContext<FormValues>(); // Get form values using useFormikContext
     const {setFieldTouched} = useFormikContext<FormValues>();
-
     const defaultKey = values.inviteUrl ? 'online' : 'physical';
-    const  [key, setKey] = useState(defaultKey);
+    const [key, setKey] = useState(defaultKey);
     const handleTagChange = (newKey: string) => {
         setKey(newKey);
 
@@ -41,11 +37,9 @@ const LocationVM = ({setFieldValue}: Props) => {
             default:
                 setPlaceholder('Search for a venue...');
         }
-
-
     };
 
-    const options=[
+    const options = [
         {key: 'physical', label: 'Physical location'},
         {key: 'online', label: 'Online event'},
         {key: 'tbd', label: 'TBD'},
@@ -55,7 +49,7 @@ const LocationVM = ({setFieldValue}: Props) => {
         return classNames(styles.tagFilter, {[styles.tagFilterSelected]: isSelected});
     };
 
-    return {placeholder, key, getChipClassName, handleTagChange,options}
+    return {placeholder, key, getChipClassName, handleTagChange, options}
 }
 
 export default LocationVM

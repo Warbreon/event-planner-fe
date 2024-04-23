@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { extractAccessToken } from '../../utils/schemas/ExtractAccessToken';
+import { extractAccessToken } from '../../utils/ExtractAccessToken';
 
 export const API_withoutToken = axios.create({
 	baseURL: 'https://raisav-api.devbstaging.com/api',

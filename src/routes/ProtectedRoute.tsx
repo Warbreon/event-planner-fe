@@ -14,9 +14,9 @@ interface ProtectedRouteProps {
 
 const ProtectedRoute: FC<ProtectedRouteProps> = ({ children }) => {
 	const isUserAuthenticated = useSelector((state: PersistentStoreRootState) => state.signedIn);
-	const currectAccessToken = useSelector((state: PersistentStoreRootState) => state.accessToken);
+	const currentAccessToken = useSelector((state: PersistentStoreRootState) => state.accessToken);
 	const refreshToken = useSelector((state: PersistentStoreRootState) => state.refreshToken);
-	const isAccessTokenExpired = isExpired(currectAccessToken);
+	const isAccessTokenExpired = isExpired(currentAccessToken);
 	const isRefreshTokenExpired = isExpired(refreshToken);
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
@@ -36,7 +36,7 @@ const ProtectedRoute: FC<ProtectedRouteProps> = ({ children }) => {
 		if (isAccessTokenExpired && !isRefreshTokenExpired) {
 			fetchNewAccessToken();
 		}
-	}, [currectAccessToken, dispatch, isAccessTokenExpired, isRefreshTokenExpired, postData, refresh, refreshToken]);
+	}, [currentAccessToken, dispatch, isAccessTokenExpired, isRefreshTokenExpired, postData, refresh, refreshToken]);
 
 	useEffect(() => {
 		if (isRefreshTokenExpired) {

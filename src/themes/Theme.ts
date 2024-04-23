@@ -307,7 +307,7 @@ const projectTheme = createTheme({
 						marginBottom: '1.5rem',
 						borderRadius: '6.25rem',
 						height: '2.5rem',
-						border: '1px solid #DDDDDD',
+						border: '1px solid ' + COLORS.GRAY_BORDER,
 						fontFamily: fontFamily,
 						'& fieldset ': {
 							border: 'none',

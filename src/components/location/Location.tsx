@@ -13,12 +13,14 @@ import LocationMocks from './LocationMocks';
 
 const {locations} = LocationMocks();
 
-const Location = () => {
-    const {setFieldValue} = useFormikContext<FormValues>();
-    const {placeholder, key, getChipClassName, handleTagChange} = LocationVM({setFieldValue});
 
+const Location = () => {
+
+    const {setFieldValue} = useFormikContext<FormValues>();
+    const {placeholder, key, getChipClassName, handleTagChange, options} = LocationVM({setFieldValue});
+  
     return (
-        <div className={styles2.container}>
+        <div className={`${styles2.container} ${key === 'tbd' ? styles2['tbd-gap'] : ''}`}>
             <div className={styles2.title}>
                 <PageHeader
                     text='Location'
@@ -27,11 +29,7 @@ const Location = () => {
             </div>
             <div className={`${styles.filters} ${styles2.chipSelectorGroup}`}>
                 <ChipSelector
-                    options={[
-                        {key: 'physical', label: 'Physical location'},
-                        {key: 'online', label: 'Online event'},
-                        {key: 'tbd', label: 'TBD'},
-                    ]}
+                    options={options}
                     onSelect={(key) => handleTagChange(key)}
                     selectedKey={key}
                     getChipClassName={getChipClassName}

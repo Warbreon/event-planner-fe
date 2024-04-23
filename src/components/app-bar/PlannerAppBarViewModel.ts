@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { signOut } from '../../redux/slices/UserSlice';
+import { signOut } from '../../redux/slices/AuthenticationSlice';
 
 const PlannerAppBarViewModel = () => {
 	const [anchorUser, setAnchorUser] = useState<null | HTMLElement>(null);
@@ -17,14 +17,13 @@ const PlannerAppBarViewModel = () => {
 
 	const handleSignOut = () => {
 		dispatch(signOut());
-	}
+	};
 
 	const handleProfileClick = () => {
-		console.log("Open user profile")
-	}
+		console.log('Open user profile');
+	};
 
-
-	const handleMenuOptions  = (menuItem: String) => {
+	const handleMenuOptions = (menuItem: String) => {
 		if (menuItem === 'Profile') {
 			handleProfileClick();
 		} else if (menuItem === 'Logout') {
@@ -32,12 +31,11 @@ const PlannerAppBarViewModel = () => {
 		}
 
 		handleCloseUserMenu();
-	}
+	};
 
 	const handleCloseUserMenu = () => {
 		setAnchorUser(null);
 	};
-
 
 	const handleSearchBarChange = (event: React.ChangeEvent<HTMLInputElement>) => {
 		setSearchValue(event.target.value);
@@ -62,7 +60,7 @@ const PlannerAppBarViewModel = () => {
 		handleSearchBarChange,
 		handleSearchKeyDown,
 		handleSearch,
-		handleMenuOptions
+		handleMenuOptions,
 	};
 };
 

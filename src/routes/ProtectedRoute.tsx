@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { PersistentStoreRootState } from '../redux/store/PersistentStore';
 import { Navigate, useNavigate } from 'react-router-dom';
 import { isExpired } from 'react-jwt';
-import { refreshAccessToken, signOut } from '../redux/slices/UserSlice';
+import { refreshAccessToken, signOut } from '../redux/slices/AuthenticationSlice';
 import { usePost } from '../api/hooks/ApiHooks';
 import { refresh } from '../api/AuthenticationAPI';
 

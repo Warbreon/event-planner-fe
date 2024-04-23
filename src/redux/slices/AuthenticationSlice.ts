@@ -16,7 +16,7 @@ const initialState: AuthenticationState = {
 	role: '',
 };
 
-const userSlice = createSlice({
+const authenticationSlice = createSlice({
 	name: 'user',
 	initialState,
 	reducers: {
@@ -43,5 +43,5 @@ const userSlice = createSlice({
 	},
 });
 
-export const { singIn, signOut, refreshAccessToken } = userSlice.actions;
-export default userSlice.reducer;
+export const { singIn, signOut, refreshAccessToken } = authenticationSlice.actions;
+export default authenticationSlice.reducer;

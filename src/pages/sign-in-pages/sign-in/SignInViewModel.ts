@@ -13,13 +13,14 @@ const SignInViewModel = () => {
 
 	const { postData } = usePost();
 	const onSubmit = async (email: string, password: string) => {
+
 		const {
 			accessToken,
 			refreshToken,
 			email: authenticatedUserEmail,
 			role,
-			error,
-		} = await postData(() => authenticateUser(email, password));
+			error } = await postData(() => authenticateUser(email, password));
+
 		if (accessToken && refreshToken && authenticatedUserEmail && role && !error) {
 			dispatch(singIn({ signedIn: true, accessToken, refreshToken, email, role }));
 			navigate(ROUTES.INDEX);

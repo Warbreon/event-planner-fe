@@ -1,8 +1,11 @@
-import { API_withoutToken } from './axios/Axios';
+import AxiosHook from './axios/Axios';
 import { ENDPOINTS } from './endpoints/Endpoints';
 
-export const authenticateUser = (email: string, password: string) =>
-	API_withoutToken.post(ENDPOINTS.authenticate, { email, password });
+const AuthenticationHook = () => {
+	const { API } = AxiosHook();
+	const authenticateUser = (email: string, password: string) => API.post(ENDPOINTS.authenticate, { email, password });
+	const refresh = (refreshToken: string) => API.post(ENDPOINTS.refreshAccessToken, { refreshToken });
 
-export const refresh = (refreshToken: string) => 
-  API_withoutToken.post(ENDPOINTS.refreshAccessToken, { refreshToken });
+	return { authenticateUser, refresh };
+};
+export default AuthenticationHook;

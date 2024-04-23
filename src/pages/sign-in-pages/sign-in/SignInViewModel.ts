@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 import { singIn } from '../../../redux/slices/AuthenticationSlice';
 import { useNavigate } from 'react-router';
 import { usePost } from '../../../api/hooks/ApiHooks';
-import { authenticateUser } from '../../../api/AuthenticationAPI';
+import AuthenticationHook from '../../../api/AuthenticationAPI';
 
 const SignInViewModel = () => {
 	const navigate = useNavigate();
@@ -12,8 +12,8 @@ const SignInViewModel = () => {
 	const dispatch = useDispatch();
 
 	const { postData } = usePost();
+	const {authenticateUser} = AuthenticationHook();
 	const onSubmit = async (email: string, password: string) => {
-
 		const {
 			accessToken,
 			refreshToken,

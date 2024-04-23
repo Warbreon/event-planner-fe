@@ -1,19 +1,23 @@
 import axios from 'axios';
-import { extractAccessToken } from '../../utils/ExtractAccessToken';
+import { useSelector } from 'react-redux';
+import { PersistentStoreRootState } from '../../redux/store/PersistentStore';
+import { isExpired } from 'react-jwt';
 
-export const API_withoutToken = axios.create({
-	baseURL: 'https://raisav-api.devbstaging.com/api',
-	headers: {
+const AxiosHook = () => {
+	const accessToken = useSelector((state: PersistentStoreRootState) => state.accessToken);
+	const isTokenExpired = isExpired(accessToken);
+	
+	const requestHeaders = {
 		'Content-Type': 'application/json',
-	},
-});
+		...((accessToken !== '' && !isTokenExpired) && { Authorization: `Bearer ${accessToken}` }),
+	};
 
-const API = axios.create({
-	baseURL: 'https://raisav-api.devbstaging.com/api',
-	headers: {
-		'Content-Type': 'application/json',
-		Authorization: `Bearer ${extractAccessToken()}`,
-	},
-});
+	const API = axios.create({
+		baseURL: 'https://raisav-api.devbstaging.com/api',
+		headers: requestHeaders,
+	});
 
-export default API;
+	return { API };
+};
+
+export default AxiosHook;

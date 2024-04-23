@@ -1,6 +1,6 @@
 import { useNavigate, useParams } from 'react-router';
 import { calculateDuration, formatDate, formatTime } from '../../utils/DateConverter';
-import { fetchEventById } from '../../api/EventsAPI';
+import EventAPIHook from '../../api/EventsAPI';
 import { useCallback, useEffect } from 'react';
 import { useFetch } from '../../api/hooks/ApiHooks';
 
@@ -8,9 +8,11 @@ const EventPageVM = () => {
 	const { eventId } = useParams();
 	const navigate = useNavigate();
 
+	const { fetchEventById } = EventAPIHook();
+
 	const fetchFunction = useCallback(() => {
 		return fetchEventById(Number(eventId));
-	}, [eventId])
+	}, [eventId, fetchEventById])
 
 	const { data: event, isLoading, error } = useFetch(fetchFunction);
 

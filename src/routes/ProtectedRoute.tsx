@@ -6,7 +6,7 @@ import { Navigate, useNavigate } from 'react-router-dom';
 import { isExpired } from 'react-jwt';
 import { refreshAccessToken, signOut } from '../redux/slices/AuthenticationSlice';
 import { usePost } from '../api/hooks/ApiHooks';
-import { refresh } from '../api/AuthenticationAPI';
+import AuthenticationHook from '../api/AuthenticationAPI';
 
 interface ProtectedRouteProps {
 	children: ReactNode;
@@ -21,6 +21,7 @@ const ProtectedRoute: FC<ProtectedRouteProps> = ({ children }) => {
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
 
+	const { refresh } = AuthenticationHook();
 	const { postData } = usePost();
 	useEffect(() => {
 		const fetchNewAccessToken = async () => {
@@ -35,7 +36,7 @@ const ProtectedRoute: FC<ProtectedRouteProps> = ({ children }) => {
 		if (isAccessTokenExpired && !isRefreshTokenExpired) {
 			fetchNewAccessToken();
 		}
-	}, [currectAccessToken, dispatch, isAccessTokenExpired, isRefreshTokenExpired, postData, refreshToken]);
+	}, [currectAccessToken, dispatch, isAccessTokenExpired, isRefreshTokenExpired, postData, refresh, refreshToken]);
 
 	useEffect(() => {
 		if (isRefreshTokenExpired) {

@@ -1,8 +1,8 @@
 import classNames from "classnames";
-import {useEffect, useState} from "react";
+import {useState} from "react";
 import {FormValues} from "../../interfaces/FormValues";
 import styles from '../event-header/EventHeader.module.css';
-import {useFormikContext} from 'formik'; // Import useFormikContext
+import {useFormikContext} from 'formik'; 
 
 interface Props {
     setFieldValue: (field: string, value: any, shouldValidate?: boolean) => void;
@@ -11,10 +11,7 @@ interface Props {
 
 const LocationVM = ({setFieldValue}: Props) => {
     const [placeholder, setPlaceholder] = useState('Search for a venue...');
-    // const [key, setKey] = useState('physical');
-
-
-    const {values} = useFormikContext<FormValues>(); // Get form values using useFormikContext
+    const {values} = useFormikContext<FormValues>(); 
     const {setFieldTouched} = useFormikContext<FormValues>();
 
     const defaultKey = values.inviteUrl ? 'online' : 'physical';

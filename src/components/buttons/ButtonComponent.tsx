@@ -37,7 +37,7 @@ const GenericButton: FC<ButtonProps> = ({ title, styles, type, icon, iconAtEnd, 
 			startIcon={!iconAtEnd && !!icon && <Icon icon={icon} />}
 			endIcon={iconAtEnd && !!icon && <Icon icon={icon} />}
 		>
-			{(!!icon && iconButtonTitle) || title}
+			{title || (!!icon && iconButtonTitle)}
 		</Button>
 	);
 };

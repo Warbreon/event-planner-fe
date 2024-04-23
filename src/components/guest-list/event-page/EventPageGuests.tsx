@@ -4,16 +4,18 @@ import GuestList from '../GuestList';
 import styles from './EventPageGuests.module.css';
 import { BUTTON_STYLES } from '../../../themes/styles/Button';
 import { FC } from 'react';
+import { Attendee } from '../../../models/Attendee';
 interface Props {
 	onAddGuests: () => void;
+	attendees: Attendee[];
 }
 
-const EventPageGuests: FC<Props> = ({ onAddGuests }) => {
+const EventPageGuests: FC<Props> = ({ onAddGuests, attendees }) => {
 	return (
 		<Box className={styles.gridWrapper}>
 			<Grid container spacing={2}>
 				<Grid item xs={10}>
-					<GuestList />
+					<GuestList attendees={attendees}/>
 				</Grid>
 				<Grid item xs={2}>
 					<GenericButton

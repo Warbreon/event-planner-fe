@@ -1,8 +1,7 @@
 import FormikTextField from "../../../../shared/forms/elements/formik-elements/text-field/FormikTextField";
-import FormikDropdown from "../../../../shared/forms/elements/formikElements/Dropdown/FormikDropdown";
+import FormikDropdown from "../../../../shared/forms/elements/formik-elements/dropdown/FormikDropdown";
 import PageHeader from "../../../headers/page-headers/PageHeader";
 import styles from "./Details.module.css";
-import { Typography } from "@mui/material";
 
 const eventTagsOptions = [
   { key: "news", label: "News & Updates" },

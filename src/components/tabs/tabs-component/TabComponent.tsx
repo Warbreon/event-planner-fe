@@ -1,9 +1,10 @@
 import { FC, useState, SyntheticEvent } from 'react';
 import { Box, Tab, Tabs } from '@mui/material';
-import { Attendee } from '../../../models/Attendee';
 import TabPanel from '../tab-panel/TabPanel';
 import styles from './TabComponent.module.css';
 import AboutEvent from '../../about-event/AboutEvent';
+import { Attendee } from '../../../models/Attendee';
+import { filterAttendees } from '../../../utils/AttendeeFilter';
 import EventPageGuestListPanel from "../tab-panel/event-page-guest-list-panel/EventPageGuestListPanel";
 
 interface TabsProps {
@@ -18,7 +19,10 @@ const TabComponent: FC<TabsProps> = ({ description, tags, agenda, attendees }) =
 	const handleTabChange = (event: SyntheticEvent, newValue: number) => {
 		setValue(newValue);
 	};
-	const guestsTabLabel = `Guests (${attendees.length})`;
+	const filteredAttendees = filterAttendees(attendees);
+
+	const guestsTabLabel = `Guests (${filteredAttendees.length})`;
+	/*const guestsTabLabel = `Guests (${attendees.length})`;*/
 
 	return (
 		<Box>

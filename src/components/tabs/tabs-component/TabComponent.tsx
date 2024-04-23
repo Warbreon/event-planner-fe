@@ -22,7 +22,6 @@ const TabComponent: FC<TabsProps> = ({ description, tags, agenda, attendees }) =
 	const filteredAttendees = filterAttendees(attendees);
 
 	const guestsTabLabel = `Guests (${filteredAttendees.length})`;
-	/*const guestsTabLabel = `Guests (${attendees.length})`;*/
 
 	return (
 		<Box>
@@ -36,7 +35,7 @@ const TabComponent: FC<TabsProps> = ({ description, tags, agenda, attendees }) =
 				<AboutEvent description={description} eventTags={tags} agenda={agenda} attendees={attendees} />
 			</TabPanel>
 			<TabPanel index={1} value={value}>
-				<EventPageGuestListPanel attendees={attendees}/>
+				<EventPageGuestListPanel attendees={filteredAttendees}/>
 			</TabPanel>
 		</Box>
 	);

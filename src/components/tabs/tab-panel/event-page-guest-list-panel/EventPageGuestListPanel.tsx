@@ -21,12 +21,14 @@ const EventPageGuestListPanel: FC<Props> = ({attendees}) => {
     const { onPlusButtonClick, onInputChange, onConfirmClick, onDeclineClick} = EventPageGuestListPanelVM();
     return (
         <>
-            <SearchBar
-                styles={TEXTFIELD_STYLES.GUEST_SEARCH_BAR}
-                placeholder={'Search for guest...'}
-                onChange={onInputChange}>
-                <SearchIcon className={ICON_STYLES.GUEST_SEARCH_BAR}/>
-            </SearchBar>
+            {attendees.length!==0 &&
+                <SearchBar
+                    styles={TEXTFIELD_STYLES.GUEST_SEARCH_BAR}
+                    placeholder={'Search for guest...'}
+                    onChange={onInputChange}>
+                    <SearchIcon className={ICON_STYLES.GUEST_SEARCH_BAR}/>
+                </SearchBar>
+            }
             <List>
                 {attendees.map((attendee,i,array) => [
                     <EventPageGuestListItem

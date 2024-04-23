@@ -1,12 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit';
 import authenticationSlice from '../slices/AuthenticationSlice';
-import storageSession from 'redux-persist/lib/storage/session';
+import storage from 'redux-persist/lib/storage';
 import { persistReducer, persistStore } from 'redux-persist';
 import { FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER } from 'redux-persist';
 
 const persistConfig = {
 	key: 'session',
-	storage: storageSession,
+	storage,
 };
 
 const persistedReducer = persistReducer(persistConfig, authenticationSlice);

@@ -10,6 +10,7 @@ import { Add, KeyboardArrowDown } from '@mui/icons-material';
 import { EventFiltersState } from '../../pages/explore-events/eventFiltersInterface';
 import { SelectChangeEvent } from '@mui/material';
 import { DATE_FILTER_OPTIONS } from '../../constants/DateConstants';
+import { TAGS } from '../../themes/styles/Tag';
 
 interface Props {
 	filters: EventFiltersState;
@@ -40,7 +41,7 @@ const EventHeader: React.FC<Props> = ({ filters, handleFiltersChange }) => {
 	];
 
 	const getChipClassName = (isSelected: boolean) => {
-		return classNames(styles.tagFilter, { [styles.tagFilterSelected]: isSelected });
+		return classNames(TAGS.SELECT_TAG, { [TAGS.TAG_SELECTED]: isSelected });
 	};
 
 	const handleTagChange = (key: string) => {

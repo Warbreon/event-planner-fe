@@ -1,5 +1,4 @@
 import { FC } from "react";
-import { CardEvent } from "./EventCardInterfaces";
 import styles from "./EventCard.module.css";
 import { Box, Card, CardContent, Typography } from "@mui/material";
 import Image from "../image/Image";
@@ -12,15 +11,16 @@ import { BUTTON_STYLES } from "../../themes/styles/Button";
 import DateLocationPrice from "../reusable-labels/DateLocationPrice";
 import EventCardVM from "./EventCardVM";
 import { Link } from "react-router-dom";
+import { Event } from "../../models/Event";
 
-export const EventCard: FC<CardEvent> = ({
+export const EventCard: FC<Event> = ({
   id,
   name,
   imageUrl,
   address,
   price,
   eventStart,
-  attendees,
+  attendees = [],
   inviteUrl,
 }) => {
   const {

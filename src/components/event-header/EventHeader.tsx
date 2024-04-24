@@ -1,59 +1,32 @@
 import Title from '../title/Title';
-import { useNavigate } from 'react-router';
 import Dropdown from '../dropdown/Dropdown';
 import GenericButton from '../button/GenericButton';
-import ROUTES from '../../routes/Routes';
 import ChipSelector from '../chip-selector/ChipSelector';
 import styles from './EventHeader.module.css';
 import classNames from 'classnames';
 import { Add, KeyboardArrowDown } from '@mui/icons-material';
 import { EventFiltersState } from '../../pages/explore-events/eventFiltersInterface';
-import { SelectChangeEvent } from '@mui/material';
 import { DATE_FILTER_OPTIONS } from '../../constants/DateConstants';
+import { FC } from 'react';
+import EventHeaderVM from './EventHeaderVM';
+import LoadingIndicator from '../loading-indicator/LoadingIndicator';
 
 interface Props {
 	filters: EventFiltersState;
 	handleFiltersChange: (filters: Partial<EventFiltersState>) => void;
 }
 
-const EventHeader: React.FC<Props> = ({ filters, handleFiltersChange }) => {
-	const navigate = useNavigate();
+const EventHeader: FC<Props> = ({ filters, handleFiltersChange }) => {
 
-	// TODO: get name from redux later
-	const userName = 'John';
-
-	const eventTagsOptions = [
-		{ key: 'all', label: 'All events' },
-		{ key: 'news', label: 'News & Updates' },
-		{ key: 'meetup', label: 'Meetup' },
-		{ key: 'demo', label: 'Demo sessions' },
-		{ key: 'exhibition', label: 'Exhibition' },
-		{ key: 'party', label: 'Party' },
-	];
-
-	const locations = [
-		{ value: 'all', label: 'All Locations' },
-		{ value: 'online', label: 'Online' },
-		{ value: 'kaunas', label: 'Kaunas' },
-		{ value: 'vilnius', label: 'Vilnius' },
-		{ value: 'chicago', label: 'Chicago' },
-	];
+	const { userName, handleTagChange, handleDateChange, handleLocationChange, locations, eventTags, error, isLoading, navigateToAddEvent } = 
+		EventHeaderVM(filters, handleFiltersChange);
 
 	const getChipClassName = (isSelected: boolean) => {
 		return classNames(styles.tagFilter, { [styles.tagFilterSelected]: isSelected });
 	};
 
-	const handleTagChange = (key: string) => {
-		handleFiltersChange({ eventTag: key });
-	};
-
-	const handleDateChange = (event: SelectChangeEvent<string>) => {
-		handleFiltersChange({ date: event.target.value });
-	};
-
-	const handleLocationChange = (event: SelectChangeEvent<string>) => {
-		handleFiltersChange({ location: event.target.value });
-	};
+	if (error) return <div className={styles.container}>{error}</div>;
+	if (isLoading) return <LoadingIndicator />;
 
 	return (
 		<div className={styles.container}>
@@ -66,7 +39,7 @@ const EventHeader: React.FC<Props> = ({ filters, handleFiltersChange }) => {
 				/>
 				<GenericButton
 					text='Add event'
-					onClick={() => navigate(ROUTES.ADD_EVENT)}
+					onClick={navigateToAddEvent}
 					className={styles.addEventButton}
 					buttonProps={{
 						startIcon: <Add />,
@@ -75,8 +48,8 @@ const EventHeader: React.FC<Props> = ({ filters, handleFiltersChange }) => {
 			</div>
 			<div className={styles.filters}>
 				<ChipSelector
-					options={eventTagsOptions}
-					selectedKey={filters.eventTag}
+					options={eventTags || []}
+					selectedKeys={filters.eventTag}
 					onSelect={handleTagChange}
 					getChipClassName={getChipClassName}
 				/>

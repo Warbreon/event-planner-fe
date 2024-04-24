@@ -378,6 +378,9 @@ const projectTheme = createTheme({
 				root: {
 					backgroundColor: '#F4F4F4',
 					marginRight: '10px',
+					'.MuiTouchRipple-root': {
+						display: 'none',
+					},
 				},
 			},
 		},

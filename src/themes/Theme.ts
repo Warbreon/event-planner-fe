@@ -301,7 +301,7 @@ const projectTheme = createTheme({
 				},
 			},
 		},
-		
+
 		MuiCardMedia: {
 			styleOverrides: {
 				img: {
@@ -486,6 +486,28 @@ const projectTheme = createTheme({
 					borderRadius: '0.75rem',
 					backgroundColor: COLORS.GRAY_BORDER,
 					opacity: 1,
+				}
+			},
+		},
+		MuiTooltip: {
+			styleOverrides: {
+				tooltipArrow: {
+					'&.error': {
+						backgroundColor: COLORS.WHITE,
+						border: `2px solid ${COLORS.ERROR}`,
+						color: COLORS.ERROR,
+						fontFamily: fontFamily,
+						fontSize: '0.875rem',
+						lineHeight: '1rem',
+						fontWeight: 400,
+						borderRadius: '0.5rem',
+					},
+				},
+				arrow: {
+					'&:before': {
+						backgroundColor: COLORS.WHITE,
+						border: `2px solid ${COLORS.ERROR}`,
+					}
 				}
 			},
 		},

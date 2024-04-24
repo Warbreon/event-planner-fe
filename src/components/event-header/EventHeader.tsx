@@ -7,6 +7,7 @@ import classNames from 'classnames';
 import { Add, KeyboardArrowDown } from '@mui/icons-material';
 import { EventFiltersState } from '../../pages/explore-events/eventFiltersInterface';
 import { DATE_FILTER_OPTIONS } from '../../constants/DateConstants';
+import { TAGS } from '../../themes/styles/Tag';
 import { FC } from 'react';
 import EventHeaderVM from './EventHeaderVM';
 import LoadingIndicator from '../loading-indicator/LoadingIndicator';
@@ -22,7 +23,7 @@ const EventHeader: FC<Props> = ({ filters, handleFiltersChange }) => {
 		EventHeaderVM(filters, handleFiltersChange);
 
 	const getChipClassName = (isSelected: boolean) => {
-		return classNames(styles.tagFilter, { [styles.tagFilterSelected]: isSelected });
+		return classNames(TAGS.SELECT_TAG, { [TAGS.TAG_SELECTED]: isSelected });
 	};
 
 	if (error) return <div className={styles.container}>{error}</div>;

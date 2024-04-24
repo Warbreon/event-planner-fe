@@ -376,8 +376,28 @@ const projectTheme = createTheme({
 		MuiChip: {
 			styleOverrides: {
 				root: {
-					backgroundColor: '#F4F4F4',
+					backgroundColor: COLORS.GRAY,
 					marginRight: '10px',
+
+					'&.select-tag': {
+						height: '2rem',
+						borderRadius: '6.25rem',
+						border: `1px solid ${COLORS.GRAY_BORDER}`,
+						padding: '0.375rem 0.1875rem',
+						backgroundColor: COLORS.WHITE,
+						marginTop: '1.5rem',
+					},
+					'&:active': {
+						'& .MuiTouchRipple-root': {
+							display: 'none',
+						},
+					},
+					'&.tag-selected': {
+						borderColor: COLORS.BLACK,
+						'& span': {
+							fontWeight: 600,
+						}
+					},
 					'.MuiTouchRipple-root': {
 						display: 'none',
 					},
@@ -386,49 +406,49 @@ const projectTheme = createTheme({
 		},
 		MuiSelect: {
 			styleOverrides: {
-			  	root: {
+				root: {
 					width: '100%',
 					color: COLORS.BLACK,
 					borderRadius: '8px',
 					fontFamily: fontFamily,
 					borderColor: COLORS.GRAY_BORDER,
 					'&.Mui-focused .MuiOutlinedInput-notchedOutline': {
-				  		borderColor: COLORS.GRAY_BORDER,
+						borderColor: COLORS.GRAY_BORDER,
 					},
 					'.MuiSelect-icon': {
-				  		color: COLORS.BLACK,
-				  		marginRight: '1rem',
+						color: COLORS.BLACK,
+						marginRight: '1rem',
 					},
-			  	},
+				},
 			},
 			defaultProps: {
-			  IconComponent: KeyboardArrowDown,
+				IconComponent: KeyboardArrowDown,
 			},
 		},
 		MuiMenuItem: {
 			styleOverrides: {
-			  	root: {
+				root: {
 					width: '100%',
 					'&:hover': {
-				  		backgroundColor: COLORS.HOVER_VERY_LIGHT_GRAY,
+						backgroundColor: COLORS.HOVER_VERY_LIGHT_GRAY,
 					},
 					'&.Mui-focusVisible': {
-				  		backgroundColor: COLORS.GRAY_BORDER,
+						backgroundColor: COLORS.GRAY_BORDER,
 					},
 					'&.Mui-selected': {
-				  		backgroundColor: COLORS.GRAY_BORDER,
+						backgroundColor: COLORS.GRAY_BORDER,
 					},
 					fontFamily: fontFamily,
 					borderRadius: '10px',
-			  	},
+				},
 			},
 		},
 		MuiMenu: {
 			styleOverrides: {
-			  	paper: {
+				paper: {
 					borderRadius: '8px',
 					boxShadow: `0.5px 0.5px 10px 0.5px ${COLORS.GRAY_BORDER}`,
-			  	},
+				},
 			},
 		},
 		MuiSwitch: {

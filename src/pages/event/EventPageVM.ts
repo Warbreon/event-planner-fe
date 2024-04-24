@@ -1,7 +1,7 @@
 import { useNavigate, useParams } from 'react-router';
 import { calculateDuration, formatDate, formatTime } from '../../utils/DateConverter';
 import EventAPIHook from '../../api/EventsAPI';
-import { useCallback, useEffect } from 'react';
+import { useEffect } from 'react';
 import { useFetch } from '../../api/hooks/ApiHooks';
 
 const EventPageVM = () => {
@@ -10,11 +10,7 @@ const EventPageVM = () => {
 
 	const { fetchEventById } = EventAPIHook();
 
-	const fetchFunction = useCallback(() => {
-		return fetchEventById(Number(eventId));
-	}, [eventId, fetchEventById])
-
-	const { data: event, isLoading, error } = useFetch(fetchFunction);
+	const { data: event, isLoading, error } = useFetch(() => fetchEventById(Number(eventId)));
 
 	const { eventStart = '', eventEnd = '', inviteUrl, address } = event || {};
 	const eventDate = formatDate(eventStart).toString();

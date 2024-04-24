@@ -11,7 +11,7 @@ type Props = {
     children?: ReactNode;
 };
 
-const EventPageGuestListItem: React.FC<Props> = ({
+const GuestListItem: React.FC<Props> = ({
     image,
     fullName,
     details,
@@ -32,4 +32,4 @@ const EventPageGuestListItem: React.FC<Props> = ({
     )
 };
 
-export default EventPageGuestListItem;
+export default GuestListItem;

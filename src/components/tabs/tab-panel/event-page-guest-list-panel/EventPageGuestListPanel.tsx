@@ -5,7 +5,7 @@ import {ICON_STYLES} from "../../../../themes/styles/Icon";
 import SearchBar from "../../../app-bar/search-bar/SearchBar";
 import {TEXTFIELD_STYLES} from "../../../../themes/styles/TextField";
 import List from "@mui/material/List";
-import EventPageGuestListItem from "../../../lists/guest-list/EventPageGuestListItem";
+import GuestListItem from "../../../lists/guest-list/GuestListItem";
 import GenericButton, {ButtonTypes, IconButton} from "../../../buttons/ButtonComponent";
 import {BUTTON_STYLES} from "../../../../themes/styles/Button";
 import {Attendee} from "../../../../models/Attendee";
@@ -31,7 +31,7 @@ const EventPageGuestListPanel: FC<Props> = ({attendees}) => {
             }
             <List>
                 {attendees.map((attendee,i,array) => [
-                    <EventPageGuestListItem
+                    <GuestListItem
                         key={attendee.user.id}
                         fullName={`${attendee.user.firstName}  ${attendee.user.lastName}`}
                         details={attendee.user.jobTitle}
@@ -54,7 +54,7 @@ const EventPageGuestListPanel: FC<Props> = ({attendees}) => {
                                 )
                             }
                         </>
-                    </EventPageGuestListItem>,
+                    </GuestListItem>,
                     array.length-1 !== i ? <Divider component="li" key={'Divider'+ i}/> : null
                 ])}
             </List>

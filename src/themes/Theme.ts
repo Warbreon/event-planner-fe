@@ -63,12 +63,6 @@ const projectTheme = createTheme({
 				color: COLORS.ERROR
 			},
 		},
-		
-		body2: {
-			fontSize: '0.875rem',
-			fontWeight: 400,
-			color: COLORS.MEDIUM_DARK_GRAY,
-		},
 
 		subtitle1: {
 			'&.event-form-element': {
@@ -77,7 +71,24 @@ const projectTheme = createTheme({
 				color: COLORS.MEDIUM_DARK_GRAY,
 				marginBottom: '0.5rem',
 			},
-		}
+		},
+		body2: {
+			fontSize: '0.875rem',
+			fontWeight: 400,
+			color: COLORS.MEDIUM_DARK_GRAY,
+		},
+
+		caption: {
+			'&.guest-registration-status': {
+				fontWeight: 400,
+				width: '6rem',
+				height: '1.5rem',
+				fontFamily: fontFamily,
+				textTransform: 'capitalize',
+				textAlign: 'right',
+				color: COLORS.MEDIUM_DARK_GRAY,
+			},
+		},
 	},
 
 	components: {
@@ -161,7 +172,6 @@ const projectTheme = createTheme({
 						},
 					},
 
-					// [+] button in event guests section
 					// [+] button in my event created by me
 					'&.light-gray': {
 						borderRadius: '12px',
@@ -169,6 +179,35 @@ const projectTheme = createTheme({
 						'&:hover': {
 							background: COLORS.HOVER_LIGHT_GRAY,
 						},
+					},
+					// [+] button in event guests section
+					'&.light-gray-box': {
+						marginTop: '8px',
+						borderRadius: '12px',
+						height: '80px',
+						padding: '0px',
+						background: COLORS.LIGHT_GRAY,
+						'&:hover': {
+							background: COLORS.HOVER_LIGHT_GRAY,
+						},
+					},
+					// confirm button in event guests section
+					'&.light-gray-round-small': {
+						height: '32px',
+						width: '103px',
+						gap:'10px',
+						padding: '8px 24px 8px 24px',
+						borderRadius: '100px',
+						border: '1px solid ' + COLORS.GRAY_BORDER,
+						'&:hover': {
+							background: COLORS.HOVER_LIGHT_GRAY,
+						},
+					},
+					// decline button in event guests section (modification)
+					'&.light-gray-round-small-borderless': {
+						width: '99px',
+						margin: '10px',
+						border: 'none',
 					},
 
 					// [+] event form - agenda
@@ -269,6 +308,40 @@ const projectTheme = createTheme({
 			styleOverrides: {
 				root: {
 					width: '100%',
+					'&.guest-search-bar': {
+						paddingRight: '0.25rem',
+						marginTop: '1rem',
+						marginBottom: '1.5rem',
+						borderRadius: '6.25rem',
+						height: '2.5rem',
+						border: '1px solid ' + COLORS.GRAY_BORDER,
+						fontFamily: fontFamily,
+						'& fieldset ': {
+							border: 'none',
+						},
+						'& input': {
+							paddingLeft: '1.5rem',
+							'&::placeHolder ': {
+								color: COLORS.PLACEHOLDER,
+								weight: 400,
+								opacity: 0.75,
+							},
+						},
+					},
+					'&.event-search-bar': {
+						fontFamily: fontFamily,
+						'& fieldset ': {
+							border: 'none',
+						},
+						'& input': {
+							fontSize: '0.875rem',
+							fontWeight: 400,
+							lineHeight: '1.5rem',
+							'&::placeHolder ': {
+								color: COLORS.PLACEHOLDER,
+							},
+						},
+					},
 				},
 			},
 		},
@@ -309,7 +382,21 @@ const projectTheme = createTheme({
 				},
 			},
 		},
-		
+
+		MuiSvgIcon: {
+			styleOverrides: {
+				root: {
+					'&.guest-bar-search-icon ': {
+						position: 'absolute',
+						pointerEvents: 'none',
+						color: COLORS.PLACEHOLDER,
+					},
+					'&.event-bar-search-icon ': {
+						color: COLORS.PLACEHOLDER,
+					},
+				},
+			},
+		},
 		MuiCardMedia: {
 			styleOverrides: {
 				img: {
@@ -344,9 +431,19 @@ const projectTheme = createTheme({
 		MuiBreadcrumbs: {
 			styleOverrides: {
 				root: {
-					marginBottom: '5rem'
-				}
-			}
+					marginBottom: '5rem',
+				},
+			},
+		},
+
+		MuiListItem: {
+			styleOverrides: {
+				root: {
+					'&.guest-list-item': {
+						height: '80px',
+					},
+				},
+			},
 		},
 		MuiCard: {
 			styleOverrides: {
@@ -370,70 +467,90 @@ const projectTheme = createTheme({
 			},
 		},
 
-		MuiAvatar: {
-			styleOverrides: {
-				root: {
-					'&.attendeeAvatar': {
-						height: '64px',
-						width: '64px',
-					},
-				},
-			},
-		},
+        MuiAvatar: {
+            styleOverrides: {
+                root: {
+                    '&.attendeeAvatar': {
+                        height: '64px',
+                        width: '64px',
+                    },
+                },
+            },
+        },
 
 		MuiChip: {
 			styleOverrides: {
 				root: {
-					backgroundColor: '#F4F4F4',
+					backgroundColor: COLORS.GRAY,
 					marginRight: '10px',
+
+					'&.select-tag': {
+						height: '2rem',
+						borderRadius: '6.25rem',
+						border: `1px solid ${COLORS.GRAY_BORDER}`,
+						padding: '0.375rem 0.1875rem',
+						backgroundColor: COLORS.WHITE,
+						marginTop: '1.5rem',
+					},
+					'&:active': {
+						'& .MuiTouchRipple-root': {
+							display: 'none',
+						},
+					},
+					'&.tag-selected': {
+						borderColor: COLORS.BLACK,
+						'& span': {
+							fontWeight: 600,
+						}
+					},
 				},
 			},
 		},
 		MuiSelect: {
 			styleOverrides: {
-			  	root: {
+				root: {
 					width: '100%',
 					color: COLORS.BLACK,
 					borderRadius: '8px',
 					fontFamily: fontFamily,
 					borderColor: COLORS.GRAY_BORDER,
 					'&.Mui-focused .MuiOutlinedInput-notchedOutline': {
-				  		borderColor: COLORS.GRAY_BORDER,
+						borderColor: COLORS.GRAY_BORDER,
 					},
 					'.MuiSelect-icon': {
-				  		color: COLORS.BLACK,
-				  		marginRight: '1rem',
+						color: COLORS.BLACK,
+						marginRight: '1rem',
 					},
-			  	},
+				},
 			},
 			defaultProps: {
-			  IconComponent: KeyboardArrowDown,
+				IconComponent: KeyboardArrowDown,
 			},
 		},
 		MuiMenuItem: {
 			styleOverrides: {
-			  	root: {
+				root: {
 					width: '100%',
 					'&:hover': {
-				  		backgroundColor: COLORS.HOVER_VERY_LIGHT_GRAY,
+						backgroundColor: COLORS.HOVER_VERY_LIGHT_GRAY,
 					},
 					'&.Mui-focusVisible': {
-				  		backgroundColor: COLORS.GRAY_BORDER,
+						backgroundColor: COLORS.GRAY_BORDER,
 					},
 					'&.Mui-selected': {
-				  		backgroundColor: COLORS.GRAY_BORDER,
+						backgroundColor: COLORS.GRAY_BORDER,
 					},
 					fontFamily: fontFamily,
 					borderRadius: '10px',
-			  	},
+				},
 			},
 		},
 		MuiMenu: {
 			styleOverrides: {
-			  	paper: {
+				paper: {
 					borderRadius: '8px',
 					boxShadow: `0.5px 0.5px 10px 0.5px ${COLORS.GRAY_BORDER}`,
-			  	},
+				},
 			},
 		},
 		MuiSwitch: {

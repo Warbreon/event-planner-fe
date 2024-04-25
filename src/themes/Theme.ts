@@ -484,6 +484,32 @@ const projectTheme = createTheme({
                 },
             },
         },
+
+        MuiToggleButton: {
+            styleOverrides: {
+                root: {
+                    width: '24px',
+                    height: '24px',
+                    border: 'none'
+                }
+            }
+        },
+        MuiToggleButtonGroup : {
+            styleOverrides: {
+                root: {
+                    width: '100%',
+                    height: '48px',
+                    paddingTop: '11px',
+                    paddingLeft: '15px',
+                    gap: '24px',
+                    border: `1px solid ${COLORS.GRAY_BORDER}`,
+                    borderTopLeftRadius: "8px",
+                    borderTopRightRadius: "8px",
+                    borderBottomLeftRadius: "0px",
+                    borderBottomRightRadius: "0px"
+                }
+            }
+        },
     }
 });
 

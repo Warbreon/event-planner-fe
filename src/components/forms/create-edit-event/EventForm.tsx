@@ -42,6 +42,7 @@ const EventForm = () => {
             <Location/>
              <Divider className={styles.divider} />
             <Media />
+            <Divider className={styles.divider} />
             <About/>
             <Divider className={styles.divider} />
             <AgendaSection agenda={initialValues.agenda} />

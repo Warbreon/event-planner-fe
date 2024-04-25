@@ -12,7 +12,7 @@ import { Divider } from '@mui/material';
 import Media from '../EventForm/media/Media';
 import Location from '../../location/Location'
 import AgendaSection from './formik-elements/agenda-section/AgendaSection';
-
+import About from '../../create-event-about/About'
 const EventForm = () => {
   const { initialValues, onSubmit, handleCancelOnClick } = EventFormVM();
 
@@ -42,6 +42,7 @@ const EventForm = () => {
             <Location/>
              <Divider className={styles.divider} />
             <Media />
+            <About/>
             <Divider className={styles.divider} />
             <AgendaSection agenda={initialValues.agenda} />
             <Divider className={styles.divider} />

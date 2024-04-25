@@ -1,0 +1,10 @@
+.border{
+    border:1px solid #dddddd;
+    border-top:none;
+    border-top-right-radius:8px;
+    border-top-left-radius:8px;
+}
+
+.container{
+    height: 320px;
+}

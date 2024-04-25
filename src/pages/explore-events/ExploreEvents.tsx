@@ -10,31 +10,29 @@ import LoadingIndicator from '../../components/loading-indicator/LoadingIndicato
 const ExploreEvents = () => {
 	const { filters, handleFiltersChange, events, eventsLoading, eventFetchError } = ExploreEventsVM();
 
+	if (eventsLoading) {
+		return <LoadingIndicator />;
+	}
+
 	return (
-		<>
-			{eventsLoading ? (
-				<LoadingIndicator />
-			) : (
-				<Container className={styles.container}>
-					<EventHeader filters={filters} handleFiltersChange={handleFiltersChange} />
-					<Box className={styles.eventsContainer}>
-						{eventFetchError ? (
-							<Typography variant='body1'>{eventFetchError}</Typography>
-						) : (
-							events?.map((event) => <EventCard key={event.id} {...event} />)
-						)}
-					</Box>
-					<Box className={styles.loadMore}>
-						<GenericButton
-							title='Load more events'
-							onClick={() => {}}
-							styles={BUTTON_STYLES.BLACK}
-							type={ButtonTypes.button}
-						/>
-					</Box>
-				</Container>
-			)}
-		</>
+		<Container className={styles.container}>
+			<EventHeader filters={filters} handleFiltersChange={handleFiltersChange} />
+			<Box className={styles.eventsContainer}>
+				{eventFetchError ? (
+					<Typography variant='body1'>{eventFetchError}</Typography>
+				) : (
+					events?.map((event) => <EventCard key={event.id} {...event} />)
+				)}
+			</Box>
+			<Box className={styles.loadMore}>
+				<GenericButton
+					title='Load more events'
+					onClick={() => {}}
+					styles={BUTTON_STYLES.BLACK}
+					type={ButtonTypes.button}
+				/>
+			</Box>
+		</Container>
 	);
 };
 

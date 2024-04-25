@@ -3,7 +3,6 @@ import { useField, useFormikContext } from "formik";
 import styles from './FormikTimePicker.module.css';
 import { TIME_PICKER_STYLES } from "../../../../../themes/styles/TimePicker";
 import Title from "../../../../../components/title/Title";
-import { useState } from "react";
 import ErrorTooltip from "../../../../components/error-tooltip/ErrorTooltip";
 
 interface Props {

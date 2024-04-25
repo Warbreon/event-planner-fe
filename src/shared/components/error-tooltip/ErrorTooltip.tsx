@@ -14,8 +14,8 @@ const ErrorTooltip: FC<Props> = ({ title, isVisible, children }) => {
             {isVisible && (
                 <Tooltip classes={{ tooltip: 'error', tooltipArrow: 'error' }} title={title} placement="top" arrow>
                     {children || (
-                        <IconButton aria-label="error" size="small">
-                            <ErrorOutline color="error" />
+                        <IconButton aria-label='error'>
+                            <ErrorOutline color='error' />
                         </IconButton>
                     )}
                 </Tooltip>)

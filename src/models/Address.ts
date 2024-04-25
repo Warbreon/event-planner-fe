@@ -1,7 +1,8 @@
 export interface Address {
-  venue: string;
+  id: number;
+  venueName: string;
   city: string;
   street: string;
-  buildingNo: string
+  building: string;
   zip: string;
 }

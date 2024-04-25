@@ -14,6 +14,7 @@ interface Props {
     onFileAccepted?: (file: File) => void;
     containerStyles?: string;
     buttonStyles?: string;
+    mainCameraIconStyles?: string;
 }
 
 const defaultAccept: Accept = {
@@ -27,6 +28,7 @@ const FormikDropzone: React.FC<Props> = ({
     onFileAccepted,
     containerStyles,
     buttonStyles,
+    mainCameraIconStyles,
 }) => {
     const { setFieldValue } = useFormikContext();
     const [field, meta] = useField(name);
@@ -64,15 +66,17 @@ const FormikDropzone: React.FC<Props> = ({
             <input {...getInputProps()} />
             {(!field.value && (
                 <IconButton className={styles.centerIconButton} disabled>
-                    <CameraAlt className={styles.centerIcon} />
+                    <CameraAlt className={`${styles.centerIcon} ${mainCameraIconStyles ?? ''}`} />
                 </IconButton>
             ))}
 
-            {!field.value && buttonText ? (
+            {!field.value && buttonText && (
                 <Button startIcon={buttonIcon} className={buttonStyles}>
                     {buttonText}
                 </Button>
-            ) : (
+            )}
+
+            {!field.value && !buttonText && (
                 <IconButton className={buttonStyles}>
                     {buttonIcon}
                 </IconButton>

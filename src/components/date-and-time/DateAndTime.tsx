@@ -14,7 +14,6 @@ const DateAndTime: React.FC<DateAndTimeProps> = ({ title, name }) => {
             {title && (
                 <Title
                     text={title}
-                    typographyTitleProps={{ variant: 'subtitle1' }}
                     titleClassName='event-form-element'
                 />
             )}

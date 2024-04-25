@@ -1,6 +1,6 @@
 import { createTheme } from '@mui/material';
 import { COLORS } from './Colors';
-import { BUTTON_STYLES } from './styles/Button';
+import { KeyboardArrowDown } from '@mui/icons-material';
 
 const fontFamily = 'Inter';
 
@@ -43,7 +43,6 @@ const projectTheme = createTheme({
 			fontSize: '1rem',
 			fontWeight: 400,
 		},
-
 		body1: {
 			fontSize: '1rem',
 			fontWeight: 400,
@@ -53,21 +52,34 @@ const projectTheme = createTheme({
 				marginTop: '1rem',
 				textAlign: 'center',
 			},
+			'&.gray-font': {
+				color: COLORS.MEDIUM_DARK_GRAY,
+				fontSize: '0.875rem',
+				lineHeight: '1rem',
+				marginBottom: '0.5rem',
+			},
+			'&.event-form-element': {
+				fontSize: '0.875rem',
+				lineHeight: '1rem',
+				color: COLORS.MEDIUM_DARK_GRAY,
+				marginBottom: '0.5rem',
+			},
 		},
-
 		body2: {
 			fontSize: '0.875rem',
 			fontWeight: 400,
 			color: COLORS.MEDIUM_DARK_GRAY,
 		},
 
-		subtitle1: {
-			'&.event-form-element': {
+		caption: {
+			'&.guest-registration-status': {
 				fontWeight: 400,
-				fontSize: '0.875rem',
-				lineHeight: '1rem',
+				width: '6rem',
+				height: '1.5rem',
+				fontFamily: fontFamily,
+				textTransform: 'capitalize',
+				textAlign: 'right',
 				color: COLORS.MEDIUM_DARK_GRAY,
-				marginBottom: '0.5rem',
 			},
 		},
 	},
@@ -153,7 +165,6 @@ const projectTheme = createTheme({
 						},
 					},
 
-					// [+] button in event guests section
 					// [+] button in my event created by me
 					'&.light-gray': {
 						borderRadius: '12px',
@@ -162,11 +173,61 @@ const projectTheme = createTheme({
 							background: COLORS.HOVER_LIGHT_GRAY,
 						},
 					},
+					// [+] button in event guests section
+					'&.light-gray-box': {
+						marginTop: '8px',
+						borderRadius: '12px',
+						height: '80px',
+						padding: '0px',
+						background: COLORS.LIGHT_GRAY,
+						'&:hover': {
+							background: COLORS.HOVER_LIGHT_GRAY,
+						},
+					},
+					// confirm button in event guests section
+					'&.light-gray-round-small': {
+						height: '32px',
+						width: '103px',
+						gap: '10px',
+						padding: '8px 24px 8px 24px',
+						borderRadius: '100px',
+						border: '1px solid ' + COLORS.GRAY_BORDER,
+						'&:hover': {
+							background: COLORS.HOVER_LIGHT_GRAY,
+						},
+					},
+					// decline button in event guests section (modification)
+					'&.light-gray-round-small-borderless': {
+						width: '99px',
+						margin: '10px',
+						border: 'none',
+					},
 
+					// [+] event form - agenda
 					'&.text-only': {
 						width: 'auto',
+						lineHeight: '1.25rem',
+						fontSize: '0.875rem',
+						border: 'none',
+						backgroundColor: 'transparent',
 						'&:hover': {
-							background: BUTTON_STYLES.WHITE,
+							background: COLORS.WHITE,
+						},
+						'& .MuiSvgIcon-root': {
+							width: '1.5rem',
+							height: '1.5rem',
+						},
+					},
+
+					// [+] event form media uplaod
+					'&.upload-button': {
+						height: '2rem',
+						background: COLORS.GRAY,
+						width: 'auto',
+						border: `1px solid ${COLORS.GRAY_BORDER}`,
+						fontSize: '0.875rem',
+						'&:hover': {
+							background: COLORS.HOVER_LIGHT_GRAY,
 						},
 					},
 				},
@@ -211,9 +272,8 @@ const projectTheme = createTheme({
 			styleOverrides: {
 				root: {
 					fontFamily: fontFamily,
-
 					fontSize: '1rem',
-					color: 'black',
+					color: COLORS.BLACK,
 					borderRadius: '8px',
 					borderWidth: '1px',
 					height: '40px',
@@ -241,6 +301,40 @@ const projectTheme = createTheme({
 			styleOverrides: {
 				root: {
 					width: '100%',
+					'&.guest-search-bar': {
+						paddingRight: '0.25rem',
+						marginTop: '1rem',
+						marginBottom: '1.5rem',
+						borderRadius: '6.25rem',
+						height: '2.5rem',
+						border: '1px solid ' + COLORS.GRAY_BORDER,
+						fontFamily: fontFamily,
+						'& fieldset ': {
+							border: 'none',
+						},
+						'& input': {
+							paddingLeft: '1.5rem',
+							'&::placeHolder ': {
+								color: COLORS.PLACEHOLDER,
+								weight: 400,
+								opacity: 0.75,
+							},
+						},
+					},
+					'&.event-search-bar': {
+						fontFamily: fontFamily,
+						'& fieldset ': {
+							border: 'none',
+						},
+						'& input': {
+							fontSize: '0.875rem',
+							fontWeight: 400,
+							lineHeight: '1.5rem',
+							'&::placeHolder ': {
+								color: COLORS.PLACEHOLDER,
+							},
+						},
+					},
 				},
 			},
 		},
@@ -281,13 +375,28 @@ const projectTheme = createTheme({
 				},
 			},
 		},
+
+		MuiSvgIcon: {
+			styleOverrides: {
+				root: {
+					'&.guest-bar-search-icon ': {
+						position: 'absolute',
+						pointerEvents: 'none',
+						color: COLORS.PLACEHOLDER,
+					},
+					'&.event-bar-search-icon ': {
+						color: COLORS.PLACEHOLDER,
+					},
+				},
+			},
+		},
 		MuiCardMedia: {
 			styleOverrides: {
 				img: {
 					borderRadius: '12px',
 					height: '320px',
 					width: '100%',
-					border: `1px solid ${COLORS.BLACK}`,
+					border: `1px solid ${COLORS.GRAY_BORDER}`,
 
 					'&.my-events': {
 						width: '200px',
@@ -320,6 +429,15 @@ const projectTheme = createTheme({
 			},
 		},
 
+		MuiListItem: {
+			styleOverrides: {
+				root: {
+					'&.guest-list-item': {
+						height: '80px',
+					},
+				},
+			},
+		},
 		MuiCard: {
 			styleOverrides: {
 				root: {
@@ -346,12 +464,12 @@ const projectTheme = createTheme({
 			styleOverrides: {
 				root: {
 					'&.attendeeAvatar': {
-						height: '4rem',
-						width: '4rem',
+						height: '64px',
+						width: '64px',
 					},
 					'&.adminAvatar': {
-						height: '3rem',
-						width: '3rem',
+						height: '48px',
+						width: '48px',
 					},
 				},
 			},
@@ -360,8 +478,116 @@ const projectTheme = createTheme({
 		MuiChip: {
 			styleOverrides: {
 				root: {
-					backgroundColor: '#F4F4F4',
+					backgroundColor: COLORS.GRAY,
 					marginRight: '10px',
+
+					'&.select-tag': {
+						height: '2rem',
+						borderRadius: '6.25rem',
+						border: `1px solid ${COLORS.GRAY_BORDER}`,
+						padding: '0.375rem 0.1875rem',
+						backgroundColor: COLORS.WHITE,
+						marginTop: '1.5rem',
+					},
+					'&:active': {
+						'& .MuiTouchRipple-root': {
+							display: 'none',
+						},
+					},
+					'&.tag-selected': {
+						borderColor: COLORS.BLACK,
+						'& span': {
+							fontWeight: 600,
+						},
+					},
+				},
+			},
+		},
+		MuiSelect: {
+			styleOverrides: {
+				root: {
+					width: '100%',
+					color: COLORS.BLACK,
+					borderRadius: '8px',
+					fontFamily: fontFamily,
+					borderColor: COLORS.GRAY_BORDER,
+					'&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+						borderColor: COLORS.GRAY_BORDER,
+					},
+					'.MuiSelect-icon': {
+						color: COLORS.BLACK,
+						marginRight: '1rem',
+					},
+				},
+			},
+			defaultProps: {
+				IconComponent: KeyboardArrowDown,
+			},
+		},
+		MuiMenuItem: {
+			styleOverrides: {
+				root: {
+					width: '100%',
+					'&:hover': {
+						backgroundColor: COLORS.HOVER_VERY_LIGHT_GRAY,
+					},
+					'&.Mui-focusVisible': {
+						backgroundColor: COLORS.GRAY_BORDER,
+					},
+					'&.Mui-selected': {
+						backgroundColor: COLORS.GRAY_BORDER,
+					},
+					fontFamily: fontFamily,
+					borderRadius: '10px',
+				},
+			},
+		},
+		MuiMenu: {
+			styleOverrides: {
+				paper: {
+					borderRadius: '8px',
+					boxShadow: `0.5px 0.5px 10px 0.5px ${COLORS.GRAY_BORDER}`,
+				},
+			},
+		},
+		MuiSwitch: {
+			styleOverrides: {
+				root: {
+					width: 'auto',
+					height: 'auto',
+				},
+				switchBase: {
+					padding: '13px',
+					'&.Mui-checked': {
+						transform: 'translateX(24px)',
+						'& + .MuiSwitch-track': {
+							opacity: 1,
+							backgroundColor: COLORS.DARK_BLUE,
+						},
+						'& .MuiTouchRipple-root': {
+							display: 'none',
+						},
+						'&:hover': {
+							background: 'none',
+						},
+					},
+					'&:hover': {
+						background: 'none',
+					},
+				},
+				thumb: {
+					width: '1.375rem',
+					height: '1.375rem',
+					borderRadius: '0.6875rem',
+					color: COLORS.WHITE,
+					boxShadow: `0px 2px 1px 0px ${COLORS.DARK_BLUE_TRANSPARENT}, 0px 0px 3px 0px ${COLORS.DARK_BLUE_GLOW}`,
+				},
+				track: {
+					width: '3rem',
+					height: '1.5rem',
+					borderRadius: '0.75rem',
+					backgroundColor: COLORS.GRAY_BORDER,
+					opacity: 1,
 				},
 			},
 		},

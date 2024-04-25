@@ -4,6 +4,8 @@ import TabPanel from '../tab-panel/TabPanel';
 import styles from './TabComponent.module.css';
 import AboutEvent from '../../about-event/AboutEvent';
 import { Attendee } from '../../../models/Attendee';
+import { filterAttendees } from '../../../utils/AttendeeFilter';
+import EventPageGuestListPanel from "../tab-panel/event-page-guest-list-panel/EventPageGuestListPanel";
 
 interface TabsProps {
 	description: string;
@@ -17,8 +19,9 @@ const TabComponent: FC<TabsProps> = ({ description, tags, agenda, attendees }) =
 	const handleTabChange = (event: SyntheticEvent, newValue: number) => {
 		setValue(newValue);
 	};
+	const filteredAttendees = filterAttendees(attendees);
 
-	const guestsTabLabel = `Guests (${attendees.length})`;
+	const guestsTabLabel = `Guests (${filteredAttendees.length})`;
 
 	return (
 		<Box>
@@ -32,7 +35,7 @@ const TabComponent: FC<TabsProps> = ({ description, tags, agenda, attendees }) =
 				<AboutEvent description={description} eventTags={tags} agenda={agenda} attendees={attendees} />
 			</TabPanel>
 			<TabPanel index={1} value={value}>
-				Guests (Edvinas add guests here)
+				<EventPageGuestListPanel attendees={filteredAttendees}/>
 			</TabPanel>
 		</Box>
 	);

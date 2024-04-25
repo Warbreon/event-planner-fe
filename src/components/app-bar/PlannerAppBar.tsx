@@ -10,8 +10,12 @@ import MenuItem from '@mui/material/MenuItem';
 import { Badge } from '@mui/material';
 import NotificationsRoundedIcon from '@mui/icons-material/NotificationsRounded';
 import PlannerAppBarViewModel from './PlannerAppBarViewModel';
-import EventSearchBar from './event-search-bar/EventSearchBar';
 import styles from './PlannerAppBar.module.css';
+import SearchBar from "./search-bar/SearchBar";
+import SearchRoundedIcon from "@mui/icons-material/SearchRounded";
+import React from "react";
+import {ICON_STYLES} from "../../themes/styles/Icon";
+import {TEXTFIELD_STYLES} from "../../themes/styles/TextField";
 
 const profileSettings = ['Profile', 'Logout'];
 
@@ -27,12 +31,16 @@ const PlannerAppBar = () => {
 				<Toolbar disableGutters>
 					<div className={styles.appBarContainer}>
 						<div className={styles.searchBarContainer}>
-							<EventSearchBar
-								searchValue={viewModel.searchValue}
-								handleSearchBarChange={viewModel.handleSearchBarChange}
-								handleSearchKeyDown={viewModel.handleSearchKeyDown}
-								handleSearch={viewModel.handleSearch}
-							/>
+							<SearchBar
+								value={viewModel.searchValue}
+								styles={TEXTFIELD_STYLES.EVENT_SEARCH_BAR}
+								onChange={viewModel.handleSearchBarChange}
+								onKeyDown={viewModel.handleSearchKeyDown}
+								placeholder='Search for events....'>
+								<IconButton onClick={viewModel.handleSearch}>
+									<SearchRoundedIcon className={ICON_STYLES.EVENT_SEARCH_BAR} />
+								</IconButton>
+							</SearchBar>
 						</div>
 						<div className={styles.userActionsContainer}>
 							<IconButton className={styles.bellIconButton} onClick={viewModel.handleClickOnNotifications}>

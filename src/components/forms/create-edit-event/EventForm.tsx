@@ -10,9 +10,8 @@ import Details from '../create-edit-event/details/Details';
 import DateAndTimeSection from './date-and-time-section/DateAndTimeSection';
 import { Divider } from '@mui/material';
 import Media from '../EventForm/media/Media';
-import Location from '../../location/Location'
 import AgendaSection from './formik-elements/agenda-section/AgendaSection';
-import About from '../../create-event-about/About'
+import About from '../../text-editor/TextEditor'
 const EventForm = () => {
   const { initialValues, onSubmit, handleCancelOnClick } = EventFormVM();
 
@@ -39,8 +38,6 @@ const EventForm = () => {
             <Divider className={styles.divider} />
             <DateAndTimeSection />
             <Divider className={styles.divider} />
-            <Location/>
-             <Divider className={styles.divider} />
             <Media />
             <Divider className={styles.divider} />
             <About/>

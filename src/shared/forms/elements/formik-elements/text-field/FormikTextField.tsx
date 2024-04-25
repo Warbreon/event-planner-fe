@@ -9,7 +9,6 @@ type FormikTextFieldProps = TextFieldProps & {
 	title?: string;
 	titleClassName?: string;
 	textFieldClassName?: string;
-	placeholder?: string;
 };
 
 const FormikTextField: FC<FormikTextFieldProps> = ({
@@ -17,7 +16,6 @@ const FormikTextField: FC<FormikTextFieldProps> = ({
 	title,
 	titleClassName,
 	textFieldClassName,
-	placeholder,
 	...props
 }) => {
 	const [field, meta] = useField(name);
@@ -33,7 +31,6 @@ const FormikTextField: FC<FormikTextFieldProps> = ({
 				{...field}
 				{...props}
 				error={meta.touched && Boolean(meta.error)}
-				placeholder={!!placeholder ? placeholder : ''}
 				className={textFieldClassName}
 				InputProps={{
 					endAdornment: <ErrorTooltip title={meta.error} isVisible={meta.touched && Boolean(meta.error)} />,

@@ -1,13 +1,11 @@
-import React from 'react';
 import { Outlet } from 'react-router-dom';
 import NavigationSideBar from '../../components/nav-bar/NavigationSideBar';
 import PlannerAppBar from '../../components/app-bar/PlannerAppBar';
 import PlannerFooter from '../../components/footer/PlannerFooter';
 import { useSelector } from 'react-redux';
 import { PersistentStoreRootState } from '../../redux/store/PersistentStore';
-
 import styles from './RootLayout.module.css';
-import SignIn from '../sign-in-pages/sign-in/SignIn';
+
 
 const RootLayout = () => {
 	const loggedIn = useSelector((state: PersistentStoreRootState) => state.signedIn);

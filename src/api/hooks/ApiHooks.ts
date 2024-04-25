@@ -30,7 +30,7 @@ export const usePost = () => {
 			return response.data;
 		} catch (error: any) {
 			return error;
-		}
+		} 
 	};
 	return { postData };
 };

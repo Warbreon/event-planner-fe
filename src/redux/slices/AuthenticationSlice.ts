@@ -21,24 +21,21 @@ const authenticationSlice = createSlice({
 	initialState,
 	reducers: {
 		singIn(state, action: PayloadAction<AuthenticationState>) {
-			const { signedIn, accessToken, refreshToken, email, role } = action.payload;
-			state.signedIn = signedIn;
-			state.accessToken = accessToken;
-			state.refreshToken = refreshToken;
-			state.email = email;
-			state.role = role;
+			return {
+				...state,
+				...action.payload,
+			}
 		},
-		signOut(state) {
-			const { signedIn, accessToken, refreshToken, email, role } = initialState;
-			state.signedIn = signedIn;
-			state.accessToken = accessToken;
-			state.refreshToken = refreshToken;
-			state.email = email;
-			state.role = role;
+		signOut() {
+			return {
+				...initialState
+			}
 		},
 		refreshAccessToken(state, action: PayloadAction<string>) {
-			const newAccessToken = action.payload;
-			state.accessToken = newAccessToken;
+			return {
+				...state,
+				accessToken:  action.payload
+			}
 		},
 	},
 });

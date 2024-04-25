@@ -41,7 +41,7 @@ const SignIn = () => {
 				</Form>
 				{error && (
 					<Box className = {styles.errorMessage}>
-						 <Typography className='error-mesage'>{error}</Typography>
+						 <Typography className='error-mesage'>Email or password is incorrect. Please check your credentials</Typography>
 					</Box>
 				)}
 			</Box>

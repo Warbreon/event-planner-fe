@@ -8,13 +8,13 @@ interface Props {
 	children: ReactNode;
 }
 
-const PublicRoutes: FC<Props> = ({children}) => {
-	const user = useSelector((state: PersistentStoreRootState) => state.signedIn);
-	if (user) {
-		return <Navigate to={ROUTES.INDEX}/>
+const PublicRoutes: FC<Props> = ({ children }) => {
+	const isUserSignedIn = useSelector((state: PersistentStoreRootState) => state.signedIn);
+	if (isUserSignedIn) {
+		return <Navigate to={ROUTES.INDEX} />;
 	}
 
-	return <> {children} </> ;
+	return <> {children} </>;
 };
 
 export default PublicRoutes;

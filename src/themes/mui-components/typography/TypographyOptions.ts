@@ -49,6 +49,11 @@ const typographyOptions: TypographyOptions = {
 			lineHeight: '1rem',
 			marginBottom: '0.5rem',
 		},
+		'&.gray-font-input': {
+			color: COLORS.MEDIUM_DARK_GRAY,
+			fontSize: '0.875rem',
+			lineHeight: '1rem',
+		},
 
 		'&.error-mesage': {
 			color: COLORS.ERROR

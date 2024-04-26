@@ -2,6 +2,7 @@ import { DatePicker } from "@mui/x-date-pickers";
 import { useField, useFormikContext } from "formik";
 import { CalendarToday } from "@mui/icons-material";
 import styles from './FormikDatePicker.module.css';
+import ErrorTooltip from "../../../../components/error-tooltip/ErrorTooltip";
 
 interface Props {
     name: string;
@@ -25,19 +26,19 @@ const FormikDatePicker: React.FC<Props> = ({ name, datePickerClassName, ...props
             }}
             slotProps={{
                 textField: {
-                    helperText: meta.touched && meta.error ? meta.error : '',
                     error: Boolean(meta.touched && meta.error),
                     className: datePickerClassName ?? 'date-picker',
-                    inputProps: {
+                    InputProps: {
                         className: datePickerClassName ?? 'date-picker',
-                    }
+                        endAdornment: <ErrorTooltip title={meta.error} isVisible={meta.touched && Boolean(meta.error)} />,
+                    },
                 },
                 inputAdornment: {
                     position: 'start',
                 },
                 openPickerButton: {
                     color: 'primary',
-                }
+                },
             }}
             disablePast
         />

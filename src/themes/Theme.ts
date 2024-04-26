@@ -21,32 +21,34 @@ import muiMenuOptions from './mui-components/select/MuiMenuOptions';
 import muiListItemOptions from './mui-components/list-item/MuiListItemOptions';
 import muiAvatarOptions from './mui-components/avatar/MuiAvatarOptions';
 import muiBreadcrumbsOptions from './mui-components/breadcrumbs/MuiBreadcrumbsOptions';
-import Options from './mui-components/Options';
+import MuiOptions from './mui-components/MuiOptions';
+import muiToolTipOptions from './mui-components/tool-tip/MuiToolTipOptions';
 
 const projectTheme = createTheme({
 	palette: palleteOptions,
 	typography: typographyOptions,
 	components: {
-		MuiButton: muiButtonOptions as Options,
-		MuiTab: muiTabOptions as Options,
-		MuiTabs: muiTabsOptions as Options,
-		MuiOutlinedInput: muiOutlinedInputOptions as Options,
-		MuiTextField: muiTextFieldOptions as Options,
-		MuiFormControl: muiFormControlOptions as Options,
-		MuiInputBase: muiInputBaseOptions as Options,
-		MuiInputLabel: muiInputLabelOptions as Options,
-		MuiSvgIcon: muiSvgIconOptions as Options,
-		MuiCardMedia: muiCardMediaOptions as Options,
-		MuiCardContent: muiCardContentOptions as Options,
-		MuiCard: muiCardOptions as Options,
-		MuiSwitch: muiSwitchOptions as Options,
-		MuiChip: muiChipOptions as Options,
-		MuiBreadcrumbs: muiBreadcrumbsOptions as Options,
-		MuiListItem: muiListItemOptions as Options,
-		MuiAvatar: muiAvatarOptions as Options,
-		MuiSelect: muiSelectOptions as Options,
-		MuiMenuItem: muiMenuItemOptions as Options,
-		MuiMenu: muiMenuOptions as Options,
+		MuiButton: muiButtonOptions as MuiOptions,
+		MuiTab: muiTabOptions as MuiOptions,
+		MuiTabs: muiTabsOptions as MuiOptions,
+		MuiOutlinedInput: muiOutlinedInputOptions as MuiOptions,
+		MuiTextField: muiTextFieldOptions as MuiOptions,
+		MuiFormControl: muiFormControlOptions as MuiOptions,
+		MuiInputBase: muiInputBaseOptions as MuiOptions,
+		MuiInputLabel: muiInputLabelOptions as MuiOptions,
+		MuiSvgIcon: muiSvgIconOptions as MuiOptions,
+		MuiCardMedia: muiCardMediaOptions as MuiOptions,
+		MuiCardContent: muiCardContentOptions as MuiOptions,
+		MuiCard: muiCardOptions as MuiOptions,
+		MuiSwitch: muiSwitchOptions as MuiOptions,
+		MuiChip: muiChipOptions as MuiOptions,
+		MuiBreadcrumbs: muiBreadcrumbsOptions as MuiOptions,
+		MuiListItem: muiListItemOptions as MuiOptions,
+		MuiAvatar: muiAvatarOptions as MuiOptions,
+		MuiSelect: muiSelectOptions as MuiOptions,
+		MuiMenuItem: muiMenuItemOptions as MuiOptions,
+		MuiMenu: muiMenuOptions as MuiOptions,
+		MuiTooltip: muiToolTipOptions as MuiOptions,
 	},
 });
 

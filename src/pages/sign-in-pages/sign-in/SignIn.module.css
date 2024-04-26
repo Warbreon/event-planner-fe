@@ -6,3 +6,9 @@
 	color: #999999;
 	text-decoration: underline;
 }
+
+
+.errorMessage {
+	margin-top: 1rem;
+	text-align: center;
+}

@@ -587,6 +587,28 @@ const projectTheme = createTheme({
 				}
 			},
 		},
+		MuiTooltip: {
+			styleOverrides: {
+				tooltipArrow: {
+					'&.error': {
+						backgroundColor: COLORS.WHITE,
+						border: `2px solid ${COLORS.ERROR}`,
+						color: COLORS.ERROR,
+						fontFamily: fontFamily,
+						fontSize: '0.875rem',
+						lineHeight: '1rem',
+						fontWeight: 400,
+						borderRadius: '0.5rem',
+					},
+				},
+				arrow: {
+					'&:before': {
+						backgroundColor: COLORS.WHITE,
+						border: `2px solid ${COLORS.ERROR}`,
+					}
+				}
+			},
+		},
 	}
 });
 

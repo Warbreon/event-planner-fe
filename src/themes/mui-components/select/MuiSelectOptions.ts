@@ -5,6 +5,7 @@ import FONT_FAMILY from '../../styles/Font';
 const muiSelectOptions = {
 	styleOverrides: {
 		root: {
+			height: '100%',
 			width: '100%',
 			color: COLORS.BLACK,
 			borderRadius: '8px',

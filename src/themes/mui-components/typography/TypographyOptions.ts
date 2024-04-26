@@ -54,7 +54,11 @@ const typographyOptions: TypographyOptions = {
 			fontSize: '0.875rem',
 			lineHeight: '1rem',
 		},
-
+		'&.multi-select-placeholder': {
+			color: COLORS.PLACEHOLDER_VERY_LIGHT_GRAY,
+			fontSize: '1rem',
+			height: '100%',
+		},
 		'&.error-mesage': {
 			color: COLORS.ERROR
 		},

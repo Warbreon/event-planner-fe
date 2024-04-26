@@ -1,5 +1,6 @@
-import React from 'react'
-import { Box, Chip, FormControl, FormControlProps, InputLabel, InputLabelProps, MenuItem, Select, SelectChangeEvent, SelectProps } from '@mui/material';
+import { FC } from 'react'
+import { Chip, FormControl, FormControlProps, InputLabel, InputLabelProps, MenuItem, Select, SelectChangeEvent, SelectProps, Typography } from '@mui/material';
+import styles from './Dropdown.module.css'
 
 interface Props {
     label?: string;
@@ -16,7 +17,7 @@ interface Props {
     multiple?: boolean;
 };
 
-const Dropdown: React.FC<Props> = ({
+const Dropdown: FC<Props> = ({
     label,
     value,
     options,
@@ -43,13 +44,21 @@ const Dropdown: React.FC<Props> = ({
                 onChange={onChange}
                 className={selectClassName}
                 multiple={multiple}
-                renderValue={(selected) => multiple && Array.isArray(selected) ? (
-                    <div>
-                        {selected.map((value) => (
-                            <Chip className='select-tag' key={value} label={options.find(option => option.value === value)?.label || value} />
-                        ))}
-                    </div>
-                ) : options.find(option => option.value === value)?.label || value}
+                displayEmpty
+                renderValue={(selected) => {
+                    if (multiple && Array.isArray(selected) && selected.length === 0) {
+                        return <Typography variant='body1' className="multi-select-placeholder">Select event tags</Typography>;
+                    } else if (multiple && Array.isArray(selected)) {
+                        return (
+                            <div className={styles.chipContainer}>
+                                {selected.map((value) => (
+                                    <Chip className='select-option' key={value} label={options.find(option => option.value === value)?.label || value} />
+                                ))}
+                            </div>
+                        );
+                    }
+                    return options.find(option => option.value === value)?.label || value;
+                }}
             >
                 {options.map((option) => (
                     <MenuItem key={option.value} value={option.value} className={menuItemClassName}>

@@ -36,7 +36,7 @@ p.headerSubtitle {
     align-items: end;
     justify-content: space-between;
     width: 100%;
-    margin-top: 1.5rem;
+    margin-top: 0.5rem;
 }
 
 .filters div:hover {

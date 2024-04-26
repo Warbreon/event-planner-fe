@@ -1,5 +1,3 @@
-.container .formControlClassName {
-    min-width: 50%;
-    width: auto;
-    max-width: 100%;
+.formControlClassName {
+    width: 50%;
 }

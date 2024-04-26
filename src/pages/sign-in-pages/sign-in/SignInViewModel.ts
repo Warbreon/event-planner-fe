@@ -19,22 +19,23 @@ const SignInViewModel = () => {
 	};
 
 	useEffect(() => {
+		setError(false);
+		
 		if (isLoading) {
 			return;
 		}
 
-		if (data) {
-			const { accessToken, refreshToken, email, role } = data;
-			if (accessToken && refreshToken && email && role) {
-				dispatch(signIn({ signedIn: true, accessToken, refreshToken, email, role }));
-				navigate(ROUTES.INDEX);
-			}  
-		} 
-		if(errorMessage) {
-			setError(true)
-		}		
-	}, [data, dispatch, errorMessage, isLoading, navigate]);
+		if (errorMessage) {
+			setError(true);
+			return;
+		}
 
+		const { accessToken, refreshToken, email, role } = data || {};
+		if (accessToken && refreshToken && email && role) {
+			dispatch(signIn({ signedIn: true, accessToken, refreshToken, email, role }));
+			navigate(ROUTES.INDEX);
+		}
+	}, [data, dispatch, errorMessage, isLoading, navigate]);
 
 	return { onSubmit, error };
 };

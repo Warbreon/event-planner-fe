@@ -24,16 +24,18 @@ const typographyOptions: TypographyOptions = {
 			fontSize: '1.25rem',
 		},
 	},
+
 	h2: {
 		fontSize: '1.25rem',
 		fontWeight: 400,
 	},
+
 	h3: {
 		fontSize: '1rem',
 		fontWeight: 400,
 	},
 	body1: {
-		fontSize: '1rem',
+		fontSize: '0.875rem',
 		fontWeight: 400,
 		color: COLORS.BLACK,
 
@@ -47,6 +49,13 @@ const typographyOptions: TypographyOptions = {
 			lineHeight: '1rem',
 			marginBottom: '0.5rem',
 		},
+
+		'&.error-mesage': {
+			color: COLORS.ERROR
+		},
+	},
+
+	subtitle1: {
 		'&.event-form-element': {
 			fontSize: '0.875rem',
 			lineHeight: '1rem',
@@ -59,6 +68,7 @@ const typographyOptions: TypographyOptions = {
 		fontWeight: 400,
 		color: COLORS.MEDIUM_DARK_GRAY,
 	},
+
 	caption: {
 		'&.guest-registration-status': {
 			fontWeight: 400,
@@ -67,8 +77,8 @@ const typographyOptions: TypographyOptions = {
 			textTransform: 'capitalize',
 			textAlign: 'right',
 			color: COLORS.MEDIUM_DARK_GRAY,
-		},
-	},
+		}
+	}
 };
 
 export default typographyOptions;

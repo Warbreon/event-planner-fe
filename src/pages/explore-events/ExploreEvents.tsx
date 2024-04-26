@@ -1,11 +1,11 @@
-import { Box, Container } from '@mui/material';
+import { Box, Container, Typography } from '@mui/material';
 import EventHeader from '../../components/event-header/EventHeader';
 import ExploreEventsVM from './ExploreEventsViewModel';
 import { EventCard } from '../../components/event-card/EventCard';
-import { loadEvents } from './EventDataLoader';
 import styles from './ExploreEvents.module.css';
 import GenericButton, { ButtonTypes } from '../../components/buttons/ButtonComponent';
 import { BUTTON_STYLES } from '../../themes/styles/Button';
+import LoadingIndicator from '../../components/loading-indicator/LoadingIndicator';
 import LoadingIndicator from '../../components/loading-indicator/LoadingIndicator';
 
 const ExploreEvents = () => {

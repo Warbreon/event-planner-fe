@@ -16,12 +16,17 @@ const ExploreEventsVM = () => {
 
     const { data: events, isLoading, error } = useFetch(fetchFunction);
 
-    const handleFiltersChange = useCallback((newFilters: Partial<EventFiltersState>) => {
-        setFilters(prevFilters => ({ ...prevFilters, ...newFilters }));
-    }, []);
+	const handleFiltersChange = useCallback((newFilters: Partial<EventFiltersState>) => {
+		setFilters((prevFilters) => ({ ...prevFilters, ...newFilters }));
+	}, []);
+
+	const fetchEventsFunction = useCallback(() => {
+		return fetchEvents();
+	}, []);
 
     return { filters, handleFiltersChange, events, isLoading, error };
 
-}
+	return { filters, handleFiltersChange, events, eventsLoading, eventFetchError };
+};
 
 export default ExploreEventsVM;

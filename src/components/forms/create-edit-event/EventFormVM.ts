@@ -1,13 +1,13 @@
-import {combineDateTime} from "../../../utils/DateConverter";
-import {formatAgendaItems, parseAgendaItems} from "../../../utils/AgendaUtils";
-import {FormValues} from "../../../interfaces/FormValues";
+import { EventFormValues } from "../../../interfaces/EventFormValuesInterface";
+import { combineDateTime } from "../../../utils/DateConverter";
+import { formatAgendaItems, parseAgendaItems } from "../../../utils/AgendaUtils";
 
 const EventFormVM = () => {
     const agenda = ['7:00 am-Introduction', '12:30 pm-Presentations', '8:00 pm-Conclusion'];
     const parsedAgendaItems = parseAgendaItems(agenda);
 
     // TODO: Fetch from API and get from redux.
-    const initialValues: FormValues = {
+    const initialValues: EventFormValues = {
         imageUrl: null,
         eventStartDate: null,
         eventStartTime: null,
@@ -19,12 +19,19 @@ const EventFormVM = () => {
         addressId: null,
         inviteUrl: null,
         agenda: parsedAgendaItems,
+        isOpen: true,
+        registrationStartDate: null,
+        registrationStartTime: null,
+        registrationEndDate: null,
+        registrationEndTime: null,
     };
 
-    const onSubmit = (values: FormValues) => {
+    const onSubmit = (values: EventFormValues) => {
         const eventStart = combineDateTime(values.eventStartDate, values.eventStartTime);
         const eventEnd = combineDateTime(values.eventEndDate, values.eventEndTime);
         const formattedAgenda = formatAgendaItems(values.agenda ?? []);
+        const registrationStart = combineDateTime(values.registrationStartDate, values.registrationStartTime);
+        const registrationtEnd = combineDateTime(values.registrationEndDate, values.registrationEndTime);
 
         const submitValues = {
             imageUrl: values.imageUrl,
@@ -32,7 +39,9 @@ const EventFormVM = () => {
             eventStart,
             eventEnd,
             formattedAgenda,
-
+            registrationStart,
+            registrationtEnd,
+            isOpen: values.isOpen,
         };
 
         console.log(submitValues);

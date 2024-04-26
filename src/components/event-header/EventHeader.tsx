@@ -3,11 +3,9 @@ import Dropdown from '../dropdown/Dropdown';
 import GenericButton from '../button/GenericButton';
 import ChipSelector from '../chip-selector/ChipSelector';
 import styles from './EventHeader.module.css';
-import classNames from 'classnames';
 import { Add, KeyboardArrowDown } from '@mui/icons-material';
 import { EventFiltersState } from '../../pages/explore-events/eventFiltersInterface';
 import { DATE_FILTER_OPTIONS } from '../../constants/DateConstants';
-import { TAGS } from '../../themes/styles/Tag';
 import { FC } from 'react';
 import EventHeaderVM from './EventHeaderVM';
 import LoadingIndicator from '../loading-indicator/LoadingIndicator';
@@ -19,12 +17,8 @@ interface Props {
 
 const EventHeader: FC<Props> = ({ filters, handleFiltersChange }) => {
 
-	const { userName, handleTagChange, handleDateChange, handleLocationChange, locations, eventTags, error, isLoading, navigateToAddEvent } = 
+	const { userName, handleTagChange, handleDateChange, handleLocationChange, getChipClassName, locations, modifiedEventTags, error, isLoading, navigateToAddEvent } = 
 		EventHeaderVM(filters, handleFiltersChange);
-
-	const getChipClassName = (isSelected: boolean) => {
-		return classNames(TAGS.SELECT_TAG, { [TAGS.TAG_SELECTED]: isSelected });
-	};
 
 	if (error) return <div className={styles.container}>{error}</div>;
 	if (isLoading) return <LoadingIndicator />;
@@ -49,7 +43,7 @@ const EventHeader: FC<Props> = ({ filters, handleFiltersChange }) => {
 			</div>
 			<div className={styles.filters}>
 				<ChipSelector
-					options={eventTags || []}
+					options={modifiedEventTags || []}
 					selectedKeys={filters.eventTag}
 					onSelect={handleTagChange}
 					getChipClassName={getChipClassName}

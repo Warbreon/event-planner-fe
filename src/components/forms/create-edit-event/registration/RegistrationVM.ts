@@ -8,24 +8,24 @@ interface Props {
 }
 
 const RegistrationVM = ({ setFieldValue, isOpen }: Props) => {
-    const defaultTag = isOpen ? 'public' : 'private';
-    const [selectedTag, setSelectedTag] = useState<string>(defaultTag);
+    const defaultTag = isOpen ? 1 : 0;
+    const [selectedTag, setSelectedTag] = useState<number[]>([defaultTag]);
 
     const registrationTagOptions = [
-        { key: 'public', label: 'Public' },
-        { key: 'private', label: 'Private' },
+        { id: 1, name: 'Public' },
+        { id: 0, name: 'Private' },
     ];
 
-    const handleTagChange = (key: string) => {
-        setFieldValue('isOpen', key === 'public');
-        setSelectedTag(key);
+    const handleTagChange = (id: number) => {
+        setFieldValue('isOpen', id === 1);
+        setSelectedTag([id]);
     };
 
     const getChipClassName = (isSelected: boolean) => {
         return classNames([TAGS.SELECT_TAG], { [TAGS.TAG_SELECTED]: isSelected });
     };
 
-    const registrationMessage = selectedTag === 'public'
+    const registrationMessage = selectedTag[0] === 1
         ? 'All employees will be able to attend this event. No confirmation required.'
         : 'Guest must receive confirmation from event admin or attend.';
 

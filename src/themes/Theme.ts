@@ -590,6 +590,13 @@ const projectTheme = createTheme({
 				}
 			},
 		},
+		MuiStack: {
+			styleOverrides: {
+				root: {
+					marginBottom: '0.3rem',
+				},
+			},
+		}
 	}
 });
 

@@ -10,7 +10,6 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 2.75rem;
 }
 
 p.headerTitle {
@@ -34,7 +33,7 @@ p.headerSubtitle {
 
 .filters {
     display: flex;
-    align-items: center;
+    align-items: end;
     justify-content: space-between;
     width: 100%;
 }
@@ -73,6 +72,7 @@ p.headerSubtitle {
 }
 
 .header .addEventButton {
+    width: 9.875rem;
     height: 2.75rem;
     border: 1px solid #000000;
     padding: 0.857rem 2rem 0.875rem 1.5rem;

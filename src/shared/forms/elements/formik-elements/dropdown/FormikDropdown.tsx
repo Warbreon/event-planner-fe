@@ -15,28 +15,30 @@ const FormikDropdown: FC<FormikDropdownProps> = ({
   name,
   label,
   options,
-  menuItemClassName,
+  menuItemClassName
 }) => {
-  const [field, , helpers] = useField(name);
+  const [field, , helpers] = useField<string[]>(name);
 
-  const handleChange = (event: SelectChangeEvent<string>) => {
-    helpers.setValue(event.target.value);
+  const handleChange = (event: SelectChangeEvent<string[]>) => {
+    helpers.setValue(event.target.value as string[]);
   };
+  const valueArray = Array.isArray(field.value) ? field.value : [];
 
   return (
-    <Box>
+    <div className={styles.container}>
       <Typography variant="body1" className="gray-font">
         {label}
       </Typography>
       <Dropdown
-        value={field.value}
+        multiple={true}
+        value={valueArray}
         onChange={handleChange}
         options={options}
         formControlClassName={styles.formControlClassName}
         selectClassName={styles.formControlClassName}
         menuItemClassName={menuItemClassName}
       />
-    </Box>
+    </div>
   );
 };
 

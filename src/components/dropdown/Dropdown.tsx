@@ -47,7 +47,7 @@ const Dropdown: FC<Props> = ({
                 displayEmpty
                 renderValue={(selected) => {
                     if (multiple && Array.isArray(selected) && selected.length === 0) {
-                        return <Typography variant='body1' className="multi-select-placeholder">Select event tags</Typography>;
+                        return <Typography variant='body1' className='multi-select-placeholder'>Select event tags</Typography>;
                     } else if (multiple && Array.isArray(selected)) {
                         return (
                             <div className={styles.chipContainer}>

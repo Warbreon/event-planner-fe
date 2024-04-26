@@ -1,6 +1,6 @@
 import { useCallback, useState } from 'react';
 import { EventFiltersState } from './eventFiltersInterface';
-import { fetchEvents } from '../../api/EventApi';
+import useEventAPI from '../../api/EventsAPI';
 import { useFetch } from '../../api/hooks/ApiHooks';
 
 const ExploreEventsVM = () => {
@@ -10,15 +10,13 @@ const ExploreEventsVM = () => {
 		location: 'all',
 	});
 
+	const { fetchEvents } = useEventAPI();
+
 	const handleFiltersChange = useCallback((newFilters: Partial<EventFiltersState>) => {
 		setFilters((prevFilters) => ({ ...prevFilters, ...newFilters }));
 	}, []);
 
-	const fetchEventsFunction = useCallback(() => {
-		return fetchEvents();
-	}, []);
-
-	const { data: events, isLoading: eventsLoading, error: eventFetchError } = useFetch(fetchEventsFunction);
+	const { data: events, isLoading: eventsLoading, error: eventFetchError } = useFetch(() => fetchEvents());
 
 	return { filters, handleFiltersChange, events, eventsLoading, eventFetchError };
 };

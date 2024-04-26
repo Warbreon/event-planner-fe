@@ -32,8 +32,10 @@ export const usePost = () => {
 			setIsLoading(true);
 			const response = await postFunction();
 			setData(response.data);
+			setError(null);
 		} catch (error: any) {
 			setError(error);
+			setData(null);
 			return error;
 		} finally {
 			setIsLoading(false);

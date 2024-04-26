@@ -1,14 +1,16 @@
-import { useCallback, useState } from "react";
-import { EventFiltersState } from "./eventFiltersInterface";
-import { useFetch } from "../../api/hooks/ApiHooks";
-import { fetchEvents } from "../../api/EventApi";
+import { useCallback, useState } from 'react';
+import { EventFiltersState } from './eventFiltersInterface';
+import useEventAPI from '../../api/EventsAPI';
+import { useFetch } from '../../api/hooks/ApiHooks';
 
 const ExploreEventsVM = () => {
-    const [filters, setFilters] = useState<EventFiltersState>({
-        eventTag: [],
-        date: 'year',
-        location: 'all',
-    });
+	const [filters, setFilters] = useState<EventFiltersState>({
+		eventTag: [],
+		date: 'year',
+		location: 'all',
+	});
+
+    const { fetchEvents } = useEventAPI();
 
     const fetchFunction = useCallback(() => {
         return fetchEvents(filters.eventTag);

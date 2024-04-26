@@ -1,11 +1,11 @@
 import { useNavigate } from "react-router"
 import { useFetch } from "../../api/hooks/ApiHooks";
-import { fetchAllTags } from "../../api/EventApi";
 import { EventFiltersState } from "../../pages/explore-events/eventFiltersInterface";
 import { SelectChangeEvent } from "@mui/material";
 import ROUTES from "../../routes/Routes";
 import classNames from "classnames";
 import { TAGS } from "../../themes/styles/Tag";
+import useTagAPI from "../../api/TagsAPI";
 
 const EventHeaderVM = (filters: EventFiltersState, handleFiltersChange: (filters: Partial<EventFiltersState>) => void) => {
     const navigate = useNavigate();
@@ -13,6 +13,7 @@ const EventHeaderVM = (filters: EventFiltersState, handleFiltersChange: (filters
     // TODO: get name from redux later
     const userName = 'John';
 
+    const { fetchAllTags } = useTagAPI();
     const { data: eventTags, error, isLoading } = useFetch(fetchAllTags);
     const modifiedEventTags = eventTags ? [{ id: 0, name: 'All events' }, ...eventTags] : [];
 

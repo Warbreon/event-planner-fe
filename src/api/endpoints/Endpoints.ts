@@ -1,7 +1,7 @@
 export const ENDPOINTS = {
     getEvents: "/events",
     getEventById: (id: number | string) => `/events/${id}`,
-    registerToEvent: "/events/register",
+    registerToEvent: "/attendee/register",
     createNewEvent: "/events/create/new",
 
     getAllTags: "/tags",

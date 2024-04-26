@@ -1,29 +1,27 @@
-import React from 'react';
 import { Outlet } from 'react-router-dom';
 import NavigationSideBar from '../../components/nav-bar/NavigationSideBar';
 import PlannerAppBar from '../../components/app-bar/PlannerAppBar';
 import PlannerFooter from '../../components/footer/PlannerFooter';
 import { useSelector } from 'react-redux';
-import { RootState } from '../../redux/store/Store';
+import { PersistentStoreRootState } from '../../redux/store/PersistentStore';
+import styles from './RootLayout.module.css';
 
-import styles from './Main.module.css';
 
-const Main = () => {
-	const loggedIn = useSelector((state: RootState) => state.user.loggedIn);
-
+const RootLayout = () => {
+	const loggedIn = useSelector((state: PersistentStoreRootState) => state.signedIn);
 	return (
 		<NavigationSideBar drawerWidth={72}>
 			<div className={styles.contentContainer}>
-				<div className='main-content'>
-					{loggedIn && <PlannerAppBar />}
+				{loggedIn && <PlannerAppBar />}
+				<main className='main-content'>
 					<Outlet />
-				</div>
-				<div className={styles.footer}>
+				</main>
+				<footer className={styles.footer}>
 					<PlannerFooter />
-				</div>
+				</footer>
 			</div>
 		</NavigationSideBar>
 	);
 };
 
-export default Main;
+export default RootLayout;

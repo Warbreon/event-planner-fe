@@ -20,25 +20,25 @@ const authenticationSlice = createSlice({
 	name: 'user',
 	initialState,
 	reducers: {
-		singIn(state, action: PayloadAction<AuthenticationState>) {
+		signIn(state, action: PayloadAction<AuthenticationState>) {
 			return {
 				...state,
 				...action.payload,
-			}
+			};
 		},
 		signOut() {
 			return {
-				...initialState
-			}
+				...initialState,
+			};
 		},
 		refreshAccessToken(state, action: PayloadAction<string>) {
 			return {
 				...state,
-				accessToken:  action.payload
-			}
+				accessToken: action.payload,
+			};
 		},
 	},
 });
 
-export const { singIn, signOut, refreshAccessToken } = authenticationSlice.actions;
+export const { signIn, signOut, refreshAccessToken } = authenticationSlice.actions;
 export default authenticationSlice.reducer;

@@ -24,13 +24,20 @@ export const useFetch = <T>(fetchFunction: () => Promise<AxiosResponse<T>>) => {
 };
 
 export const usePost = () => {
+	const [isLoading, setIsLoading] = useState<boolean>(false);
+	const [error, setError] = useState<string | null>(null);
+	const [data, setData] = useState<any>(null);
 	const postData = async <T>(postFunction: () => Promise<AxiosResponse<T>>) => {
 		try {
+			setIsLoading(true);
 			const response = await postFunction();
-			return response.data;
+			setData(response.data);
 		} catch (error: any) {
+			setError(error);
 			return error;
-		} 
+		} finally {
+			setIsLoading(false);
+		}
 	};
-	return { postData };
+	return { postData, isLoading, error, data };
 };

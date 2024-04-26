@@ -12,8 +12,10 @@ const useProtectedRouteVM = () => {
 	const isUserAuthenticated = useSelector((state: PersistentStoreRootState) => state.signedIn);
 	const currentAccessToken = useSelector((state: PersistentStoreRootState) => state.accessToken);
 	const refreshToken = useSelector((state: PersistentStoreRootState) => state.refreshToken);
+
 	const isAccessTokenExpired = isExpired(currentAccessToken);
 	const isRefreshTokenExpired = isExpired(refreshToken);
+	
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
 

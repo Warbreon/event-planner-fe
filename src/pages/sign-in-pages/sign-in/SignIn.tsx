@@ -39,7 +39,7 @@ const SignIn = () => {
 						<GenericButton type={ButtonTypes.submit} title='Sign in' styles={BUTTON_STYLES.BLACK} />
 					</div>
 				</Form>
-				{error && (
+				{!!error && (
 					<Box className = {styles.errorMessage}>
 						 <Typography className='error-mesage'>Email or password is incorrect. Please check your credentials</Typography>
 					</Box>

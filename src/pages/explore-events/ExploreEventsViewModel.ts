@@ -20,13 +20,7 @@ const ExploreEventsVM = () => {
 		setFilters((prevFilters) => ({ ...prevFilters, ...newFilters }));
 	}, []);
 
-	const fetchEventsFunction = useCallback(() => {
-		return fetchEvents();
-	}, []);
-
     return { filters, handleFiltersChange, events, isLoading, error };
-
-	return { filters, handleFiltersChange, events, eventsLoading, eventFetchError };
 };
 
 export default ExploreEventsVM;

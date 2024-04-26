@@ -6,7 +6,6 @@ import styles from './ExploreEvents.module.css';
 import GenericButton, { ButtonTypes } from '../../components/buttons/ButtonComponent';
 import { BUTTON_STYLES } from '../../themes/styles/Button';
 import LoadingIndicator from '../../components/loading-indicator/LoadingIndicator';
-import LoadingIndicator from '../../components/loading-indicator/LoadingIndicator';
 
 const ExploreEvents = () => {
 	const { filters, handleFiltersChange, events, isLoading, error } = ExploreEventsVM();

@@ -483,7 +483,6 @@ const projectTheme = createTheme({
 						border: `1px solid ${COLORS.GRAY_BORDER}`,
 						padding: '0.375rem 0.1875rem',
 						backgroundColor: COLORS.WHITE,
-						marginTop: '1.5rem',
 					},
 					'&:active': {
 						'& .MuiTouchRipple-root': {

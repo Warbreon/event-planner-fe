@@ -46,7 +46,7 @@ const Dropdown: React.FC<Props> = ({
                 renderValue={(selected) => multiple && Array.isArray(selected) ? (
                     <div>
                         {selected.map((value) => (
-                            <Chip key={value} label={options.find(option => option.value === value)?.label || value} />
+                            <Chip className='select-tag' key={value} label={options.find(option => option.value === value)?.label || value} />
                         ))}
                     </div>
                 ) : options.find(option => option.value === value)?.label || value}

@@ -25,7 +25,7 @@ const AboutEvent: React.FC<EventDetailsProps> = ({ agenda, attendees, eventTags,
 					<Typography variant='h3'>Tags</Typography>
 					<Box marginY='25px'>
 						{eventTags.map((tag) => (
-							<Chip key={tag.id} label={tag.name} />
+							<Chip className='event-page-tag' key={tag.id} label={tag.name} />
 						))}
 					</Box>
 				</Box>

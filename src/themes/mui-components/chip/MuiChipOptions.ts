@@ -20,6 +20,9 @@ const muiChipOptions = {
 				padding: '0.375rem 0.1875rem',
 				backgroundColor: COLORS.WHITE,
 			},
+			'&.event-page-tag': {
+				marginRight: '0.5rem',
+			},
 			'&:active': {
 				'& .MuiTouchRipple-root': {
 					display: 'none',

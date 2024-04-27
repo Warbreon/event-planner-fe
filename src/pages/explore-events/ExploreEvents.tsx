@@ -1,4 +1,4 @@
-import { Box, Container, Typography } from '@mui/material';
+import { Box, Container } from '@mui/material';
 import EventHeader from '../../components/event-header/EventHeader';
 import ExploreEventsVM from './ExploreEventsViewModel';
 import { EventCard } from '../../components/event-card/EventCard';

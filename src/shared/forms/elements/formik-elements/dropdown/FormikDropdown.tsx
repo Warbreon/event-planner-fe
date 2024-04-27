@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { useField } from "formik";
 import Dropdown from "../../../../../components/dropdown/Dropdown";
-import { Box, SelectChangeEvent, Typography } from "@mui/material";
+import { SelectChangeEvent, Typography } from "@mui/material";
 import styles from "./FormikDropdown.module.css";
 
 interface FormikDropdownProps {

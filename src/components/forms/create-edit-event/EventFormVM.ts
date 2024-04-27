@@ -22,6 +22,7 @@ const EventFormVM = () => {
         registrationStartTime: null,
         registrationEndDate: null,
         registrationEndTime: null,
+        attendees: null
     };
 
     const onSubmit = (values: EventFormValues) => {

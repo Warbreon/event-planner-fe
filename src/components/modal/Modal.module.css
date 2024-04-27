@@ -1,0 +1,23 @@
+.modalBox {
+  width: 800px;
+  height: 550px;
+  background-color: white;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform:translate(-50%, -50%);
+  border-radius: 8px;
+  padding: 1rem;
+}
+
+.modalBox .modalBoxHeader {
+  border-bottom: 1px solid #dddddd;
+  position: sticky;
+}
+
+.modalBox .modalBoxFooter {
+  border-top: 1px solid #dddddd;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}

@@ -1,7 +1,7 @@
 import Title from '../title/Title';
 import { useNavigate } from 'react-router';
 import Dropdown from '../dropdown/Dropdown';
-import GenericButton from '../button/GenericButton';
+import GenericButton, { ButtonTypes, IconButton } from '../buttons/ButtonComponent';
 import ROUTES from '../../routes/Routes';
 import ChipSelector from '../chip-selector/ChipSelector';
 import styles from './EventHeader.module.css';
@@ -66,12 +66,11 @@ const EventHeader: React.FC<Props> = ({ filters, handleFiltersChange }) => {
 					subtitleClassName={styles.headerSubtitle}
 				/>
 				<GenericButton
-					text='Add event'
+					title='Add event'
 					onClick={() => navigate(ROUTES.ADD_EVENT)}
-					className={styles.addEventButton}
-					buttonProps={{
-						startIcon: <Add />,
-					}}
+					styles={styles.addEventButton}
+					icon={IconButton.ADD_EVENT}
+					type={ButtonTypes.button}
 				/>
 			</div>
 			<div className={styles.filters}>

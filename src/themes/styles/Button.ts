@@ -9,6 +9,7 @@ export enum BUTTON_STYLES {
 	LIGHT_GRAY_BOX = 'light-gray-box',
 	LIGHT_GRAY_ROUND_SMALL = 'light-gray-round-small',
 	LIGHT_GRAY_ROUND_SMALL_BORDERLESS = 'light-gray-round-small light-gray-round-small-borderless',
-    TEXT_ONLY = 'text-only',
+	TEXT_ONLY = 'text-only',
 	UPLOAD_BUTTON = 'upload-button',
+	CLOSE_MODAL = 'close-modal-button',
 }

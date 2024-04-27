@@ -24,7 +24,6 @@ const AgendaSectionVM = ({ errors, touched }: Props) => {
   }, [hasAgendaErrors]);
 
   const onToggle = (event: React.ChangeEvent<HTMLInputElement>) => {
-    console.log('Toggle activated');
     setShowForm(event.target.checked);
   }
 

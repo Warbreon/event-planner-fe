@@ -12,6 +12,7 @@ import { Divider } from '@mui/material';
 import Media from '../EventForm/media/Media';
 import AgendaSection from './formik-elements/agenda-section/AgendaSection';
 import Registration from './registration/Registration';
+import AddGuestsSection from '../../add-guests-to-event/AddGuestsSection';
 
 const EventForm = () => {
   const { initialValues, onSubmit, handleCancelOnClick } = EventFormVM();
@@ -44,6 +45,9 @@ const EventForm = () => {
             <AgendaSection agenda={initialValues.agenda} />
             <Divider className={styles.divider} />
             <Registration />
+            <Divider className={styles.divider} />
+
+            <AddGuestsSection attendees={initialValues.attendees}/>
             <Divider className={styles.divider} />
           </div>
           <div className={styles.buttonsContainer}>

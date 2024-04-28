@@ -49,12 +49,11 @@ const EventHeader: FC<Props> = ({ filters, handleFiltersChange }) => {
 					getChipClassName={getChipClassName}
 				/>
 				<div className={styles.dropdownFiltersContainer}>
-					<Dropdown
+				<Dropdown
 						value={filters.date}
 						onChange={handleDateChange}
 						options={DATE_FILTER_OPTIONS}
-						selectClassName={styles.dropdown}
-						menuItemClassName={styles.dropdownMenuItem}
+						selectClassName='event-header-dropdown'
 						selectProps={{
 							IconComponent: KeyboardArrowDown,
 						}}
@@ -63,7 +62,7 @@ const EventHeader: FC<Props> = ({ filters, handleFiltersChange }) => {
 						value={filters.location}
 						onChange={handleLocationChange}
 						options={locations}
-						selectClassName={styles.dropdown}
+						selectClassName='event-header-dropdown'
 						selectProps={{
 							IconComponent: KeyboardArrowDown,
 						}}

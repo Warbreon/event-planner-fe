@@ -32,6 +32,7 @@ const muiChipOptions = {
 				borderColor: COLORS.BLACK,
 				'& span': {
 					fontWeight: 600,
+					padding: '0.6975rem',
 				},
 			},
 		},

@@ -8,55 +8,17 @@ import {
 	TableCell,
 	TableBody,
 	Paper,
-	Avatar,
 } from '@mui/material';
-import React from 'react';
 
 import styles from './Settings.module.css';
 import GenericButton, { ButtonTypes, IconButton } from '../../components/buttons/ButtonComponent';
 import { BUTTON_STYLES } from '../../themes/styles/Button';
-
-function createData(
-	avatarUrl: string,
-	firstName: string,
-	lastName: string,
-	jobTitle: string,
-	homeOfficeLocation: string,
-	permission: string
-) {
-	return { avatarUrl, firstName, lastName, jobTitle, homeOfficeLocation, permission };
-}
-
-const rows = [
-	createData(
-		'https://avatar.iran.liara.run/public/82',
-		'Jolyne',
-		'Cujoh',
-		'HR Manage',
-		'Miami, USA',
-		'System administrator'
-	),
-	createData(
-		'http://placebear.com/250/250',
-		'Jotaro',
-		'Cujoh',
-		'Operations Manager',
-		'Kairo, Egypt',
-		'System administrator'
-	),
-	createData(
-		'http://placebeard.it/250/250',
-		'Josuke',
-		'Higashikata',
-		'HR Intern',
-		'Morioh, Japan',
-		'System administrator'
-	),
-	createData('http://placebacon.net/400/300', 'Joseph', 'Joestar', 'CFO', 'London, UK', 'Admin'),
-	createData('https://avatar.iran.liara.run/public/20', 'Giorno', 'Giovanna', 'CEO', 'Rome, Italy', 'Admin'),
-];
+import GuestListItem from '../../components/lists/guest-list/GuestListItem';
+import SettingsVM from './SettingsVM';
 
 const Settings = () => {
+	const settingsVM = SettingsVM();
+
 	return (
 		<Box className={styles.settingsContainer}>
 			<Typography variant='h1'>Settings page</Typography>
@@ -74,21 +36,25 @@ const Settings = () => {
 						</TableRow>
 					</TableHead>
 					<TableBody>
-						{rows.map((row) => (
+						{settingsVM.rows.map((row) => (
 							<TableRow key={row.firstName} className={styles.adminTableRow}>
 								<TableCell component='th' scope='row'>
-									<Box>
-										<Avatar className='adminAvatar' alt={`${row.firstName} ${row.lastName}`} src={row.avatarUrl} />
-									</Box>
-									<Box>
-										<Typography variant='h2'>{row.firstName + ' ' + row.lastName}</Typography>
-										<Typography variant='body2'>
-											{row.jobTitle} &bull; {row.homeOfficeLocation}
-										</Typography>
-									</Box>
+									<GuestListItem
+										image={row.avatarUrl}
+										fullName={`${row.firstName} ${row.lastName}`}
+										details={row.jobTitle + ' • ' + row.homeOfficeLocation}
+									/>
 								</TableCell>
 								<TableCell>
-									<Typography variant='body2'>{row.permission}</Typography>
+									<Box className={styles.permissionContainer}>
+										<Typography variant='body2'>{row.permission}</Typography>
+										<GenericButton
+											type={ButtonTypes.button}
+											title='Remove'
+											onClick={settingsVM.handleDeleteClick}
+											styles={BUTTON_STYLES.LIGHT_GRAY_ROUND_SMALL}
+										/>
+									</Box>
 								</TableCell>
 							</TableRow>
 						))}
@@ -98,7 +64,7 @@ const Settings = () => {
 			<GenericButton
 				icon={IconButton.ADD_GUESTS}
 				type={ButtonTypes.button}
-				styles={BUTTON_STYLES.LIGHT_GRAY}
+				styles={BUTTON_STYLES.LIGHT_GRAY_BOX}
 				onClick={() => null}
 			/>
 		</Box>

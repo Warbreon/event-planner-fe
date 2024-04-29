@@ -17,6 +17,13 @@
 	width: 40%;
 }
 
+.permissionContainer {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	height: 0.875rem;
+}
+
 .adminTableRow {
 	border-bottom: #dddddd;
 }

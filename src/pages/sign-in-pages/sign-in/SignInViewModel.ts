@@ -1,15 +1,35 @@
-import { useNavigate } from 'react-router-dom';
-import Routes from '../../../routes/Routes';
+import ROUTES from '../../../routes/Routes';
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router';
+import { usePost } from '../../../api/hooks/ApiHooks';
+import useAuthenticationAPI from '../../../api/AuthenticationAPI';
+import { signIn } from '../../../redux/slices/AuthenticationSlice';
 
 const SignInViewModel = () => {
-	const onSubmit = (email: string, password: string) => {
-		console.log('Email:', email);
-		console.log('Password:', password);
+	const navigate = useNavigate();
+	const dispatch = useDispatch();
+
+	const { postData, isLoading, error, data } = usePost();
+	const { authenticateUser } = useAuthenticationAPI();
+
+	const onSubmit = async (email: string, password: string) => {
+		await postData(() => authenticateUser(email, password));
 	};
 
-	return {
-		onSubmit,
-	};
+	useEffect(() => {
+		if (isLoading || error) {
+			return;
+		}
+
+		const { accessToken, refreshToken, email, role } = data || {};
+		if (accessToken && refreshToken && email && role) {
+			dispatch(signIn({ signedIn: true, accessToken, refreshToken, email, role }));
+			navigate(ROUTES.INDEX);
+		}
+	}, [data, dispatch, error, isLoading, navigate]);
+
+	return { onSubmit, error };
 };
 
 export default SignInViewModel;

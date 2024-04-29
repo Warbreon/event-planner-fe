@@ -17,7 +17,7 @@ interface Props {
 
 const EventHeader: FC<Props> = ({ filters, handleFiltersChange }) => {
 
-	const { userName, handleTagChange, handleDateChange, handleLocationChange, getChipClassName, locations, modifiedEventTags, error, isLoading, navigateToAddEvent } = 
+	const { userName, handleTagChange, handleDateChange, handleLocationChange, getChipClassName, selectedKeys, locations, modifiedEventTags, error, isLoading, navigateToAddEvent } = 
 		EventHeaderVM(filters, handleFiltersChange);
 
 	if (error) return <div className={styles.container}>{error}</div>;
@@ -44,7 +44,7 @@ const EventHeader: FC<Props> = ({ filters, handleFiltersChange }) => {
 			<div className={styles.filters}>
 				<ChipSelector
 					options={modifiedEventTags || []}
-					selectedKeys={filters.eventTag}
+					selectedKeys={selectedKeys}
 					onSelect={handleTagChange}
 					getChipClassName={getChipClassName}
 				/>

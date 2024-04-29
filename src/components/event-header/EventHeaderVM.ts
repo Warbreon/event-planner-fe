@@ -46,12 +46,15 @@ const EventHeaderVM = (filters: EventFiltersState, handleFiltersChange: (filters
 		return classNames(TAGS.SELECT_TAG, { [TAGS.TAG_SELECTED]: isSelected });
 	};
 
+    const selectedKeys = filters.eventTag.length === 0 ? [0] : filters.eventTag;
+
     return {
         userName,
         handleTagChange,
         handleDateChange,
         handleLocationChange,
         getChipClassName,
+        selectedKeys,
         locations,
         modifiedEventTags,
         error,

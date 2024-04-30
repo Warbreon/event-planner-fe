@@ -10,8 +10,6 @@ interface Props {
 
 interface State {
     placeholder: string;
-    inviteUrl: string | null;
-    addressId: string | null;
     locationKey: string;
 }
 
@@ -24,20 +22,14 @@ const LocationVM = ({ setFieldValue }: Props) => {
     const stateChanges: Record<string, State> = {
         physical: {
             placeholder: 'Search for a venue...',
-            inviteUrl: '',
-            addressId: null,
             locationKey: 'physical',
         },
         online: {
             placeholder: 'Enter link to Zoom, Hangouts or other platform',
-            inviteUrl: '',
-            addressId: null,
             locationKey: 'online',
         },
         tbd: {
             placeholder: 'Enter TBD details...',
-            inviteUrl: '',
-            addressId: null,
             locationKey: 'tbd',
         },
     };
@@ -46,8 +38,8 @@ const LocationVM = ({ setFieldValue }: Props) => {
         const newState = stateChanges[newKey];
 
         setPlaceholder(newState.placeholder);
-        setFieldValue('inviteUrl', newState.inviteUrl);
-        setFieldValue('addressId', newState.addressId);
+        setFieldValue('inviteUrl', '');
+        setFieldValue('addressId', null);
         setFieldValue('locationKey', newState.locationKey);
         setFieldTouched('inviteUrl', false, false);
         setFieldTouched('addressId', false, false);

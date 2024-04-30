@@ -55,23 +55,15 @@ export const eventFormSchema = Yup.object().shape({
                 endDate: this.parent.registrationEndDate
             });
         }),
-        .test(
-            'fileFormat',
-            'Unsupported format.',
-            (value) => {
-                const file = value as File;
-                return file ? ['image/jpeg', 'image/jpg', 'image/png'].includes(file.type) : true;
-            }
-        ),
-    addressId: Yup.string().nullable().test('at-least-one', 'Either an address or an invite URL is required', function (value) {
-        const {inviteUrl} = this.parent;
-        return value || inviteUrl;
+    addressId: Yup.number().nullable().typeError('You must select one of the given options.')
+        .test('address-required-if-physical', 'Venue address is required.', function (value) {
+            const { locationKey } = this.parent;
+            return locationKey !== 'physical' || (locationKey === 'physical' && value != null);
+        }),
+    inviteUrl: Yup.string().nullable().url('URL must be valid').test('url-required-if-online', 'URL for online event is required.', function (value) {
+        const { locationKey } = this.parent;
+        return locationKey !== 'online' || (locationKey === 'online' && value != null);
     }),
-    inviteUrl: Yup.string().nullable().test('at-least-one', 'Either an address or an invite URL is required', function (value) {
-        const {addressId} = this.parent;
-        return value || addressId;
-    }),
-
     agenda: Yup.array()
         .of(
             Yup.object().shape({
@@ -79,7 +71,7 @@ export const eventFormSchema = Yup.object().shape({
                 description: Yup.string().required('Agenda description is required'),
             }),
         )
-        .test('times-ascending', 'Each agenda time must be later thanc the previous one', function (agendaArray) {
+        .test('times-ascending', 'Each agenda time must be later than the previous one', function (agendaArray) {
             if (!agendaArray || agendaArray.length <= 1) {
                 return true;
             }

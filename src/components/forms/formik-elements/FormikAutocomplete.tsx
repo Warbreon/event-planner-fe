@@ -1,44 +1,36 @@
-import {Autocomplete, TextFieldProps} from '@mui/material';
-import {useField, useFormikContext} from 'formik';
-import {ChangeEvent, FC} from 'react';
-import FormikTextField from '../../../shared/forms/elements/formik-elements/text-field/FormikTextField';
+import { Autocomplete, AutocompleteProps, TextFieldProps } from '@mui/material';
+import { useField, useFormikContext } from 'formik';
+import { ChangeEvent, FC } from 'react';
 
 interface Option {
-    id: string;
+    id: number;
     label: string;
 }
 
-interface Props {
+interface Props extends AutocompleteProps<Option, false, boolean, false> {
     name: string;
-    title: string;
     options: Array<Option>;
     textFieldProps?: TextFieldProps;
-    titleClassName: string;
 }
 
-const FormikAutocomplete: FC<Props> = ({name, title, options, textFieldProps, titleClassName}) => {
-    const {setFieldValue} = useFormikContext();
+const FormikAutocomplete: FC<Props> = ({ name, options, textFieldProps, ...props }) => {
+    const { setFieldValue } = useFormikContext();
     const [field] = useField(name);
 
     const selectedOption = options.find((option) => option.id === field.value) || null;
+
     const handleChange = (_: ChangeEvent<{}>, newValue: Option | null) => {
-        setFieldValue(name, newValue ? newValue.id : '');
+        setFieldValue(name, newValue ? newValue.id : null);
     };
 
     return (
         <Autocomplete
-            {...field}
-            popupIcon=''
-            multiple={false}
+            {...props}
             value={selectedOption}
             options={options}
             onChange={handleChange}
-            getOptionLabel={(option) => (option ? option.label : '')}
-            isOptionEqualToValue={(option, value) => option.id === value.id}
-            renderInput={(params) => (
-                <FormikTextField {...params} {...textFieldProps} name={name} titleClassName={titleClassName}
-                                 title={title}/>
-            )}
+            getOptionLabel={(option: Option) => (option ? option.label : '')}
+            isOptionEqualToValue={(option, value) => option.label === value.label}
         />
     );
 };

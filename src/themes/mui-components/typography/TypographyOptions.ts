@@ -34,6 +34,7 @@ const typographyOptions: TypographyOptions = {
 		fontSize: '1rem',
 		fontWeight: 400,
 	},
+
 	body1: {
 		fontSize: '0.875rem',
 		fontWeight: 400,
@@ -49,13 +50,9 @@ const typographyOptions: TypographyOptions = {
 			lineHeight: '1rem',
 			marginBottom: '0.5rem',
 		},
-
 		'&.error-mesage': {
 			color: COLORS.ERROR
 		},
-	},
-
-	subtitle1: {
 		'&.event-form-element': {
 			fontSize: '0.875rem',
 			lineHeight: '1rem',
@@ -63,6 +60,7 @@ const typographyOptions: TypographyOptions = {
 			marginBottom: '0.5rem',
 		},
 	},
+	
 	body2: {
 		fontSize: '0.875rem',
 		fontWeight: 400,

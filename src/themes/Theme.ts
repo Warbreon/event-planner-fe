@@ -23,6 +23,7 @@ import muiAvatarOptions from './mui-components/avatar/MuiAvatarOptions';
 import muiBreadcrumbsOptions from './mui-components/breadcrumbs/MuiBreadcrumbsOptions';
 import MuiOptions from './mui-components/MuiOptions';
 import muiToolTipOptions from './mui-components/tool-tip/MuiToolTipOptions';
+import muiAutocompleteOptions from './mui-components/autocomplete/AutocompleteOptions';
 
 const projectTheme = createTheme({
 	palette: palleteOptions,
@@ -49,6 +50,7 @@ const projectTheme = createTheme({
 		MuiMenuItem: muiMenuItemOptions as MuiOptions,
 		MuiMenu: muiMenuOptions as MuiOptions,
 		MuiTooltip: muiToolTipOptions as MuiOptions,
+		MuiAutocomplete: muiAutocompleteOptions as MuiOptions,
 	},
 });
 

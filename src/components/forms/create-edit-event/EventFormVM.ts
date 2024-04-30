@@ -17,14 +17,27 @@ const EventFormVM = () => {
         eventTag: 'news',
         cardUrl: null,
         addressId: null,
-        inviteUrl: null,
+        inviteUrl: '',
         agenda: parsedAgendaItems,
         isOpen: true,
         registrationStartDate: null,
         registrationStartTime: null,
         registrationEndDate: null,
         registrationEndTime: null,
+        locationKey: 'physical',
     };
+
+    const determineLocationKey = (values: EventFormValues) => {
+        if (values.inviteUrl) {
+            return 'online';
+        } else if (values.addressId) {
+            return 'physical';
+        } else {
+            return 'tbd';
+        }
+    };
+
+    initialValues.locationKey = determineLocationKey(initialValues);
 
     const onSubmit = (values: EventFormValues) => {
         const eventStart = combineDateTime(values.eventStartDate, values.eventStartTime);
@@ -42,6 +55,8 @@ const EventFormVM = () => {
             registrationStart,
             registrationtEnd,
             isOpen: values.isOpen,
+            addressId: values.addressId,
+            inviteUrl: values.inviteUrl,
         };
 
         console.log(submitValues);
@@ -51,7 +66,7 @@ const EventFormVM = () => {
         console.log('Canceled');
     };
 
-    return {initialValues, onSubmit, handleCancelOnClick}
+    return { initialValues, onSubmit, handleCancelOnClick }
 }
 
 export default EventFormVM;

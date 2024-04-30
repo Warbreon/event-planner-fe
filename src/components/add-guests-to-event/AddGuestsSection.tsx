@@ -9,7 +9,7 @@ import ButtonComponentGroup from '../buttons/buton-group/ButtonComponentGroup';
 import SelectGuests from './modal-content/SelectGuests';
 import { User } from '../../models/User';
 import DisplaySelectedGuests from './page-content/DisplaySelectedGuests';
-import styles from './AddGuestsSection.module.css'
+import styles from './AddGuestsSection.module.css';
 
 interface Props {
 	users: User[];
@@ -17,12 +17,22 @@ interface Props {
 
 const AddGuestsSection: FC<Props> = ({ users }) => {
 	const { setFieldValue } = useFormikContext<{ attendees: number[] }>();
-	const { showForm, showModal, currentlySelectedUsers, onToggle, onModalOpen, onModalClose, onConfirm, onDeleteClick } =
-		useAddGuestsVM({ setFieldValue });
+	const {
+		showForm,
+		showModal,
+		currentlySelectedUsers,
+		showError,
+		errorMessage,
+		onToggle,
+		onModalOpen,
+		onModalClose,
+		onConfirm,
+		onDeleteClick,
+	} = useAddGuestsVM({ setFieldValue });
 
 	return (
 		<div>
-			<div className={currentlySelectedUsers.length > 0 ? styles.headerBox: 'header-container'}>
+			<div className={currentlySelectedUsers.length > 0 ? styles.headerBox : 'header-container'}>
 				<ToggleHeader
 					title='Add guests'
 					isChecked={showForm}
@@ -46,7 +56,7 @@ const AddGuestsSection: FC<Props> = ({ users }) => {
 							header='Add guests'
 							handleClose={onModalClose}
 							isOpen={showModal}
-							content={<SelectGuests users={users} />}
+							content={<SelectGuests users={users} displayError={showError} errorMessage={errorMessage}/>}
 							footer={
 								<ButtonComponentGroup
 									onCancel={onModalClose}

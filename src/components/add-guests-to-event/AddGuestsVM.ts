@@ -4,15 +4,18 @@ import { useSelector } from 'react-redux';
 import { StoreState } from '../../redux/store/Store';
 import { useDispatch } from 'react-redux';
 import { add, removeAll } from '../../redux/slices/CreateEventPageSlice';
+import { areArraysEqual } from '../../utils/CompareArrays';
 
 interface Props {
-  setFieldValue: (field: string, value: any, shouldValidate?: boolean) => void;
+	setFieldValue: (field: string, value: any, shouldValidate?: boolean) => void;
 }
 
-const useAddGuestsVM = ({setFieldValue}: Props) => {
-	const [showForm, setShowForm] = useState(false);
-	const [showModal, setShowModal] = useState(false);
+const useAddGuestsVM = ({ setFieldValue }: Props) => {
+	const [showForm, setShowForm] = useState<boolean>(false);
+	const [showModal, setShowModal] = useState<boolean>(false);
 	const [currentlySelectedUsers, setCurrentlySelectedUsers] = useState<User[]>([]);
+	const [showError, setShowError] = useState<boolean>(false);
+	const [errorMessage, setErrorMessage] = useState<string>('');
 	const newUserSelection = useSelector((state: StoreState) => state.createEventGuests);
 	const dispatch = useDispatch();
 
@@ -33,43 +36,55 @@ const useAddGuestsVM = ({setFieldValue}: Props) => {
 	};
 
 	const convertUserIds = (currentUserSelection: User[]) => {
-		const usersIds: number[] = currentUserSelection.map(user => user.id);
+		const usersIds: number[] = currentUserSelection.map((user) => user.id);
 		return usersIds;
-	}
-
-	const onConfirm = () => {
-		const sortedNewlySelectedUsers = [...newUserSelection].sort();
-		const sortedCurrentlySelectedUsers = [...currentlySelectedUsers].sort();
-		const areArraysEqual =
-			sortedNewlySelectedUsers.length === sortedCurrentlySelectedUsers.length &&
-			sortedNewlySelectedUsers.every((value, index) => value === sortedCurrentlySelectedUsers[index]);
-
-		if (!areArraysEqual) {
-			setCurrentlySelectedUsers(newUserSelection);
-			onModalClose();
-		} else {
-			return;
-		}
 	};
 
 	const onDeleteClick = (userId: number) => {
 		setCurrentlySelectedUsers(currentlySelectedUsers.filter((x) => x.id !== userId));
 	};
 
-	useEffect(()=> {
+	const onConfirm = () => {
+		setError(false, '');
+
+		if (currentlySelectedUsers.length === 0 && newUserSelection.length === 0) {
+			setError(true, 'Select employees you would like to invite to this event!');
+			return;
+		}
+
+		if (!areArraysEqual(newUserSelection, currentlySelectedUsers)) {
+			setCurrentlySelectedUsers(newUserSelection);
+			onModalClose();
+		} else {
+			setError(true, 'Selected employees are already added to the guest list!');
+		}
+	};
+
+	const setError = (error: boolean, message: string) => {
+		setShowError(error);
+		setErrorMessage(message);
+	};
+
+	useEffect(() => {
 		const userIDs = convertUserIds(currentlySelectedUsers);
 		setFieldValue('attendees', userIDs);
 	}, [currentlySelectedUsers, setFieldValue]);
+
+	useEffect(() => {
+		setError(false, '');
+	}, [newUserSelection]);
 
 	return {
 		showForm,
 		showModal,
 		currentlySelectedUsers,
+		showError,
+		errorMessage,
 		onToggle,
 		onModalOpen,
 		onModalClose,
 		onConfirm,
-		onDeleteClick
+		onDeleteClick,
 	};
 };
 

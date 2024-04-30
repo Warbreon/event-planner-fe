@@ -5,21 +5,17 @@ import SearchIcon from '@mui/icons-material/Search';
 import styles from './SelectGuests.module.css';
 import { User } from '../../../models/User';
 import { FC } from 'react';
-import { Alert, Checkbox, Divider, List, Snackbar } from '@mui/material';
+import { Checkbox, Divider, List } from '@mui/material';
 import GuestListItem from '../../lists/guest-list/GuestListItem';
 import { LIST_ITEM_STYLES } from '../../../themes/styles/ListItem';
 import useSelectGuestsViewModel from './SelectGuestsVM';
-import SnackbarComponent, { ALERT_SEVERITY } from '../../snackbar/SnackbarComponent';
 
 interface Props {
 	users: User[];
-	displayError: boolean;
-	errorMessage: string;
 }
 
-const SelectGuests: FC<Props> = ({ users, displayError, errorMessage }) => {
+const SelectGuests: FC<Props> = ({ users }) => {
 	const { onInputChange, userList, handleCheckboxChange, selectedUsers } = useSelectGuestsViewModel(users);
-
 	return (
 		<div>
 			<div className={styles.searchBar}>
@@ -51,7 +47,6 @@ const SelectGuests: FC<Props> = ({ users, displayError, errorMessage }) => {
 					array.length - 1 !== i ? <Divider component='li' key={'Divider' + i} /> : null,
 				])}
 			</List>
-			<SnackbarComponent open={displayError} message={errorMessage} severity={ALERT_SEVERITY.ERROR}/>
 		</div>
 	);
 };

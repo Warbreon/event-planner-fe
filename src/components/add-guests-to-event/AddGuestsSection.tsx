@@ -10,6 +10,7 @@ import SelectGuests from './modal-content/SelectGuests';
 import { User } from '../../models/User';
 import DisplaySelectedGuests from './page-content/DisplaySelectedGuests';
 import styles from './AddGuestsSection.module.css';
+import SnackbarComponent, { ALERT_SEVERITY } from '../snackbar/SnackbarComponent';
 
 interface Props {
 	users: User[];
@@ -56,14 +57,17 @@ const AddGuestsSection: FC<Props> = ({ users }) => {
 							header='Add guests'
 							handleClose={onModalClose}
 							isOpen={showModal}
-							content={<SelectGuests users={users} displayError={showError} errorMessage={errorMessage}/>}
+							content={<SelectGuests users={users} />}
 							footer={
-								<ButtonComponentGroup
-									onCancel={onModalClose}
-									onConfirm={onConfirm}
-									closeButtonLabel='Cancel'
-									confirmButtonLabel='Confirm'
-								/>
+								<>
+									<ButtonComponentGroup
+										onCancel={onModalClose}
+										onConfirm={onConfirm}
+										closeButtonLabel='Cancel'
+										confirmButtonLabel='Confirm'
+									/>
+									<SnackbarComponent open={showError} message={errorMessage} severity={ALERT_SEVERITY.ERROR} />
+								</>
 							}
 						/>
 					)}

@@ -9,7 +9,7 @@ interface Props {
 
 const RegistrationVM = ({ setFieldValue, isOpen }: Props) => {
     const defaultTag = isOpen ? 1 : 0;
-    const [selectedTag, setSelectedTag] = useState<number[]>([defaultTag]);
+    const [selectedTag, setSelectedTag] = useState<number>(defaultTag);
 
     const registrationTagOptions = [
         { id: 1, name: 'Public' },
@@ -18,14 +18,14 @@ const RegistrationVM = ({ setFieldValue, isOpen }: Props) => {
 
     const handleTagChange = (id: number) => {
         setFieldValue('isOpen', id === 1);
-        setSelectedTag([id]);
+        setSelectedTag(id);
     };
 
     const getChipClassName = (isSelected: boolean) => {
         return classNames([TAGS.SELECT_TAG], { [TAGS.TAG_SELECTED]: isSelected });
     };
 
-    const registrationMessage = selectedTag[0] === 1
+    const registrationMessage = selectedTag === 1
         ? 'All employees will be able to attend this event. No confirmation required.'
         : 'Guest must receive confirmation from event admin or attend.';
 

@@ -26,6 +26,7 @@ const Registration = () => {
                     selectedKeys={selectedTag}
                     onSelect={handleTagChange}
                     getChipClassName={getChipClassName}
+                    multiple={false}
                 />
             </div>
             <Typography className={styles.registrationMessage}>{registrationMessage}</Typography>

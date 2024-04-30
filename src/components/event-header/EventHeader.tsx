@@ -47,6 +47,7 @@ const EventHeader: FC<Props> = ({ filters, handleFiltersChange }) => {
 					selectedKeys={selectedKeys}
 					onSelect={handleTagChange}
 					getChipClassName={getChipClassName}
+					multiple={true}
 				/>
 				<div className={styles.dropdownFiltersContainer}>
 				<Dropdown

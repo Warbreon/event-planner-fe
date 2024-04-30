@@ -15,7 +15,12 @@ const EventHeaderVM = (filters: EventFiltersState, handleFiltersChange: (filters
 
     const fetchAllTags = useTagAPI();
     const { data: eventTags, error, isLoading } = useFetch(fetchAllTags);
-    const modifiedEventTags = eventTags ? [{ id: 0, name: 'All events' }, ...eventTags] : [];
+    const modifiedEventTags = [{
+        id: 0,
+        name: 'All events',
+    }, ...(eventTags ? eventTags.map(tag => ({
+        ...tag,
+    })) : [])];
 
     const locations = [
 		{ value: 'all', label: 'All Locations' },

@@ -1,10 +1,10 @@
 import { useNavigate } from 'react-router';
 import routes from '../../routes/Routes';
 import { useSelector } from 'react-redux';
-import { PersistentStoreRootState } from '../../redux/store/PersistentStore';
+import { StoreState } from '../../redux/store/Store';
 
 const PlannerFooterViewModel = () => {
-	const loggedInStatus = useSelector((state: PersistentStoreRootState) => state.signedIn);
+	const loggedInStatus = useSelector((state: StoreState) => state.user.signedIn);
 
 	const navigate = useNavigate();
 

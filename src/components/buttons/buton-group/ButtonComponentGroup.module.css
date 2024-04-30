@@ -1,0 +1,16 @@
+.buttonGroup {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: end;
+}
+
+
+.buttonGroup .cancelButton {
+  width: 72px;
+  height: 32px;
+}
+
+
+.buttonGroup .confirmationButton {
+  width: 100px;
+}

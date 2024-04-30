@@ -1,0 +1,18 @@
+.userList {
+  display: grid;
+  grid-template-columns: 0.96fr 0.04fr;
+  gap: 1rem;
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
+}
+
+.selectedGuestList {
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
+
+.removeIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

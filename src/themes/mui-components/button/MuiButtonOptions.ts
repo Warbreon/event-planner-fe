@@ -8,7 +8,7 @@ const muiButtonOptions = {
 			background: COLORS.WHITE,
 			fontFamily: FONT_FAMILY,
 			textTransform: 'none',
-			fontSize: '1rem',
+			fontSize: '0.875rem',
 			fontWeight: '600',
 			borderRadius: '100px',
 			boxShadow: 'none',
@@ -32,6 +32,11 @@ const muiButtonOptions = {
 				'&:hover': {
 					background: COLORS.HOVER_BLACK,
 				},
+			},
+
+			'&.modal-button': {
+				height: '32px',
+				fontWeight: '500',
 			},
 
 			//register, get tickets, add guests,

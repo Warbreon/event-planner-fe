@@ -23,6 +23,7 @@ import muiAvatarOptions from './mui-components/avatar/MuiAvatarOptions';
 import muiBreadcrumbsOptions from './mui-components/breadcrumbs/MuiBreadcrumbsOptions';
 import MuiOptions from './mui-components/MuiOptions';
 import muiToolTipOptions from './mui-components/tool-tip/MuiToolTipOptions';
+import chechboxOptions from './mui-components/checkbox/CheckboxOptions';
 
 const projectTheme = createTheme({
 	palette: palleteOptions,
@@ -49,7 +50,9 @@ const projectTheme = createTheme({
 		MuiMenuItem: muiMenuItemOptions as MuiOptions,
 		MuiMenu: muiMenuOptions as MuiOptions,
 		MuiTooltip: muiToolTipOptions as MuiOptions,
+		MuiCheckbox: chechboxOptions as MuiOptions
+		}
 	},
-});
+);
 
 export default projectTheme;

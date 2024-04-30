@@ -1,49 +1,70 @@
-import { FormikErrors, FormikTouched } from "formik";
-import { Attendee } from "../../models/Attendee";
-import { useCallback, useEffect, useState } from "react";
+import { ChangeEvent, useState } from 'react';
+import { User } from '../../models/User';
+import { useSelector } from 'react-redux';
+import { StoreState } from '../../redux/store/Store';
+import { useDispatch } from 'react-redux';
+import { add, removeAll } from '../../redux/slices/CreateEventPageSlice';
 
-interface Props {
-  errors: FormikErrors<{attendees: Attendee[]}>;
-  touched: FormikTouched<{attendees: Attendee[]}>;
-}
+const useAddGuestsVM = () => {
+	const [showForm, setShowForm] = useState(false);
+	const [showModal, setShowModal] = useState(false);
+	const [currentlySelectedUsers, setCurrentlySelectedUsers] = useState<User[]>([]);
+	const [selectedUserIds, setSelectedUserIds]= useState<number[]>([]);
+	const newUserSelection = useSelector((state: StoreState) => state.createEventGuests);
+	const dispatch = useDispatch();
 
-const useAddGuestsVM = ({ errors, touched }: Props) => {
-  const [showForm, setShowForm] = useState(false);
-  const [showModal, setShowModal] = useState(false);
+	const onToggle = (event: ChangeEvent<HTMLInputElement>) => {
+		setShowForm(event.target.checked);
+	};
 
-  const hasAgendaErrors = useCallback(() => (
-    Object.keys(touched.attendees || {}).some(key => {
-      const index = Number(key);
-      return touched.attendees?.[index] && errors.attendees?.[index];
-    })
-  ), [errors, touched]);
+	const onModalOpen = () => {
+		if (currentlySelectedUsers.length > 0) {
+			currentlySelectedUsers.forEach((user) => dispatch(add(user)));
+		}
+		setShowModal(!showModal);
+	};
 
-  useEffect(() => {
-    if (hasAgendaErrors()) {
-      setShowForm(true);
-    }
-  }, [hasAgendaErrors]);
+	const onModalClose = () => {
+		setShowModal(!showModal);
+		dispatch(removeAll());
+	};
 
-  const onToggle = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setShowForm(event.target.checked);
-  }
+	const convertUserIds = () => {
+		const usersIds: number[] = currentlySelectedUsers.map(user => user.id);
+		return usersIds;
+	}
 
-  const onAddGuestClick = () => {
-    setShowModal(!showModal);
-  }
+	const onConfirm = () => {
+		const sortedNewlySelectedUsers = [...newUserSelection].sort();
+		const sortedCurrentlySelectedUsers = [...currentlySelectedUsers].sort();
+		const areArraysEqual =
+			sortedNewlySelectedUsers.length === sortedCurrentlySelectedUsers.length &&
+			sortedNewlySelectedUsers.every((value, index) => value === sortedCurrentlySelectedUsers[index]);
 
-  const onModalClose = () => {
-    setShowModal(!showModal);
+		if (!areArraysEqual) {
+			setCurrentlySelectedUsers(newUserSelection);
+			onModalClose();
+			setSelectedUserIds(convertUserIds());
+		} else {
+			return;
+		}
+	};
 
-  }
+	const onDeleteClick = (userId: number) => {
+		setCurrentlySelectedUsers(currentlySelectedUsers.filter((x) => x.id !== userId));
+	};
 
-  const onConfirm = () => {
-    console.log(`I confirm`)
-
-  }
-
-  return { showForm, showModal, onToggle, onAddGuestClick, onModalClose }
-
-}
+	return {
+		showForm,
+		showModal,
+		currentlySelectedUsers,
+		selectedUserIds,
+		onToggle,
+		onModalOpen,
+		onModalClose,
+		onConfirm,
+		onDeleteClick
+	};
+};
 
 export default useAddGuestsVM;

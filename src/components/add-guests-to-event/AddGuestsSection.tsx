@@ -1,41 +1,70 @@
+import { FC } from 'react';
 import { useFormikContext } from 'formik';
-import { Attendee } from '../../models/Attendee';
+import { BUTTON_STYLES } from '../../themes/styles/Button';
 import ToggleHeader from '../../shared/forms/elements/toggle-header/ToggleHeader';
 import useAddGuestsVM from './AddGuestsVM';
-import { FC } from 'react';
 import GenericButton, { ButtonTypes, IconButton } from '../buttons/ButtonComponent';
-import { BUTTON_STYLES } from '../../themes/styles/Button';
 import ModalComponent from '../modal/ModalComponent';
-import EventPageGuestListPanel from '../tabs/tab-panel/event-page-guest-list-panel/EventPageGuestListPanel';
+import ButtonComponentGroup from '../buttons/buton-group/ButtonComponentGroup';
+import SelectGuests from './modal-content/SelectGuests';
+import { User } from '../../models/User';
+import DisplaySelectedGuests from './page-content/DisplaySelectedGuests';
 
 interface Props {
-	attendees: Attendee[] | null;
+	users: User[];
 }
 
-const AddGuestsSection: FC<Props> = () => {
-	const { values, errors, touched } = useFormikContext<{ attendees: Attendee[] }>();
-	const { showForm, showModal, onToggle, onAddGuestClick, onModalClose } = useAddGuestsVM({ errors, touched });
+const AddGuestsSection: FC<Props> = ({ users }) => {
+	const { setValues } = useFormikContext<{ userIds: number[] }>();
+	const {
+		showForm,
+		showModal,
+		currentlySelectedUsers,
+		selectedUserIds: userIds,
+		onToggle,
+		onModalOpen,
+		onModalClose,
+		onConfirm,
+		onDeleteClick,
+	} = useAddGuestsVM();
+
+	setValues({ userIds });
 
 	return (
 		<div>
 			<div>
-				<ToggleHeader title='Add guests' isChecked={showForm} onToggle={onToggle} />
+				<ToggleHeader
+					title='Add guests'
+					isChecked={showForm}
+					onToggle={onToggle}
+					showToggle={currentlySelectedUsers.length === 0}
+				/>
 			</div>
 			{showForm && (
 				<>
+					{currentlySelectedUsers.length > 0 && (
+						<DisplaySelectedGuests guestList={currentlySelectedUsers} onDelete={onDeleteClick} />
+					)}
 					<GenericButton
 						icon={IconButton.ADD_GUESTS}
 						type={ButtonTypes.button}
 						styles={BUTTON_STYLES.LIGHT_GRAY_BOX}
-						onClick={() => onAddGuestClick()}
+						onClick={() => onModalOpen()}
 					/>
 					{showModal && (
 						<ModalComponent
 							header='Add guests'
 							handleClose={onModalClose}
 							isOpen={showModal}
-							content={<EventPageGuestListPanel attendees={[]} />}
-							footer={<></>}
+							content={<SelectGuests users={users} />}
+							footer={
+								<ButtonComponentGroup
+									onCancel={onModalClose}
+									onConfirm={onConfirm}
+									closeButtonLabel='Cancel'
+									confirmButtonLabel='Confirm'
+								/>
+							}
 						/>
 					)}
 				</>

@@ -31,6 +31,7 @@ const Details = () => {
         <FormikDropdown
           name="eventTag"
           label="Event Type"
+          multiple={true}
           options={eventTagsOptions.map((option) => ({
             value: option.key,
             label: option.label,

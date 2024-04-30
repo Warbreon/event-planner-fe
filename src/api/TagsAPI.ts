@@ -7,6 +7,6 @@ const useTagAPI = () => {
 	const axios = useAxios();
 	const fetchAllTags = useCallback(() => axios.get<Tag[]>(ENDPOINTS.getAllTags), []);
 
-	return { fetchAllTags };
+	return fetchAllTags;
 };
 export default useTagAPI;

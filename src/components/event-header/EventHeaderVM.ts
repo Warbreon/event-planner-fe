@@ -13,7 +13,7 @@ const EventHeaderVM = (filters: EventFiltersState, handleFiltersChange: (filters
     // TODO: get name from redux later
     const userName = 'John';
 
-    const { fetchAllTags } = useTagAPI();
+    const fetchAllTags = useTagAPI();
     const { data: eventTags, error, isLoading } = useFetch(fetchAllTags);
     const modifiedEventTags = eventTags ? [{ id: 0, name: 'All events' }, ...eventTags] : [];
 

@@ -36,8 +36,7 @@ const EventForm = () => {
 						<Divider className={styles.divider} />
 						<Registration />
 						<Divider className={styles.divider} />
-
-						<AddGuestsSection users={users || []} />
+						<AddGuestsSection users={users || []}/>
 						<Divider className={styles.divider} />
 					</div>
 					<div className={styles.buttonsContainer}>

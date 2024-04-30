@@ -1,4 +1,4 @@
-import { FC, useEffect } from 'react';
+import { FC } from 'react';
 import { useFormikContext } from 'formik';
 import { BUTTON_STYLES } from '../../themes/styles/Button';
 import ToggleHeader from '../../shared/forms/elements/toggle-header/ToggleHeader';
@@ -9,28 +9,20 @@ import ButtonComponentGroup from '../buttons/buton-group/ButtonComponentGroup';
 import SelectGuests from './modal-content/SelectGuests';
 import { User } from '../../models/User';
 import DisplaySelectedGuests from './page-content/DisplaySelectedGuests';
+import styles from './AddGuestsSection.module.css'
 
 interface Props {
 	users: User[];
 }
 
 const AddGuestsSection: FC<Props> = ({ users }) => {
-	const { setValues } = useFormikContext<{ userIds: number[] }>();
-	const {
-		showForm,
-		showModal,
-		currentlySelectedUsers,
-		selectedUserIds: userIds,
-		onToggle,
-		onModalOpen,
-		onModalClose,
-		onConfirm,
-		onDeleteClick,
-	} = useAddGuestsVM();
+	const { setFieldValue } = useFormikContext<{ attendees: number[] }>();
+	const { showForm, showModal, currentlySelectedUsers, onToggle, onModalOpen, onModalClose, onConfirm, onDeleteClick } =
+		useAddGuestsVM({ setFieldValue });
 
 	return (
 		<div>
-			<div>
+			<div className={currentlySelectedUsers.length > 0 ? styles.headerBox: 'header-container'}>
 				<ToggleHeader
 					title='Add guests'
 					isChecked={showForm}

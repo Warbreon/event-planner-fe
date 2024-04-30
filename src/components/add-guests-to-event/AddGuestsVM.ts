@@ -1,15 +1,18 @@
-import { ChangeEvent, useState } from 'react';
+import { ChangeEvent, useEffect, useState } from 'react';
 import { User } from '../../models/User';
 import { useSelector } from 'react-redux';
 import { StoreState } from '../../redux/store/Store';
 import { useDispatch } from 'react-redux';
 import { add, removeAll } from '../../redux/slices/CreateEventPageSlice';
 
-const useAddGuestsVM = () => {
+interface Props {
+  setFieldValue: (field: string, value: any, shouldValidate?: boolean) => void;
+}
+
+const useAddGuestsVM = ({setFieldValue}: Props) => {
 	const [showForm, setShowForm] = useState(false);
 	const [showModal, setShowModal] = useState(false);
 	const [currentlySelectedUsers, setCurrentlySelectedUsers] = useState<User[]>([]);
-	const [selectedUserIds, setSelectedUserIds]= useState<number[]>([]);
 	const newUserSelection = useSelector((state: StoreState) => state.createEventGuests);
 	const dispatch = useDispatch();
 
@@ -29,8 +32,8 @@ const useAddGuestsVM = () => {
 		dispatch(removeAll());
 	};
 
-	const convertUserIds = () => {
-		const usersIds: number[] = currentlySelectedUsers.map(user => user.id);
+	const convertUserIds = (currentUserSelection: User[]) => {
+		const usersIds: number[] = currentUserSelection.map(user => user.id);
 		return usersIds;
 	}
 
@@ -44,7 +47,6 @@ const useAddGuestsVM = () => {
 		if (!areArraysEqual) {
 			setCurrentlySelectedUsers(newUserSelection);
 			onModalClose();
-			setSelectedUserIds(convertUserIds());
 		} else {
 			return;
 		}
@@ -54,11 +56,15 @@ const useAddGuestsVM = () => {
 		setCurrentlySelectedUsers(currentlySelectedUsers.filter((x) => x.id !== userId));
 	};
 
+	useEffect(()=> {
+		const userIDs = convertUserIds(currentlySelectedUsers);
+		setFieldValue('attendees', userIDs);
+	}, [currentlySelectedUsers, setFieldValue]);
+
 	return {
 		showForm,
 		showModal,
 		currentlySelectedUsers,
-		selectedUserIds,
 		onToggle,
 		onModalOpen,
 		onModalClose,

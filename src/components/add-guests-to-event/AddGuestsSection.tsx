@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, useEffect } from 'react';
 import { useFormikContext } from 'formik';
 import { BUTTON_STYLES } from '../../themes/styles/Button';
 import ToggleHeader from '../../shared/forms/elements/toggle-header/ToggleHeader';
@@ -27,8 +27,6 @@ const AddGuestsSection: FC<Props> = ({ users }) => {
 		onConfirm,
 		onDeleteClick,
 	} = useAddGuestsVM();
-
-	setValues({ userIds });
 
 	return (
 		<div>

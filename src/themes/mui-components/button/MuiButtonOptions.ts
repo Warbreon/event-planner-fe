@@ -98,10 +98,8 @@ const muiButtonOptions = {
 			},
 			// [+] button in event guests section
 			'&.light-gray-box': {
-				marginTop: '8px',
 				borderRadius: '12px',
 				height: '80px',
-				padding: '0px',
 				background: COLORS.LIGHT_GRAY,
 				'&:hover': {
 					background: COLORS.HOVER_LIGHT_GRAY,

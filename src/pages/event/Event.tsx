@@ -32,7 +32,7 @@ const Event = () => {
 					<Box component='section' className={styles.desciption}>
 						<DateLocationPrice date={eventDate} location={location} />
 						<PageHeader text={name} variant={HeaderVariant.EVENT_PAGE} />
-						<Divider />
+						<Divider className={styles.divider}/>
 						<EventPageGuests onAddGuests={onAddGuestsClick} attendees={attendees} />
 						<Image styles='event-page' imageUrl={imageUrl} />
 						<TabComponent description={description} tags={tags} agenda={agenda} attendees={attendees} />

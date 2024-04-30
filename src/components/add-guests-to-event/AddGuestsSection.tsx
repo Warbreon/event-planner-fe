@@ -34,7 +34,7 @@ const AddGuestsSection: FC<Props> = ({ users }) => {
 
 	return (
 		<div>
-			<div className={currentlySelectedUsers.length > 0 ? styles.headerBox : 'header-container'}>
+			<div className={styles.header}>
 				<ToggleHeader
 					title='Add guests'
 					isChecked={showForm}

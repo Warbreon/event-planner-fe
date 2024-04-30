@@ -15,8 +15,7 @@ export enum IconButton {
 	RSVP = 'RSVP',
 	ADD_EVENT = 'Add event',
 	ADD_GUESTS = ' ',
-	VIEW_ALL_GUESTS = 'View all guests',
-	CLOSE_MODAL=' '
+	VIEW_ALL_GUESTS = 'View all guests'
 }
 
 interface ButtonProps {

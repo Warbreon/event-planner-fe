@@ -4,10 +4,11 @@ import ListItem from "@mui/material/ListItem";
 import {ReactNode} from "react";
 
 type Props = {
-    image?: string;
-    fullName?: string;
-    details?: string;
-    styles?: string;
+    image: string;
+    fullName: string;
+    details: string;
+    styles: string;
+    textStyles: string,
     children?: ReactNode;
 };
 
@@ -16,6 +17,7 @@ const GuestListItem: React.FC<Props> = ({
     fullName,
     details,
     styles,
+    textStyles,
     children
 }) => {
     return (
@@ -24,6 +26,7 @@ const GuestListItem: React.FC<Props> = ({
                 <Avatar alt={fullName} src={image}/>
             </ListItemAvatar>
             <ListItemText
+                className={textStyles}
                 primary={fullName}
                 secondary={details}
             />

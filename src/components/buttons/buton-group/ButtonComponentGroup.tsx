@@ -1,12 +1,12 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
 import GenericButton, { ButtonTypes } from '../ButtonComponent';
 import { BUTTON_STYLES } from '../../../themes/styles/Button';
 import styles from './ButtonComponentGroup.module.css';
 interface Props {
 	confirmButtonLabel: string;
 	closeButtonLabel: string;
-  onConfirm: () => void;
-  onCancel: () => void;
+	onConfirm: () => void;
+	onCancel: () => void;
 }
 
 const ButtonComponentGroup: FC<Props> = ({ confirmButtonLabel, closeButtonLabel, onConfirm, onCancel }) => {
@@ -21,7 +21,12 @@ const ButtonComponentGroup: FC<Props> = ({ confirmButtonLabel, closeButtonLabel,
 				/>
 			</div>
 			<div className='confirmationButton'>
-				<GenericButton title={confirmButtonLabel} styles={`${BUTTON_STYLES.BLACK} ${BUTTON_STYLES.MODAL_BUTTON}`} type={ButtonTypes.submit} onClick={onConfirm}/>
+				<GenericButton
+					title={confirmButtonLabel}
+					styles={`${BUTTON_STYLES.BLACK} ${BUTTON_STYLES.MODAL_BUTTON}`}
+					type={ButtonTypes.submit}
+					onClick={onConfirm}
+				/>
 			</div>
 		</div>
 	);

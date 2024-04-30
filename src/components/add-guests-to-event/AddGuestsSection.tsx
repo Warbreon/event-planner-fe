@@ -24,6 +24,7 @@ const AddGuestsSection: FC<Props> = ({ users }) => {
 		currentlySelectedUsers,
 		showError,
 		errorMessage,
+		confirmButtonLabel,
 		onToggle,
 		onModalOpen,
 		onModalClose,
@@ -64,7 +65,7 @@ const AddGuestsSection: FC<Props> = ({ users }) => {
 										onCancel={onModalClose}
 										onConfirm={onConfirm}
 										closeButtonLabel='Cancel'
-										confirmButtonLabel='Confirm'
+										confirmButtonLabel={confirmButtonLabel}
 									/>
 									<SnackbarComponent open={showError} message={errorMessage} severity={ALERT_SEVERITY.ERROR} />
 								</>

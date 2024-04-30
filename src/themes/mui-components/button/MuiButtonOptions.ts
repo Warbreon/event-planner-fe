@@ -37,6 +37,8 @@ const muiButtonOptions = {
 			'&.modal-button': {
 				height: '32px',
 				fontWeight: '500',
+				fontSize: '0.75rem',
+				lineHeight: '1rem'
 			},
 
 			//register, get tickets, add guests,

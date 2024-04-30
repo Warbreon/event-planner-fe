@@ -24,6 +24,7 @@ import muiBreadcrumbsOptions from './mui-components/breadcrumbs/MuiBreadcrumbsOp
 import MuiOptions from './mui-components/MuiOptions';
 import muiToolTipOptions from './mui-components/tool-tip/MuiToolTipOptions';
 import chechboxOptions from './mui-components/checkbox/CheckboxOptions';
+import listItemTextOptions from './mui-components/list-item/MuiListItemTextOptions';
 
 const projectTheme = createTheme({
 	palette: palleteOptions,
@@ -50,7 +51,8 @@ const projectTheme = createTheme({
 		MuiMenuItem: muiMenuItemOptions as MuiOptions,
 		MuiMenu: muiMenuOptions as MuiOptions,
 		MuiTooltip: muiToolTipOptions as MuiOptions,
-		MuiCheckbox: chechboxOptions as MuiOptions
+		MuiCheckbox: chechboxOptions as MuiOptions,
+		MuiListItemText: listItemTextOptions as MuiOptions,
 		}
 	},
 );

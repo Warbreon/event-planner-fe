@@ -42,6 +42,7 @@ const SelectGuests: FC<Props> = ({ users }) => {
 							details={user.jobTitle}
 							image={user.imageUrl}
 							styles={LIST_ITEM_STYLES.GUEST_LIST_ITEM_IN_MODAL}
+							textStyles={LIST_ITEM_STYLES.GUEST_LIST_ITEM_IN_MODAL_TEXT}
 						/>
 					</div>,
 					array.length - 1 !== i ? <Divider component='li' key={'Divider' + i} /> : null,

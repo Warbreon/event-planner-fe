@@ -41,6 +41,7 @@ const EventPageGuestListPanel: FC<Props> = ({ attendees }) => {
 						details={attendee.user.jobTitle}
 						image={attendee.user.imageUrl}
 						styles={LIST_ITEM_STYLES.GUEST_LIST_ITEM}
+						textStyles={LIST_ITEM_STYLES.GUEST_LIST_ITEM_TEXT}
 					>
 						<>
 							{!!attendee.registrationStatus &&

@@ -1,22 +1,21 @@
-import { Box, Divider, List } from '@mui/material';
+import { FC } from 'react';
+import { Divider, List } from '@mui/material';
+import DeleteIcon from '@mui/icons-material/Delete';
 import GuestListItem from '../../lists/guest-list/GuestListItem';
 import { LIST_ITEM_STYLES } from '../../../themes/styles/ListItem';
-import DeleteIcon from '@mui/icons-material/Delete';
-import styles from './DisplaySelectedGuest.module.css'
 import { User } from '../../../models/User';
-import { FC } from 'react';
+import styles from './DisplaySelectedGuest.module.css';
 
 interface Props {
-  guestList: User[];
+	guestList: User[];
 	onDelete: (id: number) => void;
 }
 
-const DisplaySelectedGuests: FC<Props> = ({guestList, onDelete}) => {
-	//const {selecterUserList, onDeleteClick} = useDisplaySelectedGuestsViewModel(guestList);
+const DisplaySelectedGuests: FC<Props> = ({ guestList, onDelete }) => {
 	return (
 		<div className={styles.selectedGuestList}>
 			<List>
-				{guestList.map((user, i, array) => [
+				{guestList.map((user, i) => [
 					<div className={styles.userList} key={`item ${user.id}`}>
 						<GuestListItem
 							key={user.id}
@@ -24,12 +23,13 @@ const DisplaySelectedGuests: FC<Props> = ({guestList, onDelete}) => {
 							details={user.jobTitle}
 							image={user.imageUrl}
 							styles={LIST_ITEM_STYLES.GUEST_LIST_ITEM}
+							textStyles={LIST_ITEM_STYLES.GUEST_LIST_ITEM_TEXT}
 						/>
-						<div className={styles.removeIcon}  onClick={() => onDelete(user.id)}>
+						<div className={styles.removeIcon} onClick={() => onDelete(user.id)}>
 							<DeleteIcon />
 						</div>
 					</div>,
-					array.length - 1 !== i ? <Divider component='li' key={'Divider' + i} /> : null,
+					<Divider component='li' key={'Divider' + i} />,
 				])}
 			</List>
 		</div>

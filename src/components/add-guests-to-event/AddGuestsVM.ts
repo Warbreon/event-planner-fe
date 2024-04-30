@@ -10,12 +10,18 @@ interface Props {
 	setFieldValue: (field: string, value: any, shouldValidate?: boolean) => void;
 }
 
+const enum BUTTON_LABELS {
+	ADD_GUESTS = 'Add guests',
+	SAVE_CHANGES = 'Save changes',
+}
+
 const useAddGuestsVM = ({ setFieldValue }: Props) => {
 	const [showForm, setShowForm] = useState<boolean>(false);
 	const [showModal, setShowModal] = useState<boolean>(false);
 	const [currentlySelectedUsers, setCurrentlySelectedUsers] = useState<User[]>([]);
 	const [showError, setShowError] = useState<boolean>(false);
 	const [errorMessage, setErrorMessage] = useState<string>('');
+	const [confirmButtonLabel, setConfirmButtonLabel] = useState<BUTTON_LABELS>(BUTTON_LABELS.ADD_GUESTS);
 	const newUserSelection = useSelector((state: StoreState) => state.createEventGuests);
 	const dispatch = useDispatch();
 
@@ -72,7 +78,15 @@ const useAddGuestsVM = ({ setFieldValue }: Props) => {
 
 	useEffect(() => {
 		setError(false, '');
-	}, [newUserSelection]);
+		if (
+			currentlySelectedUsers.length > newUserSelection.length ||
+			areArraysEqual(newUserSelection, currentlySelectedUsers)
+		) {
+			setConfirmButtonLabel(BUTTON_LABELS.SAVE_CHANGES);
+		} else {
+			setConfirmButtonLabel(BUTTON_LABELS.ADD_GUESTS);
+		}
+	}, [currentlySelectedUsers, currentlySelectedUsers.length, newUserSelection]);
 
 	return {
 		showForm,
@@ -80,6 +94,7 @@ const useAddGuestsVM = ({ setFieldValue }: Props) => {
 		currentlySelectedUsers,
 		showError,
 		errorMessage,
+		confirmButtonLabel,
 		onToggle,
 		onModalOpen,
 		onModalClose,

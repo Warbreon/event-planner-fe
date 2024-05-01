@@ -105,6 +105,12 @@ const muiButtonOptions = {
 					background: COLORS.HOVER_LIGHT_GRAY,
 				},
 			},
+
+			'&.light-gray-box-create-event': {
+				height: '104px',
+			},
+
+
 			// confirm button in event guests section
 			'&.light-gray-round-small': {
 				height: '32px',

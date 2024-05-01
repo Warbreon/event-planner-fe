@@ -50,7 +50,7 @@ const AddGuestsSection: FC<Props> = ({ users }) => {
 					<GenericButton
 						icon={IconButton.ADD_GUESTS}
 						type={ButtonTypes.button}
-						styles={BUTTON_STYLES.LIGHT_GRAY_BOX}
+						styles={BUTTON_STYLES.LIGHT_GRAY_BOX_CREATE_EVENT}
 						onClick={() => onModalOpen()}
 					/>
 					{showModal && (

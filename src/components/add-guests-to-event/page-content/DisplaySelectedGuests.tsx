@@ -5,6 +5,7 @@ import GuestListItem from '../../lists/guest-list/GuestListItem';
 import { LIST_ITEM_STYLES } from '../../../themes/styles/ListItem';
 import { User } from '../../../models/User';
 import styles from './DisplaySelectedGuest.module.css';
+import { ICON_STYLES } from '../../../themes/styles/Icon';
 
 interface Props {
 	guestList: User[];
@@ -26,7 +27,7 @@ const DisplaySelectedGuests: FC<Props> = ({ guestList, onDelete }) => {
 							textStyles={LIST_ITEM_STYLES.GUEST_LIST_ITEM_TEXT}
 						/>
 						<div className={styles.removeIcon} onClick={() => onDelete(user.id)}>
-							<DeleteIcon />
+							<DeleteIcon className={ICON_STYLES.GRAY_ICON}/>
 						</div>
 					</div>,
 					<Divider component='li' key={'Divider' + i} />,

@@ -23,9 +23,10 @@ const Registration = () => {
             <div className={styles.tagsContainer}>
                 <ChipSelector
                     options={registrationTagOptions}
-                    selectedKey={selectedTag}
+                    selectedKeys={selectedTag}
                     onSelect={handleTagChange}
                     getChipClassName={getChipClassName}
+                    multiple={false}
                 />
             </div>
             <Typography className={styles.registrationMessage}>{registrationMessage}</Typography>

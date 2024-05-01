@@ -24,7 +24,7 @@ const FormikTimePicker: React.FC<Props> = ({ title, name, timePickerClassName, .
                 {title && (
                     <Title
                         text={title}
-                        titleClassName='event-form-element'
+                        titleClassName='gray-font'
                     />
                 )}
                 <TimePicker

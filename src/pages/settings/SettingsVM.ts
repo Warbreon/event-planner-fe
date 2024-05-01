@@ -1,49 +1,53 @@
-import React from 'react';
+import { useState } from 'react';
 
-function createData(
-	avatarUrl: string,
-	firstName: string,
-	lastName: string,
-	jobTitle: string,
-	homeOfficeLocation: string,
-	permission: string
-) {
-	return { avatarUrl, firstName, lastName, jobTitle, homeOfficeLocation, permission };
-}
-
-const rows = [
-	createData(
-		'https://avatar.iran.liara.run/public/82',
-		'Jolyne',
-		'Cujoh',
-		'HR Manage',
-		'Miami, USA',
-		'System administrator'
-	),
-	createData(
-		'http://placebear.com/250/250',
-		'Jotaro',
-		'Cujoh',
-		'Operations Manager',
-		'Kairo, Egypt',
-		'System administrator'
-	),
-	createData(
-		'http://placebeard.it/250/250',
-		'Josuke',
-		'Higashikata',
-		'HR Intern',
-		'Morioh, Japan',
-		'System administrator'
-	),
-	createData('http://placebacon.net/400/300', 'Joseph', 'Joestar', 'CFO', 'London, UK', 'Admin'),
-	createData('https://avatar.iran.liara.run/public/20', 'Giorno', 'Giovanna', 'CEO', 'Rome, Italy', 'Admin'),
-];
+import useUserAPI from '../../api/UsersAPI';
+import { useFetch } from '../../api/hooks/ApiHooks';
+import { COLORS } from '../../themes/styles/Colors';
 
 const SettingsVM = () => {
-	const handleDeleteClick = () => {};
+	const mockLocations: string[] = ['Kaunas, Lithuania', 'Warsaw, Poland', 'London, UK', 'Chicago, USA'];
 
-	return { handleDeleteClick, rows };
+	const randomLocation = () => {
+		return mockLocations[Math.floor(Math.random() * mockLocations.length)];
+	};
+
+	const [snackbarOpen, setOpen] = useState(false);
+	const [snackbarText, setText] = useState('');
+
+	const { fetchAdmins, demoteAdmin } = useUserAPI();
+
+	let { data: adminList, isLoading, error } = useFetch(() => fetchAdmins());
+
+	const handleRemoveClick = (id: number | string) => {
+		demoteAdmin(id)
+			.catch((error) => {
+				setText(error);
+				setOpen(true);
+			})
+			.then(() => {
+				if (adminList != null) {
+					const adminIndex = adminList.findIndex((admin) => admin.id === id);
+					adminList?.splice(adminIndex, 1);
+					setText('Success');
+					setOpen(true);
+				}
+			});
+	};
+
+	const handleSnackbarClose = () => {
+		setOpen(false);
+	};
+
+	return {
+		handleRemoveClick,
+		adminList,
+		isLoading,
+		error,
+		randomLocation,
+		snackbarOpen,
+		snackbarText,
+		handleSnackbarClose,
+	};
 };
 
 export default SettingsVM;

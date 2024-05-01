@@ -34,7 +34,7 @@ const router = createBrowserRouter([
 				path: ROUTES.EVENT,
 				element: (
 					<ProtectedRoute>
-						<Event />,
+						<Event />
 					</ProtectedRoute>
 				),
 			},
@@ -42,7 +42,7 @@ const router = createBrowserRouter([
 				path: ROUTES.ADD_EVENT,
 				element: (
 					<ProtectedRoute>
-						<CreateEvent />,
+						<CreateEvent />
 					</ProtectedRoute>
 				),
 			},
@@ -50,7 +50,7 @@ const router = createBrowserRouter([
 				path: ROUTES.EDIT_EVENT,
 				element: (
 					<ProtectedRoute>
-						<EditEvent />,
+						<EditEvent />
 					</ProtectedRoute>
 				),
 			},
@@ -58,7 +58,7 @@ const router = createBrowserRouter([
 				path: ROUTES.SETTINGS,
 				element: (
 					<ProtectedRoute>
-						<Settings />,
+						<Settings />
 					</ProtectedRoute>
 				),
 			},
@@ -66,7 +66,7 @@ const router = createBrowserRouter([
 				path: ROUTES.MY_EVENTS,
 				element: (
 					<ProtectedRoute>
-						<MyEvents />,
+						<MyEvents />
 					</ProtectedRoute>
 				),
 			},
@@ -82,7 +82,7 @@ const router = createBrowserRouter([
 		),
 	},
 
-  {
+	{
 		path: ROUTES.FORGOT_PASSWORD,
 		element: (
 			<PublicRoutes>
@@ -91,7 +91,7 @@ const router = createBrowserRouter([
 		),
 	},
 
-  {
+	{
 		path: ROUTES.RESET_PASSWORD,
 		element: (
 			<PublicRoutes>

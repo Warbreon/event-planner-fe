@@ -1,6 +1,5 @@
 import { Moment } from "moment";
 import { Agenda } from "./Agenda";
-import { Attendee } from "../models/Attendee";
 
 export interface EventFormValues {
     imageUrl: File | null;

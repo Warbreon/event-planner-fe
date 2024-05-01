@@ -1,4 +1,4 @@
-import { Box, Container, Typography } from '@mui/material';
+import { Box, Container } from '@mui/material';
 import EventHeader from '../../components/event-header/EventHeader';
 import ExploreEventsVM from './ExploreEventsViewModel';
 import { EventCard } from '../../components/event-card/EventCard';
@@ -8,21 +8,17 @@ import { BUTTON_STYLES } from '../../themes/styles/Button';
 import LoadingIndicator from '../../components/loading-indicator/LoadingIndicator';
 
 const ExploreEvents = () => {
-	const { filters, handleFiltersChange, events, eventsLoading, eventFetchError } = ExploreEventsVM();
-
-	if (eventsLoading) {
-		return <LoadingIndicator />;
-	}
+	const { filters, handleFiltersChange, events, isLoading, error } = ExploreEventsVM();
+	if (isLoading) return <LoadingIndicator />;
+	if (error) return <Container className={styles.container}>{error}</Container>;
 
 	return (
 		<Container className={styles.container}>
 			<EventHeader filters={filters} handleFiltersChange={handleFiltersChange} />
 			<Box className={styles.eventsContainer}>
-				{eventFetchError ? (
-					<Typography variant='body1'>{eventFetchError}</Typography>
-				) : (
-					events?.map((event) => <EventCard key={event.id} {...event} />)
-				)}
+				{events?.map((event) => (
+					<EventCard key={event.id} {...event} />
+				))}
 			</Box>
 			<Box className={styles.loadMore}>
 				<GenericButton

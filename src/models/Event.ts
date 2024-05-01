@@ -1,5 +1,6 @@
 import { Address } from "./Address";
 import { Attendee } from "./Attendee";
+import { Tag } from "./Tag";
 
 export interface Event {
 	id: number;
@@ -18,5 +19,5 @@ export interface Event {
 	attendees?: Attendee[];
 	currentUserRegisteredToEvent: boolean;
 	isOpen: boolean;
-	tags: string[];
+	tags: Tag[];
 }

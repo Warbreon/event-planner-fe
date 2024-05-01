@@ -4,7 +4,6 @@ const muiChipOptions = {
 	styleOverrides: {
 		root: {
 			backgroundColor: COLORS.GRAY,
-			marginRight: '10px',
 
 			'&.select-tag': {
 				height: '2rem',
@@ -12,7 +11,17 @@ const muiChipOptions = {
 				border: `1px solid ${COLORS.GRAY_BORDER}`,
 				padding: '0.375rem 0.1875rem',
 				backgroundColor: COLORS.WHITE,
-				marginTop: '1.5rem',
+			},
+			'&.select-option': {
+				marginRight: '0.2px',
+				height: '2rem',
+				borderRadius: '6.25rem',
+				border: `1px solid ${COLORS.GRAY_BORDER}`,
+				padding: '0.375rem 0.1875rem',
+				backgroundColor: COLORS.WHITE,
+			},
+			'&.event-page-tag': {
+				marginRight: '0.5rem',
 			},
 			'&:active': {
 				'& .MuiTouchRipple-root': {
@@ -23,6 +32,7 @@ const muiChipOptions = {
 				borderColor: COLORS.BLACK,
 				'& span': {
 					fontWeight: 600,
+					padding: '0.6975rem',
 				},
 			},
 		},

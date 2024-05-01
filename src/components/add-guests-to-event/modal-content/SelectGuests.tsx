@@ -9,6 +9,7 @@ import { Checkbox, Divider, List } from '@mui/material';
 import GuestListItem from '../../lists/guest-list/GuestListItem';
 import { LIST_ITEM_STYLES } from '../../../themes/styles/ListItem';
 import useSelectGuestsViewModel from './SelectGuestsVM';
+import { AVATAR_STYLES } from '../../../themes/styles/Avatar';
 
 interface Props {
 	users: User[];
@@ -43,6 +44,8 @@ const SelectGuests: FC<Props> = ({ users }) => {
 							image={user.imageUrl}
 							styles={LIST_ITEM_STYLES.GUEST_LIST_ITEM_IN_MODAL}
 							textStyles={LIST_ITEM_STYLES.GUEST_LIST_ITEM_IN_MODAL_TEXT}
+							avatarStyle={AVATAR_STYLES.GUEST_LIST_ITEM_MODAL_AVATAR}
+							avatarListItemStyle={LIST_ITEM_STYLES.GUEST_LIST_ITEM_IN_MODAL_AVATAR}
 						/>
 					</div>,
 					array.length - 1 !== i ? <Divider component='li' key={'Divider' + i} /> : null,

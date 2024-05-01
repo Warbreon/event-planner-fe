@@ -14,6 +14,7 @@ import { LIST_ITEM_STYLES } from '../../../../themes/styles/ListItem';
 import Typography from '@mui/material/Typography';
 import { TYPOGRAPHY_STYLES } from '../../../../themes/styles/Typography';
 import styles from './EventPageGuestListPanel.module.css'
+import { AVATAR_STYLES } from '../../../../themes/styles/Avatar';
 
 type Props = {
 	attendees: Attendee[];
@@ -42,6 +43,7 @@ const EventPageGuestListPanel: FC<Props> = ({ attendees }) => {
 						image={attendee.user.imageUrl}
 						styles={LIST_ITEM_STYLES.GUEST_LIST_ITEM}
 						textStyles={LIST_ITEM_STYLES.GUEST_LIST_ITEM_TEXT}
+						avatarStyle={AVATAR_STYLES.GUEST_LIST_ITEM_AVATAR}
 					>
 						<>
 							{!!attendee.registrationStatus &&

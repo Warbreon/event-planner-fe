@@ -1,33 +1,3 @@
 .settingsContainer {
 	padding: 5%;
 }
-
-.adminTableHeader {
-	background-color: #f4f4f4;
-	padding: 0;
-	height: 2.5rem;
-	border-radius: 0;
-}
-
-.userColumn {
-	width: 60%;
-}
-
-.permissionColumn {
-	width: 40%;
-}
-
-.permissionContainer {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	height: 0.875rem;
-}
-
-.adminTableRow {
-	border-bottom: #dddddd;
-}
-
-.adminTableRow .MuiTableCell-root {
-	display: flex;
-}

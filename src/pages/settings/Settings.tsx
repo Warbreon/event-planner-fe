@@ -18,6 +18,7 @@ import GuestListItem from '../../components/lists/guest-list/GuestListItem';
 import SettingsVM from './SettingsVM';
 import { parseRoleToPermission, UserRoles } from '../../utils/PermissionParser';
 import LoadingIndicator from '../../components/loading-indicator/LoadingIndicator';
+import PageHeader from '../../components/headers/page-headers/PageHeader';
 
 const Settings = () => {
 	const {
@@ -41,23 +42,22 @@ const Settings = () => {
 				<Typography variant='body1'>{error}</Typography>
 			) : (
 				<>
-					<Typography variant='h1'>Settings</Typography>
-					<Typography variant='body1'>View and manage who can create events</Typography>
-					<TableContainer component={Paper} elevation={0}>
+					<PageHeader text='Settings' subheader='View and manage who can create events' />
+					<TableContainer component={Paper} elevation={0} className={styles.tableContainer}>
 						<Table aria-label='table of system administrators'>
 							<TableHead className={styles.adminTableHeader}>
 								<TableRow>
-									<TableCell className={styles.userColumn}>
+									<TableCell className='user-column'>
 										<Typography variant='body2'>Admin</Typography>
 									</TableCell>
-									<TableCell className={styles.permissionColumn}>
+									<TableCell className='permission-column'>
 										<Typography variant='body2'>Permissions</Typography>
 									</TableCell>
 								</TableRow>
 							</TableHead>
 							<TableBody>
 								{adminList?.map((adminUser) => (
-									<TableRow key={adminUser.id} className={styles.adminTableRow}>
+									<TableRow key={adminUser.id} className='admin-table-row'>
 										<TableCell component='th' scope='row'>
 											<GuestListItem
 												image={adminUser.imageUrl}
@@ -66,7 +66,7 @@ const Settings = () => {
 											/>
 										</TableCell>
 										<TableCell>
-											<Box className={styles.permissionContainer}>
+											<Box className='permission-container'>
 												<Typography variant='body2'>{parseRoleToPermission(adminUser.role)}</Typography>
 												{adminUser.role === UserRoles.EVENT_ADMIN && (
 													<GenericButton
@@ -75,7 +75,7 @@ const Settings = () => {
 														onClick={() => {
 															handleRemoveClick(adminUser.id);
 														}}
-														styles={BUTTON_STYLES.LIGHT_GRAY_ROUND_SMALL}
+														styles={`${BUTTON_STYLES.LIGHT_GRAY_ROUND_SMALL} remove-admin-button`}
 													/>
 												)}
 											</Box>

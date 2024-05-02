@@ -15,7 +15,6 @@ const EventPageVM = () => {
 	}, [eventId]);
 
 	const { data: event, isLoading, error } = useFetch(fetchFunction);
-
 	const { eventStart = '', eventEnd = '', inviteUrl, address } = event || {};
 	const eventDate = formatDate(eventStart).toString();
 	const startTime = formatTime(eventStart);

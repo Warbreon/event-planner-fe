@@ -1,4 +1,4 @@
-import React, {FC} from 'react'
+import {FC} from 'react'
 import SearchIcon from '@mui/icons-material/Search';
 import {Divider} from "@mui/material";
 import {ICON_STYLES} from "../../../../themes/styles/Icon";
@@ -13,6 +13,7 @@ import EventPageGuestListPanelVM from "./EventPageGuestListPanelVM";
 import {LIST_ITEM_STYLES} from "../../../../themes/styles/ListItem";
 import Typography from "@mui/material/Typography";
 import {TYPOGRAPHY_STYLES} from "../../../../themes/styles/Typography";
+import styles from './EventPageGuestListPanel.module.css';
 
 type Props = {
     attendees: Attendee[];
@@ -20,7 +21,7 @@ type Props = {
 const EventPageGuestListPanel: FC<Props> = ({attendees}) => {
     const { onPlusButtonClick, onInputChange, onConfirmClick, onDeclineClick} = EventPageGuestListPanelVM();
     return (
-        <>
+        <div className={styles.container}>
             {attendees.length!==0 &&
                 <SearchBar
                     styles={TEXTFIELD_STYLES.GUEST_SEARCH_BAR}
@@ -60,7 +61,7 @@ const EventPageGuestListPanel: FC<Props> = ({attendees}) => {
             </List>
             <GenericButton icon={IconButton.ADD_GUESTS} type={ButtonTypes.button}
                            styles={BUTTON_STYLES.LIGHT_GRAY_BOX} onClick={onPlusButtonClick}/>
-        </>
+        </div>
     )
 }
 

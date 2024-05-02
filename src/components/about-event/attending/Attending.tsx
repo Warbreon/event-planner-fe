@@ -3,7 +3,7 @@ import { Box, Card, CardContent, Avatar, Typography } from '@mui/material';
 import { Attendee } from '../../../models/Attendee';
 import style from './Attending.module.css';
 import { IconButton } from '../../buttons/ButtonComponent';
-import SectionHeader from '../../shared/section-header/SectionHeader';
+import SectionHeader from '../../../shared/components/section-header/SectionHeader';
 import { filterAttendees } from '../../../utils/AttendeeFilter';
 
 interface AttendingProps {

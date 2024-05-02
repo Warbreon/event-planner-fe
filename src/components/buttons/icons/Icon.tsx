@@ -27,6 +27,8 @@ const Icon: FC<IconProps> = ({ icon }) => {
 			return <AddIcon />;
 		case IconButton.VIEW_ALL_GUESTS:
 			return <KeyboardArrowRightRoundedIcon />;
+		case IconButton.VIEW_ALL_EVENT: 
+			return <KeyboardArrowRightRoundedIcon />;
 	}
 };
 

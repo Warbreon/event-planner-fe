@@ -11,6 +11,7 @@ import GenericButton, { ButtonTypes, IconButton } from '../../components/buttons
 import { BUTTON_STYLES } from '../../themes/styles/Button';
 import EventPageVM from './EventPageVM';
 import LoadingIndicator from '../../components/loading-indicator/LoadingIndicator';
+import RelatedEvents from '../../components/related-events/RelatedEvents';
 
 const Event = () => {
 
@@ -20,7 +21,7 @@ const Event = () => {
 	if (isLoading) {
 		return <LoadingIndicator />;
 	}
-	
+
 	const { name = '', inviteUrl, address, imageUrl = '', attendees = [], price = 0, description = '', agenda = [], tags = [] } = event || {};
 	return (
 		<Container className={styles.eventContainer}>
@@ -57,7 +58,7 @@ const Event = () => {
 				</Grid>
 			</Grid>
 			<Box component='section' className={styles.moreEventsLikeThis}>
-				<h3>More events like this:</h3>
+				<RelatedEvents event={event} />
 			</Box>
 		</Container>
 	);

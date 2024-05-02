@@ -20,6 +20,7 @@ const AgendaSection: React.FC<Props> = () => {
       <div className={styles.header}>
         <ToggleHeader
           title='Add agenda'
+          showToggle={true}
           isChecked={showForm}
           onToggle={onToggle}
         />

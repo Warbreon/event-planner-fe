@@ -10,7 +10,6 @@ const typographyOptions: TypographyOptions = {
 		color: COLORS.BLACK,
 
 		'&.event-header': {
-			marginBottom: '1rem',
 			width: '70%',
 		},
 
@@ -40,7 +39,6 @@ const typographyOptions: TypographyOptions = {
 		color: COLORS.BLACK,
 
 		'&.centered': {
-			marginTop: '1rem',
 			textAlign: 'center',
 		},
 		'&.gray-font': {
@@ -69,7 +67,6 @@ const typographyOptions: TypographyOptions = {
 			fontSize: '0.875rem',
 			lineHeight: '1rem',
 			color: COLORS.MEDIUM_DARK_GRAY,
-			marginBottom: '0.5rem',
 		},
 	},
 	body2: {

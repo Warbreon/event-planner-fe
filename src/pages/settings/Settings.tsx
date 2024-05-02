@@ -41,7 +41,7 @@ const Settings = () => {
 				<Typography variant='body1'>{error}</Typography>
 			) : (
 				<>
-					<Typography variant='h1'>Settings page</Typography>
+					<Typography variant='h1'>Settings</Typography>
 					<Typography variant='body1'>View and manage who can create events</Typography>
 					<TableContainer component={Paper} elevation={0}>
 						<Table aria-label='table of system administrators'>

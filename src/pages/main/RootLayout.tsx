@@ -13,7 +13,7 @@ const RootLayout = () => {
 		<NavigationSideBar drawerWidth={72}>
 			<div className={styles.contentContainer}>
 				{loggedIn && <PlannerAppBar />}
-				<main className='main-content'>
+				<main className={styles.mainContent}>
 					<Outlet />
 				</main>
 				<footer className={styles.footer}>

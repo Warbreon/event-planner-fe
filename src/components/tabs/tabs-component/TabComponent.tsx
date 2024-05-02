@@ -6,10 +6,11 @@ import AboutEvent from '../../about-event/AboutEvent';
 import { Attendee } from '../../../models/Attendee';
 import { filterAttendees } from '../../../utils/AttendeeFilter';
 import EventPageGuestListPanel from "../tab-panel/event-page-guest-list-panel/EventPageGuestListPanel";
+import { Tag } from '../../../models/Tag';
 
 interface TabsProps {
 	description: string;
-	tags: string[];
+	tags: Tag[];
 	agenda: string[] | null;
 	attendees: Attendee[];
 }

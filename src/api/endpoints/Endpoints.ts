@@ -1,8 +1,10 @@
 export const ENDPOINTS = {
-	getAllEvents: '/events',
+	getEvents: '/events',
 	getEventById: (id: number | string) => `/events/${id}`,
 	registerToEvent: '/attendee/register',
 	createNewEvent: '/events/create/new',
+
+	getAllTags: '/tags',
 
 	authenticate: '/auth/authenticate',
 	refreshAccessToken: '/auth/refresh',

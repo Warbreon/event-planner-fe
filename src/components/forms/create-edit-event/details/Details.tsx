@@ -24,13 +24,14 @@ const Details = () => {
           type="text"
           title="Event Name"
           placeholder="Enter short descriptive event title"
-          titleClassName="gray-font"
+          titleClassName="gray-font-input"
         />
         </div>
         <div className={styles.dropdown}>
         <FormikDropdown
           name="eventTag"
           label="Event Type"
+          multiple={true}
           options={eventTagsOptions.map((option) => ({
             value: option.key,
             label: option.label,

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 
 import useUserAPI from '../../api/UsersAPI';
 import { useFetch } from '../../api/hooks/ApiHooks';
@@ -15,7 +15,11 @@ const SettingsVM = () => {
 
 	const { fetchAdmins, demoteAdmin } = useUserAPI();
 
-	let { data: adminList, isLoading, error } = useFetch(() => fetchAdmins());
+	const fetchFunction = useCallback(() => {
+		return fetchAdmins();
+	}, []);
+
+	const { data: adminList, isLoading, error } = useFetch(fetchFunction);
 
 	const handleRemoveClick = (id: number | string) => {
 		demoteAdmin(id)

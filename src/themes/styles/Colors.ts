@@ -20,6 +20,5 @@ export enum COLORS {
 	ERROR = '#FF5252',
 	PLACEHOLDER = '#999999',
 	HOVER_VERY_LIGHT_GRAY = '#eeeeee',
-	GREEN = '#22bb33',
-	RED = '#bb2124',
+	PLACEHOLDER_VERY_LIGHT_GRAY = '#D4D4D4',
 }

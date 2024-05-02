@@ -10,7 +10,6 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 2.75rem;
 }
 
 p.headerTitle {
@@ -33,46 +32,26 @@ p.headerSubtitle {
 }
 
 .filters {
-    display: flex;
+    display: grid;
+    grid-template-columns: 0.75fr 0.25fr;
+    column-gap: 2rem;
+    justify-content: start;
     align-items: center;
-    justify-content: space-between;
     width: 100%;
+    margin-top: 1.5rem;
 }
 
 .filters div:hover {
     background-color: #FFFFFF;
 }
 
-.dropdown {
-    margin-left: 1rem;
-    height: 1rem;
-}
-
-.dropdown svg {
-    color: #000000;
-}
-
-.dropdownFiltersContainer fieldset {
-    border: none;
-}
-
-.dropdownFiltersContainer div {
-    font-family: 'Inter', sans-serif;
-    font-size: 0.875rem;
-    font-weight: 600;
-    line-height: 1.25rem;
-    text-align: left;
-}
-
-.dropdownMenuItem {
-    font-family: 'Inter', sans-serif;
-    font-size: 0.875rem;
-    font-weight: 600;
-    line-height: 1.25rem;
-    text-align: right;
+.dropdownFiltersContainer {
+    display: flex;
+    justify-content: end;
 }
 
 .header .addEventButton {
+    width: 9.875rem;
     height: 2.75rem;
     border: 1px solid #000000;
     padding: 0.857rem 2rem 0.875rem 1.5rem;

@@ -5,6 +5,9 @@ import FONT_FAMILY from '../../styles/Font';
 const muiSelectOptions = {
 	styleOverrides: {
 		root: {
+			fontSize: '0.875rem',
+			lineHeight: '1.25rem',
+			height: '100%',
 			width: '100%',
 			color: COLORS.BLACK,
 			borderRadius: '8px',
@@ -15,8 +18,23 @@ const muiSelectOptions = {
 			},
 			'.MuiSelect-icon': {
 				color: COLORS.BLACK,
-				marginRight: '1rem',
 			},
+			'&.event-header-dropdown': {
+				width: '8.125rem',
+				textAlign: 'right',
+				marginLeft: '1rem',
+				height: '1rem',
+				'& fieldset ': {
+					border: 'none',
+				},
+				fontWeight: 600,
+				'.MuiSelect-icon': {
+					color: COLORS.BLACK,
+				},
+				'div': {
+					padding: 0,
+				}
+			}
 		},
 	},
 	defaultProps: {

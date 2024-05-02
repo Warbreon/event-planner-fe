@@ -8,7 +8,7 @@ import GenericButton, { ButtonTypes, IconButton } from '../../components/buttons
 import { BUTTON_STYLES } from '../../themes/styles/Button';
 import styles from './EventCard.module.css';
 import { NavLink } from 'react-router-dom';
-import { formatDate } from '../../utils/DateConverter';
+import { formatDate, formatDifferenceInDays, isDateInThePast, isNowBetween } from '../../utils/DateConverter';
 
 interface Props {
 	event: Event;
@@ -16,7 +16,7 @@ interface Props {
 }
 
 const EventCard: FC<Props> = ({ event, createdByUser }) => {
-	const { id, imageUrl, name, eventStart, address, inviteUrl, attendees } = event;
+	const { id, imageUrl, name, eventStart, eventEnd, address, inviteUrl, attendees } = event;
 	const location = address ? address.city : inviteUrl ? 'Online' : 'TBD';
 	return (
 		<Box className={styles.cardContainer} title={name}>
@@ -32,22 +32,36 @@ const EventCard: FC<Props> = ({ event, createdByUser }) => {
 				<DateLocationPrice date={formatDate(eventStart.toString())} location={location} />
 				<GuestList attendees={attendees} />
 			</Box>
-			<Box className={styles.buttonContainer}>
-				<GenericButton
-					type={ButtonTypes.button}
-					icon={IconButton.GOING}
-					styles={`${BUTTON_STYLES.BLUE} ${styles.goingButton}`}
-					onClick={() => {}}
-				/>
-				{createdByUser && (
+			{!isDateInThePast(eventStart) && (
+				<Box className={styles.buttonContainer}>
 					<GenericButton
 						type={ButtonTypes.button}
-						title='Edit'
-						styles={`${BUTTON_STYLES.OUTLINED_GRAY_BORDER} ${styles.cancelButton}`}
+						icon={IconButton.GOING}
+						styles={`${BUTTON_STYLES.BLUE} ${styles.goingButton}`}
 						onClick={() => {}}
 					/>
-				)}
-			</Box>
+					{createdByUser && (
+						<GenericButton
+							type={ButtonTypes.button}
+							title='Edit'
+							styles={`${BUTTON_STYLES.OUTLINED_GRAY_BORDER} ${styles.cancelButton}`}
+							onClick={() => {}}
+						/>
+					)}
+				</Box>
+			)}
+
+			{isDateInThePast(eventStart) && !isNowBetween(eventStart, eventEnd) && (
+				<Typography variant='body2' className={styles.buttonContainer}>
+					{formatDifferenceInDays(eventStart)}
+				</Typography>
+			)}
+			{isDateInThePast(eventStart) && isNowBetween(eventStart, eventEnd) && (
+				<Typography variant='body2' className={styles.buttonContainer}>
+					Event is happening now!
+				</Typography>
+			)}
+			
 		</Box>
 	);
 };

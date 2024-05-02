@@ -1,8 +1,9 @@
-import moment, { Moment } from "moment";
+import exp from 'constants';
+import moment, { Moment } from 'moment';
 
 export const formatDate = (date: string): string => {
 	const options: Intl.DateTimeFormatOptions = { year: 'numeric', month: 'long', day: 'numeric' };
-	return new Date(date).toLocaleDateString('en-US', options)
+	return new Date(date).toLocaleDateString('en-US', options);
 };
 
 export const formatDateAndTime = (dateTime: string): string => {
@@ -55,4 +56,34 @@ export const toDisplayTimeFormat = (time: Moment): string => {
 
 export const fromDisplayTimeFormat = (timeString: string): Moment => {
 	return moment(timeString, 'h:mm a');
+};
+
+export const isDateInThePast = (dateString: string) => {
+	const date = new Date(dateString);
+	const now = new Date();
+	return date < now;
+};
+
+export const calculateDifferenceInDay = (dateString: string) => {
+	const date = new Date(dateString);
+	const now = new Date();
+	const differenceMs = now.valueOf() - date.valueOf();
+	return Math.floor(differenceMs / (1000 * 3600 * 24));
+};
+
+export const formatDifferenceInDays = (dateString: string) => {
+	const differenceInDays = calculateDifferenceInDay(dateString);
+
+	if (differenceInDays === 1) {
+		return `1 day ago`;
+	}
+
+	return `${differenceInDays} days ago`;
+};
+
+export const isNowBetween = (startDateString: string, endDateString: string) => {
+	const start = new Date(startDateString);
+	const end = new Date(endDateString);
+	const now = new Date();
+	return start < now && now < end;
 };

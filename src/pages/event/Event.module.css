@@ -23,3 +23,7 @@
   top: 10%;
   right: 0;
 }
+
+.eventContainer .divider{
+	margin-top: 1rem;
+}

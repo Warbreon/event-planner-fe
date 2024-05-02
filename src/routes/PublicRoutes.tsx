@@ -1,5 +1,5 @@
 import { useSelector } from 'react-redux';
-import { PersistentStoreRootState } from '../redux/store/PersistentStore';
+import { StoreState } from '../redux/store/Store';
 import { FC, ReactNode } from 'react';
 import { Navigate } from 'react-router-dom';
 import ROUTES from './Routes';
@@ -9,7 +9,7 @@ interface Props {
 }
 
 const PublicRoutes: FC<Props> = ({ children }) => {
-	const isUserSignedIn = useSelector((state: PersistentStoreRootState) => state.signedIn);
+	const isUserSignedIn = useSelector((state: StoreState) => state.user.signedIn);
 	if (isUserSignedIn) {
 		return <Navigate to={ROUTES.INDEX} />;
 	}

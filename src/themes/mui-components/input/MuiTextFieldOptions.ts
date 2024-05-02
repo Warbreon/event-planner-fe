@@ -12,8 +12,6 @@ const muiTextFieldOptions = {
 			width: '100%',
 			'&.guest-search-bar': {
 				paddingRight: '0.25rem',
-				marginTop: '1rem',
-				marginBottom: '1.5rem',
 				borderRadius: '6.25rem',
 				height: '2.5rem',
 				border: '1px solid ' + COLORS.GRAY_BORDER,

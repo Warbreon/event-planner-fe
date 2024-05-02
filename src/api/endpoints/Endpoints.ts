@@ -3,9 +3,8 @@ export const ENDPOINTS = {
     getEventById: (id: number | string) => `/events/${id}`,
     registerToEvent: "/attendee/register",
     createNewEvent: "/events/create/new",
-
+    getAllUsers: "/users/all",
     getAllTags: "/tags",
-
     authenticate: "/auth/authenticate",
     refreshAccessToken: "/auth/refresh",
 }

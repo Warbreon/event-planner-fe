@@ -2,6 +2,7 @@ import { useCallback, useState } from 'react';
 
 import useUserAPI from '../../api/UsersAPI';
 import { useFetch } from '../../api/hooks/ApiHooks';
+import { ALERT_SEVERITY } from '../../components/snackbar/SnackbarComponent';
 
 const SettingsVM = () => {
 	const mockLocations: string[] = ['Kaunas, Lithuania', 'Warsaw, Poland', 'London, UK', 'Chicago, USA'];
@@ -12,6 +13,11 @@ const SettingsVM = () => {
 
 	const [snackbarOpen, setOpen] = useState(false);
 	const [snackbarText, setText] = useState('');
+	const [snackbarSeverity, setSeverity] = useState(ALERT_SEVERITY.SUCCESS);
+
+	const handleSnackbarClose = () => {
+		setOpen(false);
+	};
 
 	const { fetchAdmins, demoteAdmin } = useUserAPI();
 
@@ -25,6 +31,7 @@ const SettingsVM = () => {
 		demoteAdmin(id)
 			.catch((error) => {
 				setText(error);
+				setSeverity(ALERT_SEVERITY.ERROR);
 				setOpen(true);
 			})
 			.then(() => {
@@ -32,13 +39,10 @@ const SettingsVM = () => {
 					const adminIndex = adminList.findIndex((admin) => admin.id === id);
 					adminList?.splice(adminIndex, 1);
 					setText('Success');
+					setSeverity(ALERT_SEVERITY.SUCCESS);
 					setOpen(true);
 				}
 			});
-	};
-
-	const handleSnackbarClose = () => {
-		setOpen(false);
 	};
 
 	return {
@@ -49,6 +53,7 @@ const SettingsVM = () => {
 		randomLocation,
 		snackbarOpen,
 		snackbarText,
+		snackbarSeverity,
 		handleSnackbarClose,
 	};
 };

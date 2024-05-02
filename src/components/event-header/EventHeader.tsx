@@ -1,9 +1,9 @@
 import Title from '../title/Title';
 import Dropdown from '../dropdown/Dropdown';
-import GenericButton from '../button/GenericButton';
+import GenericButton, { ButtonTypes, IconButton } from '../buttons/ButtonComponent';
 import ChipSelector from '../chip-selector/ChipSelector';
 import styles from './EventHeader.module.css';
-import { Add, KeyboardArrowDown } from '@mui/icons-material';
+import { KeyboardArrowDown } from '@mui/icons-material';
 import { EventFiltersState } from '../../pages/explore-events/eventFiltersInterface';
 import { DATE_FILTER_OPTIONS } from '../../constants/DateConstants';
 import { FC } from 'react';
@@ -33,12 +33,11 @@ const EventHeader: FC<Props> = ({ filters, handleFiltersChange }) => {
 					subtitleClassName={styles.headerSubtitle}
 				/>
 				<GenericButton
-					text='Add event'
+					title='Add event'
 					onClick={navigateToAddEvent}
-					className={styles.addEventButton}
-					buttonProps={{
-						startIcon: <Add />,
-					}}
+					styles={styles.addEventButton}
+					icon={IconButton.ADD_EVENT}
+					type={ButtonTypes.button}
 				/>
 			</div>
 			<div className={styles.filters}>

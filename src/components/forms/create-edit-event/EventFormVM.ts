@@ -1,6 +1,8 @@
 import { EventFormValues } from "../../../interfaces/EventFormValuesInterface";
 import { combineDateTime } from "../../../utils/DateConverter";
 import { formatAgendaItems, parseAgendaItems } from "../../../utils/AgendaUtils";
+import { useFetch } from "../../../api/hooks/ApiHooks";
+import useUserAPI from "../../../api/UserAPI";
 
 const EventFormVM = () => {
     const agenda = ['7:00 am-Introduction', '12:30 pm-Presentations', '8:00 pm-Conclusion'];
@@ -22,8 +24,12 @@ const EventFormVM = () => {
         registrationStartTime: null,
         registrationEndDate: null,
         registrationEndTime: null,
+        attendees: []
     };
 
+    const {fetchUsers} = useUserAPI();
+    const { data: users, isLoading, error  } =  useFetch(() => fetchUsers());
+   
     const onSubmit = (values: EventFormValues) => {
         const eventStart = combineDateTime(values.eventStartDate, values.eventStartTime);
         const eventEnd = combineDateTime(values.eventEndDate, values.eventEndTime);
@@ -40,6 +46,7 @@ const EventFormVM = () => {
             registrationStart,
             registrationtEnd,
             isOpen: values.isOpen,
+            attendees: values.attendees
         };
 
         console.log(submitValues);
@@ -49,7 +56,7 @@ const EventFormVM = () => {
         console.log('Canceled');
     }
 
-    return { initialValues, onSubmit, handleCancelOnClick }
+    return { initialValues, onSubmit, handleCancelOnClick, users }
 }
 
 export default EventFormVM

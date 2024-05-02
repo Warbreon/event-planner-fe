@@ -19,6 +19,9 @@ import SettingsVM from './SettingsVM';
 import { parseRoleToPermission, UserRoles } from '../../utils/PermissionParser';
 import LoadingIndicator from '../../components/loading-indicator/LoadingIndicator';
 import PageHeader from '../../components/headers/page-headers/PageHeader';
+import { LIST_ITEM_STYLES } from '../../themes/styles/ListItem';
+import { AVATAR_STYLES } from '../../themes/styles/Avatar';
+import SnackbarComponent from '../../components/snackbar/SnackbarComponent';
 
 const Settings = () => {
 	const {
@@ -29,6 +32,7 @@ const Settings = () => {
 		randomLocation,
 		snackbarOpen,
 		snackbarText,
+		snackbarSeverity,
 		handleSnackbarClose,
 	} = SettingsVM();
 
@@ -63,6 +67,9 @@ const Settings = () => {
 												image={adminUser.imageUrl}
 												fullName={`${adminUser.firstName} ${adminUser.lastName}`}
 												details={adminUser.jobTitle + ' • ' + randomLocation()}
+												styles={LIST_ITEM_STYLES.GUEST_LIST_ITEM}
+												textStyles={LIST_ITEM_STYLES.GUEST_LIST_ITEM_TEXT}
+												avatarStyle={AVATAR_STYLES.GUEST_LIST_ITEM_AVATAR}
 											/>
 										</TableCell>
 										<TableCell>
@@ -91,7 +98,13 @@ const Settings = () => {
 						styles={BUTTON_STYLES.LIGHT_GRAY_BOX}
 						onClick={() => null}
 					/>
-					<Snackbar open={snackbarOpen} autoHideDuration={6000} onClose={handleSnackbarClose} message={snackbarText} />
+					<SnackbarComponent
+						open={snackbarOpen}
+						autoHideDuration={5000}
+						message={snackbarText}
+						severity={snackbarSeverity}
+						handleClose={handleSnackbarClose}
+					/>
 				</>
 			)}
 		</Box>

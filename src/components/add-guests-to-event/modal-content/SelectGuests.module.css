@@ -1,0 +1,16 @@
+.searchBar {
+	padding: 1.5rem 1.5rem 1rem 1.5rem;
+	position: sticky;
+	top: 0;
+	left: 0;
+	background-color: white;
+	z-index: 1;
+}
+
+.userList {
+	display: grid;
+	grid-template-columns: 0.05fr 1fr;
+	gap: 1rem;
+	padding-left: 1.25rem;
+	padding-right: 1.25rem;
+}

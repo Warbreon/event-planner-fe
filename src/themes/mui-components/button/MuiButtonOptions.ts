@@ -8,7 +8,7 @@ const muiButtonOptions = {
 			background: COLORS.WHITE,
 			fontFamily: FONT_FAMILY,
 			textTransform: 'none',
-			fontSize: '1rem',
+			fontSize: '0.875rem',
 			fontWeight: '600',
 			borderRadius: '100px',
 			boxShadow: 'none',
@@ -32,6 +32,13 @@ const muiButtonOptions = {
 				'&:hover': {
 					background: COLORS.HOVER_BLACK,
 				},
+			},
+
+			'&.modal-button': {
+				height: '32px',
+				fontWeight: '500',
+				fontSize: '0.75rem',
+				lineHeight: '1rem'
 			},
 
 			//register, get tickets, add guests,
@@ -91,15 +98,19 @@ const muiButtonOptions = {
 			},
 			// [+] button in event guests section
 			'&.light-gray-box': {
-				marginTop: '8px',
 				borderRadius: '12px',
 				height: '80px',
-				padding: '0px',
 				background: COLORS.LIGHT_GRAY,
 				'&:hover': {
 					background: COLORS.HOVER_LIGHT_GRAY,
 				},
 			},
+
+			'&.light-gray-box-create-event': {
+				height: '104px',
+			},
+
+
 			// confirm button in event guests section
 			'&.light-gray-round-small': {
 				height: '32px',

@@ -17,11 +17,11 @@ interface Props {
 
 const EventHeader: FC<Props> = ({ filters, handleFiltersChange }) => {
 
-	const { userName, handleTagChange, handleDateChange, handleLocationChange, getChipClassName, selectedKeys, locations, modifiedEventTags, error, isLoading, navigateToAddEvent } = 
+	const { userName, handleTagChange, handleDateChange, handleLocationChange, getChipClassName, selectedKeys, modifiedCities, modifiedEventTags, tagsError, tagsLoading, citiesError, citiesLoading, navigateToAddEvent } = 
 		EventHeaderVM(filters, handleFiltersChange);
 
-	if (error) return <div className={styles.container}>{error}</div>;
-	if (isLoading) return <LoadingIndicator />;
+	if (tagsError || citiesError) return <div className={styles.container}>{tagsError || citiesError}</div>;
+	if (tagsLoading || citiesLoading) return <LoadingIndicator />;
 
 	return (
 		<div className={styles.container}>
@@ -61,7 +61,7 @@ const EventHeader: FC<Props> = ({ filters, handleFiltersChange }) => {
 					<Dropdown
 						value={filters.location}
 						onChange={handleLocationChange}
-						options={locations}
+						options={modifiedCities}
 						selectClassName='event-header-dropdown'
 						selectProps={{
 							IconComponent: KeyboardArrowDown,

@@ -58,26 +58,6 @@ const muiButtonOptions = {
 				},
 			},
 
-			//home page header active category
-			//create event selected pricing, private/public registration
-			'&.outlined-black-border': {
-				height: '32px',
-				border: '2px solid ' + COLORS.BLACK,
-				'&:hover': {
-					background: COLORS.HOVER_OUTLINED_BLACK,
-				},
-			},
-
-			//home page header remaining categories
-			'&.outlined-gray-regular-text': {
-				fontWeight: '400',
-				height: '32px',
-				border: '1px solid ' + COLORS.GRAY_BORDER,
-				'&:hover': {
-					background: COLORS.HOVER_OUTLINED_GRAY_BORDER,
-				},
-			},
-
 			//edit button in my events
 			//add guests in event page header
 			//cancel button
@@ -87,15 +67,7 @@ const muiButtonOptions = {
 					background: COLORS.HOVER_OUTLINED_GRAY_BORDER,
 				},
 			},
-
-			// [+] button in my event created by me
-			'&.light-gray': {
-				borderRadius: '12px',
-				background: COLORS.LIGHT_GRAY,
-				'&:hover': {
-					background: COLORS.HOVER_LIGHT_GRAY,
-				},
-			},
+			
 			// [+] button in event guests section
 			'&.light-gray-box': {
 				borderRadius: '12px',

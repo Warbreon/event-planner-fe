@@ -36,13 +36,13 @@ const EventForm = () => {
 						<Divider className={styles.divider} />
 						<Registration />
 						<Divider className={styles.divider} />
-						<AddGuestsSection users={users || []}/>
+						<AddGuestsSection users={users || []} />
 						<Divider className={styles.divider} />
 					</div>
 					<div className={styles.buttonsContainer}>
 						<GenericButton
 							title='Cancel'
-							styles={`${BUTTON_STYLES.OUTLINED_GREY_BORDER} ${styles.cancelButton}`}
+							styles={`${BUTTON_STYLES.OUTLINED_GRAY_BORDER} ${styles.cancelButton}`}
 							type={ButtonTypes.button}
 							onClick={handleCancelOnClick}
 						/>

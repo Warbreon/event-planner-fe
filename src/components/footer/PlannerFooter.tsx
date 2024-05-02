@@ -4,9 +4,12 @@ import PlannerFooterViewModel from './PlannerFooterViewModel';
 
 const PlannerFooter = () => {
 	const viewModel = PlannerFooterViewModel();
+	
+
 	return (
 		<>
-			{viewModel.loggedInStatus ? (
+		<h1>WHERE IS MY FOOTER</h1>
+			{/* {viewModel.loggedInStatus ? (
 				<LoggedInFooter
 					handleClickCognizant={viewModel.handleClickCognizant}
 					handleClickPrivacy={viewModel.handleClickPrivacy}
@@ -17,7 +20,7 @@ const PlannerFooter = () => {
 					handleClickTerms={viewModel.handleClickTerms}
 					handleClickSupport={viewModel.handleClickSupport}
 				/>
-			)}
+			)} */}
 		</>
 	);
 };

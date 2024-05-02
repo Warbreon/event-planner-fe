@@ -1,0 +1,13 @@
+.eventList >* {
+  padding-top: 1.5rem;
+}
+
+.eventListItem {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem
+}
+
+.eventList .addEventButton {
+  margin-top: 1.5rem;
+}

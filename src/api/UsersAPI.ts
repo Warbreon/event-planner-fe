@@ -1,4 +1,3 @@
-import { User } from '../models/User';
 import { ENDPOINTS } from './endpoints/Endpoints';
 import useAxios from './axios/Axios';
 import { Admin } from '../models/Admin';

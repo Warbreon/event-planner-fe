@@ -2,7 +2,6 @@ import { useState } from 'react';
 
 import useUserAPI from '../../api/UsersAPI';
 import { useFetch } from '../../api/hooks/ApiHooks';
-import { COLORS } from '../../themes/styles/Colors';
 
 const SettingsVM = () => {
 	const mockLocations: string[] = ['Kaunas, Lithuania', 'Warsaw, Poland', 'London, UK', 'Chicago, USA'];

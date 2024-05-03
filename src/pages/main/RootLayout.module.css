@@ -10,6 +10,7 @@
 }
 
 .mainContent {
-	height: calc(100vh - 128px);
+	/** Removing 128px of header + footer to give them space */
+	height: calc(100vh - 128px); 
 	overflow-y: auto;
 }

@@ -31,15 +31,15 @@ const EventForm = () => {
 						<Divider className={styles.divider} />
 						<DateAndTimeSection />
 						<Divider className={styles.divider} />
-            <Location/>
-            <Divider className={styles.divider} />
+						<Location />
+						<Divider className={styles.divider} />
 						<Media />
 						<Divider className={styles.divider} />
 						<AgendaSection agenda={initialValues.agenda} />
 						<Divider className={styles.divider} />
 						<Registration />
 						<Divider className={styles.divider} />
-						<AddGuestsSection users={users || []}/>
+						<AddGuestsSection users={users || []} />
 						<Divider className={styles.divider} />
 					</div>
 					<div className={styles.buttonsContainer}>

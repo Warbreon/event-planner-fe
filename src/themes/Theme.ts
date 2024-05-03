@@ -23,6 +23,9 @@ import muiAvatarOptions from './mui-components/avatar/MuiAvatarOptions';
 import muiBreadcrumbsOptions from './mui-components/breadcrumbs/MuiBreadcrumbsOptions';
 import MuiOptions from './mui-components/MuiOptions';
 import muiToolTipOptions from './mui-components/tool-tip/MuiToolTipOptions';
+import chechboxOptions from './mui-components/checkbox/CheckboxOptions';
+import listItemTextOptions from './mui-components/list-item/MuiListItemTextOptions';
+import listItemAvatarOptions from './mui-components/list-item/MuiListItemAvatarOptions';
 import muiAutocompleteOptions from './mui-components/autocomplete/AutocompleteOptions';
 
 const projectTheme = createTheme({
@@ -50,8 +53,12 @@ const projectTheme = createTheme({
 		MuiMenuItem: muiMenuItemOptions as MuiOptions,
 		MuiMenu: muiMenuOptions as MuiOptions,
 		MuiTooltip: muiToolTipOptions as MuiOptions,
+		MuiCheckbox: chechboxOptions as MuiOptions,
+		MuiListItemText: listItemTextOptions as MuiOptions,
+		MuiListItemAvatar: listItemAvatarOptions as MuiOptions,
 		MuiAutocomplete: muiAutocompleteOptions as MuiOptions,
+		}
 	},
-});
+);
 
 export default projectTheme;

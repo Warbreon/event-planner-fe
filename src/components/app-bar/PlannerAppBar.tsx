@@ -11,11 +11,11 @@ import { Badge } from '@mui/material';
 import NotificationsRoundedIcon from '@mui/icons-material/NotificationsRounded';
 import PlannerAppBarViewModel from './PlannerAppBarViewModel';
 import styles from './PlannerAppBar.module.css';
-import SearchBar from "./search-bar/SearchBar";
-import SearchRoundedIcon from "@mui/icons-material/SearchRounded";
-import React from "react";
-import {ICON_STYLES} from "../../themes/styles/Icon";
-import {TEXTFIELD_STYLES} from "../../themes/styles/TextField";
+import SearchBar from './search-bar/SearchBar';
+import SearchRoundedIcon from '@mui/icons-material/SearchRounded';
+import React from 'react';
+import { ICON_STYLES } from '../../themes/styles/Icon';
+import { TEXTFIELD_STYLES } from '../../themes/styles/TextField';
 
 const profileSettings = ['Profile', 'Logout'];
 
@@ -36,9 +36,10 @@ const PlannerAppBar = () => {
 								styles={TEXTFIELD_STYLES.EVENT_SEARCH_BAR}
 								onChange={viewModel.handleSearchBarChange}
 								onKeyDown={viewModel.handleSearchKeyDown}
-								placeholder='Search for events....'>
+								placeholder='Search for events....'
+							>
 								<IconButton onClick={viewModel.handleSearch}>
-									<SearchRoundedIcon className={ICON_STYLES.EVENT_SEARCH_BAR} />
+									<SearchRoundedIcon className={ICON_STYLES.GRAY_ICON} />
 								</IconButton>
 							</SearchBar>
 						</div>
@@ -75,7 +76,11 @@ const PlannerAppBar = () => {
 									className={styles.profileMenu}
 								>
 									{profileSettings.map((setting) => (
-										<MenuItem key={setting} onClick={() => viewModel.handleMenuOptions(setting)} className={styles.menuItem}>
+										<MenuItem
+											key={setting}
+											onClick={() => viewModel.handleMenuOptions(setting)}
+											className={styles.menuItem}
+										>
 											<Typography className={styles.menuTypography}>{setting}</Typography>
 										</MenuItem>
 									))}

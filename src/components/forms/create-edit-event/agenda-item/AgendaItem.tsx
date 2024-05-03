@@ -5,6 +5,7 @@ import { Delete } from '@mui/icons-material';
 import { IconButton } from '@mui/material';
 import { TIME_PICKER_STYLES } from '../../../../themes/styles/TimePicker';
 import Title from '../../../title/Title';
+import { FC } from 'react';
 
 interface Props {
     showLabels?: boolean;
@@ -12,7 +13,7 @@ interface Props {
     namePrefix: string;
 }
 
-const AgendaItem: React.FC<Props> = ({ showLabels, onDelete, namePrefix }) => {
+const AgendaItem: FC<Props> = ({ showLabels, onDelete, namePrefix }) => {
     return (
         <div className={styles.container}>
             <FormikTimePicker
@@ -24,7 +25,7 @@ const AgendaItem: React.FC<Props> = ({ showLabels, onDelete, namePrefix }) => {
                 <FormikTextField
                     title={showLabels ? 'Description' : ''}
                     name={`${namePrefix}.description`}
-                    titleClassName='event-form-element'
+                    titleClassName='gray-font-input'
                 />
             </div>
             <div className={styles.buttonContainer}>

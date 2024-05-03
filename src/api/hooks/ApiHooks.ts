@@ -18,7 +18,7 @@ export const useFetch = <T>(fetchFunction: () => Promise<AxiosResponse<T>>) => {
 			}
 		};
 		fetchData();
-	}, []);
+	}, [fetchFunction]);
 
 	return { data, isLoading, error };
 };

@@ -14,8 +14,6 @@ import LoadingIndicator from '../../components/loading-indicator/LoadingIndicato
 
 const Event = () => {
 
-	const tags = ['Online', 'Meetup']
-
 	const { onAddGuestsClick, onEventRegistrationClick, event, isLoading, location, eventDate, startTime, endTime, duration } =
 		EventPageVM();
 
@@ -23,7 +21,7 @@ const Event = () => {
 		return <LoadingIndicator />;
 	}
 	
-	const { name = '', inviteUrl, address, imageUrl = '', attendees = [], price = 0, description = '', agenda = [] } = event || {};
+	const { name = '', inviteUrl, address, imageUrl = '', attendees = [], price = 0, description = '', agenda = [], tags = [] } = event || {};
 	return (
 		<Container className={styles.eventContainer}>
 			<BreadCrumbComponent eventName={name} />
@@ -32,7 +30,7 @@ const Event = () => {
 					<Box component='section' className={styles.desciption}>
 						<DateLocationPrice date={eventDate} location={location} />
 						<PageHeader text={name} variant={HeaderVariant.EVENT_PAGE} />
-						<Divider />
+						<Divider className={styles.divider}/>
 						<EventPageGuests onAddGuests={onAddGuestsClick} attendees={attendees} />
 						<Image styles='event-page' imageUrl={imageUrl} />
 						<TabComponent description={description} tags={tags} agenda={agenda} attendees={attendees} />

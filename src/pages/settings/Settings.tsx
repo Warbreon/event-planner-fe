@@ -29,7 +29,6 @@ const Settings = () => {
 		adminList,
 		isLoading,
 		error,
-		randomLocation,
 		snackbarOpen,
 		snackbarText,
 		snackbarSeverity,
@@ -66,7 +65,7 @@ const Settings = () => {
 											<GuestListItem
 												image={adminUser.imageUrl}
 												fullName={`${adminUser.firstName} ${adminUser.lastName}`}
-												details={adminUser.jobTitle + ' • ' + randomLocation()}
+												details={`${adminUser.jobTitle} • ${adminUser.city}, ${adminUser.country}`}
 												styles={LIST_ITEM_STYLES.GUEST_LIST_ITEM}
 												textStyles={LIST_ITEM_STYLES.GUEST_LIST_ITEM_TEXT}
 												avatarStyle={AVATAR_STYLES.GUEST_LIST_ITEM_AVATAR}

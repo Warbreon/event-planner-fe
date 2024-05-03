@@ -5,12 +5,6 @@ import { useFetch } from '../../api/hooks/ApiHooks';
 import { ALERT_SEVERITY } from '../../components/snackbar/SnackbarComponent';
 
 const SettingsVM = () => {
-	const mockLocations: string[] = ['Kaunas, Lithuania', 'Warsaw, Poland', 'London, UK', 'Chicago, USA'];
-
-	const randomLocation = () => {
-		return mockLocations[Math.floor(Math.random() * mockLocations.length)];
-	};
-
 	const [snackbarOpen, setOpen] = useState(false);
 	const [snackbarText, setText] = useState('');
 	const [snackbarSeverity, setSeverity] = useState(ALERT_SEVERITY.SUCCESS);
@@ -50,7 +44,6 @@ const SettingsVM = () => {
 		adminList,
 		isLoading,
 		error,
-		randomLocation,
 		snackbarOpen,
 		snackbarText,
 		snackbarSeverity,

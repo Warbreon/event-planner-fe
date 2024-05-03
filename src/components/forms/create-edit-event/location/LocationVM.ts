@@ -3,38 +3,39 @@ import { useState } from "react";
 import { useFormikContext } from 'formik';
 import { TAGS } from "../../../../themes/styles/Tag";
 import { EventFormValues } from "../../../../interfaces/EventFormValuesInterface";
+import { LocationTags } from "../../../../constants/LocationTags";
 
 interface Props {
+    values: EventFormValues,
     setFieldValue: (field: string, value: any, shouldValidate?: boolean) => void;
 }
 
 interface State {
     placeholder: string;
-    locationKey: string;
+    locationKey: number;
 }
 
-const LocationVM = ({ setFieldValue }: Props) => {
+const LocationVM = ({ values, setFieldValue }: Props) => {
     const [placeholder, setPlaceholder] = useState('Search for a venue...');
-    const { values } = useFormikContext<EventFormValues>();
     const { setFieldTouched } = useFormikContext<EventFormValues>();
     const key = values.locationKey;
 
-    const stateChanges: Record<string, State> = {
-        physical: {
+    const stateChanges: Record<number, State> = {
+        [LocationTags.PHYSICAL]: {
             placeholder: 'Search for a venue...',
-            locationKey: 'physical',
+            locationKey: LocationTags.PHYSICAL,
         },
-        online: {
-            placeholder: 'Enter link to Zoom, Hangouts or other platform',
-            locationKey: 'online',
+        [LocationTags.ONLINE]: {
+            placeholder: 'Enter link to Zoom, Hangouts, or other platform',
+            locationKey: LocationTags.ONLINE,
         },
-        tbd: {
+        [LocationTags.TBD]: {
             placeholder: 'Enter TBD details...',
-            locationKey: 'tbd',
+            locationKey: LocationTags.TBD,
         },
     };
 
-    const handleTagChange = (newKey: string) => {
+    const handleTagChange = (newKey: number) => {
         const newState = stateChanges[newKey];
 
         setPlaceholder(newState.placeholder);
@@ -46,9 +47,9 @@ const LocationVM = ({ setFieldValue }: Props) => {
     };
 
     const options = [
-        { key: 'physical', label: 'Physical location' },
-        { key: 'online', label: 'Online event' },
-        { key: 'tbd', label: 'TBD' },
+        { id: LocationTags.PHYSICAL, name: 'Physical location' },
+        { id: LocationTags.ONLINE, name: 'Online event' },
+        { id: LocationTags.TBD, name: 'TBD' },
     ];
 
     const getChipClassName = (isSelected: boolean) => {

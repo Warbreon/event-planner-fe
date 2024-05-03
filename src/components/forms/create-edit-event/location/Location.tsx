@@ -4,20 +4,22 @@ import { Box } from '@mui/material';
 import { useFormikContext } from 'formik';
 import LocationVM from './LocationVM';
 import FormikAutocomplete from '../../formik-elements/FormikAutocomplete';
-import { FormValues } from "../../../../interfaces/FormValues";
 import PageHeader from "../../../headers/page-headers/PageHeader";
 import styles from './Location.module.css';
 import LocationMocks from './LocationMocks';
+import { TYPOGRAPHY_STYLES } from '../../../../themes/styles/Typography';
+import { EventFormValues } from '../../../../interfaces/EventFormValuesInterface';
+import { LocationTags } from '../../../../constants/LocationTags';
 
 const locations = LocationMocks();
 
 const Location = () => {
 
-    const { setFieldValue } = useFormikContext<FormValues>();
-    const { placeholder, key, getChipClassName, handleTagChange, options } = LocationVM({ setFieldValue });
+    const { values, setFieldValue } = useFormikContext<EventFormValues>();
+    const { placeholder, key, getChipClassName, handleTagChange, options } = LocationVM({ values, setFieldValue });
 
     return (
-        <div className={`${styles.container} ${key === 'tbd' ? styles['tbd-gap'] : ''}`}>
+        <div className={`${styles.container} ${key === LocationTags.TBD ? styles['tbd-gap'] : ''}`}>
             <div className={styles.title}>
                 <PageHeader
                     text='Location'
@@ -28,12 +30,13 @@ const Location = () => {
                 <ChipSelector
                     options={options}
                     onSelect={(key) => handleTagChange(key)}
-                    selectedKey={key}
+                    selectedKeys={key}
                     getChipClassName={getChipClassName}
+                    multiple={false}
                 />
             </div>
             <Box mt={2}>
-                {key === 'physical' && (
+                {key === LocationTags.PHYSICAL && (
                     <FormikAutocomplete
                         name='addressId'
                         options={locations}
@@ -42,18 +45,18 @@ const Location = () => {
                                 {...params}
                                 name='addressId'
                                 title='Venue'
-                                titleClassName='event-form-element'
+                                titleClassName={TYPOGRAPHY_STYLES.GRAY_FONT_INPUT}
                                 placeholder={placeholder}
                             />
                         )}
                     />
                 )}
-                {key === 'online' && (
+                {key === LocationTags.ONLINE && (
                     <FormikTextField
                         name='inviteUrl'
                         type='text'
                         title='Link to a virtual event'
-                        titleClassName='event-form-element'
+                        titleClassName={TYPOGRAPHY_STYLES.GRAY_FONT_INPUT}
                         placeholder={placeholder}
                     />
                 )}

@@ -4,6 +4,7 @@ import { formatAgendaItems, parseAgendaItems } from "../../../utils/AgendaUtils"
 import { useFetch } from "../../../api/hooks/ApiHooks";
 import useUserAPI from "../../../api/UserAPI";
 import { useCallback } from "react";
+import { LocationTags } from "../../../constants/LocationTags";
 
 const EventFormVM = () => {
     const agenda = ['7:00 am-Introduction', '12:30 pm-Presentations', '8:00 pm-Conclusion'];
@@ -27,17 +28,17 @@ const EventFormVM = () => {
         registrationStartTime: null,
         registrationEndDate: null,
         registrationEndTime: null,
-        attendees: []
-        locationKey: 'physical',
+        attendees: [],
+        locationKey: LocationTags.PHYSICAL,
     };
 
     const determineLocationKey = (values: EventFormValues) => {
         if (values.inviteUrl) {
-            return 'online';
+            return LocationTags.ONLINE;
         } else if (values.addressId) {
-            return 'physical';
+            return LocationTags.PHYSICAL;
         } else {
-            return 'tbd';
+            return LocationTags.TBD;
         }
     };
 

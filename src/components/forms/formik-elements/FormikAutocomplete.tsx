@@ -4,7 +4,7 @@ import { ChangeEvent, FC } from 'react';
 
 interface Option {
     id: number;
-    label: string;
+    name: string;
 }
 
 interface Props extends AutocompleteProps<Option, false, boolean, false> {
@@ -29,8 +29,8 @@ const FormikAutocomplete: FC<Props> = ({ name, options, textFieldProps, ...props
             value={selectedOption}
             options={options}
             onChange={handleChange}
-            getOptionLabel={(option: Option) => (option ? option.label : '')}
-            isOptionEqualToValue={(option, value) => option.label === value.label}
+            getOptionLabel={(option: Option) => (option ? option.name : '')}
+            isOptionEqualToValue={(option, value) => option.name === value.name}
         />
     );
 };

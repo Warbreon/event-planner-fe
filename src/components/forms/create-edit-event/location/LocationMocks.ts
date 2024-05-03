@@ -19,7 +19,7 @@ const LocationMocks = () => {
     ];
 
     return mockResponse.map((location) => ({
-        label: `${location.venueName}, ${location.street} ${location.building}, ${location.city}`,
+        name: `${location.venueName}, ${location.street} ${location.building}, ${location.city}`,
         id: location.id,
     }));
 }

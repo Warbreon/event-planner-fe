@@ -61,11 +61,6 @@ const typographyOptions: TypographyOptions = {
 		'&.error-mesage': {
 			color: COLORS.ERROR
 		},
-		'&.event-form-element': {
-			fontSize: '0.875rem',
-			lineHeight: '1rem',
-			color: COLORS.MEDIUM_DARK_GRAY,
-		},
 	},
 	
 	body2: {

@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react';
+import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { signOut } from '../../redux/slices/AuthenticationSlice';
 import { setName } from '../../redux/slices/FiltersSlice';

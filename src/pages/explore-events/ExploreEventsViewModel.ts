@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react';
+import { useCallback } from 'react';
 import useEventAPI from '../../api/EventsAPI';
 import { useFetch } from '../../api/hooks/ApiHooks';
 import { useSelector } from 'react-redux';

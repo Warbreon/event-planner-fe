@@ -16,4 +16,8 @@ export interface EventFormValues {
     registrationEndDate: Moment | null;
     registrationEndTime: Moment | null;
     agenda: Agenda[] | null;
+    addressId: number | null;
+    inviteUrl: string | null;
+    locationKey: number;
+    attendees: number[];
 }

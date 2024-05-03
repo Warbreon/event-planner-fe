@@ -3,13 +3,12 @@ import NavigationSideBar from '../../components/nav-bar/NavigationSideBar';
 import PlannerAppBar from '../../components/app-bar/PlannerAppBar';
 import PlannerFooter from '../../components/footer/PlannerFooter';
 import { useSelector } from 'react-redux';
-import { PersistentStoreRootState } from '../../redux/store/PersistentStore';
+import { StoreState } from '../../redux/store/Store';
 import styles from './RootLayout.module.css';
 import ScrollToTop from '../../components/scroll-to-top/ScrollToTop';
 
-
 const RootLayout = () => {
-	const loggedIn = useSelector((state: PersistentStoreRootState) => state.signedIn);
+	const loggedIn = useSelector((state: StoreState) => state.user.signedIn);
 	return (
 		<NavigationSideBar drawerWidth={72}>
 			<div className={styles.contentContainer}>

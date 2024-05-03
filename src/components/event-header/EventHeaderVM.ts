@@ -6,6 +6,7 @@ import ROUTES from "../../routes/Routes";
 import classNames from "classnames";
 import { TAGS } from "../../themes/styles/Tag";
 import useTagAPI from "../../api/TagsAPI";
+import useAddressAPI from "../../api/AddressAPI";
 
 const EventHeaderVM = (filters: EventFiltersState, handleFiltersChange: (filters: Partial<EventFiltersState>) => void) => {
     const navigate = useNavigate();
@@ -14,7 +15,11 @@ const EventHeaderVM = (filters: EventFiltersState, handleFiltersChange: (filters
     const userName = 'John';
 
     const fetchAllTags = useTagAPI();
-    const { data: eventTags, error, isLoading } = useFetch(fetchAllTags);
+    const fetchAllCities = useAddressAPI();
+
+    const { data: eventTags, error: tagsError, isLoading: tagsLoading } = useFetch(fetchAllTags);
+    const { data: cities, error: citiesError, isLoading: citiesLoading } = useFetch(fetchAllCities);
+
     const modifiedEventTags = [{
         id: 0,
         name: 'All events',
@@ -22,13 +27,12 @@ const EventHeaderVM = (filters: EventFiltersState, handleFiltersChange: (filters
         ...tag,
     })) : [])];
 
-    const locations = [
-		{ value: 'all', label: 'All Locations' },
-		{ value: 'online', label: 'Online' },
-		{ value: 'kaunas', label: 'Kaunas' },
-		{ value: 'vilnius', label: 'Vilnius' },
-		{ value: 'chicago', label: 'Chicago' },
-	];
+    const modifiedCities = [
+        { value: 'all', label: 'All Locations' },
+        { value: 'online', label: 'Online' },
+        ...(cities ? cities.map(city => (
+            { value: city, label: city }
+        )): [])];
 
     const handleTagChange = (key: number) => {
         if (key === 0) {
@@ -44,7 +48,7 @@ const EventHeaderVM = (filters: EventFiltersState, handleFiltersChange: (filters
 	};
 
 	const handleLocationChange = (event: SelectChangeEvent<string>) => {
-		handleFiltersChange({ location: event.target.value });
+        handleFiltersChange({ location: event.target.value });
 	};
 
     const getChipClassName = (isSelected: boolean) => {
@@ -60,10 +64,12 @@ const EventHeaderVM = (filters: EventFiltersState, handleFiltersChange: (filters
         handleLocationChange,
         getChipClassName,
         selectedKeys,
-        locations,
+        modifiedCities,
         modifiedEventTags,
-        error,
-        isLoading,
+        tagsError,
+        tagsLoading,
+        citiesError,
+        citiesLoading,
         navigateToAddEvent: () => navigate(ROUTES.ADD_EVENT)
     }
 }

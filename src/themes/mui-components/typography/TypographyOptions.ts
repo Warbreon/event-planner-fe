@@ -10,7 +10,6 @@ const typographyOptions: TypographyOptions = {
 		color: COLORS.BLACK,
 
 		'&.event-header': {
-			marginBottom: '1rem',
 			width: '70%',
 		},
 
@@ -34,13 +33,13 @@ const typographyOptions: TypographyOptions = {
 		fontSize: '1rem',
 		fontWeight: 400,
 	},
+
 	body1: {
 		fontSize: '0.875rem',
 		fontWeight: 400,
 		color: COLORS.BLACK,
 
 		'&.centered': {
-			marginTop: '1rem',
 			textAlign: 'center',
 		},
 		'&.gray-font': {
@@ -63,15 +62,7 @@ const typographyOptions: TypographyOptions = {
 			color: COLORS.ERROR
 		},
 	},
-
-	subtitle1: {
-		'&.event-form-element': {
-			fontSize: '0.875rem',
-			lineHeight: '1rem',
-			color: COLORS.MEDIUM_DARK_GRAY,
-			marginBottom: '0.5rem',
-		},
-	},
+	
 	body2: {
 		fontSize: '0.875rem',
 		fontWeight: 400,

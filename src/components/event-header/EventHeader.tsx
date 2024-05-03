@@ -1,9 +1,9 @@
 import Title from '../title/Title';
 import Dropdown from '../dropdown/Dropdown';
-import GenericButton from '../button/GenericButton';
+import GenericButton, { ButtonTypes, IconButton } from '../buttons/ButtonComponent';
 import ChipSelector from '../chip-selector/ChipSelector';
 import styles from './EventHeader.module.css';
-import { Add, KeyboardArrowDown } from '@mui/icons-material';
+import { KeyboardArrowDown } from '@mui/icons-material';
 import { EventFiltersState } from '../../pages/explore-events/eventFiltersInterface';
 import { DATE_FILTER_OPTIONS } from '../../constants/DateConstants';
 import { FC } from 'react';
@@ -17,11 +17,11 @@ interface Props {
 
 const EventHeader: FC<Props> = ({ filters, handleFiltersChange }) => {
 
-	const { userName, handleTagChange, handleDateChange, handleLocationChange, getChipClassName, selectedKeys, locations, modifiedEventTags, error, isLoading, navigateToAddEvent } = 
+	const { userName, handleTagChange, handleDateChange, handleLocationChange, getChipClassName, selectedKeys, modifiedCities, modifiedEventTags, tagsError, tagsLoading, citiesError, citiesLoading, navigateToAddEvent } = 
 		EventHeaderVM(filters, handleFiltersChange);
 
-	if (error) return <div className={styles.container}>{error}</div>;
-	if (isLoading) return <LoadingIndicator />;
+	if (tagsError || citiesError) return <div className={styles.container}>{tagsError || citiesError}</div>;
+	if (tagsLoading || citiesLoading) return <LoadingIndicator />;
 
 	return (
 		<div className={styles.container}>
@@ -33,12 +33,11 @@ const EventHeader: FC<Props> = ({ filters, handleFiltersChange }) => {
 					subtitleClassName={styles.headerSubtitle}
 				/>
 				<GenericButton
-					text='Add event'
+					title='Add event'
 					onClick={navigateToAddEvent}
-					className={styles.addEventButton}
-					buttonProps={{
-						startIcon: <Add />,
-					}}
+					styles={styles.addEventButton}
+					icon={IconButton.ADD_EVENT}
+					type={ButtonTypes.button}
 				/>
 			</div>
 			<div className={styles.filters}>
@@ -62,7 +61,7 @@ const EventHeader: FC<Props> = ({ filters, handleFiltersChange }) => {
 					<Dropdown
 						value={filters.location}
 						onChange={handleLocationChange}
-						options={locations}
+						options={modifiedCities}
 						selectClassName='event-header-dropdown'
 						selectProps={{
 							IconComponent: KeyboardArrowDown,

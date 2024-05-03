@@ -20,6 +20,8 @@ const muiOutlinedInputOptions = {
 			'& input::placeholder': {
 				color: COLORS.PLACEHOLDER,
 				fontWeight: 400,
+				fontSize: '0.875rem',
+				lineHeight: '1rem'
 			},
 		},
 	},

@@ -2,7 +2,7 @@ import { useCallback, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { signOut } from '../../redux/slices/AuthenticationSlice';
 import { setName } from '../../redux/slices/FiltersSlice';
-import debounce from 'lodash.debounce';	
+import { useDebouncedCallback } from 'use-debounce';	
 import { useLocation } from 'react-router';
 
 const PlannerAppBarViewModel = () => {
@@ -42,9 +42,10 @@ const PlannerAppBarViewModel = () => {
 		setAnchorUser(null);
 	};
 
-	const debouncedSearch = useCallback(debounce((nextValue: string) => {
-		dispatch(setName(nextValue));
-	}, 500), [])
+	const debouncedSearch = useDebouncedCallback(
+		(value: string) => {
+			dispatch(setName(value));
+	}, 500);
 
 	const handleSearchBarChange = (event: React.ChangeEvent<HTMLInputElement>) => {
 		setSearchValue(event.target.value);

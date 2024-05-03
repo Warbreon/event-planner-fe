@@ -23,14 +23,14 @@ export const useFetch = <T>(fetchFunction: () => Promise<AxiosResponse<T>>) => {
 	return { data, isLoading, error };
 };
 
-export const usePost = () => {
+export const useApiRequest = () => {
 	const [isLoading, setIsLoading] = useState<boolean>(false);
 	const [error, setError] = useState<string | null>(null);
 	const [data, setData] = useState<any>(null);
-	const postData = async <T>(postFunction: () => Promise<AxiosResponse<T>>) => {
+	const requestData = async <T>(requestFunction: () => Promise<AxiosResponse<T>>) => {
 		try {
 			setIsLoading(true);
-			const response = await postFunction();
+			const response = await requestFunction();
 			setData(response.data);
 			setError(null);
 		} catch (error: any) {
@@ -41,5 +41,5 @@ export const usePost = () => {
 			setIsLoading(false);
 		}
 	};
-	return { postData, isLoading, error, data };
+	return { requestData, isLoading, error, data };
 };

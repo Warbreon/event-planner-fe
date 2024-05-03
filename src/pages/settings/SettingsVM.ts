@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from 'react';
 
 import useUserAPI from '../../api/UsersAPI';
-import { useFetch, usePost } from '../../api/hooks/ApiHooks';
+import { useApiRequest, useFetch } from '../../api/hooks/ApiHooks';
 import { ALERT_SEVERITY } from '../../components/snackbar/SnackbarComponent';
 
 const SettingsVM = () => {
@@ -22,7 +22,7 @@ const SettingsVM = () => {
 
 	const { data: adminList, isLoading, error } = useFetch(fetchFunction);
 
-	const { postData: patchData, isLoading: patchIsLoading, error: patchError } = usePost();
+	const { requestData: patchData, isLoading: patchIsLoading, error: patchError } = useApiRequest();
 
 	const handleRemoveClick = async (id: number | string) => {
 		setDemotionInProgress(true);

@@ -26,7 +26,7 @@ const RelatedEvents: FC<Props> = ({ event }) => {
             <Divider className={styles.divider} />
             <SectionHeader
                 name='More events like this'
-                buttonType={IconButton.VIEW_ALL_EVENT}
+                buttonType={IconButton.VIEW_ALL_EVENTS}
                 onButtonClick={handleViewAllEvents}
             />
             <div className={styles.eventsContainer}>

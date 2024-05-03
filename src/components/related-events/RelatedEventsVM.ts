@@ -16,7 +16,7 @@ const RelatedEventsVM = ({ event }: Props) => {
     const fetchFunction = useCallback(() => {
         const tagIds = event?.tags.map(tag => tag.id);
         return fetchEvents(tagIds);
-    }, [event, fetchEvents]);
+    }, [event]);
 
     const { data: relatedEvents, isLoading, error } = useFetch(fetchFunction);
 

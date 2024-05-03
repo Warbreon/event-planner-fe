@@ -15,7 +15,7 @@ export enum IconButton {
 	RSVP = 'RSVP',
 	ADD_EVENT = 'Add event',
 	ADD_GUESTS = ' ',
-	VIEW_ALL_GUESTS = 'View all guests'
+	VIEW_ALL_GUESTS = 'View all guests',
 	VIEW_ALL_EVENTS = 'View all events',
 }
 

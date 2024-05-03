@@ -1,6 +1,7 @@
 import * as Yup from 'yup';
 import { isTimeInFuture, isEndTimeAfterStartTime, validateFileFormat } from '../validation/ValidationHelpers';
 import moment from 'moment';
+import { LocationTags } from '../../constants/LocationTags';
 
 export const eventFormSchema = Yup.object().shape({
     imageUrl: Yup.mixed()
@@ -55,6 +56,15 @@ export const eventFormSchema = Yup.object().shape({
                 endDate: this.parent.registrationEndDate
             });
         }),
+    addressId: Yup.number().nullable().typeError('You must select one of the given options.')
+        .test('address-required-if-physical', 'Venue address is required.', function (value) {
+            const { locationKey } = this.parent;
+            return locationKey !== LocationTags.PHYSICAL || (locationKey === LocationTags.PHYSICAL && value != null);
+        }),
+    inviteUrl: Yup.string().nullable().url('URL must be valid').test('url-required-if-online', 'URL for online event is required.', function (value) {
+        const { locationKey } = this.parent;
+        return locationKey !== LocationTags.ONLINE || (locationKey === LocationTags.ONLINE && value != null);
+    }),
     agenda: Yup.array()
         .of(
             Yup.object().shape({

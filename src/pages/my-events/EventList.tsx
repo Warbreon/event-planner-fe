@@ -9,9 +9,10 @@ import { BUTTON_STYLES } from '../../themes/styles/Button';
 interface Props {
 	events: Event[] | null;
 	createdByUser?: boolean;
+	onAddEventClick?: () => void;
 }
 
-const EventList: FC<Props> = ({ events, createdByUser }) => {
+const EventList: FC<Props> = ({ events, createdByUser, onAddEventClick }) => {
 	return (
 		<Box className={styles.eventList}>
 			{events?.map((event, i) => (
@@ -22,7 +23,12 @@ const EventList: FC<Props> = ({ events, createdByUser }) => {
 			))}
 
 			{createdByUser && (
-				<GenericButton styles={`${BUTTON_STYLES.LIGHT_GRAY_BOX} ${styles.addEventButton}`} type={ButtonTypes.button} icon={IconButton.ADD_GUESTS} />
+				<GenericButton
+					styles={`${BUTTON_STYLES.LIGHT_GRAY_BOX} ${styles.addEventButton}`}
+					type={ButtonTypes.button}
+					icon={IconButton.ADD_GUESTS}
+					onClick={onAddEventClick}
+				/>
 			)}
 		</Box>
 	);

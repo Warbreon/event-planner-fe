@@ -52,7 +52,7 @@ const MyEvents = () => {
 			)}
 
 			{currentTab === 0 && <EventList events={eventsAttending}/>}
-			{currentTab === 1 && <EventList events={eventsCreated} createdByUser={true}/>}
+			{currentTab === 1 && <EventList events={eventsCreated} createdByUser={true} onAddEventClick={onAddEventClick}/>}
 
 		</Container>
 	);

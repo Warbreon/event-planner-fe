@@ -1,7 +1,7 @@
 import { Box, Typography } from '@mui/material';
-import GenericButton from '../../buttons/ButtonComponent';
+import GenericButton from '../../../components/buttons/ButtonComponent';
 import { BUTTON_STYLES } from '../../../themes/styles/Button';
-import { ButtonTypes, IconButton } from '../../buttons/ButtonComponent';
+import { ButtonTypes, IconButton } from '../../../components/buttons/ButtonComponent';
 import style from './SectionHeader.module.css';
 import classNames from 'classnames';
 

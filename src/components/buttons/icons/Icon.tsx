@@ -14,19 +14,19 @@ interface IconProps {
 const Icon: FC<IconProps> = ({ icon }) => {
 	switch (icon) {
 		case IconButton.REGISTER:
-			return <CheckCircleOutlineIcon />;
-		case IconButton.GET_TICKETS:
-			return <ConfirmationNumberIcon />;
-		case IconButton.GOING:
-			return <CheckCircleIcon />;
-		case IconButton.RSVP:
-			return <EmailIcon />;
-		case IconButton.ADD_EVENT:
-			return <AddIcon />;
-		case IconButton.ADD_GUESTS:
-			return <AddIcon />;
-		case IconButton.VIEW_ALL_GUESTS:
-			return <KeyboardArrowRightRoundedIcon />;
+            return <CheckCircleOutlineIcon />;
+        case IconButton.GET_TICKETS:
+            return <ConfirmationNumberIcon />;
+        case IconButton.GOING:
+            return <CheckCircleIcon />;
+        case IconButton.RSVP:
+            return <EmailIcon />;
+        case IconButton.ADD_EVENT:
+        case IconButton.ADD_GUESTS:
+            return <AddIcon />;
+        case IconButton.VIEW_ALL_GUESTS:
+        case IconButton.VIEW_ALL_EVENTS:
+            return <KeyboardArrowRightRoundedIcon />;
 	}
 };
 

@@ -1,0 +1,16 @@
+.eventsContainer {
+    margin-top: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 16px;
+    width: 100%;
+}
+
+div .divider {
+    margin-bottom: 3rem;
+}
+
+.container {
+    margin-bottom: 15rem;
+}

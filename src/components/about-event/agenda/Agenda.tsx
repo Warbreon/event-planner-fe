@@ -1,7 +1,7 @@
 import React from 'react';
 import Grid from '@mui/material/Grid';
 import AgendaItem from './AgendaItem';
-import SectionHeader from '../../shared/section-header/SectionHeader';
+import SectionHeader from '../../../shared/components/section-header/SectionHeader';
 
 interface AgendaProps {
 	agendaItems: string[];

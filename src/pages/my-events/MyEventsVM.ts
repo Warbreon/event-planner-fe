@@ -1,12 +1,13 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { StoreState } from '../../redux/store/Store';
 import classNames from 'classnames';
 import { TAGS } from '../../themes/styles/Tag';
 import useEventAPI from '../../api/EventsAPI';
-import { useFetch } from '../../api/hooks/ApiHooks';
+import { useFetchConditionally } from '../../api/hooks/ApiHooks';
 import { useNavigate } from 'react-router-dom';
 import ROUTES from '../../routes/Routes';
+import { Event } from '../../models/Event';
 
 const enum SUBHEADER {
 	ADMIN = 'View all events you’re attending and manage events created by you',
@@ -18,23 +19,12 @@ const useMyEventsVM = () => {
 	const [isAdmin, setIsAdmin] = useState<boolean>(false);
 	const [currentTab, setCurrentTab] = useState<number>(0);
 
+	const [eventsAttending, setEventsAttending] = useState<Event[]>([]);
+	const [eventsCreated, setEventsCreated] = useState<Event[]>([]);
+
 	const navigate = useNavigate();
 
 	const currentUserRole = useSelector((state: StoreState) => state.user.role);
-
-	useEffect(() => {
-		switch (currentUserRole) {
-			case 'USER':
-				setSubheader(SUBHEADER.USER);
-				setIsAdmin(false);
-				return;
-			case 'EVENT_ADMIN':
-			case 'SYSTEM_ADMIN':
-				setSubheader(SUBHEADER.ADMIN);
-				setIsAdmin(true);
-				return;
-		}
-	}, [currentUserRole]);
 
 	const getChipClassName = (isSelected: boolean) => {
 		return classNames(TAGS.SELECT_TAG, { [TAGS.TAG_SELECTED]: isSelected });
@@ -49,30 +39,42 @@ const useMyEventsVM = () => {
 	};
 
 	const { fetchEventsUserAttending, fetchEventsCreatedByUser } = useEventAPI();
+	const { fetchData, isLoading, error } = useFetchConditionally();
 
-	const fetchEventsAttentingFunction = useCallback(() => {
-		return fetchEventsUserAttending();
+	
+
+	const setRoleAndSubheader = () => {
+		if (currentUserRole === 'EVENT_ADMIN' || currentUserRole === 'SYSTEM_ADMIN') {
+			setIsAdmin(true);
+			setSubheader(SUBHEADER.ADMIN);
+		} else if (currentUserRole === 'USER') {
+			setIsAdmin(false);
+			setSubheader(SUBHEADER.USER);
+		}
+	};
+
+	const fetchEvents = async () => {
+		const response = await fetchData(() => fetchEventsUserAttending());
+		const { data } = response;
+		setEventsAttending(data);
+
+		if (currentUserRole === 'EVENT_ADMIN' || currentUserRole === 'SYSTEM_ADMIN') {
+			const response = await fetchData(() => fetchEventsCreatedByUser());
+			if (response) {
+				const { data } = response;
+				setEventsCreated(data);
+			}
+		}
+	};
+
+	useEffect(() => {
+		setRoleAndSubheader();
+		fetchEvents();
 	}, []);
-
-	const fetchEventsCreatedFunction = useCallback(() => {
-		return fetchEventsCreatedByUser();
-	}, []);
-
-	const {
-		data: eventsAttending,
-		isLoading: isLoadingEventsAttending,
-		error: isErrorEventsAttending,
-	} = useFetch(fetchEventsAttentingFunction);
-
-	const {
-		data: createdEvents,
-		isLoading: isLoadingCreatedEvents,
-		error: isErrorCreatedEvents,
-	} = useFetch(fetchEventsCreatedFunction);
 
 	const chipOptions = [
-		{ id: 0, name: `I’m attending (${eventsAttending?.length})` },
-		{ id: 1, name: `Created by me (${createdEvents?.length})` },
+		{ id: 0, name: `I’m attending (${eventsAttending.length})` },
+		{ id: 1, name: `Created by me (${eventsCreated.length})` },
 	];
 
 	return {
@@ -80,12 +82,10 @@ const useMyEventsVM = () => {
 		subheader,
 		currentTab,
 		eventsAttending,
-		isLoadingEventsAttending,
-		isErrorEventsAttending,
-		createdEvents,
-		isLoadingCreatedEvents,
-		isErrorCreatedEvents,
+		eventsCreated,
 		chipOptions,
+		isLoading,
+		error,
 		handleTabChange,
 		getChipClassName,
 		onAddEventClick,

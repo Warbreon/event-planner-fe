@@ -14,21 +14,19 @@ const MyEvents = () => {
 		subheader,
 		currentTab,
 		eventsAttending,
-		isLoadingEventsAttending,
-		isErrorEventsAttending,
-		createdEvents,
-		isLoadingCreatedEvents,
-		isErrorCreatedEvents,
+		eventsCreated,
 		chipOptions,
+		isLoading,
+		error,
 		handleTabChange,
 		getChipClassName,
 		onAddEventClick,
 	} = useMyEventsVM();
 
-	if (isErrorCreatedEvents || isErrorEventsAttending)
-		return <Container>{isErrorCreatedEvents}</Container>;
+	if (error)
+		return <Container className={styles.myEventsPageContainer}>Something went wrong. Could not fetch event list...</Container>;
 
-	if (isLoadingCreatedEvents || isLoadingEventsAttending) return <LoadingIndicator />;
+	if (isLoading) return <LoadingIndicator />;
 
 	return (
 		<Container className={styles.myEventsPageContainer}>
@@ -54,7 +52,7 @@ const MyEvents = () => {
 			)}
 
 			{currentTab === 0 && <EventList events={eventsAttending}/>}
-			{currentTab === 1 && <EventList events={createdEvents} createdByUser={true}/>}
+			{currentTab === 1 && <EventList events={eventsCreated} createdByUser={true}/>}
 
 		</Container>
 	);

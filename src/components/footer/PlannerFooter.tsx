@@ -8,8 +8,7 @@ const PlannerFooter = () => {
 
 	return (
 		<>
-		<h1>WHERE IS MY FOOTER</h1>
-			{/* {viewModel.loggedInStatus ? (
+			{viewModel.loggedInStatus ? (
 				<LoggedInFooter
 					handleClickCognizant={viewModel.handleClickCognizant}
 					handleClickPrivacy={viewModel.handleClickPrivacy}
@@ -20,7 +19,7 @@ const PlannerFooter = () => {
 					handleClickTerms={viewModel.handleClickTerms}
 					handleClickSupport={viewModel.handleClickSupport}
 				/>
-			)} */}
+			)}
 		</>
 	);
 };

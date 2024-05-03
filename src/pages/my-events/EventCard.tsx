@@ -61,7 +61,6 @@ const EventCard: FC<Props> = ({ event, createdByUser }) => {
 					Event is happening now!
 				</Typography>
 			)}
-			
 		</Box>
 	);
 };

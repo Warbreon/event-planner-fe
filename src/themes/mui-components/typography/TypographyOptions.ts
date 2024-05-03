@@ -60,6 +60,9 @@ const typographyOptions: TypographyOptions = {
 		'&.error-mesage': {
 			color: COLORS.ERROR
 		},
+		'&.event-price-section': {
+			color: COLORS.MEDIUM_DARK_GRAY,
+		},
 	},
 
 	subtitle1: {

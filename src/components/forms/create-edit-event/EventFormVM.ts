@@ -25,7 +25,9 @@ const EventFormVM = () => {
         registrationStartTime: null,
         registrationEndDate: null,
         registrationEndTime: null,
-        attendees: []
+        attendees: [],
+        price: 0,
+        tickets: 0,
     };
 
     const {fetchUsers} = useUserAPI();

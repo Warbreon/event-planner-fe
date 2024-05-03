@@ -1,0 +1,10 @@
+.container {
+    width: 22rem;
+}
+.tabPanel {
+    display: flex;
+    gap: 0.5rem;
+}
+.dropdown {
+    align-self: flex-end;
+}

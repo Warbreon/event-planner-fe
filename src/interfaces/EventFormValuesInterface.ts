@@ -17,4 +17,6 @@ export interface EventFormValues {
     registrationEndTime: Moment | null;
     agenda: Agenda[] | null;
     attendees: number[];
+    price: number;
+    tickets: number;
 }

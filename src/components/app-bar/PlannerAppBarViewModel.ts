@@ -3,11 +3,14 @@ import { useDispatch } from 'react-redux';
 import { signOut } from '../../redux/slices/AuthenticationSlice';
 import { setName } from '../../redux/slices/FiltersSlice';
 import debounce from 'lodash.debounce';	
+import { useLocation } from 'react-router';
 
 const PlannerAppBarViewModel = () => {
 	const [anchorUser, setAnchorUser] = useState<null | HTMLElement>(null);
 	const [searchValue, setSearchValue] = useState<string>('');
 	const dispatch = useDispatch();
+	let location = useLocation();
+	const { pathname } = location;
 
 	const handleClickOnNotifications = (event: React.MouseEvent<HTMLElement>) => {
 		console.log("Trying to redirect to notification's window.");
@@ -48,25 +51,14 @@ const PlannerAppBarViewModel = () => {
 		debouncedSearch(event.target.value);
 	};
 
-	const handleSearch = () => {
-		console.log(`Searching for ${searchValue} and redirecting to search results`);
-	};
-
-	const handleSearchKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
-		if (event.key === 'Enter') {
-			handleSearch();
-		}
-	};
-
 	return {
+		pathname,
 		anchorUser,
 		handleClickOnNotifications,
 		handleOpenUserMenu,
 		handleCloseUserMenu,
 		searchValue,
 		handleSearchBarChange,
-		handleSearchKeyDown,
-		handleSearch,
 		handleMenuOptions,
 	};
 };

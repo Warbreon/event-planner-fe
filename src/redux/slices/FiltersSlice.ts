@@ -1,5 +1,5 @@
-import { PayloadAction, createSlice } from "@reduxjs/toolkit";
-import { EventFiltersState } from "../../pages/explore-events/eventFiltersInterface";
+import { PayloadAction, createSlice } from '@reduxjs/toolkit';
+import { EventFiltersState } from '../../pages/explore-events/eventFiltersInterface';
 
 const initialState: EventFiltersState = {
     eventTag: [],

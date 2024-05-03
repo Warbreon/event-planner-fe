@@ -4,8 +4,6 @@ import PlannerFooterViewModel from './PlannerFooterViewModel';
 
 const PlannerFooter = () => {
 	const viewModel = PlannerFooterViewModel();
-	
-
 	return (
 		<>
 			{viewModel.loggedInStatus ? (

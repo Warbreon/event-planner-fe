@@ -19,7 +19,6 @@ const RootLayout = () => {
 					<PlannerFooter />
 				</footer>
 			</div>
-			
 		</NavigationSideBar>
 	);
 };

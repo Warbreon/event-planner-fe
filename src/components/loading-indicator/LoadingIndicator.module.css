@@ -1,11 +1,4 @@
 .loadingIndicator {
-	/* display: flex;
-	align-items: center;
-	justify-content: center;
-	width: 100vw;
-	height: 100vh;
-	position: fixed;
-	z-index: 1000; */
 	position: absolute;
   top: 55%;
   left: 50%;

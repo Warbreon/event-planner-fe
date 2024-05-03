@@ -13,7 +13,6 @@ import PlannerAppBarViewModel from './PlannerAppBarViewModel';
 import styles from './PlannerAppBar.module.css';
 import SearchBar from './search-bar/SearchBar';
 import SearchRoundedIcon from '@mui/icons-material/SearchRounded';
-import React from 'react';
 import { ICON_STYLES } from '../../themes/styles/Icon';
 import { TEXTFIELD_STYLES } from '../../themes/styles/TextField';
 

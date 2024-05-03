@@ -4,21 +4,15 @@ import GenericButton, { ButtonTypes, IconButton } from '../buttons/ButtonCompone
 import ChipSelector from '../chip-selector/ChipSelector';
 import styles from './EventHeader.module.css';
 import { KeyboardArrowDown } from '@mui/icons-material';
-import { EventFiltersState } from '../../pages/explore-events/eventFiltersInterface';
 import { DATE_FILTER_OPTIONS } from '../../constants/DateConstants';
 import { FC } from 'react';
 import EventHeaderVM from './EventHeaderVM';
 import LoadingIndicator from '../loading-indicator/LoadingIndicator';
 
-interface Props {
-	filters: EventFiltersState;
-	handleFiltersChange: (filters: Partial<EventFiltersState>) => void;
-}
+const EventHeader: FC = () => {
 
-const EventHeader: FC<Props> = ({ filters, handleFiltersChange }) => {
-
-	const { userName, handleTagChange, handleDateChange, handleLocationChange, getChipClassName, selectedKeys, modifiedCities, modifiedEventTags, tagsError, tagsLoading, citiesError, citiesLoading, navigateToAddEvent } = 
-		EventHeaderVM(filters, handleFiltersChange);
+	const { userName, filters, handleTagChange, handleDateChange, handleLocationChange, getChipClassName, selectedKeys, modifiedCities, modifiedEventTags, tagsError, tagsLoading, citiesError, citiesLoading, navigateToAddEvent } = 
+		EventHeaderVM();
 
 	if (tagsError || citiesError) return <div className={styles.container}>{tagsError || citiesError}</div>;
 	if (tagsLoading || citiesLoading) return <LoadingIndicator />;

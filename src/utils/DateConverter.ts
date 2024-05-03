@@ -71,8 +71,27 @@ export const calculateDifferenceInDay = (dateString: string) => {
 	return Math.floor(differenceMs / (1000 * 3600 * 24));
 };
 
+export const calculateDifferenceInHours = (dateString: string) => {
+	const date = new Date(dateString);
+	const now = new Date();
+	const differenceMs = now.valueOf() - date.valueOf();
+	return Math.floor(differenceMs / (1000 * 3600));
+};
+
 export const formatDifferenceInDays = (dateString: string) => {
 	const differenceInDays = calculateDifferenceInDay(dateString);
+	if (differenceInDays === 0) {
+		const differenceInHours = calculateDifferenceInHours(dateString);
+		if (differenceInHours === 0) {
+			return `< 1 hour ago`;
+		}
+		if (differenceInHours === 1) {
+			return `1 hour ago`;
+		}
+		if (differenceInHours > 1) {
+			return `${differenceInHours} hours ago`;
+		}
+	}
 
 	if (differenceInDays === 1) {
 		return `1 day ago`;

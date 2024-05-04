@@ -4,11 +4,12 @@ import useAxios from './axios/Axios';
 
 const useEventAPI = () => {
 	const axios = useAxios();
-	const fetchEvents = (tagIds?: number[], days?: number, city?: string) => {
+	const fetchEvents = (tagIds?: number[], days?: number, city?: string, name?: string) => {
 		const params: any = {
 			tagIds: tagIds && tagIds.length > 0 ? tagIds.join(",") : undefined,
 			days,
-			city
+			city,
+			name
 		};
 		return axios.get<Event[]>(ENDPOINTS.getEvents, { params });
 	}

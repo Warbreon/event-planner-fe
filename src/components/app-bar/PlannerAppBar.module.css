@@ -10,7 +10,7 @@ header.appBar {
 .appBar .appBarContainer {
 	display: flex;
 	flex-direction: row;
-	justify-content: space-between;
+	justify-content: center;
 	height: 2.5rem;
 	align-items: center;
 	flex-grow: 1;
@@ -25,6 +25,7 @@ header.appBar {
 
 .appBar .searchBarContainer {
 	display: flex;
+	min-width: 75%;
 }
 
 button.bellIconButton {

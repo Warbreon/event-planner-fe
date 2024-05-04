@@ -33,6 +33,7 @@ export const useApiRequest = () => {
 			const response = await requestFunction();
 			setData(response.data);
 			setError(null);
+			return response;
 		} catch (error: any) {
 			setError(error);
 			setData(null);

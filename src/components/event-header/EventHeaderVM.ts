@@ -1,14 +1,14 @@
-import { useNavigate } from "react-router"
-import { useFetch } from "../../api/hooks/ApiHooks";
-import { SelectChangeEvent } from "@mui/material";
-import ROUTES from "../../routes/Routes";
-import classNames from "classnames";
-import { TAGS } from "../../themes/styles/Tag";
-import useTagAPI from "../../api/TagsAPI";
-import useAddressAPI from "../../api/AddressAPI";
-import { useDispatch, useSelector } from "react-redux";
-import { setDate, setEventTags, setLocation } from "../../redux/slices/FiltersSlice";
-import { StoreState } from "../../redux/store/Store";
+import { useNavigate } from 'react-router';
+import { useFetch } from '../../api/hooks/ApiHooks';
+import { SelectChangeEvent } from '@mui/material';
+import ROUTES from '../../routes/Routes';
+import classNames from 'classnames';
+import { TAGS } from '../../themes/styles/Tag';
+import useTagAPI from '../../api/TagsAPI';
+import useAddressAPI from '../../api/AddressAPI';
+import { useDispatch, useSelector } from 'react-redux';
+import { setDate, setEventTags, setLocation } from '../../redux/slices/FiltersSlice';
+import { StoreState } from '../../redux/store/Store';
 
 const EventHeaderVM = () => {
     const navigate = useNavigate();

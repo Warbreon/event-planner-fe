@@ -7,6 +7,7 @@ export const ENDPOINTS = {
 	getAllAdmins: '/users/admins',
 	demoteAdmin: (id: number | string) => `/users/admins/demote/${id}`,
 	getAllTags: '/tags',
+	getAllCities: '/addresses/cities',
 	authenticate: '/auth/authenticate',
 	refreshAccessToken: '/auth/refresh',
 };

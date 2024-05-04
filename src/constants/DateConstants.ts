@@ -1,6 +1,6 @@
 export const DATE_FILTER_OPTIONS = [
-    { value: 'year', label: 'This year' },
-    { value: 'month', label: 'This month' },
-    { value: 'week', label: 'This week' },
-    { value: 'today', label: 'Today' },
+    { value: '365', label: 'This year' },
+    { value: '30', label: 'This month' },
+    { value: '7', label: 'This week' },
+    { value: '1', label: 'Today' },
 ];

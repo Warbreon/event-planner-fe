@@ -26,6 +26,7 @@ import muiToolTipOptions from './mui-components/tool-tip/MuiToolTipOptions';
 import chechboxOptions from './mui-components/checkbox/CheckboxOptions';
 import listItemTextOptions from './mui-components/list-item/MuiListItemTextOptions';
 import listItemAvatarOptions from './mui-components/list-item/MuiListItemAvatarOptions';
+import muiAutocompleteOptions from './mui-components/autocomplete/AutocompleteOptions';
 import tableOptions from './mui-components/table/TableOptions';
 
 const projectTheme = createTheme({
@@ -56,6 +57,7 @@ const projectTheme = createTheme({
 		MuiCheckbox: chechboxOptions as MuiOptions,
 		MuiListItemText: listItemTextOptions as MuiOptions,
 		MuiListItemAvatar: listItemAvatarOptions as MuiOptions,
+		MuiAutocomplete: muiAutocompleteOptions as MuiOptions,
 		MuiTable: tableOptions as MuiOptions,
 	},
 });

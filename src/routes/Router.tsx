@@ -82,7 +82,7 @@ const router = createBrowserRouter([
 		),
 	},
 
-  {
+	{
 		path: ROUTES.FORGOT_PASSWORD,
 		element: (
 			<PublicRoutes>
@@ -91,7 +91,7 @@ const router = createBrowserRouter([
 		),
 	},
 
-  {
+	{
 		path: ROUTES.RESET_PASSWORD,
 		element: (
 			<PublicRoutes>

@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { StoreState } from '../redux/store/Store';
 import { isExpired } from 'react-jwt';
-import { usePost } from '../api/hooks/ApiHooks';
+import { useApiRequest } from '../api/hooks/ApiHooks';
 import { useNavigate } from 'react-router';
 import { refreshAccessToken, signOut } from '../redux/slices/AuthenticationSlice';
 import { useEffect } from 'react';
@@ -20,7 +20,7 @@ const useProtectedRouteVM = () => {
 	const navigate = useNavigate();
 
 	const { refresh } = useAuthenticationAPI();
-	const { postData } = usePost();
+	const { requestData: postData } = useApiRequest();
 
 	useEffect(() => {
 		const fetchNewAccessToken = async () => {

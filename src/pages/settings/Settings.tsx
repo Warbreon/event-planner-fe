@@ -8,7 +8,6 @@ import {
 	TableCell,
 	TableBody,
 	Paper,
-	Snackbar,
 } from '@mui/material';
 
 import styles from './Settings.module.css';

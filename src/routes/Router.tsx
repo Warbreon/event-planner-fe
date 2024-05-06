@@ -15,6 +15,7 @@ import TermOfService from '../pages/terms-of-service/TermOfService';
 import Support from '../pages/support/Support';
 import RootLayout from '../pages/main/RootLayout';
 import ProtectedRoute from './ProtectedRoute';
+import SystemAdminRoute from './SystemAdminRoute';
 import PublicRoutes from './PublicRoutes';
 
 const router = createBrowserRouter([
@@ -57,9 +58,9 @@ const router = createBrowserRouter([
 			{
 				path: ROUTES.SETTINGS,
 				element: (
-					<ProtectedRoute>
+					<SystemAdminRoute>
 						<Settings />
-					</ProtectedRoute>
+					</SystemAdminRoute>
 				),
 			},
 			{

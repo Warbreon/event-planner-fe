@@ -62,15 +62,17 @@ const NavigationSideBar: React.FC<NavigationSideBarProps> = (props) => {
 										handleClickOnNavButton={viewModel.handleClickOnNavButton}
 									/>
 								</ListItem>
-								<ListItem className={styles.navListItem} key='Settings' disablePadding>
-									<NavBarButton
-										buttonPage='Settings'
-										buttonPageRoute={routes.SETTINGS}
-										currentRoute={viewModel.currentRoute}
-										icon={<SettingsRoundedIcon />}
-										handleClickOnNavButton={viewModel.handleClickOnNavButton}
-									/>
-								</ListItem>
+								{viewModel.isUserAdmin && (
+									<ListItem className={styles.navListItem} key='Settings' disablePadding>
+										<NavBarButton
+											buttonPage='Settings'
+											buttonPageRoute={routes.SETTINGS}
+											currentRoute={viewModel.currentRoute}
+											icon={<SettingsRoundedIcon />}
+											handleClickOnNavButton={viewModel.handleClickOnNavButton}
+										/>
+									</ListItem>
+								)}
 							</>
 						)}
 					</List>

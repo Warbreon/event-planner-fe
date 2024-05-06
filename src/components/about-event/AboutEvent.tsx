@@ -3,7 +3,7 @@ import { Typography, Box, Divider, Chip } from '@mui/material';
 import { Attendee } from '../../models/Attendee';
 import Agenda from './agenda/Agenda';
 import Attending from './attending/Attending';
-import SectionHeader from '../shared/section-header/SectionHeader';
+import SectionHeader from '../../shared/components/section-header/SectionHeader';
 import { Tag } from '../../models/Tag';
 
 interface EventDetailsProps {

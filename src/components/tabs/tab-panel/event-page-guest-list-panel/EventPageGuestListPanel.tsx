@@ -22,7 +22,7 @@ type Props = {
 const EventPageGuestListPanel: FC<Props> = ({ attendees }) => {
 	const { onPlusButtonClick, onInputChange, onConfirmClick, onDeclineClick } = EventPageGuestListPanelVM();
 	return (
-		<>
+		<div className={styles.container}>
 			{attendees.length !== 0 && (
 				<Box className={styles.searchBar}>
 					<SearchBar
@@ -78,7 +78,7 @@ const EventPageGuestListPanel: FC<Props> = ({ attendees }) => {
 				styles={BUTTON_STYLES.LIGHT_GRAY_BOX}
 				onClick={onPlusButtonClick}
 			/>
-		</>
+		</div>
 	);
 };
 

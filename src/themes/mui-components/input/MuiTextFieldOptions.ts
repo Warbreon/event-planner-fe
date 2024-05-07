@@ -42,13 +42,13 @@ const muiTextFieldOptions = {
 				},
 			},
 			'&.event-price': {
-				width: '244px',
-				height: '40px',
+				width: '15.25rem',
 				'& input[type=number]::-webkit-inner-spin-button': {
 					'WebkitAppearance': 'none',
 				}
 			},
 			'&.event-tickets': {
+				width: '22rem',
 				'& input[type=number]::-webkit-inner-spin-button': {
 					'WebkitAppearance': 'none',
 				}

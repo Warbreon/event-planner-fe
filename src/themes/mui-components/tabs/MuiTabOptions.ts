@@ -23,9 +23,6 @@ const muiTabOptions = {
 					display: 'none',
 				},
 			},
-			'&.event-pricing': {
-				marginRight: '0.5rem',
-			}
 		},
 	},
 };

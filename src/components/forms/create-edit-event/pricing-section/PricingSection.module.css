@@ -1,10 +1,18 @@
 .container {
-    width: 22rem;
+    width: 100%;
+    margin-top: 3rem;
+    margin-bottom: 4rem;
 }
-.tabPanel {
+
+.pricing {
     display: flex;
     gap: 0.5rem;
+    margin-bottom: 1.5rem;
 }
 .dropdown {
     align-self: flex-end;
+}
+.tagsContainer {
+    margin-top: 1.5rem;
+    margin-bottom: 2rem;
 }

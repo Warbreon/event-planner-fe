@@ -95,6 +95,7 @@ export const eventFormSchema = Yup.object().shape({
             return true;
         }),
     price: Yup.number()
+        .min(0, 'The price can not be below 0')
         .max(10000, 'The price can not be above 10000')
         .required('Please enter a valid price')
         .test(

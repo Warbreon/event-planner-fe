@@ -7,13 +7,13 @@ const useEventAPI = () => {
 	const axios = useAxios();
 	const fetchEvents = (tagIds?: number[], days?: number, city?: string, name?: string) => {
 		const params: any = {
-			tagIds: tagIds && tagIds.length > 0 ? tagIds.join(",") : undefined, days, city, name
+			tagIds: tagIds?.length ?? 0 ? tagIds?.join(",") : undefined, days, city, name
 		};
 		return axios.get<Event[]>(ENDPOINTS.getEvents, { params });
 	}
 	const fetchPaginatedEvents = (tagIds?: number[], days?: number, city?: string, name?: string, page?: number, size?: number) => {
 		const params: any = {
-			tagIds: tagIds && tagIds.length > 0 ? tagIds.join(",") : undefined, days, city, name, page, size
+			tagIds: tagIds?.length ?? 0 ? tagIds?.join(",") : undefined, days, city, name, page, size
 		};
 		return axios.get<PaginatedResponse<Event>>(ENDPOINTS.getEvents, { params });
 	}

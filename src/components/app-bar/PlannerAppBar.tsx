@@ -19,18 +19,20 @@ import ROUTES from '../../routes/Routes';
 
 const profileSettings = ['Profile', 'Logout'];
 
-//Temporary number of notifs until we get it from backend.
-const fakeNumberOfNotifications = 12;
-
 const PlannerAppBar = () => {
-	const { pathname,
+	const {
+		userFirstName,
+		userImageUrl,
+		notificationCount,
+		pathname,
 		anchorUser,
 		handleClickOnNotifications,
 		handleOpenUserMenu,
 		handleCloseUserMenu,
 		searchValue,
 		handleSearchBarChange,
-		handleMenuOptions } = PlannerAppBarViewModel();
+		handleMenuOptions 
+	} = PlannerAppBarViewModel();
 
 	return (
 		<AppBar className={styles.appBar}>
@@ -51,8 +53,8 @@ const PlannerAppBar = () => {
 						</div>
 						<div className={styles.userActionsContainer}>
 							<IconButton className={styles.bellIconButton} onClick={handleClickOnNotifications}>
-								{fakeNumberOfNotifications > 0 ? (
-									<Badge badgeContent={fakeNumberOfNotifications} color='error'>
+								{notificationCount > 0 ? (
+									<Badge badgeContent={notificationCount} color='error'>
 										<NotificationsRoundedIcon className={styles.notifIcon} />
 									</Badge>
 								) : (
@@ -62,7 +64,7 @@ const PlannerAppBar = () => {
 							<div>
 								<Tooltip title='Open settings'>
 									<IconButton className={styles.iconButton} onClick={handleOpenUserMenu}>
-										<Avatar alt='Remy Sharp' src='https://thispersondoesnotexist.com/' />
+										<Avatar alt={userFirstName || 'Avatar'} src={userImageUrl || 'https://tweetdelete.net/resources/wp-content/uploads/2023/10/avatar-3814049_640.png'} />
 									</IconButton>
 								</Tooltip>
 								<Menu

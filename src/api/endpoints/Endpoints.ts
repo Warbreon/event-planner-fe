@@ -5,6 +5,7 @@ export const ENDPOINTS = {
 	createNewEvent: '/events/create/new',
 	getAllUsers: '/users/all',
 	getAllAdmins: '/users/admins',
+	getUserInfo: '/users/current/info',
 	demoteAdmin: (id: number | string) => `/users/admins/demote/${id}`,
 	getAllTags: '/tags',
 	getAllCities: '/addresses/cities',

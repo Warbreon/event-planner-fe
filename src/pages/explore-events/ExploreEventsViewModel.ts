@@ -13,9 +13,9 @@ const ExploreEventsVM = () => {
         return fetchPaginatedEvents(filters.eventTag, Number(filters.date), filters.location, filters.name, page, size);
     }, [filters.eventTag, filters.date, filters.location, filters.name]);
 
-    const { data: events, isLoading, error, loadMore, hasMore } = usePaginatedFetch(fetchFunction, initialPageSize, [filters]);
+    const { data: events, isLoading, error, loadMore, hasMore, notFound } = usePaginatedFetch(fetchFunction, initialPageSize, [filters]);
 
-    return { events, isLoading, error, loadMore, hasMore };
+    return { events, isLoading, error, loadMore, hasMore, notFound };
 };
 
 export default ExploreEventsVM;

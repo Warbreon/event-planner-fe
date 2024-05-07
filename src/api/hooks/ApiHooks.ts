@@ -56,11 +56,13 @@ export const usePaginatedFetch = <T>(
     const [hasMore, setHasMore] = useState<boolean>(true);
     const [isLoading, setIsLoading] = useState<boolean>(true);
     const [error, setError] = useState<string | null>(null);
+	const [notFound, setNotFound] = useState<string>('');
 
     const loadData = useCallback(async (currentPage: number) => {
         try {
             const response = await fetchFunction(currentPage, initialPageSize);
             const newData = response.data.content;
+			setNotFound(newData.length === 0 ? 'No events found' : '');
             setData(prevData => currentPage === 0 ? newData : [...prevData, ...newData]);
             setPage(currentPage);
             setHasMore(!response.data.last);
@@ -80,5 +82,5 @@ export const usePaginatedFetch = <T>(
         loadData(page + 1);
     }, [loadData, page]);
 
-    return { data, isLoading, error, hasMore, loadMore };
+    return { data, isLoading, error, hasMore, loadMore, notFound };
 }

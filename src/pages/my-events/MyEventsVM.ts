@@ -40,15 +40,15 @@ const useMyEventsVM = () => {
 
 	const chipOptions = [
 		{ id: 0, name: `I’m attending (${eventsAttending.length})` },
-		{ id: 0, name: `Created by me (${eventsCreated.length})` },
+		{ id: 1, name: `Created by me (${eventsCreated.length})` },
 	];
 
 	const getChipClassName = (isSelected: boolean) => {
 		return classNames(TAGS.SELECT_TAG, { [TAGS.TAG_SELECTED]: isSelected });
 	};
 
-	const handleTabChange = async (tabSelectedId: number) => {
-		tabSelectedId === 0 ? setCurrentTab(0) : setCurrentTab(1);
+	const handleTabChange = async (tabId: number) => {
+		setCurrentTab(tabId);
 	};
 
 	const onAddEventClick = () => {
@@ -66,8 +66,7 @@ const useMyEventsVM = () => {
 		if (currentUserRole === 'EVENT_ADMIN' || currentUserRole === 'SYSTEM_ADMIN') {
 			const response = await fetchData(() => fetchEventsCreatedByUser());
 			if (response) {
-				const { data } = response;
-				setEventsCreated(data);
+				setEventsCreated(response.data);
 			}
 		}
 	};

@@ -1,12 +1,15 @@
-import { useNavigate, useParams } from 'react-router';
+import { useParams } from 'react-router';
 import { calculateDuration, formatDate, formatTime } from '../../utils/DateConverter';
 import useEventAPI from '../../api/EventsAPI';
-import { useCallback, useEffect } from 'react';
-import { useFetch } from '../../api/hooks/ApiHooks';
+import { useCallback, useState } from 'react';
+import { useFetch, usePost } from '../../api/hooks/ApiHooks';
+import { useSelector } from 'react-redux';
+import { StoreState } from '../../redux/store/Store';
 
 const EventPageVM = () => {
 	const { eventId } = useParams();
-	const navigate = useNavigate();
+	const [isModalOpen, setModalOpen] = useState(false);
+	const userEmail = useSelector((state: StoreState) => state.user.email);
 
 	const { fetchEventById } = useEventAPI();
 
@@ -15,6 +18,9 @@ const EventPageVM = () => {
 	}, [eventId]);
 
 	const { data: event, isLoading, error } = useFetch(fetchFunction);
+
+	const { postData, isLoading: isRegistrationLoading, error: registrationError, data } = usePost();
+	const { registerToEvent } = useEventAPI();
 
 	const { eventStart = '', eventEnd = '', inviteUrl, address } = event || {};
 	const eventDate = formatDate(eventStart).toString();
@@ -29,19 +35,22 @@ const EventPageVM = () => {
 		location = address.city;
 	}
 
-	useEffect(() => {
-		if (error) {
-			navigate('/');
-		}
-	}, [error, navigate]);
-
 	const onAddGuestsClick = () => {
 		console.log('Add guest');
 	};
 
-	const onEventRegistrationClick = () => {
-		console.log('Registed/Get tickets/ Cancel registration');
+	const onEventRegistrationClick = async () => {
+		await postData(() => registerToEvent(userEmail, eventId!));
+
+		if (!registrationError && !isRegistrationLoading && data) {
+			setModalOpen(true);
+			console.log('Registed/Get tickets/ Cancel registration');
+		}
 	};
+
+	const handleModalClose = () => {
+		setModalOpen(false);
+	}
 
 	return {
 		onAddGuestsClick,
@@ -53,6 +62,10 @@ const EventPageVM = () => {
 		startTime,
 		endTime,
 		duration,
+		isModalOpen,
+		handleModalClose,
+		error,
+		isRegistrationLoading,
 	};
 };
 

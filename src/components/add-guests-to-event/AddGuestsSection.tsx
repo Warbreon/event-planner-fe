@@ -3,9 +3,9 @@ import { useFormikContext } from 'formik';
 import { BUTTON_STYLES } from '../../themes/styles/Button';
 import ToggleHeader from '../../shared/forms/elements/toggle-header/ToggleHeader';
 import useAddGuestsVM from './AddGuestsVM';
-import GenericButton, { ButtonTypes, IconButton } from '../buttons/ButtonComponent';
-import ModalComponent from '../modal/ModalComponent';
-import ButtonComponentGroup from '../buttons/buton-group/ButtonComponentGroup';
+import GenericButton, { ButtonTypes, IconButton } from '../../shared/components/buttons/ButtonComponent';
+import ModalComponent from '../../shared/components/modal/ModalComponent';
+import ButtonComponentGroup from '../../shared/components/buttons/buton-group/ButtonComponentGroup';
 import SelectGuests from './modal-content/SelectGuests';
 import { User } from '../../models/User';
 import DisplaySelectedGuests from './page-content/DisplaySelectedGuests';
@@ -31,6 +31,28 @@ const AddGuestsSection: FC<Props> = ({ users }) => {
 		onConfirm,
 		onDeleteClick,
 	} = useAddGuestsVM({ setFieldValue });
+
+	const footer = () => (
+		<>
+			<ButtonComponentGroup
+				buttons={[
+					{
+						label: 'Cancel',
+						onClick: onModalClose,
+						className: `${BUTTON_STYLES.OUTLINED_GREY_BORDER} ${BUTTON_STYLES.MODAL_BUTTON}`,
+					},
+					{
+						label: confirmButtonLabel,
+						onClick: onConfirm,
+						className: `${BUTTON_STYLES.BLACK_BACKGROUND} ${BUTTON_STYLES.MODAL_BUTTON}`,
+						type: ButtonTypes.submit,
+					},
+				]}
+				className={styles.footerContainer}
+			/>
+			<SnackbarComponent open={showError} message={errorMessage} severity={ALERT_SEVERITY.ERROR} />
+		</>
+	);
 
 	return (
 		<div>
@@ -59,17 +81,8 @@ const AddGuestsSection: FC<Props> = ({ users }) => {
 							handleClose={onModalClose}
 							isOpen={showModal}
 							content={<SelectGuests users={users} />}
-							footer={
-								<>
-									<ButtonComponentGroup
-										onCancel={onModalClose}
-										onConfirm={onConfirm}
-										closeButtonLabel='Cancel'
-										confirmButtonLabel={confirmButtonLabel}
-									/>
-									<SnackbarComponent open={showError} message={errorMessage} severity={ALERT_SEVERITY.ERROR} />
-								</>
-							}
+							footer={footer()}
+							showDivider
 						/>
 					)}
 				</>

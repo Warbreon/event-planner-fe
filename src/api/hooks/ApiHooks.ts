@@ -34,7 +34,7 @@ export const usePost = () => {
 			setData(response.data);
 			setError(null);
 		} catch (error: any) {
-			setError(error);
+			setError(error.message);
 			setData(null);
 			return error;
 		} finally {

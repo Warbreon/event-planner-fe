@@ -7,22 +7,49 @@ import Image from '../../components/image/Image';
 import TabComponent from '../../components/tabs/tabs-component/TabComponent';
 import EventDetailsPanel from '../../components/event-details-panel/EventDetailsPanel';
 import EventPageGuests from '../../components/guest-list/event-page/EventPageGuests';
-import GenericButton, { ButtonTypes, IconButton } from '../../components/buttons/ButtonComponent';
-import { BUTTON_STYLES } from '../../themes/styles/Button';
 import EventPageVM from './EventPageVM';
 import LoadingIndicator from '../../components/loading-indicator/LoadingIndicator';
 import RelatedEvents from '../../components/related-events/RelatedEvents';
+import RegisterModal from '../../shared/components/register-modal/RegisterModal';
+import SnackbarComponent, { ALERT_SEVERITY } from '../../components/snackbar/SnackbarComponent';
+import EventButton from '../../shared/components/buttons/event-button/EventButton';
+import { REGISTRATION_STATUS } from '../../models/RegistrationStatus';
 
 const Event = () => {
-
-	const { onAddGuestsClick, onEventRegistrationClick, event, isLoading, location, eventDate, startTime, endTime, duration } =
-		EventPageVM();
+	const {
+		onAddGuestsClick,
+		onEventRegistrationClick,
+		event,
+		isLoading,
+		location,
+		eventDate,
+		startTime,
+		endTime,
+		duration,
+		isModalOpen,
+		handleModalClose,
+		error,
+		isRegistrationLoading,
+	} = EventPageVM();
 
 	if (isLoading) {
 		return <LoadingIndicator />;
 	}
 
-	const { name = '', inviteUrl, address, imageUrl = '', attendees = [], price = 0, description = '', agenda = [], tags = [] } = event || {};
+	const {
+		name = '',
+		inviteUrl,
+		address,
+		imageUrl = '',
+		attendees = [],
+		price = 0,
+		description = '',
+		agenda = [],
+		tags = [],
+		isOpen: isOpenEvent = true,
+		currentUserRegistrationStatus = REGISTRATION_STATUS.DEFAULT,
+	} = event || {};
+
 	return (
 		<Container className={styles.eventContainer}>
 			<BreadCrumbComponent eventName={name} />
@@ -31,7 +58,7 @@ const Event = () => {
 					<Box component='section' className={styles.desciption}>
 						<DateLocationPrice date={eventDate} location={location} />
 						<PageHeader text={name} variant={HeaderVariant.EVENT_PAGE} />
-						<Divider className={styles.divider}/>
+						<Divider className={styles.divider} />
 						<EventPageGuests onAddGuests={onAddGuestsClick} attendees={attendees} />
 						<Image styles='event-page' imageUrl={imageUrl} />
 						<TabComponent description={description} tags={tags} agenda={agenda} attendees={attendees} />
@@ -48,12 +75,18 @@ const Event = () => {
 							address={address}
 							inviteUrl={inviteUrl}
 						/>
-						<GenericButton
-							type={ButtonTypes.button}
-							styles={BUTTON_STYLES.GRAY}
-							icon={IconButton.REGISTER}
+						<EventButton
+							currentUserRegistrationStatus={currentUserRegistrationStatus}
 							onClick={onEventRegistrationClick}
+							disabled={isRegistrationLoading}
 						/>
+						<RegisterModal
+							isOpen={isModalOpen}
+							isOpenEvent={isOpenEvent}
+							eventName={name}
+							onClose={handleModalClose}
+						/>
+						<SnackbarComponent open={!!error} message={error ?? ''} severity={ALERT_SEVERITY.ERROR} />
 					</Box>
 				</Grid>
 			</Grid>

@@ -1,4 +1,4 @@
-import GenericButton, { ButtonTypes } from '../../../components/buttons/ButtonComponent';
+import GenericButton, { ButtonTypes } from '../../../shared/components/buttons/ButtonComponent';
 import { Link } from 'react-router-dom';
 import { forgotPasswordSchema } from '../../../utils/schemas/ForgotPassword';
 import Form from '../../../shared/forms/formik/Form';

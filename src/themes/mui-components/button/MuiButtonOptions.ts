@@ -34,6 +34,14 @@ const muiButtonOptions = {
 				},
 			},
 
+			'&.black-background': {
+				color: COLORS.WHITE,
+				background: COLORS.BLACK,
+				'&:hover': {
+					background: COLORS.HOVER_BLACK,
+				},
+			},
+
 			'&.modal-button': {
 				height: '32px',
 				fontWeight: '500',

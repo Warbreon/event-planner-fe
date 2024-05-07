@@ -1,5 +1,5 @@
 import { Box, Grid } from '@mui/material';
-import GenericButton, { ButtonTypes } from '../../buttons/ButtonComponent';
+import GenericButton, { ButtonTypes } from '../../../shared/components/buttons/ButtonComponent';
 import GuestList from '../GuestList';
 import styles from './EventPageGuests.module.css';
 import { BUTTON_STYLES } from '../../../themes/styles/Button';

@@ -1,6 +1,6 @@
 
 import { FC } from "react";
-import { IconButton } from "../buttons/ButtonComponent"
+import { IconButton } from "../../shared/components/buttons/ButtonComponent"
 import { EventCard } from "../event-card/EventCard"
 import SectionHeader from "../../shared/components/section-header/SectionHeader"
 import { Event } from "../../models/Event";

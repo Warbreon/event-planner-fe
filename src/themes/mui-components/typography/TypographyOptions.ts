@@ -61,6 +61,12 @@ const typographyOptions: TypographyOptions = {
 		'&.error-mesage': {
 			color: COLORS.ERROR
 		},
+		'&.registration-modal': {
+			fontSize: '1rem',
+			lineHeight: '1.5rem',
+			color: COLORS.MEDIUM_DARK_GRAY,
+			textAlign: 'center',
+		},
 	},
 	
 	body2: {

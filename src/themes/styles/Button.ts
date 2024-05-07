@@ -13,4 +13,5 @@ export enum BUTTON_STYLES {
 	TEXT_ONLY = 'text-only',
 	UPLOAD_BUTTON = 'upload-button',
 	MODAL_BUTTON = 'modal-button',
+	BLACK_BACKGROUND = 'black-background',
 }

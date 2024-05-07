@@ -13,8 +13,8 @@ const useEventAPI = () => {
 		return axios.get<Event[]>(ENDPOINTS.getEvents, { params });
 	}
 	const fetchEventById = (id: number | string) => axios.get<Event>(ENDPOINTS.getEventById(id));
-	const registerToEvent = (userId: number | string, eventId: number | string) =>
-		axios.post(ENDPOINTS.registerToEvent, { userId, eventId });
+	const registerToEvent = (userEmail: string | string, eventId: number | string) =>
+		axios.post(ENDPOINTS.registerToEvent, { userEmail, eventId });
 
 	return { fetchEvents, fetchEventById, registerToEvent };
 };

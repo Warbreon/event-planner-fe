@@ -1,6 +1,6 @@
 import { useNavigate, useParams } from 'react-router';
 import { calculateDuration, formatDate, formatTime } from '../../utils/DateConverter';
-import { fetchEventById } from '../../api/EventApi';
+import useEventAPI from '../../api/EventsAPI';
 import { useCallback, useEffect } from 'react';
 import { useFetch } from '../../api/hooks/ApiHooks';
 
@@ -8,9 +8,11 @@ const EventPageVM = () => {
 	const { eventId } = useParams();
 	const navigate = useNavigate();
 
+	const { fetchEventById } = useEventAPI();
+
 	const fetchFunction = useCallback(() => {
 		return fetchEventById(Number(eventId));
-	}, [eventId])
+	}, [eventId]);
 
 	const { data: event, isLoading, error } = useFetch(fetchFunction);
 
@@ -19,7 +21,7 @@ const EventPageVM = () => {
 	const startTime = formatTime(eventStart);
 	const endTime = formatTime(eventEnd);
 	const duration = calculateDuration(eventStart, eventEnd);
-	
+
 	let location = 'TBD';
 	if (inviteUrl && !address) {
 		location = 'Online';
@@ -28,7 +30,7 @@ const EventPageVM = () => {
 	}
 
 	useEffect(() => {
-		if(error) {
+		if (error) {
 			navigate('/');
 		}
 	}, [error, navigate]);
@@ -41,7 +43,17 @@ const EventPageVM = () => {
 		console.log('Registed/Get tickets/ Cancel registration');
 	};
 
-	return { onAddGuestsClick, onEventRegistrationClick, event, isLoading, location, eventDate, startTime, endTime, duration};
+	return {
+		onAddGuestsClick,
+		onEventRegistrationClick,
+		event,
+		isLoading,
+		location,
+		eventDate,
+		startTime,
+		endTime,
+		duration,
+	};
 };
 
 export default EventPageVM;

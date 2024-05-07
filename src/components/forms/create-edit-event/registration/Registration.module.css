@@ -1,0 +1,19 @@
+.container {
+    padding-top: 1.5rem;
+    padding-bottom: 1rem;
+}
+
+.tagsContainer {
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.dateAndTimeContainer {
+    display: flex;
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.container .registrationMessage {
+    line-height: 2rem;
+}

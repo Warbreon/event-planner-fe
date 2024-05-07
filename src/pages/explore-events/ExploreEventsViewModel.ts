@@ -1,19 +1,21 @@
-import { useCallback, useState } from "react";
-import { EventFiltersState } from "./eventFiltersInterface";
+import { useCallback } from 'react';
+import useEventAPI from '../../api/EventsAPI';
+import { useFetch } from '../../api/hooks/ApiHooks';
+import { useSelector } from 'react-redux';
+import { StoreState } from '../../redux/store/Store';
 
 const ExploreEventsVM = () => {
-    const [filters, setFilters] = useState<EventFiltersState>({
-        eventTag: 'all',
-        date: 'year',
-        location: 'all',
-    });
+	const filters = useSelector((state: StoreState) => state.filters);
 
-    const handleFiltersChange = useCallback((newFilters: Partial<EventFiltersState>) => {
-        setFilters(prevFilters => ({ ...prevFilters, ...newFilters }));
-    }, []);
+    const { fetchEvents } = useEventAPI();
 
-    return { filters, handleFiltersChange };
+    const fetchFunction = useCallback(() => {
+        return fetchEvents(filters.eventTag, Number(filters.date), filters.location, filters.name);
+    }, [filters.eventTag, filters.date, filters.location, filters.name]);
 
-}
+    const { data: events, isLoading, error } = useFetch(fetchFunction);
+
+    return { events, isLoading, error };
+};
 
 export default ExploreEventsVM;

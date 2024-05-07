@@ -1,5 +1,6 @@
 export interface EventFiltersState {
-    eventTag: string;
+    eventTag: number[];
     date: string;
     location: string;
+    name: string;
 }

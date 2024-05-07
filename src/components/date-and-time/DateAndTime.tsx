@@ -14,7 +14,7 @@ const DateAndTime: React.FC<DateAndTimeProps> = ({ title, name }) => {
             {title && (
                 <Title
                     text={title}
-                    titleClassName='event-form-element'
+                    titleClassName='gray-font'
                 />
             )}
             <div className={styles.dateTimeContainer}>

@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { useField } from "formik";
 import Dropdown from "../../../../../components/dropdown/Dropdown";
-import { Box, SelectChangeEvent, Typography } from "@mui/material";
+import { SelectChangeEvent, Typography } from "@mui/material";
 import styles from "./FormikDropdown.module.css";
 
 interface FormikDropdownProps {
@@ -9,6 +9,7 @@ interface FormikDropdownProps {
   label?: string;
   options: Array<{ value: string; label: string }>;
   menuItemClassName?: string;
+  multiple?: boolean;
 }
 
 const FormikDropdown: FC<FormikDropdownProps> = ({
@@ -16,27 +17,31 @@ const FormikDropdown: FC<FormikDropdownProps> = ({
   label,
   options,
   menuItemClassName,
+  multiple,
 }) => {
-  const [field, , helpers] = useField(name);
+  const [field, , helpers] = useField<string | string[]>(name);
 
-  const handleChange = (event: SelectChangeEvent<string>) => {
-    helpers.setValue(event.target.value);
+  const handleChange = (event: SelectChangeEvent<string | string[]>) => {
+    const value = event.target.value;
+    helpers.setValue(multiple? value as string[] : value);
   };
+  const valueArray = multiple && Array.isArray(field.value) ? field.value : [];
 
   return (
-    <Box>
+    <div className={styles.container}>
       <Typography variant="body1" className="gray-font">
         {label}
       </Typography>
       <Dropdown
-        value={field.value}
+        multiple={multiple}
+        value={valueArray}
         onChange={handleChange}
         options={options}
         formControlClassName={styles.formControlClassName}
         selectClassName={styles.formControlClassName}
         menuItemClassName={menuItemClassName}
       />
-    </Box>
+    </div>
   );
 };
 

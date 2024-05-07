@@ -1,11 +1,12 @@
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import App from './app/App';
-import { BrowserRouter } from 'react-router-dom';
+import { RouterProvider } from 'react-router-dom';
 import { Provider } from 'react-redux';
-import { store } from './redux/store/Store';
+import { store, persistor } from './redux/store/Store';
+import { PersistGate } from 'redux-persist/integration/react';
 import { ThemeProvider } from '@emotion/react';
 import projectTheme from './themes/Theme';
+import router from './routes/Router';
 import {AdapterMoment} from "@mui/x-date-pickers/AdapterMoment";
 import {LocalizationProvider} from "@mui/x-date-pickers";
 
@@ -13,11 +14,11 @@ const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement)
 root.render(
 	<LocalizationProvider dateAdapter={AdapterMoment}>
 		<Provider store={store}>
-			<BrowserRouter>
+			<PersistGate loading={null} persistor={persistor}>
 				<ThemeProvider theme={projectTheme}>
-					<App />
+					<RouterProvider router={router} />
 				</ThemeProvider>
-			</BrowserRouter>
+			</PersistGate>
 		</Provider>
 	</LocalizationProvider>
 );

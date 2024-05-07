@@ -3,8 +3,9 @@ import { Box, Card, CardContent, Avatar, Typography } from '@mui/material';
 import { Attendee } from '../../../models/Attendee';
 import style from './Attending.module.css';
 import { IconButton } from '../../buttons/ButtonComponent';
-import SectionHeader from '../../shared/section-header/SectionHeader';
+import SectionHeader from '../../../shared/components/section-header/SectionHeader';
 import { filterAttendees } from '../../../utils/AttendeeFilter';
+import { AVATAR_STYLES } from '../../../themes/styles/Avatar';
 
 interface AttendingProps {
 	attendees: Attendee[];
@@ -27,7 +28,7 @@ const Attending: FC<AttendingProps> = ({ attendees }) => {
 					<Card key={attendee.id} className='userCard' elevation={0}>
 						<CardContent>
 							<Avatar
-								className='attendeeAvatar'
+								className={AVATAR_STYLES.ATTENDEE_AVATAR}
 								alt={`${attendee.user.firstName} ${attendee.user.lastName}`}
 								src={attendee.user.imageUrl}
 							/>

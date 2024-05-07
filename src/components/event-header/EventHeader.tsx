@@ -1,59 +1,21 @@
 import Title from '../title/Title';
-import { useNavigate } from 'react-router';
 import Dropdown from '../dropdown/Dropdown';
-import GenericButton from '../button/GenericButton';
-import ROUTES from '../../routes/Routes';
+import GenericButton, { ButtonTypes, IconButton } from '../buttons/ButtonComponent';
 import ChipSelector from '../chip-selector/ChipSelector';
 import styles from './EventHeader.module.css';
-import classNames from 'classnames';
-import { Add, KeyboardArrowDown } from '@mui/icons-material';
-import { EventFiltersState } from '../../pages/explore-events/eventFiltersInterface';
-import { SelectChangeEvent } from '@mui/material';
+import { KeyboardArrowDown } from '@mui/icons-material';
 import { DATE_FILTER_OPTIONS } from '../../constants/DateConstants';
+import { FC } from 'react';
+import EventHeaderVM from './EventHeaderVM';
+import LoadingIndicator from '../loading-indicator/LoadingIndicator';
 
-interface Props {
-	filters: EventFiltersState;
-	handleFiltersChange: (filters: Partial<EventFiltersState>) => void;
-}
+const EventHeader: FC = () => {
 
-const EventHeader: React.FC<Props> = ({ filters, handleFiltersChange }) => {
-	const navigate = useNavigate();
+	const { userName, filters, handleTagChange, handleDateChange, handleLocationChange, getChipClassName, selectedKeys, modifiedCities, modifiedEventTags, tagsError, tagsLoading, citiesError, citiesLoading, navigateToAddEvent } = 
+		EventHeaderVM();
 
-	// TODO: get name from redux later
-	const userName = 'John';
-
-	const eventTagsOptions = [
-		{ key: 'all', label: 'All events' },
-		{ key: 'news', label: 'News & Updates' },
-		{ key: 'meetup', label: 'Meetup' },
-		{ key: 'demo', label: 'Demo sessions' },
-		{ key: 'exhibition', label: 'Exhibition' },
-		{ key: 'party', label: 'Party' },
-	];
-
-	const locations = [
-		{ value: 'all', label: 'All Locations' },
-		{ value: 'online', label: 'Online' },
-		{ value: 'kaunas', label: 'Kaunas' },
-		{ value: 'vilnius', label: 'Vilnius' },
-		{ value: 'chicago', label: 'Chicago' },
-	];
-
-	const getChipClassName = (isSelected: boolean) => {
-		return classNames(styles.tagFilter, { [styles.tagFilterSelected]: isSelected });
-	};
-
-	const handleTagChange = (key: string) => {
-		handleFiltersChange({ eventTag: key });
-	};
-
-	const handleDateChange = (event: SelectChangeEvent<string>) => {
-		handleFiltersChange({ date: event.target.value });
-	};
-
-	const handleLocationChange = (event: SelectChangeEvent<string>) => {
-		handleFiltersChange({ location: event.target.value });
-	};
+	if (tagsError || citiesError) return <div className={styles.container}>{tagsError || citiesError}</div>;
+	if (tagsLoading || citiesLoading) return <LoadingIndicator />;
 
 	return (
 		<div className={styles.container}>
@@ -65,28 +27,27 @@ const EventHeader: React.FC<Props> = ({ filters, handleFiltersChange }) => {
 					subtitleClassName={styles.headerSubtitle}
 				/>
 				<GenericButton
-					text='Add event'
-					onClick={() => navigate(ROUTES.ADD_EVENT)}
-					className={styles.addEventButton}
-					buttonProps={{
-						startIcon: <Add />,
-					}}
+					title='Add event'
+					onClick={navigateToAddEvent}
+					styles={styles.addEventButton}
+					icon={IconButton.ADD_EVENT}
+					type={ButtonTypes.button}
 				/>
 			</div>
 			<div className={styles.filters}>
 				<ChipSelector
-					options={eventTagsOptions}
-					selectedKey={filters.eventTag}
+					options={modifiedEventTags || []}
+					selectedKeys={selectedKeys}
 					onSelect={handleTagChange}
 					getChipClassName={getChipClassName}
+					multiple={true}
 				/>
 				<div className={styles.dropdownFiltersContainer}>
-					<Dropdown
+				<Dropdown
 						value={filters.date}
 						onChange={handleDateChange}
 						options={DATE_FILTER_OPTIONS}
-						selectClassName={styles.dropdown}
-						menuItemClassName={styles.dropdownMenuItem}
+						selectClassName='event-header-dropdown'
 						selectProps={{
 							IconComponent: KeyboardArrowDown,
 						}}
@@ -94,8 +55,8 @@ const EventHeader: React.FC<Props> = ({ filters, handleFiltersChange }) => {
 					<Dropdown
 						value={filters.location}
 						onChange={handleLocationChange}
-						options={locations}
-						selectClassName={styles.dropdown}
+						options={modifiedCities}
+						selectClassName='event-header-dropdown'
 						selectProps={{
 							IconComponent: KeyboardArrowDown,
 						}}

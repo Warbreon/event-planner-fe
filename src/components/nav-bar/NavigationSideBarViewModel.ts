@@ -1,9 +1,9 @@
 import { useLocation, useNavigate } from 'react-router';
 import { useSelector } from 'react-redux';
-import { RootState } from '../../redux/store/Store';
+import { StoreState } from '../../redux/store/Store';
 
 const NavigationSideBarViewModel = () => {
-	const loggedInStatus = useSelector((state: RootState) => state.user.loggedIn);
+	const loggedInStatus = useSelector((state: StoreState) => state.user.signedIn);
 
 	const currentRoute = useLocation().pathname;
 

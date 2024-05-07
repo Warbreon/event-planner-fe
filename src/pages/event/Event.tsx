@@ -11,10 +11,9 @@ import GenericButton, { ButtonTypes, IconButton } from '../../components/buttons
 import { BUTTON_STYLES } from '../../themes/styles/Button';
 import EventPageVM from './EventPageVM';
 import LoadingIndicator from '../../components/loading-indicator/LoadingIndicator';
+import RelatedEvents from '../../components/related-events/RelatedEvents';
 
 const Event = () => {
-
-	const tags = ['Online', 'Meetup']
 
 	const { onAddGuestsClick, onEventRegistrationClick, event, isLoading, location, eventDate, startTime, endTime, duration } =
 		EventPageVM();
@@ -22,8 +21,8 @@ const Event = () => {
 	if (isLoading) {
 		return <LoadingIndicator />;
 	}
-	
-	const { name = '', inviteUrl, address, imageUrl = '', attendees = [], price = 0, description = '', agenda = [] } = event || {};
+
+	const { name = '', inviteUrl, address, imageUrl = '', attendees = [], price = 0, description = '', agenda = [], tags = [] } = event || {};
 	return (
 		<Container className={styles.eventContainer}>
 			<BreadCrumbComponent eventName={name} />
@@ -32,7 +31,7 @@ const Event = () => {
 					<Box component='section' className={styles.desciption}>
 						<DateLocationPrice date={eventDate} location={location} />
 						<PageHeader text={name} variant={HeaderVariant.EVENT_PAGE} />
-						<Divider />
+						<Divider className={styles.divider}/>
 						<EventPageGuests onAddGuests={onAddGuestsClick} attendees={attendees} />
 						<Image styles='event-page' imageUrl={imageUrl} />
 						<TabComponent description={description} tags={tags} agenda={agenda} attendees={attendees} />
@@ -59,7 +58,7 @@ const Event = () => {
 				</Grid>
 			</Grid>
 			<Box component='section' className={styles.moreEventsLikeThis}>
-				<h3>More events like this:</h3>
+				<RelatedEvents event={event} />
 			</Box>
 		</Container>
 	);

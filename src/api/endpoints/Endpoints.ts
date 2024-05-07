@@ -1,9 +1,13 @@
 export const ENDPOINTS = {
-    getAllEvents: "/events?userId=1",
-    getEventById: (id: number | string) => `/events/${id}?userId=1`,
-    registerToEvent: "/events/register",
-    createNewEvent: "/events/create/new",
-
-    authenticate: "/auth/authenticate",
-    refreshAccessToken: "/auth/refresh",
-}
+	getEvents: '/events',
+	getEventById: (id: number | string) => `/events/${id}`,
+	registerToEvent: '/attendee/register',
+	createNewEvent: '/events/create/new',
+	getAllUsers: '/users/all',
+	getAllAdmins: '/users/admins',
+	demoteAdmin: (id: number | string) => `/users/admins/demote/${id}`,
+	getAllTags: '/tags',
+	getAllCities: '/addresses/cities',
+	authenticate: '/auth/authenticate',
+	refreshAccessToken: '/auth/refresh',
+};

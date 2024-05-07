@@ -3,26 +3,30 @@ import React from 'react'
 
 type Props = {
     options: Array<{
-        key: string;
-        label: string;
+        id: number;
+        name: string;
         count?: number;
     }>;
-    selectedKey: string | null;
-    onSelect: (key: string) => void;
+    selectedKeys: number | number[];
+    onSelect: (key: number) => void;
     getChipClassName?: (isSelected: boolean) => string;
     chipProps?: ChipProps;
+    multiple: boolean;
 };
 
-const ChipSelector: React.FC<Props> = ({ options, selectedKey, onSelect, getChipClassName, chipProps }) => {
+const ChipSelector: React.FC<Props> = ({ options, selectedKeys, onSelect, getChipClassName, chipProps, multiple }) => {
+
+    const isSelected = (key: number): boolean => multiple && Array.isArray(selectedKeys) ? selectedKeys.includes(key) : selectedKeys === key;
+    
     return (
         <Stack direction="row" spacing={1}>
-            {options.map((option) => (
+            {options.map(option => (
                 <Chip
                     {...chipProps}
-                    key={option.key}
-                    label={option.count ? `${option.label} (${option.count})` : option.label}
-                    onClick={() => onSelect(option.key)}
-                    className={getChipClassName && getChipClassName(option.key === selectedKey)}
+                    key={option.id}
+                    label={option.count ? `${option.name} (${option.count})` : option.name}
+                    onClick={() => onSelect(option.id)}
+                    className={getChipClassName && getChipClassName(isSelected(option.id))}
                 />
             ))}
         </Stack>

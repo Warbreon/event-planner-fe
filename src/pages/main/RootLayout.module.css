@@ -1,0 +1,16 @@
+.contentContainer {
+	display: flex;
+	min-height: 100vh;
+	flex-direction: column;
+	justify-content: flex-start;
+}
+
+.footer {
+	margin-top: auto;
+}
+
+.mainContent {
+	/** Removing 128px of header + footer to give them space */
+	height: calc(100vh - 128px); 
+	overflow-y: auto;
+}

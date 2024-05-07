@@ -9,6 +9,5 @@ export const ENDPOINTS = {
 	getAllTags: '/tags',
 	authenticate: '/auth/authenticate',
 	refreshAccessToken: '/auth/refresh',
-	getAllCities: "/addresses/cities",
+	getAllCities: '/addresses/cities',
 };
-    

@@ -15,8 +15,8 @@ const enum SUBHEADER {
 }
 
 const useMyEventsVM = () => {
-	const [subheader, setSubheader] = useState<string>('');
-	const [isAdmin, setIsAdmin] = useState<boolean>(false);
+	const currentUserRole = useSelector((state: StoreState) => state.user.role);
+
 	const [currentTab, setCurrentTab] = useState<number>(0);
 
 	const [eventsAttending, setEventsAttending] = useState<Event[]>([]);
@@ -24,14 +24,31 @@ const useMyEventsVM = () => {
 
 	const navigate = useNavigate();
 
-	const currentUserRole = useSelector((state: StoreState) => state.user.role);
+	let subheader: string = '';
+	let isAdmin: boolean = false;
+	
+	switch (currentUserRole) {
+		case 'EVENT_ADMIN':
+		case 'SYSTEM_ADMIN':
+			subheader = SUBHEADER.ADMIN;
+			isAdmin = true;
+			break;
+		case 'USER':
+			subheader = SUBHEADER.USER;
+			isAdmin = false;
+	}
+
+	const chipOptions = [
+		{ id: 0, name: `I’m attending (${eventsAttending.length})` },
+		{ id: 0, name: `Created by me (${eventsCreated.length})` },
+	];
 
 	const getChipClassName = (isSelected: boolean) => {
 		return classNames(TAGS.SELECT_TAG, { [TAGS.TAG_SELECTED]: isSelected });
 	};
 
-	const handleTabChange = async (id: number) => {
-		id === 0 ? setCurrentTab(0) : setCurrentTab(1);
+	const handleTabChange = async (tabSelectedId: number) => {
+		tabSelectedId === 0 ? setCurrentTab(0) : setCurrentTab(1);
 	};
 
 	const onAddEventClick = () => {
@@ -40,18 +57,6 @@ const useMyEventsVM = () => {
 
 	const { fetchEventsUserAttending, fetchEventsCreatedByUser } = useEventAPI();
 	const { fetchData, isLoading, error } = useFetchConditionally();
-
-	
-
-	const setRoleAndSubheader = () => {
-		if (currentUserRole === 'EVENT_ADMIN' || currentUserRole === 'SYSTEM_ADMIN') {
-			setIsAdmin(true);
-			setSubheader(SUBHEADER.ADMIN);
-		} else if (currentUserRole === 'USER') {
-			setIsAdmin(false);
-			setSubheader(SUBHEADER.USER);
-		}
-	};
 
 	const fetchEvents = async () => {
 		const response = await fetchData(() => fetchEventsUserAttending());
@@ -68,18 +73,12 @@ const useMyEventsVM = () => {
 	};
 
 	useEffect(() => {
-		setRoleAndSubheader();
 		fetchEvents();
 	}, []);
 
-	const chipOptions = [
-		{ id: 0, name: `I’m attending (${eventsAttending.length})` },
-		{ id: 1, name: `Created by me (${eventsCreated.length})` },
-	];
-
 	return {
-		isAdmin,
 		subheader,
+		isAdmin,
 		currentTab,
 		eventsAttending,
 		eventsCreated,

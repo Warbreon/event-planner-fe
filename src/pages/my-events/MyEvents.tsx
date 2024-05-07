@@ -24,7 +24,11 @@ const MyEvents = () => {
 	} = useMyEventsVM();
 
 	if (error)
-		return <Container className={styles.myEventsPageContainer}>Something went wrong. Could not fetch event list...</Container>;
+		return (
+			<Container className={styles.myEventsPageContainer}>
+				Something went wrong. Could not fetch event list...
+			</Container>
+		);
 
 	if (isLoading) return <LoadingIndicator />;
 
@@ -51,9 +55,8 @@ const MyEvents = () => {
 				/>
 			)}
 
-			{currentTab === 0 && <EventList events={eventsAttending}/>}
-			{currentTab === 1 && <EventList events={eventsCreated} createdByUser={true} onAddEventClick={onAddEventClick}/>}
-
+			{currentTab === 0 && <EventList events={eventsAttending} />}
+			{currentTab === 1 && <EventList events={eventsCreated} createdByUser={true} onAddEventClick={onAddEventClick} />}
 		</Container>
 	);
 };

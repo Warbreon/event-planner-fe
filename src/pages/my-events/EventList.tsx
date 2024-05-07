@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { Divider, Box } from '@mui/material';
+import { Divider, Box, Typography } from '@mui/material';
 import EventCard from './EventCard';
 import styles from './EventList.module.css';
 import { Event } from '../../models/Event';
@@ -13,6 +13,10 @@ interface Props {
 }
 
 const EventList: FC<Props> = ({ events, createdByUser, onAddEventClick }) => {
+	if (events?.length === 0) {
+		return <Typography variant='body1'>No events to display...</Typography>;
+	}
+
 	return (
 		<Box className={styles.eventList}>
 			{events?.map((event, i) => (

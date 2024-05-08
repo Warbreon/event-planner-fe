@@ -63,7 +63,7 @@ const useMyEventsVM = () => {
 		const { data } = response;
 		setEventsAttending(data);
 
-		if (currentUserRole === 'EVENT_ADMIN' || currentUserRole === 'SYSTEM_ADMIN') {
+		if (isAdmin) {
 			const response = await fetchData(() => fetchEventsCreatedByUser());
 			if (response) {
 				setEventsCreated(response.data);

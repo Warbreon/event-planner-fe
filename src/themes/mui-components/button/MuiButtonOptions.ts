@@ -87,7 +87,7 @@ const muiButtonOptions = {
 			'&.light-gray-round-small': {
 				height: '32px',
 				width: '103px',
-				gap:'10px',
+				gap: '10px',
 				padding: '8px 24px 8px 24px',
 				borderRadius: '100px',
 				border: '1px solid ' + COLORS.GRAY_BORDER,
@@ -127,10 +127,14 @@ const muiButtonOptions = {
 				fontSize: '0.875rem',
 				'&:hover': {
 					background: COLORS.HOVER_LIGHT_GRAY,
-				}
-			}
-		}
-	}
+				},
+			},
+
+			'&.remove-admin-button': {
+				fontSize: '0.875rem',
+			},
+		},
+	},
 };
 
 export default muiButtonOptions;

@@ -33,6 +33,7 @@ const FormikTextField: FC<FormikTextFieldProps> = ({
 				error={meta.touched && Boolean(meta.error)}
 				className={textFieldClassName}
 				InputProps={{
+					...props.InputProps,
 					endAdornment: <ErrorTooltip title={meta.error} isVisible={meta.touched && Boolean(meta.error)} />,
 				}}
 			/>

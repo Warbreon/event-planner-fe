@@ -8,26 +8,30 @@ import { BUTTON_STYLES } from '../../themes/styles/Button';
 import LoadingIndicator from '../../components/loading-indicator/LoadingIndicator';
 
 const ExploreEvents = () => {
-	const { filters, handleFiltersChange, events, isLoading, error } = ExploreEventsVM();
+	const { events, isLoading, error, loadMore, hasMore, notFound } = ExploreEventsVM();
+	
 	if (isLoading) return <LoadingIndicator />;
 	if (error) return <Container className={styles.container}>{error}</Container>;
 
 	return (
 		<Container className={styles.container}>
-			<EventHeader filters={filters} handleFiltersChange={handleFiltersChange} />
+			<EventHeader />
 			<Box className={styles.eventsContainer}>
 				{events?.map((event) => (
 					<EventCard key={event.id} {...event} />
 				))}
+				{notFound && <p>{notFound}</p>}
 			</Box>
-			<Box className={styles.loadMore}>
-				<GenericButton
-					title='Load more events'
-					onClick={() => {}}
-					styles={BUTTON_STYLES.BLACK}
-					type={ButtonTypes.button}
-				/>
-			</Box>
+			{hasMore && (
+				<Box className={styles.loadMore}>
+					<GenericButton
+						title='Load more events'
+						onClick={loadMore}
+						styles={BUTTON_STYLES.BLACK}
+						type={ButtonTypes.button}
+					/>
+				</Box>
+			)}
 		</Container>
 	);
 };

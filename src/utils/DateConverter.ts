@@ -1,38 +1,35 @@
-import moment, { Moment } from "moment";
+import moment, { Moment } from 'moment';
 
 export const formatDate = (date: string): string => {
-	const options: Intl.DateTimeFormatOptions = { year: 'numeric', month: 'long', day: 'numeric' };
-	return new Date(date).toLocaleDateString('en-US', options)
+	return moment(date).format('MMMM D, YYYY');
 };
 
 export const formatDateAndTime = (dateTime: string): string => {
-	const options: Intl.DateTimeFormatOptions = {
-		year: 'numeric',
-		month: 'long',
-		day: 'numeric',
-		hour: 'numeric',
-		minute: 'numeric',
-	};
-	return new Date(dateTime).toLocaleDateString('en-US', options);
+	return moment(dateTime).format('MMMM D, YYYY h:mm A');
 };
 
 export const formatTime = (dateTimeString: string): string => {
-	const dateTime = new Date(dateTimeString);
-	const hours = dateTime.getHours().toString().padStart(2, '0');
-	const minutes = dateTime.getMinutes().toString().padStart(2, '0');
-	return `${hours}:${minutes}`;
+	return moment(dateTimeString).format('HH:mm');
 };
 
 export const calculateDuration = (startDateTimeString: string, endDateTimeString: string): string => {
-	const startDateTime = new Date(startDateTimeString);
-	const endDateTime = new Date(endDateTimeString);
-	const timeDifference = endDateTime.valueOf() - startDateTime.valueOf();
-	const hours = Math.floor(timeDifference / (1000 * 60 * 60));
-	const minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
-	if (minutes === 0) {
+	const startDateTime = moment(startDateTimeString);
+	const endDateTime = moment(endDateTimeString);
+	const duration = moment.duration(endDateTime.diff(startDateTime));
+	const hours = Math.floor(duration.asHours());
+	const minutes = Math.floor(duration.asMinutes()) % 60;
+
+	if (hours === 0) {
+		return `${minutes} minutes`;
+	} else if (hours === 1 && minutes === 0) {
+		return `${hours} hour`;
+	} else if (hours === 1 && minutes === 1) {
+		return `${hours} hour ${minutes} minute`;
+	} else if (hours === 1) {
+		return `${hours} hour ${minutes} minutes`;
+	} else if (minutes === 0) {
 		return `${hours} hours`;
-	}
-	if (minutes === 1) {
+	} else if (minutes === 1) {
 		return `${hours} hours ${minutes} minute`;
 	}
 
@@ -55,4 +52,44 @@ export const toDisplayTimeFormat = (time: Moment): string => {
 
 export const fromDisplayTimeFormat = (timeString: string): Moment => {
 	return moment(timeString, 'h:mm a');
+};
+
+export const isDateInThePast = (dateString: string) => {
+	return moment(dateString).isBefore(moment());
+};
+
+export const formatDifferenceInDays = (dateString: string) => {
+	const currentDate = moment();
+    const inputDate = moment(dateString);
+
+    const differenceInDays = currentDate.diff(inputDate, 'days');
+    const differenceInHours = currentDate.diff(inputDate, 'hours');
+    const differenceInMinutes = currentDate.diff(inputDate, 'minutes');
+
+    if (differenceInDays === 0) {
+        if (differenceInHours < 1) {
+            if (differenceInMinutes < 1) {
+                return `< 1 minute ago`;
+            }
+            if (differenceInMinutes === 1) {
+                return `1 minute ago`;
+            }
+            return `${differenceInMinutes} minutes ago`;
+        }
+
+        if (differenceInHours === 1) {
+            return `1 hour ago`;
+        }
+        return `${differenceInHours} hours ago`;
+    }
+
+    if (differenceInDays === 1) {
+        return `1 day ago`;
+    }
+
+    return `${differenceInDays} days ago`;
+};
+
+export const isNowBetween = (startDateString: string, endDateString: string) => {
+	return moment().isBetween(moment(startDateString), moment(endDateString));
 };

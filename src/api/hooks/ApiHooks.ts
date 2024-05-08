@@ -24,30 +24,11 @@ export const useFetch = <T>(fetchFunction: () => Promise<AxiosResponse<T>>) => {
 	return { data, isLoading, error };
 };
 
-// export const useFetchConditionally = () => {
-// 	const [isLoading, setIsLoading] = useState<boolean>(true);
-// 	const [error, setError] = useState<string | null>(null);
-// 	const fetchData = async <T>(fetchFunction: () => Promise<AxiosResponse<T>>) => {
-// 		try {
-// 			setIsLoading(true);
-// 			const response = await fetchFunction();
-// 			setError(null);
-// 			return response;
-// 		} catch (error: any) {
-// 			setError(error);
-// 			return error;
-// 		} finally {
-// 			setIsLoading(false);
-// 		}
-// 	};
-// 	return { fetchData, isLoading, error };
-// };
-
 export const useApiRequest = () => {
 	const [isLoading, setIsLoading] = useState<boolean>(false);
 	const [error, setError] = useState<string | null>(null);
 	const [data, setData] = useState<any>(null);
-	const requestData = async <T>(requestFunction: () => Promise<AxiosResponse<T>>) => {
+	const request = async <T>(requestFunction: () => Promise<AxiosResponse<T>>) => {
 		try {
 			setIsLoading(true);
 			const response = await requestFunction();
@@ -62,7 +43,7 @@ export const useApiRequest = () => {
 			setIsLoading(false);
 		}
 	};
-	return { requestData, isLoading, error, data };
+	return { request, isLoading, error, data };
 };
 
 export const usePaginatedFetch = <T>(

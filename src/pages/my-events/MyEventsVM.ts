@@ -4,7 +4,7 @@ import { StoreState } from '../../redux/store/Store';
 import classNames from 'classnames';
 import { TAGS } from '../../themes/styles/Tag';
 import useEventAPI from '../../api/EventsAPI';
-import { useFetchConditionally } from '../../api/hooks/ApiHooks';
+import { useApiRequest } from '../../api/hooks/ApiHooks';
 import { useNavigate } from 'react-router-dom';
 import ROUTES from '../../routes/Routes';
 import { Event } from '../../models/Event';
@@ -26,7 +26,7 @@ const useMyEventsVM = () => {
 
 	let subheader: string = '';
 	let isAdmin: boolean = false;
-	
+
 	switch (currentUserRole) {
 		case 'EVENT_ADMIN':
 		case 'SYSTEM_ADMIN':
@@ -56,7 +56,7 @@ const useMyEventsVM = () => {
 	};
 
 	const { fetchEventsUserAttending, fetchEventsCreatedByUser } = useEventAPI();
-	const { fetchData, isLoading, error } = useFetchConditionally();
+	const { request: fetchData, isLoading, error } = useApiRequest();
 
 	const fetchEvents = async () => {
 		const response = await fetchData(() => fetchEventsUserAttending());

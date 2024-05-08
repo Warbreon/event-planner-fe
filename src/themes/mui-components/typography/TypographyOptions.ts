@@ -26,6 +26,7 @@ const typographyOptions: TypographyOptions = {
 
 	h2: {
 		fontSize: '1.25rem',
+		lineHeight: '2rem',
 		fontWeight: 400,
 	},
 

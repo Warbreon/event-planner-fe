@@ -10,7 +10,7 @@ const SignInViewModel = () => {
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
 
-	const { requestData: postData, isLoading, error, data } = useApiRequest();
+	const { request: postData, isLoading, error, data } = useApiRequest();
 	const { authenticateUser } = useAuthenticationAPI();
 
 	const onSubmit = async (email: string, password: string) => {

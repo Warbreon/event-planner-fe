@@ -21,6 +21,16 @@ const useEventAPI = () => {
 	const registerToEvent = (userId: number | string, eventId: number | string) =>
 		axios.post(ENDPOINTS.registerToEvent, { userId, eventId });
 
-	return { fetchEvents, fetchPaginatedEvents, fetchEventById, registerToEvent };
+	const fetchEventsCreatedByUser = () => axios.get<Event[]>(ENDPOINTS.getEventsCreatedByUser);
+	const fetchEventsUserAttending = () => axios.get<Event[]>(ENDPOINTS.getEventsUserAttending);
+
+	return {
+		fetchEvents,
+		fetchEventById,
+		registerToEvent,
+		fetchEventsCreatedByUser,
+	 fetchEventsUserAttending,
+	 fetchPaginatedEvents
+	};
 };
 export default useEventAPI;

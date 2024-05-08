@@ -13,26 +13,26 @@ import RelatedEvents from '../../components/related-events/RelatedEvents';
 import RegisterModal from '../../shared/components/register-modal/RegisterModal';
 import SnackbarComponent, { ALERT_SEVERITY } from '../../components/snackbar/SnackbarComponent';
 import EventButton from '../../shared/components/buttons/event-button/EventButton';
-import { REGISTRATION_STATUS } from '../../models/RegistrationStatus';
 
 const Event = () => {
 	const {
 		onAddGuestsClick,
 		onEventRegistrationClick,
 		event,
-		isLoading,
+		isEventLoading,
 		location,
 		eventDate,
 		startTime,
 		endTime,
 		duration,
 		isModalOpen,
-		handleModalClose,
+		closeModal,
 		error,
 		isRegistrationLoading,
+		registrationStatus,
 	} = EventPageVM();
 
-	if (isLoading) {
+	if (isEventLoading) {
 		return <LoadingIndicator />;
 	}
 
@@ -47,7 +47,6 @@ const Event = () => {
 		agenda = [],
 		tags = [],
 		isOpen: isOpenEvent = true,
-		currentUserRegistrationStatus = REGISTRATION_STATUS.DEFAULT,
 	} = event || {};
 
 	return (
@@ -76,7 +75,7 @@ const Event = () => {
 							inviteUrl={inviteUrl}
 						/>
 						<EventButton
-							currentUserRegistrationStatus={currentUserRegistrationStatus}
+							currentUserRegistrationStatus={registrationStatus}
 							onClick={onEventRegistrationClick}
 							disabled={isRegistrationLoading}
 						/>
@@ -84,7 +83,7 @@ const Event = () => {
 							isOpen={isModalOpen}
 							isOpenEvent={isOpenEvent}
 							eventName={name}
-							onClose={handleModalClose}
+							onClose={closeModal}
 						/>
 						<SnackbarComponent open={!!error} message={error ?? ''} severity={ALERT_SEVERITY.ERROR} />
 					</Box>

@@ -21,7 +21,7 @@ export const EventCard: FC<Event> = ({
 	attendees,
 	inviteUrl,
 	isOpen: isOpenEvent,
-	currentUserRegistrationStatus,
+	currentUserRegistrationStatus
 }) => {
 	const {
 		getEventUrl,
@@ -29,10 +29,12 @@ export const EventCard: FC<Event> = ({
 		eventDate = '',
 		location,
 		isModalOpen,
-		handleModalClose,
+		closeModal,
 		registrationError,
 		isRegistrationLoading,
-	} = EventCardVM({ id, eventStart, address, inviteUrl });
+		registrationStatus,
+	} = EventCardVM({ id, eventStart, address, inviteUrl, currentUserRegistrationStatus, isOpen: isOpenEvent });
+	
 	return (
 		<Box className={styles.container}>
 			<Card className={styles.card}>
@@ -51,7 +53,7 @@ export const EventCard: FC<Event> = ({
 					</CardContent>
 				</Link>
 				<EventButton
-					currentUserRegistrationStatus={currentUserRegistrationStatus}
+					currentUserRegistrationStatus={registrationStatus}
 					onClick={onEventRegistrationClick}
 					disabled={isRegistrationLoading}
 				/>
@@ -60,7 +62,7 @@ export const EventCard: FC<Event> = ({
 				isOpen={isModalOpen}
 				isOpenEvent={isOpenEvent}
 				eventName={name}
-				onClose={handleModalClose}
+				onClose={closeModal}
 			/>
 			<SnackbarComponent open={!!registrationError} message={registrationError ?? ''} severity={ALERT_SEVERITY.ERROR} />
 		</Box>

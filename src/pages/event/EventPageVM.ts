@@ -1,32 +1,25 @@
 import { useParams } from 'react-router';
 import { calculateDuration, formatDate, formatTime } from '../../utils/DateConverter';
 import useEventAPI from '../../api/EventsAPI';
-import { useCallback, useState } from 'react';
-import { useFetch, usePost } from '../../api/hooks/ApiHooks';
-import { useSelector } from 'react-redux';
-import { StoreState } from '../../redux/store/Store';
+import { useCallback, useEffect, useState } from 'react';
+import { useFetch } from '../../api/hooks/ApiHooks';
+import useRegistration from '../../hooks/UseRegistration';
 
 const EventPageVM = () => {
 	const { eventId } = useParams();
-	const [isModalOpen, setModalOpen] = useState(false);
-	const userEmail = useSelector((state: StoreState) => state.user.email);
-
 	const { fetchEventById } = useEventAPI();
+	const [currentError, setCurrentError] = useState('');
 
-	const fetchFunction = useCallback(() => {
-		return fetchEventById(Number(eventId));
-	}, [eventId]);
+	const fetchFunction = useCallback(() => fetchEventById(Number(eventId)), [eventId]);
+	const { data: event, isLoading: isEventLoading, error: eventError } = useFetch(fetchFunction);
 
-	const { data: event, isLoading, error } = useFetch(fetchFunction);
-
-	const { postData, isLoading: isRegistrationLoading, error: registrationError, data } = usePost();
-	const { registerToEvent } = useEventAPI();
-
-	const { eventStart = '', eventEnd = '', inviteUrl, address } = event || {};
-	const eventDate = formatDate(eventStart).toString();
-	const startTime = formatTime(eventStart);
-	const endTime = formatTime(eventEnd);
-	const duration = calculateDuration(eventStart, eventEnd);
+	const { eventStart = '', eventEnd = '', inviteUrl, address, currentUserRegistrationStatus, isOpen } = event || {};
+	const eventDetails = {
+		eventDate: formatDate(eventStart),
+		startTime: formatTime(eventStart),
+		endTime: formatTime(eventEnd),
+		duration: calculateDuration(eventStart, eventEnd),
+	};
 
 	let location = 'TBD';
 	if (inviteUrl && !address) {
@@ -35,37 +28,44 @@ const EventPageVM = () => {
 		location = address.city;
 	}
 
+	const {
+		isModalOpen,
+		isLoading: isRegistrationLoading,
+		error: registrationError,
+		registrationStatus,
+		register,
+		closeModal,
+	} = useRegistration({
+		eventId: Number(eventId),
+		initialRegistrationStatus: currentUserRegistrationStatus ?? null,
+		isEventOpen: Boolean(isOpen)
+	});
+
+	useEffect(() => {
+		if (eventError || registrationError) {
+			setCurrentError(eventError || registrationError || '');
+		}
+	}, [eventError, registrationError]);
+
 	const onAddGuestsClick = () => {
 		console.log('Add guest');
 	};
 
-	const onEventRegistrationClick = async () => {
-		await postData(() => registerToEvent(userEmail, eventId!));
-
-		if (!registrationError && !isRegistrationLoading && data) {
-			setModalOpen(true);
-			console.log('Registed/Get tickets/ Cancel registration');
-		}
-	};
-
-	const handleModalClose = () => {
-		setModalOpen(false);
-	}
+	const onEventRegistrationClick = () => register();
 
 	return {
-		onAddGuestsClick,
 		onEventRegistrationClick,
 		event,
-		isLoading,
-		location,
-		eventDate,
-		startTime,
-		endTime,
-		duration,
+		isEventLoading,
+		error: currentError,
+		registrationError,
 		isModalOpen,
-		handleModalClose,
-		error,
+		closeModal,
+		onAddGuestsClick,
+		registrationStatus,
 		isRegistrationLoading,
+		location,
+		...eventDetails,
 	};
 };
 

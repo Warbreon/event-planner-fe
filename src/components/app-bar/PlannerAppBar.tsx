@@ -16,6 +16,7 @@ import SearchRoundedIcon from '@mui/icons-material/SearchRounded';
 import { ICON_STYLES } from '../../themes/styles/Icon';
 import { TEXTFIELD_STYLES } from '../../themes/styles/TextField';
 import ROUTES from '../../routes/Routes';
+import { AccountCircle } from '@mui/icons-material';
 
 const profileSettings = ['Profile', 'Logout'];
 
@@ -64,7 +65,7 @@ const PlannerAppBar = () => {
 							<div>
 								<Tooltip title='Open settings'>
 									<IconButton className={styles.iconButton} onClick={handleOpenUserMenu}>
-										<Avatar alt={userFirstName || 'Avatar'} src={userImageUrl || 'https://tweetdelete.net/resources/wp-content/uploads/2023/10/avatar-3814049_640.png'} />
+										{userImageUrl ? <Avatar alt={userFirstName || 'Avatar'} src={userImageUrl} /> : <AccountCircle />}
 									</IconButton>
 								</Tooltip>
 								<Menu

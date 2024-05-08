@@ -1,6 +1,6 @@
-import { REGISTRATION_STATUS } from "../../../../models/RegistrationStatus";
-import { BUTTON_STYLES } from "../../../../themes/styles/Button";
-import { IconButton } from "../ButtonComponent";
+import { REGISTRATION_STATUS } from '../../../../models/RegistrationStatus';
+import { BUTTON_STYLES } from '../../../../themes/styles/Button';
+import { IconButton } from '../ButtonComponent';
 
 interface ButtonConfig {
     icon: IconButton;

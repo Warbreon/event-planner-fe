@@ -1,6 +1,6 @@
-import { REGISTRATION_STATUS } from "../../../../models/RegistrationStatus";
-import GenericButton, { ButtonTypes } from "../ButtonComponent"
-import EventButtonVM from "./EventButtonVM";
+import { REGISTRATION_STATUS } from '../../../../models/RegistrationStatus';
+import GenericButton, { ButtonTypes } from '../ButtonComponent';
+import EventButtonVM from './EventButtonVM';
 
 interface Props {
     onClick: () => void;

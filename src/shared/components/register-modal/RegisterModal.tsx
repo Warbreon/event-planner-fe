@@ -1,10 +1,10 @@
-import { Typography } from "@mui/material"
-import { FC } from "react";
+import { Typography } from '@mui/material';
+import { FC } from 'react';
 import styles from './RegisterModel.module.css';
-import ButtonComponentGroup from "../buttons/buton-group/ButtonComponentGroup";
-import { BUTTON_STYLES } from "../../../themes/styles/Button";
-import ModalComponent from "../modal/ModalComponent";
-import { CheckCircle, ForwardToInbox } from "@mui/icons-material";
+import ButtonComponentGroup from '../buttons/buton-group/ButtonComponentGroup';
+import { BUTTON_STYLES } from '../../../themes/styles/Button';
+import ModalComponent from '../modal/ModalComponent';
+import { CheckCircle, ForwardToInbox } from '@mui/icons-material';
 
 interface Props {
     isOpen: boolean;
@@ -20,14 +20,14 @@ const RegisterModal: FC<Props> = ({
     onClose,
 }) => {
     const title = isOpenEvent ? "Congrats, you're going!" : "Your enquiry have been sent";
-    const confirmButtonLabel = isOpenEvent ? "Done" : "Got it";
+    const confirmButtonLabel = isOpenEvent ? 'Done' : 'Got it';
     const icon = isOpenEvent ? <CheckCircle color='secondary' className='modal-icon' /> : <ForwardToInbox color='secondary' className='modal-icon' />;
     const message = isOpenEvent ? (
-        <Typography variant="body1" className={`registration-modal ${styles.contentTextContainer}`}>
+        <Typography variant='body1' className={`registration-modal ${styles.contentTextContainer}`}>
             You registered to <span className={styles.boldedOpenEventMessage}>{eventName}</span>. See you soon!
         </Typography>
     ) : (
-        <Typography variant="body1" className={`registration-modal ${styles.contentTextContainer}`}>
+        <Typography variant='body1' className={`registration-modal ${styles.contentTextContainer}`}>
             Thanks for your interest in {eventName}. Registration to this event <span className={styles.boldedClosedEventMessage}>must be approved by event organizer first</span>. Please wait for an email confirmation.
         </Typography>
     )

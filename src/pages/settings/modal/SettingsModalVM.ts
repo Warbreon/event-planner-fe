@@ -10,10 +10,10 @@ const SettingsModalVM = () => {
 	const [showError, setShowError] = useState<boolean>(false);
 	const [errorMessage, setErrorMessage] = useState<string>('');
 
-	const { fetchUsers } = useUserAPI();
+	const { fetchNonAdminUsers } = useUserAPI();
 
 	const fetchUsersFunction = useCallback(() => {
-		return fetchUsers();
+		return fetchNonAdminUsers();
 	}, []);
 
 	const { data: userList, isLoading, error } = useFetch(fetchUsersFunction);

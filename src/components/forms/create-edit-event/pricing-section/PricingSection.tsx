@@ -19,7 +19,7 @@ const PricingSection = () => {
         handleTagChange,
         selectedTag,
         pricingTagOptions,
-        pricingMessage,
+        pricingOption,
         getChipClassName,
         currencies,
         disableWheelAndArrowKeys,
@@ -37,7 +37,7 @@ const PricingSection = () => {
                     multiple={false}
                 />
             </div>
-            {(pricingMessage === 'Paid') && (
+            {(pricingOption === 'Paid') && (
                     <Box className={styles.pricing}>
                         <FormikTextField
                             name='price'

@@ -47,7 +47,7 @@ const PricingSectionVM = ({setFieldValue, isOpen}:Props) => {
         { value: 'gbp', label: 'GBP' },
     ];
 
-    const pricingMessage = selectedTag === 1
+    const pricingOption = selectedTag === 1
         ? 'Paid'
         : 'Free of charge';
 
@@ -55,7 +55,7 @@ const PricingSectionVM = ({setFieldValue, isOpen}:Props) => {
         return classNames([TAGS.SELECT_TAG], { [TAGS.TAG_SELECTED]: isSelected });
     };
 
-    return { inputValue, currency, handleInputChange, handleCurrencyChange, currencies, handleTagChange, selectedTag,pricingTagOptions, pricingMessage, getChipClassName, disableWheelAndArrowKeys}
+    return { inputValue, currency, handleInputChange, handleCurrencyChange, currencies, handleTagChange, selectedTag,pricingTagOptions, pricingOption, getChipClassName, disableWheelAndArrowKeys}
 }
 
 export default PricingSectionVM

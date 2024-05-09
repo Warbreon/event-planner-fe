@@ -30,6 +30,7 @@ const EventFormVM = () => {
         registrationEndTime: null,
         attendees: [],
         locationKey: LocationTags.PHYSICAL,
+        about: '',
     };
 
     const determineLocationKey = (values: EventFormValues) => {
@@ -70,7 +71,8 @@ const EventFormVM = () => {
             isOpen: values.isOpen,
             addressId: values.addressId,
             inviteUrl: values.inviteUrl,
-            attendees: values.attendees
+            attendees: values.attendees,
+            about: values.about,
         };
 
         console.log(submitValues);

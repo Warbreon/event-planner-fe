@@ -14,6 +14,7 @@ import Location from './location/Location'
 import AgendaSection from './formik-elements/agenda-section/AgendaSection';
 import Registration from './registration/Registration';
 import AddGuestsSection from '../../add-guests-to-event/AddGuestsSection';
+import About from "./about/About";
 
 const EventForm = () => {
 	const { initialValues, onSubmit, handleCancelOnClick, users } = EventFormVM();
@@ -23,7 +24,7 @@ const EventForm = () => {
 			<div className={styles.pageHeader}>
 				<PageHeader text='Add new event' />
 			</div>
-			<Form initialValues={initialValues} validationSchema={eventFormSchema} onSubmit={onSubmit}>
+			<Form initialValues={initialValues} validationSchema={eventFormSchema} onSubmit={console.log}>
 				<div className={styles.formContainer}>
 					<FormikDropzone name='imageUrl' containerStyles={styles.eventMainImage} buttonStyles={styles.uploadButton} />
 					<div className={styles.mainFormContainer}>
@@ -34,6 +35,8 @@ const EventForm = () => {
 						<Location />
 						<Divider className={styles.divider} />
 						<Media />
+						<Divider className={styles.divider} />
+						<About/>
 						<Divider className={styles.divider} />
 						<AgendaSection agenda={initialValues.agenda} />
 						<Divider className={styles.divider} />

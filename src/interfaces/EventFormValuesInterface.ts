@@ -20,4 +20,5 @@ export interface EventFormValues {
     inviteUrl: string | null;
     locationKey: number;
     attendees: number[];
+    about: string;
 }

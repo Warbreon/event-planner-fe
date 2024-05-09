@@ -61,6 +61,11 @@ const typographyOptions: TypographyOptions = {
 		'&.error-mesage': {
 			color: COLORS.ERROR
 		},
+		'&.create-event-description': {
+			paddingTop: '1.5rem',
+			paddingBottom: '0.5rem',
+			color: COLORS.MEDIUM_DARK_GRAY,
+		},
 	},
 	
 	body2: {
@@ -77,7 +82,7 @@ const typographyOptions: TypographyOptions = {
 			textTransform: 'capitalize',
 			textAlign: 'right',
 			color: COLORS.MEDIUM_DARK_GRAY,
-		}
+		},
 	}
 };
 

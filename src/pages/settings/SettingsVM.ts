@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from 'react';
 
-import useUserAPI from '../../api/UsersAPI';
+import useUserAPI from '../../api/UserAPI';
 import { useApiRequest, useFetch } from '../../api/hooks/ApiHooks';
 import { ALERT_SEVERITY } from '../../components/snackbar/SnackbarComponent';
 
@@ -9,24 +9,23 @@ const SettingsVM = () => {
 	const [snackbarText, setText] = useState('');
 	const [snackbarSeverity, setSeverity] = useState(ALERT_SEVERITY.SUCCESS);
 	const [demotionInProgress, setDemotionInProgress] = useState(false);
-
 	const handleSnackbarClose = () => {
 		setOpen(false);
 	};
 
-	const { fetchAdmins, demoteAdmin } = useUserAPI();
+	const { fetchAdmins, demoteAdmins } = useUserAPI();
 
-	const fetchFunction = useCallback(() => {
+	const fetchAdminsFunction = useCallback(() => {
 		return fetchAdmins();
 	}, [demotionInProgress]);
 
-	const { data: adminList, isLoading, error } = useFetch(fetchFunction);
+	const { data: adminList, isLoading, error } = useFetch(fetchAdminsFunction);
 
 	const { requestData: patchData, isLoading: patchIsLoading, error: patchError } = useApiRequest();
 
 	const handleRemoveClick = async (id: number | string) => {
 		setDemotionInProgress(true);
-		await patchData(() => demoteAdmin(id));
+		await patchData(() => demoteAdmins([id]));
 	};
 
 	useEffect(() => {

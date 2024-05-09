@@ -21,6 +21,7 @@ import PageHeader from '../../components/headers/page-headers/PageHeader';
 import { LIST_ITEM_STYLES } from '../../themes/styles/ListItem';
 import { AVATAR_STYLES } from '../../themes/styles/Avatar';
 import SnackbarComponent from '../../components/snackbar/SnackbarComponent';
+import SettingsModal from './modal/SettingsModal';
 
 const Settings = () => {
 	const {
@@ -96,6 +97,7 @@ const Settings = () => {
 						styles={BUTTON_STYLES.LIGHT_GRAY_BOX}
 						onClick={() => null}
 					/>
+					<SettingsModal />
 					<SnackbarComponent
 						open={snackbarOpen}
 						autoHideDuration={5000}

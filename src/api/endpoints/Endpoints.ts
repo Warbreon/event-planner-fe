@@ -5,7 +5,7 @@ export const ENDPOINTS = {
 	createNewEvent: '/events/create/new',
 	getAllUsers: '/users/all',
 	getAllAdmins: '/users/admins',
-	demoteAdmin: (id: number | string) => `/users/admins/demote/${id}`,
+	demoteAdmin: `/users/admins/demote`,
 	getAllTags: '/tags',
 	getAllCities: '/addresses/cities',
 	authenticate: '/auth/authenticate',

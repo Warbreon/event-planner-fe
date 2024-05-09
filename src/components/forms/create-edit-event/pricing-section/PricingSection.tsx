@@ -1,14 +1,14 @@
 import {Box, Typography} from '@mui/material';
-import FormikTextField from "../../../../shared/forms/elements/formik-elements/text-field/FormikTextField";
-import {TEXTFIELD_STYLES} from "../../../../themes/styles/TextField";
-import Dropdown from "../../../dropdown/Dropdown";
-import {TYPOGRAPHY_STYLES} from "../../../../themes/styles/Typography";
-import styles from "./PricingSection.module.css";
-import PricingSectionVM from "./PricingSectionVM";
-import ChipSelector from "../../../chip-selector/ChipSelector";
-import {useFormikContext} from "formik";
-import {EventFormValues} from "../../../../interfaces/EventFormValuesInterface";
-import PageHeader from "../../../headers/page-headers/PageHeader";
+import FormikTextField from '../../../../shared/forms/elements/formik-elements/text-field/FormikTextField';
+import {TEXTFIELD_STYLES} from '../../../../themes/styles/TextField';
+import Dropdown from '../../../dropdown/Dropdown';
+import {TYPOGRAPHY_STYLES} from '../../../../themes/styles/Typography';
+import styles from './PricingSection.module.css';
+import PricingSectionVM from './PricingSectionVM';
+import ChipSelector from '../../../chip-selector/ChipSelector';
+import {useFormikContext} from 'formik';
+import {EventFormValues} from '../../../../interfaces/EventFormValuesInterface';
+import PageHeader from '../../../headers/page-headers/PageHeader';
 const PricingSection = () => {
     const { setFieldValue, values } = useFormikContext<EventFormValues>();
     const {
@@ -21,7 +21,9 @@ const PricingSection = () => {
         pricingTagOptions,
         pricingMessage,
         getChipClassName,
-        currencies } = PricingSectionVM({ setFieldValue, isOpen: values.isOpen });
+        currencies,
+        disableWheelAndArrowKeys,
+    } = PricingSectionVM({ setFieldValue, isOpen: values.isOpen });
 
     return (
         <div className={styles.container}>
@@ -35,7 +37,7 @@ const PricingSection = () => {
                     multiple={false}
                 />
             </div>
-            {(pricingMessage === 'Paid') ? (
+            {(pricingMessage === 'Paid') && (
                     <Box className={styles.pricing}>
                         <FormikTextField
                             name='price'
@@ -46,6 +48,7 @@ const PricingSection = () => {
                             type='number'
                             value={inputValue}
                             onInput={handleInputChange}
+                            onFocus={disableWheelAndArrowKeys}
                         />
                         <Box className={styles.dropdown}>
                             <Typography variant='body1' className={TYPOGRAPHY_STYLES.EVENT_PRICE_SECTION}>
@@ -59,7 +62,7 @@ const PricingSection = () => {
                             />
                         </Box>
                     </Box>
-                ) : null}
+                )}
             <FormikTextField
                 name='tickets'
                 type='number'
@@ -67,6 +70,7 @@ const PricingSection = () => {
                 placeholder='Please a ticket amount'
                 titleClassName={TYPOGRAPHY_STYLES.EVENT_PRICE_SECTION}
                 textFieldClassName={TEXTFIELD_STYLES.EVENT_TICKETS}
+                onFocus={disableWheelAndArrowKeys}
             />
         </div>
     );

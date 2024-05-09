@@ -14,7 +14,7 @@ import Location from './location/Location'
 import AgendaSection from './formik-elements/agenda-section/AgendaSection';
 import Registration from './registration/Registration';
 import AddGuestsSection from '../../add-guests-to-event/AddGuestsSection';
-import PricingSection from "./pricing-section/PricingSection";
+import PricingSection from './pricing-section/PricingSection';
 
 const EventForm = () => {
 	const { initialValues, onSubmit, handleCancelOnClick, users } = EventFormVM();

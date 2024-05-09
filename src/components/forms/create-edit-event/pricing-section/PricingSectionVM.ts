@@ -1,7 +1,7 @@
 import {useState} from 'react';
 import {SelectChangeEvent} from '@mui/material';
-import classNames from "classnames";
-import {TAGS} from "../../../../themes/styles/Tag";
+import classNames from 'classnames';
+import {TAGS} from '../../../../themes/styles/Tag';
 
 interface Props {
     setFieldValue: (field: string, value: any, shouldValidate?: boolean) => void;
@@ -23,12 +23,21 @@ const PricingSectionVM = ({setFieldValue, isOpen}:Props) => {
         setInputValue(0);
         setFieldValue('price', 0);
     };
+    const disableWheelAndArrowKeys= (e:React.FocusEvent<HTMLInputElement>) => {
+        e.target.addEventListener("wheel", function (e) { e.preventDefault() }/*, { passive: false }*/);
+        e.target.addEventListener("keydown",function (e:KeyboardEvent) {
+            if (e.key == 'ArrowUp') {e.preventDefault();}
+            else if (e.key == 'ArrowDown') {e.preventDefault();}
+            else if (e.key == '-') {e.preventDefault();}});
+    }
+
 
     const handleInputChange = (event: any) => {
         const inputValue = event.target.value;
         setInputValue(inputValue);
     };
     const handleCurrencyChange = (event: SelectChangeEvent<string>) => {
+        setFieldValue('currency', event.target.value);
         setCurrency(event.target.value);
     };
 
@@ -46,7 +55,7 @@ const PricingSectionVM = ({setFieldValue, isOpen}:Props) => {
         return classNames([TAGS.SELECT_TAG], { [TAGS.TAG_SELECTED]: isSelected });
     };
 
-    return { inputValue, currency, handleInputChange, handleCurrencyChange, currencies, handleTagChange, selectedTag,pricingTagOptions, pricingMessage, getChipClassName}
+    return { inputValue, currency, handleInputChange, handleCurrencyChange, currencies, handleTagChange, selectedTag,pricingTagOptions, pricingMessage, getChipClassName, disableWheelAndArrowKeys}
 }
 
 export default PricingSectionVM

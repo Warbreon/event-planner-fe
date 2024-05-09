@@ -21,5 +21,6 @@ export interface EventFormValues {
     locationKey: number;
     attendees: number[];
     price: number;
+    currency: string;
     tickets: number;
 }

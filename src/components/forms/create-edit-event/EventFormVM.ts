@@ -30,6 +30,7 @@ const EventFormVM = () => {
         registrationEndTime: null,
         attendees: [],
         price: 0,
+        currency: 'eur',
         tickets: 0,
         locationKey: LocationTags.PHYSICAL,
     };
@@ -59,7 +60,7 @@ const EventFormVM = () => {
         const eventEnd = combineDateTime(values.eventEndDate, values.eventEndTime);
         const formattedAgenda = formatAgendaItems(values.agenda ?? []);
         const registrationStart = combineDateTime(values.registrationStartDate, values.registrationStartTime);
-        const registrationtEnd = combineDateTime(values.registrationEndDate, values.registrationEndTime);
+        const registrationEnd = combineDateTime(values.registrationEndDate, values.registrationEndTime);
 
         const submitValues = {
             imageUrl: values.imageUrl,
@@ -68,11 +69,14 @@ const EventFormVM = () => {
             eventEnd,
             formattedAgenda,
             registrationStart,
-            registrationtEnd,
+            registrationEnd,
             isOpen: values.isOpen,
             addressId: values.addressId,
             inviteUrl: values.inviteUrl,
-            attendees: values.attendees
+            attendees: values.attendees,
+            price: values.price,
+            currency: values.currency,
+            tickets: values.tickets,
         };
 
         console.log(submitValues);

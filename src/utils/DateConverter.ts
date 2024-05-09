@@ -93,3 +93,7 @@ export const formatDifferenceInDays = (dateString: string) => {
 export const isNowBetween = (startDateString: string, endDateString: string) => {
 	return moment().isBetween(moment(startDateString), moment(endDateString));
 };
+
+export const customFormatDateAndTime = (dateTime: string): string => {
+	return moment(dateTime).format('HH:mm, MMMM D YYYY');
+}

@@ -3,7 +3,8 @@ import { useDispatch } from 'react-redux';
 import { signOut } from '../../redux/slices/AuthenticationSlice';
 import { setName } from '../../redux/slices/FiltersSlice';
 import { useDebouncedCallback } from 'use-debounce';	
-import { useLocation } from 'react-router';
+import { useLocation, useNavigate } from 'react-router';
+import ROUTES from '../../routes/Routes';
 
 const PlannerAppBarViewModel = () => {
 	const [anchorUser, setAnchorUser] = useState<null | HTMLElement>(null);
@@ -11,9 +12,10 @@ const PlannerAppBarViewModel = () => {
 	const dispatch = useDispatch();
 	let location = useLocation();
 	const { pathname } = location;
+	const navigate = useNavigate();
 
 	const handleClickOnNotifications = (event: React.MouseEvent<HTMLElement>) => {
-		console.log("Trying to redirect to notification's window.");
+		navigate(ROUTES.NOTIFICATIONS);
 	};
 
 	const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {

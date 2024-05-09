@@ -3,13 +3,22 @@ export const ENDPOINTS = {
 	getEventById: (id: number | string) => `/events/${id}`,
 	getEventsUserAttending: '/events/user-registered',
 	getEventsCreatedByUser: '/events/created-by-user',
-	registerToEvent: '/attendee/register',
 	createNewEvent: '/events/create/new',
-	getAllUsers: '/users/all',
+
+	registerToEvent: '/attendee/register',
+	getAttendeeNotifications: '/attendee/notifications',
+	markNotificationAsViewed: (id: number | string) => `/attendee/${id}/mark-as-viewed`,
+	confirmPendingRegistration: (id: number | string) => `/attendee/register/${id}/confirm`,
+	declinePendingRegistration: (id: number | string) => `/attendee/register/${id}/decline`,
+	
 	getAllTags: '/tags',
+
 	authenticate: '/auth/authenticate',
 	refreshAccessToken: '/auth/refresh',
+
 	getAllCities: '/addresses/cities',
+
+	getAllUsers: '/users/all',
 	getAllAdmins: '/users/admins',
 	demoteAdmin: (id: number | string) => `/users/admins/demote/${id}`
 };

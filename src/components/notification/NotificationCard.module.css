@@ -1,0 +1,36 @@
+.container {
+    margin-top: 0.5rem;
+}
+
+.content {
+    display: flex;
+    align-items: center;
+}
+
+.avatar {
+    margin-left: 1rem;
+    margin-right: 1rem;
+    margin-bottom: 0.75rem;
+}
+
+.textContainer {
+    margin-top: 1rem;
+    width: 470px;
+}
+
+.timeAndLink {
+    display: flex;
+    margin-top: 1rem;
+}
+
+.lintToEvent {
+    color: inherit;
+}
+
+.buttons {
+    display: flex;
+    margin-left: 3.5rem;
+    margin-top: 1.5rem;
+    gap: 10px;
+    height: 2rem;
+}

@@ -1,0 +1,17 @@
+.container {
+    margin-top: 4.5rem;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.notificationCounts {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+.container .notifications {
+    margin-top: 0.5rem;
+}

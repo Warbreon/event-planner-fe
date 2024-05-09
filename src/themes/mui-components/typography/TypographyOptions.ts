@@ -33,6 +33,9 @@ const typographyOptions: TypographyOptions = {
 	h3: {
 		fontSize: '1rem',
 		fontWeight: 400,
+		'&.notification-title': {
+			lineHeight: '1.5rem',
+		}
 	},
 
 	body1: {

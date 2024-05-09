@@ -24,7 +24,7 @@ const EventForm = () => {
 			<div className={styles.pageHeader}>
 				<PageHeader text='Add new event' />
 			</div>
-			<Form initialValues={initialValues} validationSchema={eventFormSchema} onSubmit={console.log}>
+			<Form initialValues={initialValues} validationSchema={eventFormSchema} onSubmit={onSubmit}>
 				<div className={styles.formContainer}>
 					<FormikDropzone name='imageUrl' containerStyles={styles.eventMainImage} buttonStyles={styles.uploadButton} />
 					<div className={styles.mainFormContainer}>

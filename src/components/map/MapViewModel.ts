@@ -1,15 +1,15 @@
-import { useEffect, useState } from "react";
-import { Address } from "../../models/Address";
+import { useEffect, useState } from 'react';
+import { Address } from '../../models/Address';
 
 const useMapViewModel = (location: Address | null | undefined) => {
-  const [position, setPosition] = useState<[number, number] | null>(null);
+	const [position, setPosition] = useState<[number, number] | null>(null);
 
 	useEffect(() => {
 		const fetchData = async () => {
 			try {
 				const response = await fetch(
 					`https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(
-						`${location?.city}, ${location?.street} ${location?.building}`
+						`${location?.zip} ${location?.city}, ${location?.street} ${location?.building}`
 					)}`
 				);
 				const data = await response.json();
@@ -23,12 +23,9 @@ const useMapViewModel = (location: Address | null | undefined) => {
 		};
 
 		fetchData();
-	}, [location?.building, location?.city, location?.street]);
+	}, [location?.building, location?.city, location?.street, location?.zip]);
 
-
-
-  return {position};
-
+	return { position };
 };
 
 export default useMapViewModel;

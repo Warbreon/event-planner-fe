@@ -8,9 +8,7 @@ interface Props {
     isOpen: boolean;
 }
 const PricingSectionVM = ({setFieldValue, isOpen}:Props) => {
-    const defaultTag = isOpen ? 1 : 0;
-    const [selectedTag, setSelectedTag] = useState<number>(defaultTag);
-    const [inputValue, setInputValue] = useState(0);
+    const [selectedTag, setSelectedTag] = useState<number>(1);
     const [currency, setCurrency] = useState('eur');
 
     const pricingTagOptions = [
@@ -18,9 +16,7 @@ const PricingSectionVM = ({setFieldValue, isOpen}:Props) => {
         { id: 0, name: 'Free of charge' },
     ];
     const handleTagChange = (id: number) => {
-        setFieldValue('isOpen', id === 1);
         setSelectedTag(id);
-        setInputValue(0);
         setFieldValue('price', 0);
     };
     const disableWheelAndArrowKeys= (e:React.FocusEvent<HTMLInputElement>) => {
@@ -31,11 +27,6 @@ const PricingSectionVM = ({setFieldValue, isOpen}:Props) => {
             else if (e.key == '-') {e.preventDefault();}});
     }
 
-
-    const handleInputChange = (event: any) => {
-        const inputValue = event.target.value;
-        setInputValue(inputValue);
-    };
     const handleCurrencyChange = (event: SelectChangeEvent<string>) => {
         setFieldValue('currency', event.target.value);
         setCurrency(event.target.value);
@@ -55,7 +46,7 @@ const PricingSectionVM = ({setFieldValue, isOpen}:Props) => {
         return classNames([TAGS.SELECT_TAG], { [TAGS.TAG_SELECTED]: isSelected });
     };
 
-    return { inputValue, currency, handleInputChange, handleCurrencyChange, currencies, handleTagChange, selectedTag,pricingTagOptions, pricingOption, getChipClassName, disableWheelAndArrowKeys}
+    return { currency, handleCurrencyChange, currencies, handleTagChange, selectedTag,pricingTagOptions, pricingOption, getChipClassName, disableWheelAndArrowKeys}
 }
 
 export default PricingSectionVM

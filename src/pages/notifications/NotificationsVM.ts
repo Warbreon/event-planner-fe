@@ -3,7 +3,7 @@ import useAttendeeAPI from "../../api/AttendeeAPI"
 import { useFetch } from "../../api/hooks/ApiHooks";
 
 const NotificationsVM = () => {
-    const { fetchNotifications, markNotificationAsViewed, confirmPendingRegistration, declinePendingRegistration } = useAttendeeAPI();
+    const { fetchNotifications } = useAttendeeAPI();
 
     const fetchFunction = useCallback(() => {
         return fetchNotifications();
@@ -19,10 +19,7 @@ const NotificationsVM = () => {
         activeNotifications,
         totalNotifications,
         isLoading,
-        error,
-        markNotificationAsViewed,
-        confirmPendingRegistration,
-        declinePendingRegistration 
+        error
     };
 }
 

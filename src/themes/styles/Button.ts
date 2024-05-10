@@ -7,7 +7,11 @@ export enum BUTTON_STYLES {
 	LIGHT_GRAY_BOX_CREATE_EVENT = 'light-gray-box light-gray-box-create-event',
 	LIGHT_GRAY_ROUND_SMALL = 'light-gray-round-small',
 	LIGHT_GRAY_ROUND_SMALL_BORDERLESS = 'light-gray-round-small light-gray-round-small-borderless',
+	LIGHT_GRAY_ROUND_SMALL_ACTIVE_NOTIFICATION = 'light-gray-round-small active-notification',
+	LIGHT_GRAY_ROUND_SMALL_ACTIVE_NOTIFICATION_ACCEPTED = 'light-gray-round-small active-notification accepted',
 	TEXT_ONLY = 'text-only',
+	TEXT_ONLY_DECLINE = 'text-only decline-notification',
+	TEXT_ONLY_DECLINED = 'text-only declined',
 	UPLOAD_BUTTON = 'upload-button',
 	MODAL_BUTTON = 'modal-button',
 }

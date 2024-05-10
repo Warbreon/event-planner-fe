@@ -94,6 +94,15 @@ const muiButtonOptions = {
 				'&:hover': {
 					background: COLORS.HOVER_LIGHT_GRAY,
 				},
+				'&.active-notification': {
+					background: COLORS.ACTIVE_NOTIFICATION,
+					'&:hover': {
+						background: COLORS.HOVER_LIGHT_GRAY,
+					},
+					'&.accepted': {
+						background: COLORS.SUCCESS,
+					}
+				}
 			},
 			// decline button in event guests section (modification)
 			'&.light-gray-round-small-borderless': {
@@ -116,6 +125,16 @@ const muiButtonOptions = {
 					width: '1.5rem',
 					height: '1.5rem',
 				},
+				'&.decline-notification': {
+					width: '99px',
+					'&:hover': {
+						background: 'transparent',
+					},
+				},
+				'&.declined': {
+					width: '99px',
+					background: COLORS.ERROR,
+				}
 			},
 
 			// [+] event form media uplaod

@@ -1,5 +1,6 @@
 .container {
     margin-top: 4.5rem;
+    margin-bottom: 4.5rem;
     max-width: 800px;
     margin-left: auto;
     margin-right: auto;
@@ -14,4 +15,9 @@
 
 .container .notifications {
     margin-top: 0.5rem;
+}
+
+.newNotifications {
+    color: #003FE1;
+    font-weight: 500;
 }

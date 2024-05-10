@@ -10,27 +10,29 @@
 .avatar {
     margin-left: 1rem;
     margin-right: 1rem;
-    margin-bottom: 0.75rem;
 }
 
 .textContainer {
     margin-top: 1rem;
     width: 470px;
+    height: 72px;
 }
 
 .timeAndLink {
     display: flex;
-    margin-top: 1rem;
+    margin-top: 1.5rem;
+    direction: row;
+    gap: 1rem;
 }
 
-.lintToEvent {
-    color: inherit;
+.lintToEvent, .linkToEvent:visited {
+    color: #666666;
 }
 
 .buttons {
     display: flex;
-    margin-left: 3.5rem;
+    margin-left: 1rem;
     margin-top: 1.5rem;
-    gap: 10px;
-    height: 2rem;
+    margin-right: 1rem;
+    gap: 0.25rem;
 }

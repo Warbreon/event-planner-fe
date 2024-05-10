@@ -2,24 +2,29 @@ import { FC } from 'react'
 import { AttendeeNotification } from '../../models/AttendeeNotification';
 import { Avatar, Card, CardContent, Typography } from '@mui/material';
 import styles from './NotificationCard.module.css'
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import NotificationCardVM from './NotificationCardVM';
 import GenericButton, { ButtonTypes } from '../buttons/ButtonComponent';
-import { BUTTON_STYLES } from '../../themes/styles/Button';
 
 const NotificationCard: FC<AttendeeNotification> = ({ id, registrationTime, isNewNotification, user, eventId, eventName, eventStart }) => {
-    const { 
+    const {
+        error,
         formattedEventStart, 
         formattedRegistrationTime, 
         getEventUrl, 
         getNotificationClassName, 
+        getConfirmButtonClassName,
+        getDeclinedButtonClassName,
+        markAsViewed,
         handleDeclineOnClick,
         handleConfirmOnClick
-    } = NotificationCardVM({ registrationTime, isNewNotification, user, eventId, eventName, eventStart });
+    } = NotificationCardVM({ registrationTime, isNewNotification, eventStart });
+
+    if (error) return <div className={styles.container}>{error}</div>;
 
     return (
         <div className={styles.container}>
-            <Card className={getNotificationClassName(isNewNotification)}>
+            <Card className={getNotificationClassName(isNewNotification)} onMouseEnter={() => markAsViewed(id)}>
                 <CardContent>
                     <div className={styles.content}>
                         <div className={styles.avatar}>
@@ -27,26 +32,27 @@ const NotificationCard: FC<AttendeeNotification> = ({ id, registrationTime, isNe
                         </div>
                         <div className={styles.textContainer}>
                             <Typography variant='h3' className='notification-title'>
-                                {user.firstName} {user.lastName} registered to attend <strong>{eventName}</strong> on {formattedEventStart}
+                                {user.firstName} {user.lastName} registered to attend <strong>{eventName}</strong> on {formattedEventStart}.
                             </Typography>
                             <div className={styles.timeAndLink}>
                                 <Typography variant='body2'>
-                                    {formattedRegistrationTime} <Link to={getEventUrl(eventId)} className={styles.linkToEvent}>View Event</Link>
+                                    {formattedRegistrationTime} 
                                 </Typography>
+                                <NavLink to={getEventUrl(eventId)} className={styles.linkToEvent}>View Event</NavLink>
                             </div>
                         </div>
                         <div className={styles.buttons}>
                             <GenericButton
                                 title='Decline'
-                                styles={BUTTON_STYLES.TEXT_ONLY}
+                                styles={getDeclinedButtonClassName()}
                                 type={ButtonTypes.button}
-                                onClick={handleDeclineOnClick}
+                                onClick={() => handleDeclineOnClick(id)}
                             />
                             <GenericButton
                                 title='Confirm'
-                                styles={BUTTON_STYLES.OUTLINED_GRAY_BORDER}
+                                styles={getConfirmButtonClassName(isNewNotification)}
                                 type={ButtonTypes.button}
-                                onClick={handleConfirmOnClick}
+                                onClick={() => handleConfirmOnClick(id)}
                             />
                         </div>
                     </div>

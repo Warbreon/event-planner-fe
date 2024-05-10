@@ -6,6 +6,7 @@ export const ENDPOINTS = {
 	registerToEvent: '/attendee/register',
 	createNewEvent: '/events/create/new',
 	getAllUsers: '/users/all',
+	getUserInfo: '/users/current/info',
 	getAllTags: '/tags',
 	authenticate: '/auth/authenticate',
 	refreshAccessToken: '/auth/refresh',

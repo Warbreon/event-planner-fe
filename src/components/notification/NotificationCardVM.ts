@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import useAttendeeAPI from "../../api/AttendeeAPI";
 import { useApiRequest } from "../../api/hooks/ApiHooks";
 import { AttendeeNotification } from "../../models/AttendeeNotification";

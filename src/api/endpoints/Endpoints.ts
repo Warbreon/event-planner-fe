@@ -20,5 +20,6 @@ export const ENDPOINTS = {
 
 	getAllUsers: '/users/all',
 	getAllAdmins: '/users/admins',
+	getUserInfo: '/users/current/info',
 	demoteAdmin: (id: number | string) => `/users/admins/demote/${id}`
 };

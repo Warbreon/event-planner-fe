@@ -1,18 +1,38 @@
-import { useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { signOut } from '../../redux/slices/AuthenticationSlice';
 import { setName } from '../../redux/slices/FiltersSlice';
 import { useDebouncedCallback } from 'use-debounce';	
 import { useLocation, useNavigate } from 'react-router';
+import { useSelector } from 'react-redux';
+import { StoreState } from '../../redux/store/Store';
+import { useFetch } from '../../api/hooks/ApiHooks';
+import useAuthenticationAPI from '../../api/AuthenticationAPI';
+import { removeUserInfo, setUserInfo } from '../../redux/slices/UserInfoSlice';
 import ROUTES from '../../routes/Routes';
 
 const PlannerAppBarViewModel = () => {
 	const [anchorUser, setAnchorUser] = useState<null | HTMLElement>(null);
 	const [searchValue, setSearchValue] = useState<string>('');
+	const userFirstName = useSelector((state: StoreState) => state.userInfo.userFirstName);
+	const userImageUrl = useSelector((state: StoreState) => state.userInfo.userImageUrl);
+	const notificationCount = useSelector((state: StoreState) => state.userInfo.notificationCount);
 	const dispatch = useDispatch();
 	let location = useLocation();
 	const { pathname } = location;
 	const navigate = useNavigate();
+
+	const { fetchUserInfo } = useAuthenticationAPI();
+	
+	const fetchFunction = useCallback(() => {
+		return fetchUserInfo();
+	}, []);
+
+	const { data: userInfo } = useFetch(fetchFunction);
+
+	useEffect(() => {
+		dispatch(setUserInfo(userInfo));
+	}, [userInfo, dispatch]);
 
 	const handleClickOnNotifications = (event: React.MouseEvent<HTMLElement>) => {
 		navigate(ROUTES.NOTIFICATIONS);
@@ -24,6 +44,8 @@ const PlannerAppBarViewModel = () => {
 
 	const handleSignOut = () => {
 		dispatch(signOut());
+		dispatch(removeUserInfo());
+		localStorage.clear();
 	};
 
 	const handleProfileClick = () => {
@@ -55,6 +77,9 @@ const PlannerAppBarViewModel = () => {
 	};
 
 	return {
+		userFirstName,
+		userImageUrl,
+		notificationCount,
 		pathname,
 		anchorUser,
 		handleClickOnNotifications,

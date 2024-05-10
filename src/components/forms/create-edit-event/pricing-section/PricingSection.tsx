@@ -9,7 +9,7 @@ import ChipSelector from '../../../chip-selector/ChipSelector';
 import {useFormikContext} from 'formik';
 import {EventFormValues} from '../../../../interfaces/EventFormValuesInterface';
 import PageHeader from '../../../headers/page-headers/PageHeader';
-import FormikDropdown from "../../../../shared/forms/elements/formik-elements/dropdown/FormikDropdown";
+
 const PricingSection = () => {
     const { setFieldValue, values } = useFormikContext<EventFormValues>();
     const {

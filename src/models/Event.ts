@@ -8,6 +8,7 @@ export interface Event {
 	name: string;
 	description: string;
 	imageUrl: string;
+	cardUrl: string;
 	eventStart: string;
 	eventEnd: string;
 	registrationStart: string;

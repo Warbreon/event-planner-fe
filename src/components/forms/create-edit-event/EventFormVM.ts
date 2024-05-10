@@ -1,14 +1,20 @@
 import { EventFormValues } from "../../../interfaces/EventFormValuesInterface";
-import { combineDateTime } from "../../../utils/DateConverter";
-import { formatAgendaItems, parseAgendaItems } from "../../../utils/AgendaUtils";
-import { useFetch } from "../../../api/hooks/ApiHooks";
+import { parseAgendaItems } from "../../../utils/AgendaUtils";
+import { useApiRequest, useFetch } from "../../../api/hooks/ApiHooks";
 import useUserAPI from "../../../api/UserAPI";
-import { useCallback } from "react";
+import { useCallback, useEffect } from "react";
 import { LocationTags } from "../../../constants/LocationTags";
+import { mapEventFormValuesToEvent } from "../../../utils/mappings/EventMappings";
+import useEventAPI from "../../../api/EventsAPI";
+import { useNavigate } from "react-router";
+import { Currency } from "../../../constants/Currency";
 
 const EventFormVM = () => {
     const agenda = ['7:00 am-Introduction', '12:30 pm-Presentations', '8:00 pm-Conclusion'];
     const parsedAgendaItems = parseAgendaItems(agenda);
+    const { request, isLoading: isCreateEventLoading, error: createEventError, data } = useApiRequest();
+    const { createEvent } = useEventAPI();
+    const navigate = useNavigate();
 
     // TODO: Fetch from API and get from redux.
     const initialValues: EventFormValues = {
@@ -18,7 +24,7 @@ const EventFormVM = () => {
         eventEndDate: null,
         eventEndTime: null,
         eventName: '',
-        eventTag: 'news',
+        eventTagIds: [],
         cardUrl: null,
         addressId: null,
         inviteUrl: '',
@@ -28,8 +34,9 @@ const EventFormVM = () => {
         registrationStartTime: null,
         registrationEndDate: null,
         registrationEndTime: null,
-        attendees: [],
+        attendeeIds: [],
         locationKey: LocationTags.PHYSICAL,
+        currency: Currency.USD,
     };
 
     const determineLocationKey = (values: EventFormValues) => {
@@ -44,43 +51,31 @@ const EventFormVM = () => {
 
     initialValues.locationKey = determineLocationKey(initialValues);
 
-    const {fetchUsers} = useUserAPI();
+    const { fetchUsers } = useUserAPI();
     const fetchFuntion = useCallback(() => {
         return fetchUsers();
     }, []);
 
 
-    const { data: users, isLoading, error  } =  useFetch(fetchFuntion);
-   
-    const onSubmit = (values: EventFormValues) => {
-        const eventStart = combineDateTime(values.eventStartDate, values.eventStartTime);
-        const eventEnd = combineDateTime(values.eventEndDate, values.eventEndTime);
-        const formattedAgenda = formatAgendaItems(values.agenda ?? []);
-        const registrationStart = combineDateTime(values.registrationStartDate, values.registrationStartTime);
-        const registrationtEnd = combineDateTime(values.registrationEndDate, values.registrationEndTime);
+    const { data: users, isLoading, error } = useFetch(fetchFuntion);
 
-        const submitValues = {
-            imageUrl: values.imageUrl,
-            cardUrl: values.cardUrl,
-            eventStart,
-            eventEnd,
-            formattedAgenda,
-            registrationStart,
-            registrationtEnd,
-            isOpen: values.isOpen,
-            addressId: values.addressId,
-            inviteUrl: values.inviteUrl,
-            attendees: values.attendees
-        };
-
-        console.log(submitValues);
+    const onSubmit = async (formValues: EventFormValues) => {
+        const eventValues = mapEventFormValuesToEvent(formValues);
+        await request(() => createEvent(eventValues));
+        console.log(eventValues);
     };
+
+    useEffect(() => {
+        if (!isCreateEventLoading && !createEventError && data) {
+            navigate(`/events/event/${data.id}`);
+        }
+    }, [isCreateEventLoading, createEventError, data]);
 
     const handleCancelOnClick = () => {
         console.log('Canceled');
     };
 
-    return { initialValues, onSubmit, handleCancelOnClick, users }
+    return { initialValues, onSubmit, handleCancelOnClick, users, isCreateEventLoading }
 }
 
 export default EventFormVM;

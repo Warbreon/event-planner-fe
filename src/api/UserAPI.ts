@@ -1,10 +1,9 @@
 import { ENDPOINTS } from './endpoints/Endpoints';
-import useAxios from './axios/Axios';
 import { User } from '../models/User';
+import axiosInstance from './axios/AxiosInstance';
 
 const useUserAPI = () => {
-	const axios = useAxios();
-	const fetchUsers = () => axios.get<User[]>(ENDPOINTS.getAllUsers);
+	const fetchUsers = () => axiosInstance.get<User[]>(ENDPOINTS.getAllUsers);
 	return { fetchUsers };
 };
 export default useUserAPI;

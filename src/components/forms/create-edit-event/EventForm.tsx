@@ -16,7 +16,7 @@ import Registration from './registration/Registration';
 import AddGuestsSection from '../../add-guests-to-event/AddGuestsSection';
 
 const EventForm = () => {
-	const { initialValues, onSubmit, handleCancelOnClick, users } = EventFormVM();
+	const { initialValues, onSubmit, handleCancelOnClick, users, isCreateEventLoading } = EventFormVM();
 
 	return (
 		<div className={styles.container}>
@@ -48,8 +48,14 @@ const EventForm = () => {
 							styles={`${BUTTON_STYLES.OUTLINED_GRAY_BORDER} ${styles.cancelButton}`}
 							type={ButtonTypes.button}
 							onClick={handleCancelOnClick}
+							disabled={isCreateEventLoading}
 						/>
-						<GenericButton title='Create event' styles={styles.submitButton} type={ButtonTypes.submit} />
+						<GenericButton
+							title='Create event'
+							styles={styles.submitButton}
+							type={ButtonTypes.submit}
+							disabled={isCreateEventLoading}
+						/>
 					</div>
 				</div>
 			</Form>

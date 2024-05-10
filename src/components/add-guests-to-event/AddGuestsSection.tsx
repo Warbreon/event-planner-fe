@@ -17,7 +17,7 @@ interface Props {
 }
 
 const AddGuestsSection: FC<Props> = ({ users }) => {
-	const { setFieldValue } = useFormikContext<{ attendees: number[] }>();
+	const { setFieldValue } = useFormikContext<{ attendeeIds: number[] }>();
 	const {
 		showForm,
 		showModal,

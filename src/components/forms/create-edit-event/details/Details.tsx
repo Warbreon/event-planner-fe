@@ -2,23 +2,18 @@ import FormikTextField from "../../../../shared/forms/elements/formik-elements/t
 import FormikDropdown from "../../../../shared/forms/elements/formik-elements/dropdown/FormikDropdown";
 import PageHeader from "../../../headers/page-headers/PageHeader";
 import styles from "./Details.module.css";
-
-const eventTagsOptions = [
-  { key: "news", label: "News & Updates" },
-  { key: "meetup", label: "Meetup" },
-  { key: "demo", label: "Demo sessions" },
-  { key: "exhibition", label: "Exhibition" },
-  { key: "party", label: "Party" },
-];
+import DetailsVM from "./DetailsVM";
 
 const Details = () => {
+  const { eventTagsOptions } = DetailsVM();
+  
   return (
     <div className={styles.container}>
       <PageHeader
         text="Details"
         className="event-form-section"
       />
-        <div className={styles.textField}>
+      <div className={styles.textField}>
         <FormikTextField
           name="eventName"
           type="text"
@@ -26,10 +21,10 @@ const Details = () => {
           placeholder="Enter short descriptive event title"
           titleClassName="gray-font-input"
         />
-        </div>
-        <div className={styles.dropdown}>
+      </div>
+      <div className={styles.dropdown}>
         <FormikDropdown
-          name="eventTag"
+          name="eventTagIds"
           label="Event Type"
           multiple={true}
           options={eventTagsOptions.map((option) => ({
@@ -37,7 +32,7 @@ const Details = () => {
             label: option.label,
           }))}
         />
-        </div>
+      </div>
     </div>
   );
 };

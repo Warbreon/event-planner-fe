@@ -26,9 +26,10 @@ interface ButtonProps {
 	icon?: IconButton;
 	iconAtEnd?: boolean;
 	onClick?: () => void;
+	disabled?: boolean;
 }
 
-const GenericButton: FC<ButtonProps> = ({ title, styles, type, icon, iconAtEnd, onClick }) => {
+const GenericButton: FC<ButtonProps> = ({ title, styles, type, icon, iconAtEnd, onClick, disabled }) => {
 	const iconButtonTitle: IconButton | undefined = icon;
 	return (
 		<Button
@@ -37,6 +38,7 @@ const GenericButton: FC<ButtonProps> = ({ title, styles, type, icon, iconAtEnd, 
 			onClick={onClick}
 			startIcon={!iconAtEnd && !!icon && <Icon icon={icon} />}
 			endIcon={iconAtEnd && !!icon && <Icon icon={icon} />}
+			disabled={disabled}
 		>
 			{title || (!!icon && iconButtonTitle)}
 		</Button>

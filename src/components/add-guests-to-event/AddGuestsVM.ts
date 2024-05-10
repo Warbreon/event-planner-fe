@@ -73,7 +73,7 @@ const useAddGuestsVM = ({ setFieldValue }: Props) => {
 
 	useEffect(() => {
 		const userIDs = convertUserIds(currentlySelectedUsers);
-		setFieldValue('attendees', userIDs);
+		setFieldValue('attendeeIds', userIDs);
 	}, [currentlySelectedUsers, setFieldValue]);
 
 	useEffect(() => {

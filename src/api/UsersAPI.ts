@@ -1,11 +1,10 @@
 import { ENDPOINTS } from './endpoints/Endpoints';
-import useAxios from './axios/Axios';
 import { PrivateUser } from '../models/PrivateUser';
+import axiosInstance from './axios/AxiosInstance';
 
 const useUserAPI = () => {
-	const axios = useAxios();
-	const fetchAdmins = () => axios.get<PrivateUser[]>(ENDPOINTS.getAllAdmins);
-	const demoteAdmin = (id: number | string) => axios.patch(ENDPOINTS.demoteAdmin(id));
+	const fetchAdmins = () => axiosInstance.get<PrivateUser[]>(ENDPOINTS.getAllAdmins);
+	const demoteAdmin = (id: number | string) => axiosInstance.patch(ENDPOINTS.demoteAdmin(id));
 
 	return { fetchAdmins, demoteAdmin };
 };

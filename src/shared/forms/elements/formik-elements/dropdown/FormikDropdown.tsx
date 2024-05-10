@@ -7,7 +7,7 @@ import styles from "./FormikDropdown.module.css";
 interface FormikDropdownProps {
   name: string;
   label?: string;
-  options: Array<{ value: string; label: string }>;
+  options: Array<{ value: string | number; label: string }>;
   menuItemClassName?: string;
   multiple?: boolean;
 }

@@ -4,33 +4,27 @@ import { SelectChangeEvent } from '@mui/material';
 import ROUTES from '../../routes/Routes';
 import classNames from 'classnames';
 import { TAGS } from '../../themes/styles/Tag';
-import useTagAPI from '../../api/TagsAPI';
 import useAddressAPI from '../../api/AddressAPI';
 import { useDispatch, useSelector } from 'react-redux';
 import { setDate, setEventTags, setLocation } from '../../redux/slices/FiltersSlice';
-import { StoreState } from '../../redux/store/Store';
+import { AppDispatch, StoreState } from '../../redux/store/Store';
+import { fetchTags } from '../../redux/slices/TagsSlice';
+import { useEffect } from 'react';
 
 const EventHeaderVM = () => {
     const navigate = useNavigate();
-    const dispatch = useDispatch();
+    const dispatch: AppDispatch = useDispatch();
     const filters = useSelector((state: StoreState) => state.filters);
-
-    // TODO: get name from redux later
+    const { list: eventTags, isLoading: tagsLoading, error: tagsError } = useSelector((state: StoreState) => state.tags);
     const userName = 'John';
-
-    const fetchAllTags = useTagAPI();
     const fetchAllCities = useAddressAPI();
-
-    const { data: eventTags, error: tagsError, isLoading: tagsLoading } = useFetch(fetchAllTags);
     const { data: cities, error: citiesError, isLoading: citiesLoading } = useFetch(fetchAllCities);
 
-    const modifiedEventTags = [{
-        id: 0,
-        name: 'All events',
-    }, ...(eventTags ? eventTags.map(tag => ({
-        ...tag,
-    })) : [])];
+    useEffect(() => {
+        dispatch(fetchTags());
+    }, [dispatch]);
 
+    const modifiedEventTags = [{ id: 0, name: 'All events' }, ...eventTags];
     const modifiedCities = [
         { value: 'all', label: 'All Locations' },
         { value: 'online', label: 'Online' },
@@ -38,7 +32,7 @@ const EventHeaderVM = () => {
             { value: city, label: city }
         )): [])];
 
-    const handleTagChange = (key: number) => {
+    const handleTagChange = (key) => {
         if (key === 0) {
             dispatch(setEventTags([]));
         } else {

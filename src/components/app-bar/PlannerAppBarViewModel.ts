@@ -10,6 +10,7 @@ import { useFetch } from '../../api/hooks/ApiHooks';
 import useAuthenticationAPI from '../../api/AuthenticationAPI';
 import { removeUserInfo, setUserInfo } from '../../redux/slices/UserInfoSlice';
 import ROUTES from '../../routes/Routes';
+import { usePreviuosLocation } from '../../utils/PreviuosLocation';
 
 const PlannerAppBarViewModel = () => {
 	const [anchorUser, setAnchorUser] = useState<null | HTMLElement>(null);
@@ -21,12 +22,16 @@ const PlannerAppBarViewModel = () => {
 	let location = useLocation();
 	const { pathname } = location;
 	const navigate = useNavigate();
+	const previousLocation = usePreviuosLocation();
 
 	const { fetchUserInfo } = useAuthenticationAPI();
-	
+
 	const fetchFunction = useCallback(() => {
+		if (previousLocation === ROUTES.NOTIFICATIONS) {
+			return fetchUserInfo();
+		}
 		return fetchUserInfo();
-	}, []);
+	}, [previousLocation]);
 
 	const { data: userInfo } = useFetch(fetchFunction);
 
@@ -34,7 +39,7 @@ const PlannerAppBarViewModel = () => {
 		dispatch(setUserInfo(userInfo));
 	}, [userInfo, dispatch]);
 
-	const handleClickOnNotifications = (event: React.MouseEvent<HTMLElement>) => {
+	const handleClickOnNotifications = () => {
 		navigate(ROUTES.NOTIFICATIONS);
 	};
 

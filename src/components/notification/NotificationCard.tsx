@@ -10,7 +10,8 @@ const NotificationCard: FC<AttendeeNotification> = ({ id, registrationTime, isNe
     const {
         error,
         formattedEventStart, 
-        formattedRegistrationTime, 
+        formattedRegistrationTime,
+        viewed,
         getEventUrl, 
         getNotificationClassName, 
         getConfirmButtonClassName,
@@ -24,7 +25,7 @@ const NotificationCard: FC<AttendeeNotification> = ({ id, registrationTime, isNe
 
     return (
         <div className={styles.container}>
-            <Card className={getNotificationClassName(isNewNotification)} onMouseEnter={() => markAsViewed(id)}>
+            <Card className={getNotificationClassName(isNewNotification, viewed)} onMouseEnter={() => markAsViewed(id)}>
                 <CardContent>
                     <div className={styles.content}>
                         <div className={styles.avatar}>
@@ -50,7 +51,7 @@ const NotificationCard: FC<AttendeeNotification> = ({ id, registrationTime, isNe
                             />
                             <GenericButton
                                 title='Confirm'
-                                styles={getConfirmButtonClassName(isNewNotification)}
+                                styles={getConfirmButtonClassName()}
                                 type={ButtonTypes.button}
                                 onClick={() => handleConfirmOnClick(id)}
                             />

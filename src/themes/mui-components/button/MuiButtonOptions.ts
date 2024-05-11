@@ -95,7 +95,7 @@ const muiButtonOptions = {
 					background: COLORS.HOVER_LIGHT_GRAY,
 				},
 				'&.active-notification': {
-					background: COLORS.ACTIVE_NOTIFICATION,
+					background: 'inherit',
 					'&:hover': {
 						background: COLORS.HOVER_LIGHT_GRAY,
 					},

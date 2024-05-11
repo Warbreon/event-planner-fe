@@ -9,6 +9,7 @@ import classNames from "classnames";
 
 const NotificationCardVM = (notification: Partial<AttendeeNotification>) => {
     const [lastClicked, setLastClicked] = useState<string>('');
+    const [viewed, setViewed] = useState<boolean>(false);
     const { registrationTime = '', isNewNotification, eventStart = '' } = notification;
 
     const { markNotificationAsViewed, confirmPendingRegistration, declinePendingRegistration } = useAttendeeAPI();
@@ -21,18 +22,17 @@ const NotificationCardVM = (notification: Partial<AttendeeNotification>) => {
 		return `/events/event/${eventId}`;
 	};
 
-    const getNotificationClassName = (isNewNotification: boolean) => {
+    const getNotificationClassName = (isNewNotification: boolean, viewed: boolean) => {
         return classNames({
-            [NOTIFICATION.ACTIVE_NOTIFICATION]: isNewNotification,
-            [NOTIFICATION.INACTIVE_NOTIFICATION]: !isNewNotification
+            [NOTIFICATION.ACTIVE_NOTIFICATION]: isNewNotification && !viewed,
+            [NOTIFICATION.INACTIVE_NOTIFICATION]: !isNewNotification || viewed
         });
     }
 
-    const getConfirmButtonClassName = (isNewNotification: boolean) => {
+    const getConfirmButtonClassName = () => {
         return classNames({
             [BUTTON_STYLES.LIGHT_GRAY_ROUND_SMALL_ACTIVE_NOTIFICATION_ACCEPTED]: lastClicked === 'confirm',
-            [BUTTON_STYLES.LIGHT_GRAY_ROUND_SMALL_ACTIVE_NOTIFICATION]: lastClicked !== 'confirm' && isNewNotification,
-            [BUTTON_STYLES.LIGHT_GRAY_ROUND_SMALL]: lastClicked !== 'confirm' && !isNewNotification
+            [BUTTON_STYLES.LIGHT_GRAY_ROUND_SMALL_ACTIVE_NOTIFICATION]: lastClicked !== 'confirm'
         });
     }
 
@@ -44,8 +44,9 @@ const NotificationCardVM = (notification: Partial<AttendeeNotification>) => {
     }
 
     const markAsViewed = async (attendeeId: number | string) => {
-        if (isNewNotification) {
+        if (isNewNotification && !viewed) {
             await patchData(() => markNotificationAsViewed(attendeeId));
+            setViewed(true);
         }
     }
 
@@ -67,6 +68,7 @@ const NotificationCardVM = (notification: Partial<AttendeeNotification>) => {
         error,
         formattedEventStart,
         formattedRegistrationTime,
+        viewed,
         getEventUrl,
         getNotificationClassName,
         getConfirmButtonClassName,

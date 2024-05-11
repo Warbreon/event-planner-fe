@@ -31,15 +31,15 @@ const NotificationCardVM = (notification: Partial<AttendeeNotification>) => {
 
     const getConfirmButtonClassName = () => {
         return classNames({
-            [BUTTON_STYLES.LIGHT_GRAY_ROUND_SMALL_ACTIVE_NOTIFICATION_ACCEPTED]: lastClicked === 'confirm',
-            [BUTTON_STYLES.LIGHT_GRAY_ROUND_SMALL_ACTIVE_NOTIFICATION]: lastClicked !== 'confirm'
+            [BUTTON_STYLES.LIGHT_GRAY_ROUND_SMALL_CONFIRM_NOTIFICATION_CONFIRMED]: lastClicked === 'confirm',
+            [BUTTON_STYLES.LIGHT_GRAY_ROUND_SMALL_CONFIRM_NOTIFICATION]: lastClicked !== 'confirm'
         });
     }
 
     const getDeclinedButtonClassName = () => {
         return classNames({
-            [BUTTON_STYLES.TEXT_ONLY_DECLINED]: lastClicked === 'decline',
-            [BUTTON_STYLES.TEXT_ONLY_DECLINE]: lastClicked !== 'decline',
+            [BUTTON_STYLES.TEXT_ONLY_DECLINE_NOTIFICATION_DECLINED]: lastClicked === 'decline',
+            [BUTTON_STYLES.TEXT_ONLY_DECLINE_NOTIFICATION]: lastClicked !== 'decline',
         });
     }
 

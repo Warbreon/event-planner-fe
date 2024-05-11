@@ -94,12 +94,12 @@ const muiButtonOptions = {
 				'&:hover': {
 					background: COLORS.HOVER_LIGHT_GRAY,
 				},
-				'&.active-notification': {
+				'&.confirm-notification': {
 					background: 'inherit',
 					'&:hover': {
 						background: COLORS.HOVER_LIGHT_GRAY,
 					},
-					'&.accepted': {
+					'&.confirmed': {
 						background: COLORS.SUCCESS,
 					}
 				}
@@ -130,11 +130,11 @@ const muiButtonOptions = {
 					'&:hover': {
 						background: 'transparent',
 					},
-				},
-				'&.declined': {
+					'&.declined': {
 					width: '99px',
 					background: COLORS.ERROR,
-				}
+					}
+				},
 			},
 
 			// [+] event form media uplaod

@@ -1,14 +1,15 @@
 import { useNavigate } from 'react-router';
+import ROUTES from '../../routes/Routes';
 
 const useNotFoundViewModel = () => {
 	const navigate = useNavigate();
 
 	const onExploreEventsClick = () => {
-		navigate('/');
+		navigate(ROUTES.INDEX);
 	};
 
 	const onMyEventsClick = () => {
-		navigate('/events/my');
+		navigate(ROUTES.MY_EVENTS);
 	};
 
 	return { onExploreEventsClick, onMyEventsClick };

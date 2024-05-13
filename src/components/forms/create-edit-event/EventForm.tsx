@@ -48,7 +48,7 @@ const EventForm = () => {
 					<div className={styles.buttonsContainer}>
 						<GenericButton
 							title='Cancel'
-							styles={`${BUTTON_STYLES.OUTLINED_GREY_BORDER} ${styles.cancelButton}`}
+							styles={`${BUTTON_STYLES.OUTLINED_GRAY_BORDER} ${styles.cancelButton}`}
 							type={ButtonTypes.button}
 							onClick={handleCancelOnClick}
 						/>

@@ -11,7 +11,7 @@ import LoadingIndicator from '../loading-indicator/LoadingIndicator';
 
 const EventHeader: FC = () => {
 
-	const { userName, filters, handleTagChange, handleDateChange, handleLocationChange, getChipClassName, selectedKeys, modifiedCities, modifiedEventTags, tagsError, tagsLoading, citiesError, citiesLoading, navigateToAddEvent } = 
+	const { userFirstName, filters, handleTagChange, handleDateChange, handleLocationChange, getChipClassName, selectedKeys, modifiedCities, modifiedEventTags, tagsError, tagsLoading, citiesError, citiesLoading, navigateToAddEvent } = 
 		EventHeaderVM();
 
 	if (tagsError || citiesError) return <div className={styles.container}>{tagsError || citiesError}</div>;
@@ -21,7 +21,7 @@ const EventHeader: FC = () => {
 		<div className={styles.container}>
 			<div className={styles.header}>
 				<Title
-					text={`Hey, ${userName}`}
+					text={`Hey, ${userFirstName}`}
 					subtext='Discover what’s happening in Cognizant in the upcoming months'
 					titleClassName={styles.headerTitle}
 					subtitleClassName={styles.headerSubtitle}

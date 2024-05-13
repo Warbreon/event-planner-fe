@@ -1,11 +1,36 @@
-import { useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { signOut } from '../../redux/slices/AuthenticationSlice';
+import { setName } from '../../redux/slices/FiltersSlice';
+import { useDebouncedCallback } from 'use-debounce';	
+import { useLocation } from 'react-router';
+import { useSelector } from 'react-redux';
+import { StoreState } from '../../redux/store/Store';
+import { useFetch } from '../../api/hooks/ApiHooks';
+import useAuthenticationAPI from '../../api/AuthenticationAPI';
+import { removeUserInfo, setUserInfo } from '../../redux/slices/UserInfoSlice';
 
 const PlannerAppBarViewModel = () => {
 	const [anchorUser, setAnchorUser] = useState<null | HTMLElement>(null);
 	const [searchValue, setSearchValue] = useState<string>('');
+	const userFirstName = useSelector((state: StoreState) => state.userInfo.userFirstName);
+	const userImageUrl = useSelector((state: StoreState) => state.userInfo.userImageUrl);
+	const notificationCount = useSelector((state: StoreState) => state.userInfo.notificationCount);
 	const dispatch = useDispatch();
+	let location = useLocation();
+	const { pathname } = location;
+
+	const { fetchUserInfo } = useAuthenticationAPI();
+	
+	const fetchFunction = useCallback(() => {
+		return fetchUserInfo();
+	}, []);
+
+	const { data: userInfo } = useFetch(fetchFunction);
+
+	useEffect(() => {
+		dispatch(setUserInfo(userInfo));
+	}, [userInfo, dispatch]);
 
 	const handleClickOnNotifications = (event: React.MouseEvent<HTMLElement>) => {
 		console.log("Trying to redirect to notification's window.");
@@ -17,6 +42,8 @@ const PlannerAppBarViewModel = () => {
 
 	const handleSignOut = () => {
 		dispatch(signOut());
+		dispatch(removeUserInfo());
+		localStorage.clear();
 	};
 
 	const handleProfileClick = () => {
@@ -37,29 +64,27 @@ const PlannerAppBarViewModel = () => {
 		setAnchorUser(null);
 	};
 
+	const debouncedSearch = useDebouncedCallback(
+		(value: string) => {
+			dispatch(setName(value));
+	}, 500);
+
 	const handleSearchBarChange = (event: React.ChangeEvent<HTMLInputElement>) => {
 		setSearchValue(event.target.value);
-	};
-
-	const handleSearch = () => {
-		console.log(`Searching for ${searchValue} and redirecting to search results`);
-	};
-
-	const handleSearchKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
-		if (event.key === 'Enter') {
-			handleSearch();
-		}
+		debouncedSearch(event.target.value);
 	};
 
 	return {
+		userFirstName,
+		userImageUrl,
+		notificationCount,
+		pathname,
 		anchorUser,
 		handleClickOnNotifications,
 		handleOpenUserMenu,
 		handleCloseUserMenu,
 		searchValue,
 		handleSearchBarChange,
-		handleSearchKeyDown,
-		handleSearch,
 		handleMenuOptions,
 	};
 };

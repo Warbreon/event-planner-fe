@@ -2,7 +2,7 @@ import ROUTES from '../../../routes/Routes';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router';
-import { usePost } from '../../../api/hooks/ApiHooks';
+import { useApiRequest } from '../../../api/hooks/ApiHooks';
 import useAuthenticationAPI from '../../../api/AuthenticationAPI';
 import { signIn } from '../../../redux/slices/AuthenticationSlice';
 
@@ -10,7 +10,7 @@ const SignInViewModel = () => {
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
 
-	const { postData, isLoading, error, data } = usePost();
+	const { request: postData, isLoading, error, data } = useApiRequest();
 	const { authenticateUser } = useAuthenticationAPI();
 
 	const onSubmit = async (email: string, password: string) => {

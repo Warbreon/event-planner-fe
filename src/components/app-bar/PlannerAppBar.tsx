@@ -13,17 +13,27 @@ import PlannerAppBarViewModel from './PlannerAppBarViewModel';
 import styles from './PlannerAppBar.module.css';
 import SearchBar from './search-bar/SearchBar';
 import SearchRoundedIcon from '@mui/icons-material/SearchRounded';
-import React from 'react';
 import { ICON_STYLES } from '../../themes/styles/Icon';
 import { TEXTFIELD_STYLES } from '../../themes/styles/TextField';
+import ROUTES from '../../routes/Routes';
+import { AccountCircle } from '@mui/icons-material';
 
 const profileSettings = ['Profile', 'Logout'];
 
-//Temporary number of notifs until we get it from backend.
-const fakeNumberOfNotifications = 12;
-
 const PlannerAppBar = () => {
-	const viewModel = PlannerAppBarViewModel();
+	const {
+		userFirstName,
+		userImageUrl,
+		notificationCount,
+		pathname,
+		anchorUser,
+		handleClickOnNotifications,
+		handleOpenUserMenu,
+		handleCloseUserMenu,
+		searchValue,
+		handleSearchBarChange,
+		handleMenuOptions 
+	} = PlannerAppBarViewModel();
 
 	return (
 		<AppBar className={styles.appBar}>
@@ -31,22 +41,21 @@ const PlannerAppBar = () => {
 				<Toolbar disableGutters>
 					<div className={styles.appBarContainer}>
 						<div className={styles.searchBarContainer}>
-							<SearchBar
-								value={viewModel.searchValue}
-								styles={TEXTFIELD_STYLES.EVENT_SEARCH_BAR}
-								onChange={viewModel.handleSearchBarChange}
-								onKeyDown={viewModel.handleSearchKeyDown}
-								placeholder='Search for events....'
-							>
-								<IconButton onClick={viewModel.handleSearch}>
-									<SearchRoundedIcon className={ICON_STYLES.GRAY_ICON} />
-								</IconButton>
-							</SearchBar>
+							{pathname === ROUTES.INDEX &&
+								<SearchBar
+									value={searchValue}
+									styles={TEXTFIELD_STYLES.EVENT_SEARCH_BAR}
+									onChange={handleSearchBarChange}
+									placeholder='Search for events....'
+								>
+										<SearchRoundedIcon className={ICON_STYLES.GRAY_ICON} />
+								</SearchBar>
+							}
 						</div>
 						<div className={styles.userActionsContainer}>
-							<IconButton className={styles.bellIconButton} onClick={viewModel.handleClickOnNotifications}>
-								{fakeNumberOfNotifications > 0 ? (
-									<Badge badgeContent={fakeNumberOfNotifications} color='error'>
+							<IconButton className={styles.bellIconButton} onClick={handleClickOnNotifications}>
+								{notificationCount > 0 ? (
+									<Badge badgeContent={notificationCount} color='error'>
 										<NotificationsRoundedIcon className={styles.notifIcon} />
 									</Badge>
 								) : (
@@ -55,13 +64,13 @@ const PlannerAppBar = () => {
 							</IconButton>
 							<div>
 								<Tooltip title='Open settings'>
-									<IconButton className={styles.iconButton} onClick={viewModel.handleOpenUserMenu}>
-										<Avatar alt='Remy Sharp' src='https://thispersondoesnotexist.com/' />
+									<IconButton className={styles.iconButton} onClick={handleOpenUserMenu}>
+										{userImageUrl ? <Avatar alt={userFirstName || 'Avatar'} src={userImageUrl} /> : <AccountCircle />}
 									</IconButton>
 								</Tooltip>
 								<Menu
 									id='profileMenuAppbar'
-									anchorEl={viewModel.anchorUser}
+									anchorEl={anchorUser}
 									anchorOrigin={{
 										vertical: 'top',
 										horizontal: 'right',
@@ -71,14 +80,14 @@ const PlannerAppBar = () => {
 										vertical: 'top',
 										horizontal: 'right',
 									}}
-									open={Boolean(viewModel.anchorUser)}
-									onClose={viewModel.handleCloseUserMenu}
+									open={Boolean(anchorUser)}
+									onClose={handleCloseUserMenu}
 									className={styles.profileMenu}
 								>
 									{profileSettings.map((setting) => (
 										<MenuItem
 											key={setting}
-											onClick={() => viewModel.handleMenuOptions(setting)}
+											onClick={() => handleMenuOptions(setting)}
 											className={styles.menuItem}
 										>
 											<Typography className={styles.menuTypography}>{setting}</Typography>

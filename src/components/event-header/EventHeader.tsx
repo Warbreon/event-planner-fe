@@ -4,21 +4,15 @@ import GenericButton, { ButtonTypes, IconButton } from '../../shared/components/
 import ChipSelector from '../chip-selector/ChipSelector';
 import styles from './EventHeader.module.css';
 import { KeyboardArrowDown } from '@mui/icons-material';
-import { EventFiltersState } from '../../pages/explore-events/eventFiltersInterface';
 import { DATE_FILTER_OPTIONS } from '../../constants/DateConstants';
 import { FC } from 'react';
 import EventHeaderVM from './EventHeaderVM';
 import LoadingIndicator from '../loading-indicator/LoadingIndicator';
 
-interface Props {
-	filters: EventFiltersState;
-	handleFiltersChange: (filters: Partial<EventFiltersState>) => void;
-}
+const EventHeader: FC = () => {
 
-const EventHeader: FC<Props> = ({ filters, handleFiltersChange }) => {
-
-	const { userName, handleTagChange, handleDateChange, handleLocationChange, getChipClassName, selectedKeys, modifiedCities, modifiedEventTags, tagsError, tagsLoading, citiesError, citiesLoading, navigateToAddEvent } = 
-		EventHeaderVM(filters, handleFiltersChange);
+	const { userFirstName, filters, handleTagChange, handleDateChange, handleLocationChange, getChipClassName, selectedKeys, modifiedCities, modifiedEventTags, tagsError, tagsLoading, citiesError, citiesLoading, navigateToAddEvent } = 
+		EventHeaderVM();
 
 	if (tagsError || citiesError) return <div className={styles.container}>{tagsError || citiesError}</div>;
 	if (tagsLoading || citiesLoading) return <LoadingIndicator />;
@@ -27,7 +21,7 @@ const EventHeader: FC<Props> = ({ filters, handleFiltersChange }) => {
 		<div className={styles.container}>
 			<div className={styles.header}>
 				<Title
-					text={`Hey, ${userName}`}
+					text={`Hey, ${userFirstName}`}
 					subtext='Discover what’s happening in Cognizant in the upcoming months'
 					titleClassName={styles.headerTitle}
 					subtitleClassName={styles.headerSubtitle}

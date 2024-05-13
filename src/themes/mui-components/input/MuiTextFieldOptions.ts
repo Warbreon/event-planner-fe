@@ -41,6 +41,18 @@ const muiTextFieldOptions = {
 					},
 				},
 			},
+			'&.event-price': {
+				width: '15.25rem',
+				'& input::-webkit-outer-spin-button, input[type=number]::-webkit-inner-spin-button': {
+					WebkitAppearance: 'none',
+				},
+			},
+			'&.event-tickets': {
+				width: '22rem',
+				'& input[type=number]::-webkit-inner-spin-button': {
+					WebkitAppearance: 'none',
+				}
+			},
 		},
 	},
 };

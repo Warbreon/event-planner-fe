@@ -50,7 +50,7 @@ const RegisterModal: FC<Props> = ({
                             label: 'Go to my events',
                             /** TODO: Navigate to My Events */
                             onClick: onClose,
-                            className: `${BUTTON_STYLES.OUTLINED_GREY_BORDER} ${BUTTON_STYLES.MODAL_BUTTON}`,
+                            className: `${BUTTON_STYLES.OUTLINED_GRAY_BORDER} ${BUTTON_STYLES.MODAL_BUTTON}`,
                         },
                         {
                             label: confirmButtonLabel,

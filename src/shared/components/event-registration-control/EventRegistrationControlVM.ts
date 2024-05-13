@@ -1,14 +1,18 @@
 import { useEffect, useState } from "react";
 import { REGISTRATION_STATUS } from "../../../models/RegistrationStatus";
 import useRegistration from "../../../hooks/UseRegistration";
+import { StoreState } from "../../../redux/store/Store";
+import { useSelector } from "react-redux";
 
 interface Props {
     eventId: number;
     initialRegistrationStatus: REGISTRATION_STATUS | null;
     isOpenEvent: boolean;
+    creatorEmail: string;
 }
 
-const EventRegistrationControlVM = ({ eventId, initialRegistrationStatus, isOpenEvent }: Props) => {
+const EventRegistrationControlVM = ({ eventId, initialRegistrationStatus, isOpenEvent, creatorEmail }: Props) => {
+    const currentUserEmail = useSelector((state: StoreState) => state.user.email);
     const [isSnackbarOpen, setSnackbarOpen] = useState(false);
     const [error, setError] = useState('');
     const [isConfirmationDialogOpen, setConfirmationDialogOpen] = useState(false);
@@ -17,6 +21,7 @@ const EventRegistrationControlVM = ({ eventId, initialRegistrationStatus, isOpen
         unregister();
         handleConfirmationDialogClose();
     };
+    const isCreator = currentUserEmail === creatorEmail;
 
     const {
 		isModalOpen,
@@ -29,7 +34,8 @@ const EventRegistrationControlVM = ({ eventId, initialRegistrationStatus, isOpen
 	} = useRegistration({
 		eventId: Number(eventId),
 		initialRegistrationStatus: initialRegistrationStatus ?? null,
-		isOpenEvent: Boolean(isOpenEvent)
+		isOpenEvent: Boolean(isOpenEvent),
+        isCreator: Boolean(isCreator),
 	});
 
     useEffect(() => {
@@ -68,6 +74,7 @@ const EventRegistrationControlVM = ({ eventId, initialRegistrationStatus, isOpen
         isConfirmationDialogOpen,
         handleConfirmationDialogConfirm,
         handleConfirmationDialogClose,
+        isCreator,
     }
 }
 

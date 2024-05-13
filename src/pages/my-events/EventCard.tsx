@@ -4,7 +4,7 @@ import { FC } from 'react';
 import { Event } from '../../models/Event';
 import DateLocationPrice from '../../components/reusable-labels/DateLocationPrice';
 import GuestList from '../../components/guest-list/GuestList';
-import GenericButton, { ButtonTypes, IconButton } from '../../components/buttons/ButtonComponent';
+import GenericButton, { ButtonTypes, IconButton } from '../../shared/components/buttons/ButtonComponent';
 import { BUTTON_STYLES } from '../../themes/styles/Button';
 import styles from './EventCard.module.css';
 import { NavLink } from 'react-router-dom';

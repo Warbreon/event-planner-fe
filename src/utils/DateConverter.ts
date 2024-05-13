@@ -58,6 +58,10 @@ export const isDateInThePast = (dateString: string) => {
 	return moment(dateString).isBefore(moment());
 };
 
+export const isDateInTheFuture = (dateString: string) => {
+	return moment(dateString).isAfter(moment());
+};
+
 export const formatDifferenceInDays = (dateString: string) => {
 	const currentDate = moment();
     const inputDate = moment(dateString);

@@ -10,6 +10,7 @@ import { Typography } from '@mui/material';
 import { TYPOGRAPHY_STYLES } from '../../../themes/styles/Typography';
 import EventRestrictionsService from '../../../services/EventRestrictionsService';
 import { Event } from '../../../models/Event';
+import styles from './EventRegistrationControl.module.css';
 
 interface EventRegistrationControlProps {
     event: Event;
@@ -37,19 +38,25 @@ const EventRegistrationControl: React.FC<EventRegistrationControlProps> = ({
         isConfirmationDialogOpen,
         handleConfirmationDialogConfirm,
         handleConfirmationDialogClose,
+        isCreator,
     } = EventRegistrationControlVM({
         eventId: event.id,
         initialRegistrationStatus: event.currentUserRegistrationStatus ?? null,
         isOpenEvent: event.isOpen,
+        creatorEmail: event.creatorEmail,
     });
 
-    const restrictionMessage = EventRestrictionsService.getRestrictionMessage(event);
+    const restrictionMessage = EventRestrictionsService.getRestrictionMessage({ event, isCreator });
 
     const renderContent = () => {
         if (registrationStatus === REGISTRATION_STATUS.PENDING && showWaitingList) {
             return <WaitingListStatus onClick={onEventRegistrationCancelClick} />;
-        } else if (restrictionMessage) {
-            return <Typography variant='body1' className={TYPOGRAPHY_STYLES.WAITING_LIST_MESSAGE}>{restrictionMessage}</Typography>;
+        } else if (restrictionMessage && event.currentUserRegistrationStatus !== REGISTRATION_STATUS.ACCEPTED) {
+            return (
+                <div className={styles.restrictionMessageContainer}>
+                    <Typography variant='body1' className={TYPOGRAPHY_STYLES.WAITING_LIST_MESSAGE}>{restrictionMessage}</Typography>
+                </div>
+            );
         } else {
             return (
                 <EventButton
@@ -67,7 +74,7 @@ const EventRegistrationControl: React.FC<EventRegistrationControlProps> = ({
             {modalEnabled && (
                 <RegisterModal
                     isOpen={isModalOpen}
-                    isOpenEvent={event.isOpen}
+                    isOpenEvent={isCreator || event.isOpen}
                     eventName={event.name}
                     onClose={closeModal}
                 />

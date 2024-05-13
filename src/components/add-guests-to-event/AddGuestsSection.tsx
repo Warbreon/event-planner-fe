@@ -40,7 +40,7 @@ const AddGuestsSection: FC<Props> = ({ users }) => {
 					{
 						label: 'Cancel',
 						onClick: onModalClose,
-						className: `${BUTTON_STYLES.OUTLINED_GREY_BORDER} ${BUTTON_STYLES.MODAL_BUTTON}`,
+						className: `${BUTTON_STYLES.OUTLINED_GRAY_BORDER} ${BUTTON_STYLES.MODAL_BUTTON}`,
 					},
 					{
 						label: confirmButtonLabel,

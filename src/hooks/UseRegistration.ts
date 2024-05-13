@@ -1,35 +1,42 @@
 import { useState, useCallback, useEffect, FC } from 'react';
 import { REGISTRATION_STATUS } from '../models/RegistrationStatus';
-import { usePost } from '../api/hooks/ApiHooks';
+import { useApiRequest } from '../api/hooks/ApiHooks';
 import useAttendeeAPI from '../api/AttendeeAPI';
 
 interface Props {
     eventId: number;
     initialRegistrationStatus: REGISTRATION_STATUS | null;
     isOpenEvent: boolean;
+    isCreator: boolean;
 }
 
-const useRegistration = ({ eventId, initialRegistrationStatus, isOpenEvent }: Props) => {
+const useRegistration = ({ eventId, initialRegistrationStatus, isOpenEvent, isCreator }: Props) => {
     const [isModalOpen, setModalOpen] = useState(false);
     const [registrationStatus, setRegistrationStatus] = useState(initialRegistrationStatus);
-    const { postData, isLoading, error, data } = usePost();
+    const { request, isLoading, error } = useApiRequest();
     const { registerToEvent, unregisterFromEvent } = useAttendeeAPI();
     const [lastAction, setLastAction] = useState<'register' | 'unregister' | null>(null);
 
     const register = useCallback(() => {
-        postData(() => registerToEvent(eventId));
+        request(() => registerToEvent(eventId));
         setLastAction('register');
-    }, [eventId, postData, registerToEvent]);
+    }, [eventId, request, registerToEvent]);
 
     const unregister = useCallback(() => {
-        postData(() => unregisterFromEvent(eventId));
+        request(() => unregisterFromEvent(eventId));
         setLastAction('unregister');
-    }, [eventId, postData, unregisterFromEvent]);
+    }, [eventId, request, unregisterFromEvent]);
+
+    useEffect(() => {
+        setRegistrationStatus(initialRegistrationStatus);
+        setModalOpen(false);
+        setLastAction(null);
+    }, [eventId, initialRegistrationStatus, isOpenEvent]);
 
     useEffect(() => {
         if (!error && !isLoading) {
             if (lastAction === 'register') {
-                setRegistrationStatus(isOpenEvent ? REGISTRATION_STATUS.ACCEPTED : REGISTRATION_STATUS.PENDING);
+                setRegistrationStatus(isCreator || isOpenEvent ? REGISTRATION_STATUS.ACCEPTED : REGISTRATION_STATUS.PENDING);
                 setModalOpen(true);
             } else if (lastAction === 'unregister') {
                 setRegistrationStatus(REGISTRATION_STATUS.DEFAULT);

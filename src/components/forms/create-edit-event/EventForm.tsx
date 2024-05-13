@@ -14,14 +14,21 @@ import Location from './location/Location'
 import AgendaSection from './formik-elements/agenda-section/AgendaSection';
 import Registration from './registration/Registration';
 import AddGuestsSection from '../../add-guests-to-event/AddGuestsSection';
+import { FC } from 'react';
+import { Event } from '../../../models/Event';
 
-const EventForm = () => {
-	const { initialValues, onSubmit, handleCancelOnClick, users } = EventFormVM();
+interface EventFormProps {
+	headerTitle: string;
+	event?: Event | null;
+}
+
+const EventForm: FC<EventFormProps> = ({headerTitle, event}) => {
+	const { initialValues, onSubmit, handleCancelOnClick, users } = EventFormVM(event);
 
 	return (
 		<div className={styles.container}>
 			<div className={styles.pageHeader}>
-				<PageHeader text='Add new event' />
+				<PageHeader text={headerTitle} />
 			</div>
 			<Form initialValues={initialValues} validationSchema={eventFormSchema} onSubmit={onSubmit}>
 				<div className={styles.formContainer}>

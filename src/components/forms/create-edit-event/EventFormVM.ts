@@ -5,8 +5,9 @@ import { useFetch } from "../../../api/hooks/ApiHooks";
 import useUserAPI from "../../../api/UserAPI";
 import { useCallback } from "react";
 import { LocationTags } from "../../../constants/LocationTags";
+import { Event } from "../../../models/Event";
 
-const EventFormVM = () => {
+const EventFormVM = (event: Event | null | undefined) => {
     const agenda = ['7:00 am-Introduction', '12:30 pm-Presentations', '8:00 pm-Conclusion'];
     const parsedAgendaItems = parseAgendaItems(agenda);
 

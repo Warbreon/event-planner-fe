@@ -7,8 +7,9 @@ import GuestList from '../../components/guest-list/GuestList';
 import GenericButton, { ButtonTypes, IconButton } from '../../components/buttons/ButtonComponent';
 import { BUTTON_STYLES } from '../../themes/styles/Button';
 import styles from './EventCard.module.css';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { formatDate, formatDifferenceInDays, isDateInThePast, isNowBetween } from '../../utils/DateConverter';
+import ROUTES from '../../routes/Routes';
 
 interface Props {
 	event: Event;
@@ -18,6 +19,7 @@ interface Props {
 const EventCard: FC<Props> = ({ event, createdByUser }) => {
 	const { id, imageUrl, name, eventStart, eventEnd, address, inviteUrl, attendees } = event;
 	const location = address ? address.city : inviteUrl ? 'Online' : 'TBD';
+	const navigate = useNavigate();
 	return (
 		<Box className={styles.cardContainer} title={name}>
 			<NavLink to={`/events/event/${id}`}>
@@ -44,8 +46,8 @@ const EventCard: FC<Props> = ({ event, createdByUser }) => {
 						<GenericButton
 							type={ButtonTypes.button}
 							title='Edit'
-							styles={`${BUTTON_STYLES.OUTLINED_GRAY_BORDER} ${styles.cancelButton}`}
-							onClick={() => {}}
+							styles={`${BUTTON_STYLES.OUTLINED_GRAY_BORDER} ${styles.editButton}`}
+							onClick={() => navigate(ROUTES.EDIT_EVENT.replace(':eventId', `${id}`))}
 						/>
 					)}
 				</Box>

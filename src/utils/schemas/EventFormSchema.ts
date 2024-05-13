@@ -96,6 +96,6 @@ export const eventFormSchema = Yup.object().shape({
         }),
     about: Yup.string()
         .min(8,"Field cannot be empty")
-        .max(1000, "About section cant exceed a 1000 characters")
+        .max(5000, "About section cant exceed a 5000 character size limit")
         .required('Please add a description for the event'),
 });

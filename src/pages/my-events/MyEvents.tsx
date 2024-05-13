@@ -5,7 +5,7 @@ import GenericButton, { ButtonTypes, IconButton } from '../../shared/components/
 import { BUTTON_STYLES } from '../../themes/styles/Button';
 import useMyEventsVM from './MyEventsVM';
 import ChipSelector from '../../components/chip-selector/ChipSelector';
-import EventList from './EventList';
+import EventList from './event-list/EventList';
 import LoadingIndicator from '../../components/loading-indicator/LoadingIndicator';
 
 const MyEvents = () => {

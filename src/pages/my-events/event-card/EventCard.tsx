@@ -1,14 +1,15 @@
 import { Box, Typography } from '@mui/material';
-import Image from '../../components/image/Image';
+import Image from '../../../components/image/Image';
 import { FC } from 'react';
-import { Event } from '../../models/Event';
-import DateLocationPrice from '../../components/reusable-labels/DateLocationPrice';
-import GuestList from '../../components/guest-list/GuestList';
-import GenericButton, { ButtonTypes, IconButton } from '../../shared/components/buttons/ButtonComponent';
-import { BUTTON_STYLES } from '../../themes/styles/Button';
+import { Event } from '../../../models/Event';
+import DateLocationPrice from '../../../components/reusable-labels/DateLocationPrice';
+import GuestList from '../../../components/guest-list/GuestList';
+import GenericButton, { ButtonTypes, IconButton } from '../../../shared/components/buttons/ButtonComponent';
+import { BUTTON_STYLES } from '../../../themes/styles/Button';
 import styles from './EventCard.module.css';
 import { NavLink } from 'react-router-dom';
-import { formatDate, formatDifferenceInDays, isDateInThePast, isNowBetween } from '../../utils/DateConverter';
+import { formatDate, formatDifferenceInDays, isDateInThePast, isNowBetween } from '../../../utils/DateConverter';
+import EventRegistrationControl from '../../../shared/components/event-registration-control/EventRegistrationControl';
 
 interface Props {
 	event: Event;
@@ -34,18 +35,17 @@ const EventCard: FC<Props> = ({ event, createdByUser }) => {
 			</Box>
 			{!isDateInThePast(eventStart) && (
 				<Box className={styles.buttonContainer}>
-					<GenericButton
-						type={ButtonTypes.button}
-						icon={IconButton.GOING}
-						styles={`${BUTTON_STYLES.BLUE} ${styles.goingButton}`}
-						onClick={() => {}}
+					<EventRegistrationControl
+						event={event}
+						modalEnabled
+						snackbarClassName={styles.snackbar}
 					/>
 					{createdByUser && (
 						<GenericButton
 							type={ButtonTypes.button}
 							title='Edit'
 							styles={`${BUTTON_STYLES.OUTLINED_GRAY_BORDER} ${styles.cancelButton}`}
-							onClick={() => {}}
+							onClick={() => { }}
 						/>
 					)}
 				</Box>

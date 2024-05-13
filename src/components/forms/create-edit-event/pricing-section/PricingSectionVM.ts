@@ -1,15 +1,12 @@
 import {useState} from 'react';
-import {SelectChangeEvent} from '@mui/material';
 import classNames from 'classnames';
 import {TAGS} from '../../../../themes/styles/Tag';
 
 interface Props {
     setFieldValue: (field: string, value: any, shouldValidate?: boolean) => void;
-    isOpen: boolean;
 }
-const PricingSectionVM = ({setFieldValue, isOpen}:Props) => {
+const PricingSectionVM = ({setFieldValue}:Props) => {
     const [selectedTag, setSelectedTag] = useState<number>(1);
-    const [currency, setCurrency] = useState('eur');
 
     const pricingTagOptions = [
         { id: 1, name: 'Paid' },
@@ -22,15 +19,13 @@ const PricingSectionVM = ({setFieldValue, isOpen}:Props) => {
     const disableWheelAndArrowKeys= (e:React.FocusEvent<HTMLInputElement>) => {
         e.target.addEventListener("wheel", function (e) { e.preventDefault() }/*, { passive: false }*/);
         e.target.addEventListener("keydown",function (e:KeyboardEvent) {
-            if (e.key == 'ArrowUp') {e.preventDefault();}
-            else if (e.key == 'ArrowDown') {e.preventDefault();}
-            else if (e.key == '-') {e.preventDefault();}});
+            if (e.key === 'ArrowUp' ||
+                e.key === 'ArrowDown' ||
+                e.key === 'e' ||
+                e.key === '+' ||
+                e.key === '-'
+            ) {e.preventDefault();}});
     }
-
-    const handleCurrencyChange = (event: SelectChangeEvent<string>) => {
-        setFieldValue('currency', event.target.value);
-        setCurrency(event.target.value);
-    };
 
     const currencies = [
         { value: 'eur', label: 'EUR' },
@@ -46,7 +41,7 @@ const PricingSectionVM = ({setFieldValue, isOpen}:Props) => {
         return classNames([TAGS.SELECT_TAG], { [TAGS.TAG_SELECTED]: isSelected });
     };
 
-    return { currency, handleCurrencyChange, currencies, handleTagChange, selectedTag,pricingTagOptions, pricingOption, getChipClassName, disableWheelAndArrowKeys}
+    return { currencies, handleTagChange, selectedTag, pricingTagOptions, pricingOption, getChipClassName, disableWheelAndArrowKeys}
 }
 
 export default PricingSectionVM

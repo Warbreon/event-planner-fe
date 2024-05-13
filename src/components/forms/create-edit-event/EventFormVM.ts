@@ -18,7 +18,7 @@ const EventFormVM = () => {
         eventEndDate: null,
         eventEndTime: null,
         eventName: '',
-        eventTag: 'news',
+        eventTag: [],
         cardUrl: null,
         addressId: null,
         inviteUrl: '',
@@ -77,6 +77,7 @@ const EventFormVM = () => {
             price: values.price,
             currency: values.currency,
             tickets: values.tickets,
+            eventTag: values.eventTag,
         };
 
         console.log(submitValues);

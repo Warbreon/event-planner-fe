@@ -1,7 +1,6 @@
-import {Box, Typography} from '@mui/material';
+import {Box} from '@mui/material';
 import FormikTextField from '../../../../shared/forms/elements/formik-elements/text-field/FormikTextField';
 import {TEXTFIELD_STYLES} from '../../../../themes/styles/TextField';
-import Dropdown from '../../../dropdown/Dropdown';
 import {TYPOGRAPHY_STYLES} from '../../../../themes/styles/Typography';
 import styles from './PricingSection.module.css';
 import PricingSectionVM from './PricingSectionVM';
@@ -9,12 +8,11 @@ import ChipSelector from '../../../chip-selector/ChipSelector';
 import {useFormikContext} from 'formik';
 import {EventFormValues} from '../../../../interfaces/EventFormValuesInterface';
 import PageHeader from '../../../headers/page-headers/PageHeader';
+import FormikDropdown from "../../../../shared/forms/elements/formik-elements/dropdown/FormikDropdown";
 
 const PricingSection = () => {
-    const { setFieldValue, values } = useFormikContext<EventFormValues>();
+    const { setFieldValue } = useFormikContext<EventFormValues>();
     const {
-        currency,
-        handleCurrencyChange,
         handleTagChange,
         selectedTag,
         pricingTagOptions,
@@ -22,7 +20,7 @@ const PricingSection = () => {
         getChipClassName,
         currencies,
         disableWheelAndArrowKeys,
-    } = PricingSectionVM({ setFieldValue, isOpen: values.isOpen });
+    } = PricingSectionVM({setFieldValue});
 
     return (
         <div className={styles.container}>
@@ -48,14 +46,12 @@ const PricingSection = () => {
                             onFocus={disableWheelAndArrowKeys}
                         />
                         <Box className={styles.dropdown}>
-                            <Typography variant='body1' className={TYPOGRAPHY_STYLES.EVENT_PRICE_SECTION}>
-                                Currency
-                            </Typography>
-                            <Dropdown
-                                value={currency}
+                            <FormikDropdown
+                                name='currency'
+                                label='Currency'
                                 options={currencies}
-                                onChange={handleCurrencyChange}
                                 selectClassName={'create-event-price'}
+                                multiple={false}
                             />
                         </Box>
                     </Box>

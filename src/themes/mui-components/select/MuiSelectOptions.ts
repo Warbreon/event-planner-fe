@@ -34,7 +34,12 @@ const muiSelectOptions = {
 				'div': {
 					padding: 0,
 				}
-			}
+			},
+			'&.create-event-price': {
+				marginTop: '8px',
+				height: '40px',
+				width: '100px',
+			},
 		},
 	},
 	defaultProps: {

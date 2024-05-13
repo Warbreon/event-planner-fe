@@ -3,17 +3,17 @@ import { calculateDuration, formatDate, formatTime } from '../../utils/DateConve
 import useEventAPI from '../../api/EventsAPI';
 import { useCallback, useEffect, useState } from 'react';
 import { useFetch } from '../../api/hooks/ApiHooks';
-import useRegistration from '../../hooks/UseRegistration';
 
 const EventPageVM = () => {
 	const { eventId } = useParams();
 	const { fetchEventById } = useEventAPI();
 	const [currentError, setCurrentError] = useState('');
+	const [isSnackbarOpen, setSnackbarOpen] = useState(false);
 
 	const fetchFunction = useCallback(() => fetchEventById(Number(eventId)), [eventId]);
 	const { data: event, isLoading: isEventLoading, error: eventError } = useFetch(fetchFunction);
 
-	const { eventStart = '', eventEnd = '', inviteUrl, address, currentUserRegistrationStatus, isOpen } = event || {};
+	const { eventStart = '', eventEnd = '', inviteUrl, address } = event || {};
 	const eventDetails = {
 		eventDate: formatDate(eventStart),
 		startTime: formatTime(eventStart),
@@ -28,43 +28,29 @@ const EventPageVM = () => {
 		location = address.city;
 	}
 
-	const {
-		isModalOpen,
-		isLoading: isRegistrationLoading,
-		error: registrationError,
-		registrationStatus,
-		register,
-		closeModal,
-	} = useRegistration({
-		eventId: Number(eventId),
-		initialRegistrationStatus: currentUserRegistrationStatus ?? null,
-		isEventOpen: Boolean(isOpen)
-	});
-
 	useEffect(() => {
-		if (eventError || registrationError) {
-			setCurrentError(eventError || registrationError || '');
+		if (eventError) {
+			setCurrentError(eventError || '');
+			setSnackbarOpen(true);
 		}
-	}, [eventError, registrationError]);
+	}, [eventError, setSnackbarOpen]);
 
 	const onAddGuestsClick = () => {
 		console.log('Add guest');
 	};
 
-	const onEventRegistrationClick = () => register();
+	const handleSnackbarClose = () => {
+        setSnackbarOpen(false);
+    };
 
 	return {
-		onEventRegistrationClick,
 		event,
 		isEventLoading,
 		error: currentError,
-		registrationError,
-		isModalOpen,
-		closeModal,
 		onAddGuestsClick,
-		registrationStatus,
-		isRegistrationLoading,
 		location,
+		isSnackbarOpen,
+		handleSnackbarClose,
 		...eventDetails,
 	};
 };

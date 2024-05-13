@@ -32,7 +32,7 @@ const RelatedEvents: FC<Props> = ({ event }) => {
             <div className={styles.eventsContainer}>
                 {relatedEvents?.length! > 0 ? (
                     relatedEvents?.slice(0, EVENTS_DISPLAY_COUNT).map((event: Event) => (
-                        <EventCard key={event.id} {...event} />
+                        <EventCard key={event.id} event={event} />
                     ))
                 ) : (
                     <p>No related events to display.</p>

@@ -21,4 +21,5 @@ export interface Event {
 	currentUserRegistrationStatus: REGISTRATION_STATUS | null;
 	isOpen: boolean;
 	tags: Tag[];
+	tickets: number;
 }

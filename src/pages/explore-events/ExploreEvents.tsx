@@ -17,7 +17,7 @@ const ExploreEvents = () => {
 			<EventHeader filters={filters} handleFiltersChange={handleFiltersChange} />
 			<Box className={styles.eventsContainer}>
 				{events?.map((event) => (
-					<EventCard key={event.id} {...event} />
+					<EventCard key={event.id} event={event} />
 				))}
 			</Box>
 			<Box className={styles.loadMore}>

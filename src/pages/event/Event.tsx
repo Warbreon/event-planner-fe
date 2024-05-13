@@ -10,14 +10,12 @@ import EventPageGuests from '../../components/guest-list/event-page/EventPageGue
 import EventPageVM from './EventPageVM';
 import LoadingIndicator from '../../components/loading-indicator/LoadingIndicator';
 import RelatedEvents from '../../components/related-events/RelatedEvents';
-import RegisterModal from '../../shared/components/register-modal/RegisterModal';
 import SnackbarComponent, { ALERT_SEVERITY } from '../../components/snackbar/SnackbarComponent';
-import EventButton from '../../shared/components/buttons/event-button/EventButton';
+import EventRegistrationControl from '../../shared/components/event-registration-control/EventRegistrationControl';
 
 const Event = () => {
 	const {
 		onAddGuestsClick,
-		onEventRegistrationClick,
 		event,
 		isEventLoading,
 		location,
@@ -25,11 +23,9 @@ const Event = () => {
 		startTime,
 		endTime,
 		duration,
-		isModalOpen,
-		closeModal,
 		error,
-		isRegistrationLoading,
-		registrationStatus,
+		isSnackbarOpen,
+		handleSnackbarClose,
 	} = EventPageVM();
 
 	if (isEventLoading) {
@@ -46,7 +42,6 @@ const Event = () => {
 		description = '',
 		agenda = [],
 		tags = [],
-		isOpen: isOpenEvent = true,
 	} = event || {};
 
 	return (
@@ -74,24 +69,26 @@ const Event = () => {
 							address={address}
 							inviteUrl={inviteUrl}
 						/>
-						<EventButton
-							currentUserRegistrationStatus={registrationStatus}
-							onClick={onEventRegistrationClick}
-							disabled={isRegistrationLoading}
+						<EventRegistrationControl
+							event={event!}
+							modalEnabled
+							snackbarClassName={styles.snackbar}
+							showWaitingList
 						/>
-						<RegisterModal
-							isOpen={isModalOpen}
-							isOpenEvent={isOpenEvent}
-							eventName={name}
-							onClose={closeModal}
-						/>
-						<SnackbarComponent open={!!error} message={error ?? ''} severity={ALERT_SEVERITY.ERROR} />
 					</Box>
 				</Grid>
 			</Grid>
 			<Box component='section' className={styles.moreEventsLikeThis}>
 				<RelatedEvents event={event} />
 			</Box>
+			<SnackbarComponent
+				open={isSnackbarOpen}
+				message={error ?? ''}
+				autoHideDuration={5000}
+				handleClose={handleSnackbarClose}
+				severity={ALERT_SEVERITY.ERROR}
+				className={styles.snackbar}
+			/>
 		</Container>
 	);
 };

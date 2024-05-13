@@ -1,35 +1,41 @@
 import { useState, useCallback, useEffect, FC } from 'react';
 import { REGISTRATION_STATUS } from '../models/RegistrationStatus';
 import { usePost } from '../api/hooks/ApiHooks';
-import useEventAPI from '../api/EventsAPI';
+import useAttendeeAPI from '../api/AttendeeAPI';
 
 interface Props {
     eventId: number;
     initialRegistrationStatus: REGISTRATION_STATUS | null;
-    isEventOpen: boolean;
+    isOpenEvent: boolean;
 }
 
-const useRegistration = ({ eventId, initialRegistrationStatus, isEventOpen }: Props) => {
+const useRegistration = ({ eventId, initialRegistrationStatus, isOpenEvent }: Props) => {
     const [isModalOpen, setModalOpen] = useState(false);
     const [registrationStatus, setRegistrationStatus] = useState(initialRegistrationStatus);
     const { postData, isLoading, error, data } = usePost();
-    const { registerToEvent } = useEventAPI();
+    const { registerToEvent, unregisterFromEvent } = useAttendeeAPI();
+    const [lastAction, setLastAction] = useState<'register' | 'unregister' | null>(null);
 
-    const register = useCallback(async () => {
-        await postData(() => registerToEvent(eventId));
-    }, [eventId, postData]);
+    const register = useCallback(() => {
+        postData(() => registerToEvent(eventId));
+        setLastAction('register');
+    }, [eventId, postData, registerToEvent]);
+
+    const unregister = useCallback(() => {
+        postData(() => unregisterFromEvent(eventId));
+        setLastAction('unregister');
+    }, [eventId, postData, unregisterFromEvent]);
 
     useEffect(() => {
-        setRegistrationStatus(initialRegistrationStatus);
-    }, [initialRegistrationStatus]);
-
-    useEffect(() => {
-        if (!isLoading && !error && data) {
-            const newStatus = isEventOpen ? REGISTRATION_STATUS.ACCEPTED : REGISTRATION_STATUS.PENDING;
-            setRegistrationStatus(newStatus);
-            setModalOpen(true);
+        if (!error && !isLoading) {
+            if (lastAction === 'register') {
+                setRegistrationStatus(isOpenEvent ? REGISTRATION_STATUS.ACCEPTED : REGISTRATION_STATUS.PENDING);
+                setModalOpen(true);
+            } else if (lastAction === 'unregister') {
+                setRegistrationStatus(REGISTRATION_STATUS.DEFAULT);
+            }
         }
-    }, [isLoading, error, data]);
+    }, [isLoading, error, lastAction, isOpenEvent]);
 
     const closeModal = useCallback(() => {
         setModalOpen(false);
@@ -41,6 +47,7 @@ const useRegistration = ({ eventId, initialRegistrationStatus, isEventOpen }: Pr
         error,
         registrationStatus,
         register,
+        unregister,
         closeModal
     };
 };

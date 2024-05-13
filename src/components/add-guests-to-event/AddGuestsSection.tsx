@@ -22,7 +22,6 @@ const AddGuestsSection: FC<Props> = ({ users }) => {
 		showForm,
 		showModal,
 		currentlySelectedUsers,
-		showError,
 		errorMessage,
 		confirmButtonLabel,
 		onToggle,
@@ -30,10 +29,12 @@ const AddGuestsSection: FC<Props> = ({ users }) => {
 		onModalClose,
 		onConfirm,
 		onDeleteClick,
+		isSnackbarOpen,
+		handleSnackbarClose,
 	} = useAddGuestsVM({ setFieldValue });
 
 	const footer = () => (
-		<>
+		<div className={styles.footerContainer}>
 			<ButtonComponentGroup
 				buttons={[
 					{
@@ -48,10 +49,17 @@ const AddGuestsSection: FC<Props> = ({ users }) => {
 						type: ButtonTypes.submit,
 					},
 				]}
-				className={styles.footerContainer}
+				className={styles.modalButtonsContainer}
 			/>
-			<SnackbarComponent open={showError} message={errorMessage} severity={ALERT_SEVERITY.ERROR} />
-		</>
+			<SnackbarComponent
+				open={isSnackbarOpen}
+				message={errorMessage ?? ''}
+				autoHideDuration={5000}
+				handleClose={handleSnackbarClose}
+				severity={ALERT_SEVERITY.ERROR}
+				className={styles.snackbar}
+			/>
+		</div>
 	);
 
 	return (

@@ -1,16 +1,9 @@
 import { Event } from '../../models/Event';
 import { formatDate } from '../../utils/DateConverter';
-import useRegistration from '../../hooks/UseRegistration';
 
 const EventCardVM = (event: Partial<Event>) => {
-	const { id: eventId, eventStart = '', address, inviteUrl, currentUserRegistrationStatus, isOpen } = event;
+	const { id: eventId, eventStart = '', address, inviteUrl } = event;
 	const eventDate = formatDate(eventStart);
-
-	const { isModalOpen, isLoading, error, registrationStatus, register, closeModal } = useRegistration({
-        eventId: Number(eventId),
-        initialRegistrationStatus: currentUserRegistrationStatus ?? null,
-		isEventOpen: Boolean(isOpen),
-    });
 
 	let location = 'TBD';
 	if (inviteUrl && !address) {
@@ -21,20 +14,10 @@ const EventCardVM = (event: Partial<Event>) => {
 
 	const getEventUrl = () => `/events/event/${eventId}`;
 
-	const onEventRegistrationClick = async () => {
-        await register();
-    };
-
 	return {
-		isModalOpen,
 		getEventUrl,
-		onEventRegistrationClick,
 		eventDate,
 		location,
-		closeModal,
-		registrationError: error,
-		isRegistrationLoading: isLoading,
-		registrationStatus,
 	};
 };
 

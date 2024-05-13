@@ -67,6 +67,9 @@ const typographyOptions: TypographyOptions = {
 			color: COLORS.MEDIUM_DARK_GRAY,
 			textAlign: 'center',
 		},
+		'&.waiting-list-message': {
+			lineHeight: '1.5rem',
+		},
 	},
 	
 	body2: {

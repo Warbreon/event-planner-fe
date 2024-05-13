@@ -7,34 +7,30 @@ import DateLocationPrice from '../reusable-labels/DateLocationPrice';
 import EventCardVM from './EventCardVM';
 import { Link } from 'react-router-dom';
 import { Event } from '../../models/Event';
-import SnackbarComponent, { ALERT_SEVERITY } from '../snackbar/SnackbarComponent';
-import RegisterModal from '../../shared/components/register-modal/RegisterModal';
-import EventButton from '../../shared/components/buttons/event-button/EventButton';
+import EventRegistrationControl from '../../shared/components/event-registration-control/EventRegistrationControl';
 
-export const EventCard: FC<Event> = ({
-	id,
-	name,
-	imageUrl,
-	address,
-	price,
-	eventStart,
-	attendees,
-	inviteUrl,
-	isOpen: isOpenEvent,
-	currentUserRegistrationStatus
-}) => {
+interface Props {
+	event: Event;
+}
+
+export const EventCard: FC<Props> = ({ event }) => {
+	const {
+		id,
+		name,
+		imageUrl,
+		address,
+		price,
+		eventStart,
+		attendees,
+		inviteUrl,
+	} = event;
+	
 	const {
 		getEventUrl,
-		onEventRegistrationClick,
 		eventDate = '',
 		location,
-		isModalOpen,
-		closeModal,
-		registrationError,
-		isRegistrationLoading,
-		registrationStatus,
-	} = EventCardVM({ id, eventStart, address, inviteUrl, currentUserRegistrationStatus, isOpen: isOpenEvent });
-	
+	} = EventCardVM({ id, eventStart, address, inviteUrl });
+
 	return (
 		<Box className={styles.container}>
 			<Card className={styles.card}>
@@ -52,19 +48,12 @@ export const EventCard: FC<Event> = ({
 						</Box>
 					</CardContent>
 				</Link>
-				<EventButton
-					currentUserRegistrationStatus={registrationStatus}
-					onClick={onEventRegistrationClick}
-					disabled={isRegistrationLoading}
+				<EventRegistrationControl
+					event={event}
+					modalEnabled
+					snackbarClassName={styles.snackbar}
 				/>
 			</Card>
-			<RegisterModal
-				isOpen={isModalOpen}
-				isOpenEvent={isOpenEvent}
-				eventName={name}
-				onClose={closeModal}
-			/>
-			<SnackbarComponent open={!!registrationError} message={registrationError ?? ''} severity={ALERT_SEVERITY.ERROR} />
 		</Box>
 	);
 };

@@ -32,3 +32,8 @@
 	font-weight: bold;
 	color: black;
 }
+
+.snackbar {
+	padding-left: 4rem;
+	padding-bottom: 3rem;
+}

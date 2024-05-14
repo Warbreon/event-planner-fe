@@ -38,7 +38,7 @@ const SelectNewAdmins: React.FC<Props> = ({ users, handleCheckboxChange }) => {
 			<div className={styles.searchBar}>
 				<SearchBar
 					styles={TEXTFIELD_STYLES.GUEST_SEARCH_BAR}
-					placeholder={'Search for guest...'}
+					placeholder={'Search for user...'}
 					onChange={onInputChange}
 				>
 					<SearchIcon className={ICON_STYLES.GUEST_SEARCH_BAR} />

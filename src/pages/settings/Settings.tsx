@@ -109,7 +109,8 @@ const Settings = () => {
 					/>
 					{showModal && (
 						<ModalComponent
-							header='Add guests'
+							header='Add event administrators'
+							subheader='Event administrators will be able to view and manage all existing events.'
 							handleClose={onModalClose}
 							isOpen={showModal}
 							content={

@@ -1,0 +1,22 @@
+.mapContainer {
+  border-radius: 12px;
+  border: 1px solid #DDDDDD;
+  height:280px;
+  width:100%;
+}
+
+.textOnlyPopup {
+  background: transparent;  
+  border: none;
+  box-shadow: none;
+  color: #9e0000;   
+  font-family: 'Inter';
+  font-weight: 700;
+}
+
+.sectionHeader {
+  width: 100%;
+  display: flex;
+  border: 1px solid red;
+}
+

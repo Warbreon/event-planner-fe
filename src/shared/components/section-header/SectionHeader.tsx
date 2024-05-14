@@ -9,11 +9,12 @@ interface SectionHeaderProps {
 	name: string;
 	variableCount?: number;
 	buttonType?: IconButton;
+	buttonTitle?: string;
 	onButtonClick?: () => void;
 }
 
-const SectionHeader: React.FC<Partial<SectionHeaderProps>> = ({ name, variableCount, buttonType, onButtonClick }) => {
-	const sectionHeaderClasses = buttonType
+const SectionHeader: React.FC<Partial<SectionHeaderProps>> = ({ name, variableCount, buttonType, buttonTitle, onButtonClick }) => {
+	const sectionHeaderClasses = onButtonClick
 		? classNames(style.sectionHeader, style.sectionHeaderWithButton)
 		: classNames(style.sectionHeader);
 
@@ -22,13 +23,14 @@ const SectionHeader: React.FC<Partial<SectionHeaderProps>> = ({ name, variableCo
 			<Typography variant='h2'>
 				{name} {variableCount && `(${variableCount})`}
 			</Typography>
-			{buttonType && onButtonClick && (
+			{onButtonClick && (
 				<GenericButton
 					type={ButtonTypes.button}
 					styles={BUTTON_STYLES.TEXT_ONLY}
 					onClick={onButtonClick}
 					icon={buttonType}
 					iconAtEnd
+					title={buttonTitle}
 				/>
 			)}
 		</Box>

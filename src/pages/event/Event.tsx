@@ -55,7 +55,7 @@ const Event = () => {
 						<Divider className={styles.divider} />
 						<EventPageGuests onAddGuests={onAddGuestsClick} attendees={attendees} />
 						<Image styles='event-page' imageUrl={imageUrl} />
-						<TabComponent description={description} tags={tags} agenda={agenda} attendees={attendees} />
+						<TabComponent address={address} description={description} tags={tags} agenda={agenda} attendees={attendees} />
 					</Box>
 				</Grid>
 				<Grid item xs={3} className={styles.gridItem}>

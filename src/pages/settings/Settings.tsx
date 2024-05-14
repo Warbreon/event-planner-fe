@@ -115,8 +115,8 @@ const Settings = () => {
 							content={
 								loadingNonAdmins ? (
 									<LoadingIndicator />
-								) : error ? (
-									<Typography variant='body1'>{error}</Typography>
+								) : errorNonAdmins ? (
+									<Typography variant='body1'>{errorNonAdmins}</Typography>
 								) : (
 									<SelectNewAdmins users={userList || []} handleCheckboxChange={handleCheckboxChange} />
 								)

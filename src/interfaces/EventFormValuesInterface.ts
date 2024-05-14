@@ -2,7 +2,7 @@ import { Moment } from "moment";
 import { Agenda } from "./Agenda";
 
 export interface EventFormValues {
-    imageUrl: File | null;
+    image: File | null;
     eventStartDate: Moment | null;
     eventStartTime: Moment | null;
     eventEndDate: Moment | null;

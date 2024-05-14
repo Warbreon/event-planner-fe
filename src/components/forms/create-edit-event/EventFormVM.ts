@@ -12,7 +12,7 @@ const EventFormVM = () => {
 
     // TODO: Fetch from API and get from redux.
     const initialValues: EventFormValues = {
-        imageUrl: null,
+        image: null,
         eventStartDate: null,
         eventStartTime: null,
         eventEndDate: null,
@@ -63,7 +63,7 @@ const EventFormVM = () => {
         const registrationEnd = combineDateTime(values.registrationEndDate, values.registrationEndTime);
 
         const submitValues = {
-            imageUrl: values.imageUrl,
+            image: values.image,
             cardUrl: values.cardUrl,
             eventStart,
             eventEnd,

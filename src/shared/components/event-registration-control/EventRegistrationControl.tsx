@@ -8,7 +8,6 @@ import WaitingListStatus from '../../../components/waiting-list-status/WaitingLi
 import ConfirmationDialog from '../../../components/confirmation-dialog/ConfirmationDialog';
 import { Typography } from '@mui/material';
 import { TYPOGRAPHY_STYLES } from '../../../themes/styles/Typography';
-import EventRestrictionsService from '../../../services/EventRestrictionsService';
 import { Event } from '../../../models/Event';
 import styles from './EventRegistrationControl.module.css';
 

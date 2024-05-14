@@ -26,7 +26,7 @@ const SettingsVM = () => {
 
 	const { data: adminList, isLoading, error } = useFetch(fetchAdminsFunction);
 
-	const { requestData: patchData, isLoading: patchIsLoading, error: patchError } = useApiRequest();
+	const { request: patchData, isLoading: patchIsLoading, error: patchError } = useApiRequest();
 
 	const handleRemoveClick = async (id: number | string) => {
 		setDemotionInProgress(true);

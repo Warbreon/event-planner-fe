@@ -7,15 +7,17 @@ import { Attendee } from '../../../models/Attendee';
 import { filterAttendees } from '../../../utils/AttendeeFilter';
 import EventPageGuestListPanel from "../tab-panel/event-page-guest-list-panel/EventPageGuestListPanel";
 import { Tag } from '../../../models/Tag';
+import { Address } from '../../../models/Address';
 
 interface TabsProps {
 	description: string;
 	tags: Tag[];
 	agenda: string[] | null;
 	attendees: Attendee[];
+	address: Address | null | undefined
 }
 
-const TabComponent: FC<TabsProps> = ({ description, tags, agenda, attendees }) => {
+const TabComponent: FC<TabsProps> = ({ description, tags, agenda, attendees, address }) => {
 	const [value, setValue] = useState(0);
 	const handleTabChange = (event: SyntheticEvent, newValue: number) => {
 		setValue(newValue);
@@ -33,7 +35,7 @@ const TabComponent: FC<TabsProps> = ({ description, tags, agenda, attendees }) =
 				</Tabs>
 			</Box>
 			<TabPanel index={0} value={value}>
-				<AboutEvent description={description} eventTags={tags} agenda={agenda} attendees={attendees} />
+				<AboutEvent description={description} eventTags={tags} agenda={agenda} attendees={attendees} address={address}/>
 			</TabPanel>
 			<TabPanel index={1} value={value}>
 				<EventPageGuestListPanel attendees={filteredAttendees}/>

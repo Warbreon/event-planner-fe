@@ -14,6 +14,7 @@ import Location from './location/Location'
 import AgendaSection from './formik-elements/agenda-section/AgendaSection';
 import Registration from './registration/Registration';
 import AddGuestsSection from '../../add-guests-to-event/AddGuestsSection';
+import PricingSection from './pricing-section/PricingSection';
 
 const EventForm = () => {
 	const { initialValues, onSubmit, handleCancelOnClick, users } = EventFormVM();
@@ -39,13 +40,15 @@ const EventForm = () => {
 						<Divider className={styles.divider} />
 						<Registration />
 						<Divider className={styles.divider} />
+						<PricingSection/>
+						<Divider className={styles.divider} />
 						<AddGuestsSection users={users || []} />
 						<Divider className={styles.divider} />
 					</div>
 					<div className={styles.buttonsContainer}>
 						<GenericButton
 							title='Cancel'
-							styles={`${BUTTON_STYLES.OUTLINED_GREY_BORDER} ${styles.cancelButton}`}
+							styles={`${BUTTON_STYLES.OUTLINED_GRAY_BORDER} ${styles.cancelButton}`}
 							type={ButtonTypes.button}
 							onClick={handleCancelOnClick}
 						/>

@@ -20,7 +20,7 @@ const useProtectedRouteVM = () => {
 	const navigate = useNavigate();
 
 	const { refresh } = useAuthenticationAPI();
-	const { requestData: postData } = useApiRequest();
+	const { request: postData } = useApiRequest();
 
 	useEffect(() => {
 		const fetchNewAccessToken = async () => {

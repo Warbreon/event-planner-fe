@@ -5,7 +5,7 @@ import { PrivateUser } from '../models/PrivateUser';
 const useUserAPI = () => {
 	const axios = useAxios();
 	const fetchAdmins = () => axios.get<PrivateUser[]>(ENDPOINTS.getAllAdmins);
-	const demoteAdmin = (id: number | string) => axios.patch(ENDPOINTS.demoteAdmin(id));
+	const demoteAdmin = (id: number) => axios.patch(ENDPOINTS.demoteAdmin(id));
 
 	return { fetchAdmins, demoteAdmin };
 };

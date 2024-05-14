@@ -5,36 +5,41 @@ import styles from './NotificationCard.module.css'
 import { NavLink } from 'react-router-dom';
 import NotificationCardVM from './NotificationCardVM';
 import GenericButton, { ButtonTypes } from '../buttons/ButtonComponent';
+import { AVATAR_STYLES } from '../../themes/styles/Avatar';
 
-const NotificationCard: FC<AttendeeNotification> = ({ id, registrationTime, isNewNotification, user, eventId, eventName, eventStart }) => {
+interface NotificationCardProps extends AttendeeNotification {
+    markNotificationAsViewed: () => void;
+}
+
+const NotificationCard: FC<NotificationCardProps> = ({ id, registrationTime, isNewNotification, user, eventId, eventName, eventStart, markNotificationAsViewed }) => {
     const {
         error,
-        formattedEventStart, 
         formattedRegistrationTime,
+        formattedCardText,
         viewed,
         getEventUrl, 
-        getNotificationClassName, 
-        getConfirmButtonClassName,
-        getDeclinedButtonClassName,
+        getNotificationStyles, 
+        getConfirmButtonStyles,
+        getDeclinedButtonStyles,
         markAsViewed,
         handleDeclineOnClick,
         handleConfirmOnClick
-    } = NotificationCardVM({ registrationTime, isNewNotification, eventStart });
+    } = NotificationCardVM({ registrationTime, isNewNotification, eventStart, eventName, user, markNotificationAsViewed });
 
     if (error) return <div className={styles.container}>{error}</div>;
 
     return (
         <div className={styles.container}>
-            <Card className={getNotificationClassName(isNewNotification, viewed)} onMouseEnter={() => markAsViewed(id)}>
+            <Card className={getNotificationStyles(isNewNotification, viewed)} onMouseEnter={() => markAsViewed(id)}>
                 <CardContent>
                     <div className={styles.content}>
                         <div className={styles.avatar}>
-                            <Avatar className='attendee-list' alt={user.firstName} src={user.imageUrl} />
+                            <Avatar className={AVATAR_STYLES.GUEST_LIST_ITEM_AVATAR} alt={user.firstName} src={user.imageUrl} />
                         </div>
                         <div className={styles.textContainer}>
-                            <Typography variant='h3' className='notification-title'>
-                                {user.firstName} {user.lastName} registered to attend <strong>{eventName}</strong> on {formattedEventStart}.
-                            </Typography>
+                            <div className={styles.title}>
+                                <Typography variant='h3' className='notification-title' dangerouslySetInnerHTML={{ __html: formattedCardText }}/>
+                            </div>
                             <div className={styles.timeAndLink}>
                                 <Typography variant='body2'>
                                     {formattedRegistrationTime} 
@@ -45,13 +50,13 @@ const NotificationCard: FC<AttendeeNotification> = ({ id, registrationTime, isNe
                         <div className={styles.buttons}>
                             <GenericButton
                                 title='Decline'
-                                styles={getDeclinedButtonClassName()}
+                                styles={getDeclinedButtonStyles()}
                                 type={ButtonTypes.button}
                                 onClick={() => handleDeclineOnClick(id)}
                             />
                             <GenericButton
                                 title='Confirm'
-                                styles={getConfirmButtonClassName()}
+                                styles={getConfirmButtonStyles()}
                                 type={ButtonTypes.button}
                                 onClick={() => handleConfirmOnClick(id)}
                             />

@@ -94,6 +94,6 @@ export const isNowBetween = (startDateString: string, endDateString: string) => 
 	return moment().isBetween(moment(startDateString), moment(endDateString));
 };
 
-export const customFormatDateAndTime = (dateTime: string): string => {
+export const formatDateAndTimeTo_HH_mm_MMMM_D_YYYY = (dateTime: string): string => {
 	return moment(dateTime).format('HH:mm, MMMM D YYYY');
 }

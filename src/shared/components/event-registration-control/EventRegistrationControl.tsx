@@ -38,34 +38,35 @@ const EventRegistrationControl: React.FC<EventRegistrationControlProps> = ({
         isConfirmationDialogOpen,
         handleConfirmationDialogConfirm,
         handleConfirmationDialogClose,
-        isCreator,
+        isCurrentUserCreator,
+        canShowRestriction,
+        restrictionMessage,
     } = EventRegistrationControlVM({
-        eventId: event.id,
-        initialRegistrationStatus: event.currentUserRegistrationStatus ?? null,
-        isOpenEvent: event.isOpen,
-        creatorEmail: event.creatorEmail,
+        event,
     });
-
-    const restrictionMessage = EventRestrictionsService.getRestrictionMessage({ event, isCreator });
 
     const renderContent = () => {
         if (registrationStatus === REGISTRATION_STATUS.PENDING && showWaitingList) {
             return <WaitingListStatus onClick={onEventRegistrationCancelClick} />;
-        } else if (restrictionMessage && event.currentUserRegistrationStatus !== REGISTRATION_STATUS.ACCEPTED) {
+        }
+
+        if (canShowRestriction) {
             return (
                 <div className={styles.restrictionMessageContainer}>
-                    <Typography variant='body1' className={TYPOGRAPHY_STYLES.WAITING_LIST_MESSAGE}>{restrictionMessage}</Typography>
+                    <Typography variant='body1' className={TYPOGRAPHY_STYLES.WAITING_LIST_MESSAGE}>
+                        {restrictionMessage}
+                    </Typography>
                 </div>
             );
-        } else {
-            return (
-                <EventButton
-                    currentUserRegistrationStatus={registrationStatus}
-                    onClick={onEventRegistrationClick}
-                    disabled={isRegistrationLoading}
-                />
-            );
         }
+
+        return (
+            <EventButton
+                currentUserRegistrationStatus={registrationStatus}
+                onClick={onEventRegistrationClick}
+                disabled={isRegistrationLoading}
+            />
+        );
     };
 
     return (
@@ -74,7 +75,7 @@ const EventRegistrationControl: React.FC<EventRegistrationControlProps> = ({
             {modalEnabled && (
                 <RegisterModal
                     isOpen={isModalOpen}
-                    isOpenEvent={isCreator || event.isOpen}
+                    isOpenEvent={isCurrentUserCreator || event.isOpen}
                     eventName={event.name}
                     onClose={closeModal}
                 />

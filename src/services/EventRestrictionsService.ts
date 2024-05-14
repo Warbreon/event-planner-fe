@@ -3,12 +3,12 @@ import { formatDate, isDateInTheFuture, isDateInThePast } from '../utils/DateCon
 
 interface Props {
     event: Event;
-    isCreator: boolean;
+    isCurrentUserCreator: boolean;
 }
 
 class EventRestrictionsService {
-    static getRestrictionMessage({ event, isCreator }: Props) {
-        if (!event || isCreator) return null;
+    static getRestrictionMessage({ event, isCurrentUserCreator }: Props) {
+        if (!event || isCurrentUserCreator) return null;
 
         const { tickets, registrationStart, registrationEnd } = event;
 

@@ -26,12 +26,8 @@ const eventButtonConfigs: Record<REGISTRATION_STATUS, ButtonConfig> = {
     },
 };
 
-const EventButtonVM = (status: REGISTRATION_STATUS | null) => {
-    const getEventButtonConfig = () => {
-        return eventButtonConfigs[status ?? REGISTRATION_STATUS.DEFAULT];
-    }
-
-    return getEventButtonConfig;
+const EventButtonVM = (status: REGISTRATION_STATUS | null): ButtonConfig => {
+    return eventButtonConfigs[status ?? REGISTRATION_STATUS.DEFAULT];
 }
 
 export default EventButtonVM

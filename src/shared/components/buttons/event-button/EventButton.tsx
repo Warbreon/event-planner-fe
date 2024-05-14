@@ -13,8 +13,7 @@ const EventButton: React.FC<Props> = ({
     currentUserRegistrationStatus = REGISTRATION_STATUS.DEFAULT,
     disabled = false,
 }) => {
-    const getEventButtonConfig = EventButtonVM(currentUserRegistrationStatus);
-    const { icon, styles } = getEventButtonConfig();
+    const { icon, styles } = EventButtonVM(currentUserRegistrationStatus);
 
     return (
         <GenericButton

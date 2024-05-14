@@ -30,7 +30,13 @@
 	width: 91px;
 }
 
-.linkToEvent, .linkToEvent:visited {
+.linkToEvent,
+.linkToEvent:visited {
 	text-decoration: none;
 	color: black;
+}
+
+.snackbar {
+	padding-left: 4rem;
+	padding-bottom: 3rem;
 }

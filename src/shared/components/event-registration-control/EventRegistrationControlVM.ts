@@ -3,47 +3,49 @@ import { REGISTRATION_STATUS } from "../../../models/RegistrationStatus";
 import useRegistration from "../../../hooks/UseRegistration";
 import { StoreState } from "../../../redux/store/Store";
 import { useSelector } from "react-redux";
+import EventRestrictionsService from "../../../services/EventRestrictionsService";
+import { Event } from "../../../models/Event";
 
 interface Props {
-    eventId: number;
-    initialRegistrationStatus: REGISTRATION_STATUS | null;
-    isOpenEvent: boolean;
-    creatorEmail: string;
+    event: Event;
 }
 
-const EventRegistrationControlVM = ({ eventId, initialRegistrationStatus, isOpenEvent, creatorEmail }: Props) => {
+const EventRegistrationControlVM = ({ event }: Props) => {
     const currentUserEmail = useSelector((state: StoreState) => state.user.email);
+    const isCurrentUserCreator = currentUserEmail === event.creatorEmail;
+
     const [isSnackbarOpen, setSnackbarOpen] = useState(false);
     const [error, setError] = useState('');
     const [isConfirmationDialogOpen, setConfirmationDialogOpen] = useState(false);
+
     const handleConfirmationDialogClose = () => setConfirmationDialogOpen(false);
     const handleConfirmationDialogConfirm = () => {
         unregister();
         handleConfirmationDialogClose();
     };
-    const isCreator = currentUserEmail === creatorEmail;
+    
 
     const {
-		isModalOpen,
-		isLoading: isRegistrationLoading,
-		error: registrationError,
-		registrationStatus,
-		register,
-		unregister,
-		closeModal,
-	} = useRegistration({
-		eventId: Number(eventId),
-		initialRegistrationStatus: initialRegistrationStatus ?? null,
-		isOpenEvent: Boolean(isOpenEvent),
-        isCreator: Boolean(isCreator),
-	});
+        isModalOpen,
+        isLoading: isRegistrationLoading,
+        error: registrationError,
+        registrationStatus,
+        register,
+        unregister,
+        closeModal,
+    } = useRegistration({
+        eventId: event.id,
+        initialRegistrationStatus: event.currentUserRegistrationStatus ?? null,
+        isOpenEvent: event.isOpen,
+        isCreator: isCurrentUserCreator,
+    });
 
     useEffect(() => {
-		if (registrationError) {
+        if (registrationError) {
             setError(registrationError);
-			setSnackbarOpen(true);
-		}
-	}, [registrationError, setSnackbarOpen]);
+            setSnackbarOpen(true);
+        }
+    }, [registrationError, setSnackbarOpen]);
 
     const onEventRegistrationClick = () => {
         if (registrationStatus === REGISTRATION_STATUS.PENDING) {
@@ -57,9 +59,13 @@ const EventRegistrationControlVM = ({ eventId, initialRegistrationStatus, isOpen
 
     const onEventRegistrationCancelClick = () => setConfirmationDialogOpen(true);
 
-    const handleSnackbarClose = () => {
-        setSnackbarOpen(false);
-    };
+    const handleSnackbarClose = () => setSnackbarOpen(false);
+
+    const restrictionMessage = EventRestrictionsService.getRestrictionMessage({ event, isCurrentUserCreator });
+
+    const canShowRestriction = restrictionMessage
+        && registrationStatus !== REGISTRATION_STATUS.ACCEPTED
+        && registrationStatus !== REGISTRATION_STATUS.PENDING;
 
     return {
         onEventRegistrationClick,
@@ -74,7 +80,9 @@ const EventRegistrationControlVM = ({ eventId, initialRegistrationStatus, isOpen
         isConfirmationDialogOpen,
         handleConfirmationDialogConfirm,
         handleConfirmationDialogClose,
-        isCreator,
+        isCurrentUserCreator,
+        canShowRestriction,
+        restrictionMessage,
     }
 }
 

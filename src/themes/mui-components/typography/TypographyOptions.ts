@@ -26,6 +26,7 @@ const typographyOptions: TypographyOptions = {
 
 	h2: {
 		fontSize: '1.25rem',
+		lineHeight: '2rem',
 		fontWeight: 400,
 	},
 
@@ -60,6 +61,9 @@ const typographyOptions: TypographyOptions = {
 		},
 		'&.error-mesage': {
 			color: COLORS.ERROR
+		},
+		'&.event-price-section': {
+			color: COLORS.MEDIUM_DARK_GRAY,
 		},
 		'&.create-event-description': {
 			paddingTop: '1.5rem',

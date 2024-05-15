@@ -8,7 +8,7 @@ export interface EventFormValues {
     eventEndDate: Moment | null;
     eventEndTime: Moment | null;
     eventName: string;
-    eventTag: string;
+    eventTag: string[];
     cardUrl: File | null;
     isOpen: boolean;
     registrationStartDate: Moment | null;
@@ -20,5 +20,8 @@ export interface EventFormValues {
     inviteUrl: string | null;
     locationKey: number;
     attendees: number[];
+    price: number;
+    currency: string;
+    tickets: number;
     about: string;
 }

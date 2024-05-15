@@ -14,10 +14,7 @@ const EventHeaderVM = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const filters = useSelector((state: StoreState) => state.filters);
-
-    // TODO: get name from redux later
-    const userName = 'John';
-
+    const userFirstName = useSelector((state: StoreState) => state.userInfo.userFirstName);
     const fetchAllTags = useTagAPI();
     const fetchAllCities = useAddressAPI();
 
@@ -62,7 +59,7 @@ const EventHeaderVM = () => {
     const selectedKeys = filters.eventTag.length === 0 ? [0] : filters.eventTag;
 
     return {
-        userName,
+        userFirstName,
         filters,
         handleTagChange,
         handleDateChange,

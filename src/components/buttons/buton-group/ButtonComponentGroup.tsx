@@ -15,7 +15,7 @@ const ButtonComponentGroup: FC<Props> = ({ confirmButtonLabel, closeButtonLabel,
 			<div className='cancelButton'>
 				<GenericButton
 					title={closeButtonLabel}
-					styles={`${BUTTON_STYLES.OUTLINED_GREY_BORDER} ${BUTTON_STYLES.MODAL_BUTTON}`}
+					styles={`${BUTTON_STYLES.OUTLINED_GRAY_BORDER} ${BUTTON_STYLES.MODAL_BUTTON}`}
 					type={ButtonTypes.button}
 					onClick={onCancel}
 				/>

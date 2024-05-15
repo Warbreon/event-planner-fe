@@ -7,7 +7,7 @@ const NavigationSideBarViewModel = () => {
 	const loggedInStatus = useSelector((state: StoreState) => state.user.signedIn);
 
 	const userRole = useSelector((state: StoreState) => state.user.role);
-	const isUserAdmin = userRole === UserRoles.SYSTEM_ADMIN;
+	const isSystemAdmin = userRole === UserRoles.SYSTEM_ADMIN;
 
 	const currentRoute = useLocation().pathname;
 
@@ -23,7 +23,7 @@ const NavigationSideBarViewModel = () => {
 		currentRoute,
 		handleClickOnNavButton,
 		loggedInStatus,
-		isUserAdmin,
+		isSystemAdmin,
 	};
 };
 

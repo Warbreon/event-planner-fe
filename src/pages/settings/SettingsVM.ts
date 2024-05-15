@@ -72,7 +72,6 @@ const SettingsVM = () => {
 		} else {
 			setSelectedUsers(selectedUsers.filter((_, index) => index !== userIndex));
 		}
-		console.log('checked on user ' + user);
 	};
 
 	const onConfirm = async () => {

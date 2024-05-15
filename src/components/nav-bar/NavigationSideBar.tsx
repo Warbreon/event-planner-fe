@@ -18,7 +18,7 @@ type NavigationSideBarProps = {
 };
 
 const NavigationSideBar: React.FC<NavigationSideBarProps> = (props) => {
-	const viewModel = NavigationSideBarViewModel();
+	const { loggedInStatus, currentRoute, handleClickOnNavButton, isSystemAdmin} = NavigationSideBarViewModel();
 
 	return (
 		<>
@@ -42,34 +42,34 @@ const NavigationSideBar: React.FC<NavigationSideBarProps> = (props) => {
 						<ListItem className={styles.navListItem} key='Cognizant' disablePadding>
 							<img className={styles.cognizantLogo} src='/Cognizant_logo.jpg' alt='Cognizant company logo' />
 						</ListItem>
-						{viewModel.loggedInStatus && (
+						{loggedInStatus && (
 							<>
 								<ListItem className={styles.navListItem} key='Home' disablePadding>
 									<NavBarButton
 										buttonPage='Home'
 										buttonPageRoute={routes.INDEX}
-										currentRoute={viewModel.currentRoute}
+										currentRoute={currentRoute}
 										icon={<HomeRoundedIcon />}
-										handleClickOnNavButton={viewModel.handleClickOnNavButton}
+										handleClickOnNavButton={handleClickOnNavButton}
 									/>
 								</ListItem>
 								<ListItem className={styles.navListItem} key='My events' disablePadding>
 									<NavBarButton
 										buttonPage='My events'
 										buttonPageRoute={routes.MY_EVENTS}
-										currentRoute={viewModel.currentRoute}
+										currentRoute={currentRoute}
 										icon={<EventRoundedIcon />}
-										handleClickOnNavButton={viewModel.handleClickOnNavButton}
+										handleClickOnNavButton={handleClickOnNavButton}
 									/>
 								</ListItem>
-								{viewModel.isUserAdmin && (
+								{isSystemAdmin && (
 									<ListItem className={styles.navListItem} key='Settings' disablePadding>
 										<NavBarButton
 											buttonPage='Settings'
 											buttonPageRoute={routes.SETTINGS}
-											currentRoute={viewModel.currentRoute}
+											currentRoute={currentRoute}
 											icon={<SettingsRoundedIcon />}
-											handleClickOnNavButton={viewModel.handleClickOnNavButton}
+											handleClickOnNavButton={handleClickOnNavButton}
 										/>
 									</ListItem>
 								)}

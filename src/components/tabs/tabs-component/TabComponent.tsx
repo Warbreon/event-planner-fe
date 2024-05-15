@@ -22,6 +22,11 @@ const TabComponent: FC<TabsProps> = ({ description, tags, agenda, attendees, add
 	const handleTabChange = (event: SyntheticEvent, newValue: number) => {
 		setValue(newValue);
 	};
+
+	const changeTab = (newValue: number) => {
+        setValue(newValue);
+    };
+
 	const filteredAttendees = filterAttendees(attendees);
 
 	const guestsTabLabel = `Guests (${filteredAttendees.length})`;
@@ -35,7 +40,7 @@ const TabComponent: FC<TabsProps> = ({ description, tags, agenda, attendees, add
 				</Tabs>
 			</Box>
 			<TabPanel index={0} value={value}>
-				<AboutEvent description={description} eventTags={tags} agenda={agenda} attendees={attendees} address={address}/>
+				<AboutEvent description={description} eventTags={tags} agenda={agenda} attendees={attendees} address={address} handleChangeTab={changeTab}/>
 			</TabPanel>
 			<TabPanel index={1} value={value}>
 				<EventPageGuestListPanel attendees={filteredAttendees}/>

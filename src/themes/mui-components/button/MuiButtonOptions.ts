@@ -94,6 +94,15 @@ const muiButtonOptions = {
 				'&:hover': {
 					background: COLORS.HOVER_LIGHT_GRAY,
 				},
+				'&.confirm-notification': {
+					background: 'inherit',
+					'&:hover': {
+						background: COLORS.HOVER_LIGHT_GRAY,
+					},
+					'&.confirmed': {
+						background: COLORS.SUCCESS,
+					}
+				}
 			},
 			// decline button in event guests section (modification)
 			'&.light-gray-round-small-borderless': {
@@ -115,6 +124,16 @@ const muiButtonOptions = {
 				'& .MuiSvgIcon-root': {
 					width: '1.5rem',
 					height: '1.5rem',
+				},
+				'&.decline-notification': {
+					width: '99px',
+					'&:hover': {
+						background: 'transparent',
+					},
+					'&.declined': {
+					width: '99px',
+					background: COLORS.ERROR,
+					}
 				},
 			},
 

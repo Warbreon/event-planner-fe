@@ -68,6 +68,11 @@ const typographyOptions: TypographyOptions = {
 		'&.event-price-section': {
 			color: COLORS.MEDIUM_DARK_GRAY,
 		},
+		'&.create-event-description': {
+			paddingTop: '1.5rem',
+			paddingBottom: '0.5rem',
+			color: COLORS.MEDIUM_DARK_GRAY,
+		},
 	},
 	
 	body2: {
@@ -84,7 +89,7 @@ const typographyOptions: TypographyOptions = {
 			textTransform: 'capitalize',
 			textAlign: 'right',
 			color: COLORS.MEDIUM_DARK_GRAY,
-		}
+		},
 	}
 };
 

@@ -11,6 +11,7 @@ const SettingsVM = () => {
 	const [snackbarSeverity, setSeverity] = useState(ALERT_SEVERITY.SUCCESS);
 	const [demotionInProgress, setDemotionInProgress] = useState(false);
 	const [promotionInProgress, setPromotionInProgress] = useState<boolean>(false);
+	const [fetchTrigger, triggerFetch] = useState<boolean>(false);
 	const [showModal, setShowModal] = useState<boolean>(false);
 	const [selectedUsers, setSelectedUsers] = useState<number[]>([]);
 
@@ -22,7 +23,7 @@ const SettingsVM = () => {
 
 	const fetchAdminsFunction = useCallback(() => {
 		return fetchAdmins();
-	}, [demotionInProgress, promotionInProgress]);
+	}, [fetchTrigger]);
 
 	const { data: adminList, isLoading, error } = useFetch(fetchAdminsFunction);
 
@@ -57,11 +58,12 @@ const SettingsVM = () => {
 		setOpen(true);
 		setDemotionInProgress(false);
 		setPromotionInProgress(false);
+		triggerFetch(!fetchTrigger);
 	}, [demotionInProgress, promotionInProgress, patchIsLoading, patchError]);
 
 	const fetchUsersFunction = useCallback(() => {
 		return fetchNonAdminUsers();
-	}, [promotionInProgress, demotionInProgress]);
+	}, [fetchTrigger]);
 
 	const { data: userList, isLoading: loadingNonAdmins, error: errorNonAdmins } = useFetch(fetchUsersFunction);
 

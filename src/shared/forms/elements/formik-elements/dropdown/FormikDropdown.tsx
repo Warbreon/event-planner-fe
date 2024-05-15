@@ -1,8 +1,9 @@
-import { FC } from "react";
+import { FC, useEffect } from "react";
 import { useField } from "formik";
 import Dropdown from "../../../../../components/dropdown/Dropdown";
 import { SelectChangeEvent, Typography } from "@mui/material";
 import styles from "./FormikDropdown.module.css";
+import { Tag } from "../../../../../models/Tag";
 
 interface FormikDropdownProps {
   name: string;
@@ -11,6 +12,7 @@ interface FormikDropdownProps {
   menuItemClassName?: string;
   selectClassName?: string;
   multiple?: boolean;
+  values?: Tag[]
 }
 
 const FormikDropdown: FC<FormikDropdownProps> = ({
@@ -19,9 +21,14 @@ const FormikDropdown: FC<FormikDropdownProps> = ({
   options,
   menuItemClassName,
   selectClassName,
-  multiple,
+  multiple,values
 }) => {
   const [field, , helpers] = useField<string | string[]>(name);
+
+  useEffect(() => {
+    const selectedIds: string[] = values?.map(tag => tag.id.toString()) || [];
+    helpers.setValue(multiple ? selectedIds : selectedIds[0] || '');
+  }, [helpers, values, multiple]);
 
   const handleChange = (event: SelectChangeEvent<string | string[]>) => {
     const value = event.target.value;

@@ -7,6 +7,7 @@ export interface Event {
 	name: string;
 	description: string;
 	imageUrl: string;
+	cardUrl: string;
 	eventStart: string;
 	eventEnd: string;
 	registrationStart: string;
@@ -20,4 +21,6 @@ export interface Event {
 	currentUserRegisteredToEvent: boolean;
 	isOpen: boolean;
 	tags: Tag[];
+	tickets: number,
+	currency: string
 }

@@ -7,7 +7,7 @@ interface Props {
   touched: FormikTouched<{agenda: Agenda[]}>;
 }
 
-const AgendaSectionVM = ({ errors, touched }: Props) => {
+const AgendaSectionVM = ({ errors, touched }: Props, agenda: Agenda[] | null) => {
   const [showForm, setShowForm] = useState(false);
 
   const hasAgendaErrors = useCallback(() => (
@@ -18,10 +18,14 @@ const AgendaSectionVM = ({ errors, touched }: Props) => {
   ), [errors, touched]);
 
   useEffect(() => {
+    if(agenda && agenda.length > 0) {
+      setShowForm(true);
+    }
+
     if (hasAgendaErrors()) {
       setShowForm(true);
     }
-  }, [hasAgendaErrors]);
+  }, [agenda, hasAgendaErrors]);
 
   const onToggle = (event: React.ChangeEvent<HTMLInputElement>) => {
     setShowForm(event.target.checked);

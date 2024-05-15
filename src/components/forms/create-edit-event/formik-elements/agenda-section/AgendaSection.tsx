@@ -6,14 +6,15 @@ import GenericButton, { ButtonTypes, IconButton } from "../../../../buttons/Butt
 import { BUTTON_STYLES } from "../../../../../themes/styles/Button";
 import { Agenda } from "../../../../../interfaces/Agenda";
 import styles from './AgendaSection.module.css';
+import { FC } from "react";
 
 interface Props {
   agenda: Agenda[] | null;
 }
 
-const AgendaSection: React.FC<Props> = () => {
+const AgendaSection: FC<Props> = ({agenda}) => {
   const { values, errors, touched } = useFormikContext<{ agenda: Agenda[] }>();
-  const { showForm, onToggle } = AgendaSectionVM({ errors, touched });
+  const { showForm, onToggle } = AgendaSectionVM({ errors, touched }, agenda);
 
   return (
     <div className={styles.container}>

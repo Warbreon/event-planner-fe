@@ -2,7 +2,6 @@ import GenericButton, { ButtonTypes } from '../../buttons/ButtonComponent';
 import Form from '../../../shared/forms/formik/Form';
 import FormikDropzone from '../../../shared/forms/elements/formik-elements/file-upload/FormikDropzone';
 import { BUTTON_STYLES } from '../../../themes/styles/Button';
-import { eventFormSchema } from '../../../utils/schemas/EventFormSchema';
 import styles from './EventForm.module.css';
 import EventFormVM from './EventFormVM';
 import PageHeader from '../../headers/page-headers/PageHeader';
@@ -10,7 +9,7 @@ import Details from '../create-edit-event/details/Details';
 import DateAndTimeSection from './date-and-time-section/DateAndTimeSection';
 import { Divider } from '@mui/material';
 import Media from '../EventForm/media/Media';
-import Location from './location/Location'
+import Location from './location/Location';
 import AgendaSection from './formik-elements/agenda-section/AgendaSection';
 import Registration from './registration/Registration';
 import AddGuestsSection from '../../add-guests-to-event/AddGuestsSection';
@@ -23,31 +22,37 @@ interface EventFormProps {
 	event?: Event | null;
 }
 
-const EventForm: FC<EventFormProps> = ({headerTitle, event}) => {
-	const { initialValues, onSubmit, handleCancelOnClick, users } = EventFormVM(event);
+const EventForm: FC<EventFormProps> = ({ headerTitle, event }) => {
+	const { initialValues, onSubmit, handleCancelOnClick, users, eventTags, selectedTags, imageUrl, cardUrl, parsedAgendaItems } =
+		EventFormVM(event ?? null);
 
 	return (
 		<div className={styles.container}>
 			<div className={styles.pageHeader}>
 				<PageHeader text={headerTitle} />
 			</div>
-			<Form initialValues={initialValues} validationSchema={eventFormSchema} onSubmit={onSubmit}>
+			<Form initialValues={initialValues} onSubmit={onSubmit}>
 				<div className={styles.formContainer}>
-					<FormikDropzone name='imageUrl' containerStyles={styles.eventMainImage} buttonStyles={styles.uploadButton} />
+					<FormikDropzone
+						name='imageUrl'
+						containerStyles={styles.eventMainImage}
+						buttonStyles={styles.uploadButton}
+						initialImageUrl={imageUrl}
+					/>
 					<div className={styles.mainFormContainer}>
-						<Details />
+						<Details tags={eventTags || []} selectedTags={selectedTags} />
 						<Divider className={styles.divider} />
 						<DateAndTimeSection />
 						<Divider className={styles.divider} />
 						<Location />
 						<Divider className={styles.divider} />
-						<Media />
+						<Media initialImageUrl={cardUrl} />
 						<Divider className={styles.divider} />
-						<AgendaSection agenda={initialValues.agenda} />
+						<AgendaSection agenda={parsedAgendaItems || initialValues.agenda} />
 						<Divider className={styles.divider} />
 						<Registration />
 						<Divider className={styles.divider} />
-						<PricingSection/>
+						<PricingSection />
 						<Divider className={styles.divider} />
 						<AddGuestsSection users={users || []} />
 						<Divider className={styles.divider} />

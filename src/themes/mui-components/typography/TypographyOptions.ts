@@ -17,7 +17,9 @@ const typographyOptions: TypographyOptions = {
 			whiteSpace: 'nowrap',
 			textAlign: 'center',
 		},
-
+		'&.centered-wrap': {
+			textAlign: 'center',
+		},
 		'&.event-form-section': {
 			lineHeight: '2rem',
 			fontSize: '1.25rem',

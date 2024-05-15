@@ -1,0 +1,11 @@
+.container {
+/*    position: fixed;
+    top: 40%;
+    left: 20%;
+    transform: translate(-12.5%, -40%);*/
+    position: fixed;
+    top: 40%;
+    left: 10%;
+    right: 10%;
+    transform: translate(0%, -40%);
+}

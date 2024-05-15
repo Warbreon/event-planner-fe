@@ -9,6 +9,7 @@ import projectTheme from './themes/Theme';
 import router from './routes/Router';
 import {AdapterMoment} from "@mui/x-date-pickers/AdapterMoment";
 import {LocalizationProvider} from "@mui/x-date-pickers";
+import UnderConstructionOverlay from "./components/under-construction-overlay/UnderConstructionOverlay";
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 root.render(
@@ -16,7 +17,9 @@ root.render(
 		<Provider store={store}>
 			<PersistGate loading={null} persistor={persistor}>
 				<ThemeProvider theme={projectTheme}>
-					<RouterProvider router={router} />
+					<UnderConstructionOverlay text={'Mobile version of the website is under construction'}>
+						<RouterProvider router={router} />
+					</UnderConstructionOverlay>
 				</ThemeProvider>
 			</PersistGate>
 		</Provider>

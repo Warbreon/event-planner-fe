@@ -23,4 +23,5 @@ export interface EventFormValues {
     price: number;
     currency: string;
     tickets: number;
+    about: string;
 }

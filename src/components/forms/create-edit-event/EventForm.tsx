@@ -15,6 +15,7 @@ import AgendaSection from './formik-elements/agenda-section/AgendaSection';
 import Registration from './registration/Registration';
 import AddGuestsSection from '../../add-guests-to-event/AddGuestsSection';
 import PricingSection from './pricing-section/PricingSection';
+import About from "./about/About";
 
 const EventForm = () => {
 	const { initialValues, onSubmit, handleCancelOnClick, users } = EventFormVM();
@@ -35,6 +36,8 @@ const EventForm = () => {
 						<Location />
 						<Divider className={styles.divider} />
 						<Media />
+						<Divider className={styles.divider} />
+						<About/>
 						<Divider className={styles.divider} />
 						<AgendaSection agenda={initialValues.agenda} />
 						<Divider className={styles.divider} />

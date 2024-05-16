@@ -6,14 +6,21 @@ import storage from 'redux-persist/lib/storage';
 import { persistReducer, persistStore } from 'redux-persist';
 import { FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER } from 'redux-persist';
 import tagsSlice from '../slices/TagsSlice';
+import userInfoSlice from '../slices/UserInfoSlice';
 
 const persistConfig = {
 	key: 'session',
 	storage,
 };
 
+const userInfoPersistConfig = {
+	key: 'userInfo',
+	storage,
+}
+
 const rootReducer = combineReducers({
 	user: persistReducer(persistConfig, authenticationSlice),
+	userInfo: persistReducer(userInfoPersistConfig, userInfoSlice),
 	createEventGuests: createEventPageUserSlice,
 	filters: filtersSlice,
 	tags: tagsSlice,

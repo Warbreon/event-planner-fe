@@ -9,9 +9,10 @@ import { AVATAR_STYLES } from '../../../themes/styles/Avatar';
 
 interface AttendingProps {
 	attendees: Attendee[];
+	handleChangeTab: (newValue: number) => void;
 }
 
-const Attending: FC<AttendingProps> = ({ attendees }) => {
+const Attending: FC<AttendingProps> = ({ attendees, handleChangeTab }) => {
 	const filteredAttendees = filterAttendees(attendees);
 	const displayedAttendees = filteredAttendees.slice(0, 4);
 
@@ -21,7 +22,7 @@ const Attending: FC<AttendingProps> = ({ attendees }) => {
 				name="Who's attending"
 				variableCount={filteredAttendees.length}
 				buttonType={IconButton.VIEW_ALL_GUESTS}
-				onButtonClick={() => null}
+				onButtonClick={() => handleChangeTab(1)}
 			/>
 			<Box className={style.cardContainer}>
 				{displayedAttendees.map((attendee) => (

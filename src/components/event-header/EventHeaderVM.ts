@@ -16,7 +16,7 @@ const EventHeaderVM = () => {
     const dispatch: AppDispatch = useDispatch();
     const filters = useSelector((state: StoreState) => state.filters);
     const { list: eventTags, isLoading: tagsLoading, error: tagsError } = useSelector((state: StoreState) => state.tags);
-    const userName = 'John';
+    const userFirstName = useSelector((state: StoreState) => state.userInfo.userFirstName);
     const fetchAllCities = useAddressAPI();
     const { data: cities, error: citiesError, isLoading: citiesLoading } = useFetch(fetchAllCities);
 
@@ -56,7 +56,7 @@ const EventHeaderVM = () => {
     const selectedKeys = filters.eventTag.length === 0 ? [0] : filters.eventTag;
 
     return {
-        userName,
+        userFirstName,
         filters,
         handleTagChange,
         handleDateChange,

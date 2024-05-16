@@ -16,21 +16,24 @@ import SearchRoundedIcon from '@mui/icons-material/SearchRounded';
 import { ICON_STYLES } from '../../themes/styles/Icon';
 import { TEXTFIELD_STYLES } from '../../themes/styles/TextField';
 import ROUTES from '../../routes/Routes';
+import { AccountCircle } from '@mui/icons-material';
 
 const profileSettings = ['Profile', 'Logout'];
 
-//Temporary number of notifs until we get it from backend.
-const fakeNumberOfNotifications = 12;
-
 const PlannerAppBar = () => {
-	const { pathname,
+	const {
+		userFirstName,
+		userImageUrl,
+		notificationCount,
+		pathname,
 		anchorUser,
 		handleClickOnNotifications,
 		handleOpenUserMenu,
 		handleCloseUserMenu,
 		searchValue,
 		handleSearchBarChange,
-		handleMenuOptions } = PlannerAppBarViewModel();
+		handleMenuOptions 
+	} = PlannerAppBarViewModel();
 
 	return (
 		<AppBar className={styles.appBar}>
@@ -51,8 +54,8 @@ const PlannerAppBar = () => {
 						</div>
 						<div className={styles.userActionsContainer}>
 							<IconButton className={styles.bellIconButton} onClick={handleClickOnNotifications}>
-								{fakeNumberOfNotifications > 0 ? (
-									<Badge badgeContent={fakeNumberOfNotifications} color='error'>
+								{notificationCount > 0 ? (
+									<Badge badgeContent={notificationCount} color='error'>
 										<NotificationsRoundedIcon className={styles.notifIcon} />
 									</Badge>
 								) : (
@@ -62,7 +65,7 @@ const PlannerAppBar = () => {
 							<div>
 								<Tooltip title='Open settings'>
 									<IconButton className={styles.iconButton} onClick={handleOpenUserMenu}>
-										<Avatar alt='Remy Sharp' src='https://thispersondoesnotexist.com/' />
+										{userImageUrl ? <Avatar alt={userFirstName || 'Avatar'} src={userImageUrl} /> : <AccountCircle />}
 									</IconButton>
 								</Tooltip>
 								<Menu

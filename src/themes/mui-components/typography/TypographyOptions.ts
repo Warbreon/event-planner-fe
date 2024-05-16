@@ -33,6 +33,9 @@ const typographyOptions: TypographyOptions = {
 	h3: {
 		fontSize: '1rem',
 		fontWeight: 400,
+		'&.notification-title': {
+			lineHeight: '1.5rem',
+		}
 	},
 
 	body1: {
@@ -62,6 +65,14 @@ const typographyOptions: TypographyOptions = {
 		'&.error-mesage': {
 			color: COLORS.ERROR
 		},
+		'&.event-price-section': {
+			color: COLORS.MEDIUM_DARK_GRAY,
+		},
+		'&.create-event-description': {
+			paddingTop: '1.5rem',
+			paddingBottom: '0.5rem',
+			color: COLORS.MEDIUM_DARK_GRAY,
+		},
 	},
 	
 	body2: {
@@ -78,7 +89,7 @@ const typographyOptions: TypographyOptions = {
 			textTransform: 'capitalize',
 			textAlign: 'right',
 			color: COLORS.MEDIUM_DARK_GRAY,
-		}
+		},
 	}
 };
 

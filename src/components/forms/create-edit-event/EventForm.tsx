@@ -14,6 +14,8 @@ import Location from './location/Location'
 import AgendaSection from './formik-elements/agenda-section/AgendaSection';
 import Registration from './registration/Registration';
 import AddGuestsSection from '../../add-guests-to-event/AddGuestsSection';
+import PricingSection from './pricing-section/PricingSection';
+import About from "./about/About";
 
 const EventForm = () => {
 	const { initialValues, onSubmit, handleCancelOnClick, users, isCreateEventLoading } = EventFormVM();
@@ -25,7 +27,7 @@ const EventForm = () => {
 			</div>
 			<Form initialValues={initialValues} validationSchema={eventFormSchema} onSubmit={onSubmit}>
 				<div className={styles.formContainer}>
-					<FormikDropzone name='imageUrl' containerStyles={styles.eventMainImage} buttonStyles={styles.uploadButton} />
+					<FormikDropzone name='imageBase64' containerStyles={styles.eventMainImage} buttonStyles={styles.uploadButton} />
 					<div className={styles.mainFormContainer}>
 						<Details />
 						<Divider className={styles.divider} />
@@ -35,9 +37,13 @@ const EventForm = () => {
 						<Divider className={styles.divider} />
 						<Media />
 						<Divider className={styles.divider} />
+						<About/>
+						<Divider className={styles.divider} />
 						<AgendaSection agenda={initialValues.agenda} />
 						<Divider className={styles.divider} />
 						<Registration />
+						<Divider className={styles.divider} />
+						<PricingSection/>
 						<Divider className={styles.divider} />
 						<AddGuestsSection users={users || []} />
 						<Divider className={styles.divider} />

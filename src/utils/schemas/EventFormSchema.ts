@@ -4,7 +4,7 @@ import moment from 'moment';
 import { LocationTags } from '../../constants/LocationTags';
 
 export const eventFormSchema = Yup.object().shape({
-    imageUrl: Yup.mixed()
+    imageBase64: Yup.mixed()
         .required('Please upload an image.')
         .test('fileFormat', 'Unsupported format.', function (value) {
             return validateFileFormat(value as File | null)
@@ -30,7 +30,7 @@ export const eventFormSchema = Yup.object().shape({
                 endDate: this.parent.eventEndDate
             });
         }),
-    cardUrl: Yup.mixed()
+    cardImageBase64: Yup.mixed()
         .required('Please upload an image.')
         .test('fileFormat', 'Unsupported format.', function (value) {
             return validateFileFormat(value as File | null)
@@ -94,4 +94,28 @@ export const eventFormSchema = Yup.object().shape({
 
             return true;
         }),
+    price: Yup.number()
+        .min(0, 'The price can not be below 0')
+        .max(10000, 'The price can not be above 10000')
+        .required('Please enter a valid price')
+        .test(
+            "decimalPoint",
+            "Decimal place is limited to 2 numbers",
+            (value) => /^(?!.*\..*\.)[0-9]*(\.[0-9]{0,2})?$/.test(value.toString())
+        ),
+
+    tickets: Yup.number()
+        .min(0, 'The ticket amount can not be below 0')
+        .max(1000000, 'The ticket amount can not be above 1 million,' +
+            ' if you want to have no limit on participants select 0')
+        .required('Please enter a valid ticket number')
+        .test(
+            "onlyNumbers",
+            "Please only use natural numbers",
+            (value) => /^(?!.*\..*\.)[0-9]*?$/.test(value.toString())
+        ),
+    about: Yup.string()
+        .min(8,"Field cannot be empty")
+        .max(5000, "About section cant exceed a 5000 character size limit")
+        .required('Please add a description for the event'),
 });

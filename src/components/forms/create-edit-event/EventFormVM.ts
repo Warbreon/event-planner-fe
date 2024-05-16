@@ -8,6 +8,7 @@ import { mapEventFormValuesToEvent } from "../../../utils/mappings/EventMappings
 import useEventAPI from "../../../api/EventsAPI";
 import { useNavigate } from "react-router";
 import { Currency } from "../../../constants/Currency";
+import { getBase64 } from "../../../utils/Base64Encoder";
 
 const EventFormVM = () => {
     const agenda = ['7:00 am-Introduction', '12:30 pm-Presentations', '8:00 pm-Conclusion'];
@@ -18,14 +19,14 @@ const EventFormVM = () => {
 
     // TODO: Fetch from API and get from redux.
     const initialValues: EventFormValues = {
-        imageUrl: null,
+        imageBase64: null,
         eventStartDate: null,
         eventStartTime: null,
         eventEndDate: null,
         eventEndTime: null,
         eventName: '',
         eventTagIds: [],
-        cardUrl: null,
+        cardImageBase64: null,
         addressId: null,
         inviteUrl: '',
         agenda: parsedAgendaItems,
@@ -37,6 +38,9 @@ const EventFormVM = () => {
         attendeeIds: [],
         locationKey: LocationTags.PHYSICAL,
         currency: Currency.USD,
+        price: 0,
+        tickets: 0,
+        description: '',
     };
 
     const determineLocationKey = (values: EventFormValues) => {

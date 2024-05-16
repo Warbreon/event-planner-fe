@@ -9,6 +9,7 @@ interface FormikDropdownProps {
   label?: string;
   options: Array<{ value: string | number; label: string }>;
   menuItemClassName?: string;
+  selectClassName?: string;
   multiple?: boolean;
 }
 
@@ -17,6 +18,7 @@ const FormikDropdown: FC<FormikDropdownProps> = ({
   label,
   options,
   menuItemClassName,
+  selectClassName,
   multiple,
 }) => {
   const [field, , helpers] = useField<string | string[]>(name);
@@ -25,7 +27,6 @@ const FormikDropdown: FC<FormikDropdownProps> = ({
     const value = event.target.value;
     helpers.setValue(multiple? value as string[] : value);
   };
-  const valueArray = multiple && Array.isArray(field.value) ? field.value : [];
 
   return (
     <div className={styles.container}>
@@ -34,11 +35,11 @@ const FormikDropdown: FC<FormikDropdownProps> = ({
       </Typography>
       <Dropdown
         multiple={multiple}
-        value={valueArray}
+        value={field.value}
         onChange={handleChange}
         options={options}
         formControlClassName={styles.formControlClassName}
-        selectClassName={styles.formControlClassName}
+        selectClassName={!selectClassName ? styles.formControlClassName : selectClassName}
         menuItemClassName={menuItemClassName}
       />
     </div>

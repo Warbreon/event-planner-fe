@@ -3,14 +3,14 @@ import { Agenda } from "./Agenda";
 import { Currency } from "../constants/Currency";
 
 export interface EventFormValues {
-    imageUrl: File | null;
+    imageBase64: File | null;
     eventStartDate: Moment | null;
     eventStartTime: Moment | null;
     eventEndDate: Moment | null;
     eventEndTime: Moment | null;
     eventName: string;
     eventTagIds: number[];
-    cardUrl: File | null;
+    cardImageBase64: File | null;
     isOpen: boolean;
     registrationStartDate: Moment | null;
     registrationStartTime: Moment | null;
@@ -22,4 +22,7 @@ export interface EventFormValues {
     locationKey: number;
     attendeeIds: number[];
     currency: Currency;
+    price: number;
+    tickets: number;
+    description: string;
 }

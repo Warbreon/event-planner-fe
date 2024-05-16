@@ -1,36 +1,41 @@
 import { useCallback, useEffect, useState } from 'react';
 
-import useUserAPI from '../../api/UsersAPI';
+import useUserAPI from '../../api/UserAPI';
 import { useApiRequest, useFetch } from '../../api/hooks/ApiHooks';
 import { ALERT_SEVERITY } from '../../components/snackbar/SnackbarComponent';
+import { User } from '../../models/User';
 
 const SettingsVM = () => {
 	const [snackbarOpen, setOpen] = useState(false);
 	const [snackbarText, setText] = useState('');
 	const [snackbarSeverity, setSeverity] = useState(ALERT_SEVERITY.SUCCESS);
 	const [demotionInProgress, setDemotionInProgress] = useState(false);
+	const [promotionInProgress, setPromotionInProgress] = useState<boolean>(false);
+	const [fetchTrigger, triggerFetch] = useState<boolean>(false);
+	const [showModal, setShowModal] = useState<boolean>(false);
+	const [selectedUsers, setSelectedUsers] = useState<number[]>([]);
 
 	const handleSnackbarClose = () => {
 		setOpen(false);
 	};
 
-	const { fetchAdmins, demoteAdmin } = useUserAPI();
+	const { fetchAdmins, demoteAdmins, fetchNonAdminUsers, promoteAdmins } = useUserAPI();
 
-	const fetchFunction = useCallback(() => {
+	const fetchAdminsFunction = useCallback(() => {
 		return fetchAdmins();
-	}, [demotionInProgress]);
+	}, [fetchTrigger]);
 
-	const { data: adminList, isLoading, error } = useFetch(fetchFunction);
+	const { data: adminList, isLoading, error } = useFetch(fetchAdminsFunction);
 
 	const { request: patchData, isLoading: patchIsLoading, error: patchError } = useApiRequest();
 
-	const handleRemoveClick = async (id: number | string) => {
+	const handleRemoveClick = async (id: number) => {
 		setDemotionInProgress(true);
-		await patchData(() => demoteAdmin(id));
+		await patchData(() => demoteAdmins([id]));
 	};
 
 	useEffect(() => {
-		if (!demotionInProgress) {
+		if (!demotionInProgress && !promotionInProgress) {
 			return;
 		}
 
@@ -52,7 +57,39 @@ const SettingsVM = () => {
 		setSeverity(ALERT_SEVERITY.SUCCESS);
 		setOpen(true);
 		setDemotionInProgress(false);
-	}, [demotionInProgress, patchIsLoading, patchError]);
+		setPromotionInProgress(false);
+		triggerFetch(!fetchTrigger);
+	}, [demotionInProgress, promotionInProgress, patchIsLoading, patchError]);
+
+	const fetchUsersFunction = useCallback(() => {
+		return fetchNonAdminUsers();
+	}, [fetchTrigger]);
+
+	const { data: userList, isLoading: loadingNonAdmins, error: errorNonAdmins } = useFetch(fetchUsersFunction);
+
+	const handleCheckboxChange = (user: User) => {
+		const userIndex = selectedUsers.findIndex((u) => u === user.id);
+		if (userIndex === -1) {
+			setSelectedUsers([...selectedUsers, user.id]);
+		} else {
+			setSelectedUsers(selectedUsers.filter((_, index) => index !== userIndex));
+		}
+	};
+
+	const onConfirm = async () => {
+		if (selectedUsers.length === 0) return;
+
+		setPromotionInProgress(true);
+		await patchData(() => promoteAdmins(selectedUsers));
+	};
+
+	const onModalClose = () => {
+		setShowModal(false);
+	};
+
+	const onAddAdminsClick = () => {
+		setShowModal(true);
+	};
 
 	return {
 		handleRemoveClick,
@@ -63,6 +100,14 @@ const SettingsVM = () => {
 		snackbarText,
 		snackbarSeverity,
 		handleSnackbarClose,
+		showModal,
+		onModalClose,
+		loadingNonAdmins,
+		userList,
+		onConfirm,
+		onAddAdminsClick,
+		handleCheckboxChange,
+		errorNonAdmins,
 	};
 };
 

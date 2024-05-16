@@ -1,3 +1,5 @@
+import { COLORS } from "../../styles/Colors";
+
 const muiCardOptions = {
   styleOverrides: {
     root: {
@@ -16,6 +18,20 @@ const muiCardOptions = {
         width: '100%',
         height: '100%',
       },
+      '&.active-notification, &.inactive-notification': {
+        width: '776px',
+        height: '120px',
+        boxShadow: 'none',
+        borderRadius: '0.75rem',
+      },
+      '&.active-notification': {
+        backgroundColor: COLORS.ACTIVE_NOTIFICATION,
+        border: `1px solid ${COLORS.ACTIVE_NOTIFICATION_BORDER}`
+      },
+      '&.inactive-notification': {
+        backgroundColor: COLORS.WHITE,
+        border: `1px solid ${COLORS.GRAY_BORDER}`
+      }
     },
   },
 };

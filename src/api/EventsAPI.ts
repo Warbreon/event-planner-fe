@@ -17,7 +17,9 @@ const useEventAPI = () => {
 		};
 		return axios.get<PaginatedResponse<Event>>(ENDPOINTS.getEvents, { params });
 	}
-	const fetchEventById = (id: number | string) => axios.get<Event>(ENDPOINTS.getEventById(id));
+	const fetchEventById = (id: number) => axios.get<Event>(ENDPOINTS.getEventById(id));
+	const registerToEvent = (userId: number, eventId: number) =>
+		axios.post(ENDPOINTS.registerToEvent, { userId, eventId });
 
 	const fetchEventsCreatedByUser = () => axios.get<Event[]>(ENDPOINTS.getEventsCreatedByUser);
 	const fetchEventsUserAttending = () => axios.get<Event[]>(ENDPOINTS.getEventsUserAttending);

@@ -5,6 +5,7 @@ import { useFetch } from "../../../api/hooks/ApiHooks";
 import useUserAPI from "../../../api/UserAPI";
 import { useCallback } from "react";
 import { LocationTags } from "../../../constants/LocationTags";
+import { getBase64 } from "../../../utils/Base64Encoder";
 
 const EventFormVM = () => {
     const agenda = ['7:00 am-Introduction', '12:30 pm-Presentations', '8:00 pm-Conclusion'];
@@ -12,14 +13,14 @@ const EventFormVM = () => {
 
     // TODO: Fetch from API and get from redux.
     const initialValues: EventFormValues = {
-        image: null,
+        imageBase64: null,
         eventStartDate: null,
         eventStartTime: null,
         eventEndDate: null,
         eventEndTime: null,
         eventName: '',
         eventTag: [],
-        cardUrl: null,
+        cardImageBase64: null,
         addressId: null,
         inviteUrl: '',
         agenda: parsedAgendaItems,
@@ -53,18 +54,21 @@ const EventFormVM = () => {
     }, []);
 
 
-    const { data: users, isLoading, error  } =  useFetch(fetchFuntion);
+    const { data: users, isLoading, error } = useFetch(fetchFuntion);
    
-    const onSubmit = (values: EventFormValues) => {
+    const onSubmit = async (values: EventFormValues) => {
         const eventStart = combineDateTime(values.eventStartDate, values.eventStartTime);
         const eventEnd = combineDateTime(values.eventEndDate, values.eventEndTime);
         const formattedAgenda = formatAgendaItems(values.agenda ?? []);
         const registrationStart = combineDateTime(values.registrationStartDate, values.registrationStartTime);
         const registrationEnd = combineDateTime(values.registrationEndDate, values.registrationEndTime);
 
+        const imageBase64 = values.imageBase64 ? await getBase64(values.imageBase64 as unknown as File) : null;
+        const cardImageBase64 = values.cardImageBase64 ? await getBase64(values.cardImageBase64 as unknown as File) : null;
+
         const submitValues = {
-            image: values.image,
-            cardUrl: values.cardUrl,
+            imageBase64,
+            cardImageBase64,
             eventStart,
             eventEnd,
             formattedAgenda,

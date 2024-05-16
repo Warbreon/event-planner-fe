@@ -2,14 +2,14 @@ import { Moment } from "moment";
 import { Agenda } from "./Agenda";
 
 export interface EventFormValues {
-    image: File | null;
+    imageBase64: File | null;
     eventStartDate: Moment | null;
     eventStartTime: Moment | null;
     eventEndDate: Moment | null;
     eventEndTime: Moment | null;
     eventName: string;
     eventTag: string[];
-    cardUrl: File | null;
+    cardImageBase64: File | null;
     isOpen: boolean;
     registrationStartDate: Moment | null;
     registrationStartTime: Moment | null;

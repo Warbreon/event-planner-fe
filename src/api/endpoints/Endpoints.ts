@@ -6,6 +6,10 @@ export const ENDPOINTS = {
 	createNewEvent: '/events/create/new',
 
 	registerToEvent: '/attendee/register',
+	getUsers: '/users',
+	demoteAdmins: (ids: number[]) => `/users/demoteAdmins/${ids}`,
+	promoteAdmins: (ids: number[]) => `/users/promoteAdmins/${ids}`,
+	getUserInfo: '/users/current/info',
 	getAttendeeNotifications: '/attendee/notifications',
 	markNotificationAsViewed: (id: number) => `/attendee/${id}/mark-as-viewed`,
 	confirmPendingRegistration: (id: number) => `/attendee/register/${id}/confirm`,
@@ -17,9 +21,4 @@ export const ENDPOINTS = {
 	refreshAccessToken: '/auth/refresh',
 
 	getAllCities: '/addresses/cities',
-
-	getAllUsers: '/users/all',
-	getAllAdmins: '/users/admins',
-	getUserInfo: '/users/current/info',
-	demoteAdmin: (id: number) => `/users/admins/demote/${id}`
 };

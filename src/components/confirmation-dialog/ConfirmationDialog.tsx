@@ -1,5 +1,8 @@
 import React from 'react';
-import { Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Button } from '@mui/material';
+import { Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle } from '@mui/material';
+import { BUTTON_STYLES } from '../../themes/styles/Button';
+import ButtonComponentGroup from '../../shared/components/buttons/buton-group/ButtonComponentGroup';
+import styles from './ConfirmationDialog.module.css';
 
 interface ConfirmationDialogProps {
   open: boolean;
@@ -23,12 +26,22 @@ const ConfirmationDialog: React.FC<ConfirmationDialogProps> = ({
         <DialogContentText>{description}</DialogContentText>
       </DialogContent>
       <DialogActions>
-        <Button onClick={onClose} color='primary'>
-          No
-        </Button>
-        <Button onClick={onConfirm} color='primary' autoFocus>
-          Yes
-        </Button>
+        <ButtonComponentGroup
+          buttons={[
+            {
+              label: 'No',
+              onClick: onClose,
+              className: `${BUTTON_STYLES.MODAL_BUTTON}`
+            },
+            {
+              label: 'Yes',
+              onClick: onConfirm,
+              className: `${BUTTON_STYLES.BLACK} ${BUTTON_STYLES.MODAL_BUTTON}`,
+            },
+          ]}
+          className={styles.buttonsContainer}
+        />
+
       </DialogActions>
     </Dialog>
   );

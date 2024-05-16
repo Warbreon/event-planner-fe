@@ -11,8 +11,8 @@ interface Props {
 }
 
 const EventRegistrationControlVM = ({ event }: Props) => {
-    const currentUserEmail = useSelector((state: StoreState) => state.user.email);
-    const isCurrentUserCreator = currentUserEmail === event.creatorEmail;
+    const currentUserId = useSelector((state: StoreState) => state.userInfo.userId);
+    const isCurrentUserCreator = currentUserId === event.creatorId;
 
     const [isSnackbarOpen, setSnackbarOpen] = useState(false);
     const [error, setError] = useState('');

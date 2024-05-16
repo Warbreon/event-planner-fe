@@ -10,18 +10,18 @@ class EventRestrictionsService {
     static getRestrictionMessage({ event, isCurrentUserCreator }: Props) {
         if (!event || isCurrentUserCreator) return null;
 
-        const { tickets, registrationStart, registrationEnd } = event;
+        const { tickets, registrationStart, registrationEnd, attendees } = event;
 
-        if (tickets < 1) {
-            return 'Tickets are sold out.';
+        if (attendees && tickets <= attendees.length) {
+            return 'Tickets sold out';
         }
 
         if (registrationStart && isDateInTheFuture(registrationStart)) {
-            return `Registration starts on ${formatDate(registrationStart)}`;
+            return `Registration starts ${formatDate(registrationStart)}`;
         }
 
         if (registrationEnd && isDateInThePast(registrationEnd)) {
-            return 'Registration has ended.';
+            return 'Registration is now closed';
         }
 
         return null;

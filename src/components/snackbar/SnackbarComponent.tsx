@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { Alert, Snackbar } from '@mui/material';
+import { Alert, AlertProps, Snackbar } from '@mui/material';
 
 export enum ALERT_SEVERITY {
 	ERROR = 'error',
@@ -16,9 +16,17 @@ interface SnackBarProps {
 	className?: string;
 }
 const SnackbarComponent: FC<SnackBarProps> = ({ open, handleClose, message, severity, autoHideDuration, className }) => {
+	const alertProps: AlertProps = {
+        severity,
+    };
+	
+	if (!autoHideDuration) {
+        alertProps.onClose = handleClose;
+    }
+	
 	return (
 		<Snackbar open={open} autoHideDuration={autoHideDuration} onClose={handleClose} className={className}>
-			<Alert onClose={handleClose} severity={severity}>
+			<Alert {...alertProps}>
 				{message}
 			</Alert>
 		</Snackbar>

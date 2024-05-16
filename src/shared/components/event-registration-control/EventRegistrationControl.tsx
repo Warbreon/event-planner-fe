@@ -91,8 +91,8 @@ const EventRegistrationControl: React.FC<EventRegistrationControlProps> = ({
                 open={isConfirmationDialogOpen}
                 onClose={handleConfirmationDialogClose}
                 onConfirm={handleConfirmationDialogConfirm}
-                title='Confirm Cancellation'
-                description='Are you sure you want to cancel your registration ?'
+                title='Confirm cancellation'
+                description='Are you certain you want to cancel your registration ?'
             />
         </>
     );

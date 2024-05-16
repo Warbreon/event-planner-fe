@@ -16,7 +16,7 @@ export interface Event {
 	price?: number;
 	inviteUrl?: string | null;
 	address?: Address | null;
-	creatorEmail: string;
+	creatorId: number;
 	attendees?: Attendee[];
 	currentUserRegistrationStatus: REGISTRATION_STATUS | null;
 	isOpen: boolean;

@@ -22,3 +22,5 @@ const useAttendeeAPI = () => {
     unregisterFromEvent,
   };
 }
+
+export default useAttendeeAPI;

@@ -24,7 +24,7 @@ const SettingsVM = () => {
 
 	const { request: patchData, isLoading: patchIsLoading, error: patchError } = useApiRequest();
 
-	const handleRemoveClick = async (id: number | string) => {
+	const handleRemoveClick = async (id: number) => {
 		setDemotionInProgress(true);
 		await patchData(() => demoteAdmin(id));
 	};

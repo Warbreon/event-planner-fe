@@ -16,6 +16,8 @@ import Support from '../pages/support/Support';
 import RootLayout from '../pages/main/RootLayout';
 import ProtectedRoute from './ProtectedRoute';
 import PublicRoutes from './PublicRoutes';
+import Notifications from '../pages/notifications/Notifications';
+
 
 const router = createBrowserRouter([
 	{
@@ -70,6 +72,14 @@ const router = createBrowserRouter([
 					</ProtectedRoute>
 				),
 			},
+			{
+				path: ROUTES.NOTIFICATIONS,
+				element: (
+					<ProtectedRoute>
+						<Notifications />
+					</ProtectedRoute>
+				)
+			}
 		],
 	},
 

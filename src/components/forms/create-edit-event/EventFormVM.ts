@@ -34,6 +34,7 @@ const EventFormVM = () => {
         currency: 'eur',
         tickets: 0,
         locationKey: LocationTags.PHYSICAL,
+        about: '',
     };
 
     const determineLocationKey = (values: EventFormValues) => {
@@ -82,6 +83,7 @@ const EventFormVM = () => {
             currency: values.currency,
             tickets: values.tickets,
             eventTag: values.eventTag,
+            about: values.about,
         };
 
         console.log(submitValues);

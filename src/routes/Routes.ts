@@ -12,6 +12,7 @@ enum ROUTES {
 	TERMS_OF_SERVICE = '/terms',
 	SUPPORT = '/support',
 	NOT_FOUND = '*',
+	NOTIFICATIONS = '/notifications',
 }
 
 export default ROUTES;

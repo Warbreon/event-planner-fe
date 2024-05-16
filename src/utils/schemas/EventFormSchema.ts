@@ -114,4 +114,8 @@ export const eventFormSchema = Yup.object().shape({
             "Please only use natural numbers",
             (value) => /^(?!.*\..*\.)[0-9]*?$/.test(value.toString())
         ),
+    about: Yup.string()
+        .min(8,"Field cannot be empty")
+        .max(5000, "About section cant exceed a 5000 character size limit")
+        .required('Please add a description for the event'),
 });

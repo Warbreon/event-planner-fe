@@ -15,7 +15,10 @@ import TermOfService from '../pages/terms-of-service/TermOfService';
 import Support from '../pages/support/Support';
 import RootLayout from '../pages/main/RootLayout';
 import ProtectedRoute from './ProtectedRoute';
+import SystemAdminRoute from './SystemAdminRoute';
 import PublicRoutes from './PublicRoutes';
+import Notifications from '../pages/notifications/Notifications';
+
 
 const router = createBrowserRouter([
 	{
@@ -57,9 +60,9 @@ const router = createBrowserRouter([
 			{
 				path: ROUTES.SETTINGS,
 				element: (
-					<ProtectedRoute>
+					<SystemAdminRoute>
 						<Settings />
-					</ProtectedRoute>
+					</SystemAdminRoute>
 				),
 			},
 			{
@@ -70,6 +73,14 @@ const router = createBrowserRouter([
 					</ProtectedRoute>
 				),
 			},
+			{
+				path: ROUTES.NOTIFICATIONS,
+				element: (
+					<ProtectedRoute>
+						<Notifications />
+					</ProtectedRoute>
+				)
+			}
 		],
 	},
 

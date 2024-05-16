@@ -2,6 +2,7 @@ import axios from 'axios';
 import { useSelector } from 'react-redux';
 import { StoreState } from '../../redux/store/Store';
 import { isExpired } from 'react-jwt';
+import { BASE_API_URL } from '../../constants/ApiConfig';
 
 const useAxios = () => {
 	const accessToken = useSelector((state: StoreState) => state.user.accessToken);
@@ -13,7 +14,7 @@ const useAxios = () => {
 	};
 
 	return axios.create({
-		baseURL: 'https://raisav-api.devbstaging.com/api',
+		baseURL: BASE_API_URL,
 		headers: requestHeaders,
 	});
 };

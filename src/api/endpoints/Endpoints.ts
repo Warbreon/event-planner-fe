@@ -12,5 +12,7 @@ export const ENDPOINTS = {
 	refreshAccessToken: '/auth/refresh',
 	getAllCities: '/addresses/cities',
 	getAllAdmins: '/users/admins',
-	demoteAdmin: (id: number | string) => `/users/admins/demote/${id}`
+	demoteAdmin: (id: number | string) => `/users/admins/demote/${id}`,
+	resetPassword: '/auth/reset-password',
+	changePassword: '/auth/change-password',
 };

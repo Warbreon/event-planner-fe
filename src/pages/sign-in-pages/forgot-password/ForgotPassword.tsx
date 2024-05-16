@@ -44,7 +44,6 @@ const ForgotPassword = () => {
 					autoHideDuration={5000}
 					handleClose={handleSnackbarClose}
 					severity={snackbarSeverity}
-					className={styles.snackbar}
 				/>
 			</main>
 		</div>

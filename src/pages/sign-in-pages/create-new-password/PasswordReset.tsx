@@ -7,8 +7,7 @@ import PageHeader, { HeaderVariant } from '../../../components/headers/page-head
 import { passwordResetSchema } from '../../../utils/schemas/PasswordReset';
 import sharedStyles from '../SharedStyles.module.css';
 import { BUTTON_STYLES } from '../../../themes/styles/Button';
-import SnackbarComponent, { ALERT_SEVERITY } from '../../../components/snackbar/SnackbarComponent';
-import styles from './PasswordReset.module.css';
+import SnackbarComponent from '../../../components/snackbar/SnackbarComponent';
 
 const PasswordReset = () => {
 	const { onSubmit, isLoading, isSnackbarOpen, handleSnackbarClose, snackbarMessage, snackbarSeverity } = PasswordResetVM();
@@ -48,7 +47,6 @@ const PasswordReset = () => {
 					autoHideDuration={5000}
 					handleClose={handleSnackbarClose}
 					severity={snackbarSeverity}
-					className={styles.snackbar}
 				/>
 			</main>
 		</div>

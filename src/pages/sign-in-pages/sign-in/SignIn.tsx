@@ -8,7 +8,6 @@ import { emailPasswordSchema } from '../../../utils/schemas/EmailPasswordSchema'
 import sharedStyles from '../SharedStyles.module.css';
 import styles from './SignIn.module.css';
 import { BUTTON_STYLES } from '../../../themes/styles/Button';
-import SignInViewModel from './SignInVM';
 import SnackbarComponent from '../../../components/snackbar/SnackbarComponent';
 import SignInVM from './SignInVM';
 
@@ -49,7 +48,6 @@ const SignIn = () => {
 				autoHideDuration={5000}
 				handleClose={handleSnackbarClose}
 				severity={snackbarSeverity}
-				className={styles.snackbar}
 			/>
 		</div>
 	);

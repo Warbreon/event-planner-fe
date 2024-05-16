@@ -37,7 +37,6 @@ export const useApiRequest = () => {
 			return response;
 		} catch (error: any) {
 			const errorMessage = error.response?.data?.message || error.message;
-			console.log(error);
 			setError(errorMessage);
 			setData(null);
 			return errorMessage;

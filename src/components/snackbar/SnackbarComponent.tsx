@@ -13,11 +13,10 @@ interface SnackBarProps {
 	severity: ALERT_SEVERITY;
 	autoHideDuration?: number;
 	handleClose?: (event?: React.SyntheticEvent | Event, reason?: string) => void;
-	className?: string;
 }
-const SnackbarComponent: FC<SnackBarProps> = ({ open, handleClose, message, severity, autoHideDuration, className }) => {
+const SnackbarComponent: FC<SnackBarProps> = ({ open, handleClose, message, severity, autoHideDuration }) => {
 	return (
-		<Snackbar open={open} autoHideDuration={autoHideDuration} onClose={handleClose} className={className}>
+		<Snackbar open={open} autoHideDuration={autoHideDuration} onClose={handleClose}>
 			<Alert onClose={handleClose} severity={severity}>
 				{message}
 			</Alert>

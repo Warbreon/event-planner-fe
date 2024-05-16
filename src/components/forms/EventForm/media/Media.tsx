@@ -12,7 +12,7 @@ const Media = () => {
                 className='event-form-section'
             />
             <FormikDropzone
-                name='cardUrl'
+                name='cardImageBase64'
                 containerStyles={styles.mediaContainer}
                 buttonStyles={`${styles.uploadButton} ${BUTTON_STYLES.UPLOAD_BUTTON}`}
                 buttonText='Upload cover image'

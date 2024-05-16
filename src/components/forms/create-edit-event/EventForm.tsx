@@ -27,7 +27,7 @@ const EventForm = () => {
 			</div>
 			<Form initialValues={initialValues} validationSchema={eventFormSchema} onSubmit={onSubmit}>
 				<div className={styles.formContainer}>
-					<FormikDropzone name='imageUrl' containerStyles={styles.eventMainImage} buttonStyles={styles.uploadButton} />
+					<FormikDropzone name='imageBase64' containerStyles={styles.eventMainImage} buttonStyles={styles.uploadButton} />
 					<div className={styles.mainFormContainer}>
 						<Details />
 						<Divider className={styles.divider} />

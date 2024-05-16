@@ -21,7 +21,7 @@ export const ENDPOINTS = {
 	refreshAccessToken: '/auth/refresh',
 
 	getAllCities: '/addresses/cities',
-	getAllAdmins: '/users/admins',
+	
 	resetPassword: '/auth/reset-password',
 	changePassword: '/auth/change-password',
 };

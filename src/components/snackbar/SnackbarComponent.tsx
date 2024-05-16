@@ -17,7 +17,7 @@ interface SnackBarProps {
 const SnackbarComponent: FC<SnackBarProps> = ({ open, handleClose, message, severity, autoHideDuration }) => {
 	return (
 		<Snackbar open={open} autoHideDuration={autoHideDuration} onClose={handleClose}>
-			<Alert onClose={handleClose} severity={severity}>
+			<Alert severity={severity}>
 				{message}
 			</Alert>
 		</Snackbar>

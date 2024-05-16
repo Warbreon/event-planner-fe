@@ -4,7 +4,7 @@ import moment from 'moment';
 import { LocationTags } from '../../constants/LocationTags';
 
 export const eventFormSchema = Yup.object().shape({
-    imageUrl: Yup.mixed()
+    imageBase64: Yup.mixed()
         .required('Please upload an image.')
         .test('fileFormat', 'Unsupported format.', function (value) {
             return validateFileFormat(value as File | null)
@@ -30,7 +30,7 @@ export const eventFormSchema = Yup.object().shape({
                 endDate: this.parent.eventEndDate
             });
         }),
-    cardUrl: Yup.mixed()
+    cardImageBase64: Yup.mixed()
         .required('Please upload an image.')
         .test('fileFormat', 'Unsupported format.', function (value) {
             return validateFileFormat(value as File | null)

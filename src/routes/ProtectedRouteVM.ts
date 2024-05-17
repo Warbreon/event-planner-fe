@@ -1,10 +1,10 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { AppDispatch, StoreState } from '../redux/store/Store';
+import { StoreState } from '../redux/store/Store';
 import { isExpired } from 'react-jwt';
 import { useApiRequest } from '../api/hooks/ApiHooks';
 import { useNavigate } from 'react-router';
 import { refreshAccessToken, signOut } from '../redux/slices/AuthenticationSlice';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import useAuthenticationAPI from '../api/AuthenticationAPI';
 import ROUTES from './Routes';
 import { removeUserInfo } from '../redux/slices/UserInfoSlice';
@@ -24,35 +24,35 @@ const useProtectedRouteVM = () => {
 	const { request: postData, data, error, isLoading } = useApiRequest();
 
 	const [fetchingNewToken, setFetchingNewToken] = useState(false);
+	const fetchNewAccessToken = useCallback(async () => {
+		if (fetchingNewToken || isLoading) return;
+		setFetchingNewToken(true);
+		await postData(() => refresh(refreshToken));
+		setFetchingNewToken(false);
+	}, [fetchingNewToken, isLoading, postData, refresh, refreshToken]);
 
 	useEffect(() => {
-		const fetchNewAccessToken = async () => {
-			setFetchingNewToken(true)
-		 await postData(() => refresh(refreshToken));
-		 setFetchingNewToken(false)
-		};
-
-		if (isAccessTokenExpired && !isRefreshTokenExpired) {
+		if (isAccessTokenExpired && !isRefreshTokenExpired && !fetchingNewToken) {
 			fetchNewAccessToken();
 		}
+	}, [isAccessTokenExpired, isRefreshTokenExpired, fetchNewAccessToken, fetchingNewToken]);
 
-
-		if(!isLoading && !fetchingNewToken) {
-			if(data && data.accessToken !== null) {
-				console.log(data.accessToken)
-				dispatch(refreshAccessToken(data.accessToken));
-			}
+	useEffect(() => {
+		if (data && data.accessToken !== null && !fetchingNewToken) {
+			console.log(data.accessToken);
+			dispatch(refreshAccessToken(data.accessToken));
 		}
+	}, [data, dispatch, fetchingNewToken]);
 
-		
+	useEffect(() => {
 		if (isRefreshTokenExpired) {
 			dispatch(signOut());
 			dispatch(removeUserInfo());
 			navigate(ROUTES.SIGN_IN, { replace: true });
 		}
-	}, [data, dispatch, error, fetchingNewToken, isAccessTokenExpired, isLoading, isRefreshTokenExpired, navigate, postData, refresh, refreshToken]);
+	}, [isRefreshTokenExpired, dispatch, navigate]);
 
-	return { isUserAuthenticated, isRefreshTokenExpired, isLoading};
+	return { isUserAuthenticated, isRefreshTokenExpired, isLoading };
 };
 
 export default useProtectedRouteVM;

@@ -14,7 +14,7 @@ export interface Event {
 	registrationStart: string;
 	registrationEnd: string;
 	agenda?: string[] | null;
-	price?: number;
+	price: number;
 	inviteUrl?: string | null;
 	address?: Address | null;
 	creatorId: number;
@@ -23,4 +23,5 @@ export interface Event {
 	isOpen: boolean;
 	tags: Tag[];
 	currency: Currency;
+	tickets: number;
 }

@@ -4,13 +4,13 @@ import { StoreState } from '../store/Store';
 import { ENDPOINTS } from '../../api/endpoints/Endpoints';
 import axiosInstance from '../../api/axios/AxiosInstance';
 
-interface TagState {
+interface TagListState {
     list: Tag[];
     isLoading: boolean;
     error: string | null;
 }
 
-const initialState: TagState = {
+const initialState: TagListState = {
     list: [],
     isLoading: false,
     error: null

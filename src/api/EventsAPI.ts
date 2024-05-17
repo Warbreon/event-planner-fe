@@ -23,7 +23,7 @@ const useEventAPI = () => {
 
 	const fetchEventsCreatedByUser = () => axiosInstance.get<Event[]>(ENDPOINTS.getEventsCreatedByUser);
 	const fetchEventsUserAttending = () => axiosInstance.get<Event[]>(ENDPOINTS.getEventsUserAttending);
-	const createEvent = (eventData: EventRequest) => axiosInstance.post(ENDPOINTS.createNewEvent, eventData);
+	const createEvent = (eventData: any) => axiosInstance.post(ENDPOINTS.createNewEvent, eventData);
 
 	return {
 		fetchEvents,

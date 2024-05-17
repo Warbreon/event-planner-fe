@@ -3,8 +3,8 @@ import { Currency } from "../../constants/Currency";
 export interface EventRequest {
     name: string;
     description: string;
-    imageUrl: string;
-    cardUrl: string;
+    imageBase64: string;
+    cardImageBase64: string;
     isOpen: boolean;
     eventStart: string;
     eventEnd: string;

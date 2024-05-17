@@ -17,9 +17,10 @@ import AddGuestsSection from '../../add-guests-to-event/AddGuestsSection';
 import PricingSection from './pricing-section/PricingSection';
 import About from "./about/About";
 
-const EventForm = () => {
-	const { initialValues, onSubmit, handleCancelOnClick, users, isCreateEventLoading } = EventFormVM();
 
+const EventForm = () => {
+	const { initialValues, onSubmit, handleCancelOnClick, isCreateEventLoading } = EventFormVM();
+	
 	return (
 		<div className={styles.container}>
 			<div className={styles.pageHeader}>
@@ -45,7 +46,7 @@ const EventForm = () => {
 						<Divider className={styles.divider} />
 						<PricingSection/>
 						<Divider className={styles.divider} />
-						<AddGuestsSection users={users || []} />
+						<AddGuestsSection />
 						<Divider className={styles.divider} />
 					</div>
 					<div className={styles.buttonsContainer}>

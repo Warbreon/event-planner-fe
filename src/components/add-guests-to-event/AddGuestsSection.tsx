@@ -53,7 +53,7 @@ const AddGuestsSection: FC<Props> = ({ users }) => {
 			/>
 			<SnackbarComponent
 				open={isSnackbarOpen}
-				message={errorMessage ?? ''}
+				message={errorMessage}
 				autoHideDuration={5000}
 				handleClose={handleSnackbarClose}
 				severity={ALERT_SEVERITY.ERROR}

@@ -140,6 +140,7 @@ const Settings = () => {
 									className={styles.modalButtonsContainer}
 								/>
 							}
+							showDivider
 						/>
 					)}
 					<SnackbarComponent
@@ -148,7 +149,6 @@ const Settings = () => {
 						autoHideDuration={5000}
 						handleClose={handleSnackbarClose}
 						severity={snackbarSeverity}
-						className={styles.snackbar}
 					/>
 				</>
 			)}

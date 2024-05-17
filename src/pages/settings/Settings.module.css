@@ -5,8 +5,3 @@
 .modalButtonsContainer {
 	justify-content: flex-end;
 }
-
-.snackbar {
-	bottom: 0.5rem;
-	left: 1rem;
-}

@@ -34,6 +34,25 @@ export const useApiRequest = () => {
 			const response = await requestFunction();
 			setData(response.data);
 			setError(null);
+		} catch (error: any) {
+			setError(error.response.data.message);
+		} finally {
+			setIsLoading(false);
+		}
+	};
+	return { request, isLoading, error, data };
+};
+
+export const useApiRequest2 = () => {
+	const [isLoading, setIsLoading] = useState<boolean>(false);
+	const [error, setError] = useState<string | null>(null);
+	const [data, setData] = useState<any>(null);
+	const request = async <T>(requestFunction: () => Promise<AxiosResponse<T>>) => {
+		try {
+			setIsLoading(true);
+			const response = await requestFunction();
+			setData(response.data);
+			setError(null);
 			return response;
 		} catch (error: any) {
 			setError(error);

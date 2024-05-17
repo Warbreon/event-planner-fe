@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { StoreState } from '../redux/store/Store';
+import { AppDispatch, StoreState } from '../redux/store/Store';
 import { isExpired } from 'react-jwt';
 import { useApiRequest } from '../api/hooks/ApiHooks';
 import { useNavigate } from 'react-router';
@@ -16,17 +16,19 @@ const useProtectedRouteVM = () => {
 	const isAccessTokenExpired = isExpired(currentAccessToken);
 	const isRefreshTokenExpired = isExpired(refreshToken);
 
-	const dispatch = useDispatch();
+	const dispatch: AppDispatch = useDispatch();
 	const navigate = useNavigate();
 
 	const { refresh } = useAuthenticationAPI();
-	const { request: postData } = useApiRequest();
+	const { request: postData, data, error } = useApiRequest();
+
+
 
 	useEffect(() => {
 		const fetchNewAccessToken = async () => {
-			const { accessToken, error } = await postData(() => refresh(refreshToken));
-			if (!error && accessToken !== null) {
-				dispatch(refreshAccessToken(accessToken));
+			 await postData(() => refresh(refreshToken));
+			if (!error && data.accessToken !== null) {
+				dispatch(refreshAccessToken(data.accessToken));
 			}
 		};
 
@@ -38,16 +40,7 @@ const useProtectedRouteVM = () => {
 			dispatch(signOut());
 			navigate(ROUTES.SIGN_IN, { replace: true });
 		}
-	}, [
-		currentAccessToken,
-		dispatch,
-		isAccessTokenExpired,
-		isRefreshTokenExpired,
-		navigate,
-		postData,
-		refresh,
-		refreshToken,
-	]);
+	}, [currentAccessToken, data.accessToken, dispatch, error, isAccessTokenExpired, isRefreshTokenExpired, navigate, postData, refresh, refreshToken]);
 
 	return { isUserAuthenticated };
 };

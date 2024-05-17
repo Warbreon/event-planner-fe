@@ -1,6 +1,6 @@
 import { EventFormValues } from "../../../interfaces/EventFormValuesInterface";
 import { useApiRequest } from "../../../api/hooks/ApiHooks";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { LocationTags } from "../../../constants/LocationTags";
 import { mapEventFormValuesToEvent } from "../../../utils/mappings/EventMappings";
 import useEventAPI from "../../../api/EventsAPI";
@@ -48,8 +48,6 @@ const EventFormVM = () => {
 
     const onSubmit = async (formValues: EventFormValues) => {
         console.log(formValues)
-
-
         const eventValues = await mapEventFormValuesToEvent(formValues);
         await request(() => createEvent(eventValues));
         console.log(eventValues)
@@ -60,7 +58,7 @@ const EventFormVM = () => {
         navigate(ROUTES.MY_EVENTS);
     };
 
-    return { initialValues, onSubmit, handleCancelOnClick, isCreateEventLoading }
+    return { initialValues, onSubmit, handleCancelOnClick, isCreateEventLoading, createEventError }
 }
 
 export default EventFormVM;

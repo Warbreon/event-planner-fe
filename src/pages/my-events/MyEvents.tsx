@@ -10,27 +10,29 @@ import LoadingIndicator from '../../components/loading-indicator/LoadingIndicato
 
 const MyEvents = () => {
 	const {
-		isAdmin,
 		subheader,
+		isAdmin,
 		currentTab,
-		eventsAttending,
-		eventsCreated,
 		chipOptions,
-		isLoading,
-		error,
+		userEventList,
+		isLoadingUserEvents,
+		errorFetchingUserEventList,
+		createdByUserList,
+		isLoadingCreatedByUser,
+		errorFetchingCreatedByUser,
 		handleTabChange,
 		getChipClassName,
 		onAddEventClick,
 	} = useMyEventsVM();
 
-	if (error)
+	if (errorFetchingUserEventList || errorFetchingCreatedByUser)
 		return (
 			<Container className={styles.myEventsPageContainer}>
-				Something went wrong. Could not fetch event list...
+				{errorFetchingUserEventList || errorFetchingCreatedByUser}
 			</Container>
 		);
 
-	if (isLoading) return <LoadingIndicator />;
+	if (isLoadingUserEvents || isLoadingCreatedByUser) return <LoadingIndicator />;
 
 	return (
 		<Container className={styles.myEventsPageContainer}>
@@ -55,8 +57,10 @@ const MyEvents = () => {
 				/>
 			)}
 
-			{currentTab === 0 && <EventList events={eventsAttending} />}
-			{currentTab === 1 && <EventList events={eventsCreated} createdByUser={true} onAddEventClick={onAddEventClick} />}
+			{currentTab === 0 && <EventList events={userEventList} />}
+			{currentTab === 1 && (
+				<EventList events={createdByUserList} createdByUser={true} onAddEventClick={onAddEventClick} />
+			)}
 		</Container>
 	);
 };

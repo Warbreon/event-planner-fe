@@ -9,11 +9,15 @@ import SelectGuests from './modal-content/SelectGuests';
 import DisplaySelectedGuests from './page-content/DisplaySelectedGuests';
 import styles from './AddGuestsSection.module.css';
 import SnackbarComponent, { ALERT_SEVERITY } from '../snackbar/SnackbarComponent';
+import { Typography } from '@mui/material';
+import LoadingIndicator from '../loading-indicator/LoadingIndicator';
 
 const AddGuestsSection = () => {
 	const { setFieldValue } = useFormikContext<{ attendeeIds: number[] }>();
 	const {
 		users,
+		error, 
+		isCreateEventLoading,
 		showForm,
 		showModal,
 		currentlySelectedUsers,
@@ -26,6 +30,14 @@ const AddGuestsSection = () => {
 		onConfirm,
 		onDeleteClick,
 	} = useAddGuestsVM({ setFieldValue });
+
+	if(error) {
+		return <Typography variant='body1'>There is a problem retrieving user list</Typography>
+	}
+
+	if(isCreateEventLoading) {
+		return <LoadingIndicator/>
+	}
 
 	return (
 		<div>

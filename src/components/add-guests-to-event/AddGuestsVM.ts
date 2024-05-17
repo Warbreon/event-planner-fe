@@ -24,7 +24,7 @@ const useAddGuestsVM = ({ setFieldValue }: Props) => {
 		dispatch(fetchUsers());
 }, [dispatch]);
 
- const users = useSelector((state: any) => state.users.list);
+ const {list: users, error, isCreateEventLoading} = useSelector((state: any) => state.users);
 
 
 	const [showForm, setShowForm] = useState<boolean>(false);
@@ -34,7 +34,6 @@ const useAddGuestsVM = ({ setFieldValue }: Props) => {
 	const [errorMessage, setErrorMessage] = useState<string>('');
 	const [confirmButtonLabel, setConfirmButtonLabel] = useState<BUTTON_LABELS>(BUTTON_LABELS.ADD_GUESTS);
 	const newUserSelection = useSelector((state: StoreState) => state.createEventGuests);
-	//const dispatch = useDispatch();
 
 	const onToggle = (event: ChangeEvent<HTMLInputElement>) => {
 		setShowForm(event.target.checked);
@@ -101,6 +100,8 @@ const useAddGuestsVM = ({ setFieldValue }: Props) => {
 
 	return {
 		users,
+		error, 
+		isCreateEventLoading,
 		showForm,
 		showModal,
 		currentlySelectedUsers,

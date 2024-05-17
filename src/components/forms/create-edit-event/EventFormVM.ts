@@ -17,7 +17,6 @@ const EventFormVM = () => {
 
     useEffect(() => {
         if (!isCreateEventLoading && !createEventError && event) {
-            // navigate(`/events/event/${event.id}`);
             navigate(ROUTES.EVENT.replace(':eventId', event.id));
         }
     }, [isCreateEventLoading, createEventError, event, navigate]);
@@ -31,7 +30,7 @@ const EventFormVM = () => {
         eventName: '',
         eventTagIds: [],
         cardImageBase64: null,
-        addressId: null,
+        addressId: 0,
         inviteUrl: '',
         agenda: parseAgendaItems([]),
         isOpen: true,

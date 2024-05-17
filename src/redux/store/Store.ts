@@ -8,6 +8,7 @@ import { FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER } from 'redux-persist
 import tagsSlice from '../slices/TagsSlice';
 import userInfoSlice from '../slices/UserInfoSlice';
 import userSlice from '../slices/UserSlice';
+import venueSlice from '../slices/VenueSlice';
 
 const persistConfig = {
 	key: 'session',
@@ -25,7 +26,8 @@ const rootReducer = combineReducers({
 	createEventGuests: createEventPageUserSlice,
 	filters: filtersSlice,
 	tags: tagsSlice,
-	users: userSlice
+	users: userSlice,
+	venues: venueSlice
 });
 
 export const store: any = configureStore({

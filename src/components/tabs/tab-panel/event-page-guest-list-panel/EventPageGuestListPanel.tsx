@@ -18,9 +18,18 @@ import { AVATAR_STYLES } from '../../../../themes/styles/Avatar';
 
 type Props = {
 	attendees: Attendee[];
+	eventChangePrivelege: () => boolean;
 };
-const EventPageGuestListPanel: FC<Props> = ({ attendees }) => {
-	const { onPlusButtonClick, onInputChange, onConfirmClick, onDeclineClick } = EventPageGuestListPanelVM();
+const EventPageGuestListPanel: FC<Props> = ({ attendees, eventChangePrivelege }) => {
+	const { 
+		onPlusButtonClick, 
+		onInputChange, 
+		onConfirmClick, 
+		onDeclineClick,
+		getConfirmButtonStyles,
+		getDeclinedButtonStyles,
+		filteredAttendees
+	} = EventPageGuestListPanelVM(attendees);
 	return (
 		<div className={styles.container}>
 			{attendees.length !== 0 && (
@@ -35,7 +44,7 @@ const EventPageGuestListPanel: FC<Props> = ({ attendees }) => {
 				</Box>
 			)}
 			<List>
-				{attendees.map((attendee, i, array) => [
+				{filteredAttendees.map((attendee, i, array) => [
 					<GuestListItem
 						key={attendee.user.id}
 						fullName={`${attendee.user.firstName}  ${attendee.user.lastName}`}
@@ -48,36 +57,40 @@ const EventPageGuestListPanel: FC<Props> = ({ attendees }) => {
 						<>
 							{!!attendee.registrationStatus &&
 								(attendee.registrationStatus === 'PENDING' ? (
-									<>
+									<div className={styles.buttons}>
 										<GenericButton
 											type={ButtonTypes.button}
 											title='Decline'
-											onClick={onDeclineClick}
-											styles={BUTTON_STYLES.LIGHT_GRAY_ROUND_SMALL_BORDERLESS}
+											onClick={() => onDeclineClick(attendee.id)}
+											styles={getDeclinedButtonStyles(attendee.id)}
 										/>
 										<GenericButton
 											type={ButtonTypes.button}
 											title='Confirm'
-											onClick={onConfirmClick}
-											styles={BUTTON_STYLES.LIGHT_GRAY_ROUND_SMALL}
+											onClick={() => onConfirmClick(attendee.id)}
+											styles={getConfirmButtonStyles(attendee.id)}
 										/>
-									</>
+									</div>
 								) : (
-									<Typography variant={'caption'} className={TYPOGRAPHY_STYLES.GUEST_REGISTRATION_STATUS}>
-										{attendee.registrationStatus?.toLowerCase()}
-									</Typography>
+									eventChangePrivelege() && (
+										<Typography variant={'caption'} className={TYPOGRAPHY_STYLES.GUEST_REGISTRATION_STATUS}>
+											Confirmed
+										</Typography>
+									)
 								))}
 						</>
 					</GuestListItem>,
 					array.length - 1 !== i ? <Divider component='li' key={'Divider' + i} /> : null,
 				])}
 			</List>
-			<GenericButton
-				icon={IconButton.ADD_GUESTS}
-				type={ButtonTypes.button}
-				styles={BUTTON_STYLES.LIGHT_GRAY_BOX}
-				onClick={onPlusButtonClick}
-			/>
+			{eventChangePrivelege() && (	
+				<GenericButton
+					icon={IconButton.ADD_GUESTS}
+					type={ButtonTypes.button}
+					styles={BUTTON_STYLES.LIGHT_GRAY_BOX}
+					onClick={onPlusButtonClick}
+				/>
+			)}
 		</div>
 	);
 };

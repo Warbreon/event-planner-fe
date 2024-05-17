@@ -8,9 +8,10 @@ import { Attendee } from '../../../models/Attendee';
 interface Props {
 	onAddGuests: () => void;
 	attendees: Attendee[];
+	eventChangePrivelege: () => boolean;
 }
 
-const EventPageGuests: FC<Props> = ({ onAddGuests, attendees }) => {
+const EventPageGuests: FC<Props> = ({ onAddGuests, attendees, eventChangePrivelege }) => {
 	return (
 		<Box className={styles.gridWrapper}>
 			<Grid container spacing={2}>
@@ -18,12 +19,14 @@ const EventPageGuests: FC<Props> = ({ onAddGuests, attendees }) => {
 					<GuestList attendees={attendees}/>
 				</Grid>
 				<Grid item xs={2}>
-					<GenericButton
-						title='Add guests'
-						type={ButtonTypes.button}
-						styles={BUTTON_STYLES.GRAY}
-						onClick={onAddGuests}
-					/>
+					{eventChangePrivelege() && (
+						<GenericButton
+							title='Add guests'
+							type={ButtonTypes.button}
+							styles={BUTTON_STYLES.GRAY}
+							onClick={onAddGuests}
+						/>
+					)}
 				</Grid>
 			</Grid>
 		</Box>

@@ -4,9 +4,10 @@ import { isExpired } from 'react-jwt';
 import { useApiRequest } from '../api/hooks/ApiHooks';
 import { useNavigate } from 'react-router';
 import { refreshAccessToken, signOut } from '../redux/slices/AuthenticationSlice';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import useAuthenticationAPI from '../api/AuthenticationAPI';
 import ROUTES from './Routes';
+import { removeUserInfo } from '../redux/slices/UserInfoSlice';
 
 const useProtectedRouteVM = () => {
 	const isUserAuthenticated = useSelector((state: StoreState) => state.user.signedIn);
@@ -16,33 +17,42 @@ const useProtectedRouteVM = () => {
 	const isAccessTokenExpired = isExpired(currentAccessToken);
 	const isRefreshTokenExpired = isExpired(refreshToken);
 
-	const dispatch: AppDispatch = useDispatch();
+	const dispatch = useDispatch();
 	const navigate = useNavigate();
 
 	const { refresh } = useAuthenticationAPI();
-	const { request: postData, data, error } = useApiRequest();
+	const { request: postData, data, error, isLoading } = useApiRequest();
 
-
+	const [fetchingNewToken, setFetchingNewToken] = useState(false);
 
 	useEffect(() => {
 		const fetchNewAccessToken = async () => {
-			 await postData(() => refresh(refreshToken));
-			if (!error && data.accessToken !== null) {
-				dispatch(refreshAccessToken(data.accessToken));
-			}
+			setFetchingNewToken(true)
+		 await postData(() => refresh(refreshToken));
+		 setFetchingNewToken(false)
 		};
 
 		if (isAccessTokenExpired && !isRefreshTokenExpired) {
 			fetchNewAccessToken();
 		}
 
+
+		if(!isLoading && !fetchingNewToken) {
+			if(data && data.accessToken !== null) {
+				console.log(data.accessToken)
+				dispatch(refreshAccessToken(data.accessToken));
+			}
+		}
+
+		
 		if (isRefreshTokenExpired) {
 			dispatch(signOut());
+			dispatch(removeUserInfo());
 			navigate(ROUTES.SIGN_IN, { replace: true });
 		}
-	}, [currentAccessToken, data.accessToken, dispatch, error, isAccessTokenExpired, isRefreshTokenExpired, navigate, postData, refresh, refreshToken]);
+	}, [data, dispatch, error, fetchingNewToken, isAccessTokenExpired, isLoading, isRefreshTokenExpired, navigate, postData, refresh, refreshToken]);
 
-	return { isUserAuthenticated };
+	return { isUserAuthenticated, isRefreshTokenExpired, isLoading};
 };
 
 export default useProtectedRouteVM;

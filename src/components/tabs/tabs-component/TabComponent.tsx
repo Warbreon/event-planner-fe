@@ -32,7 +32,7 @@ const TabComponent: FC<TabsProps> = ({ description, tags, agenda, attendees, add
 		? filterAttendeesByRegistationStatusAndFullname(attendees) 
 		: filterAttendees(attendees);
 
-	const guestsTabLabel = `Guests (${filteredAttendees.length})`;
+	const guestsTabLabel = `Guests (${filterAttendees(attendees).length})`;
 
 	return (
 		<Box>

@@ -74,7 +74,7 @@ const EventPageGuestListPanel: FC<Props> = ({ attendees, eventChangePrivelege })
 								) : (
 									eventChangePrivelege() && (
 										<Typography variant={'caption'} className={TYPOGRAPHY_STYLES.GUEST_REGISTRATION_STATUS}>
-											Confirmed
+											{attendee.registrationStatus === 'REJECTED' ? 'Rejected' : 'Confirmed'}
 										</Typography>
 									)
 								))}

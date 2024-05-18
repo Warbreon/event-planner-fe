@@ -1,22 +1,18 @@
 import { useState } from "react";
-import useAttendeeAPI from "../../api/AttendeeAPI";
-import { useApiRequest } from "../../api/hooks/ApiHooks";
 import { AttendeeNotification } from "../../models/AttendeeNotification";
-import { BUTTON_STYLES } from "../../themes/styles/Button";
 import { NOTIFICATION } from "../../themes/styles/Notification";
 import { formatDate, formatDateAndTimeTo_HH_mm_MMMM_D_YYYY } from "../../utils/DateConverter";
+import useNotificationActions from "./NotificationActions";
 
 interface NotificationCardVMProps extends Partial<AttendeeNotification> {
     markNotificationAsViewed: () => void;
 }
 
 const NotificationCardVM = (notification: NotificationCardVMProps) => {
-    const [lastClicked, setLastClicked] = useState<string>('');
     const [viewed, setViewed] = useState<boolean>(false);
     const { registrationTime = '', isNewNotification, eventStart = '', eventName = '', user } = notification;
 
-    const { markNotificationAsViewed, confirmPendingRegistration, declinePendingRegistration } = useAttendeeAPI();
-    const { request: patchData, error } = useApiRequest();
+    const { error, handleConfirmOnClick, handleDeclineOnClick, markAsViewed, getConfirmButtonStyles, getDeclinedButtonStyles } = useNotificationActions();
 
     const formattedEventStart = formatDate(eventStart);
     const formattedRegistrationTime = formatDateAndTimeTo_HH_mm_MMMM_D_YYYY(registrationTime);
@@ -41,37 +37,11 @@ const NotificationCardVM = (notification: NotificationCardVMProps) => {
             : NOTIFICATION.INACTIVE_NOTIFICATION
     }
 
-    const getConfirmButtonStyles = () => {
-        return lastClicked === 'confirm' 
-            ? BUTTON_STYLES.LIGHT_GRAY_ROUND_SMALL_CONFIRM_NOTIFICATION_CONFIRMED 
-            : BUTTON_STYLES.LIGHT_GRAY_ROUND_SMALL_CONFIRM_NOTIFICATION
-    }
-
-    const getDeclinedButtonStyles = () => {
-        return lastClicked === 'decline'
-            ? BUTTON_STYLES.TEXT_ONLY_DECLINE_NOTIFICATION_DECLINED 
-            : BUTTON_STYLES.TEXT_ONLY_DECLINE_NOTIFICATION
-    }
-
-    const markAsViewed = async (attendeeId: number) => {
+    const markAsViewedWrapper = async (attendeeId: number) => {
         if (isNewNotification && !viewed) {
-            await patchData(() => markNotificationAsViewed(attendeeId));
+            await markAsViewed(attendeeId);
             setViewed(true);
             notification.markNotificationAsViewed();
-        }
-    }
-
-    const handleDeclineOnClick = async (attendeeId: number) => {
-        setLastClicked('decline');
-        if (lastClicked !== 'decline') {
-            await patchData(() => declinePendingRegistration(attendeeId));
-        }
-    }
-
-    const handleConfirmOnClick = async (attendeeId: number) => {
-        setLastClicked('confirm');
-        if (lastClicked !== 'confirm') {
-            await patchData(() => confirmPendingRegistration(attendeeId));
         }
     }
 
@@ -86,7 +56,7 @@ const NotificationCardVM = (notification: NotificationCardVMProps) => {
         getNotificationStyles,
         getConfirmButtonStyles,
         getDeclinedButtonStyles,
-        markAsViewed,
+        markAsViewed: markAsViewedWrapper,
         handleDeclineOnClick,
         handleConfirmOnClick
     }

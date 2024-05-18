@@ -8,10 +8,10 @@ import { Attendee } from '../../../models/Attendee';
 interface Props {
 	onAddGuests: () => void;
 	attendees: Attendee[];
-	eventChangePrivelege: () => boolean;
+	isUserAdminOrCreator: boolean;
 }
 
-const EventPageGuests: FC<Props> = ({ onAddGuests, attendees, eventChangePrivelege }) => {
+const EventPageGuests: FC<Props> = ({ onAddGuests, attendees, isUserAdminOrCreator }) => {
 	return (
 		<Box className={styles.gridWrapper}>
 			<Grid container spacing={2}>
@@ -19,7 +19,7 @@ const EventPageGuests: FC<Props> = ({ onAddGuests, attendees, eventChangePrivele
 					<GuestList attendees={attendees}/>
 				</Grid>
 				<Grid item xs={2}>
-					{eventChangePrivelege() && (
+					{isUserAdminOrCreator && (
 						<GenericButton
 							title='Add guests'
 							type={ButtonTypes.button}

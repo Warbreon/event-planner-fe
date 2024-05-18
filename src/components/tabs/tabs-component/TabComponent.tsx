@@ -15,10 +15,10 @@ interface TabsProps {
 	agenda: string[] | null;
 	attendees: Attendee[];
 	address: Address | null | undefined;
-	eventChangePrivelege: () => boolean;
+	isUserAdminOrCreator: boolean;
 }
 
-const TabComponent: FC<TabsProps> = ({ description, tags, agenda, attendees, address, eventChangePrivelege }) => {
+const TabComponent: FC<TabsProps> = ({ description, tags, agenda, attendees, address, isUserAdminOrCreator }) => {
 	const [value, setValue] = useState(0);
 	const handleTabChange = (event: SyntheticEvent, newValue: number) => {
 		setValue(newValue);
@@ -28,7 +28,7 @@ const TabComponent: FC<TabsProps> = ({ description, tags, agenda, attendees, add
         setValue(newValue);
     };
 	
-	const filteredAttendees = eventChangePrivelege() 
+	const filteredAttendees = isUserAdminOrCreator 
 		? filterAttendeesByRegistationStatusAndFullname(attendees) 
 		: filterAttendees(attendees);
 
@@ -46,7 +46,7 @@ const TabComponent: FC<TabsProps> = ({ description, tags, agenda, attendees, add
 				<AboutEvent description={description} eventTags={tags} agenda={agenda} attendees={attendees} address={address} handleChangeTab={changeTab}/>
 			</TabPanel>
 			<TabPanel index={1} value={value}>
-				<EventPageGuestListPanel attendees={filteredAttendees} eventChangePrivelege={eventChangePrivelege}/>
+				<EventPageGuestListPanel attendees={filteredAttendees} isUserAdminOrCreator={isUserAdminOrCreator}/>
 			</TabPanel>
 		</Box>
 	);

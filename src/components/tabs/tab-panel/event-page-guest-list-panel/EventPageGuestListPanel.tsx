@@ -18,9 +18,9 @@ import { AVATAR_STYLES } from '../../../../themes/styles/Avatar';
 
 type Props = {
 	attendees: Attendee[];
-	eventChangePrivelege: () => boolean;
+	isUserAdminOrCreator: boolean;
 };
-const EventPageGuestListPanel: FC<Props> = ({ attendees, eventChangePrivelege }) => {
+const EventPageGuestListPanel: FC<Props> = ({ attendees, isUserAdminOrCreator }) => {
 	const { 
 		onPlusButtonClick, 
 		onInputChange, 
@@ -72,7 +72,7 @@ const EventPageGuestListPanel: FC<Props> = ({ attendees, eventChangePrivelege })
 										/>
 									</div>
 								) : (
-									eventChangePrivelege() && (
+									isUserAdminOrCreator && (
 										<Typography variant={'caption'} className={TYPOGRAPHY_STYLES.GUEST_REGISTRATION_STATUS}>
 											{attendee.registrationStatus === 'REJECTED' ? 'Rejected' : 'Confirmed'}
 										</Typography>
@@ -83,7 +83,7 @@ const EventPageGuestListPanel: FC<Props> = ({ attendees, eventChangePrivelege })
 					array.length - 1 !== i ? <Divider component='li' key={'Divider' + i} /> : null,
 				])}
 			</List>
-			{eventChangePrivelege() && (	
+			{isUserAdminOrCreator && (	
 				<GenericButton
 					icon={IconButton.ADD_GUESTS}
 					type={ButtonTypes.button}

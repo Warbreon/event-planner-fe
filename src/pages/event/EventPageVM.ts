@@ -47,14 +47,12 @@ const EventPageVM = () => {
 		console.log('Registed/Get tickets/ Cancel registration');
 	};
 
-	const eventChangePrivelege = () => {
-		return currentUserRole === 'SYSTEM_ADMIN' || currentUserId === creatorId;
-	}
+	const isUserAdminOrCreator = currentUserRole === 'SYSTEM_ADMIN' || currentUserId === creatorId;
 
 	return {
 		onAddGuestsClick,
 		onEventRegistrationClick,
-		eventChangePrivelege,
+		isUserAdminOrCreator,
 		event,
 		isLoading,
 		location,

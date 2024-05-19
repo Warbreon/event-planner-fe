@@ -20,4 +20,5 @@ export interface Event {
 	currentUserRegisteredToEvent: boolean;
 	isOpen: boolean;
 	tags: Tag[];
+	isCancelled: boolean;
 }

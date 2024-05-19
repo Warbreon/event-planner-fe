@@ -4,6 +4,7 @@ export const ENDPOINTS = {
 	getEventsUserAttending: '/events/user-registered',
 	getEventsCreatedByUser: '/events/created-by-user',
 	createNewEvent: '/events/create/new',
+	cancelEvent: (id: number) => `/events/cancel/${id}`,
 
 	registerToEvent: '/attendee/register',
 	getUsers: '/users',

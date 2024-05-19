@@ -23,14 +23,16 @@ const useEventAPI = () => {
 
 	const fetchEventsCreatedByUser = () => axios.get<Event[]>(ENDPOINTS.getEventsCreatedByUser);
 	const fetchEventsUserAttending = () => axios.get<Event[]>(ENDPOINTS.getEventsUserAttending);
+	const cancelEvent = (id: number) => axios.patch<Event>(ENDPOINTS.cancelEvent(id));
 
 	return {
 		fetchEvents,
 		fetchEventById,
 		registerToEvent,
 		fetchEventsCreatedByUser,
-	 fetchEventsUserAttending,
-	 fetchPaginatedEvents
+	 	fetchEventsUserAttending,
+	 	fetchPaginatedEvents,
+	 	cancelEvent
 	};
 };
 export default useEventAPI;

@@ -7,27 +7,25 @@ import { ENDPOINTS } from '../../api/endpoints/Endpoints';
 interface MyEventsState {
 	userEventList: Event[];
 	isLoadingUserEvents: boolean;
-	errorFetchingUserEventList: string | null;
 	createdByUserList: Event[];
 	isLoadingCreatedByUser: boolean;
-	errorFetchingCreatedByUser: string | null;
+	error: string | null;
 }
 
 const initialState: MyEventsState = {
 	userEventList: [],
 	isLoadingUserEvents: false,
-	errorFetchingUserEventList: null,
 	createdByUserList: [],
 	isLoadingCreatedByUser: false,
-	errorFetchingCreatedByUser: null,
+	error: null,
 };
 
 export const fetchUserEvents = createAsyncThunk<Event[], void, { state: StoreState }>(
-	'my_events/fetchUserEvents',
+	'myEvents/fetchUserEvents',
 	async (_, { getState }) => {
 		const state = getState();
-		if (state.my_events.userEventList.length > 0) {
-			return state.my_events.userEventList;
+		if (state.myEvents.userEventList.length > 0) {
+			return state.myEvents.userEventList;
 		}
 
 		const response = await axiosInstance.get<Event[]>(ENDPOINTS.getEventsUserAttending);
@@ -36,11 +34,11 @@ export const fetchUserEvents = createAsyncThunk<Event[], void, { state: StoreSta
 );
 
 export const fetchEventsCreatedByUser = createAsyncThunk<Event[], void, { state: StoreState }>(
-	'my_events/fetchEventsCreatedByUser',
+	'myEvents/fetchEventsCreatedByUser',
 	async (_, { getState }) => {
 		const state = getState();
-		if (state.my_events.createdByUserList.length > 0) {
-			return state.my_events.createdByUserList;
+		if (state.myEvents.createdByUserList.length > 0) {
+			return state.myEvents.createdByUserList;
 		}
 
 		const response = await axiosInstance.get<Event[]>(ENDPOINTS.getEventsCreatedByUser);
@@ -49,35 +47,35 @@ export const fetchEventsCreatedByUser = createAsyncThunk<Event[], void, { state:
 );
 
 const MyEventsSlice = createSlice({
-	name: 'my_events',
+	name: 'myEvents',
 	initialState,
 	reducers: {},
 	extraReducers: (builder) => {
 		builder
 			.addCase(fetchUserEvents.pending, (state) => {
 				state.isLoadingUserEvents = true;
-				state.errorFetchingUserEventList = null;
+				state.error = null;
 			})
 			.addCase(fetchUserEvents.fulfilled, (state, action: PayloadAction<Event[]>) => {
 				state.userEventList = action.payload;
 				state.isLoadingUserEvents = false;
-				state.errorFetchingUserEventList = null;
+				state.error = null;
 			})
 			.addCase(fetchUserEvents.rejected, (state, action) => {
-				state.errorFetchingUserEventList = action.error.message ?? null;
+				state.error = action.error.message ?? null;
 				state.isLoadingUserEvents = false;
 			})
 			.addCase(fetchEventsCreatedByUser.pending, (state) => {
 				state.isLoadingCreatedByUser = true;
-				state.errorFetchingCreatedByUser = null;
+				state.error = null;
 			})
 			.addCase(fetchEventsCreatedByUser.fulfilled, (state, action: PayloadAction<Event[]>) => {
 				state.createdByUserList = action.payload;
 				state.isLoadingCreatedByUser = false;
-				state.errorFetchingCreatedByUser = null;
+				state.error = null;
 			})
 			.addCase(fetchEventsCreatedByUser.rejected, (state, action) => {
-				state.errorFetchingCreatedByUser = action.error.message ?? null;
+				state.error = action.error.message ?? null;
 				state.isLoadingCreatedByUser = false;
 			});
 	},

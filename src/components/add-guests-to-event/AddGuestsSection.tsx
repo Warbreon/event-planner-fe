@@ -17,7 +17,7 @@ const AddGuestsSection = () => {
 	const {
 		users,
 		error, 
-		isCreateEventLoading,
+		isLoading,
 		showForm,
 		showModal,
 		currentlySelectedUsers,
@@ -35,7 +35,7 @@ const AddGuestsSection = () => {
 		return <Typography variant='body1'>There is a problem retrieving user list</Typography>
 	}
 
-	if(isCreateEventLoading) {
+	if(isLoading) {
 		return <LoadingIndicator/>
 	}
 

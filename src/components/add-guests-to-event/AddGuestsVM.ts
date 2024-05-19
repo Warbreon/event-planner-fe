@@ -24,7 +24,7 @@ const useAddGuestsVM = ({ setFieldValue }: Props) => {
 		dispatch(fetchUsers());
 }, [dispatch]);
 
- const {list: users, error, isCreateEventLoading} = useSelector((state: any) => state.users);
+ const {list: users, error, isLoading} = useSelector((state: any) => state.users);
 
 
 	const [showForm, setShowForm] = useState<boolean>(false);
@@ -101,7 +101,7 @@ const useAddGuestsVM = ({ setFieldValue }: Props) => {
 	return {
 		users,
 		error, 
-		isCreateEventLoading,
+		isLoading,
 		showForm,
 		showModal,
 		currentlySelectedUsers,

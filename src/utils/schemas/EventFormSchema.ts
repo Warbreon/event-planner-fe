@@ -99,7 +99,7 @@ export const eventFormSchema = Yup.object().shape({
 		}),
 	price: Yup.number()
 		.min(0, 'The price can not be below 0')
-		.max(10000, 'The price can not be above 10000')
+		.max(10000, 'The price can not exceed 10000')
 		.required('Please enter a valid price')
 		.test('decimalPoint', 'Decimal place is limited to 2 numbers', (value) =>
 			/^(?!.*\..*\.)[0-9]*(\.[0-9]{0,2})?$/.test(value.toString())
@@ -108,13 +108,12 @@ export const eventFormSchema = Yup.object().shape({
 	tickets: Yup.number()
 		.min(0, 'The ticket amount can not be below 0')
 		.max(
-			1000000,
-			'The ticket amount can not be above 1 million, if you want to have no limit on participants select 0'
+			10000,
+			'The ticket amount can not exceed 10000'
 		)
 		.required('Please enter a valid ticket number')
 		.test('onlyNumbers', 'Please only use natural numbers', (value) => /^(?!.*\..*\.)[0-9]*?$/.test(value.toString())),
 	description: Yup.string()
-		.min(8, 'Field cannot be empty')
 		.max(5000, 'About section cant exceed a 5000 character size limit')
-		.required('Please add a description about the event'),
+		.required('Event description is required'),
 });

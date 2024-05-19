@@ -43,28 +43,6 @@ export const useApiRequest = () => {
 	return { request, isLoading, error, data };
 };
 
-export const useApiRequest2 = () => {
-	const [isLoading, setIsLoading] = useState<boolean>(false);
-	const [error, setError] = useState<string | null>(null);
-	const [data, setData] = useState<any>(null);
-	const request = async <T>(requestFunction: () => Promise<AxiosResponse<T>>) => {
-		try {
-			setIsLoading(true);
-			const response = await requestFunction();
-			setData(response.data);
-			setError(null);
-			return response;
-		} catch (error: any) {
-			setError(error);
-			setData(null);
-			return error;
-		} finally {
-			setIsLoading(false);
-		}
-	};
-	return { request, isLoading, error, data };
-};
-
 export const usePaginatedFetch = <T>(
 	fetchFunction: (page: number, size: number) => Promise<AxiosResponse<PaginatedResponse<T>>>,
 	initialPageSize: number,

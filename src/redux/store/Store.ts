@@ -29,7 +29,7 @@ const rootReducer = combineReducers({
 	tags: tagsSlice,
 	users: userSlice,
 	venues: venueSlice,
-	my_events: myEventsSlice
+	myEvents: myEventsSlice
 });
 
 export const store: any = configureStore({

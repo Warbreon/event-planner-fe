@@ -26,7 +26,7 @@ export const mapEventFormValuesToEvent =  async (formValues: EventFormValues) =>
         attendeeIds: formValues.attendeeIds,
         isOpen: formValues.isOpen,
         tagIds: formValues.eventTagIds,
-        currency: Currency.EUR,
+        currency: formValues.currency,
     };
 };
 

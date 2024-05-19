@@ -18,7 +18,7 @@ const SignInViewModel = () => {
 	};
 
 	useEffect(() => {
-		if (isLoading && error) {
+		if (isLoading || error) {
 			return;
 		}
 

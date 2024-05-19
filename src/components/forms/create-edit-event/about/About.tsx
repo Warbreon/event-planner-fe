@@ -27,7 +27,7 @@ const About = () => {
 			</Typography>
 			<Box className={meta.touched && meta.error ? styles.buttonContainerError : styles.buttonContainer}>
 				<button
-					type={'button'}
+					type='button'
 					onClick={() => editor.chain().focus().toggleBold().run()}
 					disabled={!editor.can().chain().focus().toggleBold().run()}
 					className={editor.isActive('bold') ? styles.buttonActive : styles.buttonDisabled}
@@ -35,7 +35,7 @@ const About = () => {
 					<FormatBold />
 				</button>
 				<button
-					type={'button'}
+					type='button'
 					onClick={() => editor.chain().focus().toggleItalic().run()}
 					disabled={!editor.can().chain().focus().toggleItalic().run()}
 					className={editor.isActive('italic') ? styles.buttonActive : styles.buttonDisabled}
@@ -43,28 +43,28 @@ const About = () => {
 					<FormatItalic />
 				</button>
 				<button
-					type={'button'}
+					type='button'
 					onClick={() => editor.chain().focus().toggleBulletList().run()}
 					className={editor.isActive('bulletList') ? styles.buttonActive : styles.buttonDisabled}
 				>
 					<FormatListBulleted />
 				</button>
 				<button
-					type={'button'}
+					type='button'
 					onClick={() => editor.chain().focus().toggleOrderedList().run()}
 					className={editor.isActive('orderedList') ? styles.buttonActive : styles.buttonDisabled}
 				>
 					<FormatListNumbered />
 				</button>
 				<button
-					type={'button'}
+					type='button'
 					onClick={() => editor.chain().focus().toggleUnderline().run()}
 					className={editor.isActive('underline') ? styles.buttonActive : styles.buttonDisabled}
 				>
 					<FormatUnderlined />
 				</button>
 				<button
-					type={'button'}
+					type='button'
 					onClick={() => editor.chain().focus().toggleStrike().run()}
 					disabled={!editor.can().chain().focus().toggleStrike().run()}
 					className={editor.isActive('strike') ? styles.buttonActive : styles.buttonDisabled}
@@ -72,7 +72,7 @@ const About = () => {
 					<FormatStrikethrough />
 				</button>
 				<button
-					type={'button'}
+					type='button'
 					onClick={setLink}
 					className={editor.isActive('link') ? styles.buttonActive : styles.buttonDisabled}
 				>

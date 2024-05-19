@@ -39,12 +39,11 @@ const useMyEventsVM = () => {
 
 	const {
 		userEventList,
-		isLoadingUserEvents,
-		errorFetchingUserEventList,
 		createdByUserList,
+		isLoadingUserEvents,
 		isLoadingCreatedByUser,
-		errorFetchingCreatedByUser,
-	} = useSelector((state: any) => state.my_events);
+		error,
+	} = useSelector((state: any) => state.myEvents);
 
 	const [currentTab, setCurrentTab] = useState<number>(0);
 	const navigate = useNavigate();
@@ -72,11 +71,10 @@ const useMyEventsVM = () => {
 		currentTab,
 		chipOptions,
 		userEventList,
-		isLoadingUserEvents,
-		errorFetchingUserEventList,
 		createdByUserList,
+		isLoadingUserEvents,
 		isLoadingCreatedByUser,
-		errorFetchingCreatedByUser,
+		error,
 		handleTabChange,
 		getChipClassName,
 		onAddEventClick,

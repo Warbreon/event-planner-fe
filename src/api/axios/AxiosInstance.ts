@@ -43,7 +43,7 @@ axiosInstance.interceptors.response.use((response) => {
     const state = store.getState();
     const { refreshToken } = state.user;
 
-    if (response.status !== 401 || isExpired(refreshToken)) {
+    if (response.status === 401 || isExpired(refreshToken)) {
         store.dispatch(signOut());
         store.dispatch(removeUserInfo());
         return Promise.reject(error);

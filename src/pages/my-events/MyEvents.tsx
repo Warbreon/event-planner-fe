@@ -15,20 +15,19 @@ const MyEvents = () => {
 		currentTab,
 		chipOptions,
 		userEventList,
-		isLoadingUserEvents,
-		errorFetchingUserEventList,
 		createdByUserList,
+		isLoadingUserEvents,
 		isLoadingCreatedByUser,
-		errorFetchingCreatedByUser,
+		error,
 		handleTabChange,
 		getChipClassName,
 		onAddEventClick,
 	} = useMyEventsVM();
 
-	if (errorFetchingUserEventList || errorFetchingCreatedByUser)
+	if (error)
 		return (
 			<Container className={styles.myEventsPageContainer}>
-				{errorFetchingUserEventList || errorFetchingCreatedByUser}
+				{error}
 			</Container>
 		);
 

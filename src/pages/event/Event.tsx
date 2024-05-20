@@ -15,22 +15,22 @@ import RelatedEvents from '../../components/related-events/RelatedEvents';
 
 const Event = () => {
 
-	const { onAddGuestsClick, onEventRegistrationClick, event, isLoading, location, eventDate, startTime, endTime, duration } =
+	const { onAddGuestsClick, onEventRegistrationClick, event, isLoading, location, eventDate, startTime, endTime, duration, eventName } =
 		EventPageVM();
 
 	if (isLoading) {
 		return <LoadingIndicator />;
 	}
 
-	const { name = '', inviteUrl, address, imageUrl = '', attendees = [], price = 0, description = '', agenda = [], tags = [] } = event || {};
+	const { inviteUrl, address, imageUrl = '', attendees = [], price = 0, description = '', agenda = [], tags = [], isCancelled } = event || {};
 	return (
 		<Container className={styles.eventContainer}>
-			<BreadCrumbComponent eventName={name} />
+			<BreadCrumbComponent eventName={eventName} />
 			<Grid container spacing={2} className={styles.gridContainer}>
 				<Grid item xs={8} className={styles.gridItem}>
 					<Box component='section' className={styles.desciption}>
 						<DateLocationPrice date={eventDate} location={location} />
-						<PageHeader text={name} variant={HeaderVariant.EVENT_PAGE} />
+						<PageHeader text={eventName} variant={HeaderVariant.EVENT_PAGE} />
 						<Divider className={styles.divider}/>
 						<EventPageGuests onAddGuests={onAddGuestsClick} attendees={attendees} />
 						<Image styles='event-page' imageUrl={imageUrl} />
@@ -48,12 +48,14 @@ const Event = () => {
 							address={address}
 							inviteUrl={inviteUrl}
 						/>
-						<GenericButton
-							type={ButtonTypes.button}
-							styles={BUTTON_STYLES.GRAY}
-							icon={IconButton.REGISTER}
-							onClick={onEventRegistrationClick}
-						/>
+						{!isCancelled && (
+							<GenericButton
+								type={ButtonTypes.button}
+								styles={BUTTON_STYLES.GRAY}
+								icon={IconButton.REGISTER}
+								onClick={onEventRegistrationClick}
+							/>
+						)}
 					</Box>
 				</Grid>
 			</Grid>

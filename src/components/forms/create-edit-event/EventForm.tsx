@@ -70,9 +70,7 @@ const EventForm = () => {
 					</div>
 				</div>
 			</Form>
-			{createEventError && (
-				<SnackbarComponent open={true} message={createEventError} severity={ALERT_SEVERITY.ERROR} />
-			)}
+			<SnackbarComponent open={!!createEventError} message={createEventError ?? ''} severity={ALERT_SEVERITY.ERROR} />
 		</div>
 	);
 };

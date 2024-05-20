@@ -5,6 +5,8 @@ import ButtonComponentGroup from '../buttons/buton-group/ButtonComponentGroup';
 import { BUTTON_STYLES } from '../../../themes/styles/Button';
 import ModalComponent from '../modal/ModalComponent';
 import { CheckCircle, ForwardToInbox } from '@mui/icons-material';
+import { useNavigate } from 'react-router';
+import ROUTES from '../../../routes/Routes';
 
 interface Props {
     isOpen: boolean;
@@ -19,6 +21,7 @@ const RegisterModal: FC<Props> = ({
     eventName,
     onClose,
 }) => {
+    const navigation = useNavigate();
     const title = isOpenEvent ? "Congrats, you're going!" : "Your enquiry have been sent";
     const confirmButtonLabel = isOpenEvent ? 'Done' : 'Got it';
     const icon = isOpenEvent ? <CheckCircle color='secondary' className='modal-icon' /> : <ForwardToInbox color='secondary' className='modal-icon' />;
@@ -48,8 +51,7 @@ const RegisterModal: FC<Props> = ({
                     buttons={[
                         {
                             label: 'Go to my events',
-                            /** TODO: Navigate to My Events */
-                            onClick: onClose,
+                            onClick: () => navigation(ROUTES.MY_EVENTS),
                             className: `${BUTTON_STYLES.OUTLINED_GRAY_BORDER} ${BUTTON_STYLES.MODAL_BUTTON}`,
                         },
                         {

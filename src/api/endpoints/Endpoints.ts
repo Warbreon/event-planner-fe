@@ -21,4 +21,8 @@ export const ENDPOINTS = {
 	refreshAccessToken: '/auth/refresh',
 
 	getAllCities: '/addresses/cities',
+
+	getLocalWebSocketConnection: 'http://localhost:8080/ws',
+	getProdWebSocketConnection: 'https://raisav-api.devbstaging.com/ws',
+	getWebSocketNotificationsSubscription: '/user/queue/notifications'
 };

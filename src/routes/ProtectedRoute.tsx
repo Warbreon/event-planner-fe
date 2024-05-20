@@ -8,12 +8,11 @@ interface ProtectedRouteProps {
 }
 
 const ProtectedRoute: FC<ProtectedRouteProps> = ({ children }) => {
-	const { isUserAuthenticated } = useProtectedRouteVM();
+	const { isUserAuthenticated, isRefreshTokenExpired } = useProtectedRouteVM();
 
-	if (!isUserAuthenticated) {
+	if (isRefreshTokenExpired || !isUserAuthenticated) {
 		return <Navigate to={ROUTES.SIGN_IN} />;
 	}
-
 	return <>{children}</>;
 };
 

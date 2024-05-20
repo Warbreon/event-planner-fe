@@ -1,11 +1,10 @@
 import { useCallback } from "react";
 import { Tag } from "../models/Tag";
-import useAxios from "./axios/Axios";
 import { ENDPOINTS } from "./endpoints/Endpoints";
+import axiosInstance from "./axios/AxiosInstance";
 
 const useTagAPI = () => {
-	const axios = useAxios();
-	const fetchAllTags = useCallback(() => axios.get<Tag[]>(ENDPOINTS.getAllTags), []);
+	const fetchAllTags = useCallback(() => axiosInstance.get<Tag[]>(ENDPOINTS.getAllTags), []);
 
 	return fetchAllTags;
 };

@@ -26,8 +26,7 @@ const EventPageGuestListPanel: FC<Props> = ({ attendees, isUserAdminOrCreator })
 		onInputChange, 
 		handleConfirmOnClick, 
 		handleDeclineOnClick,
-		getConfirmButtonStyles,
-		getDeclinedButtonStyles,
+		getButtonStyles,
 		filteredAttendees
 	} = EventPageGuestListPanelVM(attendees);
 	return (
@@ -62,13 +61,13 @@ const EventPageGuestListPanel: FC<Props> = ({ attendees, isUserAdminOrCreator })
 											type={ButtonTypes.button}
 											title='Decline'
 											onClick={() => handleDeclineOnClick(attendee.id)}
-											styles={getDeclinedButtonStyles(attendee.id)}
+											styles={getButtonStyles(attendee.id, 'decline')}
 										/>
 										<GenericButton
 											type={ButtonTypes.button}
 											title='Confirm'
 											onClick={() => handleConfirmOnClick(attendee.id)}
-											styles={getConfirmButtonStyles(attendee.id)}
+											styles={getButtonStyles(attendee.id, 'confirm')}
 										/>
 									</div>
 								) : (

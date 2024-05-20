@@ -26,16 +26,17 @@ const useNotificationActions = () => {
         await patchData(() => markNotificationAsViewed(attendeeId));
     }
 
-    const getConfirmButtonStyles = (attendeeId: number) => {
-        return lastClicked[attendeeId] === 'confirm'
-            ? BUTTON_STYLES.LIGHT_GRAY_ROUND_SMALL_CONFIRM_NOTIFICATION_CONFIRMED
-            : BUTTON_STYLES.LIGHT_GRAY_ROUND_SMALL_CONFIRM_NOTIFICATION
-    }
-
-    const getDeclinedButtonStyles = (attendeeId: number) => {
-        return lastClicked[attendeeId] === 'decline'
-            ? BUTTON_STYLES.TEXT_ONLY_DECLINE_NOTIFICATION_DECLINED
-            : BUTTON_STYLES.TEXT_ONLY_DECLINE_NOTIFICATION
+    const getButtonStyles = (attendeeId: number, type: 'confirm' | 'decline') => {
+        switch (type) {
+            case 'confirm':
+                return lastClicked[attendeeId] === 'confirm'
+                    ? BUTTON_STYLES.LIGHT_GRAY_ROUND_SMALL_CONFIRM_NOTIFICATION_CONFIRMED
+                    : BUTTON_STYLES.LIGHT_GRAY_ROUND_SMALL_CONFIRM_NOTIFICATION
+            case 'decline':
+                return lastClicked[attendeeId] === 'decline'
+                    ? BUTTON_STYLES.TEXT_ONLY_DECLINE_NOTIFICATION_DECLINED
+                    : BUTTON_STYLES.TEXT_ONLY_DECLINE_NOTIFICATION
+        }
     }
 
     return {
@@ -43,8 +44,7 @@ const useNotificationActions = () => {
         handleConfirmOnClick,
         handleDeclineOnClick,
         markAsViewed,
-        getConfirmButtonStyles,
-        getDeclinedButtonStyles
+        getButtonStyles
     }
 }
 

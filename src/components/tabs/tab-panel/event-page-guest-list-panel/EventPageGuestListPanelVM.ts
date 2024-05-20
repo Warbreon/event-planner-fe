@@ -7,7 +7,7 @@ const EventPageGuestListPanelVM = (attendees: Attendee[]) => {
     const [searchTerm, setSearchTerm] = useState<string>('');
     const [filteredAttendees, setFilteredAttendees] = useState<Attendee[]>(attendees);
 
-    const { handleConfirmOnClick, handleDeclineOnClick, getConfirmButtonStyles, getDeclinedButtonStyles } = useNotificationActions();
+    const { handleConfirmOnClick, handleDeclineOnClick, getButtonStyles } = useNotificationActions();
 
     const searchAttendees = (value: string) => {
         const term = value.toLowerCase();
@@ -35,8 +35,7 @@ const EventPageGuestListPanelVM = (attendees: Attendee[]) => {
         onInputChange, 
         handleConfirmOnClick, 
         handleDeclineOnClick, 
-        getConfirmButtonStyles, 
-        getDeclinedButtonStyles,
+        getButtonStyles,
         filteredAttendees
     };
 };

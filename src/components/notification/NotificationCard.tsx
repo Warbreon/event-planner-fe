@@ -19,8 +19,7 @@ const NotificationCard: FC<NotificationCardProps> = ({ id, registrationTime, isN
         viewed,
         getEventUrl, 
         getNotificationStyles, 
-        getConfirmButtonStyles,
-        getDeclinedButtonStyles,
+        getButtonStyles,
         markAsViewed,
         handleDeclineOnClick,
         handleConfirmOnClick
@@ -50,13 +49,13 @@ const NotificationCard: FC<NotificationCardProps> = ({ id, registrationTime, isN
                         <div className={styles.buttons}>
                             <GenericButton
                                 title='Decline'
-                                styles={getDeclinedButtonStyles(id)}
+                                styles={getButtonStyles(id, 'decline')}
                                 type={ButtonTypes.button}
                                 onClick={() => handleDeclineOnClick(id)}
                             />
                             <GenericButton
                                 title='Confirm'
-                                styles={getConfirmButtonStyles(id)}
+                                styles={getButtonStyles(id, 'confirm')}
                                 type={ButtonTypes.button}
                                 onClick={() => handleConfirmOnClick(id)}
                             />

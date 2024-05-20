@@ -12,7 +12,7 @@ const NotificationCardVM = (notification: NotificationCardVMProps) => {
     const [viewed, setViewed] = useState<boolean>(false);
     const { registrationTime = '', isNewNotification, eventStart = '', eventName = '', user } = notification;
 
-    const { error, handleConfirmOnClick, handleDeclineOnClick, markAsViewed, getConfirmButtonStyles, getDeclinedButtonStyles } = useNotificationActions();
+    const { error, handleConfirmOnClick, handleDeclineOnClick, markAsViewed, getButtonStyles } = useNotificationActions();
 
     const formattedEventStart = formatDate(eventStart);
     const formattedRegistrationTime = formatDateAndTimeTo_HH_mm_MMMM_D_YYYY(registrationTime);
@@ -54,8 +54,7 @@ const NotificationCardVM = (notification: NotificationCardVMProps) => {
         viewed,
         getEventUrl,
         getNotificationStyles,
-        getConfirmButtonStyles,
-        getDeclinedButtonStyles,
+        getButtonStyles,
         markAsViewed: markAsViewedWrapper,
         handleDeclineOnClick,
         handleConfirmOnClick

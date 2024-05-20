@@ -5,7 +5,11 @@ import filtersSlice from '../slices/FiltersSlice';
 import storage from 'redux-persist/lib/storage';
 import { persistReducer, persistStore } from 'redux-persist';
 import { FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER } from 'redux-persist';
+import tagsSlice from '../slices/TagsSlice';
 import userInfoSlice from '../slices/UserInfoSlice';
+import userSlice from '../slices/UserSlice';
+import venueSlice from '../slices/VenueSlice';
+import myEventsSlice from '../slices/MyEventsSlice';
 
 const persistConfig = {
 	key: 'session',
@@ -22,9 +26,13 @@ const rootReducer = combineReducers({
 	userInfo: persistReducer(userInfoPersistConfig, userInfoSlice),
 	createEventGuests: createEventPageUserSlice,
 	filters: filtersSlice,
+	tags: tagsSlice,
+	users: userSlice,
+	venues: venueSlice,
+	myEvents: myEventsSlice
 });
 
-export const store = configureStore({
+export const store: any = configureStore({
 	reducer: rootReducer,
 	middleware: (getDefaultMiddleware) =>
 		getDefaultMiddleware({
@@ -36,3 +44,4 @@ export const store = configureStore({
 
 export const persistor = persistStore(store);
 export type StoreState = ReturnType<typeof store.getState>;
+export type AppDispatch = typeof store.dispatch;

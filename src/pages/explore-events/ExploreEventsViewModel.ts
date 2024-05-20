@@ -10,7 +10,14 @@ const ExploreEventsVM = () => {
     const initialPageSize = 12;
 
     const fetchFunction = useCallback((page: number, size: number) => {
-        return fetchPaginatedEvents(filters.eventTag, Number(filters.date), filters.location, filters.name, page, size);
+        return fetchPaginatedEvents({
+            tagIds: filters.eventTag,
+            days: Number(filters.date),
+            city: filters.location,
+            name: filters.name,
+            page,
+            size,
+        });
     }, [filters.eventTag, filters.date, filters.location, filters.name]);
 
     const { data: events, isLoading, error, loadMore, hasMore, notFound } = usePaginatedFetch(fetchFunction, initialPageSize, [filters]);

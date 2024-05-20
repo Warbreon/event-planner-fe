@@ -22,6 +22,12 @@ const userInfoSlice = createSlice({
                 ...action.payload 
             };
         },
+        updateNotificationCount(state, action: PayloadAction<number>) {
+            return {
+                ...state,
+                notificationCount: action.payload
+            }  
+        },
         removeUserInfo() {
             return {
                 ...initialState
@@ -30,5 +36,5 @@ const userInfoSlice = createSlice({
     },
 });
 
-export const { setUserInfo, removeUserInfo } = userInfoSlice.actions;
+export const { setUserInfo, updateNotificationCount, removeUserInfo } = userInfoSlice.actions;
 export default userInfoSlice.reducer;

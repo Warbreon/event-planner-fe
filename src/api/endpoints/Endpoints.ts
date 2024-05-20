@@ -21,4 +21,5 @@ export const ENDPOINTS = {
 	refreshAccessToken: '/auth/refresh',
 
 	getAllCities: '/addresses/cities',
+	getAllVenues: '/addresses',
 };

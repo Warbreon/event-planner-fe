@@ -8,8 +8,9 @@ import { useSelector } from 'react-redux';
 import { StoreState } from '../../redux/store/Store';
 import { useFetch } from '../../api/hooks/ApiHooks';
 import useAuthenticationAPI from '../../api/AuthenticationAPI';
-import { removeUserInfo, setUserInfo } from '../../redux/slices/UserInfoSlice';
+import { removeUserInfo, setUserInfo, updateNotificationCount } from '../../redux/slices/UserInfoSlice';
 import ROUTES from '../../routes/Routes';
+import useWebSocketService from '../../services/WebSocketService';
 
 const PlannerAppBarViewModel = () => {
 	const [anchorUser, setAnchorUser] = useState<null | HTMLElement>(null);
@@ -26,13 +27,22 @@ const PlannerAppBarViewModel = () => {
 
 	const fetchFunction = useCallback(() => {
 		return fetchUserInfo();
-	}, [location]);
+	}, []);
 
 	const { data: userInfo } = useFetch(fetchFunction);
 
 	useEffect(() => {
 		dispatch(setUserInfo(userInfo));
 	}, [userInfo, dispatch]);
+
+	const { messages } = useWebSocketService();
+
+	useEffect(() => {
+		if (messages.length > 0) {
+			const latestNotification = messages[messages.length - 1];
+			dispatch(updateNotificationCount(Number(latestNotification)));
+		}
+	}, [messages, dispatch]);
 
 	const handleClickOnNotifications = () => {
 		navigate(ROUTES.NOTIFICATIONS);

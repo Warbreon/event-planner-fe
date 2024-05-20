@@ -1,5 +1,6 @@
 import { Moment } from "moment";
 import { Agenda } from "./Agenda";
+import { Currency } from "../constants/Currency";
 
 export interface EventFormValues {
     imageBase64: File | null;
@@ -8,7 +9,7 @@ export interface EventFormValues {
     eventEndDate: Moment | null;
     eventEndTime: Moment | null;
     eventName: string;
-    eventTag: string[];
+    eventTagIds: number[];
     cardImageBase64: File | null;
     isOpen: boolean;
     registrationStartDate: Moment | null;
@@ -19,9 +20,9 @@ export interface EventFormValues {
     addressId: number | null;
     inviteUrl: string | null;
     locationKey: number;
-    attendees: number[];
+    attendeeIds: number[];
+    currency: Currency;
     price: number;
-    currency: string;
     tickets: number;
-    about: string;
+    description: string;
 }

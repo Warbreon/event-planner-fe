@@ -5,7 +5,7 @@ import styles from './Dropdown.module.css'
 interface Props {
     label?: string;
     value: string | string[];
-    options: Array<{ value: string, label: string }>;
+    options: Array<{ value: string | number, label: string }>;
     onChange: (event: SelectChangeEvent<any>) => void;
     formControlProps?: FormControlProps;
     inputLabelProps?: InputLabelProps;

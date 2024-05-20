@@ -4,4 +4,5 @@ export enum TYPOGRAPHY_STYLES {
     GRAY_FONT_INPUT = 'gray-font-input',
     REGISTRATION_MODAL = 'registration-modal',
     WAITING_LIST_MESSAGE = 'waiting-list-message',
+    REGISTRATION_RESTRICTION_MESSAGE = 'resgistration-restriction-message',
 }

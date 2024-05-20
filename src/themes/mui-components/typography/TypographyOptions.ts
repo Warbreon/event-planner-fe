@@ -82,6 +82,10 @@ const typographyOptions: TypographyOptions = {
 		'&.waiting-list-message': {
 			lineHeight: '1.5rem',
 		},
+		'&.resgistration-restriction-message': {
+			fontWeight: 600,
+			fontSize: '0.85rem',
+		},
 	},
 	
 	body2: {

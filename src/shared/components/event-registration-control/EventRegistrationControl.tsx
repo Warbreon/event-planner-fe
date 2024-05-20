@@ -52,7 +52,7 @@ const EventRegistrationControl: React.FC<EventRegistrationControlProps> = ({
         if (canShowRestriction) {
             return (
                 <div className={styles.restrictionMessageContainer}>
-                    <Typography variant='body1' className={TYPOGRAPHY_STYLES.WAITING_LIST_MESSAGE}>
+                    <Typography variant='body1' className={TYPOGRAPHY_STYLES.REGISTRATION_RESTRICTION_MESSAGE}>
                         {restrictionMessage}
                     </Typography>
                 </div>

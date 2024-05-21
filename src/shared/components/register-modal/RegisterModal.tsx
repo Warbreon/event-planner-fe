@@ -7,6 +7,7 @@ import ModalComponent from '../modal/ModalComponent';
 import { CheckCircle, ForwardToInbox } from '@mui/icons-material';
 import { useNavigate } from 'react-router';
 import ROUTES from '../../../routes/Routes';
+import RegisterModalVM from './RegisterModalVM';
 
 interface Props {
     isOpen: boolean;
@@ -21,9 +22,7 @@ const RegisterModal: FC<Props> = ({
     eventName,
     onClose,
 }) => {
-    const navigation = useNavigate();
-    const title = isOpenEvent ? "Congrats, you're going!" : "Your enquiry have been sent";
-    const confirmButtonLabel = isOpenEvent ? 'Done' : 'Got it';
+    const { title, confirmButtonLabel, navigateToMyEvents } = RegisterModalVM(isOpenEvent);
     const icon = isOpenEvent ? <CheckCircle color='secondary' className='modal-icon' /> : <ForwardToInbox color='secondary' className='modal-icon' />;
     const message = isOpenEvent ? (
         <Typography variant='body1' className={`registration-modal ${styles.contentTextContainer}`}>
@@ -51,7 +50,7 @@ const RegisterModal: FC<Props> = ({
                     buttons={[
                         {
                             label: 'Go to my events',
-                            onClick: () => navigation(ROUTES.MY_EVENTS),
+                            onClick: navigateToMyEvents,
                             className: `${BUTTON_STYLES.OUTLINED_GRAY_BORDER} ${BUTTON_STYLES.MODAL_BUTTON}`,
                         },
                         {

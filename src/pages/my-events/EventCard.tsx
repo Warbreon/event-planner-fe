@@ -16,7 +16,7 @@ interface Props {
 }
 
 const EventCard: FC<Props> = ({ event, createdByUser }) => {
-	const { id, imageUrl, name, eventStart, eventEnd, address, inviteUrl, attendees } = event;
+	const { id, imageUrl, name, eventStart, eventEnd, address, inviteUrl, attendees, price, currency } = event;
 	const location = address ? address.city : inviteUrl ? 'Online' : 'TBD';
 	return (
 		<Box className={styles.cardContainer} title={name}>
@@ -29,7 +29,12 @@ const EventCard: FC<Props> = ({ event, createdByUser }) => {
 						{name}
 					</NavLink>
 				</Typography>
-				<DateLocationPrice date={formatDate(eventStart.toString())} location={location} />
+				<DateLocationPrice
+					date={formatDate(eventStart.toString())}
+					location={location}
+					price={price}
+					currency={currency}
+				/>
 				<GuestList attendees={attendees} />
 			</Box>
 			{!isDateInThePast(eventStart) && (

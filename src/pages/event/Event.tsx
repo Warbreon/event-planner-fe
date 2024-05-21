@@ -14,15 +14,36 @@ import LoadingIndicator from '../../components/loading-indicator/LoadingIndicato
 import RelatedEvents from '../../components/related-events/RelatedEvents';
 
 const Event = () => {
-
-	const { onAddGuestsClick, onEventRegistrationClick, isUserAdminOrCreator, event, isLoading, location, eventDate, startTime, endTime, duration, eventName } =
-		EventPageVM();
+	const {
+		onAddGuestsClick,
+		onEventRegistrationClick,
+		isUserAdminOrCreator,
+		event,
+		isLoading,
+		location,
+		eventDate,
+		startTime,
+		endTime,
+		duration, 
+		eventName,
+	} = EventPageVM();
 
 	if (isLoading) {
 		return <LoadingIndicator />;
 	}
 
-	const { inviteUrl, address, imageUrl = '', attendees = [], price = 0, description = '', agenda = [], tags = [], isCancelled } = event || {};
+	const {
+		inviteUrl,
+		address,
+		imageUrl = '',
+		attendees = [],
+		price = 0,
+		currency = '',
+		description = '',
+		agenda = [],
+		tags = [],
+		isCancelled
+	} = event || {};
 	return (
 		<Container className={styles.eventContainer}>
 			<BreadCrumbComponent eventName={eventName} />
@@ -31,10 +52,21 @@ const Event = () => {
 					<Box component='section' className={styles.desciption}>
 						<DateLocationPrice date={eventDate} location={location} />
 						<PageHeader text={eventName} variant={HeaderVariant.EVENT_PAGE} />
-						<Divider className={styles.divider}/>
-						<EventPageGuests onAddGuests={onAddGuestsClick} attendees={attendees} isUserAdminOrCreator={isUserAdminOrCreator} />
+						<Divider className={styles.divider} />
+						<EventPageGuests
+							onAddGuests={onAddGuestsClick}
+							attendees={attendees}
+							isUserAdminOrCreator={isUserAdminOrCreator}
+						/>
 						<Image styles='event-page' imageUrl={imageUrl} />
-						<TabComponent address={address} description={description} tags={tags} agenda={agenda} attendees={attendees} isUserAdminOrCreator={isUserAdminOrCreator} />
+						<TabComponent
+							address={address}
+							description={description}
+							tags={tags}
+							agenda={agenda}
+							attendees={attendees}
+							isUserAdminOrCreator={isUserAdminOrCreator}
+						/>
 					</Box>
 				</Grid>
 				<Grid item xs={3} className={styles.gridItem}>
@@ -45,6 +77,7 @@ const Event = () => {
 							endTime={endTime}
 							duration={duration}
 							price={price}
+							currency={currency}
 							address={address}
 							inviteUrl={inviteUrl}
 						/>

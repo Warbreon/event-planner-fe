@@ -13,31 +13,19 @@ import Location from './location/Location';
 import AgendaSection from './formik-elements/agenda-section/AgendaSection';
 import Registration from './registration/Registration';
 import AddGuestsSection from '../../add-guests-to-event/AddGuestsSection';
-import { FC } from 'react';
-import { Event } from '../../../models/Event';
 import PricingSection from './pricing-section/PricingSection';
 import About from './about/About';
 import SnackbarComponent, { ALERT_SEVERITY } from '../../snackbar/SnackbarComponent';
+import { FC } from 'react';
+import { Event } from '../../../models/Event';
 
 interface EventFormProps {
 	headerTitle: string;
-	event?: Event | null;
+	event?: Event | null
 }
 
 const EventForm: FC<EventFormProps> = ({ headerTitle, event }) => {
-	const {
-		initialValues,
-		onSubmit,
-		handleCancelOnClick,
-		users,
-		eventTags,
-		selectedTags,
-		imageUrl,
-		cardUrl,
-		parsedAgendaItems,
-		isCreateEventLoading,
-		createEventError,
-	} = EventFormVM(event ?? null);
+	const { initialValues, onSubmit, handleCancelOnClick, isCreateEventLoading, createEventError } = EventFormVM();
 
 	return (
 		<div className={styles.container}>
@@ -52,13 +40,13 @@ const EventForm: FC<EventFormProps> = ({ headerTitle, event }) => {
 						buttonStyles={styles.uploadButton}
 					/>
 					<div className={styles.mainFormContainer}>
-						<Details tags={eventTags || []} selectedTags={selectedTags} />
+						<Details />
 						<Divider className={styles.divider} />
 						<DateAndTimeSection />
 						<Divider className={styles.divider} />
 						<Location />
 						<Divider className={styles.divider} />
-						<Media initialImageUrl={cardUrl} />
+						<Media initialImageUrl={event?.cardUrl} />
 						<Divider className={styles.divider} />
 						<About />
 						<Divider className={styles.divider} />

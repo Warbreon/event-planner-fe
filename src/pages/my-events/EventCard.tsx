@@ -16,12 +16,12 @@ interface Props {
 }
 
 const EventCard: FC<Props> = ({ event, createdByUser }) => {
-	const { id, imageUrl, name, eventStart, eventEnd, address, inviteUrl, attendees } = event;
+	const { id, cardUrl, name, eventStart, eventEnd, address, inviteUrl, attendees } = event;
 	const location = address ? address.city : inviteUrl ? 'Online' : 'TBD';
 	return (
 		<Box className={styles.cardContainer} title={name}>
 			<NavLink to={`/events/event/${id}`}>
-				<Image imageUrl={imageUrl} styles='my-events' />
+				<Image imageUrl={cardUrl} styles='my-events' />
 			</NavLink>
 			<Box className={styles.eventDetails}>
 				<Typography variant='h2'>

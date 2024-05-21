@@ -10,7 +10,7 @@ import EventCardVM from './EventCardVM';
 import { Link } from 'react-router-dom';
 import { Event } from '../../models/Event';
 
-export const EventCard: FC<Event> = ({ id, name, imageUrl, address, price, eventStart, attendees, inviteUrl }) => {
+export const EventCard: FC<Event> = ({ id, name, cardUrl, address, price, eventStart, attendees, inviteUrl }) => {
 	const {
 		getEventUrl,
 		onEventRegistrationClick,
@@ -23,7 +23,7 @@ export const EventCard: FC<Event> = ({ id, name, imageUrl, address, price, event
 			<Card className={styles.card}>
 				<Link to={getEventUrl(id)} className={styles.linkToEvent}>
 					<CardContent className={styles.content}>
-						<Image imageUrl={imageUrl} />
+						<Image imageUrl={cardUrl} />
 						<Box className={styles.dateLocationPrice}>
 							<DateLocationPrice date={eventDate} location={location} price={price} />
 						</Box>

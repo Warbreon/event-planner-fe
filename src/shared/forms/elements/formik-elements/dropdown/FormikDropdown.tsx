@@ -8,7 +8,7 @@ import { Tag } from "../../../../../models/Tag";
 interface FormikDropdownProps {
   name: string;
   label?: string;
-  options: Array<{ value: string; label: string }>;
+  options: Array<{ value: string | number; label: string }>;
   menuItemClassName?: string;
   selectClassName?: string;
   multiple?: boolean;

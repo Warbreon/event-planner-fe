@@ -1,11 +1,12 @@
 import { ChangeEvent, useEffect, useState } from 'react';
 import { User } from '../../models/User';
 import { useSelector } from 'react-redux';
-import { StoreState } from '../../redux/store/Store';
+import { AppDispatch, StoreState } from '../../redux/store/Store';
 import { useDispatch } from 'react-redux';
 import { add, removeAll } from '../../redux/slices/CreateEventPageSlice';
 import { areArraysEqual } from '../../utils/CompareArrays';
 import { removeAllFetchedAttendees } from '../../redux/slices/EditEventSlice';
+import { fetchUsers } from '../../redux/slices/UserSlice';
 
 interface Props {
 	setFieldValue: (field: string, value: any, shouldValidate?: boolean) => void;
@@ -20,6 +21,14 @@ const useAddGuestsVM = ({ setFieldValue }: Props) => {
 
 	const newUserSelection = useSelector((state: StoreState) => state.createEventGuests);
 	const registeredAttendees = useSelector((state: StoreState) => state.editEventGuests);
+	const dispatch: AppDispatch = useDispatch();
+
+	useEffect(() => {
+		dispatch(fetchUsers());
+}, [dispatch]);
+
+ const {list: users, error, isLoading} = useSelector((state: any) => state.users);
+
 
 	const [showForm, setShowForm] = useState<boolean>(false);
 	const [showModal, setShowModal] = useState<boolean>(false);
@@ -27,7 +36,7 @@ const useAddGuestsVM = ({ setFieldValue }: Props) => {
 	const [showError, setShowError] = useState<boolean>(false);
 	const [errorMessage, setErrorMessage] = useState<string>('');
 	const [confirmButtonLabel, setConfirmButtonLabel] = useState<BUTTON_LABELS>(BUTTON_LABELS.ADD_GUESTS);
-	const dispatch = useDispatch();
+
 
 	useEffect(() => {
 		if(registeredAttendees.length > 0) {
@@ -86,7 +95,7 @@ const useAddGuestsVM = ({ setFieldValue }: Props) => {
 
 	useEffect(() => {
 		const userIDs = convertUserIds(currentlySelectedUsers);
-		setFieldValue('attendees', userIDs);
+		setFieldValue('attendeeIds', userIDs);
 	}, [currentlySelectedUsers, setFieldValue]);
 
 	useEffect(() => {
@@ -102,6 +111,9 @@ const useAddGuestsVM = ({ setFieldValue }: Props) => {
 	}, [currentlySelectedUsers, currentlySelectedUsers.length, newUserSelection]);
 
 	return {
+		users,
+		error, 
+		isLoading,
 		showForm,
 		showModal,
 		currentlySelectedUsers,

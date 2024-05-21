@@ -1,16 +1,29 @@
 export const ENDPOINTS = {
 	getEvents: '/events',
-	getEventById: (id: number | string) => `/events/${id}`,
+	getEventById: (id: number) => `/events/${id}`,
 	getEventsUserAttending: '/events/user-registered',
 	getEventsCreatedByUser: '/events/created-by-user',
-	registerToEvent: '/attendee/register',
 	createNewEvent: '/events/create/new',
-	getAllUsers: '/users/all',
+
+	registerToEvent: '/attendee/register',
+	getUsers: '/users',
+	demoteAdmins: (ids: number[]) => `/users/demoteAdmins/${ids}`,
+	promoteAdmins: (ids: number[]) => `/users/promoteAdmins/${ids}`,
 	getUserInfo: '/users/current/info',
+	getAttendeeNotifications: '/attendee/notifications',
+	markNotificationAsViewed: (id: number) => `/attendee/${id}/mark-as-viewed`,
+	confirmPendingRegistration: (id: number) => `/attendee/register/${id}/confirm`,
+	declinePendingRegistration: (id: number) => `/attendee/register/${id}/decline`,
+	
 	getAllTags: '/tags',
+
 	authenticate: '/auth/authenticate',
 	refreshAccessToken: '/auth/refresh',
+
 	getAllCities: '/addresses/cities',
-	getAllAdmins: '/users/admins',
-	demoteAdmin: (id: number | string) => `/users/admins/demote/${id}`
+	getAllVenues: '/addresses',
+
+	getLocalWebSocketConnection: 'http://localhost:8080/ws',
+	getProdWebSocketConnection: 'https://raisav-api.devbstaging.com/ws',
+	getWebSocketNotificationsSubscription: '/user/queue/notifications'
 };

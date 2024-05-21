@@ -1,36 +1,38 @@
 import { Event } from '../models/Event';
 import { ENDPOINTS } from './endpoints/Endpoints';
-import useAxios from './axios/Axios';
 import { PaginatedResponse } from '../models/response/PaginatedResponse';
+import { EventRequest } from '../models/request/EventRequest';
+import axiosInstance from './axios/AxiosInstance';
 
 const useEventAPI = () => {
-	const axios = useAxios();
 	const fetchEvents = (tagIds?: number[], days?: number, city?: string, name?: string) => {
 		const params: any = {
 			tagIds: tagIds?.length ?? 0 ? tagIds?.join(",") : undefined, days, city, name
 		};
-		return axios.get<Event[]>(ENDPOINTS.getEvents, { params });
+		return axiosInstance.get<Event[]>(ENDPOINTS.getEvents, { params });
 	}
 	const fetchPaginatedEvents = (tagIds?: number[], days?: number, city?: string, name?: string, page?: number, size?: number) => {
 		const params: any = {
 			tagIds: tagIds?.length ?? 0 ? tagIds?.join(",") : undefined, days, city, name, page, size
 		};
-		return axios.get<PaginatedResponse<Event>>(ENDPOINTS.getEvents, { params });
+		return axiosInstance.get<PaginatedResponse<Event>>(ENDPOINTS.getEvents, { params });
 	}
-	const fetchEventById = (id: number | string) => axios.get<Event>(ENDPOINTS.getEventById(id));
+	const fetchEventById = (id: number) => axiosInstance.get<Event>(ENDPOINTS.getEventById(id));
 	const registerToEvent = (userId: number | string, eventId: number | string) =>
-		axios.post(ENDPOINTS.registerToEvent, { userId, eventId });
+		axiosInstance.post(ENDPOINTS.registerToEvent, { userId, eventId });
 
-	const fetchEventsCreatedByUser = () => axios.get<Event[]>(ENDPOINTS.getEventsCreatedByUser);
-	const fetchEventsUserAttending = () => axios.get<Event[]>(ENDPOINTS.getEventsUserAttending);
+	const fetchEventsCreatedByUser = () => axiosInstance.get<Event[]>(ENDPOINTS.getEventsCreatedByUser);
+	const fetchEventsUserAttending = () => axiosInstance.get<Event[]>(ENDPOINTS.getEventsUserAttending);
+	const createEvent = (eventData: any) => axiosInstance.post(ENDPOINTS.createNewEvent, eventData);
 
 	return {
 		fetchEvents,
 		fetchEventById,
 		registerToEvent,
 		fetchEventsCreatedByUser,
-	 fetchEventsUserAttending,
-	 fetchPaginatedEvents
+		fetchEventsUserAttending,
+		fetchPaginatedEvents,
+		createEvent,
 	};
 };
 export default useEventAPI;

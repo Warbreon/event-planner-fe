@@ -3,12 +3,14 @@ import { useDispatch } from 'react-redux';
 import { signOut } from '../../redux/slices/AuthenticationSlice';
 import { setName } from '../../redux/slices/FiltersSlice';
 import { useDebouncedCallback } from 'use-debounce';	
-import { useLocation } from 'react-router';
+import { useLocation, useNavigate } from 'react-router';
 import { useSelector } from 'react-redux';
 import { StoreState } from '../../redux/store/Store';
 import { useFetch } from '../../api/hooks/ApiHooks';
 import useAuthenticationAPI from '../../api/AuthenticationAPI';
-import { removeUserInfo, setUserInfo } from '../../redux/slices/UserInfoSlice';
+import { removeUserInfo, setUserInfo, updateNotificationCount } from '../../redux/slices/UserInfoSlice';
+import ROUTES from '../../routes/Routes';
+import useWebSocketService from '../../services/WebSocketService';
 
 const PlannerAppBarViewModel = () => {
 	const [anchorUser, setAnchorUser] = useState<null | HTMLElement>(null);
@@ -19,9 +21,10 @@ const PlannerAppBarViewModel = () => {
 	const dispatch = useDispatch();
 	let location = useLocation();
 	const { pathname } = location;
+	const navigate = useNavigate();
 
 	const { fetchUserInfo } = useAuthenticationAPI();
-	
+
 	const fetchFunction = useCallback(() => {
 		return fetchUserInfo();
 	}, []);
@@ -32,8 +35,17 @@ const PlannerAppBarViewModel = () => {
 		dispatch(setUserInfo(userInfo));
 	}, [userInfo, dispatch]);
 
-	const handleClickOnNotifications = (event: React.MouseEvent<HTMLElement>) => {
-		console.log("Trying to redirect to notification's window.");
+	const { messages } = useWebSocketService();
+
+	useEffect(() => {
+		if (messages.length > 0) {
+			const latestNotification = messages[messages.length - 1];
+			dispatch(updateNotificationCount(Number(latestNotification)));
+		}
+	}, [messages, dispatch]);
+
+	const handleClickOnNotifications = () => {
+		navigate(ROUTES.NOTIFICATIONS);
 	};
 
 	const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {

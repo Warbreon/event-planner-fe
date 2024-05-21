@@ -14,7 +14,7 @@ const Media: FC<MediaProps> = ({ initialImageUrl }) => {
         <div className={styles.container}>
             <PageHeader text='Media' className='event-form-section' />
             <FormikDropzone
-                name='cardUrl'
+                name='cardImageBase64'
                 containerStyles={styles.mediaContainer}
                 buttonStyles={!initialImageUrl ? `${styles.uploadButton} ${BUTTON_STYLES.UPLOAD_BUTTON}` : undefined}
                 buttonText={!initialImageUrl ? 'Upload cover image' : undefined}

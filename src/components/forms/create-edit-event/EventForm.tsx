@@ -16,6 +16,8 @@ import AddGuestsSection from '../../add-guests-to-event/AddGuestsSection';
 import { FC } from 'react';
 import { Event } from '../../../models/Event';
 import PricingSection from './pricing-section/PricingSection';
+import About from './about/About';
+import SnackbarComponent, { ALERT_SEVERITY } from '../../snackbar/SnackbarComponent';
 
 interface EventFormProps {
 	headerTitle: string;
@@ -23,8 +25,19 @@ interface EventFormProps {
 }
 
 const EventForm: FC<EventFormProps> = ({ headerTitle, event }) => {
-	const { initialValues, onSubmit, handleCancelOnClick, users, eventTags, selectedTags, imageUrl, cardUrl, parsedAgendaItems } =
-		EventFormVM(event ?? null);
+	const {
+		initialValues,
+		onSubmit,
+		handleCancelOnClick,
+		users,
+		eventTags,
+		selectedTags,
+		imageUrl,
+		cardUrl,
+		parsedAgendaItems,
+		isCreateEventLoading,
+		createEventError,
+	} = EventFormVM(event ?? null);
 
 	return (
 		<div className={styles.container}>
@@ -34,10 +47,9 @@ const EventForm: FC<EventFormProps> = ({ headerTitle, event }) => {
 			<Form initialValues={initialValues} onSubmit={onSubmit}>
 				<div className={styles.formContainer}>
 					<FormikDropzone
-						name='imageUrl'
+						name='imageBase64'
 						containerStyles={styles.eventMainImage}
 						buttonStyles={styles.uploadButton}
-						initialImageUrl={imageUrl}
 					/>
 					<div className={styles.mainFormContainer}>
 						<Details tags={eventTags || []} selectedTags={selectedTags} />
@@ -48,13 +60,15 @@ const EventForm: FC<EventFormProps> = ({ headerTitle, event }) => {
 						<Divider className={styles.divider} />
 						<Media initialImageUrl={cardUrl} />
 						<Divider className={styles.divider} />
-						<AgendaSection agenda={parsedAgendaItems || initialValues.agenda} />
+						<About />
+						<Divider className={styles.divider} />
+						<AgendaSection agenda={initialValues.agenda} />
 						<Divider className={styles.divider} />
 						<Registration />
 						<Divider className={styles.divider} />
 						<PricingSection />
 						<Divider className={styles.divider} />
-						<AddGuestsSection users={users || []} />
+						<AddGuestsSection />
 						<Divider className={styles.divider} />
 					</div>
 					<div className={styles.buttonsContainer}>
@@ -63,11 +77,18 @@ const EventForm: FC<EventFormProps> = ({ headerTitle, event }) => {
 							styles={`${BUTTON_STYLES.OUTLINED_GRAY_BORDER} ${styles.cancelButton}`}
 							type={ButtonTypes.button}
 							onClick={handleCancelOnClick}
+							disabled={isCreateEventLoading}
 						/>
-						<GenericButton title='Create event' styles={styles.submitButton} type={ButtonTypes.submit} />
+						<GenericButton
+							title='Create event'
+							styles={styles.submitButton}
+							type={ButtonTypes.submit}
+							disabled={isCreateEventLoading}
+						/>
 					</div>
 				</div>
 			</Form>
+			<SnackbarComponent open={!!createEventError} message={createEventError ?? ''} severity={ALERT_SEVERITY.ERROR} />
 		</div>
 	);
 };

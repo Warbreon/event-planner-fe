@@ -8,7 +8,6 @@ import {
 	TableCell,
 	TableBody,
 	Paper,
-	Snackbar,
 } from '@mui/material';
 
 import styles from './Settings.module.css';
@@ -22,6 +21,9 @@ import PageHeader from '../../components/headers/page-headers/PageHeader';
 import { LIST_ITEM_STYLES } from '../../themes/styles/ListItem';
 import { AVATAR_STYLES } from '../../themes/styles/Avatar';
 import SnackbarComponent from '../../components/snackbar/SnackbarComponent';
+import ModalComponent from '../../components/modal/ModalComponent';
+import ButtonComponentGroup from '../../components/buttons/buton-group/ButtonComponentGroup';
+import SelectNewAdmins from '../../pages/settings/modal/SelectNewAdmins';
 
 const Settings = () => {
 	const {
@@ -33,6 +35,14 @@ const Settings = () => {
 		snackbarText,
 		snackbarSeverity,
 		handleSnackbarClose,
+		showModal,
+		onModalClose,
+		userList,
+		loadingNonAdmins,
+		onConfirm,
+		onAddAdminsClick,
+		handleCheckboxChange,
+		errorNonAdmins,
 	} = SettingsVM();
 
 	if (isLoading) {
@@ -95,8 +105,35 @@ const Settings = () => {
 						icon={IconButton.ADD_GUESTS}
 						type={ButtonTypes.button}
 						styles={BUTTON_STYLES.LIGHT_GRAY_BOX}
-						onClick={() => null}
+						onClick={() => onAddAdminsClick()}
 					/>
+					{showModal && (
+						<ModalComponent
+							header='Add event administrators'
+							subheader='Event administrators will be able to view and manage all existing events.'
+							handleClose={onModalClose}
+							isOpen={showModal}
+							content={
+								loadingNonAdmins ? (
+									<LoadingIndicator />
+								) : errorNonAdmins ? (
+									<Typography variant='body1'>{errorNonAdmins}</Typography>
+								) : (
+									<SelectNewAdmins users={userList || []} handleCheckboxChange={handleCheckboxChange} />
+								)
+							}
+							footer={
+								<>
+									<ButtonComponentGroup
+										onCancel={onModalClose}
+										onConfirm={onConfirm}
+										closeButtonLabel='Cancel'
+										confirmButtonLabel='Add administrators'
+									/>
+								</>
+							}
+						/>
+					)}
 					<SnackbarComponent
 						open={snackbarOpen}
 						autoHideDuration={5000}

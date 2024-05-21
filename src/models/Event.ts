@@ -1,3 +1,4 @@
+import { Currency } from "../constants/Currency";
 import { Address } from "./Address";
 import { Attendee } from "./Attendee";
 import { Tag } from "./Tag";
@@ -13,7 +14,7 @@ export interface Event {
 	registrationStart: string;
 	registrationEnd: string;
 	agenda?: string[] | null;
-	price?: number;
+	price: number;
 	inviteUrl?: string | null;
 	address?: Address | null;
 	creatorId: number;
@@ -21,6 +22,6 @@ export interface Event {
 	currentUserRegisteredToEvent: boolean;
 	isOpen: boolean;
 	tags: Tag[];
-	tickets: number,
-	currency: string
+	currency: Currency;
+	tickets: number;
 }

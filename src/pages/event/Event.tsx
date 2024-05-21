@@ -17,6 +17,7 @@ const Event = () => {
 	const {
 		onAddGuestsClick,
 		onEventRegistrationClick,
+		isUserAdminOrCreator,
 		event,
 		isLoading,
 		location,
@@ -37,7 +38,7 @@ const Event = () => {
 		imageUrl = '',
 		attendees = [],
 		price = 0,
-		currency = 'USD',
+		currency = '',
 		description = '',
 		agenda = [],
 		tags = [],
@@ -51,7 +52,11 @@ const Event = () => {
 						<DateLocationPrice date={eventDate} location={location} />
 						<PageHeader text={name} variant={HeaderVariant.EVENT_PAGE} />
 						<Divider className={styles.divider} />
-						<EventPageGuests onAddGuests={onAddGuestsClick} attendees={attendees} />
+						<EventPageGuests
+							onAddGuests={onAddGuestsClick}
+							attendees={attendees}
+							isUserAdminOrCreator={isUserAdminOrCreator}
+						/>
 						<Image styles='event-page' imageUrl={imageUrl} />
 						<TabComponent
 							address={address}
@@ -59,6 +64,7 @@ const Event = () => {
 							tags={tags}
 							agenda={agenda}
 							attendees={attendees}
+							isUserAdminOrCreator={isUserAdminOrCreator}
 						/>
 					</Box>
 				</Grid>

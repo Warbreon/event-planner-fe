@@ -1,12 +1,14 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
 interface UserInfoState {
+    userId: number;
     userFirstName: string;
     userImageUrl: string;
     notificationCount: number;
 }
 
 const initialState: UserInfoState = {
+    userId: 0,
     userFirstName: '',
     userImageUrl: '',
     notificationCount: 0,

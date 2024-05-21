@@ -15,7 +15,7 @@ import RelatedEvents from '../../components/related-events/RelatedEvents';
 
 const Event = () => {
 
-	const { onAddGuestsClick, onEventRegistrationClick, event, isLoading, location, eventDate, startTime, endTime, duration } =
+	const { onAddGuestsClick, onEventRegistrationClick, isUserAdminOrCreator, event, isLoading, location, eventDate, startTime, endTime, duration } =
 		EventPageVM();
 
 	if (isLoading) {
@@ -32,9 +32,9 @@ const Event = () => {
 						<DateLocationPrice date={eventDate} location={location} />
 						<PageHeader text={name} variant={HeaderVariant.EVENT_PAGE} />
 						<Divider className={styles.divider}/>
-						<EventPageGuests onAddGuests={onAddGuestsClick} attendees={attendees} />
+						<EventPageGuests onAddGuests={onAddGuestsClick} attendees={attendees} isUserAdminOrCreator={isUserAdminOrCreator} />
 						<Image styles='event-page' imageUrl={imageUrl} />
-						<TabComponent address={address} description={description} tags={tags} agenda={agenda} attendees={attendees} />
+						<TabComponent address={address} description={description} tags={tags} agenda={agenda} attendees={attendees} isUserAdminOrCreator={isUserAdminOrCreator} />
 					</Box>
 				</Grid>
 				<Grid item xs={3} className={styles.gridItem}>

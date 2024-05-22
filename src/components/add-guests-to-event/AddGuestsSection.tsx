@@ -1,4 +1,3 @@
-import { FC } from 'react';
 import { useFormikContext } from 'formik';
 import { BUTTON_STYLES } from '../../themes/styles/Button';
 import ToggleHeader from '../../shared/forms/elements/toggle-header/ToggleHeader';
@@ -7,18 +6,18 @@ import GenericButton, { ButtonTypes, IconButton } from '../buttons/ButtonCompone
 import ModalComponent from '../modal/ModalComponent';
 import ButtonComponentGroup from '../buttons/buton-group/ButtonComponentGroup';
 import SelectGuests from './modal-content/SelectGuests';
-import { User } from '../../models/User';
 import DisplaySelectedGuests from './page-content/DisplaySelectedGuests';
 import styles from './AddGuestsSection.module.css';
 import SnackbarComponent, { ALERT_SEVERITY } from '../snackbar/SnackbarComponent';
+import { Typography } from '@mui/material';
+import LoadingIndicator from '../loading-indicator/LoadingIndicator';
 
-interface Props {
-	users: User[];
-}
-
-const AddGuestsSection: FC<Props> = ({ users }) => {
-	const { setFieldValue } = useFormikContext<{ attendees: number[] }>();
+const AddGuestsSection = () => {
+	const { setFieldValue } = useFormikContext<{ attendeeIds: number[] }>();
 	const {
+		users,
+		error, 
+		isLoading,
 		showForm,
 		showModal,
 		currentlySelectedUsers,
@@ -31,6 +30,14 @@ const AddGuestsSection: FC<Props> = ({ users }) => {
 		onConfirm,
 		onDeleteClick,
 	} = useAddGuestsVM({ setFieldValue });
+
+	if(error) {
+		return <Typography variant='body1'>There is a problem retrieving user list</Typography>
+	}
+
+	if(isLoading) {
+		return <LoadingIndicator/>
+	}
 
 	return (
 		<div>

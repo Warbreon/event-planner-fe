@@ -28,9 +28,9 @@ const PricingSectionVM = ({setFieldValue}:Props) => {
     }
 
     const currencies = [
-        { value: 'eur', label: 'EUR' },
-        { value: 'usd', label: 'USD' },
-        { value: 'gbp', label: 'GBP' },
+        { value: 'EUR', label: 'EUR' },
+        { value: 'USD', label: 'USD' },
+        { value: 'GBP', label: 'GBP' },
     ];
 
     const pricingOption = selectedTag === 1

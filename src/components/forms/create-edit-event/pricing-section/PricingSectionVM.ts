@@ -1,11 +1,11 @@
-import {useState} from 'react';
+import { useState } from 'react';
 import classNames from 'classnames';
-import {TAGS} from '../../../../themes/styles/Tag';
+import { TAGS } from '../../../../themes/styles/Tag';
 
 interface Props {
     setFieldValue: (field: string, value: any, shouldValidate?: boolean) => void;
 }
-const PricingSectionVM = ({setFieldValue}:Props) => {
+const PricingSectionVM = ({ setFieldValue }: Props) => {
     const [selectedTag, setSelectedTag] = useState<number>(1);
 
     const pricingTagOptions = [
@@ -16,15 +16,17 @@ const PricingSectionVM = ({setFieldValue}:Props) => {
         setSelectedTag(id);
         setFieldValue('price', 0);
     };
-    const disableWheelAndArrowKeys= (e:React.FocusEvent<HTMLInputElement>) => {
+    const disableWheelAndArrowKeys = (e: React.FocusEvent<HTMLInputElement>) => {
         e.target.addEventListener("wheel", function (e) { e.preventDefault() }/*, { passive: false }*/);
-        e.target.addEventListener("keydown",function (e:KeyboardEvent) {
+        e.target.addEventListener("keydown", function (e: KeyboardEvent) {
             if (e.key === 'ArrowUp' ||
                 e.key === 'ArrowDown' ||
                 e.key === 'e' ||
                 e.key === '+' ||
-                e.key === '-'
-            ) {e.preventDefault();}});
+                e.key === '-' ||
+                e.key === '.'
+            ) { e.preventDefault(); }
+        });
     }
 
     const currencies = [
@@ -41,7 +43,7 @@ const PricingSectionVM = ({setFieldValue}:Props) => {
         return classNames([TAGS.SELECT_TAG], { [TAGS.TAG_SELECTED]: isSelected });
     };
 
-    return { currencies, handleTagChange, selectedTag, pricingTagOptions, pricingOption, getChipClassName, disableWheelAndArrowKeys}
+    return { currencies, handleTagChange, selectedTag, pricingTagOptions, pricingOption, getChipClassName, disableWheelAndArrowKeys }
 }
 
 export default PricingSectionVM

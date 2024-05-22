@@ -1,14 +1,14 @@
-import { Currency } from "../constants/Currency";
-import { Address } from "./Address";
-import { Attendee } from "./Attendee";
-import { Tag } from "./Tag";
+import { Currency } from '../constants/Currency';
+import { Address } from './Address';
+import { Attendee } from './Attendee';
+import { Tag } from './Tag';
 
 export interface Event {
 	id: number;
 	name: string;
 	description: string;
 	imageUrl: string;
-	cardUrl: string;
+	cardImageUrl: string;
 	eventStart: string;
 	eventEnd: string;
 	registrationStart: string;

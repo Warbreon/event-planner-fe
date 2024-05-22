@@ -8,9 +8,9 @@ const useAuthenticationAPI = () => {
 	const fetchUserInfo = () => axiosInstance.get(ENDPOINTS.getUserInfo);
 	const resetPassword = (email: string) => {
 		const resetLinkBase = getResetLinkBase();
-		return axios.post(ENDPOINTS.resetPassword, { email, resetLinkBase });
+		return axiosInstance.post(ENDPOINTS.resetPassword, { email, resetLinkBase });
 	};
-	const changePassword = (token: string, newPassword: string) => axios.post(ENDPOINTS.changePassword, { token, newPassword });
+	const changePassword = (token: string, newPassword: string) => axiosInstance.post(ENDPOINTS.changePassword, { token, newPassword });
 	return { authenticateUser, refresh, fetchUserInfo, resetPassword, changePassword };
 };
 export default useAuthenticationAPI;

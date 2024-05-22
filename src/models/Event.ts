@@ -24,4 +24,5 @@ export interface Event {
 	tags: Tag[];
 	currency: Currency;
 	tickets: number;
+	isCancelled: boolean;
 }

@@ -4,9 +4,10 @@ import { isExpired } from 'react-jwt';
 import { refreshAccessToken, signOut } from '../../redux/slices/AuthenticationSlice';
 import { removeUserInfo } from '../../redux/slices/UserInfoSlice';
 import { ENDPOINTS } from '../endpoints/Endpoints';
+import { BASE_API_URL } from '../../constants/ApiConfig';
 
 const axiosInstance = axios.create({
-    baseURL: 'https://raisav-api.devbstaging.com/api',
+    baseURL: BASE_API_URL,
     headers: {
         'Content-Type': 'application/json',
     },

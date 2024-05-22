@@ -25,5 +25,8 @@ export const ENDPOINTS = {
 
 	getLocalWebSocketConnection: 'http://localhost:8080/ws',
 	getProdWebSocketConnection: 'https://raisav-api.devbstaging.com/ws',
-	getWebSocketNotificationsSubscription: '/user/queue/notifications'
+	getWebSocketNotificationsSubscription: '/user/queue/notifications',
+	
+	resetPassword: '/auth/reset-password',
+	changePassword: '/auth/change-password',
 };

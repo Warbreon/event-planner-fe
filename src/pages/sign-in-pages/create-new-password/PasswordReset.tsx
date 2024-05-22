@@ -2,14 +2,15 @@ import Form from '../../../shared/forms/formik/Form';
 import FormikTextField from '../../../shared/forms/elements/formik-elements/text-field/FormikTextField';
 import GenericButton, { ButtonTypes } from '../../../components/buttons/ButtonComponent';
 import PasswordRules from '../../../components/password-rules/PasswordRules';
-import PasswordResetVM from './PasswordResetViewModel';
+import PasswordResetVM from './PasswordResetVM';
 import PageHeader, { HeaderVariant } from '../../../components/headers/page-headers/PageHeader';
 import { passwordResetSchema } from '../../../utils/schemas/PasswordReset';
 import sharedStyles from '../SharedStyles.module.css';
 import { BUTTON_STYLES } from '../../../themes/styles/Button';
+import SnackbarComponent from '../../../components/snackbar/SnackbarComponent';
 
 const PasswordReset = () => {
-	const { onSubmit } = PasswordResetVM();
+	const { onSubmit, isLoading, isSnackbarOpen, handleSnackbarClose, snackbarMessage, snackbarSeverity } = PasswordResetVM();
 
 	return (
 		<div className={sharedStyles.background}>
@@ -36,10 +37,17 @@ const PasswordReset = () => {
 					/>
 
 					<div className={sharedStyles.buttonWrapper}>
-						<GenericButton type={ButtonTypes.submit} title='Reset my password' styles={BUTTON_STYLES.BLACK} />
+						<GenericButton type={ButtonTypes.submit} title='Reset my password' styles={BUTTON_STYLES.BLACK} disabled={isLoading} />
 					</div>
 					<PasswordRules />
 				</Form>
+				<SnackbarComponent
+					open={isSnackbarOpen}
+					message={snackbarMessage}
+					autoHideDuration={5000}
+					handleClose={handleSnackbarClose}
+					severity={snackbarSeverity}
+				/>
 			</main>
 		</div>
 	);

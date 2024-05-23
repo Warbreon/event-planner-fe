@@ -22,11 +22,11 @@
 	gap: 1.125rem;
 }
 
-.cardContainer .goingButton {
+.cardContainer .goingButton, .cardContainer .cancelButton {
 	width: 129px;
 }
 
-.cardContainer .cancelButton {
+.cardContainer .editButton {
 	width: 91px;
 }
 

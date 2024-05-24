@@ -3,15 +3,10 @@ import { calculateDuration, formatDate, formatTime } from '../../utils/DateConve
 import useEventAPI from '../../api/EventsAPI';
 import { useCallback, useEffect } from 'react';
 import { useFetch } from '../../api/hooks/ApiHooks';
-import {useSelector} from 'react-redux';
-import {StoreState} from '../../redux/store/Store';
-import {UserRoles} from "../../utils/PermissionParser";
 
 const EventPageVM = () => {
 	const { eventId } = useParams();
 	const navigate = useNavigate();
-	const currentUserId = useSelector((state: StoreState) => state.userInfo.userId);
-	const currentUserRole = useSelector((state: StoreState) => state.user.role);
 
 	const { fetchEventById } = useEventAPI();
 
@@ -45,16 +40,8 @@ const EventPageVM = () => {
 		console.log('Registed/Get tickets/ Cancel registration');
 	};
 
-	const isUserCreator = useSelector((state: StoreState) =>
-		event?.creatorId === state.userInfo.userId &&
-		state.user.role === UserRoles.EVENT_ADMIN
-	);
-
-	const isUserAdminOrCreator = currentUserRole === 'SYSTEM_ADMIN' || currentUserId === creatorId;
-
 	return {
 		onEventRegistrationClick,
-		isUserAdminOrCreator,
 		event,
 		isLoading,
 		location,
@@ -62,7 +49,6 @@ const EventPageVM = () => {
 		startTime,
 		endTime,
 		duration,
-		isUserCreator,
 		eventName
 	};
 };

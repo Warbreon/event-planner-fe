@@ -25,7 +25,7 @@ export const ENDPOINTS = {
 	getAllVenues: '/addresses',
 
 	getLocalWebSocketConnection: 'http://localhost:8080/ws',
-	getProdWebSocketConnection: 'wss://raisav-api.devbstaging.com/ws',
+	getProdWebSocketConnection: 'https://raisav-api.devbstaging.com/ws',
 	getWebSocketNotificationsSubscription: '/user/queue/notifications',
 	
 	resetPassword: '/auth/reset-password',

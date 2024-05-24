@@ -12,12 +12,11 @@ import { BUTTON_STYLES } from '../../themes/styles/Button';
 import EventPageVM from './EventPageVM';
 import LoadingIndicator from '../../components/loading-indicator/LoadingIndicator';
 import RelatedEvents from '../../components/related-events/RelatedEvents';
+import EventPageGuestsVM from "../../components/guest-list/event-page/EventPageGuestsVM";
 
 const Event = () => {
 	const {
-		onAddGuestsClick,
 		onEventRegistrationClick,
-		isUserAdminOrCreator,
 		event,
 		isLoading,
 		location,
@@ -27,22 +26,27 @@ const Event = () => {
 		duration,
 	} = EventPageVM();
 
-	if (isLoading) {
-		return <LoadingIndicator />;
-	}
 
 	const {
 		name = '',
 		inviteUrl,
 		address,
 		imageUrl = '',
-		attendees = [],
 		price = 0,
 		currency = '',
 		description = '',
 		agenda = [],
 		tags = [],
 	} = event || {};
+
+	const eventPageGuestsVM = EventPageGuestsVM();
+
+
+	if (isLoading) {
+		return <LoadingIndicator />;
+	}
+
+
 	return (
 		<Container className={styles.eventContainer}>
 			<BreadCrumbComponent eventName={name} />
@@ -53,9 +57,7 @@ const Event = () => {
 						<PageHeader text={name} variant={HeaderVariant.EVENT_PAGE} />
 						<Divider className={styles.divider} />
 						<EventPageGuests
-							onAddGuests={onAddGuestsClick}
-							attendees={attendees}
-							isUserAdminOrCreator={isUserAdminOrCreator}
+							eventPageGuestsVM={eventPageGuestsVM}
 						/>
 						<Image styles='event-page' imageUrl={imageUrl} />
 						<TabComponent
@@ -63,8 +65,7 @@ const Event = () => {
 							description={description}
 							tags={tags}
 							agenda={agenda}
-							attendees={attendees}
-							isUserAdminOrCreator={isUserAdminOrCreator}
+							eventPageGuestsVM={eventPageGuestsVM}
 						/>
 					</Box>
 				</Grid>

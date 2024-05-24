@@ -1,19 +1,14 @@
-import { ChangeEvent, useEffect, useState } from 'react';
-import { User } from '../../models/User';
-import { useSelector } from 'react-redux';
-import { AppDispatch, StoreState } from '../../redux/store/Store';
-import { useDispatch } from 'react-redux';
-import { add, removeAll } from '../../redux/slices/CreateEventPageSlice';
-import { areArraysEqual } from '../../utils/CompareArrays';
-import { fetchUsers } from '../../redux/slices/UserSlice';
+import {ChangeEvent, useEffect, useState} from 'react';
+import {User} from '../../models/User';
+import {useDispatch, useSelector} from 'react-redux';
+import {AppDispatch, StoreState} from '../../redux/store/Store';
+import {add, removeAll} from '../../redux/slices/CreateEventPageSlice';
+import {areArraysEqual} from '../../utils/CompareArrays';
+import {fetchUsers} from '../../redux/slices/UserSlice';
+import {BUTTON_LABELS} from "../../themes/styles/Button";
 
 interface Props {
 	setFieldValue: (field: string, value: any, shouldValidate?: boolean) => void;
-}
-
-const enum BUTTON_LABELS {
-	ADD_GUESTS = 'Add guests',
-	SAVE_CHANGES = 'Save changes',
 }
 
 const useAddGuestsVM = ({ setFieldValue }: Props) => {
@@ -52,8 +47,7 @@ const useAddGuestsVM = ({ setFieldValue }: Props) => {
 	};
 
 	const convertUserIds = (currentUserSelection: User[]) => {
-		const usersIds: number[] = currentUserSelection.map((user) => user.id);
-		return usersIds;
+		return currentUserSelection.map((user) => user.id);
 	};
 
 	const onDeleteClick = (userId: number) => {

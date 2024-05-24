@@ -4,29 +4,42 @@ import GuestList from '../GuestList';
 import styles from './EventPageGuests.module.css';
 import { BUTTON_STYLES } from '../../../themes/styles/Button';
 import { FC } from 'react';
-import { Attendee } from '../../../models/Attendee';
+import AddGuestSectionModal from "../../add-guests-to-event/page-content/AddGuestSectionModal";
+import EventPageGuestsVM from "./EventPageGuestsVM";
+
 interface Props {
-	onAddGuests: () => void;
-	attendees: Attendee[];
-	isUserAdminOrCreator: boolean;
+	eventPageGuestsVM: typeof EventPageGuestsVM.arguments;
 }
 
-const EventPageGuests: FC<Props> = ({ onAddGuests, attendees, isUserAdminOrCreator }) => {
+const EventPageGuests: FC<Props> = ({eventPageGuestsVM }) => {
+
 	return (
 		<Box className={styles.gridWrapper}>
 			<Grid container spacing={2}>
 				<Grid item xs={10}>
-					<GuestList attendees={attendees}/>
+					<GuestList attendees={eventPageGuestsVM.attendeeList!}/>
 				</Grid>
 				<Grid item xs={2}>
-					{isUserAdminOrCreator && (
-						<GenericButton
-							title='Add guests'
-							type={ButtonTypes.button}
-							styles={BUTTON_STYLES.GRAY}
-							onClick={onAddGuests}
-						/>
-					)}
+					{eventPageGuestsVM.isUserCreator &&
+						<>
+							<GenericButton
+								title='Add guests'
+								type={ButtonTypes.button}
+								styles={BUTTON_STYLES.GRAY}
+								onClick={eventPageGuestsVM.onModalOpen}
+							/>
+							{eventPageGuestsVM.showModal && (
+								<AddGuestSectionModal
+									onModalClose={eventPageGuestsVM.onModalClose}
+									onConfirm={eventPageGuestsVM.onConfirm}
+									showModal={eventPageGuestsVM.showModal}
+									users={eventPageGuestsVM.users || []}
+									confirmButtonLabel={eventPageGuestsVM.confirmButtonLabel}
+									showError={eventPageGuestsVM.showError}
+									errorMessage={eventPageGuestsVM.errorMessage}/>
+							)}
+						</>
+					}
 				</Grid>
 			</Grid>
 		</Box>

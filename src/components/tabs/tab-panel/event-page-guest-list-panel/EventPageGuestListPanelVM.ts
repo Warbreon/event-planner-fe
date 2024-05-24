@@ -1,4 +1,4 @@
-import { ChangeEvent, useEffect, useState } from 'react';
+import { ChangeEvent, useState } from 'react';
 import { Attendee } from '../../../../models/Attendee';
 import { useDebouncedCallback } from 'use-debounce';
 import useNotificationActions from '../../../notification/NotificationActions';
@@ -20,18 +20,13 @@ const EventPageGuestListPanelVM = (attendees: Attendee[]) => {
 
     const debouncedSearchAttendees = useDebouncedCallback(searchAttendees, 500);
 
-    const onPlusButtonClick = () => {
-        (console.log("Button clicked"));
-    };
-
     const onInputChange = (event: ChangeEvent<HTMLInputElement>) => {
         const value = event.target.value;
         setSearchTerm(value);
         debouncedSearchAttendees(value);
     };
 
-    return { 
-        onPlusButtonClick, 
+    return {
         onInputChange, 
         handleConfirmOnClick, 
         handleDeclineOnClick, 

@@ -15,3 +15,7 @@ export enum BUTTON_STYLES {
 	UPLOAD_BUTTON = 'upload-button',
 	MODAL_BUTTON = 'modal-button',
 }
+export enum BUTTON_LABELS {
+	ADD_GUESTS = 'Add guests',
+	SAVE_CHANGES = 'Save changes',
+}

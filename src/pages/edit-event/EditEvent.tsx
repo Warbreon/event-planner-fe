@@ -9,10 +9,6 @@ import ROUTES from '../../routes/Routes';
 const EditEvent = () => {
 	const { event, isCheckingEditPermissions,  error, loadingEventError, isCreatedByUser, fullyLoaded } = useEditEventViewModel();
 
-	if (isCheckingEditPermissions || !fullyLoaded) {
-		return <LoadingIndicator />;
-	}
-
 	if (!isCheckingEditPermissions && !isCreatedByUser) {
 		return <Navigate to={ROUTES.NOT_FOUND}/>;
 	}
@@ -24,6 +20,11 @@ const EditEvent = () => {
 			</section>
 		);
 	}
+
+	if (isCheckingEditPermissions || !fullyLoaded) {
+		return <LoadingIndicator />;
+	}
+
 
 	return (
 			<EventForm headerTitle='Edit an event' event={event} />

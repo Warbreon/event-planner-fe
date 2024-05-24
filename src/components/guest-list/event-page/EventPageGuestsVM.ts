@@ -20,12 +20,12 @@ import {BUTTON_LABELS} from "../../../themes/styles/Button";
 const EventPageGuestsVM = () => {
     const { eventId } = useParams();
     const { fetchEventById } = useEventAPI();
-    const { fetchUsers } = useUserAPI();
+    const { fetchSimpleUsersAndEventAdmins } = useUserAPI();
     const { updateEventAttendees, getEventAttendees } = useAttendeeAPI();
     const dispatch = useDispatch();
     const [currentlySelectedUsers, setCurrentlySelectedUsers] = useState<User[]>([]);
     const fetchEventFunction = useCallback(() => {return fetchEventById(Number(eventId));}, []);
-    const fetchUsersFunction = useCallback(() => {return fetchUsers();}, []);
+    const fetchUsersFunction = useCallback(() => {return fetchSimpleUsersAndEventAdmins();}, []);
     const fetchAttendeesFunction = useCallback(() => {return getEventAttendees(Number(eventId));}, [currentlySelectedUsers]);
     const { data: event, isLoading, error } = useFetch(fetchEventFunction);
     const { data: users, isLoading : isUsersLoading, error: usersError } = useFetch(fetchUsersFunction);

@@ -19,7 +19,7 @@ export interface EventFormValues {
     agenda: Agenda[] | null;
     addressId: number | null;
     inviteUrl: string | null;
-    locationKey: number;
+    locationKey: number;   
     attendeeIds: number[];
     currency: Currency;
     price: number;

@@ -4,6 +4,7 @@ export const ENDPOINTS = {
 	getEventsUserAttending: '/events/user-registered',
 	getEventsCreatedByUser: '/events/created-by-user',
 	createNewEvent: '/events/create/new',
+	editEvent: (id: number) => `/events/edit/${id}`,
 
 	registerToEvent: '/attendee/register',
 	getUsers: '/users',
@@ -25,5 +26,7 @@ export const ENDPOINTS = {
 
 	getLocalWebSocketConnection: 'http://localhost:8080/ws',
 	getProdWebSocketConnection: 'https://raisav-api.devbstaging.com/ws',
-	getWebSocketNotificationsSubscription: '/user/queue/notifications'
+	getWebSocketNotificationsSubscription: '/user/queue/notifications',
+
+	confirmEventCreator: (eventId: number, userId: number) =>`/events/event/creator?eventId=${eventId}&userId=${userId}`
 };

@@ -15,7 +15,7 @@ const SystemAdminRoute: FC<SystemAdminRouteProps> = ({ children }) => {
 	const role = useSelector((state: StoreState) => state.user.role);
 
 	if (!isUserAuthenticated || role !== UserRoles.SYSTEM_ADMIN) {
-		return <Navigate to={ROUTES.INDEX} />;
+		return <Navigate to={ROUTES.NOT_FOUND}/>;
 	}
 
 	return <>{children}</>;

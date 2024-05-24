@@ -30,26 +30,30 @@ export const mapEventFormValuesToEvent =  async (formValues: EventFormValues) =>
     };
 };
 
-export const mapEventToFormValues = (event: Event) => {
+export const mapEventToFormValues = (event: Event | null): EventFormValues => {
 
     const determineLocationKey = () => {
-        if (event.inviteUrl) {
-            return LocationTags.ONLINE;
-        } else if (event.address?.id) {
-            return LocationTags.PHYSICAL;
-        } else {
-            return LocationTags.TBD;
-        }
-    };
+		if (event) {
+			if (event.address) {
+				return LocationTags.PHYSICAL;
+			}
+			if (event.inviteUrl) {
+				return LocationTags.ONLINE;
+			}
+			return LocationTags.TBD;
+		}
 
-    const { date: eventStartDate, time: eventStartTime } = splitDateTime(event.eventStart);
-    const { date: eventEndDate, time: eventEndTime } = splitDateTime(event.eventEnd);
-    const { date: registrationStartDate, time: registrationStartTime } = splitDateTime(event.registrationStart);
-    const { date: registrationEndDate, time: registrationEndTime } = splitDateTime(event.registrationEnd);
+		return LocationTags.PHYSICAL;
+	};
+
+    const { date: eventStartDate, time: eventStartTime } = splitDateTime(event? event.eventStart: '');
+    const { date: eventEndDate, time: eventEndTime } = splitDateTime(event? event.eventEnd: '');
+    const { date: registrationStartDate, time: registrationStartTime } = splitDateTime(event? event.registrationStart : '');
+    const { date: registrationEndDate, time: registrationEndTime } = splitDateTime(event? event.registrationEnd: '');
 
 
     return {
-        eventName: event.name,
+        eventName: event? event.name: '',
         eventStartDate: eventStartDate,
         eventStartTime: eventStartTime,
         eventEndDate: eventEndDate,
@@ -58,18 +62,18 @@ export const mapEventToFormValues = (event: Event) => {
         registrationStartTime: registrationStartTime,
         registrationEndDate: registrationEndDate,
         registrationEndTime: registrationEndTime,
-        agenda: event.agenda ? parseAgendaItems(event.agenda) : [],
-        imageBase64: null, 
-        cardImageBase64: null, 
-        isOpen: event.isOpen,
-        addressId: event.address ? event.address.id : null,
-        inviteUrl: event.inviteUrl ?? null,
-        attendeeIds: event.attendees ? event.attendees.map(att => att.id) : [],
-        eventTagIds: event.tags ? event.tags.map(tag => tag.id) : [],
+        agenda: event && event.agenda ? parseAgendaItems(event.agenda) : [],
+        isOpen: event ? event.isOpen : true,
+        addressId: event && event.address ? event.address.id : null,
+        inviteUrl: event && event.inviteUrl ? event.inviteUrl : null,
+        attendeeIds: event && event.attendees ? event.attendees.map(att => att.id) : [],
+        eventTagIds: event && event.tags ? event.tags.map(tag => tag.id) : [],
         locationKey: determineLocationKey(),
-        currency: event.currency ?? Currency.USD,
-        tickets: event.tickets,
-        description: event.description,
-        price: event.price
+        currency: event ? event.currency : Currency.USD,
+        tickets: event ? event.tickets : 0,
+        description: event ? event.description : '',
+        price: event ? event.price : 0,
+        imageBase64: null,
+        cardImageBase64: null
     };
 };

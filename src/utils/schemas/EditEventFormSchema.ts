@@ -3,19 +3,16 @@ import { isTimeInFuture, isEndTimeAfterStartTime, validateFileFormat } from '../
 import moment from 'moment';
 import { LocationTags } from '../../constants/LocationTags';
 
-export const eventFormSchema = Yup.object().shape({
-	imageBase64: Yup.mixed()
-		.required('Please upload an image.')
+export const editEventFormSchema = Yup.object().shape({
+	imageBase64: Yup.mixed().nullable()
 		.test('fileFormat', 'Unsupported format.', function (value) {
+			if (value === null) return true; // If the value is null, the test passes
 			return validateFileFormat(value as File | null);
 		}),
-	eventName: Yup.string().required('Event name is required'),
+	eventName: Yup.string().required('Start date is required'),
 	eventStartDate: Yup.date().required('Start date is required'),
 	eventStartTime: Yup.date()
-		.required('Start time is required')
-		.test('is-time-in-the-future', 'Start time cannot be in the past', function (value) {
-			return isTimeInFuture(value, this.parent.eventStartDate);
-		}),
+		.required('Start time is required'),
 	eventEndDate: Yup.date()
 		.required('End date is required')
 		.min(Yup.ref('eventStartDate'), 'End date cannot be earlier than start date'),
@@ -28,19 +25,16 @@ export const eventFormSchema = Yup.object().shape({
 				endDate: this.parent.eventEndDate,
 			});
 		}),
-	cardImageBase64: Yup.mixed()
-		.required('Please upload an image.')
-		.test('fileFormat', 'Unsupported format.', function (value) {
-			return validateFileFormat(value as File | null);
-		}),
+	cardImageBase64: Yup.mixed().nullable()
+	.test('fileFormat', 'Unsupported format.', function (value) {
+		if (value === null) return true; // If the value is null, the test passes
+		return validateFileFormat(value as File | null);
+	}),
 	registrationStartDate: Yup.date()
 		.required('Registration start date is required')
 		.max(Yup.ref('eventStartDate'), 'Registration start date must be before the event start date'),
 	registrationStartTime: Yup.date()
-		.required('Registration start time is required')
-		.test('is-time-in-the-future', 'Registration start time cannot be in the past', function (value) {
-			return isTimeInFuture(value, this.parent.registrationStartDate);
-		}),
+		.required('Registration start time is required'),
 	registrationEndDate: Yup.date()
 		.required('Registration end date is required')
 		.min(Yup.ref('registrationStartDate'), 'Registration end date cannot be earlier than start date')

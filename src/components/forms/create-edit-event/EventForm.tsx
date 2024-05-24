@@ -18,26 +18,32 @@ import About from './about/About';
 import SnackbarComponent, { ALERT_SEVERITY } from '../../snackbar/SnackbarComponent';
 import { FC } from 'react';
 import { Event } from '../../../models/Event';
+import { editEventFormSchema } from '../../../utils/schemas/EditEventFormSchema';
+import { createEventFormSchema } from '../../../utils/schemas/CreateEventFormSchema';
 
 interface EventFormProps {
 	headerTitle: string;
-	event?: Event | null
+	event?: Event | null;
 }
 
 const EventForm: FC<EventFormProps> = ({ headerTitle, event }) => {
-	const { initialValues, onSubmit, handleCancelOnClick, isCreateEventLoading, createEventError } = EventFormVM();
+	const { initialValues, onSubmit, handleCancelOnClick, isSubmitting, submitError } =
+		EventFormVM(event || null);
+
+	const validationSchema = !!event ? editEventFormSchema : createEventFormSchema;
 
 	return (
 		<div className={styles.container}>
 			<div className={styles.pageHeader}>
 				<PageHeader text={headerTitle} />
 			</div>
-			<Form initialValues={initialValues} onSubmit={onSubmit}>
+			<Form initialValues={initialValues} validationSchema={validationSchema} onSubmit={onSubmit}>
 				<div className={styles.formContainer}>
 					<FormikDropzone
 						name='imageBase64'
 						containerStyles={styles.eventMainImage}
 						buttonStyles={styles.uploadButton}
+						initialImageUrl={event?.imageUrl}
 					/>
 					<div className={styles.mainFormContainer}>
 						<Details />
@@ -46,7 +52,7 @@ const EventForm: FC<EventFormProps> = ({ headerTitle, event }) => {
 						<Divider className={styles.divider} />
 						<Location />
 						<Divider className={styles.divider} />
-						<Media initialImageUrl={event?.cardUrl} />
+						<Media initialImageUrl={event?.cardImageUrl} />
 						<Divider className={styles.divider} />
 						<About />
 						<Divider className={styles.divider} />
@@ -65,18 +71,18 @@ const EventForm: FC<EventFormProps> = ({ headerTitle, event }) => {
 							styles={`${BUTTON_STYLES.OUTLINED_GRAY_BORDER} ${styles.cancelButton}`}
 							type={ButtonTypes.button}
 							onClick={handleCancelOnClick}
-							disabled={isCreateEventLoading}
+							disabled={isSubmitting}
 						/>
 						<GenericButton
-							title='Create event'
+							title={event ? 'Edit event' : 'Create event'}
 							styles={styles.submitButton}
 							type={ButtonTypes.submit}
-							disabled={isCreateEventLoading}
+							disabled={isSubmitting}
 						/>
 					</div>
 				</div>
 			</Form>
-			<SnackbarComponent open={!!createEventError} message={createEventError ?? ''} severity={ALERT_SEVERITY.ERROR} />
+			<SnackbarComponent open={!!submitError} message={submitError ?? ''} severity={ALERT_SEVERITY.ERROR} />
 		</div>
 	);
 };

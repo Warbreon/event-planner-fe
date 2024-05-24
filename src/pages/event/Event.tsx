@@ -23,12 +23,12 @@ const Event = () => {
 		eventDate,
 		startTime,
 		endTime,
-		duration,
+		duration, 
+		eventName,
 	} = EventPageVM();
 
 
 	const {
-		name = '',
 		inviteUrl,
 		address,
 		imageUrl = '',
@@ -37,6 +37,7 @@ const Event = () => {
 		description = '',
 		agenda = [],
 		tags = [],
+		isCancelled
 	} = event || {};
 
 	const eventPageGuestsVM = EventPageGuestsVM();
@@ -49,12 +50,12 @@ const Event = () => {
 
 	return (
 		<Container className={styles.eventContainer}>
-			<BreadCrumbComponent eventName={name} />
+			<BreadCrumbComponent eventName={eventName} />
 			<Grid container spacing={2} className={styles.gridContainer}>
 				<Grid item xs={8} className={styles.gridItem}>
 					<Box component='section' className={styles.desciption}>
 						<DateLocationPrice date={eventDate} location={location} />
-						<PageHeader text={name} variant={HeaderVariant.EVENT_PAGE} />
+						<PageHeader text={eventName} variant={HeaderVariant.EVENT_PAGE} />
 						<Divider className={styles.divider} />
 						<EventPageGuests
 							eventPageGuestsVM={eventPageGuestsVM}
@@ -81,12 +82,14 @@ const Event = () => {
 							address={address}
 							inviteUrl={inviteUrl}
 						/>
-						<GenericButton
-							type={ButtonTypes.button}
-							styles={BUTTON_STYLES.GRAY}
-							icon={IconButton.REGISTER}
-							onClick={onEventRegistrationClick}
-						/>
+						{!isCancelled && (
+							<GenericButton
+								type={ButtonTypes.button}
+								styles={BUTTON_STYLES.GRAY}
+								icon={IconButton.REGISTER}
+								onClick={onEventRegistrationClick}
+							/>
+						)}
 					</Box>
 				</Grid>
 			</Grid>

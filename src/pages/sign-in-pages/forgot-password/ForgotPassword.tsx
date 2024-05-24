@@ -7,11 +7,12 @@ import styles from './ForgotPassword.module.css';
 import PageHeader, { HeaderVariant } from '../../../components/headers/page-headers/PageHeader';
 import sharedStyles from '../SharedStyles.module.css';
 import { BUTTON_STYLES } from '../../../themes/styles/Button';
+import ForgotPasswordVM from './ForgotPasswordVM';
+import SnackbarComponent from '../../../components/snackbar/SnackbarComponent';
 
 const ForgotPassword = () => {
-	const onSubmit = () => {
-		console.log('submitted');
-	};
+	const { onSubmit, isLoading, isSnackbarOpen, handleSnackbarClose, snackbarMessage, snackbarSeverity } = ForgotPasswordVM();
+
 	return (
 		<div className={sharedStyles.background}>
 			<main className={sharedStyles.formSection}>
@@ -29,7 +30,7 @@ const ForgotPassword = () => {
 						placeholder='e.g., name@cognizant.com'
 					/>
 					<div className={sharedStyles.buttonWrapper}>
-						<GenericButton type={ButtonTypes.submit} title='Reset Password' styles={BUTTON_STYLES.BLACK} />
+						<GenericButton type={ButtonTypes.submit} title='Reset Password' styles={BUTTON_STYLES.BLACK} disabled={isLoading} />
 					</div>
 				</Form>
 				<p className={styles.forgotPasswordLinkWrapper}>
@@ -37,6 +38,13 @@ const ForgotPassword = () => {
 						Sign in
 					</Link>
 				</p>
+				<SnackbarComponent
+					open={isSnackbarOpen}
+					message={snackbarMessage}
+					autoHideDuration={5000}
+					handleClose={handleSnackbarClose}
+					severity={snackbarSeverity}
+				/>
 			</main>
 		</div>
 	);

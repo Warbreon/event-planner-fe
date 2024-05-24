@@ -1,7 +1,7 @@
 import { useNavigate, useParams } from 'react-router';
 import { calculateDuration, formatDate, formatTime } from '../../utils/DateConverter';
 import useEventAPI from '../../api/EventsAPI';
-import {useCallback, useEffect} from 'react';
+import { useCallback, useEffect } from 'react';
 import { useFetch } from '../../api/hooks/ApiHooks';
 import {useSelector} from 'react-redux';
 import {StoreState} from '../../redux/store/Store';
@@ -15,19 +15,18 @@ const EventPageVM = () => {
 
 	const { fetchEventById } = useEventAPI();
 
-
 	const fetchFunction = useCallback(() => {
 		return fetchEventById(Number(eventId));
 	}, [eventId]);
 
 	const { data: event, isLoading, error } = useFetch(fetchFunction);
 
-
-	const { eventStart = '', eventEnd = '', inviteUrl, address, creatorId = 0 } = event || {};
+	const { name = '',eventStart = '', eventEnd = '', inviteUrl, address, creatorId = 0, isCancelled } = event || {};
 	const eventDate = formatDate(eventStart).toString();
 	const startTime = formatTime(eventStart);
 	const endTime = formatTime(eventEnd);
 	const duration = calculateDuration(eventStart, eventEnd);
+	const eventName = isCancelled ? `[CANCELLED] ${name}` : name;
 
 	let location = 'TBD';
 	if (inviteUrl && !address) {
@@ -64,6 +63,7 @@ const EventPageVM = () => {
 		endTime,
 		duration,
 		isUserCreator,
+		eventName
 	};
 };
 

@@ -13,6 +13,7 @@ import { Event } from '../../models/Event';
 export const EventCard: FC<Event> = ({
 	id,
 	name,
+	cardImageUrl,
 	imageUrl,
 	address,
 	price,
@@ -33,7 +34,7 @@ export const EventCard: FC<Event> = ({
 			<Card className={styles.card}>
 				<Link to={getEventUrl(id)} className={styles.linkToEvent}>
 					<CardContent className={styles.content}>
-						<Image imageUrl={imageUrl} />
+						<Image imageUrl={cardImageUrl ? cardImageUrl : imageUrl} />
 						<Box className={styles.dateLocationPrice}>
 							<DateLocationPrice date={eventDate} location={location} price={price} currency={currency} />
 						</Box>

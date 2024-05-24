@@ -20,11 +20,12 @@ const EventPageVM = () => {
 
 	const { data: event, isLoading, error } = useFetch(fetchFunction);
 
-	const { eventStart = '', eventEnd = '', inviteUrl, address, creatorId = 0 } = event || {};
+	const { name = '',eventStart = '', eventEnd = '', inviteUrl, address, creatorId = 0, isCancelled } = event || {};
 	const eventDate = formatDate(eventStart).toString();
 	const startTime = formatTime(eventStart);
 	const endTime = formatTime(eventEnd);
 	const duration = calculateDuration(eventStart, eventEnd);
+	const eventName = isCancelled ? `[CANCELLED] ${name}` : name;
 
 	let location = 'TBD';
 	if (inviteUrl && !address) {
@@ -60,6 +61,7 @@ const EventPageVM = () => {
 		startTime,
 		endTime,
 		duration,
+		eventName
 	};
 };
 

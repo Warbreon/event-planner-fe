@@ -1,10 +1,10 @@
 import { FC } from 'react';
 import { Divider, Box, Typography } from '@mui/material';
-import EventCard from './EventCard';
+import EventCard from '../event-card/EventCard';
 import styles from './EventList.module.css';
-import { Event } from '../../models/Event';
-import GenericButton, { ButtonTypes, IconButton } from '../../components/buttons/ButtonComponent';
-import { BUTTON_STYLES } from '../../themes/styles/Button';
+import { Event } from '../../../models/Event';
+import GenericButton, { ButtonTypes, IconButton } from '../../../components/buttons/ButtonComponent';
+import { BUTTON_STYLES } from '../../../themes/styles/Button';
 
 interface Props {
 	events: Event[] | null;

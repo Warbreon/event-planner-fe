@@ -26,6 +26,7 @@ const useEventAPI = () => {
 	const editEvent = (eventId: number, eventData: any) => axiosInstance.put(ENDPOINTS.editEvent(eventId), eventData);
 
 	const confirmEventCreatorToEdit = (eventId: number, userId: number) => axiosInstance.get<boolean>(ENDPOINTS.confirmEventCreator(eventId, userId));
+	const cancelEvent = (id: number) => axiosInstance.patch<Event>(ENDPOINTS.cancelEvent(id));
 
 	return {
 		fetchEvents,
@@ -36,7 +37,8 @@ const useEventAPI = () => {
 		fetchPaginatedEvents,
 		createEvent,
 		editEvent,
-		confirmEventCreatorToEdit
+		confirmEventCreatorToEdit,
+	 	cancelEvent
 	};
 };
 export default useEventAPI;

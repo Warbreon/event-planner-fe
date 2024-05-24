@@ -1,7 +1,7 @@
-import { Currency } from "../constants/Currency";
-import { Address } from "./Address";
-import { Attendee } from "./Attendee";
-import { Tag } from "./Tag";
+import { Currency } from '../constants/Currency';
+import { Address } from './Address';
+import { Attendee } from './Attendee';
+import { Tag } from './Tag';
 
 export interface Event {
 	id: number;
@@ -24,4 +24,5 @@ export interface Event {
 	tags: Tag[];
 	currency: Currency;
 	tickets: number;
+	isCancelled: boolean;
 }

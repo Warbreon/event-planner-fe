@@ -1,8 +1,12 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Attendee } from "../../../models/Attendee";
 
 const useAboutViewModel = (attendees: Attendee[]) => {
-  const [acceptedAttendees, setAcceptedAttendees] = useState<Attendee[]>(attendees.filter(a => a.registrationStatus === 'ACCEPTED'));
+  const [acceptedAttendees, setAcceptedAttendees] = useState<Attendee[]>([]);
+
+  useEffect(() => {
+    setAcceptedAttendees(attendees.filter(a => a.registrationStatus === 'ACCEPTED'))
+  }, [attendees]);
 
   return  {acceptedAttendees}
 

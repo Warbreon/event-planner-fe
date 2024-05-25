@@ -8,7 +8,6 @@ import { StoreState } from '../../redux/store/Store';
 
 const EventPageVM = () => {
 	const { eventId } = useParams();
-	const navigate = useNavigate();
 	const currentUserId = useSelector((state: StoreState) => state.userInfo.userId);
 	const currentUserRole = useSelector((state: StoreState) => state.user.role);
 
@@ -19,19 +18,14 @@ const EventPageVM = () => {
 	const fetchFunction = useCallback(() => fetchEventById(Number(eventId)), [eventId]);
 	const { data: event, isLoading: isEventLoading, error: eventError } = useFetch(fetchFunction);
 
-	const { eventStart = '', eventEnd = '', inviteUrl, address } = event || {};
+	const { name = '', eventStart = '', eventEnd = '', inviteUrl, address, creatorId = 0, isCancelled } = event || {};
 	const eventDetails = {
 		eventDate: formatDate(eventStart),
 		startTime: formatTime(eventStart),
 		endTime: formatTime(eventEnd),
 		duration: calculateDuration(eventStart, eventEnd),
+		eventName: isCancelled ? `[CANCELLED] ${name}` : name,
 	};
-	const { name = '',eventStart = '', eventEnd = '', inviteUrl, address, creatorId = 0, isCancelled } = event || {};
-	const eventDate = formatDate(eventStart).toString();
-	const startTime = formatTime(eventStart);
-	const endTime = formatTime(eventEnd);
-	const duration = calculateDuration(eventStart, eventEnd);
-	const eventName = isCancelled ? `[CANCELLED] ${name}` : name;
 
 	let location = 'TBD';
 	if (inviteUrl && !address) {
@@ -55,24 +49,18 @@ const EventPageVM = () => {
         setSnackbarOpen(false);
     };
 
+	const isUserAdminOrCreator = currentUserRole === 'SYSTEM_ADMIN' || currentUserId === creatorId;
+
 	return {
 		event,
 		isEventLoading,
 		error: currentError,
 		onAddGuestsClick,
-		onEventRegistrationClick,
 		isUserAdminOrCreator,
-		event,
-		isLoading,
 		location,
 		isSnackbarOpen,
 		handleSnackbarClose,
 		...eventDetails,
-		eventDate,
-		startTime,
-		endTime,
-		duration,
-		eventName
 	};
 };
 

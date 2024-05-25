@@ -21,7 +21,8 @@ export enum IconButton {
 	HOME = 'Explore events',
 	YOUR_EVENTS = 'Your events',
 	CANCEL = 'Cancel',
-	CANCELLED = 'Cancelled'
+	CANCELLED = 'Cancelled',
+	REJECTED = 'Rejected',
 }
 
 interface ButtonProps {

@@ -1,7 +1,6 @@
 import { Event } from '../models/Event';
 import { ENDPOINTS } from './endpoints/Endpoints';
 import { PaginatedResponse } from '../models/response/PaginatedResponse';
-import { EventRequest } from '../models/request/EventRequest';
 import axiosInstance from './axios/AxiosInstance';
 
 const useEventAPI = () => {
@@ -18,8 +17,6 @@ const useEventAPI = () => {
 		return axiosInstance.get<PaginatedResponse<Event>>(ENDPOINTS.getEvents, { params });
 	}
 	const fetchEventById = (id: number) => axiosInstance.get<Event>(ENDPOINTS.getEventById(id));
-	const registerToEvent = (userId: number | string, eventId: number | string) =>
-		axiosInstance.post(ENDPOINTS.registerToEvent, { userId, eventId });
 
 	const fetchEventsCreatedByUser = () => axiosInstance.get<Event[]>(ENDPOINTS.getEventsCreatedByUser);
 	const fetchEventsUserAttending = () => axiosInstance.get<Event[]>(ENDPOINTS.getEventsUserAttending);

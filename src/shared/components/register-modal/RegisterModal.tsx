@@ -5,8 +5,6 @@ import ButtonComponentGroup from '../buttons/buton-group/ButtonComponentGroup';
 import { BUTTON_STYLES } from '../../../themes/styles/Button';
 import ModalComponent from '../modal/ModalComponent';
 import { CheckCircle, ForwardToInbox } from '@mui/icons-material';
-import { useNavigate } from 'react-router';
-import ROUTES from '../../../routes/Routes';
 import RegisterModalVM from './RegisterModalVM';
 
 interface Props {

@@ -17,7 +17,7 @@ const eventButtonConfigs: Record<REGISTRATION_STATUS, ButtonConfig> = {
         styles: BUTTON_STYLES.BLUE,
     },
     [REGISTRATION_STATUS.REJECTED]: {
-        icon: IconButton.REGISTER,
+        icon: IconButton.REJECTED,
         styles: BUTTON_STYLES.GRAY,
     },
     [REGISTRATION_STATUS.DEFAULT]: {

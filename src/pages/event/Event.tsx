@@ -16,19 +16,7 @@ import EventRegistrationControl from '../../shared/components/event-registration
 const Event = () => {
 	const {
 		onAddGuestsClick,
-		onEventRegistrationClick,
 		isUserAdminOrCreator,
-		event,
-		isLoading,
-		location,
-		eventDate,
-		startTime,
-		endTime,
-		duration, 
-		eventName,
-	} = EventPageVM();
-	const {
-		onAddGuestsClick,
 		event,
 		isEventLoading,
 		location,
@@ -38,6 +26,7 @@ const Event = () => {
 		duration,
 		error,
 		isSnackbarOpen,
+		eventName,
 		handleSnackbarClose,
 	} = EventPageVM();
 
@@ -52,18 +41,6 @@ const Event = () => {
 		attendees = [],
 		price = 0,
 		currency = '',
-		description = '',
-		agenda = [],
-		tags = [],
-		isCancelled
-	} = event || {};
-	const {
-		name = '',
-		inviteUrl,
-		address,
-		imageUrl = '',
-		attendees = [],
-		price = 0,
 		description = '',
 		agenda = [],
 		tags = [],

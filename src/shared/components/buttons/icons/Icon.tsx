@@ -39,6 +39,7 @@ const Icon: FC<IconProps> = ({ icon }) => {
 			return <InsertInvitationIcon />;
 		case IconButton.CANCEL:
 		case IconButton.CANCELLED:
+		case IconButton.REJECTED:
 			return <CloseIcon />;
 		
 	}

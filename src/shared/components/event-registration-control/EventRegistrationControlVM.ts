@@ -23,7 +23,6 @@ const EventRegistrationControlVM = ({ event }: Props) => {
         unregister();
         handleConfirmationDialogClose();
     };
-    
 
     const {
         isModalOpen,
@@ -34,9 +33,7 @@ const EventRegistrationControlVM = ({ event }: Props) => {
         unregister,
         closeModal,
     } = useRegistration({
-        eventId: event.id,
-        initialRegistrationStatus: event.currentUserRegistrationStatus ?? null,
-        isOpenEvent: event.isOpen,
+        event: event,
         isCreator: isCurrentUserCreator,
     });
 
@@ -48,9 +45,7 @@ const EventRegistrationControlVM = ({ event }: Props) => {
     }, [registrationError, setSnackbarOpen]);
 
     const onEventRegistrationClick = () => {
-        if (registrationStatus === REGISTRATION_STATUS.PENDING) {
-            setError('You have already sent registration request to this event');
-            setSnackbarOpen(true);
+        if (registrationStatus === REGISTRATION_STATUS.PENDING || registrationStatus === REGISTRATION_STATUS.REJECTED) {
             return;
         }
 

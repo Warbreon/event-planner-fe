@@ -2,7 +2,7 @@ import ToggleHeader from "../../../../../shared/forms/elements/toggle-header/Tog
 import AgendaItem from "../../agenda-item/AgendaItem";
 import AgendaSectionVM from "./AgendaSectionVM"
 import { FieldArray, useFormikContext } from "formik";
-import GenericButton, { ButtonTypes, IconButton } from "../../../../buttons/ButtonComponent";
+import GenericButton, { ButtonTypes, IconButton } from "../../../../../shared/components/buttons/ButtonComponent";
 import { BUTTON_STYLES } from "../../../../../themes/styles/Button";
 import { Agenda } from "../../../../../interfaces/Agenda";
 import styles from './AgendaSection.module.css';

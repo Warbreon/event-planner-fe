@@ -3,7 +3,7 @@ import { Divider, Box, Typography } from '@mui/material';
 import EventCard from '../event-card/EventCard';
 import styles from './EventList.module.css';
 import { Event } from '../../../models/Event';
-import GenericButton, { ButtonTypes, IconButton } from '../../../components/buttons/ButtonComponent';
+import GenericButton, { ButtonTypes, IconButton } from '../../../shared/components/buttons/ButtonComponent';
 import { BUTTON_STYLES } from '../../../themes/styles/Button';
 
 interface Props {

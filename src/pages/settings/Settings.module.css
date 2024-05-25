@@ -1,3 +1,7 @@
 .settingsContainer {
 	padding: 5%;
 }
+
+.modalButtonsContainer {
+	justify-content: flex-end;
+}

@@ -3,7 +3,7 @@ import EventHeader from '../../components/event-header/EventHeader';
 import ExploreEventsVM from './ExploreEventsViewModel';
 import { EventCard } from '../../components/event-card/EventCard';
 import styles from './ExploreEvents.module.css';
-import GenericButton, { ButtonTypes } from '../../components/buttons/ButtonComponent';
+import GenericButton, { ButtonTypes } from '../../shared/components/buttons/ButtonComponent';
 import { BUTTON_STYLES } from '../../themes/styles/Button';
 import LoadingIndicator from '../../components/loading-indicator/LoadingIndicator';
 
@@ -18,7 +18,7 @@ const ExploreEvents = () => {
 			<EventHeader />
 			<Box className={styles.eventsContainer}>
 				{events?.map((event) => (
-					<EventCard key={event.id} {...event} />
+					<EventCard key={event.id} event={event} />
 				))}
 				{notFound && <p>{notFound}</p>}
 			</Box>

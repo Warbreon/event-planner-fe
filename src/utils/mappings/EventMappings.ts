@@ -21,8 +21,8 @@ export const mapEventFormValuesToEvent =  async (formValues: EventFormValues) =>
         agenda: formatAgendaItems(formValues.agenda ?? []),
         price: formValues.price, 
         tickets: formValues.tickets, 
-        inviteUrl: formValues.inviteUrl ?? '',
-        addressId: formValues.addressId,
+        inviteUrl: !formValues.addressId && formValues.inviteUrl ? formValues.inviteUrl : '',
+        addressId: formValues.addressId && !formValues.inviteUrl ? formValues.addressId : 0,
         attendeeIds: formValues.attendeeIds,
         isOpen: formValues.isOpen,
         tagIds: formValues.eventTagIds,
@@ -51,7 +51,6 @@ export const mapEventToFormValues = (event: Event | null): EventFormValues => {
     const { date: registrationStartDate, time: registrationStartTime } = splitDateTime(event? event.registrationStart : '');
     const { date: registrationEndDate, time: registrationEndTime } = splitDateTime(event? event.registrationEnd: '');
 
-
     return {
         eventName: event? event.name: '',
         eventStartDate: eventStartDate,
@@ -64,8 +63,8 @@ export const mapEventToFormValues = (event: Event | null): EventFormValues => {
         registrationEndTime: registrationEndTime,
         agenda: event && event.agenda ? parseAgendaItems(event.agenda) : [],
         isOpen: event ? event.isOpen : true,
-        addressId: event && event.address ? event.address.id : null,
-        inviteUrl: event && event.inviteUrl ? event.inviteUrl : null,
+        addressId: event && event.address && !event.inviteUrl ? event.address.id : 0,
+        inviteUrl: event && event.inviteUrl && !event.address ? event.inviteUrl : '',
         attendeeIds: event && event.attendees ? event.attendees.map(att => att.id) : [],
         eventTagIds: event && event.tags ? event.tags.map(tag => tag.id) : [],
         locationKey: determineLocationKey(),

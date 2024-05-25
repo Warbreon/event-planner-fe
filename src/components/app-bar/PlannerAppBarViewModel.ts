@@ -16,6 +16,7 @@ const PlannerAppBarViewModel = () => {
 	const [anchorUser, setAnchorUser] = useState<null | HTMLElement>(null);
 	const [searchValue, setSearchValue] = useState<string>('');
 	const userFirstName = useSelector((state: StoreState) => state.userInfo.userFirstName);
+	const userFullName = userFirstName + ' ' + useSelector((state: StoreState) => state.userInfo.userLastName);
 	const userImageUrl = useSelector((state: StoreState) => state.userInfo.userImageUrl);
 	const notificationCount = useSelector((state: StoreState) => state.userInfo.notificationCount);
 	const dispatch = useDispatch();
@@ -88,6 +89,7 @@ const PlannerAppBarViewModel = () => {
 
 	return {
 		userFirstName,
+		userFullName,
 		userImageUrl,
 		notificationCount,
 		pathname,

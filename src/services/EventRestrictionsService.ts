@@ -9,7 +9,7 @@ interface Props {
 
 class EventRestrictionsService {
     static getRestrictionMessage({ event, isCurrentUserCreator }: Props) {
-        if (!event || isCurrentUserCreator || event.currentUserRegistrationStatus === REGISTRATION_STATUS.ACCEPTED) return null;
+        if (!event || isCurrentUserCreator || event.currentUserRegistrationStatus !== REGISTRATION_STATUS.DEFAULT) return null;
 
         const { tickets, registrationStart, registrationEnd, attendees, isCancelled } = event;
         const acceptedAttendees = attendees?.filter(attendee => attendee.registrationStatus === REGISTRATION_STATUS.ACCEPTED);

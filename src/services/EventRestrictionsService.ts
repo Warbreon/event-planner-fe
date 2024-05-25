@@ -1,4 +1,5 @@
 import { Event } from '../models/Event';
+import { REGISTRATION_STATUS } from '../models/RegistrationStatus';
 import { formatDate, isDateInTheFuture, isDateInThePast } from '../utils/DateConverter';
 
 interface Props {
@@ -8,15 +9,16 @@ interface Props {
 
 class EventRestrictionsService {
     static getRestrictionMessage({ event, isCurrentUserCreator }: Props) {
-        if (!event || isCurrentUserCreator) return null;
+        if (!event || isCurrentUserCreator || event.currentUserRegistrationStatus === REGISTRATION_STATUS.ACCEPTED) return null;
 
         const { tickets, registrationStart, registrationEnd, attendees, isCancelled } = event;
+        const acceptedAttendees = attendees?.filter(attendee => attendee.registrationStatus === REGISTRATION_STATUS.ACCEPTED);
 
         if (isCancelled) {
             return 'Event is cancelled';
         }
 
-        if (attendees && tickets <= attendees.length) {
+        if (acceptedAttendees && tickets <= acceptedAttendees.length) {
             return 'Tickets sold out';
         }
 

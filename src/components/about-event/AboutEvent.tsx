@@ -37,7 +37,7 @@ const AboutEvent: FC<EventDetailsProps> = ({ agenda, attendees, eventTags, descr
 					</Box>
 				</Box>
 			)}
-			{agenda && (
+			{agenda && agenda.length > 0 && (
 				<Box id='agendaBox' className={styles.sectionContainer}>
 					<Divider />
 					<Agenda agendaItems={agenda} />

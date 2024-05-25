@@ -4,12 +4,12 @@ import { FC } from 'react';
 import { Event } from '../../../models/Event';
 import DateLocationPrice from '../../../components/reusable-labels/DateLocationPrice';
 import GuestList from '../../../components/guest-list/GuestList';
-import GenericButton, { ButtonTypes } from '../../../shared/components/buttons/ButtonComponent';
+import GenericButton, { ButtonTypes, IconButton } from '../../../shared/components/buttons/ButtonComponent';
 import { BUTTON_STYLES } from '../../../themes/styles/Button';
 import styles from './EventCard.module.css';
 import { NavLink } from 'react-router-dom';
-import { formatDate, formatDifferenceInDays, isDateInThePast, isNowBetween } from '../../../utils/DateConverter';
 import EventRegistrationControl from '../../../shared/components/event-registration-control/EventRegistrationControl';
+import EventCardVM from './EventCardVM';
 
 interface Props {
 	event: Event;
@@ -17,46 +17,73 @@ interface Props {
 }
 
 const EventCard: FC<Props> = ({ event, createdByUser }) => {
-	const { id, imageUrl, name, eventStart, eventEnd, address, inviteUrl, attendees } = event;
-	const location = address ? address.city : inviteUrl ? 'Online' : 'TBD';
+	const {
+		isEventCancelled,
+		eventName,
+		formattedEventStart,
+		location,
+		onEditClick,
+		onCancelClick,
+		isDateInThePast,
+		isNowBetween,
+		formatDifferenceInDays
+	} = EventCardVM(event);
+
+	const { id, imageUrl, attendees } = event;
+
 	return (
-		<Box className={styles.cardContainer} title={name}>
+		<Box className={styles.cardContainer} title={eventName}>
 			<NavLink to={`/events/event/${id}`}>
 				<Image imageUrl={imageUrl} styles='my-events' />
 			</NavLink>
 			<Box className={styles.eventDetails}>
 				<Typography variant='h2'>
-					<NavLink to={`/events/event/${id}`} className={styles.linkToEvent} title={name}>
-						{name}
+					<NavLink to={`/events/event/${id}`} className={styles.linkToEvent} title={eventName}>
+						{eventName}
 					</NavLink>
 				</Typography>
-				<DateLocationPrice date={formatDate(eventStart.toString())} location={location} />
+				<DateLocationPrice date={formattedEventStart} location={location} />
 				<GuestList attendees={attendees} />
 			</Box>
-			{!isDateInThePast(eventStart) && (
+			{!isDateInThePast && (
 				<Box className={styles.buttonContainer}>
-					<EventRegistrationControl
-						event={event}
-						modalEnabled
-						snackbarClassName={styles.snackbar}
-					/>
+					{!isEventCancelled && (
+						<>
+							<EventRegistrationControl
+								event={event}
+								modalEnabled
+								snackbarClassName={styles.snackbar}
+							/>
+							{createdByUser && (
+								<>
+									<GenericButton
+										type={ButtonTypes.button}
+										title='Edit'
+										styles={`${BUTTON_STYLES.OUTLINED_GRAY_BORDER} ${styles.editButton}`}
+										onClick={onEditClick}
+									/>
+								</>
+							)}
+						</>
+					)}
 					{createdByUser && (
 						<GenericButton
 							type={ButtonTypes.button}
-							title='Edit'
+							icon={isEventCancelled ? IconButton.CANCELLED : IconButton.CANCEL}
 							styles={`${BUTTON_STYLES.OUTLINED_GRAY_BORDER} ${styles.cancelButton}`}
-							onClick={() => { }}
+							onClick={() => onCancelClick(id)}
+							disabled={isEventCancelled}
 						/>
 					)}
 				</Box>
 			)}
 
-			{isDateInThePast(eventStart) && !isNowBetween(eventStart, eventEnd) && (
+			{isDateInThePast && !isNowBetween && (
 				<Typography variant='body2' className={styles.buttonContainer}>
-					{formatDifferenceInDays(eventStart)}
+					{formatDifferenceInDays}
 				</Typography>
 			)}
-			{isDateInThePast(eventStart) && isNowBetween(eventStart, eventEnd) && (
+			{isDateInThePast && isNowBetween && (
 				<Typography variant='body2' className={styles.buttonContainer}>
 					Event is happening now!
 				</Typography>

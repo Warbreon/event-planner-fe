@@ -10,7 +10,11 @@ class EventRestrictionsService {
     static getRestrictionMessage({ event, isCurrentUserCreator }: Props) {
         if (!event || isCurrentUserCreator) return null;
 
-        const { tickets, registrationStart, registrationEnd, attendees } = event;
+        const { tickets, registrationStart, registrationEnd, attendees, isCancelled } = event;
+
+        if (isCancelled) {
+            return 'Event is cancelled';
+        }
 
         if (attendees && tickets <= attendees.length) {
             return 'Tickets sold out';

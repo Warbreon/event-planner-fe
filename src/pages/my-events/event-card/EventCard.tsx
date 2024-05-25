@@ -4,10 +4,11 @@ import { FC } from 'react';
 import { Event } from '../../../models/Event';
 import DateLocationPrice from '../../../components/reusable-labels/DateLocationPrice';
 import GuestList from '../../../components/guest-list/GuestList';
-import GenericButton, { ButtonTypes, IconButton } from '../../../components/buttons/ButtonComponent';
+import GenericButton, { ButtonTypes, IconButton } from '../../../shared/components/buttons/ButtonComponent';
 import { BUTTON_STYLES } from '../../../themes/styles/Button';
 import styles from './EventCard.module.css';
 import { NavLink } from 'react-router-dom';
+import EventRegistrationControl from '../../../shared/components/event-registration-control/EventRegistrationControl';
 import EventCardVM from './EventCardVM';
 
 interface Props {
@@ -16,17 +17,16 @@ interface Props {
 }
 
 const EventCard: FC<Props> = ({ event, createdByUser }) => {
-
-	const { 
-		isEventCancelled, 
-		eventName, 
-		formattedEventStart, 
-		location, 
-		onEditClick, 
-		onCancelClick, 
-		isDateInThePast, 
-		isNowBetween, 
-		formatDifferenceInDays 
+	const {
+		isEventCancelled,
+		eventName,
+		formattedEventStart,
+		location,
+		onEditClick,
+		onCancelClick,
+		isDateInThePast,
+		isNowBetween,
+		formatDifferenceInDays
 	} = EventCardVM(event);
 
 	const { id, imageUrl, attendees } = event;
@@ -49,11 +49,10 @@ const EventCard: FC<Props> = ({ event, createdByUser }) => {
 				<Box className={styles.buttonContainer}>
 					{!isEventCancelled && (
 						<>
-							<GenericButton
-								type={ButtonTypes.button}
-								icon={IconButton.GOING}
-								styles={`${BUTTON_STYLES.BLUE} ${styles.goingButton}`}
-								onClick={() => {}}
+							<EventRegistrationControl
+								event={event}
+								modalEnabled
+								snackbarClassName={styles.snackbar}
 							/>
 							{createdByUser && (
 								<>

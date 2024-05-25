@@ -2,9 +2,9 @@ import { useFormikContext } from 'formik';
 import { BUTTON_STYLES } from '../../themes/styles/Button';
 import ToggleHeader from '../../shared/forms/elements/toggle-header/ToggleHeader';
 import useAddGuestsVM from './AddGuestsVM';
-import GenericButton, { ButtonTypes, IconButton } from '../buttons/ButtonComponent';
-import ModalComponent from '../modal/ModalComponent';
-import ButtonComponentGroup from '../buttons/buton-group/ButtonComponentGroup';
+import GenericButton, { ButtonTypes, IconButton } from '../../shared/components/buttons/ButtonComponent';
+import ModalComponent from '../../shared/components/modal/ModalComponent';
+import ButtonComponentGroup from '../../shared/components/buttons/buton-group/ButtonComponentGroup';
 import SelectGuests from './modal-content/SelectGuests';
 import DisplaySelectedGuests from './page-content/DisplaySelectedGuests';
 import styles from './AddGuestsSection.module.css';
@@ -21,7 +21,6 @@ const AddGuestsSection = () => {
 		showForm,
 		showModal,
 		currentlySelectedUsers,
-		showError,
 		errorMessage,
 		confirmButtonLabel,
 		onToggle,
@@ -29,11 +28,38 @@ const AddGuestsSection = () => {
 		onModalClose,
 		onConfirm,
 		onDeleteClick,
+		isSnackbarOpen,
+		handleSnackbarClose,
 	} = useAddGuestsVM({ setFieldValue });
 
-	if(error) {
-		return <Typography variant='body1'>There is a problem retrieving user list</Typography>
-	}
+	const footer = () => (
+		<div className={styles.footerContainer}>
+			<ButtonComponentGroup
+				buttons={[
+					{
+						label: 'Cancel',
+						onClick: onModalClose,
+						className: `${BUTTON_STYLES.OUTLINED_GRAY_BORDER} ${BUTTON_STYLES.MODAL_BUTTON}`,
+					},
+					{
+						label: confirmButtonLabel,
+						onClick: onConfirm,
+						className: `${BUTTON_STYLES.BLACK_BACKGROUND} ${BUTTON_STYLES.MODAL_BUTTON}`,
+						type: ButtonTypes.submit,
+					},
+				]}
+				className={styles.modalButtonsContainer}
+			/>
+			<SnackbarComponent
+				open={isSnackbarOpen}
+				message={errorMessage}
+				autoHideDuration={5000}
+				handleClose={handleSnackbarClose}
+				severity={ALERT_SEVERITY.ERROR}
+				className={styles.snackbar}
+			/>
+		</div>
+	);
 
 	if(isLoading) {
 		return <LoadingIndicator/>
@@ -66,17 +92,8 @@ const AddGuestsSection = () => {
 							handleClose={onModalClose}
 							isOpen={showModal}
 							content={<SelectGuests users={users} />}
-							footer={
-								<>
-									<ButtonComponentGroup
-										onCancel={onModalClose}
-										onConfirm={onConfirm}
-										closeButtonLabel='Cancel'
-										confirmButtonLabel={confirmButtonLabel}
-									/>
-									<SnackbarComponent open={showError} message={errorMessage} severity={ALERT_SEVERITY.ERROR} />
-								</>
-							}
+							footer={footer()}
+							showDivider
 						/>
 					)}
 				</>

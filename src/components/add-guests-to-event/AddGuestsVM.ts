@@ -30,9 +30,9 @@ const useAddGuestsVM = ({ setFieldValue }: Props) => {
 	const [showForm, setShowForm] = useState<boolean>(false);
 	const [showModal, setShowModal] = useState<boolean>(false);
 	const [currentlySelectedUsers, setCurrentlySelectedUsers] = useState<User[]>([]);
-	const [showError, setShowError] = useState<boolean>(false);
 	const [errorMessage, setErrorMessage] = useState<string>('');
 	const [confirmButtonLabel, setConfirmButtonLabel] = useState<BUTTON_LABELS>(BUTTON_LABELS.ADD_GUESTS);
+	const [isSnackbarOpen, setSnackbarOpen] = useState(false);
 	const newUserSelection = useSelector((state: StoreState) => state.createEventGuests);
 
 	const onToggle = (event: ChangeEvent<HTMLInputElement>) => {
@@ -61,10 +61,10 @@ const useAddGuestsVM = ({ setFieldValue }: Props) => {
 	};
 
 	const onConfirm = () => {
-		setError(false, '');
+		setError('');
 
 		if (currentlySelectedUsers.length === 0 && newUserSelection.length === 0) {
-			setError(true, 'Select employees you would like to invite to this event!');
+			setError('Select employees you would like to invite to this event!');
 			return;
 		}
 
@@ -72,13 +72,16 @@ const useAddGuestsVM = ({ setFieldValue }: Props) => {
 			setCurrentlySelectedUsers(newUserSelection);
 			onModalClose();
 		} else {
-			setError(true, 'Selected employees are already added to the guest list!');
+			setError('Selected employees are already added to the guest list!');
 		}
 	};
 
-	const setError = (error: boolean, message: string) => {
-		setShowError(error);
+	const setError = (message: string) => {
 		setErrorMessage(message);
+		
+		if (message) {
+			setSnackbarOpen(true);
+		}
 	};
 
 	useEffect(() => {
@@ -86,8 +89,12 @@ const useAddGuestsVM = ({ setFieldValue }: Props) => {
 		setFieldValue('attendeeIds', userIDs);
 	}, [currentlySelectedUsers, setFieldValue]);
 
+	const handleSnackbarClose = () => {
+        setSnackbarOpen(false);
+    };
+
 	useEffect(() => {
-		setError(false, '');
+		setError('');
 		if (
 			currentlySelectedUsers.length > newUserSelection.length ||
 			areArraysEqual(newUserSelection, currentlySelectedUsers)
@@ -105,7 +112,6 @@ const useAddGuestsVM = ({ setFieldValue }: Props) => {
 		showForm,
 		showModal,
 		currentlySelectedUsers,
-		showError,
 		errorMessage,
 		confirmButtonLabel,
 		onToggle,
@@ -113,6 +119,8 @@ const useAddGuestsVM = ({ setFieldValue }: Props) => {
 		onModalClose,
 		onConfirm,
 		onDeleteClick,
+		isSnackbarOpen,
+		handleSnackbarClose,
 	};
 };
 

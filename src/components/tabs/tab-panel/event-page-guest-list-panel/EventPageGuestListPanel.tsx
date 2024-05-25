@@ -6,7 +6,7 @@ import SearchBar from '../../../app-bar/search-bar/SearchBar';
 import { TEXTFIELD_STYLES } from '../../../../themes/styles/TextField';
 import List from '@mui/material/List';
 import GuestListItem from '../../../lists/guest-list/GuestListItem';
-import GenericButton, { ButtonTypes, IconButton } from '../../../buttons/ButtonComponent';
+import GenericButton, { ButtonTypes, IconButton } from '../../../../shared/components/buttons/ButtonComponent';
 import { BUTTON_STYLES } from '../../../../themes/styles/Button';
 import { Attendee } from '../../../../models/Attendee';
 import EventPageGuestListPanelVM from './EventPageGuestListPanelVM';

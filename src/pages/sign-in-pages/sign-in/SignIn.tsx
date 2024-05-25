@@ -8,15 +8,17 @@ import { emailPasswordSchema } from '../../../utils/schemas/EmailPasswordSchema'
 import sharedStyles from '../SharedStyles.module.css';
 import styles from './SignIn.module.css';
 import { BUTTON_STYLES } from '../../../themes/styles/Button';
-import SignInViewModel from './SignInViewModel';
+import SnackbarComponent from '../../../components/snackbar/SnackbarComponent';
+import SignInVM from './SignInVM';
 
 const SignIn = () => {
-	const {error, onSubmit} = SignInViewModel();
+	const { onSubmit, isLoading, snackbarMessage, snackbarSeverity, isSnackbarOpen, handleSnackbarClose } = SignInVM();
+
 	return (
 		<div className={sharedStyles.background}>
 			<Box className={sharedStyles.formSection}>
 				<PageHeader variant={HeaderVariant.CENTERED} text='Welcome to' />
-				
+
 				<PageHeader
 					variant={HeaderVariant.CENTERED}
 					text='Cognizant events'
@@ -24,9 +26,9 @@ const SignIn = () => {
 				/>
 
 				<Form
-					initialValues={{email:'', password: ''}}
+					initialValues={{ email: '', password: '' }}
 					validationSchema={emailPasswordSchema}
-					onSubmit={(values) => {onSubmit(values.email, values.password)}}
+					onSubmit={(values) => { onSubmit(values.email, values.password) }}
 				>
 					<FormikTextField id='email' title='Email address' name='email' placeholder='e.g., name@cognizant.com' />
 					<FormikTextField id='password' title='Password' name='password' type='password' />
@@ -36,15 +38,17 @@ const SignIn = () => {
 						</Link>
 					</Typography>
 					<div className={sharedStyles.buttonWrapper}>
-						<GenericButton type={ButtonTypes.submit} title='Sign in' styles={BUTTON_STYLES.BLACK} />
+						<GenericButton type={ButtonTypes.submit} title='Sign in' styles={BUTTON_STYLES.BLACK} disabled={isLoading} />
 					</div>
 				</Form>
-				{!!error && (
-					<Box className = {styles.errorMessage}>
-						 <Typography className='error-mesage'>Email or password is incorrect. Please check your credentials</Typography>
-					</Box>
-				)}
 			</Box>
+			<SnackbarComponent
+				open={isSnackbarOpen}
+				message={snackbarMessage}
+				autoHideDuration={5000}
+				handleClose={handleSnackbarClose}
+				severity={snackbarSeverity}
+			/>
 		</div>
 	);
 };

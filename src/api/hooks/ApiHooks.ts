@@ -34,12 +34,8 @@ export const useApiRequest = () => {
 			const response = await requestFunction();
 			setData(response.data);
 			setError(null);
-			return response;
 		} catch (error: any) {
-			const errorMessage = error.response?.data?.message || error.message;
-			setError(errorMessage);
-			setData(null);
-			return errorMessage;
+			setError(error.response?.data?.message || error.message);
 		} finally {
 			setIsLoading(false);
 		}

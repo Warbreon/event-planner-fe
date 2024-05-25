@@ -10,15 +10,16 @@ import Details from '../create-edit-event/details/Details';
 import DateAndTimeSection from './date-and-time-section/DateAndTimeSection';
 import { Divider } from '@mui/material';
 import Media from '../EventForm/media/Media';
-import Location from './location/Location'
+import Location from './location/Location';
 import AgendaSection from './formik-elements/agenda-section/AgendaSection';
 import Registration from './registration/Registration';
 import AddGuestsSection from '../../add-guests-to-event/AddGuestsSection';
 import PricingSection from './pricing-section/PricingSection';
-import About from "./about/About";
+import About from './about/About';
+import SnackbarComponent, { ALERT_SEVERITY } from '../../snackbar/SnackbarComponent';
 
 const EventForm = () => {
-	const { initialValues, onSubmit, handleCancelOnClick, users } = EventFormVM();
+	const { initialValues, onSubmit, handleCancelOnClick, isCreateEventLoading, createEventError } = EventFormVM();
 
 	return (
 		<div className={styles.container}>
@@ -27,7 +28,11 @@ const EventForm = () => {
 			</div>
 			<Form initialValues={initialValues} validationSchema={eventFormSchema} onSubmit={onSubmit}>
 				<div className={styles.formContainer}>
-					<FormikDropzone name='imageUrl' containerStyles={styles.eventMainImage} buttonStyles={styles.uploadButton} />
+					<FormikDropzone
+						name='imageBase64'
+						containerStyles={styles.eventMainImage}
+						buttonStyles={styles.uploadButton}
+					/>
 					<div className={styles.mainFormContainer}>
 						<Details />
 						<Divider className={styles.divider} />
@@ -37,15 +42,15 @@ const EventForm = () => {
 						<Divider className={styles.divider} />
 						<Media />
 						<Divider className={styles.divider} />
-						<About/>
+						<About />
 						<Divider className={styles.divider} />
 						<AgendaSection agenda={initialValues.agenda} />
 						<Divider className={styles.divider} />
 						<Registration />
 						<Divider className={styles.divider} />
-						<PricingSection/>
+						<PricingSection />
 						<Divider className={styles.divider} />
-						<AddGuestsSection users={users || []} />
+						<AddGuestsSection />
 						<Divider className={styles.divider} />
 					</div>
 					<div className={styles.buttonsContainer}>
@@ -54,11 +59,18 @@ const EventForm = () => {
 							styles={`${BUTTON_STYLES.OUTLINED_GRAY_BORDER} ${styles.cancelButton}`}
 							type={ButtonTypes.button}
 							onClick={handleCancelOnClick}
+							disabled={isCreateEventLoading}
 						/>
-						<GenericButton title='Create event' styles={styles.submitButton} type={ButtonTypes.submit} />
+						<GenericButton
+							title='Create event'
+							styles={styles.submitButton}
+							type={ButtonTypes.submit}
+							disabled={isCreateEventLoading}
+						/>
 					</div>
 				</div>
 			</Form>
+			<SnackbarComponent open={!!createEventError} message={createEventError ?? ''} severity={ALERT_SEVERITY.ERROR} />
 		</div>
 	);
 };

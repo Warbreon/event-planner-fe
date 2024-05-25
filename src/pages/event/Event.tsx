@@ -16,6 +16,19 @@ import EventRegistrationControl from '../../shared/components/event-registration
 const Event = () => {
 	const {
 		onAddGuestsClick,
+		onEventRegistrationClick,
+		isUserAdminOrCreator,
+		event,
+		isLoading,
+		location,
+		eventDate,
+		startTime,
+		endTime,
+		duration, 
+		eventName,
+	} = EventPageVM();
+	const {
+		onAddGuestsClick,
 		event,
 		isEventLoading,
 		location,
@@ -33,6 +46,18 @@ const Event = () => {
 	}
 
 	const {
+		inviteUrl,
+		address,
+		imageUrl = '',
+		attendees = [],
+		price = 0,
+		currency = '',
+		description = '',
+		agenda = [],
+		tags = [],
+		isCancelled
+	} = event || {};
+	const {
 		name = '',
 		inviteUrl,
 		address,
@@ -46,16 +71,27 @@ const Event = () => {
 
 	return (
 		<Container className={styles.eventContainer}>
-			<BreadCrumbComponent eventName={name} />
+			<BreadCrumbComponent eventName={eventName} />
 			<Grid container spacing={2} className={styles.gridContainer}>
 				<Grid item xs={8} className={styles.gridItem}>
 					<Box component='section' className={styles.desciption}>
 						<DateLocationPrice date={eventDate} location={location} />
-						<PageHeader text={name} variant={HeaderVariant.EVENT_PAGE} />
-						<Divider className={styles.divider} />
-						<EventPageGuests onAddGuests={onAddGuestsClick} attendees={attendees} />
+						<PageHeader text={eventName} variant={HeaderVariant.EVENT_PAGE} />
+						<Divider className={styles.divider}  />
+						<EventPageGuests
+							onAddGuests={onAddGuestsClick}
+							attendees={attendees}
+							isUserAdminOrCreator={isUserAdminOrCreator}
+						/>
 						<Image styles='event-page' imageUrl={imageUrl} />
-						<TabComponent address={address} description={description} tags={tags} agenda={agenda} attendees={attendees} />
+						<TabComponent
+							address={address}
+							description={description}
+							tags={tags}
+							agenda={agenda}
+							attendees={attendees}
+							isUserAdminOrCreator={isUserAdminOrCreator}
+						/>
 					</Box>
 				</Grid>
 				<Grid item xs={3} className={styles.gridItem}>
@@ -66,6 +102,7 @@ const Event = () => {
 							endTime={endTime}
 							duration={duration}
 							price={price}
+							currency={currency}
 							address={address}
 							inviteUrl={inviteUrl}
 						/>

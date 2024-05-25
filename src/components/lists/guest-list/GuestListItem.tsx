@@ -1,7 +1,7 @@
 import { ListItemAvatar, ListItemText } from '@mui/material';
 import Avatar from '@mui/material/Avatar';
 import ListItem from '@mui/material/ListItem';
-import { ReactNode } from 'react';
+import { FC, ReactNode } from 'react';
 
 type Props = {
 	image: string;
@@ -14,7 +14,7 @@ type Props = {
 	children?: ReactNode;
 };
 
-const GuestListItem: React.FC<Props> = ({ image, fullName, details, styles, textStyles, avatarStyle, avatarListItemStyle,  children }) => {
+const GuestListItem: FC<Props> = ({ image, fullName, details, styles, textStyles, avatarStyle, avatarListItemStyle, children }) => {
 	return (
 		<ListItem disablePadding className={styles}>
 			<ListItemAvatar className={avatarListItemStyle}>

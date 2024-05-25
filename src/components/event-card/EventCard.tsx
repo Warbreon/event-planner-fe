@@ -17,14 +17,15 @@ export const EventCard: FC<Props> = ({ event }) => {
 	const {
 		id,
 		name,
+		cardImageUrl,
 		imageUrl,
 		address,
 		price,
+		currency,
 		eventStart,
 		attendees,
 		inviteUrl,
 	} = event;
-	
 	const {
 		getEventUrl,
 		eventDate = '',
@@ -36,9 +37,9 @@ export const EventCard: FC<Props> = ({ event }) => {
 			<Card className={styles.card}>
 				<Link to={getEventUrl()} className={styles.linkToEvent}>
 					<CardContent className={styles.content}>
-						<Image imageUrl={imageUrl} />
+						<Image imageUrl={cardImageUrl ? cardImageUrl : imageUrl} />
 						<Box className={styles.dateLocationPrice}>
-							<DateLocationPrice date={eventDate} location={location} price={price} />
+							<DateLocationPrice date={eventDate} location={location} price={price} currency={currency} />
 						</Box>
 						<Typography variant='body1' className={styles.name}>
 							{name}

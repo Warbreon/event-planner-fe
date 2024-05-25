@@ -19,7 +19,9 @@ export enum IconButton {
 	VIEW_ALL_EVENTS = 'View all events',
 	PENDING = 'Pending',
 	HOME = 'Explore events',
-	YOUR_EVENTS = 'Your events'
+	YOUR_EVENTS = 'Your events',
+	CANCEL = 'Cancel',
+	CANCELLED = 'Cancelled'
 }
 
 interface ButtonProps {

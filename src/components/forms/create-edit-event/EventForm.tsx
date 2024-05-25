@@ -20,6 +20,7 @@ import { FC } from 'react';
 import { Event } from '../../../models/Event';
 import { editEventFormSchema } from '../../../utils/schemas/EditEventFormSchema';
 import { createEventFormSchema } from '../../../utils/schemas/CreateEventFormSchema';
+import LoadingIndicator from '../../loading-indicator/LoadingIndicator';
 
 interface EventFormProps {
 	headerTitle: string;
@@ -27,10 +28,13 @@ interface EventFormProps {
 }
 
 const EventForm: FC<EventFormProps> = ({ headerTitle, event }) => {
-	const { initialValues, onSubmit, handleCancelOnClick, isSubmitting, submitError } =
-		EventFormVM(event || null);
+	const { initialValues, onSubmit, handleCancelOnClick, isSubmitting, submitError, event: submitResponse } = EventFormVM(event || null);
 
 	const validationSchema = !!event ? editEventFormSchema : createEventFormSchema;
+
+	if (isSubmitting || submitResponse) {
+		return <LoadingIndicator />;
+	}
 
 	return (
 		<div className={styles.container}>

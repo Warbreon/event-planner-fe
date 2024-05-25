@@ -74,7 +74,8 @@ const EventFormVM = (eventToEdit: Event | null) => {
 		onSubmit,
 		handleCancelOnClick,
 		isSubmitting,
-		submitError
+		submitError,
+		event
 	};
 };
 

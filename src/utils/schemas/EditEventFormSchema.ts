@@ -1,12 +1,12 @@
 import * as Yup from 'yup';
-import { isTimeInFuture, isEndTimeAfterStartTime, validateFileFormat } from '../validation/ValidationHelpers';
+import { isEndTimeAfterStartTime, validateFileFormat } from '../validation/ValidationHelpers';
 import moment from 'moment';
 import { LocationTags } from '../../constants/LocationTags';
 
 export const editEventFormSchema = Yup.object().shape({
 	imageBase64: Yup.mixed().nullable()
 		.test('fileFormat', 'Unsupported format.', function (value) {
-			if (value === null) return true; // If the value is null, the test passes
+			if (value === null) return true; 
 			return validateFileFormat(value as File | null);
 		}),
 	eventName: Yup.string().required('Start date is required'),
@@ -27,7 +27,7 @@ export const editEventFormSchema = Yup.object().shape({
 		}),
 	cardImageBase64: Yup.mixed().nullable()
 	.test('fileFormat', 'Unsupported format.', function (value) {
-		if (value === null) return true; // If the value is null, the test passes
+		if (value === null) return true;
 		return validateFileFormat(value as File | null);
 	}),
 	registrationStartDate: Yup.date()

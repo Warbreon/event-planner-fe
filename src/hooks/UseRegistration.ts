@@ -14,23 +14,23 @@ interface Props {
 const useRegistration = ({ event, isCreator }: Props) => {
     const dispatch = useDispatch();
     const [isModalOpen, setModalOpen] = useState(false);
-    const [registrationStatus, setRegistrationStatus] = useState(event.currentUserRegistrationStatus);
+    const [registrationStatus, setRegistrationStatus] = useState(event?.currentUserRegistrationStatus);
     const { request, isLoading, error } = useApiRequest();
     const { registerToEvent, unregisterFromEvent } = useAttendeeAPI();
     const [lastAction, setLastAction] = useState<'register' | 'unregister' | null>(null);
 
     const register = useCallback(() => {
-        request(() => registerToEvent(event.id));
+        request(() => registerToEvent(event?.id));
         setLastAction('register');
-    }, [event.id, request, registerToEvent]);
+    }, [event?.id, request, registerToEvent]);
 
     const unregister = useCallback(() => {
-        request(() => unregisterFromEvent(event.id));
+        request(() => unregisterFromEvent(event?.id));
         setLastAction('unregister');
-    }, [event.id, request, unregisterFromEvent]);
+    }, [event?.id, request, unregisterFromEvent]);
 
     useEffect(() => {
-        setRegistrationStatus(event.currentUserRegistrationStatus);
+        setRegistrationStatus(event?.currentUserRegistrationStatus);
         setModalOpen(false);
         setLastAction(null);
     }, [event]);
@@ -46,7 +46,7 @@ const useRegistration = ({ event, isCreator }: Props) => {
                 setModalOpen(true);
             } else if (lastAction === 'unregister') {
                 setRegistrationStatus(REGISTRATION_STATUS.DEFAULT);
-                dispatch(unregisterFromUserEvent(event.id));
+                dispatch(unregisterFromUserEvent(event?.id));
             }
         }
     }, [isLoading, error, event]);

@@ -10,8 +10,9 @@ import EventPageGuests from '../../components/guest-list/event-page/EventPageGue
 import EventPageVM from './EventPageVM';
 import LoadingIndicator from '../../components/loading-indicator/LoadingIndicator';
 import RelatedEvents from '../../components/related-events/RelatedEvents';
-import SnackbarComponent, { ALERT_SEVERITY } from '../../components/snackbar/SnackbarComponent';
 import EventRegistrationControl from '../../shared/components/event-registration-control/EventRegistrationControl';
+import ROUTES from '../../routes/Routes';
+import { Navigate } from 'react-router';
 
 const Event = () => {
 	const {
@@ -24,11 +25,13 @@ const Event = () => {
 		startTime,
 		endTime,
 		duration,
-		error,
-		isSnackbarOpen,
 		eventName,
-		handleSnackbarClose,
+		eventError,
 	} = EventPageVM();
+
+	if (!event && eventError) {
+		return <Navigate to={ROUTES.NOT_FOUND}/>;
+	}
 
 	if (isEventLoading) {
 		return <LoadingIndicator />;
@@ -95,14 +98,6 @@ const Event = () => {
 			<Box component='section' className={styles.moreEventsLikeThis}>
 				<RelatedEvents event={event} />
 			</Box>
-			<SnackbarComponent
-				open={isSnackbarOpen}
-				message={error ?? ''}
-				autoHideDuration={5000}
-				handleClose={handleSnackbarClose}
-				severity={ALERT_SEVERITY.ERROR}
-				className={styles.snackbar}
-			/>
 		</Container>
 	);
 };

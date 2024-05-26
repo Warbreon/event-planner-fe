@@ -34,12 +34,6 @@ const EventPageVM = () => {
 		location = address.city;
 	}
 
-	useEffect(() => {
-		if (!event && eventError) {
-			navigate(ROUTES.NOT_FOUND);
-		}
-	}, [eventError]);
-
 	const onAddGuestsClick = () => {
 		console.log('Add guest');
 	};
@@ -52,6 +46,7 @@ const EventPageVM = () => {
 		onAddGuestsClick,
 		isUserAdminOrCreator,
 		location,
+		eventError,
 		...eventDetails,
 	};
 };

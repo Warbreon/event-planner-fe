@@ -1,9 +1,8 @@
-import { FC, useEffect } from 'react';
-import { useField, useFormikContext } from 'formik';
+import { FC } from 'react';
+import { useField } from 'formik';
 import Dropdown from '../../../../../components/dropdown/Dropdown';
 import { SelectChangeEvent, Typography } from '@mui/material';
 import styles from './FormikDropdown.module.css';
-import { EventFormValues } from '../../../../../interfaces/EventFormValuesInterface';
 
 interface FormikDropdownProps {
 	name: string;
@@ -23,20 +22,6 @@ const FormikDropdown: FC<FormikDropdownProps> = ({
 	multiple,
 }) => {
 	const [field, , helpers] = useField<string | string[]>(name);
-
-	const { values: formikValues } = useFormikContext<EventFormValues>();
-
-	useEffect(() => {
-		if (name === 'eventTagIds') {
-			const selectedIds: string[] = formikValues.eventTagIds.map((id) => id.toString()) || [];
-			helpers.setValue(multiple ? selectedIds : selectedIds[0] || '');
-		}
-
-		if (name === 'currency') {
-			helpers.setValue(formikValues.currency || 'EUR');
-		}
-	}, [helpers, multiple, name]);
-
 
 	const handleChange = (event: SelectChangeEvent<string | string[]>) => {
 		const value = event.target.value;

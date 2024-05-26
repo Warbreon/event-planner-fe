@@ -15,10 +15,10 @@ import TermOfService from '../pages/terms-of-service/TermOfService';
 import Support from '../pages/support/Support';
 import RootLayout from '../pages/main/RootLayout';
 import ProtectedRoute from './ProtectedRoute';
+import AdminRoute from './AdminRoute';
 import SystemAdminRoute from './SystemAdminRoute';
 import PublicRoutes from './PublicRoutes';
 import Notifications from '../pages/notifications/Notifications';
-
 
 const router = createBrowserRouter([
 	{
@@ -44,9 +44,9 @@ const router = createBrowserRouter([
 			{
 				path: ROUTES.ADD_EVENT,
 				element: (
-					<ProtectedRoute>
+					<AdminRoute>
 						<CreateEvent />
-					</ProtectedRoute>
+					</AdminRoute>
 				),
 			},
 			{
@@ -79,8 +79,8 @@ const router = createBrowserRouter([
 					<ProtectedRoute>
 						<Notifications />
 					</ProtectedRoute>
-				)
-			}
+				),
+			},
 		],
 	},
 

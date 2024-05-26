@@ -8,11 +8,11 @@ import { emailPasswordSchema } from '../../../utils/schemas/EmailPasswordSchema'
 import sharedStyles from '../SharedStyles.module.css';
 import styles from './SignIn.module.css';
 import { BUTTON_STYLES } from '../../../themes/styles/Button';
-import SnackbarComponent from '../../../components/snackbar/SnackbarComponent';
 import SignInVM from './SignInVM';
+import ErrorAlert from '../../../components/error/ErrorAlert';
 
 const SignIn = () => {
-	const { onSubmit, isLoading, snackbarMessage, snackbarSeverity, isSnackbarOpen, handleSnackbarClose } = SignInVM();
+	const { onSubmit, isLoading, error } = SignInVM();
 
 	return (
 		<div className={sharedStyles.background}>
@@ -41,14 +41,8 @@ const SignIn = () => {
 						<GenericButton type={ButtonTypes.submit} title='Sign in' styles={BUTTON_STYLES.BLACK} disabled={isLoading} />
 					</div>
 				</Form>
+				{error && <ErrorAlert message={error} />}
 			</Box>
-			<SnackbarComponent
-				open={isSnackbarOpen}
-				message={snackbarMessage}
-				autoHideDuration={5000}
-				handleClose={handleSnackbarClose}
-				severity={snackbarSeverity}
-			/>
 		</div>
 	);
 };

@@ -1,4 +1,4 @@
-import GenericButton, { ButtonTypes } from '../../buttons/ButtonComponent';
+import GenericButton, { ButtonTypes } from '../../../shared/components/buttons/ButtonComponent';
 import Form from '../../../shared/forms/formik/Form';
 import FormikDropzone from '../../../shared/forms/elements/formik-elements/file-upload/FormikDropzone';
 import { BUTTON_STYLES } from '../../../themes/styles/Button';

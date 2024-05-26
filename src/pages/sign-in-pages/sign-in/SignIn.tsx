@@ -1,7 +1,7 @@
 import { Box, Typography } from '@mui/material';
 import { Link } from 'react-router-dom';
 import PageHeader, { HeaderVariant } from '../../../components/headers/page-headers/PageHeader';
-import GenericButton, { ButtonTypes } from '../../../components/buttons/ButtonComponent';
+import GenericButton, { ButtonTypes } from '../../../shared/components/buttons/ButtonComponent';
 import FormikTextField from '../../../shared/forms/elements/formik-elements/text-field/FormikTextField';
 import Form from '../../../shared/forms/formik/Form';
 import { emailPasswordSchema } from '../../../utils/schemas/EmailPasswordSchema';

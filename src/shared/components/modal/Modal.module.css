@@ -13,7 +13,6 @@
 }
 
 .modalBox .modalBoxHeader {
-	border-bottom: 1px solid #dddddd;
 	padding: 1rem 0.75rem 1rem 1.5rem;
 	display: flex;
 	flex-direction: row;
@@ -22,9 +21,6 @@
 
 .modalBox .modalBoxFooter {
 	border-top: 1px solid #dddddd;
-	display: flex;
-	justify-content: flex-end;
-	align-items: center;
 	padding: 1rem;
 	height: 4rem;
 }

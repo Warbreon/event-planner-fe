@@ -73,6 +73,19 @@ const typographyOptions: TypographyOptions = {
 			paddingBottom: '0.5rem',
 			color: COLORS.MEDIUM_DARK_GRAY,
 		},
+		'&.registration-modal': {
+			fontSize: '1rem',
+			lineHeight: '1.5rem',
+			color: COLORS.MEDIUM_DARK_GRAY,
+			textAlign: 'center',
+		},
+		'&.waiting-list-message': {
+			lineHeight: '1.5rem',
+		},
+		'&.resgistration-restriction-message': {
+			fontWeight: 600,
+			fontSize: '0.85rem',
+		},
 	},
 	
 	body2: {

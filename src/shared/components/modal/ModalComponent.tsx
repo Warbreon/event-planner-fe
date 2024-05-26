@@ -1,7 +1,7 @@
-import { Box, Modal } from '@mui/material';
+import { Box, Divider, Modal } from '@mui/material';
 import { FC, ReactNode } from 'react';
 import styles from './Modal.module.css';
-import PageHeader from '../headers/page-headers/PageHeader';
+import PageHeader from '../../../components/headers/page-headers/PageHeader';
 import CloseIcon from '@mui/icons-material/Close';
 
 interface ModalProps {
@@ -11,9 +11,10 @@ interface ModalProps {
 	subheader?: string;
 	content: ReactNode;
 	footer: ReactNode;
+	showDivider?: boolean;
 }
 
-const ModalComponent: FC<ModalProps> = ({ isOpen, header, subheader, content, footer, handleClose }) => {
+const ModalComponent: FC<ModalProps> = ({ isOpen, header, subheader, content, footer, handleClose, showDivider }) => {
 	return (
 		<Modal
 			open={isOpen}
@@ -32,7 +33,7 @@ const ModalComponent: FC<ModalProps> = ({ isOpen, header, subheader, content, fo
 						<CloseIcon />
 					</Box>
 				</Box>
-
+				{showDivider && <Divider />}
 				<Box className={styles.modalContent}>{content}</Box>
 				<Box className={styles.modalBoxFooter}>{footer}</Box>
 			</Box>

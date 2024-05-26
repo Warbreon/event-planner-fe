@@ -11,6 +11,9 @@ const muiSvgIconOptions = {
 			'&.gray-icon': {
 				color: COLORS.PLACEHOLDER,
 			},
+			'&.modal-icon': {
+				fontSize: '96px',
+			},
 		},
 	},
 };

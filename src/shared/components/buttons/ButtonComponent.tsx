@@ -17,10 +17,12 @@ export enum IconButton {
 	ADD_GUESTS = ' ',
 	VIEW_ALL_GUESTS = 'View all guests',
 	VIEW_ALL_EVENTS = 'View all events',
+	PENDING = 'Pending',
 	HOME = 'Explore events',
 	YOUR_EVENTS = 'Your events',
 	CANCEL = 'Cancel',
-	CANCELLED = 'Cancelled'
+	CANCELLED = 'Cancelled',
+	REJECTED = 'Rejected',
 }
 
 interface ButtonProps {

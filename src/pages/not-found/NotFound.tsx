@@ -1,6 +1,6 @@
 import { Typography } from '@mui/material';
 import styles from './NotFound.module.css'
-import GenericButton, { ButtonTypes, IconButton } from '../../components/buttons/ButtonComponent';
+import GenericButton, { ButtonTypes, IconButton } from '../../shared/components/buttons/ButtonComponent';
 import { BUTTON_STYLES } from '../../themes/styles/Button';
 import useNotFoundViewModel from './NotFoundVm';
 

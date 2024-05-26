@@ -7,6 +7,7 @@ export const ENDPOINTS = {
 	cancelEvent: (id: number) => `/events/cancel/${id}`,
 
 	registerToEvent: '/attendee/register',
+	unregisterFromEvent: (eventId: number | string) => `/attendee/unregister/${eventId}`,
 	getUsers: '/users',
 	demoteAdmins: (ids: number[]) => `/users/demoteAdmins/${ids}`,
 	promoteAdmins: (ids: number[]) => `/users/promoteAdmins/${ids}`,

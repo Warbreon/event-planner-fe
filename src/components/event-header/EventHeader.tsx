@@ -1,6 +1,6 @@
 import Title from '../title/Title';
 import Dropdown from '../dropdown/Dropdown';
-import GenericButton, { ButtonTypes, IconButton } from '../buttons/ButtonComponent';
+import GenericButton, { ButtonTypes, IconButton } from '../../shared/components/buttons/ButtonComponent';
 import ChipSelector from '../chip-selector/ChipSelector';
 import styles from './EventHeader.module.css';
 import { KeyboardArrowDown } from '@mui/icons-material';

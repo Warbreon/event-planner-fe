@@ -6,7 +6,7 @@ import { BUTTON_STYLES } from "../../themes/styles/Button";
 const useNotificationActions = () => {
     const [lastClicked, setLastClicked] = useState<Record<number, string>>({});
     const { confirmPendingRegistration, declinePendingRegistration, markNotificationAsViewed } = useAttendeeAPI();
-    const { request: patchData, error } = useApiRequest();
+    const { request: patchData, error: patchError } = useApiRequest();
 
     const handleConfirmOnClick = async (attendeeId: number) => {
         if (lastClicked[attendeeId] !== 'confirm') {
@@ -40,7 +40,7 @@ const useNotificationActions = () => {
     }
 
     return {
-        error,
+        patchError,
         handleConfirmOnClick,
         handleDeclineOnClick,
         markAsViewed,

@@ -11,6 +11,7 @@ import styles from './AddGuestsSection.module.css';
 import SnackbarComponent, { ALERT_SEVERITY } from '../snackbar/SnackbarComponent';
 import { Typography } from '@mui/material';
 import LoadingIndicator from '../loading-indicator/LoadingIndicator';
+import ErrorAlert from '../error/ErrorAlert';
 
 const AddGuestsSection = () => {
 	const { setFieldValue } = useFormikContext<{ attendeeIds: number[] }>();
@@ -32,7 +33,7 @@ const AddGuestsSection = () => {
 	} = useAddGuestsVM({ setFieldValue });
 
 	if(error) {
-		return <Typography variant='body1'>There is a problem retrieving user list</Typography>
+		return <ErrorAlert message={error} />
 	}
 
 	if(isLoading) {

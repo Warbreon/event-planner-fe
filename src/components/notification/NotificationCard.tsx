@@ -6,6 +6,7 @@ import { NavLink } from 'react-router-dom';
 import NotificationCardVM from './NotificationCardVM';
 import GenericButton, { ButtonTypes } from '../buttons/ButtonComponent';
 import { AVATAR_STYLES } from '../../themes/styles/Avatar';
+import SnackbarComponent, { ALERT_SEVERITY } from '../snackbar/SnackbarComponent';
 
 interface NotificationCardProps extends AttendeeNotification {
     markNotificationAsViewed: () => void;
@@ -13,7 +14,10 @@ interface NotificationCardProps extends AttendeeNotification {
 
 const NotificationCard: FC<NotificationCardProps> = ({ id, registrationTime, isNewNotification, user, eventId, eventName, eventStart, markNotificationAsViewed }) => {
     const {
-        error,
+        isSnackbarOpen,
+        snackbarMessage,
+        snackbarSeverity,
+        handleSnackbarClose,
         formattedRegistrationTime,
         formattedCardText,
         viewed,
@@ -24,8 +28,6 @@ const NotificationCard: FC<NotificationCardProps> = ({ id, registrationTime, isN
         handleDeclineOnClick,
         handleConfirmOnClick
     } = NotificationCardVM({ registrationTime, isNewNotification, eventStart, eventName, user, markNotificationAsViewed });
-
-    if (error) return <div className={styles.container}>{error}</div>;
 
     return (
         <div className={styles.container}>
@@ -63,6 +65,13 @@ const NotificationCard: FC<NotificationCardProps> = ({ id, registrationTime, isN
                     </div>
                 </CardContent>
             </Card>
+            <SnackbarComponent
+                open={isSnackbarOpen}
+                message={snackbarMessage}
+                autoHideDuration={5000}
+                severity={snackbarSeverity}
+                handleClose={handleSnackbarClose}
+            />
         </div>
     )
 }

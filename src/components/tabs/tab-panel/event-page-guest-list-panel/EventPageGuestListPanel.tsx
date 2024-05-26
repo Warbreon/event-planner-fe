@@ -15,13 +15,18 @@ import Typography from '@mui/material/Typography';
 import { TYPOGRAPHY_STYLES } from '../../../../themes/styles/Typography';
 import styles from './EventPageGuestListPanel.module.css'
 import { AVATAR_STYLES } from '../../../../themes/styles/Avatar';
+import SnackbarComponent from '../../../snackbar/SnackbarComponent';
 
 type Props = {
 	attendees: Attendee[];
 	isUserAdminOrCreator: boolean;
 };
 const EventPageGuestListPanel: FC<Props> = ({ attendees, isUserAdminOrCreator }) => {
-	const { 
+	const {
+		isSnackbarOpen,
+        snackbarMessage,
+        snackbarSeverity,
+        handleSnackbarClose,
 		onPlusButtonClick, 
 		onInputChange, 
 		handleConfirmOnClick, 
@@ -90,6 +95,13 @@ const EventPageGuestListPanel: FC<Props> = ({ attendees, isUserAdminOrCreator })
 					onClick={onPlusButtonClick}
 				/>
 			)}
+			<SnackbarComponent
+                open={isSnackbarOpen}
+                message={snackbarMessage}
+                autoHideDuration={5000}
+                severity={snackbarSeverity}
+                handleClose={handleSnackbarClose}
+            />
 		</div>
 	);
 };

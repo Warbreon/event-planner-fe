@@ -9,6 +9,7 @@ import { BUTTON_STYLES } from '../../../themes/styles/Button';
 import styles from './EventCard.module.css';
 import { NavLink } from 'react-router-dom';
 import EventCardVM from './EventCardVM';
+import SnackbarComponent from '../../../components/snackbar/SnackbarComponent';
 
 interface Props {
 	event: Event;
@@ -17,7 +18,11 @@ interface Props {
 
 const EventCard: FC<Props> = ({ event, createdByUser }) => {
 
-	const { 
+	const {
+		isSnackbarOpen,
+        snackbarMessage,
+        snackbarSeverity,
+        handleSnackbarClose,
 		isEventCancelled, 
 		eventName, 
 		formattedEventStart, 
@@ -89,6 +94,13 @@ const EventCard: FC<Props> = ({ event, createdByUser }) => {
 					Event is happening now!
 				</Typography>
 			)}
+			<SnackbarComponent
+				open={isSnackbarOpen}
+				message={snackbarMessage}
+				autoHideDuration={5000}
+				severity={snackbarSeverity}
+				handleClose={handleSnackbarClose}
+			/>
 		</Box>
 	);
 };

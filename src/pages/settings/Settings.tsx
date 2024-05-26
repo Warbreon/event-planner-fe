@@ -24,6 +24,7 @@ import SnackbarComponent from '../../components/snackbar/SnackbarComponent';
 import ModalComponent from '../../components/modal/ModalComponent';
 import ButtonComponentGroup from '../../components/buttons/buton-group/ButtonComponentGroup';
 import SelectNewAdmins from '../../pages/settings/modal/SelectNewAdmins';
+import ErrorAlert from '../../components/error/ErrorAlert';
 
 const Settings = () => {
 	const {
@@ -52,7 +53,7 @@ const Settings = () => {
 	return (
 		<Box className={styles.settingsContainer}>
 			{error ? (
-				<Typography variant='body1'>{error}</Typography>
+				<ErrorAlert message={error} />
 			) : (
 				<>
 					<PageHeader text='Settings' subheader='View and manage who can create events' />
@@ -117,7 +118,7 @@ const Settings = () => {
 								loadingNonAdmins ? (
 									<LoadingIndicator />
 								) : errorNonAdmins ? (
-									<Typography variant='body1'>{errorNonAdmins}</Typography>
+									<ErrorAlert message={errorNonAdmins} />
 								) : (
 									<SelectNewAdmins users={userList || []} handleCheckboxChange={handleCheckboxChange} />
 								)

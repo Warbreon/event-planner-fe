@@ -8,6 +8,7 @@ import RelatedEventsVM from "./RelatedEventsVM";
 import LoadingIndicator from "../loading-indicator/LoadingIndicator";
 import styles from './RelatedEvents.module.css';
 import { Divider } from "@mui/material";
+import ErrorAlert from "../error/ErrorAlert";
 
 const EVENTS_DISPLAY_COUNT = 4;
 
@@ -18,7 +19,6 @@ interface Props {
 const RelatedEvents: FC<Props> = ({ event }) => {
     const { relatedEvents, isLoading, error, handleViewAllEvents } = RelatedEventsVM({ event });
 
-    if (error) return <div className={styles.container}>{error}</div>;
     if (isLoading) return <LoadingIndicator />;
 
     return (
@@ -29,15 +29,18 @@ const RelatedEvents: FC<Props> = ({ event }) => {
                 buttonType={IconButton.VIEW_ALL_EVENTS}
                 onButtonClick={handleViewAllEvents}
             />
-            <div className={styles.eventsContainer}>
-                {relatedEvents?.length! > 0 ? (
-                    relatedEvents?.slice(0, EVENTS_DISPLAY_COUNT).map((event: Event) => (
-                        <EventCard key={event.id} {...event} />
-                    ))
-                ) : (
-                    <p>No related events to display.</p>
-                )}
-            </div>
+            {error ? <ErrorAlert message={error} /> 
+            :
+                <div className={styles.eventsContainer}>
+                    {relatedEvents?.length! > 0 ? (
+                        relatedEvents?.slice(0, EVENTS_DISPLAY_COUNT).map((event: Event) => (
+                            <EventCard key={event.id} {...event} />
+                        ))
+                    ) : (
+                        <p>No related events to display.</p>
+                    )}
+                </div>
+            }
         </div>
     )
 }

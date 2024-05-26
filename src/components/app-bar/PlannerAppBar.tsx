@@ -17,6 +17,7 @@ import { ICON_STYLES } from '../../themes/styles/Icon';
 import { TEXTFIELD_STYLES } from '../../themes/styles/TextField';
 import ROUTES from '../../routes/Routes';
 import { AccountCircle } from '@mui/icons-material';
+import ErrorAlert from '../error/ErrorAlert';
 
 const profileSettings = ['Profile', 'Logout'];
 
@@ -25,6 +26,7 @@ const PlannerAppBar = () => {
 		userFirstName,
 		userImageUrl,
 		notificationCount,
+		error,
 		pathname,
 		anchorUser,
 		handleClickOnNotifications,
@@ -99,6 +101,9 @@ const PlannerAppBar = () => {
 					</div>
 				</Toolbar>
 			</Container>
+			{error && (
+				<ErrorAlert message={error} />
+			)}
 		</AppBar>
 	);
 };

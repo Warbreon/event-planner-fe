@@ -8,14 +8,15 @@ import { DATE_FILTER_OPTIONS } from '../../constants/DateConstants';
 import { FC } from 'react';
 import EventHeaderVM from './EventHeaderVM';
 import LoadingIndicator from '../loading-indicator/LoadingIndicator';
+import ErrorAlert from '../error/ErrorAlert';
 
 const EventHeader: FC = () => {
 
 	const { userFirstName, filters, handleTagChange, handleDateChange, handleLocationChange, getChipClassName, selectedKeys, modifiedCities, modifiedEventTags, tagsError, tagsLoading, citiesError, citiesLoading, navigateToAddEvent } = 
 		EventHeaderVM();
 
-	if (tagsError || citiesError) return <div className={styles.container}>{tagsError || citiesError}</div>;
 	if (tagsLoading || citiesLoading) return <LoadingIndicator />;
+	const errorMessage = tagsError || citiesError;
 
 	return (
 		<div className={styles.container}>
@@ -63,6 +64,9 @@ const EventHeader: FC = () => {
 					/>
 				</div>
 			</div>
+			{errorMessage && (
+        		<ErrorAlert message={errorMessage} />
+      		)}
 		</div>
 	);
 };

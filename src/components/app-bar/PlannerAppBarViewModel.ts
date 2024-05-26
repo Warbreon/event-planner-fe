@@ -29,7 +29,7 @@ const PlannerAppBarViewModel = () => {
 		return fetchUserInfo();
 	}, []);
 
-	const { data: userInfo } = useFetch(fetchFunction);
+	const { data: userInfo, error } = useFetch(fetchFunction);
 
 	useEffect(() => {
 		dispatch(setUserInfo(userInfo));
@@ -90,6 +90,7 @@ const PlannerAppBarViewModel = () => {
 		userFirstName,
 		userImageUrl,
 		notificationCount,
+		error,
 		pathname,
 		anchorUser,
 		handleClickOnNotifications,

@@ -5,6 +5,7 @@ import { useCallback, useEffect } from 'react';
 import { useFetch } from '../../api/hooks/ApiHooks';
 import { useSelector } from 'react-redux';
 import { StoreState } from '../../redux/store/Store';
+import { ALERT_SEVERITY } from '../../components/snackbar/SnackbarComponent';
 
 const EventPageVM = () => {
 	const { eventId } = useParams();
@@ -36,7 +37,12 @@ const EventPageVM = () => {
 
 	useEffect(() => {
 		if (error) {
-			navigate('/');
+			navigate('/', {
+				state: {
+					message: 'Event not found',
+					severity: ALERT_SEVERITY.ERROR
+				} 
+			});
 		}
 	}, [error, navigate]);
 

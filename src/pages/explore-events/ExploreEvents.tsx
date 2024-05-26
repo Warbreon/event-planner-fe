@@ -15,35 +15,36 @@ const ExploreEvents = () => {
 		error, 
 		loadMore, 
 		hasMore, 
-		notFound,
+		notFound, 
+		isAdmin,
 	} = ExploreEventsVM();
-	
+
 	if (isLoading) return <LoadingIndicator />;
 
 	return (
 		<Container className={styles.container}>
-			<EventHeader />
+			<EventHeader userIsAdmin={isAdmin} />
 			{error ? <ErrorAlert message={error} />
-			: 
-			<>
-				<Box className={styles.eventsContainer}>
-					{events?.map((event) => (
-						<EventCard key={event.id} event={event} />
-					))}
-					{notFound && <p>{notFound}</p>}
-				</Box>
-				{hasMore && (
-					<Box className={styles.loadMore}>
-						<GenericButton
-							title='Load more events'
-							onClick={loadMore}
-							styles={BUTTON_STYLES.BLACK}
-							type={ButtonTypes.button}
-						/>
+			: (
+				<>
+					<Box className={styles.eventsContainer}>
+						{events?.map((event) => (
+							<EventCard key={event.id} event={event} />
+						))}
+						{notFound && <p>{notFound}</p>}
 					</Box>
-				)}
-			</>
-			}
+					{hasMore && (
+						<Box className={styles.loadMore}>
+							<GenericButton
+								title='Load more events'
+								onClick={loadMore}
+								styles={BUTTON_STYLES.BLACK}
+								type={ButtonTypes.button}
+							/>
+						</Box>
+					)}
+				</>
+			)}
 		</Container>
 	);
 };

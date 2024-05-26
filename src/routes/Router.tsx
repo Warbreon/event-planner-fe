@@ -65,7 +65,9 @@ const router = createBrowserRouter([
 				path: ROUTES.SETTINGS,
 				element: (
 					<SystemAdminRoute>
-						<Settings />
+						<ProtectedRoute>
+							<Settings />
+						</ProtectedRoute>
 					</SystemAdminRoute>
 				),
 			},

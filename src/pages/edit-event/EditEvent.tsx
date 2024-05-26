@@ -7,13 +7,13 @@ import { Navigate } from 'react-router-dom';
 import ROUTES from '../../routes/Routes';
 
 const EditEvent = () => {
-	const { event, isCheckingEditPermissions,  error, loadingEventError, isCreatedByUser, fullyLoaded } = useEditEventViewModel();
+	const { event, isCheckingEditPermissions,  error, loadingEventError, isCreatedByUser, fullyLoaded, currentUserRole } = useEditEventViewModel();
 
 	if (isCheckingEditPermissions) {
 		return <LoadingIndicator />;
 	}
 
-	if (!isCheckingEditPermissions && !isCreatedByUser) {
+	if (!isCheckingEditPermissions && !isCreatedByUser && currentUserRole !== 'SYSTEM_ADMIN') {
 		return <Navigate to={ROUTES.NOT_FOUND}/>;
 	}
 

@@ -7,6 +7,7 @@ import useEventAPI from '../../api/EventsAPI';
 const useEditEventViewModel = () => {
 	const { eventId } = useParams();
 	const currentUserId = useSelector((state: any) => state.userInfo.userId);
+	const currentUserRole = useSelector((state: any) => state.user.role);
 
 	const [fullyLoaded, setFullyLoaded] = useState<boolean>(false);
 
@@ -30,12 +31,18 @@ const useEditEventViewModel = () => {
 	}, []);
 
 	useEffect(() => {
+		if(currentUserRole === 'SYSTEM_ADMIN'){
+			fetchDataFunction();
+			return;
+		}
+
+
 		if (!isCheckingEditPermissions) {
 			if (!!isCreatedByUser && isCreatedByUser) {
 				fetchDataFunction();
 			}
 		}
-	}, [fetchDataFunction, isCreatedByUser, isCheckingEditPermissions]);
+	}, [fetchDataFunction, isCreatedByUser, isCheckingEditPermissions, currentUserRole]);
 
 	useEffect(() => {
 		if (!isLoadingEvent && event) {
@@ -43,7 +50,7 @@ const useEditEventViewModel = () => {
 		}
 	}, [event, isLoadingEvent]);
 
-	return { event, isCheckingEditPermissions, isLoadingEvent, error, loadingEventError, isCreatedByUser, fullyLoaded };
+	return { currentUserRole, event, isCheckingEditPermissions, isLoadingEvent, error, loadingEventError, isCreatedByUser, fullyLoaded };
 };
 
 export default useEditEventViewModel;

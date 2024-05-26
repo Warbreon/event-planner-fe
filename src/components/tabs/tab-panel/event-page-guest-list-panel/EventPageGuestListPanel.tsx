@@ -13,7 +13,7 @@ import EventPageGuestListPanelVM from './EventPageGuestListPanelVM';
 import { LIST_ITEM_STYLES } from '../../../../themes/styles/ListItem';
 import Typography from '@mui/material/Typography';
 import { TYPOGRAPHY_STYLES } from '../../../../themes/styles/Typography';
-import styles from './EventPageGuestListPanel.module.css'
+import styles from './EventPageGuestListPanel.module.css';
 import { AVATAR_STYLES } from '../../../../themes/styles/Avatar';
 import SnackbarComponent from '../../../snackbar/SnackbarComponent';
 
@@ -32,8 +32,17 @@ const EventPageGuestListPanel: FC<Props> = ({ attendees, isUserAdminOrCreator })
 		handleConfirmOnClick, 
 		handleDeclineOnClick,
 		getButtonStyles,
-		filteredAttendees
+		filteredAttendees,
 	} = EventPageGuestListPanelVM(attendees);
+
+	if (attendees.length === 0) {
+		return (
+			<div className={styles.noGuestsYetMessage}>
+				<Typography variant='body2'>No one has registered to this event yet...</Typography>
+			</div>
+		);
+	}
+
 	return (
 		<div className={styles.container}>
 			{attendees.length !== 0 && (
@@ -87,7 +96,7 @@ const EventPageGuestListPanel: FC<Props> = ({ attendees, isUserAdminOrCreator })
 					array.length - 1 !== i ? <Divider component='li' key={'Divider' + i} /> : null,
 				])}
 			</List>
-			{isUserAdminOrCreator && (	
+			{isUserAdminOrCreator && (
 				<GenericButton
 					icon={IconButton.ADD_GUESTS}
 					type={ButtonTypes.button}

@@ -21,7 +21,7 @@ const AgendaSection: FC<Props> = ({agenda}) => {
       <div className={styles.header}>
         <ToggleHeader
           title='Add agenda'
-          showToggle={true}
+          showToggle={values.agenda.length === 0}
           isChecked={showForm}
           onToggle={onToggle}
         />

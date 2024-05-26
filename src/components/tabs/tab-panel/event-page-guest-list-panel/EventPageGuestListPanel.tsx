@@ -6,14 +6,14 @@ import SearchBar from '../../../app-bar/search-bar/SearchBar';
 import { TEXTFIELD_STYLES } from '../../../../themes/styles/TextField';
 import List from '@mui/material/List';
 import GuestListItem from '../../../lists/guest-list/GuestListItem';
-import GenericButton, { ButtonTypes, IconButton } from '../../../buttons/ButtonComponent';
+import GenericButton, { ButtonTypes, IconButton } from '../../../../shared/components/buttons/ButtonComponent';
 import { BUTTON_STYLES } from '../../../../themes/styles/Button';
 import { Attendee } from '../../../../models/Attendee';
 import EventPageGuestListPanelVM from './EventPageGuestListPanelVM';
 import { LIST_ITEM_STYLES } from '../../../../themes/styles/ListItem';
 import Typography from '@mui/material/Typography';
 import { TYPOGRAPHY_STYLES } from '../../../../themes/styles/Typography';
-import styles from './EventPageGuestListPanel.module.css'
+import styles from './EventPageGuestListPanel.module.css';
 import { AVATAR_STYLES } from '../../../../themes/styles/Avatar';
 
 type Props = {
@@ -21,14 +21,23 @@ type Props = {
 	isUserAdminOrCreator: boolean;
 };
 const EventPageGuestListPanel: FC<Props> = ({ attendees, isUserAdminOrCreator }) => {
-	const { 
-		onPlusButtonClick, 
-		onInputChange, 
-		handleConfirmOnClick, 
+	const {
+		onPlusButtonClick,
+		onInputChange,
+		handleConfirmOnClick,
 		handleDeclineOnClick,
 		getButtonStyles,
-		filteredAttendees
+		filteredAttendees,
 	} = EventPageGuestListPanelVM(attendees);
+
+	if (attendees.length === 0) {
+		return (
+			<div className={styles.noGuestsYetMessage}>
+				<Typography variant='body2'>No one has registered to this event yet...</Typography>
+			</div>
+		);
+	}
+
 	return (
 		<div className={styles.container}>
 			{attendees.length !== 0 && (
@@ -82,7 +91,7 @@ const EventPageGuestListPanel: FC<Props> = ({ attendees, isUserAdminOrCreator })
 					array.length - 1 !== i ? <Divider component='li' key={'Divider' + i} /> : null,
 				])}
 			</List>
-			{isUserAdminOrCreator && (	
+			{isUserAdminOrCreator && (
 				<GenericButton
 					icon={IconButton.ADD_GUESTS}
 					type={ButtonTypes.button}

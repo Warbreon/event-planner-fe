@@ -1,6 +1,6 @@
 import Form from '../../../shared/forms/formik/Form';
 import FormikTextField from '../../../shared/forms/elements/formik-elements/text-field/FormikTextField';
-import GenericButton, { ButtonTypes } from '../../../components/buttons/ButtonComponent';
+import GenericButton, { ButtonTypes } from '../../../shared/components/buttons/ButtonComponent';
 import PasswordRules from '../../../components/password-rules/PasswordRules';
 import PasswordResetVM from './PasswordResetVM';
 import PageHeader, { HeaderVariant } from '../../../components/headers/page-headers/PageHeader';

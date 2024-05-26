@@ -8,6 +8,7 @@ import { Address } from '../../models/Address';
 import { FC } from 'react';
 import MapSection from '../map/MapSection';
 import styles from './AboutEvent.module.css';
+import useAboutViewModel from './attending/AboutVM';
 
 interface EventDetailsProps {
 	description: string;
@@ -19,6 +20,7 @@ interface EventDetailsProps {
 }
 
 const AboutEvent: FC<EventDetailsProps> = ({ agenda, attendees, eventTags, description, address, handleChangeTab }) => {
+	const {acceptedAttendees} = useAboutViewModel(attendees || []);
 	return (
 		<Box id='allDetailsBox'>
 			<Box className={styles.sectionContainer}>
@@ -37,17 +39,17 @@ const AboutEvent: FC<EventDetailsProps> = ({ agenda, attendees, eventTags, descr
 					</Box>
 				</Box>
 			)}
-			{agenda && (
+			{agenda && agenda.length > 0 && (
 				<Box id='agendaBox' className={styles.sectionContainer}>
 					<Divider />
 					<Agenda agendaItems={agenda} />
 				</Box>
 			)}
 
-			{attendees && attendees?.length > 0 && (
+			{acceptedAttendees && acceptedAttendees?.length > 0 && (
 				<Box className={styles.sectionContainer}>
 					<Divider />
-					<Attending attendees={attendees} handleChangeTab={handleChangeTab}/>
+					<Attending attendees={acceptedAttendees} handleChangeTab={handleChangeTab}/>
 				</Box>
 			)}
 

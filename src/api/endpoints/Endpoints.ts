@@ -8,6 +8,7 @@ export const ENDPOINTS = {
 	cancelEvent: (id: number) => `/events/cancel/${id}`,
 
 	registerToEvent: '/attendee/register',
+	unregisterFromEvent: (eventId: number | string) => `/attendee/unregister/${eventId}`,
 	getUsers: '/users',
 	demoteAdmins: (ids: number[]) => `/users/demoteAdmins/${ids}`,
 	promoteAdmins: (ids: number[]) => `/users/promoteAdmins/${ids}`,
@@ -25,7 +26,6 @@ export const ENDPOINTS = {
 	getAllCities: '/addresses/cities',
 	getAllVenues: '/addresses',
 
-	getLocalWebSocketConnection: 'http://localhost:8080/ws',
 	getProdWebSocketConnection: 'https://raisav-api.devbstaging.com/ws',
 	getWebSocketNotificationsSubscription: '/user/queue/notifications',
 

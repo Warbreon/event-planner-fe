@@ -1,0 +1,29 @@
+.modalContent {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 1rem;
+    margin-top: 5rem;
+}
+
+.modalTitle {
+    margin-top: 1rem;
+}
+
+.footerContainer {
+    justify-content: space-between;
+}
+
+.contentTextContainer {
+    width: 35rem;
+}
+
+.boldedOpenEventMessage {
+    font-weight: bold;
+}
+
+.boldedClosedEventMessage {
+    font-weight: bold;
+    color: black;
+}

@@ -18,11 +18,7 @@ const AgendaSectionVM = ({ errors, touched }: Props, agenda: Agenda[] | null) =>
   ), [errors, touched]);
 
   useEffect(() => {
-    if(agenda && agenda.length > 0) {
-      setShowForm(true);
-    }
-
-    if (hasAgendaErrors()) {
+    if((agenda && agenda.length > 0 )|| hasAgendaErrors()) {
       setShowForm(true);
     }
   }, [agenda, hasAgendaErrors]);

@@ -11,7 +11,7 @@ import PageHeader from '../../../headers/page-headers/PageHeader';
 import FormikDropdown from "../../../../shared/forms/elements/formik-elements/dropdown/FormikDropdown";
 
 const PricingSection = () => {
-    const { setFieldValue } = useFormikContext<EventFormValues>();
+    const { setFieldValue, values } = useFormikContext<EventFormValues>();
     const {
         handleTagChange,
         selectedTag,
@@ -20,7 +20,7 @@ const PricingSection = () => {
         getChipClassName,
         currencies,
         disableWheelAndArrowKeys,
-    } = PricingSectionVM({setFieldValue});
+    } = PricingSectionVM({setFieldValue, values});
 
     return (
         <div className={styles.container}>

@@ -10,8 +10,7 @@ import { CharacterCount } from '@tiptap/extension-character-count';
 import { useFormikContext } from 'formik';
 
 const TipTapEditorConfig = (fieldName: string) => {
-	const { setFieldValue } = useFormikContext<EventFormValues>();
-
+	const { setFieldValue, values } = useFormikContext<EventFormValues>();
 	return useEditor({
 		extensions: [
 			StarterKit,
@@ -36,6 +35,7 @@ const TipTapEditorConfig = (fieldName: string) => {
 				limit: 5000,
 			}),
 		],
+		content: values.description,
 		editorProps: {
 			attributes: {
 				class: 'prose dark:prose-invert prose-sm sm:prose-base lg:prose-lg xl:prose-2xl m-5 focus:outline-none',

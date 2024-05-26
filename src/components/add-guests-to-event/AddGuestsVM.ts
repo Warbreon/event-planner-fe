@@ -5,6 +5,7 @@ import { AppDispatch, StoreState } from '../../redux/store/Store';
 import { useDispatch } from 'react-redux';
 import { add, removeAll } from '../../redux/slices/CreateEventPageSlice';
 import { areArraysEqual } from '../../utils/CompareArrays';
+import { removeAllFetchedAttendees } from '../../redux/slices/EditEventSlice';
 import { fetchUsers } from '../../redux/slices/UserSlice';
 
 interface Props {
@@ -18,6 +19,8 @@ const enum BUTTON_LABELS {
 
 const useAddGuestsVM = ({ setFieldValue }: Props) => {
 
+	const newUserSelection = useSelector((state: StoreState) => state.createEventGuests);
+	const registeredAttendees = useSelector((state: StoreState) => state.editEventGuests);
 	const dispatch: AppDispatch = useDispatch();
 
 	useEffect(() => {
@@ -33,13 +36,21 @@ const useAddGuestsVM = ({ setFieldValue }: Props) => {
 	const [errorMessage, setErrorMessage] = useState<string>('');
 	const [confirmButtonLabel, setConfirmButtonLabel] = useState<BUTTON_LABELS>(BUTTON_LABELS.ADD_GUESTS);
 	const [isSnackbarOpen, setSnackbarOpen] = useState(false);
-	const newUserSelection = useSelector((state: StoreState) => state.createEventGuests);
 
+	useEffect(() => {
+		if(registeredAttendees.length > 0) {
+			setShowForm(true);
+			setCurrentlySelectedUsers(registeredAttendees)
+			dispatch(removeAllFetchedAttendees());
+		}
+	}, [dispatch, registeredAttendees])
+	
 	const onToggle = (event: ChangeEvent<HTMLInputElement>) => {
 		setShowForm(event.target.checked);
 	};
 
 	const onModalOpen = () => {
+		dispatch(removeAll());
 		if (currentlySelectedUsers.length > 0) {
 			currentlySelectedUsers.forEach((user) => dispatch(add(user)));
 		}

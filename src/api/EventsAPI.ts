@@ -21,6 +21,9 @@ const useEventAPI = () => {
 	const fetchEventsCreatedByUser = () => axiosInstance.get<Event[]>(ENDPOINTS.getEventsCreatedByUser);
 	const fetchEventsUserAttending = () => axiosInstance.get<Event[]>(ENDPOINTS.getEventsUserAttending);
 	const createEvent = (eventData: any) => axiosInstance.post(ENDPOINTS.createNewEvent, eventData);
+	const editEvent = (eventId: number, eventData: any) => axiosInstance.put(ENDPOINTS.editEvent(eventId), eventData);
+
+	const confirmEventCreatorToEdit = (eventId: number, userId: number) => axiosInstance.get<boolean>(ENDPOINTS.confirmEventCreator(eventId, userId));
 	const cancelEvent = (id: number) => axiosInstance.patch<Event>(ENDPOINTS.cancelEvent(id));
 
 	return {
@@ -30,6 +33,8 @@ const useEventAPI = () => {
 		fetchEventsUserAttending,
 		fetchPaginatedEvents,
 		createEvent,
+		editEvent,
+		confirmEventCreatorToEdit,
 	 	cancelEvent
 	};
 };

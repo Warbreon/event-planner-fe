@@ -20,7 +20,7 @@ const ExploreEvents = () => {
 				{events?.map((event) => (
 					<EventCard key={event.id} {...event} />
 				))}
-				{notFound && <p>{notFound}</p>}w
+				{notFound && <p>{notFound}</p>}
 			</Box>
 			{hasMore && (
 				<Box className={styles.loadMore}>

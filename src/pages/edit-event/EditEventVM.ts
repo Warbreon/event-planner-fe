@@ -22,12 +22,12 @@ const useEditEventViewModel = () => {
 
 	const { request: fetchData, data: event, isLoading: isLoadingEvent, error: loadingEventError } = useApiRequest();
 
-	const fetcheEventByIdFunction = useCallback(() => {
+	const fetchEventByIdFunction = useCallback(() => {
 		return fetchEventById(Number(eventId));
 	}, []);
 
 	const fetchDataFunction = useCallback(() => {
-		return fetchData(fetcheEventByIdFunction);
+		return fetchData(fetchEventByIdFunction);
 	}, []);
 
 	useEffect(() => {

@@ -7,13 +7,9 @@ import { PUBLISHABLE_STRIPE_KEY, TEST_PUBLISHABLE_STRIPE_KEY } from '../../const
 import { Container } from '@mui/material';
 import { Event } from '../../models/Event';
 
-interface Props {
-    event: Event;
-}
-
 const stripePromise = loadStripe(TEST_PUBLISHABLE_STRIPE_KEY);
 
-const PaymentPage: FC<Props> = ({ event }) => {
+const PaymentPage = () => {
     
     const location = useLocation();
 
@@ -21,8 +17,8 @@ const PaymentPage: FC<Props> = ({ event }) => {
         <Container>
             <Elements stripe={stripePromise}>
                 <PaymentForm 
-                    attendeeId={attendeeId} 
-                    price={location.state.price}
+                    attendeeId={'27'} 
+                    price={1}
                 />
             </Elements>
         </Container>

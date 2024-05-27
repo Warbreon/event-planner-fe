@@ -1,11 +1,12 @@
 import { Grid, Typography } from '@mui/material';
+import { FC } from 'react';
 
 interface AgendaItemProps {
 	time: string;
 	text: string;
 }
 
-const AgendaItem: React.FC<AgendaItemProps> = ({ time, text }) => {
+const AgendaItem: FC<AgendaItemProps> = ({ time, text }) => {
 	return (
 		<Grid marginBottom='12px' item xs={12}>
 			<Grid className='agendaGrid' container spacing={2}>

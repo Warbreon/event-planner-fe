@@ -1,8 +1,7 @@
-import GenericButton, { ButtonTypes } from '../../buttons/ButtonComponent';
+import GenericButton, { ButtonTypes } from '../../../shared/components/buttons/ButtonComponent';
 import Form from '../../../shared/forms/formik/Form';
 import FormikDropzone from '../../../shared/forms/elements/formik-elements/file-upload/FormikDropzone';
 import { BUTTON_STYLES } from '../../../themes/styles/Button';
-import { eventFormSchema } from '../../../utils/schemas/EventFormSchema';
 import styles from './EventForm.module.css';
 import EventFormVM from './EventFormVM';
 import PageHeader from '../../headers/page-headers/PageHeader';
@@ -17,21 +16,38 @@ import AddGuestsSection from '../../add-guests-to-event/AddGuestsSection';
 import PricingSection from './pricing-section/PricingSection';
 import About from './about/About';
 import SnackbarComponent, { ALERT_SEVERITY } from '../../snackbar/SnackbarComponent';
+import { FC } from 'react';
+import { Event } from '../../../models/Event';
+import { editEventFormSchema } from '../../../utils/schemas/EditEventFormSchema';
+import { createEventFormSchema } from '../../../utils/schemas/CreateEventFormSchema';
+import LoadingIndicator from '../../loading-indicator/LoadingIndicator';
 
-const EventForm = () => {
-	const { initialValues, onSubmit, handleCancelOnClick, isCreateEventLoading, createEventError } = EventFormVM();
+interface EventFormProps {
+	headerTitle: string;
+	event?: Event | null;
+}
+
+const EventForm: FC<EventFormProps> = ({ headerTitle, event }) => {
+	const { initialValues, onSubmit, handleCancelOnClick, isSubmitting, submitError, event: submitResponse } = EventFormVM(event || null);
+
+	const validationSchema = !!event ? editEventFormSchema : createEventFormSchema;
+
+	if (isSubmitting || submitResponse) {
+		return <LoadingIndicator />;
+	}
 
 	return (
 		<div className={styles.container}>
 			<div className={styles.pageHeader}>
-				<PageHeader text='Add new event' />
+				<PageHeader text={headerTitle} />
 			</div>
-			<Form initialValues={initialValues} validationSchema={eventFormSchema} onSubmit={onSubmit}>
+			<Form initialValues={initialValues} validationSchema={validationSchema} onSubmit={onSubmit}>
 				<div className={styles.formContainer}>
 					<FormikDropzone
 						name='imageBase64'
 						containerStyles={styles.eventMainImage}
 						buttonStyles={styles.uploadButton}
+						initialImageUrl={event?.imageUrl}
 					/>
 					<div className={styles.mainFormContainer}>
 						<Details />
@@ -40,7 +56,7 @@ const EventForm = () => {
 						<Divider className={styles.divider} />
 						<Location />
 						<Divider className={styles.divider} />
-						<Media />
+						<Media initialImageUrl={event?.cardImageUrl} />
 						<Divider className={styles.divider} />
 						<About />
 						<Divider className={styles.divider} />
@@ -59,18 +75,18 @@ const EventForm = () => {
 							styles={`${BUTTON_STYLES.OUTLINED_GRAY_BORDER} ${styles.cancelButton}`}
 							type={ButtonTypes.button}
 							onClick={handleCancelOnClick}
-							disabled={isCreateEventLoading}
+							disabled={isSubmitting}
 						/>
 						<GenericButton
-							title='Create event'
+							title={event ? 'Edit event' : 'Create event'}
 							styles={styles.submitButton}
 							type={ButtonTypes.submit}
-							disabled={isCreateEventLoading}
+							disabled={isSubmitting}
 						/>
 					</div>
 				</div>
 			</Form>
-			<SnackbarComponent open={!!createEventError} message={createEventError ?? ''} severity={ALERT_SEVERITY.ERROR} />
+			<SnackbarComponent open={!!submitError} message={submitError ?? ''} severity={ALERT_SEVERITY.ERROR} />
 		</div>
 	);
 };

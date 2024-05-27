@@ -7,32 +7,34 @@ import Image from '../../components/image/Image';
 import TabComponent from '../../components/tabs/tabs-component/TabComponent';
 import EventDetailsPanel from '../../components/event-details-panel/EventDetailsPanel';
 import EventPageGuests from '../../components/guest-list/event-page/EventPageGuests';
-import GenericButton, { ButtonTypes, IconButton } from '../../components/buttons/ButtonComponent';
-import { BUTTON_STYLES } from '../../themes/styles/Button';
 import EventPageVM from './EventPageVM';
 import LoadingIndicator from '../../components/loading-indicator/LoadingIndicator';
 import RelatedEvents from '../../components/related-events/RelatedEvents';
+import SnackbarComponent, { ALERT_SEVERITY } from '../../components/snackbar/SnackbarComponent';
+import EventRegistrationControl from '../../shared/components/event-registration-control/EventRegistrationControl';
 
 const Event = () => {
 	const {
 		onAddGuestsClick,
-		onEventRegistrationClick,
 		isUserAdminOrCreator,
 		event,
-		isLoading,
+		isEventLoading,
 		location,
 		eventDate,
 		startTime,
 		endTime,
 		duration,
+		error,
+		isSnackbarOpen,
+		eventName,
+		handleSnackbarClose,
 	} = EventPageVM();
 
-	if (isLoading) {
+	if (isEventLoading) {
 		return <LoadingIndicator />;
 	}
 
 	const {
-		name = '',
 		inviteUrl,
 		address,
 		imageUrl = '',
@@ -43,15 +45,16 @@ const Event = () => {
 		agenda = [],
 		tags = [],
 	} = event || {};
+
 	return (
 		<Container className={styles.eventContainer}>
-			<BreadCrumbComponent eventName={name} />
+			<BreadCrumbComponent eventName={eventName} />
 			<Grid container spacing={2} className={styles.gridContainer}>
 				<Grid item xs={8} className={styles.gridItem}>
 					<Box component='section' className={styles.desciption}>
 						<DateLocationPrice date={eventDate} location={location} />
-						<PageHeader text={name} variant={HeaderVariant.EVENT_PAGE} />
-						<Divider className={styles.divider} />
+						<PageHeader text={eventName} variant={HeaderVariant.EVENT_PAGE} />
+						<Divider className={styles.divider}  />
 						<EventPageGuests
 							onAddGuests={onAddGuestsClick}
 							attendees={attendees}
@@ -80,11 +83,11 @@ const Event = () => {
 							address={address}
 							inviteUrl={inviteUrl}
 						/>
-						<GenericButton
-							type={ButtonTypes.button}
-							styles={BUTTON_STYLES.GRAY}
-							icon={IconButton.REGISTER}
-							onClick={onEventRegistrationClick}
+						<EventRegistrationControl
+							event={event!}
+							modalEnabled
+							snackbarClassName={styles.snackbar}
+							showWaitingList
 						/>
 					</Box>
 				</Grid>
@@ -92,6 +95,14 @@ const Event = () => {
 			<Box component='section' className={styles.moreEventsLikeThis}>
 				<RelatedEvents event={event} />
 			</Box>
+			<SnackbarComponent
+				open={isSnackbarOpen}
+				message={error ?? ''}
+				autoHideDuration={5000}
+				handleClose={handleSnackbarClose}
+				severity={ALERT_SEVERITY.ERROR}
+				className={styles.snackbar}
+			/>
 		</Container>
 	);
 };

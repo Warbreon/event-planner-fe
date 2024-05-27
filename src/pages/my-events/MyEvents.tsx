@@ -1,11 +1,11 @@
 import { Box, Container } from '@mui/material';
 import styles from './MyEvents.module.css';
 import PageHeader from '../../components/headers/page-headers/PageHeader';
-import GenericButton, { ButtonTypes, IconButton } from '../../components/buttons/ButtonComponent';
+import GenericButton, { ButtonTypes, IconButton } from '../../shared/components/buttons/ButtonComponent';
 import { BUTTON_STYLES } from '../../themes/styles/Button';
 import useMyEventsVM from './MyEventsVM';
 import ChipSelector from '../../components/chip-selector/ChipSelector';
-import EventList from './EventList';
+import EventList from './event-list/EventList';
 import LoadingIndicator from '../../components/loading-indicator/LoadingIndicator';
 
 const MyEvents = () => {

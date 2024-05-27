@@ -13,7 +13,7 @@ const DetailsVM = () => {
     const tags = useSelector((state: any) => state.tags.list);
 
     const eventTagsOptions = tags.map(tag => ({
-        key: tag.id,
+        value: tag.id,
         label: tag.name
     }));
 

@@ -8,14 +8,14 @@ import { BUTTON_STYLES } from '../../themes/styles/Button';
 import LoadingIndicator from '../../components/loading-indicator/LoadingIndicator';
 
 const ExploreEvents = () => {
-	const { events, isLoading, error, loadMore, hasMore, notFound } = ExploreEventsVM();
-	
+	const { events, isLoading, error, loadMore, hasMore, notFound, isAdmin } = ExploreEventsVM();
+
 	if (isLoading) return <LoadingIndicator />;
 	if (error) return <Container className={styles.container}>{error}</Container>;
 
 	return (
 		<Container className={styles.container}>
-			<EventHeader />
+			<EventHeader userIsAdmin={isAdmin} />
 			<Box className={styles.eventsContainer}>
 				{events?.map((event) => (
 					<EventCard key={event.id} event={event} />

@@ -11,7 +11,7 @@ enum ROUTES {
 	PRIVACY_POLICY = '/privacy',
 	TERMS_OF_SERVICE = '/terms',
 	SUPPORT = '/support',
-	NOT_FOUND = '*',
+	NOT_FOUND = '/not-found',
 	NOTIFICATIONS = '/notifications',
 }
 

@@ -12,6 +12,7 @@ import {EditorContent, useEditor} from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import Underline from "@tiptap/extension-underline";
 import Links from "@tiptap/extension-link";
+import useAboutViewModel from './attending/AboutVM';
 
 interface EventDetailsProps {
 	description: string;
@@ -32,6 +33,7 @@ const AboutEvent: FC<EventDetailsProps> = ({ agenda, attendees, eventTags, descr
 			Links,
 		],
 	})
+	const {acceptedAttendees} = useAboutViewModel(attendees || []);
 	return (
 		<Box id='allDetailsBox'>
 			<Box className={styles.sectionContainer}>
@@ -55,10 +57,10 @@ const AboutEvent: FC<EventDetailsProps> = ({ agenda, attendees, eventTags, descr
 				</Box>
 			)}
 
-			{attendees && attendees?.length > 0 && (
+			{acceptedAttendees && acceptedAttendees?.length > 0 && (
 				<Box className={styles.sectionContainer}>
 					<Divider />
-					<Attending attendees={attendees} handleChangeTab={handleChangeTab}/>
+					<Attending attendees={acceptedAttendees} handleChangeTab={handleChangeTab}/>
 				</Box>
 			)}
 

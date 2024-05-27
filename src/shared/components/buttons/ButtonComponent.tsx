@@ -22,7 +22,7 @@ export enum IconButton {
 	YOUR_EVENTS = 'Your events',
 	CANCEL = 'Cancel',
 	CANCELLED = 'Cancelled',
-	REJECTED = 'Rejected',
+	REJECTED = 'Your request was declined',
 }
 
 interface ButtonProps {

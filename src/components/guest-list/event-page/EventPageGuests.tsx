@@ -35,8 +35,10 @@ const EventPageGuests: FC<Props> = ({eventPageGuestsVM }) => {
 									showModal={eventPageGuestsVM.showModal}
 									users={eventPageGuestsVM.users || []}
 									confirmButtonLabel={eventPageGuestsVM.confirmButtonLabel}
-									showError={eventPageGuestsVM.showError}
-									errorMessage={eventPageGuestsVM.errorMessage}/>
+									errorMessage={eventPageGuestsVM.errorMessage}
+									isSnackbarOpen={eventPageGuestsVM.isSnackbarOpen}
+									handleSnackbarClose={eventPageGuestsVM.handleSnackbarClose}
+								/>
 							)}
 						</>
 					}

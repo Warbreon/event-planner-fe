@@ -1,9 +1,12 @@
-import ModalComponent from "../../modal/ModalComponent";
 import SelectGuests from "../modal-content/SelectGuests";
-import ButtonComponentGroup from "../../buttons/buton-group/ButtonComponentGroup";
 import SnackbarComponent, {ALERT_SEVERITY} from "../../snackbar/SnackbarComponent";
 import {User} from "../../../models/User";
 import {FC} from "react";
+import ModalComponent from "../../../shared/components/modal/ModalComponent";
+import ButtonComponentGroup from "../../../shared/components/buttons/buton-group/ButtonComponentGroup";
+import styles from "../AddGuestsSection.module.css";
+import {BUTTON_STYLES} from "../../../themes/styles/Button";
+import {ButtonTypes} from "../../../shared/components/buttons/ButtonComponent";
 
 interface Props {
     onModalClose: () => void;
@@ -11,8 +14,9 @@ interface Props {
     showModal: boolean;
     users: User[];
     confirmButtonLabel: string;
-    showError: boolean;
     errorMessage: string;
+    isSnackbarOpen: boolean;
+    handleSnackbarClose: () => void;
 }
 
 const AddGuestSectionModal: FC<Props> = ({
@@ -21,28 +25,51 @@ const AddGuestSectionModal: FC<Props> = ({
                                              showModal,
                                              users,
                                              confirmButtonLabel,
-                                             showError,
-                                             errorMessage
+                                             errorMessage,
+                                             isSnackbarOpen,
+                                             handleSnackbarClose,
                                          }) => {
 
+    const footer = () => (
+        <div className={styles.footerContainer}>
+            <ButtonComponentGroup
+                buttons={[
+                    {
+                        label: 'Cancel',
+                        onClick: onModalClose,
+                        className: `${BUTTON_STYLES.OUTLINED_GRAY_BORDER} ${BUTTON_STYLES.MODAL_BUTTON}`,
+                    },
+                    {
+                        label: confirmButtonLabel,
+                        onClick: onConfirm,
+                        className: `${BUTTON_STYLES.BLACK_BACKGROUND} ${BUTTON_STYLES.MODAL_BUTTON}`,
+                        type: ButtonTypes.submit,
+                    },
+                ]}
+                className={styles.modalButtonsContainer}
+            />
+            <SnackbarComponent
+                open={isSnackbarOpen}
+                message={errorMessage}
+                autoHideDuration={5000}
+                handleClose={handleSnackbarClose}
+                severity={ALERT_SEVERITY.ERROR}
+                className={styles.snackbar}
+            />
+        </div>
+    );
+
     return (
-        <ModalComponent
-            header='Add guests'
-            handleClose={onModalClose}
-            isOpen={showModal}
-            content={<SelectGuests users={users}/>}
-            footer={
-                <>
-                    <ButtonComponentGroup
-                        onCancel={onModalClose}
-                        onConfirm={onConfirm}
-                        closeButtonLabel='Cancel'
-                        confirmButtonLabel={confirmButtonLabel}
-                    />
-                    <SnackbarComponent open={showError} message={errorMessage} severity={ALERT_SEVERITY.ERROR}/>
-                </>
-            }
-        />
+        <div className={styles.footerContainer}>
+            <ModalComponent
+                header='Add guests'
+                handleClose={onModalClose}
+                isOpen={showModal}
+                content={<SelectGuests users={users} />}
+                footer={footer()}
+                showDivider
+            />
+        </div>
     );
 }
 

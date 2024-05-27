@@ -16,9 +16,6 @@ import EventRegistrationControl from '../../shared/components/event-registration
 
 const Event = () => {
 	const {
-		onAddGuestsClick,
-		isUserAdminOrCreator,
-		onEventRegistrationClick,
 		event,
 		isEventLoading,
 		location,
@@ -31,6 +28,8 @@ const Event = () => {
 		eventName,
 		handleSnackbarClose,
 	} = EventPageVM();
+
+	const eventPageGuestsVM = EventPageGuestsVM();
 
 	if (isEventLoading) {
 		return <LoadingIndicator />;
@@ -47,13 +46,6 @@ const Event = () => {
 		tags = [],
 	} = event || {};
 
-
-	const eventPageGuestsVM = EventPageGuestsVM();
-
-
-	if (isLoading) {
-		return <LoadingIndicator />;
-	}
 
 
 	return (

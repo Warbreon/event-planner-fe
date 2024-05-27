@@ -14,9 +14,9 @@ import Typography from '@mui/material/Typography';
 import { TYPOGRAPHY_STYLES } from '../../../../themes/styles/Typography';
 import styles from './EventPageGuestListPanel.module.css';
 import { AVATAR_STYLES } from '../../../../themes/styles/Avatar';
-import {UserRegistrationStatus} from "../../../../utils/AttendeeFilter";
 import EventPageGuestsVM from "../../../guest-list/event-page/EventPageGuestsVM";
 import AddGuestSectionModal from "../../../add-guests-to-event/page-content/AddGuestSectionModal";
+import {REGISTRATION_STATUS} from "../../../../models/RegistrationStatus";
 
 type Props = {
 	eventPageGuestsVM: typeof EventPageGuestsVM.arguments;
@@ -25,15 +25,11 @@ const EventPageGuestListPanel: FC<Props> = ({ eventPageGuestsVM }) => {
 	const {
 		onInputChange,
 		handleConfirmOnClick,
-		onPlusButtonClick,
-		onInputChange,
-		handleConfirmOnClick,
 		handleDeclineOnClick,
 		getButtonStyles,
-        filteredAttendees,
 	} = EventPageGuestListPanelVM(eventPageGuestsVM.attendeeList);
 
-	if (attendees.length === 0) {
+	if (eventPageGuestsVM.attendeeList.length === 0) {
 		return (
 			<div className={styles.noGuestsYetMessage}>
 				<Typography variant='body2'>No one has registered to this event yet...</Typography>
@@ -67,7 +63,7 @@ const EventPageGuestListPanel: FC<Props> = ({ eventPageGuestsVM }) => {
 					>
 						<>
 							{eventPageGuestsVM.isUserCreator &&
-								(attendee.registrationStatus === UserRegistrationStatus.PENDING ? (
+								(attendee.registrationStatus === REGISTRATION_STATUS.PENDING ? (
 									<div className={styles.buttons}>
 										<GenericButton
 											type={ButtonTypes.button}
@@ -107,8 +103,10 @@ const EventPageGuestListPanel: FC<Props> = ({ eventPageGuestsVM }) => {
 							showModal={eventPageGuestsVM.showModal}
 							users={eventPageGuestsVM.users || []}
 							confirmButtonLabel={eventPageGuestsVM.confirmButtonLabel}
-							showError={eventPageGuestsVM.showError}
-							errorMessage={eventPageGuestsVM.errorMessage}/>
+							errorMessage={eventPageGuestsVM.errorMessage}
+							isSnackbarOpen={eventPageGuestsVM.isSnackbarOpen}
+							handleSnackbarClose={eventPageGuestsVM.handleSnackbarClose}
+						/>
 					)}
 				</>
 			}

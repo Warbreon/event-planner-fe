@@ -6,16 +6,13 @@ import {useDispatch, useSelector} from "react-redux";
 import {StoreState} from "../../../redux/store/Store";
 import {UserRoles} from "../../../utils/PermissionParser";
 import useUserAPI from "../../../api/UserAPI";
-import {
-    filterAttendees,
-    filterAttendeesByRegistationStatusAndFullname,
-    UserRegistrationStatus
-} from "../../../utils/AttendeeFilter";
+import {filterAttendees, filterAttendeesByRegistationStatusAndFullname} from "../../../utils/AttendeeFilter";
 import {User} from "../../../models/User";
 import {add, removeAll} from "../../../redux/slices/CreateEventPageSlice";
 import {areArraysEqual} from "../../../utils/CompareArrays";
 import useAttendeeAPI from "../../../api/AttendeeAPI";
 import {BUTTON_LABELS} from "../../../themes/styles/Button";
+import {REGISTRATION_STATUS} from "../../../models/RegistrationStatus";
 
 const EventPageGuestsVM = () => {
     const { eventId } = useParams();
@@ -37,7 +34,10 @@ const EventPageGuestsVM = () => {
     const [confirmButtonLabel, setConfirmButtonLabel] = useState<BUTTON_LABELS>(BUTTON_LABELS.ADD_GUESTS);
     const newUserSelection = useSelector((state: StoreState) => state.createEventGuests);
     const [updateTrigger, triggerUpdate] = useState<boolean>(false);
-
+    const [isSnackbarOpen, setSnackbarOpen] = useState(false);
+    const handleSnackbarClose = () => {
+        setSnackbarOpen(false);
+    };
     const isUserCreator = useSelector((state: StoreState) =>
         state.user.role === UserRoles.SYSTEM_ADMIN ||
         event?.creatorId === state.userInfo.userId &&
@@ -52,7 +52,7 @@ const EventPageGuestsVM = () => {
         const currentGuests =
             users!.filter(value =>
                 attendeeList!.filter(value =>
-                    (value.registrationStatus === UserRegistrationStatus.ACCEPTED)).map(value =>
+                    (value.registrationStatus === REGISTRATION_STATUS.ACCEPTED)).map(value =>
                     value.user.id).includes(value.id)) as User[] || [];
         currentGuests.map(value => !currentlySelectedUsers.includes(value) && dispatch(add(value)));
         triggerUpdate(!updateTrigger);
@@ -104,7 +104,22 @@ const EventPageGuestsVM = () => {
         }
     }, [currentlySelectedUsers, newUserSelection]);
 
-    return {isUserCreator, onModalClose, onConfirm, setError, onModalOpen, showModal, confirmButtonLabel, showError, errorMessage, users, attendeeList,filteredAttendees};
+    return {
+        isUserCreator,
+        onModalClose,
+        onConfirm,
+        setError,
+        onModalOpen,
+        showModal,
+        confirmButtonLabel,
+        showError,
+        errorMessage,
+        users,
+        attendeeList,
+        filteredAttendees,
+        isSnackbarOpen,
+        handleSnackbarClose
+    };
 };
 
 export default EventPageGuestsVM;

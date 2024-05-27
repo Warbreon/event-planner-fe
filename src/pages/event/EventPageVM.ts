@@ -41,10 +41,6 @@ const EventPageVM = () => {
 		}
 	}, [eventError, setSnackbarOpen]);
 
-	const onAddGuestsClick = () => {
-		console.log('Add guest');
-	};
-
 	const handleSnackbarClose = () => {
         setSnackbarOpen(false);
     };
@@ -53,8 +49,6 @@ const EventPageVM = () => {
 		event,
 		isEventLoading,
 		error: currentError,
-		onAddGuestsClick,
-		isUserAdminOrCreator,
 		location,
 		isSnackbarOpen,
 		handleSnackbarClose,

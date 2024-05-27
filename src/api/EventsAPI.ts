@@ -3,16 +3,34 @@ import { ENDPOINTS } from './endpoints/Endpoints';
 import { PaginatedResponse } from '../models/response/PaginatedResponse';
 import axiosInstance from './axios/AxiosInstance';
 
+interface FetchPaginatedEventsOptions {
+    tagIds?: number[];
+    days?: number;
+    city?: string;
+    name?: string;
+    excludeEventId?: number;
+    page?: number;
+    size?: number;
+}
+
 const useEventAPI = () => {
-	const fetchEvents = (tagIds?: number[], days?: number, city?: string, name?: string) => {
+	const fetchEvents = (tagIds?: number[], days?: number, city?: string, name?: string, excludeEventId?: number) => {
 		const params: any = {
-			tagIds: tagIds?.length ?? 0 ? tagIds?.join(",") : undefined, days, city, name
+			tagIds: tagIds?.length ?? 0 ? tagIds?.join(",") : undefined, days, city, name, excludeEventId
 		};
 		return axiosInstance.get<Event[]>(ENDPOINTS.getEvents, { params });
 	}
-	const fetchPaginatedEvents = (tagIds?: number[], days?: number, city?: string, name?: string, page?: number, size?: number) => {
+	const fetchPaginatedEvents = ({
+		tagIds,
+		days,
+		city,
+		name,
+		excludeEventId,
+		page,
+		size
+	}: FetchPaginatedEventsOptions) => {
 		const params: any = {
-			tagIds: tagIds?.length ?? 0 ? tagIds?.join(",") : undefined, days, city, name, page, size
+			tagIds: tagIds?.length ?? 0 ? tagIds?.join(",") : undefined, days, city, name, excludeEventId, page, size
 		};
 		return axiosInstance.get<PaginatedResponse<Event>>(ENDPOINTS.getEvents, { params });
 	}

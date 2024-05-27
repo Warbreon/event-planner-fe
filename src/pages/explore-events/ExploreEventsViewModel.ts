@@ -13,12 +13,16 @@ const ExploreEventsVM = () => {
 	const { fetchPaginatedEvents } = useEventAPI();
 	const initialPageSize = 12;
 
-	const fetchFunction = useCallback(
-		(page: number, size: number) => {
-			return fetchPaginatedEvents(filters.eventTag, Number(filters.date), filters.location, filters.name, page, size);
-		},
-		[filters.eventTag, filters.date, filters.location, filters.name]
-	);
+    const fetchFunction = useCallback((page: number, size: number) => {
+        return fetchPaginatedEvents({
+            tagIds: filters.eventTag,
+            days: Number(filters.date),
+            city: filters.location,
+            name: filters.name,
+            page,
+            size,
+        });
+    }, [filters.eventTag, filters.date, filters.location, filters.name]);
 
 	const {
 		data: events,

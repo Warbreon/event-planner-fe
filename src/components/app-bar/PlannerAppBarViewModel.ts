@@ -16,6 +16,7 @@ const PlannerAppBarViewModel = () => {
 	const [anchorUser, setAnchorUser] = useState<null | HTMLElement>(null);
 	const [searchValue, setSearchValue] = useState<string>('');
 	const userFirstName = useSelector((state: StoreState) => state.userInfo.userFirstName);
+	const userFullName = userFirstName + ' ' + useSelector((state: StoreState) => state.userInfo.userLastName);
 	const userImageUrl = useSelector((state: StoreState) => state.userInfo.userImageUrl);
 	const notificationCount = useSelector((state: StoreState) => state.userInfo.notificationCount);
 	const dispatch = useDispatch();
@@ -58,14 +59,8 @@ const PlannerAppBarViewModel = () => {
 		localStorage.clear();
 	};
 
-	const handleProfileClick = () => {
-		console.log('Open user profile');
-	};
-
 	const handleMenuOptions = (menuItem: String) => {
-		if (menuItem === 'Profile') {
-			handleProfileClick();
-		} else if (menuItem === 'Logout') {
+		if (menuItem === 'Sign out') {
 			handleSignOut();
 		}
 
@@ -88,6 +83,7 @@ const PlannerAppBarViewModel = () => {
 
 	return {
 		userFirstName,
+		userFullName,
 		userImageUrl,
 		notificationCount,
 		pathname,

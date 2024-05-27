@@ -9,7 +9,7 @@ import HomeIcon from '@mui/icons-material/Home';
 import InsertInvitationIcon from '@mui/icons-material/InsertInvitation';
 import { IconButton } from '../ButtonComponent';
 import { AccessTime } from '@mui/icons-material';
-import CloseIcon from '@mui/icons-material/Close';
+import HighlightOffIcon from '@mui/icons-material/HighlightOff';
 
 interface IconProps {
 	icon: IconButton;
@@ -40,7 +40,7 @@ const Icon: FC<IconProps> = ({ icon }) => {
 		case IconButton.CANCEL:
 		case IconButton.CANCELLED:
 		case IconButton.REJECTED:
-			return <CloseIcon />;
+			return <HighlightOffIcon />;
 		
 	}
 };

@@ -4,6 +4,7 @@ import { Address } from '../../models/Address';
 import styles from './EventDetailsPanel.module.css';
 import OnSiteEventDetails from './on-site/OnSiteEventDetails';
 import OnlineEventDetails from './online/OnlineEventDetails';
+import { convertCurrencyToSymbol } from '../../constants/Currency';
 
 interface EventDetailsPanelProps {
 	eventDate: string;
@@ -13,6 +14,7 @@ interface EventDetailsPanelProps {
 	address?: Address | null;
 	inviteUrl?: string | null;
 	price: number;
+	currency: string;
 }
 
 const EventDetailsPanel: FC<EventDetailsPanelProps> = ({
@@ -21,6 +23,7 @@ const EventDetailsPanel: FC<EventDetailsPanelProps> = ({
 	endTime,
 	duration,
 	price,
+	currency,
 	address,
 	inviteUrl,
 }) => {
@@ -41,7 +44,7 @@ const EventDetailsPanel: FC<EventDetailsPanelProps> = ({
 			</Box>
 			<Box className={styles.infoSection}>
 				<Typography variant='body2'>Price</Typography>
-				<Typography>{price > 0 ? '$ ' + price : 'Free of charge'} </Typography>
+				<Typography>{price > 0 ? `${convertCurrencyToSymbol(currency)} ` + price : 'Free of charge'} </Typography>
 			</Box>
 		</Box>
 	);

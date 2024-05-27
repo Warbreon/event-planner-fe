@@ -1,5 +1,5 @@
 import { Box, Grid } from '@mui/material';
-import GenericButton, { ButtonTypes } from '../../buttons/ButtonComponent';
+import GenericButton, { ButtonTypes } from '../../../shared/components/buttons/ButtonComponent';
 import GuestList from '../GuestList';
 import styles from './EventPageGuests.module.css';
 import { BUTTON_STYLES } from '../../../themes/styles/Button';
@@ -8,9 +8,10 @@ import { Attendee } from '../../../models/Attendee';
 interface Props {
 	onAddGuests: () => void;
 	attendees: Attendee[];
+	isUserAdminOrCreator: boolean;
 }
 
-const EventPageGuests: FC<Props> = ({ onAddGuests, attendees }) => {
+const EventPageGuests: FC<Props> = ({ onAddGuests, attendees, isUserAdminOrCreator }) => {
 	return (
 		<Box className={styles.gridWrapper}>
 			<Grid container spacing={2}>
@@ -18,12 +19,14 @@ const EventPageGuests: FC<Props> = ({ onAddGuests, attendees }) => {
 					<GuestList attendees={attendees}/>
 				</Grid>
 				<Grid item xs={2}>
-					<GenericButton
-						title='Add guests'
-						type={ButtonTypes.button}
-						styles={BUTTON_STYLES.GRAY}
-						onClick={onAddGuests}
-					/>
+					{isUserAdminOrCreator && (
+						<GenericButton
+							title='Add guests'
+							type={ButtonTypes.button}
+							styles={BUTTON_STYLES.GRAY}
+							onClick={onAddGuests}
+						/>
+					)}
 				</Grid>
 			</Grid>
 		</Box>

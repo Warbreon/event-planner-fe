@@ -6,21 +6,38 @@ import SearchBar from '../../../app-bar/search-bar/SearchBar';
 import { TEXTFIELD_STYLES } from '../../../../themes/styles/TextField';
 import List from '@mui/material/List';
 import GuestListItem from '../../../lists/guest-list/GuestListItem';
-import GenericButton, { ButtonTypes, IconButton } from '../../../buttons/ButtonComponent';
+import GenericButton, { ButtonTypes, IconButton } from '../../../../shared/components/buttons/ButtonComponent';
 import { BUTTON_STYLES } from '../../../../themes/styles/Button';
 import { Attendee } from '../../../../models/Attendee';
 import EventPageGuestListPanelVM from './EventPageGuestListPanelVM';
 import { LIST_ITEM_STYLES } from '../../../../themes/styles/ListItem';
 import Typography from '@mui/material/Typography';
 import { TYPOGRAPHY_STYLES } from '../../../../themes/styles/Typography';
-import styles from './EventPageGuestListPanel.module.css'
+import styles from './EventPageGuestListPanel.module.css';
 import { AVATAR_STYLES } from '../../../../themes/styles/Avatar';
 
 type Props = {
 	attendees: Attendee[];
+	isUserAdminOrCreator: boolean;
 };
-const EventPageGuestListPanel: FC<Props> = ({ attendees }) => {
-	const { onPlusButtonClick, onInputChange, onConfirmClick, onDeclineClick } = EventPageGuestListPanelVM();
+const EventPageGuestListPanel: FC<Props> = ({ attendees, isUserAdminOrCreator }) => {
+	const {
+		onPlusButtonClick,
+		onInputChange,
+		handleConfirmOnClick,
+		handleDeclineOnClick,
+		getButtonStyles,
+		filteredAttendees,
+	} = EventPageGuestListPanelVM(attendees);
+
+	if (attendees.length === 0) {
+		return (
+			<div className={styles.noGuestsYetMessage}>
+				<Typography variant='body2'>No one has registered to this event yet...</Typography>
+			</div>
+		);
+	}
+
 	return (
 		<div className={styles.container}>
 			{attendees.length !== 0 && (
@@ -35,7 +52,7 @@ const EventPageGuestListPanel: FC<Props> = ({ attendees }) => {
 				</Box>
 			)}
 			<List>
-				{attendees.map((attendee, i, array) => [
+				{filteredAttendees.map((attendee, i, array) => [
 					<GuestListItem
 						key={attendee.user.id}
 						fullName={`${attendee.user.firstName}  ${attendee.user.lastName}`}
@@ -48,36 +65,40 @@ const EventPageGuestListPanel: FC<Props> = ({ attendees }) => {
 						<>
 							{!!attendee.registrationStatus &&
 								(attendee.registrationStatus === 'PENDING' ? (
-									<>
+									<div className={styles.buttons}>
 										<GenericButton
 											type={ButtonTypes.button}
 											title='Decline'
-											onClick={onDeclineClick}
-											styles={BUTTON_STYLES.LIGHT_GRAY_ROUND_SMALL_BORDERLESS}
+											onClick={() => handleDeclineOnClick(attendee.id)}
+											styles={getButtonStyles(attendee.id, 'decline')}
 										/>
 										<GenericButton
 											type={ButtonTypes.button}
 											title='Confirm'
-											onClick={onConfirmClick}
-											styles={BUTTON_STYLES.LIGHT_GRAY_ROUND_SMALL}
+											onClick={() => handleConfirmOnClick(attendee.id)}
+											styles={getButtonStyles(attendee.id, 'confirm')}
 										/>
-									</>
+									</div>
 								) : (
-									<Typography variant={'caption'} className={TYPOGRAPHY_STYLES.GUEST_REGISTRATION_STATUS}>
-										{attendee.registrationStatus?.toLowerCase()}
-									</Typography>
+									isUserAdminOrCreator && (
+										<Typography variant={'caption'} className={TYPOGRAPHY_STYLES.GUEST_REGISTRATION_STATUS}>
+											{attendee.registrationStatus === 'REJECTED' ? 'Rejected' : 'Confirmed'}
+										</Typography>
+									)
 								))}
 						</>
 					</GuestListItem>,
 					array.length - 1 !== i ? <Divider component='li' key={'Divider' + i} /> : null,
 				])}
 			</List>
-			<GenericButton
-				icon={IconButton.ADD_GUESTS}
-				type={ButtonTypes.button}
-				styles={BUTTON_STYLES.LIGHT_GRAY_BOX}
-				onClick={onPlusButtonClick}
-			/>
+			{isUserAdminOrCreator && (
+				<GenericButton
+					icon={IconButton.ADD_GUESTS}
+					type={ButtonTypes.button}
+					styles={BUTTON_STYLES.LIGHT_GRAY_BOX}
+					onClick={onPlusButtonClick}
+				/>
+			)}
 		</div>
 	);
 };

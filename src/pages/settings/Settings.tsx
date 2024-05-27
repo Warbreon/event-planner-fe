@@ -8,11 +8,10 @@ import {
 	TableCell,
 	TableBody,
 	Paper,
-	Snackbar,
 } from '@mui/material';
 
 import styles from './Settings.module.css';
-import GenericButton, { ButtonTypes, IconButton } from '../../components/buttons/ButtonComponent';
+import GenericButton, { ButtonTypes, IconButton } from '../../shared/components/buttons/ButtonComponent';
 import { BUTTON_STYLES } from '../../themes/styles/Button';
 import GuestListItem from '../../components/lists/guest-list/GuestListItem';
 import SettingsVM from './SettingsVM';
@@ -22,6 +21,9 @@ import PageHeader from '../../components/headers/page-headers/PageHeader';
 import { LIST_ITEM_STYLES } from '../../themes/styles/ListItem';
 import { AVATAR_STYLES } from '../../themes/styles/Avatar';
 import SnackbarComponent from '../../components/snackbar/SnackbarComponent';
+import ModalComponent from '../../shared/components/modal/ModalComponent';
+import ButtonComponentGroup from '../../shared/components/buttons/buton-group/ButtonComponentGroup';
+import SelectNewAdmins from '../../pages/settings/modal/SelectNewAdmins';
 
 const Settings = () => {
 	const {
@@ -33,6 +35,14 @@ const Settings = () => {
 		snackbarText,
 		snackbarSeverity,
 		handleSnackbarClose,
+		showModal,
+		onModalClose,
+		userList,
+		loadingNonAdmins,
+		onConfirm,
+		onAddAdminsClick,
+		handleCheckboxChange,
+		errorNonAdmins,
 	} = SettingsVM();
 
 	if (isLoading) {
@@ -95,14 +105,50 @@ const Settings = () => {
 						icon={IconButton.ADD_GUESTS}
 						type={ButtonTypes.button}
 						styles={BUTTON_STYLES.LIGHT_GRAY_BOX}
-						onClick={() => null}
+						onClick={() => onAddAdminsClick()}
 					/>
+					{showModal && (
+						<ModalComponent
+							header='Add event administrators'
+							subheader='Event administrators will be able to view and manage all existing events.'
+							handleClose={onModalClose}
+							isOpen={showModal}
+							content={
+								loadingNonAdmins ? (
+									<LoadingIndicator />
+								) : errorNonAdmins ? (
+									<Typography variant='body1'>{errorNonAdmins}</Typography>
+								) : (
+									<SelectNewAdmins users={userList || []} handleCheckboxChange={handleCheckboxChange} />
+								)
+							}
+							footer={
+								<ButtonComponentGroup
+									buttons={[
+										{
+											label: 'Cancel',
+											onClick: onModalClose,
+											className: `${BUTTON_STYLES.OUTLINED_GRAY_BORDER} ${BUTTON_STYLES.MODAL_BUTTON}`,
+										},
+										{
+											label: 'Add administrators',
+											onClick: onConfirm,
+											className: `${BUTTON_STYLES.BLACK_BACKGROUND} ${BUTTON_STYLES.MODAL_BUTTON}`,
+											type: ButtonTypes.submit,
+										},
+									]}
+									className={styles.modalButtonsContainer}
+								/>
+							}
+							showDivider
+						/>
+					)}
 					<SnackbarComponent
 						open={snackbarOpen}
-						autoHideDuration={5000}
 						message={snackbarText}
-						severity={snackbarSeverity}
+						autoHideDuration={5000}
 						handleClose={handleSnackbarClose}
+						severity={snackbarSeverity}
 					/>
 				</>
 			)}

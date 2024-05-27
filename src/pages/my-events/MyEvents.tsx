@@ -1,22 +1,23 @@
 import { Box, Container } from '@mui/material';
 import styles from './MyEvents.module.css';
 import PageHeader from '../../components/headers/page-headers/PageHeader';
-import GenericButton, { ButtonTypes, IconButton } from '../../components/buttons/ButtonComponent';
+import GenericButton, { ButtonTypes, IconButton } from '../../shared/components/buttons/ButtonComponent';
 import { BUTTON_STYLES } from '../../themes/styles/Button';
 import useMyEventsVM from './MyEventsVM';
 import ChipSelector from '../../components/chip-selector/ChipSelector';
-import EventList from './EventList';
+import EventList from './event-list/EventList';
 import LoadingIndicator from '../../components/loading-indicator/LoadingIndicator';
 
 const MyEvents = () => {
 	const {
-		isAdmin,
 		subheader,
+		isAdmin,
 		currentTab,
-		eventsAttending,
-		eventsCreated,
 		chipOptions,
-		isLoading,
+		userEventList,
+		createdByUserList,
+		isLoadingUserEvents,
+		isLoadingCreatedByUser,
 		error,
 		handleTabChange,
 		getChipClassName,
@@ -26,11 +27,11 @@ const MyEvents = () => {
 	if (error)
 		return (
 			<Container className={styles.myEventsPageContainer}>
-				Something went wrong. Could not fetch event list...
+				{error}
 			</Container>
 		);
 
-	if (isLoading) return <LoadingIndicator />;
+	if (isLoadingUserEvents || isLoadingCreatedByUser) return <LoadingIndicator />;
 
 	return (
 		<Container className={styles.myEventsPageContainer}>
@@ -55,8 +56,10 @@ const MyEvents = () => {
 				/>
 			)}
 
-			{currentTab === 0 && <EventList events={eventsAttending} />}
-			{currentTab === 1 && <EventList events={eventsCreated} createdByUser={true} onAddEventClick={onAddEventClick} />}
+			{currentTab === 0 && <EventList events={userEventList} />}
+			{currentTab === 1 && (
+				<EventList events={createdByUserList} createdByUser={true} onAddEventClick={onAddEventClick} />
+			)}
 		</Container>
 	);
 };

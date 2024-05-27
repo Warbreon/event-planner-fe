@@ -1,95 +1,82 @@
-import { EventFormValues } from "../../../interfaces/EventFormValuesInterface";
-import { combineDateTime } from "../../../utils/DateConverter";
-import { formatAgendaItems, parseAgendaItems } from "../../../utils/AgendaUtils";
-import { useFetch } from "../../../api/hooks/ApiHooks";
-import useUserAPI from "../../../api/UserAPI";
-import { useCallback } from "react";
-import { LocationTags } from "../../../constants/LocationTags";
+import { EventFormValues } from '../../../interfaces/EventFormValuesInterface';
+import { useApiRequest } from '../../../api/hooks/ApiHooks';
+import { useEffect } from 'react';
+import { LocationTags } from '../../../constants/LocationTags';
+import { mapEventFormValuesToEvent, mapEventToFormValues } from '../../../utils/mappings/EventMappings';
+import useEventAPI from '../../../api/EventsAPI';
+import { useNavigate } from 'react-router';
+import { Currency } from '../../../constants/Currency';
+import ROUTES from '../../../routes/Routes';
+import { Event } from '../../../models/Event';
+import { saveFetchedAttendee } from '../../../redux/slices/EditEventSlice';
+import { useDispatch } from 'react-redux';
+import { User } from '../../../models/User';
 
-const EventFormVM = () => {
-    const agenda = ['7:00 am-Introduction', '12:30 pm-Presentations', '8:00 pm-Conclusion'];
-    const parsedAgendaItems = parseAgendaItems(agenda);
+const EventFormVM = (eventToEdit: Event | null) => {
+	const { request, isLoading: isSubmitting, error: submitError, data: event } = useApiRequest();
+	const { createEvent, editEvent } = useEventAPI();
+	const navigate = useNavigate();
+	const dispatch = useDispatch();
+	const eventToEditFormValues = mapEventToFormValues(eventToEdit);
 
-    // TODO: Fetch from API and get from redux.
-    const initialValues: EventFormValues = {
-        imageUrl: null,
-        eventStartDate: null,
-        eventStartTime: null,
-        eventEndDate: null,
-        eventEndTime: null,
-        eventName: '',
-        eventTag: [],
-        cardUrl: null,
-        addressId: null,
-        inviteUrl: '',
-        agenda: parsedAgendaItems,
-        isOpen: true,
-        registrationStartDate: null,
-        registrationStartTime: null,
-        registrationEndDate: null,
-        registrationEndTime: null,
-        attendees: [],
-        price: 0,
-        currency: 'eur',
-        tickets: 0,
-        locationKey: LocationTags.PHYSICAL,
-        about: '',
-    };
+	useEffect(() => {
+		const attendingUsers: User[] = eventToEdit?.attendees?.map((attendee) => attendee.user) || [];
+		dispatch(saveFetchedAttendee(attendingUsers));
+	}, [dispatch, eventToEdit?.attendees]);
 
-    const determineLocationKey = (values: EventFormValues) => {
-        if (values.inviteUrl) {
-            return LocationTags.ONLINE;
-        } else if (values.addressId) {
-            return LocationTags.PHYSICAL;
-        } else {
-            return LocationTags.TBD;
-        }
-    };
+	const initialValues: EventFormValues = !eventToEdit ? 
+	{
+				imageBase64: null,
+				eventStartDate: null,
+				eventStartTime: null,
+				eventEndDate: null,
+				eventEndTime: null,
+				eventName: '',
+				description: '',
+				eventTagIds: [],
+				cardImageBase64: null,
+				addressId: null,
+				inviteUrl: '',
+				agenda: [],
+				isOpen: true,
+				registrationStartDate: null,
+				registrationStartTime: null,
+				registrationEndDate: null,
+				registrationEndTime: null,
+				attendeeIds: [],
+				locationKey: LocationTags.PHYSICAL,
+				currency: Currency.EUR,
+				price: 0,
+				tickets: 0,
+	} : eventToEditFormValues;
 
-    initialValues.locationKey = determineLocationKey(initialValues);
+	const onSubmit = async (formValues: EventFormValues) => {
+		const eventValues = await mapEventFormValuesToEvent(formValues);
+		if (eventToEdit === null) {
+			await request(() => createEvent(eventValues));
+		} else {
+			await request(() => editEvent(eventToEdit.id, eventValues));
+		}
+	};
 
-    const {fetchUsers} = useUserAPI();
-    const fetchFuntion = useCallback(() => {
-        return fetchUsers();
-    }, []);
+	const handleCancelOnClick = () => {
+		navigate(ROUTES.MY_EVENTS);
+	};
 
+	useEffect(() => {
+		if (!isSubmitting && !submitError && event) {
+			navigate(ROUTES.EVENT.replace(':eventId', event.id));
+		}
+	}, [isSubmitting, submitError, event, navigate]);
 
-    const { data: users, isLoading, error  } =  useFetch(fetchFuntion);
-   
-    const onSubmit = (values: EventFormValues) => {
-        const eventStart = combineDateTime(values.eventStartDate, values.eventStartTime);
-        const eventEnd = combineDateTime(values.eventEndDate, values.eventEndTime);
-        const formattedAgenda = formatAgendaItems(values.agenda ?? []);
-        const registrationStart = combineDateTime(values.registrationStartDate, values.registrationStartTime);
-        const registrationEnd = combineDateTime(values.registrationEndDate, values.registrationEndTime);
-
-        const submitValues = {
-            imageUrl: values.imageUrl,
-            cardUrl: values.cardUrl,
-            eventStart,
-            eventEnd,
-            formattedAgenda,
-            registrationStart,
-            registrationEnd,
-            isOpen: values.isOpen,
-            addressId: values.addressId,
-            inviteUrl: values.inviteUrl,
-            attendees: values.attendees,
-            price: values.price,
-            currency: values.currency,
-            tickets: values.tickets,
-            eventTag: values.eventTag,
-            about: values.about,
-        };
-
-        console.log(submitValues);
-    };
-
-    const handleCancelOnClick = () => {
-        console.log('Canceled');
-    };
-
-    return { initialValues, onSubmit, handleCancelOnClick, users }
-}
+	return {
+		initialValues,
+		onSubmit,
+		handleCancelOnClick,
+		isSubmitting,
+		submitError,
+		event
+	};
+};
 
 export default EventFormVM;

@@ -1,0 +1,42 @@
+.cardContainer {
+	display: grid;
+	grid-template-columns: 0.1fr 1fr 0.3fr;
+	gap: 2rem;
+}
+
+.eventDetails {
+	display: flex;
+	flex-direction: column;
+	width: 480px;
+	word-wrap: break-word;
+}
+
+.eventDetails :last-child {
+	margin-top: auto;
+}
+
+.buttonContainer {
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+	gap: 1.125rem;
+}
+
+.cardContainer .goingButton, .cardContainer .cancelButton {
+	width: 200px;
+}
+
+.cardContainer .editButton {
+	width: 91px;
+}
+
+.linkToEvent,
+.linkToEvent:visited {
+	text-decoration: none;
+	color: black;
+}
+
+.snackbar {
+	padding-left: 4rem;
+	padding-bottom: 3rem;
+}

@@ -15,9 +15,10 @@ import TermOfService from '../pages/terms-of-service/TermOfService';
 import Support from '../pages/support/Support';
 import RootLayout from '../pages/main/RootLayout';
 import ProtectedRoute from './ProtectedRoute';
+import SystemAdminRoute from './SystemAdminRoute';
 import PublicRoutes from './PublicRoutes';
 import Notifications from '../pages/notifications/Notifications';
-
+import CreateEditEventProtectedRoute from './CreateEditEventProtectedRoute';
 
 const router = createBrowserRouter([
 	{
@@ -43,25 +44,31 @@ const router = createBrowserRouter([
 			{
 				path: ROUTES.ADD_EVENT,
 				element: (
-					<ProtectedRoute>
-						<CreateEvent />
-					</ProtectedRoute>
+					<CreateEditEventProtectedRoute>
+						<ProtectedRoute>
+							<CreateEvent />
+						</ProtectedRoute>
+					</CreateEditEventProtectedRoute>
 				),
 			},
 			{
 				path: ROUTES.EDIT_EVENT,
 				element: (
-					<ProtectedRoute>
-						<EditEvent />
-					</ProtectedRoute>
+					<CreateEditEventProtectedRoute>
+						<ProtectedRoute>
+							<EditEvent />
+						</ProtectedRoute>
+					</CreateEditEventProtectedRoute>
 				),
 			},
 			{
 				path: ROUTES.SETTINGS,
 				element: (
-					<ProtectedRoute>
-						<Settings />
-					</ProtectedRoute>
+					<SystemAdminRoute>
+						<ProtectedRoute>
+							<Settings />
+						</ProtectedRoute>
+					</SystemAdminRoute>
 				),
 			},
 			{
@@ -78,8 +85,8 @@ const router = createBrowserRouter([
 					<ProtectedRoute>
 						<Notifications />
 					</ProtectedRoute>
-				)
-			}
+				),
+			},
 		],
 	},
 
@@ -110,7 +117,7 @@ const router = createBrowserRouter([
 		),
 	},
 	{
-		path: ROUTES.NOT_FOUND,
+		path: '*',
 		element: <PageNotFound />,
 	},
 	{

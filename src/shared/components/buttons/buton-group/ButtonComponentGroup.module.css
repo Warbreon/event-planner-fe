@@ -1,0 +1,9 @@
+.buttonGroup {
+	display: flex;
+	gap: 0.5rem;
+}
+
+.buttonGroup button {
+	width: auto;
+	padding: 8px 16px 8px 16px;
+}

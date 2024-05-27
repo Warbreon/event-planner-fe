@@ -2,26 +2,24 @@ import { FC } from 'react';
 import { Box, Card, CardContent, Avatar, Typography } from '@mui/material';
 import { Attendee } from '../../../models/Attendee';
 import style from './Attending.module.css';
-import { IconButton } from '../../buttons/ButtonComponent';
+import { IconButton } from '../../../shared/components/buttons/ButtonComponent';
 import SectionHeader from '../../../shared/components/section-header/SectionHeader';
-import { filterAttendees } from '../../../utils/AttendeeFilter';
 import { AVATAR_STYLES } from '../../../themes/styles/Avatar';
 
 interface AttendingProps {
 	attendees: Attendee[];
+	handleChangeTab: (newValue: number) => void;
 }
 
-const Attending: FC<AttendingProps> = ({ attendees }) => {
-	const filteredAttendees = filterAttendees(attendees);
-	const displayedAttendees = filteredAttendees.slice(0, 4);
-
+const Attending: FC<AttendingProps> = ({ attendees, handleChangeTab }) => {
+	const displayedAttendees = attendees.slice(0, 4);
 	return (
 		<>
 			<SectionHeader
 				name="Who's attending"
-				variableCount={filteredAttendees.length}
+				variableCount={attendees.length}
 				buttonType={IconButton.VIEW_ALL_GUESTS}
-				onButtonClick={() => null}
+				onButtonClick={() => handleChangeTab(1)}
 			/>
 			<Box className={style.cardContainer}>
 				{displayedAttendees.map((attendee) => (

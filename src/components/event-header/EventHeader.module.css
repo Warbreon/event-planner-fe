@@ -35,7 +35,7 @@ p.headerSubtitle {
     display: grid;
     grid-template-columns: 0.75fr 0.25fr;
     column-gap: 2rem;
-    justify-content: start;
+    justify-content: space-between;
     align-items: center;
     width: 100%;
     margin-top: 1.5rem;
@@ -47,7 +47,6 @@ p.headerSubtitle {
 
 .dropdownFiltersContainer {
     display: flex;
-    justify-content: flex-end;
 }
 
 .header .addEventButton {

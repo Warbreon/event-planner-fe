@@ -6,3 +6,13 @@
 .container {
   margin-bottom: 25px;
 }
+
+.buttons {
+  display: flex;
+  gap: 0.25rem;
+}
+
+
+.noGuestsYetMessage {
+  margin-top: 2rem;
+}

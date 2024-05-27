@@ -1,13 +1,17 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
 interface UserInfoState {
+    userId: number;
     userFirstName: string;
+    userLastName: string;
     userImageUrl: string;
     notificationCount: number;
 }
 
 const initialState: UserInfoState = {
+    userId: 0,
     userFirstName: '',
+    userLastName: '',
     userImageUrl: '',
     notificationCount: 0,
 };
@@ -22,6 +26,12 @@ const userInfoSlice = createSlice({
                 ...action.payload 
             };
         },
+        updateNotificationCount(state, action: PayloadAction<number>) {
+            return {
+                ...state,
+                notificationCount: action.payload
+            }  
+        },
         removeUserInfo() {
             return {
                 ...initialState
@@ -30,5 +40,5 @@ const userInfoSlice = createSlice({
     },
 });
 
-export const { setUserInfo, removeUserInfo } = userInfoSlice.actions;
+export const { setUserInfo, updateNotificationCount, removeUserInfo } = userInfoSlice.actions;
 export default userInfoSlice.reducer;

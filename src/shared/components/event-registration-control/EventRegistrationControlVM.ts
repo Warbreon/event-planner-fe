@@ -36,6 +36,7 @@ const EventRegistrationControlVM = ({ event }: Props) => {
         register,
         unregister,
         closeModal,
+        data
     } = useRegistration({
         event: event,
         isCreator: isCurrentUserCreator,
@@ -54,11 +55,19 @@ const EventRegistrationControlVM = ({ event }: Props) => {
         }
 
         if (event.price > 0) {
-            navigate(ROUTES.PAYMENT, { state: { price: event.price } });
+            register();
         } else {
             registrationStatus === REGISTRATION_STATUS.ACCEPTED ? onEventRegistrationCancelClick() : register();
         }
     }
+
+    useEffect(() => {
+        if (data && data.id) {
+            console.log(data.id)
+            const attendeeId = data.id;
+            navigate(ROUTES.PAYMENT, { state: { event, isCreator: isCurrentUserCreator, attendeeId } });
+        }
+    }, [data, navigate, event, isCurrentUserCreator]);
 
     const onEventRegistrationCancelClick = () => setConfirmationDialogOpen(true);
 

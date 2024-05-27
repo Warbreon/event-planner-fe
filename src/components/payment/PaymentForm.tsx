@@ -59,7 +59,32 @@ const PaymentForm: FC<PaymentFormProps> = ({ attendeeId, price }) => {
             {({ isSubmitting }) => (
                 <Form>
                     <div>
-                        <CardElement />
+                        <CardElement 
+                            options={{
+                                style: {
+                                    base: {
+                                        iconColor: '#c4f0ff',
+                                        color: '#000',
+                                        fontWeight: '500',
+                                        fontFamily: 'Roboto, Open Sans, Segoe UI, sans-serif',
+                                        fontSize: '16px',
+                                        fontSmoothing: 'antialiased',
+                                        '::placeholder': {
+                                            color: '#87bbfd',
+                                        },
+                                    },
+                                    invalid: {
+                                        iconColor: '#ffc7ee',
+                                        color: '#ffc7ee',
+                                    },
+                                },
+                            }}
+                            onReady={(element) => {
+                                element.update({ 
+                                    
+                                });
+                            }}
+                        />
                     </div>
                     <GenericButton
                         title={isSubmitting ? 'Processing...' : `Pay ${price} EUR`}

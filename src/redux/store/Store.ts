@@ -2,6 +2,7 @@ import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import authenticationSlice from '../slices/AuthenticationSlice';
 import createEventPageUserSlice from '../slices/CreateEventPageSlice';
 import filtersSlice from '../slices/FiltersSlice';
+import editEvenPageAttendeeSlice from '../slices/EditEventSlice'
 import storage from 'redux-persist/lib/storage';
 import { persistReducer, persistStore } from 'redux-persist';
 import { FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER } from 'redux-persist';
@@ -26,6 +27,7 @@ const rootReducer = combineReducers({
 	userInfo: persistReducer(userInfoPersistConfig, userInfoSlice),
 	createEventGuests: createEventPageUserSlice,
 	filters: filtersSlice,
+	editEventGuests: editEvenPageAttendeeSlice,
 	tags: tagsSlice,
 	users: userSlice,
 	venues: venueSlice,

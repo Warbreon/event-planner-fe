@@ -4,7 +4,7 @@ import { Avatar, Card, CardContent, Typography } from '@mui/material';
 import styles from './NotificationCard.module.css'
 import { NavLink } from 'react-router-dom';
 import NotificationCardVM from './NotificationCardVM';
-import GenericButton, { ButtonTypes } from '../buttons/ButtonComponent';
+import GenericButton, { ButtonTypes } from '../../shared/components/buttons/ButtonComponent';
 import { AVATAR_STYLES } from '../../themes/styles/Avatar';
 
 interface NotificationCardProps extends AttendeeNotification {

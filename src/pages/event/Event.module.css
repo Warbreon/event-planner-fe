@@ -8,7 +8,7 @@
 	margin-bottom: 3%;
 }
 
-.gridContainer .gridItem .details{
+.gridContainer .gridItem .details {
 	margin-left: 20%;
 	margin-top: 35%;
 }
@@ -20,10 +20,20 @@
 .details {
 	width: 100%;
 	position: sticky;
-  top: 10%;
-  right: 0;
+	top: 10%;
+	right: 0;
 }
 
-.eventContainer .divider{
+.eventContainer .divider {
 	margin-top: 1rem;
+}
+
+.boldedMessage {
+	font-weight: bold;
+	color: black;
+}
+
+.snackbar {
+	padding-left: 4rem;
+	padding-bottom: 3rem;
 }

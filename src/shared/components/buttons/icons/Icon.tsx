@@ -8,7 +8,8 @@ import KeyboardArrowRightRoundedIcon from '@mui/icons-material/KeyboardArrowRigh
 import HomeIcon from '@mui/icons-material/Home';
 import InsertInvitationIcon from '@mui/icons-material/InsertInvitation';
 import { IconButton } from '../ButtonComponent';
-import CloseIcon from '@mui/icons-material/Close';
+import { AccessTime } from '@mui/icons-material';
+import HighlightOffIcon from '@mui/icons-material/HighlightOff';
 
 interface IconProps {
 	icon: IconButton;
@@ -30,13 +31,16 @@ const Icon: FC<IconProps> = ({ icon }) => {
 		case IconButton.VIEW_ALL_GUESTS:
 		case IconButton.VIEW_ALL_EVENTS:
 			return <KeyboardArrowRightRoundedIcon />;
+        case IconButton.PENDING:
+            return <AccessTime />;
 		case IconButton.HOME:
 			return <HomeIcon />;
 		case IconButton.YOUR_EVENTS:
 			return <InsertInvitationIcon />;
 		case IconButton.CANCEL:
 		case IconButton.CANCELLED:
-			return <CloseIcon />;
+		case IconButton.REJECTED:
+			return <HighlightOffIcon />;
 		
 	}
 };

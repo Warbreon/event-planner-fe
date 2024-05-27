@@ -1,10 +1,5 @@
 import { Attendee } from '../models/Attendee';
 
-export enum UserRegistrationStatus {
-	ACCEPTED = 'ACCEPTED',
-	PENDING = 'PENDING',
-	REJECTED = 'REJECTED',
-}
 export const filterAttendees = (attendees?: Attendee[]): Attendee[] => {
 	if (!attendees) {
 		return [];
@@ -13,7 +8,8 @@ export const filterAttendees = (attendees?: Attendee[]): Attendee[] => {
 	return attendees.filter(
 		(attendee) =>
 			(attendee.registrationStatus === UserRegistrationStatus.ACCEPTED || attendee.registrationStatus === null) &&
-			(attendee.paymentStatus === 'PAID' || attendee.paymentStatus === null)
+		// no payment system...
+		// &&(attendee.paymentStatus === 'PAID' || attendee.paymentStatus === null)
 	);
 };
 

@@ -3,36 +3,39 @@ import styles from './EventCard.module.css';
 import { Box, Card, CardContent, Typography } from '@mui/material';
 import Image from '../image/Image';
 import GuestList from '../guest-list/GuestList';
-import GenericButton, { ButtonTypes, IconButton } from '../buttons/ButtonComponent';
-import { BUTTON_STYLES } from '../../themes/styles/Button';
 import DateLocationPrice from '../reusable-labels/DateLocationPrice';
 import EventCardVM from './EventCardVM';
 import { Link } from 'react-router-dom';
 import { Event } from '../../models/Event';
+import EventRegistrationControl from '../../shared/components/event-registration-control/EventRegistrationControl';
 
-export const EventCard: FC<Event> = ({
-	id,
-	name,
-	cardImageUrl,
-	imageUrl,
-	address,
-	price,
-	currency,
-	eventStart,
-	attendees,
-	inviteUrl,
-}) => {
+interface Props {
+	event: Event;
+}
+
+export const EventCard: FC<Props> = ({ event }) => {
+	const {
+		id,
+		name,
+		cardImageUrl,
+		imageUrl,
+		address,
+		price,
+		currency,
+		eventStart,
+		attendees,
+		inviteUrl,
+	} = event;
 	const {
 		getEventUrl,
-		onEventRegistrationClick,
 		eventDate = '',
 		location,
-	} = EventCardVM({ eventStart, address, inviteUrl });
+	} = EventCardVM({ id, eventStart, address, inviteUrl });
 
 	return (
 		<Box className={styles.container}>
 			<Card className={styles.card}>
-				<Link to={getEventUrl(id)} className={styles.linkToEvent}>
+				<Link to={getEventUrl()} className={styles.linkToEvent}>
 					<CardContent className={styles.content}>
 						<Image imageUrl={cardImageUrl ? cardImageUrl : imageUrl} />
 						<Box className={styles.dateLocationPrice}>
@@ -46,11 +49,10 @@ export const EventCard: FC<Event> = ({
 						</Box>
 					</CardContent>
 				</Link>
-				<GenericButton
-					type={ButtonTypes.button}
-					styles={BUTTON_STYLES.GRAY}
-					icon={IconButton.REGISTER}
-					onClick={onEventRegistrationClick}
+				<EventRegistrationControl
+					event={event}
+					modalEnabled
+					snackbarClassName={styles.snackbar}
 				/>
 			</Card>
 		</Box>

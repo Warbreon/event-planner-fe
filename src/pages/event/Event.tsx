@@ -7,26 +7,34 @@ import Image from '../../components/image/Image';
 import TabComponent from '../../components/tabs/tabs-component/TabComponent';
 import EventDetailsPanel from '../../components/event-details-panel/EventDetailsPanel';
 import EventPageGuests from '../../components/guest-list/event-page/EventPageGuests';
-import GenericButton, { ButtonTypes, IconButton } from '../../components/buttons/ButtonComponent';
-import { BUTTON_STYLES } from '../../themes/styles/Button';
 import EventPageVM from './EventPageVM';
 import LoadingIndicator from '../../components/loading-indicator/LoadingIndicator';
 import RelatedEvents from '../../components/related-events/RelatedEvents';
 import EventPageGuestsVM from "../../components/guest-list/event-page/EventPageGuestsVM";
+import SnackbarComponent, { ALERT_SEVERITY } from '../../components/snackbar/SnackbarComponent';
+import EventRegistrationControl from '../../shared/components/event-registration-control/EventRegistrationControl';
 
 const Event = () => {
 	const {
+		onAddGuestsClick,
+		isUserAdminOrCreator,
 		onEventRegistrationClick,
 		event,
-		isLoading,
+		isEventLoading,
 		location,
 		eventDate,
 		startTime,
 		endTime,
-		duration, 
+		duration,
+		error,
+		isSnackbarOpen,
 		eventName,
+		handleSnackbarClose,
 	} = EventPageVM();
 
+	if (isEventLoading) {
+		return <LoadingIndicator />;
+	}
 
 	const {
 		inviteUrl,
@@ -37,8 +45,8 @@ const Event = () => {
 		description = '',
 		agenda = [],
 		tags = [],
-		isCancelled
 	} = event || {};
+
 
 	const eventPageGuestsVM = EventPageGuestsVM();
 
@@ -56,7 +64,7 @@ const Event = () => {
 					<Box component='section' className={styles.desciption}>
 						<DateLocationPrice date={eventDate} location={location} />
 						<PageHeader text={eventName} variant={HeaderVariant.EVENT_PAGE} />
-						<Divider className={styles.divider} />
+						<Divider className={styles.divider}  />
 						<EventPageGuests
 							eventPageGuestsVM={eventPageGuestsVM}
 						/>
@@ -82,20 +90,26 @@ const Event = () => {
 							address={address}
 							inviteUrl={inviteUrl}
 						/>
-						{!isCancelled && (
-							<GenericButton
-								type={ButtonTypes.button}
-								styles={BUTTON_STYLES.GRAY}
-								icon={IconButton.REGISTER}
-								onClick={onEventRegistrationClick}
-							/>
-						)}
+						<EventRegistrationControl
+							event={event!}
+							modalEnabled
+							snackbarClassName={styles.snackbar}
+							showWaitingList
+						/>
 					</Box>
 				</Grid>
 			</Grid>
 			<Box component='section' className={styles.moreEventsLikeThis}>
 				<RelatedEvents event={event} />
 			</Box>
+			<SnackbarComponent
+				open={isSnackbarOpen}
+				message={error ?? ''}
+				autoHideDuration={5000}
+				handleClose={handleSnackbarClose}
+				severity={ALERT_SEVERITY.ERROR}
+				className={styles.snackbar}
+			/>
 		</Container>
 	);
 };

@@ -17,7 +17,7 @@ const useWebSocketService = () => {
     const token = useSelector((state: StoreState) => state.user.accessToken);
   
     useEffect(() => {
-        const socketFactory = () => new SockJS(ENDPOINTS.getLocalWebSocketConnection);
+        const socketFactory = () => new SockJS(ENDPOINTS.getProdWebSocketConnection);
         const stompClient = new Client({
             webSocketFactory: socketFactory,
             connectHeaders: { Authorization: `Bearer ${token}` },

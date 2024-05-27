@@ -6,13 +6,13 @@ import SearchBar from '../../../app-bar/search-bar/SearchBar';
 import { TEXTFIELD_STYLES } from '../../../../themes/styles/TextField';
 import List from '@mui/material/List';
 import GuestListItem from '../../../lists/guest-list/GuestListItem';
-import GenericButton, { ButtonTypes, IconButton } from '../../../buttons/ButtonComponent';
+import GenericButton, { ButtonTypes, IconButton } from '../../../../shared/components/buttons/ButtonComponent';
 import { BUTTON_STYLES } from '../../../../themes/styles/Button';
 import EventPageGuestListPanelVM from './EventPageGuestListPanelVM';
 import { LIST_ITEM_STYLES } from '../../../../themes/styles/ListItem';
 import Typography from '@mui/material/Typography';
 import { TYPOGRAPHY_STYLES } from '../../../../themes/styles/Typography';
-import styles from './EventPageGuestListPanel.module.css'
+import styles from './EventPageGuestListPanel.module.css';
 import { AVATAR_STYLES } from '../../../../themes/styles/Avatar';
 import {UserRegistrationStatus} from "../../../../utils/AttendeeFilter";
 import EventPageGuestsVM from "../../../guest-list/event-page/EventPageGuestsVM";
@@ -25,9 +25,21 @@ const EventPageGuestListPanel: FC<Props> = ({ eventPageGuestsVM }) => {
 	const {
 		onInputChange,
 		handleConfirmOnClick,
+		onPlusButtonClick,
+		onInputChange,
+		handleConfirmOnClick,
 		handleDeclineOnClick,
 		getButtonStyles,
+        filteredAttendees,
 	} = EventPageGuestListPanelVM(eventPageGuestsVM.attendeeList);
+
+	if (attendees.length === 0) {
+		return (
+			<div className={styles.noGuestsYetMessage}>
+				<Typography variant='body2'>No one has registered to this event yet...</Typography>
+			</div>
+		);
+	}
 
 	return (
 		<div className={styles.container}>

@@ -3,9 +3,11 @@ import { Event } from "../../../models/Event"
 import { formatDate, formatDifferenceInDays, isDateInThePast, isNowBetween } from "../../../utils/DateConverter";
 import useEventAPI from "../../../api/EventsAPI";
 import { useApiRequest } from "../../../api/hooks/ApiHooks";
+import { useNavigate } from "react-router-dom";
+import ROUTES from "../../../routes/Routes";
 
 const EventCardVM = (event: Partial<Event>) => {
-    const { name = '', eventStart = '', eventEnd = '', address, inviteUrl, isCancelled } = event;
+    const { id, name = '', eventStart = '', eventEnd = '', address, inviteUrl, isCancelled } = event;
 
     const { cancelEvent } = useEventAPI();
     const { request: patchData } = useApiRequest();
@@ -16,8 +18,10 @@ const EventCardVM = (event: Partial<Event>) => {
     const formattedEventStart = formatDate(eventStart.toString());
     const location = address ? address.city : inviteUrl ? 'Online' : 'TBD'; 
 
+    const navigate = useNavigate();
+
     const onEditClick = () => {
-        //TODO
+        navigate(ROUTES.EDIT_EVENT.replace(':eventId', `${id}`));
     }
 
     const onCancelClick = async (id: number) => {

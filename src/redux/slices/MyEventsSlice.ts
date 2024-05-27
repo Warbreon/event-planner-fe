@@ -49,7 +49,14 @@ export const fetchEventsCreatedByUser = createAsyncThunk<Event[], void, { state:
 const MyEventsSlice = createSlice({
 	name: 'myEvents',
 	initialState,
-	reducers: {},
+	reducers: {
+		unregisterFromUserEvent: (state, action: PayloadAction<number>) => {
+			state.userEventList = state.userEventList.filter(event => event.id !== action.payload);
+		},
+		registerToUserEvent: (state, action: PayloadAction<Event>) => {
+			state.userEventList.push(action.payload);
+		},
+	},
 	extraReducers: (builder) => {
 		builder
 			.addCase(fetchUserEvents.pending, (state) => {
@@ -81,4 +88,5 @@ const MyEventsSlice = createSlice({
 	},
 });
 
+export const { unregisterFromUserEvent, registerToUserEvent  } = MyEventsSlice.actions;
 export default MyEventsSlice.reducer;

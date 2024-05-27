@@ -8,6 +8,11 @@ import { Address } from '../../models/Address';
 import { FC } from 'react';
 import MapSection from '../map/MapSection';
 import styles from './AboutEvent.module.css';
+import {EditorContent, useEditor} from "@tiptap/react";
+import StarterKit from "@tiptap/starter-kit";
+import Underline from "@tiptap/extension-underline";
+import Links from "@tiptap/extension-link";
+import useAboutViewModel from './attending/AboutVM';
 
 interface EventDetailsProps {
 	description: string;
@@ -19,13 +24,21 @@ interface EventDetailsProps {
 }
 
 const AboutEvent: FC<EventDetailsProps> = ({ agenda, attendees, eventTags, description, address, handleChangeTab }) => {
+	const viewEditor = useEditor({
+		content: description,
+		editable: false,
+		extensions: [
+			StarterKit,
+			Underline,
+			Links,
+		],
+	})
+	const {acceptedAttendees} = useAboutViewModel(attendees || []);
 	return (
 		<Box id='allDetailsBox'>
 			<Box className={styles.sectionContainer}>
 				<SectionHeader name='Details' />
-				<Typography marginTop='25px' variant='body1'>
-					{description}
-				</Typography>
+				<EditorContent editor={viewEditor} className={styles.editor} />
 			</Box>
 			{eventTags && eventTags.length > 0 && (
 				<Box className={styles.sectionContainer}>
@@ -37,17 +50,17 @@ const AboutEvent: FC<EventDetailsProps> = ({ agenda, attendees, eventTags, descr
 					</Box>
 				</Box>
 			)}
-			{agenda && (
+			{agenda && agenda.length > 0 && (
 				<Box id='agendaBox' className={styles.sectionContainer}>
 					<Divider />
 					<Agenda agendaItems={agenda} />
 				</Box>
 			)}
 
-			{attendees && attendees?.length > 0 && (
+			{acceptedAttendees && acceptedAttendees?.length > 0 && (
 				<Box className={styles.sectionContainer}>
 					<Divider />
-					<Attending attendees={attendees} handleChangeTab={handleChangeTab}/>
+					<Attending attendees={acceptedAttendees} handleChangeTab={handleChangeTab}/>
 				</Box>
 			)}
 

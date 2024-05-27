@@ -5,6 +5,7 @@ import useAttendeeAPI from '../api/AttendeeAPI';
 import { useDispatch } from 'react-redux';
 import { registerToUserEvent, unregisterFromUserEvent } from '../redux/slices/MyEventsSlice';
 import { Event } from '../models/Event';
+import { PAYMENT_STATUS } from '../models/PaymentStatus';
 
 interface Props {
     event: Event;
@@ -15,6 +16,7 @@ const useRegistration = ({ event, isCreator }: Props) => {
     const dispatch = useDispatch();
     const [isModalOpen, setModalOpen] = useState(false);
     const [registrationStatus, setRegistrationStatus] = useState(event.currentUserRegistrationStatus);
+    const [paymentStatus, setPaymentStatus] = useState(event.currentUserPaymentStatus)
     const { request, isLoading, error } = useApiRequest();
     const { registerToEvent, unregisterFromEvent } = useAttendeeAPI();
     const [lastAction, setLastAction] = useState<'register' | 'unregister' | null>(null);
@@ -31,6 +33,7 @@ const useRegistration = ({ event, isCreator }: Props) => {
 
     useEffect(() => {
         setRegistrationStatus(event.currentUserRegistrationStatus);
+        setPaymentStatus(event.currentUserPaymentStatus);
         setModalOpen(false);
         setLastAction(null);
     }, [event]);
@@ -38,14 +41,17 @@ const useRegistration = ({ event, isCreator }: Props) => {
     useEffect(() => {
         if (!error && !isLoading) {
             if (lastAction === 'register') {
-                const newRegistrationStatus = isCreator || event.isOpen ? REGISTRATION_STATUS.ACCEPTED : REGISTRATION_STATUS.PENDING;
-                const updatedEvent = { ...event, currentUserRegistrationStatus: newRegistrationStatus };
+                const newRegistrationStatus = (isCreator || event.isOpen) && event.price === 0 ? REGISTRATION_STATUS.ACCEPTED : REGISTRATION_STATUS.PENDING;
+                const newPaymentStatus = isCreator || event.price === 0 ? PAYMENT_STATUS.PAID : PAYMENT_STATUS.PENDING;
+                const updatedEvent = { ...event, currentUserRegistrationStatus: newRegistrationStatus, currentUserPaymentStatus: newPaymentStatus };
 
                 setRegistrationStatus(newRegistrationStatus);
+                setPaymentStatus(newPaymentStatus);
                 dispatch(registerToUserEvent(updatedEvent));
                 setModalOpen(true);
             } else if (lastAction === 'unregister') {
                 setRegistrationStatus(REGISTRATION_STATUS.DEFAULT);
+                setPaymentStatus(PAYMENT_STATUS.DEFAULT);
                 dispatch(unregisterFromUserEvent(event.id));
             }
         }
@@ -60,6 +66,7 @@ const useRegistration = ({ event, isCreator }: Props) => {
         isLoading,
         error,
         registrationStatus,
+        paymentStatus,
         register,
         unregister,
         closeModal

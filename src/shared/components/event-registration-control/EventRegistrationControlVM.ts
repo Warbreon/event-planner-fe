@@ -5,12 +5,14 @@ import { StoreState } from "../../../redux/store/Store";
 import { useSelector } from "react-redux";
 import EventRestrictionsService from "../../../services/EventRestrictionsService";
 import { Event } from "../../../models/Event";
+import { useNavigate } from "react-router";
 
 interface Props {
     event: Event;
 }
 
 const EventRegistrationControlVM = ({ event }: Props) => {
+    const navigate = useNavigate();
     const currentUserId = useSelector((state: StoreState) => state.userInfo.userId);
     const isCurrentUserCreator = currentUserId === event.creatorId;
 
@@ -29,6 +31,7 @@ const EventRegistrationControlVM = ({ event }: Props) => {
         isLoading: isRegistrationLoading,
         error: registrationError,
         registrationStatus,
+        paymentStatus,
         register,
         unregister,
         closeModal,
@@ -49,6 +52,14 @@ const EventRegistrationControlVM = ({ event }: Props) => {
             return;
         }
 
+        if (event.price > 0) {
+            register();
+            // if () {
+                //navigate(ROUTES.PAYMENT.replace(':attendeeId', attendeeId.toString()), { state: { price: event.price } });
+            // } else {
+            //     console.error('Failed to register attendee and get ID.');
+            // }
+        }
         registrationStatus === REGISTRATION_STATUS.ACCEPTED ? onEventRegistrationCancelClick() : register();
     }
 
@@ -68,6 +79,7 @@ const EventRegistrationControlVM = ({ event }: Props) => {
         isModalOpen,
         closeModal,
         registrationStatus,
+        paymentStatus,
         isRegistrationLoading,
         isSnackbarOpen,
         handleSnackbarClose,

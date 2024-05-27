@@ -31,6 +31,7 @@ const EventRegistrationControl: React.FC<EventRegistrationControlProps> = ({
         registrationError,
         isRegistrationLoading,
         registrationStatus,
+        paymentStatus,
         isSnackbarOpen,
         handleSnackbarClose,
         onEventRegistrationCancelClick,
@@ -62,6 +63,8 @@ const EventRegistrationControl: React.FC<EventRegistrationControlProps> = ({
         return (
             <EventButton
                 currentUserRegistrationStatus={registrationStatus}
+                currentUserPaymentStatus={paymentStatus}
+                isPaidEvent={event.price > 0}
                 onClick={onEventRegistrationClick}
                 disabled={isRegistrationLoading}
             />

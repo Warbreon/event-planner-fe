@@ -7,7 +7,7 @@ import { ENDPOINTS } from '../endpoints/Endpoints';
 import { BASE_API_URL } from '../../constants/ApiConfig';
 
 const axiosInstance = axios.create({
-    baseURL: BASE_API_URL,
+    baseURL: 'http://localhost:8080/api',
     headers: {
         'Content-Type': 'application/json',
     },

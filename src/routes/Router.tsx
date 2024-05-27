@@ -19,6 +19,7 @@ import SystemAdminRoute from './SystemAdminRoute';
 import PublicRoutes from './PublicRoutes';
 import Notifications from '../pages/notifications/Notifications';
 import CreateEditEventProtectedRoute from './CreateEditEventProtectedRoute';
+import Payment from '../pages/payment/Payment';
 
 const router = createBrowserRouter([
 	{
@@ -87,6 +88,14 @@ const router = createBrowserRouter([
 					</ProtectedRoute>
 				),
 			},
+			{
+				path: ROUTES.PAYMENT,
+				element: (
+					<ProtectedRoute>
+						<Payment />
+					</ProtectedRoute>
+				),
+			}
 		],
 	},
 

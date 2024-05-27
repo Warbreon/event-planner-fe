@@ -10,8 +10,6 @@ import styles from './RelatedEvents.module.css';
 import { Divider } from "@mui/material";
 import ErrorAlert from "../error/ErrorAlert";
 
-const EVENTS_DISPLAY_COUNT = 4;
-
 interface Props {
     event: Event | null;
 }
@@ -32,8 +30,8 @@ const RelatedEvents: FC<Props> = ({ event }) => {
             {error ? <ErrorAlert message={error} /> 
             : (
                 <div className={styles.eventsContainer}>
-                    {relatedEvents?.length! > 0 ? (
-                        relatedEvents?.slice(0, EVENTS_DISPLAY_COUNT).map((event: Event) => (
+                    {relatedEvents?.size! > 0 ? (
+                        relatedEvents?.content.map((event: Event) => (
                             <EventCard key={event.id} event={event} />
                         ))
                     ) : (

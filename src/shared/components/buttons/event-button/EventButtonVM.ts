@@ -38,8 +38,8 @@ const eventButtonConfigs: Record<REGISTRATION_STATUS, ButtonConfig> = {
 
 const EventButtonVM = (registrationStatus: REGISTRATION_STATUS | null, isPaidEvent: boolean, paymentStatus: PAYMENT_STATUS | null): ButtonConfig => {
     if (isPaidEvent) {
-        if (registrationStatus === REGISTRATION_STATUS.DEFAULT || paymentStatus === PAYMENT_STATUS.REFUNDED) {
-            return { icon: IconButton.GET_TICKETS, styles: BUTTON_STYLES.BLUE };
+        if (registrationStatus === REGISTRATION_STATUS.DEFAULT || paymentStatus === PAYMENT_STATUS.REFUNDED || paymentStatus === PAYMENT_STATUS.DEFAULT || paymentStatus === PAYMENT_STATUS.FAILED) {
+            return { icon: IconButton.GET_TICKETS, styles: BUTTON_STYLES.GRAY };
         } else if (registrationStatus === REGISTRATION_STATUS.ACCEPTED) {
             return { icon: IconButton.GOING, styles: BUTTON_STYLES.BLUE };
         } else if (registrationStatus === REGISTRATION_STATUS.PENDING) {

@@ -6,6 +6,7 @@ import { useSelector } from "react-redux";
 import EventRestrictionsService from "../../../services/EventRestrictionsService";
 import { Event } from "../../../models/Event";
 import { useNavigate } from "react-router";
+import ROUTES from "../../../routes/Routes";
 
 interface Props {
     event: Event;
@@ -53,14 +54,10 @@ const EventRegistrationControlVM = ({ event }: Props) => {
         }
 
         if (event.price > 0) {
-            register();
-            // if () {
-                //navigate(ROUTES.PAYMENT.replace(':attendeeId', attendeeId.toString()), { state: { price: event.price } });
-            // } else {
-            //     console.error('Failed to register attendee and get ID.');
-            // }
+            navigate(ROUTES.PAYMENT, { state: { price: event.price } });
+        } else {
+            registrationStatus === REGISTRATION_STATUS.ACCEPTED ? onEventRegistrationCancelClick() : register();
         }
-        registrationStatus === REGISTRATION_STATUS.ACCEPTED ? onEventRegistrationCancelClick() : register();
     }
 
     const onEventRegistrationCancelClick = () => setConfirmationDialogOpen(true);

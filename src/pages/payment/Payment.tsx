@@ -5,11 +5,16 @@ import { Elements } from '@stripe/react-stripe-js';
 import PaymentForm from '../../components/payment/PaymentForm';
 import { PUBLISHABLE_STRIPE_KEY, TEST_PUBLISHABLE_STRIPE_KEY } from '../../constants/PaymentKeys';
 import { Container } from '@mui/material';
+import { Event } from '../../models/Event';
+
+interface Props {
+    event: Event;
+}
 
 const stripePromise = loadStripe(TEST_PUBLISHABLE_STRIPE_KEY);
 
-const PaymentPage: FC = () => {
-    const { attendeeId = '' } = useParams<{ attendeeId: string }>();
+const PaymentPage: FC<Props> = ({ event }) => {
+    
     const location = useLocation();
 
     return (

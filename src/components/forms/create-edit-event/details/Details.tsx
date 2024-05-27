@@ -1,45 +1,35 @@
-import FormikTextField from "../../../../shared/forms/elements/formik-elements/text-field/FormikTextField";
-import FormikDropdown from "../../../../shared/forms/elements/formik-elements/dropdown/FormikDropdown";
-import PageHeader from "../../../headers/page-headers/PageHeader";
-import styles from "./Details.module.css";
-
-const eventTagsOptions = [
-  { key: "news", label: "News & Updates" },
-  { key: "meetup", label: "Meetup" },
-  { key: "demo", label: "Demo sessions" },
-  { key: "exhibition", label: "Exhibition" },
-  { key: "party", label: "Party" },
-];
+import FormikTextField from '../../../../shared/forms/elements/formik-elements/text-field/FormikTextField';
+import FormikDropdown from '../../../../shared/forms/elements/formik-elements/dropdown/FormikDropdown';
+import PageHeader from '../../../headers/page-headers/PageHeader';
+import styles from './Details.module.css';
+import DetailsVM from './DetailsVM';
 
 const Details = () => {
-  return (
-    <div className={styles.container}>
-      <PageHeader
-        text="Details"
-        className="event-form-section"
-      />
-        <div className={styles.textField}>
-        <FormikTextField
-          name="eventName"
-          type="text"
-          title="Event Name"
-          placeholder="Enter short descriptive event title"
-          titleClassName="gray-font-input"
-        />
-        </div>
-        <div className={styles.dropdown}>
-        <FormikDropdown
-          name="eventTag"
-          label="Event Type"
-          multiple={true}
-          options={eventTagsOptions.map((option) => ({
-            value: option.key,
-            label: option.label,
-          }))}
-        />
-        </div>
-    </div>
-  );
+	const { eventTagsOptions } = DetailsVM();
+
+	return (
+		<div className={styles.container}>
+			<PageHeader text='Details' className='event-form-section' />
+			<div className={styles.textField}>
+				<FormikTextField
+					name='eventName'
+					type='text'
+					title='Event Name'
+					placeholder='Enter short descriptive event title'
+					titleClassName='gray-font-input'
+					inputProps={{ maxLength: 255 }}
+				/>
+			</div>
+			<div className={styles.dropdown}>
+				<FormikDropdown
+					name='eventTagIds'
+					label='Event Type'
+					multiple={true}
+					options={eventTagsOptions}
+				/>
+			</div>
+		</div>
+	);
 };
 
 export default Details;

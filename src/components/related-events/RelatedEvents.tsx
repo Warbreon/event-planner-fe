@@ -1,6 +1,6 @@
 
 import { FC } from "react";
-import { IconButton } from "../buttons/ButtonComponent"
+import { IconButton } from "../../shared/components/buttons/ButtonComponent"
 import { EventCard } from "../event-card/EventCard"
 import SectionHeader from "../../shared/components/section-header/SectionHeader"
 import { Event } from "../../models/Event";
@@ -30,7 +30,7 @@ const RelatedEvents: FC<Props> = ({ event }) => {
             <div className={styles.eventsContainer}>
                 {relatedEvents?.size! > 0 ? (
                     relatedEvents?.content.map((event: Event) => (
-                        <EventCard key={event.id} {...event} />
+                        <EventCard key={event.id} event={event} />
                     ))
                 ) : (
                     <p>No related events to display.</p>

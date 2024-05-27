@@ -4,21 +4,28 @@ import { useDispatch } from 'react-redux';
 import { add, removeById } from '../../../redux/slices/CreateEventPageSlice';
 import { useSelector } from 'react-redux';
 import { StoreState } from '../../../redux/store/Store';
+import { useDebouncedCallback } from 'use-debounce';
 
 const useSelectGuestsViewModel = (users: User[]) => {
 	const [userList, setUserList] = useState<User[]>(users);
 	const dispatch = useDispatch();
 	const selectedUsers = useSelector((state: StoreState) => state.createEventGuests);
 
-	const onInputChange = (event: ChangeEvent<HTMLInputElement>) => {
-		const value = event.target.value;
+	const searchUsers = (value: string) => {
+		const searchParts = value.toLowerCase().split(' ').filter(part => part.trim() !== '');
 		setUserList(
-			users.filter((user) => {
-				const fullName = `${user.firstName.toLowerCase()} ${user.lastName.toLowerCase()}`;
-				const searchParts = value.split(' ').filter((part) => part.trim() !== '');
-				return searchParts.every((part) => fullName.includes(part));
+			users.filter(user => {
+				const fullName = `${user.firstName} ${user.lastName}`.toLowerCase();
+				return searchParts.every(part => fullName.includes(part));
 			})
 		);
+	};
+
+	const debouncedSearchUsers = useDebouncedCallback(searchUsers, 500);
+
+	const onInputChange = (event: ChangeEvent<HTMLInputElement>) => {
+		const value = event.target.value;
+		debouncedSearchUsers(value);
 	};
 
 	const handleCheckboxChange = (user: User) => {

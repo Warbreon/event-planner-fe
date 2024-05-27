@@ -1,15 +1,25 @@
 import { Notification } from '../models/Notification';
-import useAxios from './axios/Axios';
+import axiosInstance from './axios/AxiosInstance';
 import { ENDPOINTS } from './endpoints/Endpoints';
 
 const useAttendeeAPI = () => {
-    const axios = useAxios();
-    const fetchNotifications = () => axios.get<Notification>(ENDPOINTS.getAttendeeNotifications);
-    const markNotificationAsViewed = (attendeeId: number) => axios.patch(ENDPOINTS.markNotificationAsViewed(attendeeId));
-    const confirmPendingRegistration = (attendeeId: number) => axios.patch(ENDPOINTS.confirmPendingRegistration(attendeeId));
-    const declinePendingRegistration = (attendeeId: number) => axios.patch(ENDPOINTS.declinePendingRegistration(attendeeId));
+  const fetchNotifications = () => axiosInstance.get<Notification>(ENDPOINTS.getAttendeeNotifications);
+  const markNotificationAsViewed = (attendeeId: number) => axiosInstance.patch(ENDPOINTS.markNotificationAsViewed(attendeeId));
+  const confirmPendingRegistration = (attendeeId: number) => axiosInstance.patch(ENDPOINTS.confirmPendingRegistration(attendeeId));
+  const declinePendingRegistration = (attendeeId: number) => axiosInstance.patch(ENDPOINTS.declinePendingRegistration(attendeeId));
+  const registerToEvent = (eventId: number | string) =>
+    axiosInstance.post(ENDPOINTS.registerToEvent, { eventId });
+  const unregisterFromEvent = (eventId: number | string) =>
+    axiosInstance.delete(ENDPOINTS.unregisterFromEvent(eventId));
 
-    return { fetchNotifications, markNotificationAsViewed, confirmPendingRegistration, declinePendingRegistration };
+  return {
+    fetchNotifications,
+    markNotificationAsViewed,
+    confirmPendingRegistration,
+    declinePendingRegistration,
+    registerToEvent,
+    unregisterFromEvent,
+  };
 }
 
 export default useAttendeeAPI;

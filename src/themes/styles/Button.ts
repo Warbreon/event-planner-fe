@@ -14,4 +14,5 @@ export enum BUTTON_STYLES {
 	TEXT_ONLY_DECLINE_NOTIFICATION_DECLINED = 'text-only decline-notification declined',
 	UPLOAD_BUTTON = 'upload-button',
 	MODAL_BUTTON = 'modal-button',
+	BLACK_BACKGROUND = 'black-background',
 }

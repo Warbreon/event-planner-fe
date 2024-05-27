@@ -4,8 +4,11 @@ export const ENDPOINTS = {
 	getEventsUserAttending: '/events/user-registered',
 	getEventsCreatedByUser: '/events/created-by-user',
 	createNewEvent: '/events/create/new',
+	editEvent: (id: number) => `/events/edit/${id}`,
+	cancelEvent: (id: number) => `/events/cancel/${id}`,
 
 	registerToEvent: '/attendee/register',
+	unregisterFromEvent: (eventId: number | string) => `/attendee/unregister/${eventId}`,
 	getUsers: '/users',
 	demoteAdmins: (ids: number[]) => `/users/demoteAdmins/${ids}`,
 	promoteAdmins: (ids: number[]) => `/users/promoteAdmins/${ids}`,
@@ -21,4 +24,13 @@ export const ENDPOINTS = {
 	refreshAccessToken: '/auth/refresh',
 
 	getAllCities: '/addresses/cities',
+	getAllVenues: '/addresses',
+
+	getProdWebSocketConnection: 'https://raisav-api.devbstaging.com/ws',
+	getWebSocketNotificationsSubscription: '/user/queue/notifications',
+
+	confirmEventCreator: (eventId: number, userId: number) =>`/events/event/creator?eventId=${eventId}&userId=${userId}`,
+	
+	resetPassword: '/auth/reset-password',
+	changePassword: '/auth/change-password',
 };

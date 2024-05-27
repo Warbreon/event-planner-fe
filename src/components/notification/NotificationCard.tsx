@@ -4,7 +4,7 @@ import { Avatar, Card, CardContent, Typography } from '@mui/material';
 import styles from './NotificationCard.module.css'
 import { NavLink } from 'react-router-dom';
 import NotificationCardVM from './NotificationCardVM';
-import GenericButton, { ButtonTypes } from '../buttons/ButtonComponent';
+import GenericButton, { ButtonTypes } from '../../shared/components/buttons/ButtonComponent';
 import { AVATAR_STYLES } from '../../themes/styles/Avatar';
 
 interface NotificationCardProps extends AttendeeNotification {
@@ -19,8 +19,7 @@ const NotificationCard: FC<NotificationCardProps> = ({ id, registrationTime, isN
         viewed,
         getEventUrl, 
         getNotificationStyles, 
-        getConfirmButtonStyles,
-        getDeclinedButtonStyles,
+        getButtonStyles,
         markAsViewed,
         handleDeclineOnClick,
         handleConfirmOnClick
@@ -50,13 +49,13 @@ const NotificationCard: FC<NotificationCardProps> = ({ id, registrationTime, isN
                         <div className={styles.buttons}>
                             <GenericButton
                                 title='Decline'
-                                styles={getDeclinedButtonStyles()}
+                                styles={getButtonStyles(id, 'decline')}
                                 type={ButtonTypes.button}
                                 onClick={() => handleDeclineOnClick(id)}
                             />
                             <GenericButton
                                 title='Confirm'
-                                styles={getConfirmButtonStyles()}
+                                styles={getButtonStyles(id, 'confirm')}
                                 type={ButtonTypes.button}
                                 onClick={() => handleConfirmOnClick(id)}
                             />

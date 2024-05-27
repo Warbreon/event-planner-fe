@@ -29,3 +29,8 @@
   text-decoration: none;
   color: inherit;
 }
+
+.snackbar {
+  padding-left: 4rem;
+  padding-bottom: 3rem;
+}

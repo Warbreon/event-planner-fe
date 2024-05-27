@@ -1,96 +1,92 @@
 import { CameraAlt } from '@mui/icons-material';
 import { Button, IconButton } from '@mui/material';
-import { useField, useFormikContext } from 'formik'
-import React, { useEffect, useState } from 'react'
+import { useField, useFormikContext } from 'formik';
+import React, { useEffect, useState } from 'react';
 import { Accept, useDropzone } from 'react-dropzone';
 import styles from './FormikDropzone.module.css';
 import classNames from 'classnames';
 
 interface Props {
-    name: string;
-    accept?: Accept;
-    buttonText?: string;
-    buttonIcon?: JSX.Element;
-    onFileAccepted?: (file: File) => void;
-    containerStyles?: string;
-    buttonStyles?: string;
-    mainCameraIconStyles?: string;
+	name: string;
+	accept?: Accept;
+	buttonText?: string;
+	buttonIcon?: JSX.Element;
+	onFileAccepted?: (file: File) => void;
+	containerStyles?: string;
+	buttonStyles?: string;
+	mainCameraIconStyles?: string;
+	initialImageUrl?: string;
 }
 
 const defaultAccept: Accept = {
-    'image/jpeg': ['.jpeg', '.png']
+	'image/jpeg': ['.jpeg', '.png'],
 };
 const FormikDropzone: React.FC<Props> = ({
-    name,
-    accept = defaultAccept,
-    buttonText,
-    buttonIcon = <CameraAlt />,
-    onFileAccepted,
-    containerStyles,
-    buttonStyles,
-    mainCameraIconStyles,
+	name,
+	accept = defaultAccept,
+	buttonText,
+	buttonIcon = <CameraAlt />,
+	onFileAccepted,
+	containerStyles,
+	buttonStyles,
+	mainCameraIconStyles,
+	initialImageUrl,
 }) => {
-    const { setFieldValue } = useFormikContext();
-    const [field, meta] = useField(name);
-    const [preview, setPreview] = useState<string | null>(null);
+	const { setFieldValue } = useFormikContext();
+	const [field, meta] = useField(name);
+	const [preview, setPreview] = useState<string | null>(initialImageUrl || null);
 
-    useEffect(() => {
-        if (preview) {
-            return () => URL.revokeObjectURL(preview);
-        }
-    }, [preview]);
+	useEffect(() => {
+		if (preview && preview !== initialImageUrl) {
+			return () => URL.revokeObjectURL(preview);
+		}
+	}, [preview, initialImageUrl]);
 
-    const { getRootProps, getInputProps } = useDropzone({
-        accept,
-        onDrop: (acceptedFiles) => {
-            const file = acceptedFiles[0];
-            const previewUrl = URL.createObjectURL(file);
+	const { getRootProps, getInputProps } = useDropzone({
+		accept,
+		onDrop: (acceptedFiles) => {
+			const file = acceptedFiles[0];
+			const previewUrl = URL.createObjectURL(file);
 
-            setFieldValue(name, file);
-            setPreview(previewUrl);
+			setFieldValue(name, file);
+			setPreview(previewUrl);
 
-            if (onFileAccepted) {
-                onFileAccepted(file);
-            }
-        },
-    });
+			if (onFileAccepted) {
+				onFileAccepted(file);
+			}
+		},
+	});
 
-    const combinedContainerStyles = classNames(
-        styles.dropzoneContainer,
-        { [styles.errorBorder]: meta.touched && meta.error },
-        containerStyles
-    );
+	const combinedContainerStyles = classNames(
+		styles.dropzoneContainer,
+		{ [styles.errorBorder]: meta.touched && meta.error },
+		containerStyles
+	);
 
-    return (
-        <div {...getRootProps()} className={combinedContainerStyles}>
-            <input {...getInputProps()} />
-            {(!field.value && (
-                <IconButton className={styles.centerIconButton} disabled>
-                    <CameraAlt className={`${styles.centerIcon} ${mainCameraIconStyles ?? ''}`} />
-                </IconButton>
-            ))}
+	return (
+		<div {...getRootProps()} className={combinedContainerStyles}>
+			<input {...getInputProps()} />
+			{!field.value && !preview && (
+				<IconButton className={styles.centerIconButton} disabled>
+					<CameraAlt className={`${styles.centerIcon} ${mainCameraIconStyles ?? ''}`} />
+				</IconButton>
+			)}
 
-            {!field.value && buttonText && (
-                <Button startIcon={buttonIcon} className={buttonStyles}>
-                    {buttonText}
-                </Button>
-            )}
+			{!field.value && buttonText && (
+				<Button startIcon={buttonIcon} className={buttonStyles}>
+					{buttonText}
+				</Button>
+			)}
 
-            {!field.value && !buttonText && (
-                <IconButton className={buttonStyles}>
-                    {buttonIcon}
-                </IconButton>
-            )}
+			{!field.value && !buttonText && preview && <img src={preview} alt='Preview' className={styles.imagePreview} />}
 
-            {meta.touched && meta.error && (
-                <p className={styles.errorMessage}>{meta.error}</p>
-            )}
-            {field.value && preview && (
-                <img src={preview} alt="Preview" className={styles.imagePreview} />
-            )}
-        </div>
+			{!field.value && !buttonText && !preview && <IconButton className={buttonStyles}>{buttonIcon}</IconButton>}
 
-    );
+			{meta.touched && meta.error && <p className={styles.errorMessage}>{meta.error}</p>}
+
+			{field.value && preview && <img src={preview} alt='Preview' className={styles.imagePreview} />}
+		</div>
+	);
 };
 
 export default FormikDropzone;

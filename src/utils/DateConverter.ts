@@ -46,6 +46,22 @@ export const combineDateTime = (date: Moment | null, time: Moment | null) => {
 	return `${formattedDate}T${formattedTime}`;
 };
 
+export const splitDateTime = (datetime: string | null) => {
+	if (!datetime) {
+        return { date: null, time: null };
+    }
+
+    const [datePart, timePart] = datetime.split('T');
+
+    const date = moment(datePart, 'YYYY-MM-DD');
+    const time = moment(`2000-01-01T${timePart}`);
+
+    return {
+        date,
+        time
+    };
+};
+
 export const toDisplayTimeFormat = (time: Moment): string => {
 	return time.format('h:mm a');
 };
@@ -58,36 +74,40 @@ export const isDateInThePast = (dateString: string) => {
 	return moment(dateString).isBefore(moment());
 };
 
+export const isDateInTheFuture = (dateString: string) => {
+	return moment(dateString).isAfter(moment());
+};
+
 export const formatDifferenceInDays = (dateString: string) => {
 	const currentDate = moment();
-    const inputDate = moment(dateString);
+	const inputDate = moment(dateString);
 
-    const differenceInDays = currentDate.diff(inputDate, 'days');
-    const differenceInHours = currentDate.diff(inputDate, 'hours');
-    const differenceInMinutes = currentDate.diff(inputDate, 'minutes');
+	const differenceInDays = currentDate.diff(inputDate, 'days');
+	const differenceInHours = currentDate.diff(inputDate, 'hours');
+	const differenceInMinutes = currentDate.diff(inputDate, 'minutes');
 
-    if (differenceInDays === 0) {
-        if (differenceInHours < 1) {
-            if (differenceInMinutes < 1) {
-                return `< 1 minute ago`;
-            }
-            if (differenceInMinutes === 1) {
-                return `1 minute ago`;
-            }
-            return `${differenceInMinutes} minutes ago`;
-        }
+	if (differenceInDays === 0) {
+		if (differenceInHours < 1) {
+			if (differenceInMinutes < 1) {
+				return `< 1 minute ago`;
+			}
+			if (differenceInMinutes === 1) {
+				return `1 minute ago`;
+			}
+			return `${differenceInMinutes} minutes ago`;
+		}
 
-        if (differenceInHours === 1) {
-            return `1 hour ago`;
-        }
-        return `${differenceInHours} hours ago`;
-    }
+		if (differenceInHours === 1) {
+			return `1 hour ago`;
+		}
+		return `${differenceInHours} hours ago`;
+	}
 
-    if (differenceInDays === 1) {
-        return `1 day ago`;
-    }
+	if (differenceInDays === 1) {
+		return `1 day ago`;
+	}
 
-    return `${differenceInDays} days ago`;
+	return `${differenceInDays} days ago`;
 };
 
 export const isNowBetween = (startDateString: string, endDateString: string) => {

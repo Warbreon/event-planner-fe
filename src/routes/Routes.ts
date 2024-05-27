@@ -2,7 +2,7 @@ enum ROUTES {
 	INDEX = '/',
 	SIGN_IN = '/signin',
 	FORGOT_PASSWORD = '/signin/forgotpassword',
-	RESET_PASSWORD = '/resetpassword/:uuid',
+	RESET_PASSWORD = '/resetpassword/:token',
 	EVENT = '/events/event/:eventId',
 	MY_EVENTS = '/events/my',
 	ADD_EVENT = '/events/event/new',
@@ -11,7 +11,7 @@ enum ROUTES {
 	PRIVACY_POLICY = '/privacy',
 	TERMS_OF_SERVICE = '/terms',
 	SUPPORT = '/support',
-	NOT_FOUND = '*',
+	NOT_FOUND = '/not-found',
 	NOTIFICATIONS = '/notifications',
 }
 

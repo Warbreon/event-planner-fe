@@ -1,13 +1,11 @@
-import { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
-import { StoreState } from '../../redux/store/Store';
 import classNames from 'classnames';
-import { TAGS } from '../../themes/styles/Tag';
-import useEventAPI from '../../api/EventsAPI';
-import { useApiRequest } from '../../api/hooks/ApiHooks';
-import { useNavigate } from 'react-router-dom';
 import ROUTES from '../../routes/Routes';
-import { Event } from '../../models/Event';
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { AppDispatch, StoreState } from '../../redux/store/Store';
+import { TAGS } from '../../themes/styles/Tag';
+import { useNavigate } from 'react-router-dom';
+import { fetchEventsCreatedByUser, fetchUserEvents } from '../../redux/slices/MyEventsSlice';
 
 const enum SUBHEADER {
 	ADMIN = 'View all events you’re attending and manage events created by you',
@@ -16,14 +14,6 @@ const enum SUBHEADER {
 
 const useMyEventsVM = () => {
 	const currentUserRole = useSelector((state: StoreState) => state.user.role);
-
-	const [currentTab, setCurrentTab] = useState<number>(0);
-
-	const [eventsAttending, setEventsAttending] = useState<Event[]>([]);
-	const [eventsCreated, setEventsCreated] = useState<Event[]>([]);
-
-	const navigate = useNavigate();
-
 	let subheader: string = '';
 	let isAdmin: boolean = false;
 
@@ -38,9 +28,29 @@ const useMyEventsVM = () => {
 			isAdmin = false;
 	}
 
+	const dispatch: AppDispatch = useDispatch();
+
+	useEffect(() => {
+		dispatch(fetchUserEvents());
+		if (isAdmin) {
+			dispatch(fetchEventsCreatedByUser());
+		}
+	}, [dispatch, isAdmin]);
+
+	const {
+		userEventList,
+		createdByUserList,
+		isLoadingUserEvents,
+		isLoadingCreatedByUser,
+		error,
+	} = useSelector((state: any) => state.myEvents);
+
+	const [currentTab, setCurrentTab] = useState<number>(0);
+	const navigate = useNavigate();
+
 	const chipOptions = [
-		{ id: 0, name: `I’m attending (${eventsAttending.length})` },
-		{ id: 1, name: `Created by me (${eventsCreated.length})` },
+		{ id: 0, name: `I’m attending (${userEventList.length})` },
+		{ id: 1, name: `Created by me (${createdByUserList.length})` },
 	];
 
 	const getChipClassName = (isSelected: boolean) => {
@@ -55,34 +65,15 @@ const useMyEventsVM = () => {
 		navigate(ROUTES.ADD_EVENT);
 	};
 
-	const { fetchEventsUserAttending, fetchEventsCreatedByUser } = useEventAPI();
-	const { request: fetchData, isLoading, error } = useApiRequest();
-
-	const fetchEvents = async () => {
-		const response = await fetchData(() => fetchEventsUserAttending());
-		const { data } = response;
-		setEventsAttending(data);
-
-		if (isAdmin) {
-			const response = await fetchData(() => fetchEventsCreatedByUser());
-			if (response) {
-				setEventsCreated(response.data);
-			}
-		}
-	};
-
-	useEffect(() => {
-		fetchEvents();
-	}, []);
-
 	return {
 		subheader,
 		isAdmin,
 		currentTab,
-		eventsAttending,
-		eventsCreated,
 		chipOptions,
-		isLoading,
+		userEventList,
+		createdByUserList,
+		isLoadingUserEvents,
+		isLoadingCreatedByUser,
 		error,
 		handleTabChange,
 		getChipClassName,

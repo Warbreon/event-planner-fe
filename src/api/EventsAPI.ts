@@ -1,7 +1,7 @@
 import { Event } from '../models/Event';
 import { ENDPOINTS } from './endpoints/Endpoints';
-import useAxios from './axios/Axios';
 import { PaginatedResponse } from '../models/response/PaginatedResponse';
+import axiosInstance from './axios/AxiosInstance';
 
 interface FetchPaginatedEventsOptions {
     tagIds?: number[];
@@ -14,12 +14,11 @@ interface FetchPaginatedEventsOptions {
 }
 
 const useEventAPI = () => {
-	const axios = useAxios();
 	const fetchEvents = (tagIds?: number[], days?: number, city?: string, name?: string, excludeEventId?: number) => {
 		const params: any = {
 			tagIds: tagIds?.length ?? 0 ? tagIds?.join(",") : undefined, days, city, name, excludeEventId
 		};
-		return axios.get<Event[]>(ENDPOINTS.getEvents, { params });
+		return axiosInstance.get<Event[]>(ENDPOINTS.getEvents, { params });
 	}
 	const fetchPaginatedEvents = ({
 		tagIds,
@@ -33,22 +32,28 @@ const useEventAPI = () => {
 		const params: any = {
 			tagIds: tagIds?.length ?? 0 ? tagIds?.join(",") : undefined, days, city, name, excludeEventId, page, size
 		};
-		return axios.get<PaginatedResponse<Event>>(ENDPOINTS.getEvents, { params });
+		return axiosInstance.get<PaginatedResponse<Event>>(ENDPOINTS.getEvents, { params });
 	}
-	const fetchEventById = (id: number) => axios.get<Event>(ENDPOINTS.getEventById(id));
-	const registerToEvent = (userId: number, eventId: number) =>
-		axios.post(ENDPOINTS.registerToEvent, { userId, eventId });
+	const fetchEventById = (id: number) => axiosInstance.get<Event>(ENDPOINTS.getEventById(id));
 
-	const fetchEventsCreatedByUser = () => axios.get<Event[]>(ENDPOINTS.getEventsCreatedByUser);
-	const fetchEventsUserAttending = () => axios.get<Event[]>(ENDPOINTS.getEventsUserAttending);
+	const fetchEventsCreatedByUser = () => axiosInstance.get<Event[]>(ENDPOINTS.getEventsCreatedByUser);
+	const fetchEventsUserAttending = () => axiosInstance.get<Event[]>(ENDPOINTS.getEventsUserAttending);
+	const createEvent = (eventData: any) => axiosInstance.post(ENDPOINTS.createNewEvent, eventData);
+	const editEvent = (eventId: number, eventData: any) => axiosInstance.put(ENDPOINTS.editEvent(eventId), eventData);
+
+	const confirmEventCreatorToEdit = (eventId: number, userId: number) => axiosInstance.get<boolean>(ENDPOINTS.confirmEventCreator(eventId, userId));
+	const cancelEvent = (id: number) => axiosInstance.patch<Event>(ENDPOINTS.cancelEvent(id));
 
 	return {
 		fetchEvents,
 		fetchEventById,
-		registerToEvent,
 		fetchEventsCreatedByUser,
 		fetchEventsUserAttending,
-		fetchPaginatedEvents
+		fetchPaginatedEvents,
+		createEvent,
+		editEvent,
+		confirmEventCreatorToEdit,
+	 	cancelEvent
 	};
 };
 export default useEventAPI;

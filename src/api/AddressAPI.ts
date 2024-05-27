@@ -1,10 +1,9 @@
 import { useCallback } from "react";
-import useAxios from "./axios/Axios"
 import { ENDPOINTS } from "./endpoints/Endpoints";
+import axiosInstance from "./axios/AxiosInstance";
 
 const useAddressAPI = () => {
-    const axios = useAxios();
-    const fetchAllCities = useCallback(() => axios.get<string[]>(ENDPOINTS.getAllCities), []);
+    const fetchAllCities = useCallback(() => axiosInstance.get<string[]>(ENDPOINTS.getAllCities), []);
 
     return fetchAllCities;
 }

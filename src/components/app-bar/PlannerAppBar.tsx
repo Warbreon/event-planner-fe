@@ -19,11 +19,12 @@ import ROUTES from '../../routes/Routes';
 import { AccountCircle } from '@mui/icons-material';
 import ErrorAlert from '../error/ErrorAlert';
 
-const profileSettings = ['Profile', 'Logout'];
+const profileSettings = ['Sign out'];
 
 const PlannerAppBar = () => {
 	const {
 		userFirstName,
+		userFullName,
 		userImageUrl,
 		notificationCount,
 		error,
@@ -86,6 +87,9 @@ const PlannerAppBar = () => {
 									onClose={handleCloseUserMenu}
 									className={styles.profileMenu}
 								>
+									<MenuItem disabled className={styles.menuItem}>
+										<Typography className={styles.menuTypography}>{userFullName}</Typography>
+									</MenuItem>
 									{profileSettings.map((setting) => (
 										<MenuItem
 											key={setting}

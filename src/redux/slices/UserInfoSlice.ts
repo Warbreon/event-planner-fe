@@ -3,6 +3,7 @@ import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 interface UserInfoState {
     userId: number;
     userFirstName: string;
+    userLastName: string;
     userImageUrl: string;
     notificationCount: number;
 }
@@ -10,6 +11,7 @@ interface UserInfoState {
 const initialState: UserInfoState = {
     userId: 0,
     userFirstName: '',
+    userLastName: '',
     userImageUrl: '',
     notificationCount: 0,
 };

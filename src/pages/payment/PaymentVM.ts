@@ -1,23 +1,14 @@
-import { useEffect, useState } from "react";
-import useRegistration from "../../hooks/UseRegistration";
-import { Event } from "../../models/Event"
-import { PAYMENT_STATUS } from "../../models/PaymentStatus";
+import { useCallback, useState } from "react"
+import useEventAPI from "../../api/EventsAPI"
+import { useFetch } from "../../api/hooks/ApiHooks";
 
-interface Props {
-    event: Event;
-    isCreator: boolean;
-}
+const PaymentVM = (eventId: string) => {
 
-const PaymentVM = ({ event, isCreator }: Props) => {
-    const { register, isLoading, error } = useRegistration({ event, isCreator })
+    const { fetchEventById } = useEventAPI();
+    const fetchFunction = useCallback(() => fetchEventById(Number(eventId)), [eventId]);
+	const { data, isLoading, error } = useFetch(fetchFunction);
 
-    useEffect(() => {
-        if (event.price > 0) {
-            register();
-        }
-    }, []);
-
-    const price = event.price;
+    const price = data?.price;
 
     return {
         price,
@@ -26,4 +17,4 @@ const PaymentVM = ({ event, isCreator }: Props) => {
     }
 }
 
-export default PaymentVM
+export default PaymentVM;

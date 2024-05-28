@@ -7,6 +7,7 @@ import EventRestrictionsService from "../../../services/EventRestrictionsService
 import { Event } from "../../../models/Event";
 import { useNavigate } from "react-router";
 import ROUTES from "../../../routes/Routes";
+import { PAYMENT_STATUS } from "../../../models/PaymentStatus";
 
 interface Props {
     event: Event;
@@ -35,8 +36,7 @@ const EventRegistrationControlVM = ({ event }: Props) => {
         paymentStatus,
         register,
         unregister,
-        closeModal,
-        data
+        closeModal
     } = useRegistration({
         event: event,
         isCreator: isCurrentUserCreator,
@@ -54,20 +54,14 @@ const EventRegistrationControlVM = ({ event }: Props) => {
             return;
         }
 
-        if (event.price > 0) {
-            register();
+        if (event.price > 0 && paymentStatus !== PAYMENT_STATUS.PAID) {
+            navigate(ROUTES.PAYMENT.replace(':eventId', `${event.id}`));
+        } else if (paymentStatus === PAYMENT_STATUS.PAID) {
+            onEventRegistrationCancelClick();
         } else {
             registrationStatus === REGISTRATION_STATUS.ACCEPTED ? onEventRegistrationCancelClick() : register();
         }
     }
-
-    useEffect(() => {
-        if (data && data.id) {
-            console.log(data.id)
-            const attendeeId = data.id;
-            navigate(ROUTES.PAYMENT, { state: { event, isCreator: isCurrentUserCreator, attendeeId } });
-        }
-    }, [data, navigate, event, isCurrentUserCreator]);
 
     const onEventRegistrationCancelClick = () => setConfirmationDialogOpen(true);
 

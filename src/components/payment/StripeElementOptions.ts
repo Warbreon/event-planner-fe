@@ -6,8 +6,7 @@ const cardDetailsStyleOptions = {
     backgroundColor: '#ffffff',
     fontFamily: 'Inter',
     fontSmoothing: 'antialiased',
-    fontSize: '1.2rem',
-    height: '3rem',
+    fontSize: '20px',
     '::placeholder': {
       color: '#aab7c4',
     },
@@ -18,8 +17,6 @@ const cardDetailsStyleOptions = {
   },
   
 };
-
-
 
 export const styleOptions: StripeCardNumberElementOptions | StripeCardCvcElementOptions | StripeCardExpiryElementOptions = {
   style: cardDetailsStyleOptions

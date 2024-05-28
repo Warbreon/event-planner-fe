@@ -27,7 +27,7 @@ const PricingSectionVM = ({ values, setFieldValue }: Props) => {
 			}
 		);
 		e.target.addEventListener('keydown', function (e: KeyboardEvent) {
-			if (e.key === 'ArrowUp' || e.key === 'ArrowDown' || e.key === 'e' || e.key === '+' || e.key === '-') {
+			if (e.key === 'ArrowUp' || e.key === 'ArrowDown' || e.key === 'e' || e.key === '+' || e.key === '-' || e.key === '.') {
 				e.preventDefault();
 			}
 		});

@@ -59,14 +59,8 @@ const PlannerAppBarViewModel = () => {
 		localStorage.clear();
 	};
 
-	const handleProfileClick = () => {
-		console.log('Open user profile');
-	};
-
 	const handleMenuOptions = (menuItem: String) => {
-		if (menuItem === 'Profile') {
-			handleProfileClick();
-		} else if (menuItem === 'Logout') {
+		if (menuItem === 'Sign out') {
 			handleSignOut();
 		}
 

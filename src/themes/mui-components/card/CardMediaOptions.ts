@@ -18,6 +18,11 @@ const muiCardMediaOptions = {
 				marginTop: '1rem',
 				marginBottom: '2rem',
 			},
+			'&.full-size-picture': {
+				width: '100%',
+				height: '100%',
+				border: 'none',
+			},
 		},
 	},
 };

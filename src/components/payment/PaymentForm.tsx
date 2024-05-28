@@ -29,8 +29,6 @@ const PaymentForm: FC<PaymentFormProps> = ({ attendeeId, price }) => {
 	const { processPayment, refundPayment } = usePaymentAPI();
 	const { request: postData, error: apiError } = useApiRequest();
 	const [errorMessage, setErrorMessage] = useState('');
-	const nodeEnv: string = process.env.REACT_APP_STRIPE_PUBLISHABLE_KEY as string;
-	const stripePromise = loadStripe(nodeEnv);
 
 	const handleSubmit = async () => {
 		setErrorMessage('');

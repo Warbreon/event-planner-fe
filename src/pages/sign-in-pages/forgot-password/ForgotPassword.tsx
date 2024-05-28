@@ -28,6 +28,7 @@ const ForgotPassword = () => {
 						title='Email address'
 						textFieldClassName={styles.textInput}
 						placeholder='e.g., name@cognizant.com'
+						inputProps={{ maxLength: 255 }}
 					/>
 					<div className={sharedStyles.buttonWrapper}>
 						<GenericButton type={ButtonTypes.submit} title='Reset Password' styles={BUTTON_STYLES.BLACK} disabled={isLoading} />

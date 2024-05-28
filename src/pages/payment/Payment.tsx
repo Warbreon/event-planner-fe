@@ -5,7 +5,6 @@ import { Elements } from '@stripe/react-stripe-js';
 import PaymentForm from '../../components/payment/PaymentForm';
 import { PUBLISHABLE_STRIPE_KEY, TEST_PUBLISHABLE_STRIPE_KEY } from '../../constants/PaymentKeys';
 import { Container } from '@mui/material';
-import useRegistration from '../../hooks/UseRegistration';
 import PaymentVM from './PaymentVM';
 import LoadingIndicator from '../../components/loading-indicator/LoadingIndicator';
 

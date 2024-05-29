@@ -11,6 +11,7 @@ import userInfoSlice from '../slices/UserInfoSlice';
 import userSlice from '../slices/UserSlice';
 import venueSlice from '../slices/VenueSlice';
 import myEventsSlice from '../slices/MyEventsSlice';
+import urlPathSlice from '../slices/UrlPathSlice'
 
 const persistConfig = {
 	key: 'session',
@@ -31,7 +32,8 @@ const rootReducer = combineReducers({
 	tags: tagsSlice,
 	users: userSlice,
 	venues: venueSlice,
-	myEvents: myEventsSlice
+	myEvents: myEventsSlice,
+	urlPath: urlPathSlice
 });
 
 export const store: any = configureStore({

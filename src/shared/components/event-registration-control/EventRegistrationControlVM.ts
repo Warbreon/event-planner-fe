@@ -7,6 +7,7 @@ import EventRestrictionsService from "../../../services/EventRestrictionsService
 import { Event } from "../../../models/Event";
 import { useNavigate } from "react-router";
 import ROUTES from "../../../routes/Routes";
+import { PAYMENT_STATUS } from "../../../models/PaymentStatus";
 
 interface Props {
     event: Event;
@@ -35,7 +36,7 @@ const EventRegistrationControlVM = ({ event }: Props) => {
         paymentStatus,
         register,
         unregister,
-        closeModal,
+        closeModal
     } = useRegistration({
         event: event,
         isCreator: isCurrentUserCreator,
@@ -53,8 +54,10 @@ const EventRegistrationControlVM = ({ event }: Props) => {
             return;
         }
 
-        if (event.price > 0) {
-            navigate(ROUTES.PAYMENT, { state: { price: event.price } });
+        if (event.price > 0 && paymentStatus !== PAYMENT_STATUS.PAID) {
+            navigate(ROUTES.PAYMENT.replace(':eventId', `${event.id}`));
+        } else if (paymentStatus === PAYMENT_STATUS.PAID) {
+            onEventRegistrationCancelClick();
         } else {
             registrationStatus === REGISTRATION_STATUS.ACCEPTED ? onEventRegistrationCancelClick() : register();
         }

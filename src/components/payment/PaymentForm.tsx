@@ -13,24 +13,22 @@ import { ChargeRequest } from '../../models/request/ChargeRequest';
 import { useApiRequest } from '../../api/hooks/ApiHooks';
 import GenericButton, { ButtonTypes } from '../../shared/components/buttons/ButtonComponent';
 import { BUTTON_STYLES } from '../../themes/styles/Button';
-import { loadStripe } from '@stripe/stripe-js';
 import { styleOptions } from './StripeElementOptions';
 import styles from './PaymentForm.module.css';
 import { Typography } from '@mui/material';
 
 interface PaymentFormProps {
-	attendeeId: string;
+	eventId: string;
 	price: number;
+    onSuccess: () => void;
 }
 
-const PaymentForm: FC<PaymentFormProps> = ({ attendeeId, price }) => {
+const PaymentForm: FC<PaymentFormProps> = ({ eventId, price, onSuccess }) => {
 	const stripe = useStripe();
 	const elements = useElements();
 	const { processPayment, refundPayment } = usePaymentAPI();
 	const { request: postData, error: apiError } = useApiRequest();
 	const [errorMessage, setErrorMessage] = useState('');
-	const nodeEnv: string = process.env.REACT_APP_STRIPE_PUBLISHABLE_KEY as string;
-	const stripePromise = loadStripe(nodeEnv);
 
 	const handleSubmit = async () => {
 		setErrorMessage('');
@@ -40,14 +38,14 @@ const PaymentForm: FC<PaymentFormProps> = ({ attendeeId, price }) => {
 			return;
 		}
 
-		const cardElement = elements.getElement(CardElement);
+		const cardNumberElement = elements.getElement(CardNumberElement);
 
-		if (!cardElement) {
-			setErrorMessage('Card Element is not loaded');
+		if (!cardNumberElement) {
+			setErrorMessage('Card Number Element is not loaded');
 			return;
 		}
 
-		const { error, token } = await stripe.createToken(cardElement);
+		const { error, token } = await stripe.createToken(cardNumberElement);
 
 		if (error) {
 			setErrorMessage(error.message || 'An error occurred');
@@ -57,10 +55,13 @@ const PaymentForm: FC<PaymentFormProps> = ({ attendeeId, price }) => {
 		const chargeRequest: ChargeRequest = {
 			token: token.id,
 			amount: price,
-			attendeeId: parseInt(attendeeId),
+			eventId: parseInt(eventId),
 		};
 
-		postData(() => processPayment(chargeRequest));
+		postData(() => processPayment(chargeRequest))
+            .then(() => {
+                if (!apiError) onSuccess();
+            });
 	};
 
 	return (
@@ -68,7 +69,7 @@ const PaymentForm: FC<PaymentFormProps> = ({ attendeeId, price }) => {
 			<Formik initialValues={{}} onSubmit={handleSubmit}>
 				{({ isSubmitting }) => (
 					<Form className={styles.formikForm}>
-						<Typography variant='body2'>Enter you card number</Typography>
+						<Typography variant='body2'>Enter you card details</Typography>
 						<CardNumberElement className={styles.cardInput} options={styleOptions} />
 						<section className={styles.oneLine}>
 							<Typography variant='body2'>Enter CVC</Typography>
@@ -76,6 +77,7 @@ const PaymentForm: FC<PaymentFormProps> = ({ attendeeId, price }) => {
                             <Typography variant='body2'>Enter card expiration date</Typography>
 							<CardExpiryElement className={styles.cardInput} options={styleOptions} />
 						</section>
+                        {/* <CardElement className={styles.cardInput} options={styleOptions} /> */}
 						<GenericButton
 							title={isSubmitting ? 'Processing...' : `Pay ${price} EUR`}
 							type={ButtonTypes.submit}

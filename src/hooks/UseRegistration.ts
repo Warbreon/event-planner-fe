@@ -17,7 +17,7 @@ const useRegistration = ({ event, isCreator }: Props) => {
     const [isModalOpen, setModalOpen] = useState(false);
     const [registrationStatus, setRegistrationStatus] = useState(event.currentUserRegistrationStatus);
     const [paymentStatus, setPaymentStatus] = useState(event.currentUserPaymentStatus)
-    const { request, isLoading, error } = useApiRequest();
+    const { request, isLoading, error, data } = useApiRequest();
     const { registerToEvent, unregisterFromEvent } = useAttendeeAPI();
     const [lastAction, setLastAction] = useState<'register' | 'unregister' | null>(null);
 
@@ -65,6 +65,7 @@ const useRegistration = ({ event, isCreator }: Props) => {
         isModalOpen,
         isLoading,
         error,
+        data,
         registrationStatus,
         paymentStatus,
         register,

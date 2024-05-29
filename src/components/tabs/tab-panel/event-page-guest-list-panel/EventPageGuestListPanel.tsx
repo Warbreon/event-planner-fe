@@ -17,6 +17,7 @@ import { AVATAR_STYLES } from '../../../../themes/styles/Avatar';
 import EventPageGuestsVM from "../../../guest-list/event-page/EventPageGuestsVM";
 import AddGuestSectionModal from "../../../add-guests-to-event/page-content/AddGuestSectionModal";
 import {REGISTRATION_STATUS} from "../../../../models/RegistrationStatus";
+import SnackbarComponent from '../../../snackbar/SnackbarComponent';
 
 type Props = {
 	eventPageGuestsVM: typeof EventPageGuestsVM.arguments;
@@ -110,6 +111,13 @@ const EventPageGuestListPanel: FC<Props> = ({ eventPageGuestsVM }) => {
 					)}
 				</>
 			}
+{/*			<SnackbarComponent
+                open={isSnackbarOpen}
+                message={snackbarMessage}
+                autoHideDuration={5000}
+                severity={snackbarSeverity}
+                handleClose={handleSnackbarClose}
+            />*/}
 		</div>
 	);
 };

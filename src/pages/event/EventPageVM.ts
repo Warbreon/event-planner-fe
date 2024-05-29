@@ -1,19 +1,19 @@
-import { useParams } from 'react-router';
+import { useNavigate, useParams } from 'react-router';
 import { calculateDuration, formatDate, formatTime } from '../../utils/DateConverter';
 import useEventAPI from '../../api/EventsAPI';
 import { useCallback, useEffect, useState } from 'react';
 import { useFetch } from '../../api/hooks/ApiHooks';
 import { useSelector } from 'react-redux';
 import { StoreState } from '../../redux/store/Store';
+import ROUTES from '../../routes/Routes';
 
 const EventPageVM = () => {
+	const navigate = useNavigate();
 	const { eventId } = useParams();
 	const currentUserId = useSelector((state: StoreState) => state.userInfo.userId);
 	const currentUserRole = useSelector((state: StoreState) => state.user.role);
 
 	const { fetchEventById } = useEventAPI();
-	const [currentError, setCurrentError] = useState('');
-	const [isSnackbarOpen, setSnackbarOpen] = useState(false);
 
 	const fetchFunction = useCallback(() => fetchEventById(Number(eventId)), [eventId]);
 	const { data: event, isLoading: isEventLoading, error: eventError } = useFetch(fetchFunction);
@@ -48,10 +48,10 @@ const EventPageVM = () => {
 	return {
 		event,
 		isEventLoading,
-		error: currentError,
+		onAddGuestsClick,
+		isUserAdminOrCreator,
 		location,
-		isSnackbarOpen,
-		handleSnackbarClose,
+		eventError,
 		...eventDetails,
 	};
 };

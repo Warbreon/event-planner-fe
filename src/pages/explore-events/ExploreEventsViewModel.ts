@@ -33,7 +33,15 @@ const ExploreEventsVM = () => {
 		notFound,
 	} = usePaginatedFetch(fetchFunction, initialPageSize, [filters]);
 
-	return { events, isLoading, error, loadMore, hasMore, notFound, isAdmin };
+	return {
+        events, 
+        isLoading, 
+        error, 
+        loadMore, 
+        hasMore, 
+        notFound, 
+        isAdmin,
+    };
 };
 
 export default ExploreEventsVM;

@@ -34,22 +34,9 @@ const EventPageVM = () => {
 		location = address.city;
 	}
 
-	useEffect(() => {
-		if (eventError) {
-			setCurrentError(eventError || '');
-			setSnackbarOpen(true);
-		}
-	}, [eventError, setSnackbarOpen]);
-
-	const handleSnackbarClose = () => {
-        setSnackbarOpen(false);
-    };
-
 	return {
 		event,
 		isEventLoading,
-		onAddGuestsClick,
-		isUserAdminOrCreator,
 		location,
 		eventError,
 		...eventDetails,

@@ -1,7 +1,7 @@
 import { useNavigate, useParams } from 'react-router';
 import { calculateDuration, formatDate, formatTime } from '../../utils/DateConverter';
 import useEventAPI from '../../api/EventsAPI';
-import { useCallback, useEffect } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { useFetch } from '../../api/hooks/ApiHooks';
 import { useSelector } from 'react-redux';
 import { StoreState } from '../../redux/store/Store';
@@ -34,17 +34,9 @@ const EventPageVM = () => {
 		location = address.city;
 	}
 
-	const onAddGuestsClick = () => {
-		console.log('Add guest');
-	};
-
-	const isUserAdminOrCreator = currentUserRole === 'SYSTEM_ADMIN' || currentUserId === creatorId;
-
 	return {
 		event,
 		isEventLoading,
-		onAddGuestsClick,
-		isUserAdminOrCreator,
 		location,
 		eventError,
 		...eventDetails,

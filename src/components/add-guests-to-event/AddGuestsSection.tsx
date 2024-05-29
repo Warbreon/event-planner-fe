@@ -3,14 +3,12 @@ import { BUTTON_STYLES } from '../../themes/styles/Button';
 import ToggleHeader from '../../shared/forms/elements/toggle-header/ToggleHeader';
 import useAddGuestsVM from './AddGuestsVM';
 import GenericButton, { ButtonTypes, IconButton } from '../../shared/components/buttons/ButtonComponent';
-import ModalComponent from '../../shared/components/modal/ModalComponent';
-import ButtonComponentGroup from '../../shared/components/buttons/buton-group/ButtonComponentGroup';
-import SelectGuests from './modal-content/SelectGuests';
 import DisplaySelectedGuests from './page-content/DisplaySelectedGuests';
 import styles from './AddGuestsSection.module.css';
 import SnackbarComponent, { ALERT_SEVERITY } from '../snackbar/SnackbarComponent';
 import LoadingIndicator from '../loading-indicator/LoadingIndicator';
 import ErrorAlert from '../error/ErrorAlert';
+import AddGuestSectionModal from "./page-content/AddGuestSectionModal";
 
 const AddGuestsSection = () => {
 	const { setFieldValue } = useFormikContext<{ attendeeIds: number[] }>();
@@ -31,35 +29,6 @@ const AddGuestsSection = () => {
 		isSnackbarOpen,
 		handleSnackbarClose,
 	} = useAddGuestsVM({ setFieldValue });
-
-	const footer = () => (
-		<div className={styles.footerContainer}>
-			<ButtonComponentGroup
-				buttons={[
-					{
-						label: 'Cancel',
-						onClick: onModalClose,
-						className: `${BUTTON_STYLES.OUTLINED_GRAY_BORDER} ${BUTTON_STYLES.MODAL_BUTTON}`,
-					},
-					{
-						label: confirmButtonLabel,
-						onClick: onConfirm,
-						className: `${BUTTON_STYLES.BLACK_BACKGROUND} ${BUTTON_STYLES.MODAL_BUTTON}`,
-						type: ButtonTypes.submit,
-					},
-				]}
-				className={styles.modalButtonsContainer}
-			/>
-			<SnackbarComponent
-				open={isSnackbarOpen}
-				message={errorMessage}
-				autoHideDuration={5000}
-				handleClose={handleSnackbarClose}
-				severity={ALERT_SEVERITY.ERROR}
-				className={styles.snackbar}
-			/>
-		</div>
-	);
 
 	if(error) {
 		return <ErrorAlert message={error} />
@@ -91,13 +60,15 @@ const AddGuestsSection = () => {
 						onClick={() => onModalOpen()}
 					/>
 					{showModal && (
-						<ModalComponent
-							header='Add guests'
-							handleClose={onModalClose}
-							isOpen={showModal}
-							content={<SelectGuests users={users} />}
-							footer={footer()}
-							showDivider
+						<AddGuestSectionModal
+							onModalClose={onModalClose}
+							onConfirm={onConfirm}
+							showModal={showModal}
+							users={users}
+							confirmButtonLabel={confirmButtonLabel}
+							errorMessage={errorMessage}
+							isSnackbarOpen={isSnackbarOpen}
+							handleSnackbarClose={handleSnackbarClose}
 						/>
 					)}
 				</>

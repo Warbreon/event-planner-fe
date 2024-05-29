@@ -1,4 +1,5 @@
 import { Attendee } from '../models/Attendee';
+import {REGISTRATION_STATUS} from "../models/RegistrationStatus";
 
 export const filterAttendees = (attendees?: Attendee[]): Attendee[] => {
 	if (!attendees) {
@@ -7,7 +8,7 @@ export const filterAttendees = (attendees?: Attendee[]): Attendee[] => {
 
 	return attendees.filter(
 		(attendee) =>
-			(attendee.registrationStatus === 'ACCEPTED' || attendee.registrationStatus === null) 
+			(attendee.registrationStatus === REGISTRATION_STATUS.ACCEPTED || attendee.registrationStatus === null)
 		// no payment system...
 		// &&(attendee.paymentStatus === 'PAID' || attendee.paymentStatus === null)
 	);
@@ -21,8 +22,8 @@ export const filterAttendeesByRegistationStatusAndFullname = (attendees?: Attend
 	const statusOrder: Record<string, number> = { PENDING: -1, ACCEPTED: 0, null: 0, REJECTED: 1 };
 
 	return attendees.sort((a, b) => {
-		const statusA = a.registrationStatus || 'ACCEPTED';
-		const statusB = b.registrationStatus || 'ACCEPTED';
+		const statusA = a.registrationStatus || REGISTRATION_STATUS.ACCEPTED;
+		const statusB = b.registrationStatus || REGISTRATION_STATUS.ACCEPTED;
 
 		const statusSort = (statusOrder[statusA] ?? 0) - (statusOrder[statusB] ?? 0);
 		if (statusSort !== 0) {

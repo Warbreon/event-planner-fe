@@ -16,3 +16,7 @@ export enum BUTTON_STYLES {
 	MODAL_BUTTON = 'modal-button',
 	BLACK_BACKGROUND = 'black-background',
 }
+export enum BUTTON_LABELS {
+	ADD_GUESTS = 'Add guests',
+	SAVE_CHANGES = 'Save changes',
+}

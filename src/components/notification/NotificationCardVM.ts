@@ -1,8 +1,9 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { AttendeeNotification } from "../../models/AttendeeNotification";
 import { NOTIFICATION } from "../../themes/styles/Notification";
 import { formatDate, formatDateAndTimeTo_HH_mm_MMMM_D_YYYY } from "../../utils/DateConverter";
 import useNotificationActions from "./NotificationActions";
+import { ALERT_SEVERITY } from "../snackbar/SnackbarComponent";
 
 interface NotificationCardVMProps extends Partial<AttendeeNotification> {
     markNotificationAsViewed: () => void;
@@ -12,7 +13,21 @@ const NotificationCardVM = (notification: NotificationCardVMProps) => {
     const [viewed, setViewed] = useState<boolean>(false);
     const { registrationTime = '', isNewNotification, eventStart = '', eventName = '', user } = notification;
 
-    const { error, handleConfirmOnClick, handleDeclineOnClick, markAsViewed, getButtonStyles } = useNotificationActions();
+    const { patchError, handleConfirmOnClick, handleDeclineOnClick, markAsViewed, getButtonStyles } = useNotificationActions();
+
+    const [isSnackbarOpen, setSnackbarOpen] = useState(false);
+    const [snackbarMessage, setSnackbarMessage] = useState('');
+    const [snackbarSeverity, setSnackbarSeverity] = useState(ALERT_SEVERITY.SUCCESS);
+
+    const handleSnackbarClose = () => setSnackbarOpen(false);
+
+    useEffect(() => {
+        if (patchError) {
+            setSnackbarMessage(patchError);
+            setSnackbarSeverity(ALERT_SEVERITY.ERROR);
+            setSnackbarOpen(true);
+        }
+    }, [patchError]);
 
     const formattedEventStart = formatDate(eventStart);
     const formattedRegistrationTime = formatDateAndTimeTo_HH_mm_MMMM_D_YYYY(registrationTime);
@@ -46,7 +61,10 @@ const NotificationCardVM = (notification: NotificationCardVMProps) => {
     }
 
     return {
-        error,
+        isSnackbarOpen,
+        snackbarMessage,
+        snackbarSeverity,
+        handleSnackbarClose,
         formattedEventStart,
         formattedRegistrationTime,
         formattedCardText,

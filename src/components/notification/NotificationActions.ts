@@ -8,7 +8,7 @@ import { removeRejectedAttendee, saveRejectedAttendee } from "../../redux/slices
 const useNotificationActions = () => {
     const [lastClicked, setLastClicked] = useState<Record<number, string>>({});
     const { confirmPendingRegistration, declinePendingRegistration, markNotificationAsViewed } = useAttendeeAPI();
-    const { request: patchData, error } = useApiRequest();
+    const { request: patchData, error: patchError } = useApiRequest();
     const dispatch = useDispatch();
 
     const handleConfirmOnClick = async (attendeeId: number) => {
@@ -45,7 +45,7 @@ const useNotificationActions = () => {
     }
 
     return {
-        error,
+        patchError,
         handleConfirmOnClick,
         handleDeclineOnClick,
         markAsViewed,

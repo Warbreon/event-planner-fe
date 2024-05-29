@@ -3,9 +3,10 @@ import FormikDropdown from '../../../../shared/forms/elements/formik-elements/dr
 import PageHeader from '../../../headers/page-headers/PageHeader';
 import styles from './Details.module.css';
 import DetailsVM from './DetailsVM';
+import ErrorAlert from '../../../error/ErrorAlert';
 
 const Details = () => {
-	const { eventTagsOptions } = DetailsVM();
+	const { eventTagsOptions, tagsError } = DetailsVM();
 
 	return (
 		<div className={styles.container}>
@@ -21,12 +22,16 @@ const Details = () => {
 				/>
 			</div>
 			<div className={styles.dropdown}>
+      {tagsError ? <ErrorAlert message={tagsError} />
+      : (
+
 				<FormikDropdown
 					name='eventTagIds'
 					label='Event Type'
 					multiple={true}
 					options={eventTagsOptions}
 				/>
+      )}
 			</div>
 		</div>
 	);

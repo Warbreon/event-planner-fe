@@ -78,8 +78,8 @@ const EventRegistrationControl: React.FC<EventRegistrationControlProps> = ({
             {modalEnabled && (
                 <RegisterModal
                     isOpen={isModalOpen}
-                    isOpenEvent={isCurrentUserCreator || event.isOpen}
-                    eventName={event.name}
+                    isOpenEvent={isCurrentUserCreator || event?.isOpen}
+                    eventName={event?.name}
                     onClose={closeModal}
                 />
             )}

@@ -15,25 +15,25 @@ interface Props {
 const useRegistration = ({ event, isCreator }: Props) => {
     const dispatch = useDispatch();
     const [isModalOpen, setModalOpen] = useState(false);
-    const [registrationStatus, setRegistrationStatus] = useState(event.currentUserRegistrationStatus);
-    const [paymentStatus, setPaymentStatus] = useState(event.currentUserPaymentStatus)
+    const [registrationStatus, setRegistrationStatus] = useState(event?.currentUserRegistrationStatus);
+    const [paymentStatus, setPaymentStatus] = useState(event?.currentUserPaymentStatus)
     const { request, isLoading, error, data } = useApiRequest();
     const { registerToEvent, unregisterFromEvent } = useAttendeeAPI();
     const [lastAction, setLastAction] = useState<'register' | 'unregister' | null>(null);
 
     const register = useCallback(() => {
-        request(() => registerToEvent(event.id));
+        request(() => registerToEvent(event?.id));
         setLastAction('register');
-    }, [event.id, request, registerToEvent]);
+    }, [event?.id, request, registerToEvent]);
 
     const unregister = useCallback(() => {
-        request(() => unregisterFromEvent(event.id));
+        request(() => unregisterFromEvent(event?.id));
         setLastAction('unregister');
-    }, [event.id, request, unregisterFromEvent]);
+    }, [event?.id, request, unregisterFromEvent]);
 
     useEffect(() => {
-        setRegistrationStatus(event.currentUserRegistrationStatus);
-        setPaymentStatus(event.currentUserPaymentStatus);
+        setRegistrationStatus(event?.currentUserRegistrationStatus);
+        setPaymentStatus(event?.currentUserPaymentStatus);
         setModalOpen(false);
         setLastAction(null);
     }, [event]);
@@ -52,7 +52,7 @@ const useRegistration = ({ event, isCreator }: Props) => {
             } else if (lastAction === 'unregister') {
                 setRegistrationStatus(REGISTRATION_STATUS.DEFAULT);
                 setPaymentStatus(PAYMENT_STATUS.DEFAULT);
-                dispatch(unregisterFromUserEvent(event.id));
+                dispatch(unregisterFromUserEvent(event?.id));
             }
         }
     }, [isLoading, error, event]);

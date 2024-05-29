@@ -28,17 +28,36 @@ const SignIn = () => {
 				<Form
 					initialValues={{ email: '', password: '' }}
 					validationSchema={emailPasswordSchema}
-					onSubmit={(values) => { onSubmit(values.email, values.password) }}
+					onSubmit={(values) => {
+						onSubmit(values.email, values.password);
+					}}
 				>
-					<FormikTextField id='email' title='Email address' name='email' placeholder='e.g., name@cognizant.com' />
-					<FormikTextField id='password' title='Password' name='password' type='password' />
+					<FormikTextField
+						id='email'
+						title='Email address'
+						name='email'
+						placeholder='e.g., name@cognizant.com'
+						inputProps={{ maxLength: 255 }}
+					/>
+					<FormikTextField
+						id='password'
+						title='Password'
+						name='password'
+						type='password'
+						inputProps={{ maxLength: 64 }}
+					/>
 					<Typography variant='body1' className={styles.forgotPasswordLinkWrapper}>
 						<Link to='/signin/forgotpassword' className={styles.forgotPasswordLink}>
 							Forgot password?
 						</Link>
 					</Typography>
 					<div className={sharedStyles.buttonWrapper}>
-						<GenericButton type={ButtonTypes.submit} title='Sign in' styles={BUTTON_STYLES.BLACK} disabled={isLoading} />
+						<GenericButton
+							type={ButtonTypes.submit}
+							title='Sign in'
+							styles={BUTTON_STYLES.BLACK}
+							disabled={isLoading}
+						/>
 					</div>
 				</Form>
 			</Box>

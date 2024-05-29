@@ -31,8 +31,7 @@ const TipTapEditorConfig = (fieldName: string) => {
 				nested: true,
 			}),
 			CharacterCount.configure({
-				mode: 'nodeSize',
-				limit: 5000,
+				limit: 4000,
 			}),
 		],
 		content: values.description,

@@ -54,7 +54,7 @@ const EventRegistrationControlVM = ({ event }: Props) => {
             return;
         }
 
-        if (event.price > 0 && paymentStatus !== PAYMENT_STATUS.PAID) {
+        if (event.price > 0 && paymentStatus !== PAYMENT_STATUS.PAID && !isCurrentUserCreator) {
             navigate(ROUTES.PAYMENT.replace(':eventId', `${event.id}`));
         } else if (paymentStatus === PAYMENT_STATUS.PAID) {
             onEventRegistrationCancelClick();

@@ -1,3 +1,4 @@
+import { useSelector } from 'react-redux';
 import { PAYMENT_STATUS } from '../../../../models/PaymentStatus';
 import { REGISTRATION_STATUS } from '../../../../models/RegistrationStatus';
 import { BUTTON_STYLES } from '../../../../themes/styles/Button';
@@ -27,8 +28,8 @@ const eventButtonConfigs: Record<REGISTRATION_STATUS, ButtonConfig> = {
     },
 };
 
-const EventButtonVM = (registrationStatus: REGISTRATION_STATUS | null, isPaidEvent: boolean, paymentStatus: PAYMENT_STATUS | null): ButtonConfig => {
-    if (isPaidEvent) {
+const EventButtonVM = (registrationStatus: REGISTRATION_STATUS | null, isPaidEvent: boolean, paymentStatus: PAYMENT_STATUS | null, isCurrentUserCreator: boolean): ButtonConfig => {
+    if (isPaidEvent && !isCurrentUserCreator) {
         if (paymentStatus === null || paymentStatus === PAYMENT_STATUS.DEFAULT || paymentStatus === PAYMENT_STATUS.FAILED) {
             return { icon: IconButton.GET_TICKETS, styles: BUTTON_STYLES.GRAY };
         }

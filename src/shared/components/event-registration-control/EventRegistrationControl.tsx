@@ -67,6 +67,7 @@ const EventRegistrationControl: React.FC<EventRegistrationControlProps> = ({
                 isPaidEvent={event.price > 0}
                 onClick={onEventRegistrationClick}
                 disabled={isRegistrationLoading}
+                isCurrentUserCreator={isCurrentUserCreator}
             />
         );
     };

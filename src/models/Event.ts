@@ -3,6 +3,7 @@ import { REGISTRATION_STATUS } from "./RegistrationStatus";
 import { Address } from './Address';
 import { Attendee } from './Attendee';
 import { Tag } from './Tag';
+import { PAYMENT_STATUS } from './PaymentStatus';
 
 export interface Event {
 	id: number;
@@ -21,6 +22,7 @@ export interface Event {
 	creatorId: number;
 	attendees?: Attendee[];
 	currentUserRegistrationStatus: REGISTRATION_STATUS | null;
+	currentUserPaymentStatus: PAYMENT_STATUS | null;
 	isOpen: boolean;
 	tags: Tag[];
 	currency: Currency;

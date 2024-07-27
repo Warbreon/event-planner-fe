@@ -1,0 +1,27 @@
+.wrapperContainer {
+	margin-top: 5%;
+	display: flex;
+	justify-content: center;
+}
+
+.formikForm {
+	width: 30rem;
+	height: 30rem;
+	box-shadow: 0px 0px 0px 0.5px rgba(50, 50, 93, 0.1), 0px 2px 5px 0px rgba(50, 50, 93, 0.1),
+		0px 1px 1.5px 0px rgba(0, 0, 0, 0.07);
+	border-radius: 12px;
+	padding-top: 4rem;
+	padding-bottom: 4rem;
+	padding-left: 3rem;
+	padding-right: 3rem;
+}
+
+.wrapperContainer .formikForm .cardInput {
+	border: 1px solid #dddddd;
+	border-radius: 8px;
+	height: 3rem;
+	padding-left: 1rem;
+	padding-right: 1rem;
+	padding-top: 0.7rem;
+  margin-bottom: 2rem;
+}

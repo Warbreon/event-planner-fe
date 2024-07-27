@@ -1,4 +1,4 @@
-import { Client, Stomp } from "@stomp/stompjs";
+import { Client } from "@stomp/stompjs";
 import { useEffect, useState } from "react"
 import { useSelector } from "react-redux";
 import SockJS from "sockjs-client";

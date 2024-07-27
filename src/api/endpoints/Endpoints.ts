@@ -35,4 +35,7 @@ export const ENDPOINTS = {
 	
 	resetPassword: '/auth/reset-password',
 	changePassword: '/auth/change-password',
+
+	processPayment: '/payment/process',
+	refundPayment: '/payment/refund',
 };

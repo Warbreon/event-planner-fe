@@ -13,6 +13,7 @@ enum ROUTES {
 	SUPPORT = '/support',
 	NOT_FOUND = '/not-found',
 	NOTIFICATIONS = '/notifications',
+	PAYMENT = '/payment/:eventId',
 }
 
 export default ROUTES;

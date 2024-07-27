@@ -5,12 +5,16 @@ import { StoreState } from "../../../redux/store/Store";
 import { useSelector } from "react-redux";
 import EventRestrictionsService from "../../../services/EventRestrictionsService";
 import { Event } from "../../../models/Event";
+import { useNavigate } from "react-router";
+import ROUTES from "../../../routes/Routes";
+import { PAYMENT_STATUS } from "../../../models/PaymentStatus";
 
 interface Props {
     event: Event;
 }
 
 const EventRegistrationControlVM = ({ event }: Props) => {
+    const navigate = useNavigate();
     const currentUserId = useSelector((state: StoreState) => state.userInfo.userId);
     const isCurrentUserCreator = event && event.creatorId ? currentUserId === event.creatorId : false;
 
@@ -29,9 +33,10 @@ const EventRegistrationControlVM = ({ event }: Props) => {
         isLoading: isRegistrationLoading,
         error: registrationError,
         registrationStatus,
+        paymentStatus,
         register,
         unregister,
-        closeModal,
+        closeModal
     } = useRegistration({
         event: event,
         isCreator: isCurrentUserCreator,
@@ -49,7 +54,13 @@ const EventRegistrationControlVM = ({ event }: Props) => {
             return;
         }
 
-        registrationStatus === REGISTRATION_STATUS.ACCEPTED ? onEventRegistrationCancelClick() : register();
+        if (event.price > 0 && paymentStatus !== PAYMENT_STATUS.PAID && !isCurrentUserCreator) {
+            navigate(ROUTES.PAYMENT.replace(':eventId', `${event.id}`));
+        } else if (paymentStatus === PAYMENT_STATUS.PAID) {
+            onEventRegistrationCancelClick();
+        } else {
+            registrationStatus === REGISTRATION_STATUS.ACCEPTED ? onEventRegistrationCancelClick() : register();
+        }
     }
 
     const onEventRegistrationCancelClick = () => setConfirmationDialogOpen(true);
@@ -68,6 +79,7 @@ const EventRegistrationControlVM = ({ event }: Props) => {
         isModalOpen,
         closeModal,
         registrationStatus,
+        paymentStatus,
         isRegistrationLoading,
         isSnackbarOpen,
         handleSnackbarClose,

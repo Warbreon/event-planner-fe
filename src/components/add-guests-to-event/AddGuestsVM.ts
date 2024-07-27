@@ -1,20 +1,15 @@
 import { ChangeEvent, useEffect, useState } from 'react';
 import { User } from '../../models/User';
-import { useSelector } from 'react-redux';
 import { AppDispatch, StoreState } from '../../redux/store/Store';
-import { useDispatch } from 'react-redux';
 import { add, removeAll } from '../../redux/slices/CreateEventPageSlice';
 import { areArraysEqual } from '../../utils/CompareArrays';
 import { removeAllFetchedAttendees } from '../../redux/slices/EditEventSlice';
 import { fetchUsers } from '../../redux/slices/UserSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import {BUTTON_LABELS} from "../../themes/styles/Button";
 
 interface Props {
 	setFieldValue: (field: string, value: any, shouldValidate?: boolean) => void;
-}
-
-const enum BUTTON_LABELS {
-	ADD_GUESTS = 'Add guests',
-	SAVE_CHANGES = 'Save changes',
 }
 
 const useAddGuestsVM = ({ setFieldValue }: Props) => {
@@ -44,7 +39,7 @@ const useAddGuestsVM = ({ setFieldValue }: Props) => {
 			dispatch(removeAllFetchedAttendees());
 		}
 	}, [dispatch, registeredAttendees])
-	
+
 	const onToggle = (event: ChangeEvent<HTMLInputElement>) => {
 		setShowForm(event.target.checked);
 	};
@@ -63,8 +58,7 @@ const useAddGuestsVM = ({ setFieldValue }: Props) => {
 	};
 
 	const convertUserIds = (currentUserSelection: User[]) => {
-		const usersIds: number[] = currentUserSelection.map((user) => user.id);
-		return usersIds;
+		return currentUserSelection.map((user) => user.id);
 	};
 
 	const onDeleteClick = (userId: number) => {
@@ -89,7 +83,7 @@ const useAddGuestsVM = ({ setFieldValue }: Props) => {
 
 	const setError = (message: string) => {
 		setErrorMessage(message);
-		
+
 		if (message) {
 			setSnackbarOpen(true);
 		}

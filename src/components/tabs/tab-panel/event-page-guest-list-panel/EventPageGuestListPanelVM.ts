@@ -35,10 +35,6 @@ const EventPageGuestListPanelVM = (attendees: Attendee[]) => {
 
     const debouncedSearchAttendees = useDebouncedCallback(searchAttendees, 500);
 
-    const onPlusButtonClick = () => {
-        (console.log("Button clicked"));
-    };
-
     const onInputChange = (event: ChangeEvent<HTMLInputElement>) => {
         const value = event.target.value;
         setSearchTerm(value);
@@ -50,7 +46,6 @@ const EventPageGuestListPanelVM = (attendees: Attendee[]) => {
         snackbarMessage,
         snackbarSeverity,
         handleSnackbarClose,
-        onPlusButtonClick, 
         onInputChange, 
         handleConfirmOnClick, 
         handleDeclineOnClick, 

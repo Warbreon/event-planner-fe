@@ -17,6 +17,8 @@ export const ENDPOINTS = {
 	markNotificationAsViewed: (id: number) => `/attendee/${id}/mark-as-viewed`,
 	confirmPendingRegistration: (id: number) => `/attendee/register/${id}/confirm`,
 	declinePendingRegistration: (id: number) => `/attendee/register/${id}/decline`,
+	updateEventAttendees: (eventId: number) =>`attendee/${eventId}/updateAttendees`,
+	getEventAttendees: (eventId: number) =>`attendee/${eventId}`,
 	
 	getAllTags: '/tags',
 

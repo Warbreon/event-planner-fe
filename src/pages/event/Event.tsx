@@ -10,14 +10,14 @@ import EventPageGuests from '../../components/guest-list/event-page/EventPageGue
 import EventPageVM from './EventPageVM';
 import LoadingIndicator from '../../components/loading-indicator/LoadingIndicator';
 import RelatedEvents from '../../components/related-events/RelatedEvents';
+import EventPageGuestsVM from "../../components/guest-list/event-page/EventPageGuestsVM";
+import SnackbarComponent, { ALERT_SEVERITY } from '../../components/snackbar/SnackbarComponent';
 import EventRegistrationControl from '../../shared/components/event-registration-control/EventRegistrationControl';
 import ROUTES from '../../routes/Routes';
 import { Navigate } from 'react-router';
 
 const Event = () => {
 	const {
-		onAddGuestsClick,
-		isUserAdminOrCreator,
 		event,
 		isEventLoading,
 		location,
@@ -28,6 +28,8 @@ const Event = () => {
 		eventName,
 		eventError,
 	} = EventPageVM();
+
+	const eventPageGuestsVM = EventPageGuestsVM();
 
 	if (!event && eventError) {
 		return <Navigate to={ROUTES.NOT_FOUND}/>;
@@ -41,7 +43,6 @@ const Event = () => {
 		inviteUrl,
 		address,
 		imageUrl = '',
-		attendees = [],
 		price = 0,
 		currency = '',
 		description = '',
@@ -59,9 +60,7 @@ const Event = () => {
 						<PageHeader text={eventName} variant={HeaderVariant.EVENT_PAGE} />
 						<Divider className={styles.divider}  />
 						<EventPageGuests
-							onAddGuests={onAddGuestsClick}
-							attendees={attendees}
-							isUserAdminOrCreator={isUserAdminOrCreator}
+							eventPageGuestsVM={eventPageGuestsVM}
 						/>
 						<Image styles='event-page' imageUrl={imageUrl} />
 						<TabComponent
@@ -69,8 +68,7 @@ const Event = () => {
 							description={description}
 							tags={tags}
 							agenda={agenda}
-							attendees={attendees}
-							isUserAdminOrCreator={isUserAdminOrCreator}
+							eventPageGuestsVM={eventPageGuestsVM}
 						/>
 					</Box>
 				</Grid>
